@@ -1,0 +1,610 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WinterFlow.io - Netdata v1.44.0 release notes</title><meta name="description" content="Netdata v1.44.0 delivers Prometheus-level performance improvements, systemd-journal logging with sampling and namespace, a new log2journal tool, expanded Functions, Gorilla compression with multi-algorithm streaming (SLOTS) using ZSTD by default, and new Cloud alert integrations."><link rel="canonical" href="https://winterflow.io/catalog/netdata/releases/v1.44.0/"><meta property="og:type" content="website"><meta property="og:title" content="WinterFlow.io - Netdata v1.44.0 release notes"><meta property="og:description" content="Netdata v1.44.0 delivers Prometheus-level performance improvements, systemd-journal logging with sampling and namespace, a new log2journal tool, expanded Functions, Gorilla compression with multi-algorithm streaming (SLOTS) using ZSTD by default, and new Cloud alert integrations."><meta property="og:url" content="https://winterflow.io/catalog/netdata/releases/v1.44.0/"><meta property="og:image" content="/images/apps/netdata/netdata.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WinterFlow.io - Netdata v1.44.0 release notes"><meta name="twitter:description" content="Netdata v1.44.0 delivers Prometheus-level performance improvements, systemd-journal logging with sampling and namespace, a new log2journal tool, expanded Functions, Gorilla compression with multi-algorithm streaming (SLOTS) using ZSTD by default, and new Cloud alert integrations."><meta name="twitter:image" content="/images/apps/netdata/netdata.png"><meta name="keywords" content="netdata release notes, netdata changelog, netdata versions, netdata version history, netdata releases, netdata release history, netdata v1.44.0 release notes, v1.44.0 changelog, v1.44.0 release notes"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/_astro/index.iQr8qRLF.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>  <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/netdata/netdata.png" alt="Netdata logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Netdata</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Real-time infrastructure monitoring platform</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#infra" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> infra </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> grafana, prometheus, zabbix, datadog </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://www.netdata.cloud/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://learn.netdata.cloud/docs/ask-netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/netdata/screenshot-1.png" alt="Netdata screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="space-y-3"> <div class="flex items-center justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/netdata/netdata/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-start justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">Available in:</span> <div class="flex flex-wrap justify-end gap-2"> <span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> free </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> pro </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> business </span> </div> </div> </div> </div> <div class="border-t border-gray-200 pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Netdata" data-app-slug="netdata" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 17.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path> </svg>
+Join Waiting List
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.netdata.cloud/pricing/" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy a license →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/netdata/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/netdata/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h1 class="text-2xl font-semibold text-gray-900">v1.44.0</h1> <span class="text-sm text-gray-500">2023-12-06</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#v1440-netdata-open-source-growth">Netdata Growth </a></li>
+<li><a href="#v1440-release-summary">Release Summary</a></li>
+<li><a href="#v1440-release-highlights">Release Highlights</a>
+<ul>
+<li><a href="#v1440-showdown-netdata-prometheus">Netdata vs. Prometheus</a></li>
+<li><a href="#v1440-systemd-journal-logs">systemd-journal plugin improvements</a></li>
+<li><a href="#v1440-util-log2journal">log2journal, a new tool in your quiver for log management</a></li>
+<li><a href="#v1440-new-logging-mechanism">Netdata now logs to systemd-journal</a></li>
+<li><a href="#v1440-new-functions">Functions, power up your troubleshooting toolkit!</a></li>
+<li><a href="#v1440-new-alert-notification-integrations">New Alert Notification Integrations to Netdata Cloud</a></li>
+</ul>
+</li>
+<li><a href="#v1440-acknowledgments">Acknowledgments</a></li>
+<li><a href="#v1440-contributions">Contributions</a>
+<ul>
+<li><a href="#v1440-contributions-collectors">Collectors</a></li>
+<li><a href="#v1440-contributions-packaging">Packaging/Installation</a></li>
+<li><a href="#v1440-contributions-documentation">Documentation </a></li>
+<li><a href="#v1440-contributions-other">Other Notable Changes</a></li>
+</ul>
+</li>
+<li><a href="#v1440-deprecation-notice">Deprecation notice</a></li>
+<li><a href="#v1440-netdata-release-meetup">Netdata Release Meetup</a></li>
+<li><a href="#v1440-support-options">Support options</a></li>
+</ul>
+<p>Steady to our schedule, this is another great Netdata release!</p>
+<blockquote>
+<p>[!IMPORTANT]<br>
+Stay informed about upcoming changes and potential deprecations by reviewing the <a href="#v1440-deprecation-notice">deprecation notice</a> sections. This will help you plan for any necessary adjustments to ensure a smooth transition.</p>
+</blockquote>
+<h2 id="netdata-growth">Netdata Growth <a id="v1440-netdata-open-source-growth"></a></h2>
+<ul>
+<li>
+<p><strong>66k+ GitHub Stars ⭐</strong>
+Since October 2023, Netdata is leading the observability category in the <a href="https://landscape.cncf.io/card-mode?category=observability-and-analysis&#x26;grouping=no&#x26;sort=stars">CNCF landscape</a>, surpassing Elasticsearch. Thank you for your love ❤️! <a href="https://github.com/netdata/netdata">Give Netdata a ⭐ too, on GitHub!</a></p>
+</li>
+<li>
+<p><strong>600M+ docker hub pulls</strong>
+Netdata runs with about 200k docker hub downloads per day. Since June 2023 we are a <a href="https://hub.docker.com/r/netdata/netdata">Verified Publisher</a>, so that Netdata pulls don’t count against docker hub pull limits for our users, allowing all our users to integrate Netdata to their CI/CD toolchains.</p>
+</li>
+</ul>
+<h2 id="release-summary">Release Summary <a id="v1440-release-summary"></a></h2>
+<ul>
+<li><strong>Netdata beats Prometheus in all aspects</strong>: this version of Netdata includes significant improvement allowing Netdata to be a lot more performant than Prometheus, at scale. Full performance analysis included.</li>
+<li><strong>Netdata Journal Logs</strong>: Netdata can now deal with huge systemd-journal databases and is available for the host logs when Netdata runs in a container.</li>
+<li><strong>First beta version of Netdata’s <code>log2journal</code></strong>: a utility to extract, convert, transform and send to systemd-journal any kind of structured logs (including JSON and logfmt logs), similar to what <code>promtail</code> does for Loki.</li>
+<li><strong>More Netdata Functions</strong>: monitor containers and VMs, network interfaces, mount points, block devices, systemd units, systemd services, and more!</li>
+<li><strong>Netdata now logs to journal</strong> instead of log files and the results are amazing!</li>
+</ul>
+<h2 id="release-highlights">Release Highlights <a id="v1440-release-highlights"></a></h2>
+<h3 id="netdata-beats-prometheus-in-all-aspects">Netdata beats Prometheus in all aspects <a id="v1440-showdown-netdata-prometheus"></a></h3>
+<p><img src="https://github.com/netdata/netdata/assets/82235632/0d208974-74cf-4074-898f-b87146364d29" alt="image"></p>
+<p>We tested Netdata and Prometheus at scale, both ingesting 2.7 million metrics per second. On the same workload, Netdata vs Prometheus needs:</p>
+<ul>
+<li>35% less CPU</li>
+<li>49% less RAM</li>
+<li>12% less bandwidth</li>
+<li>75% less disk space</li>
+<li>98% less disk I/O</li>
+</ul>
+<p>Read the <a href="https://blog.netdata.cloud/netdata-vs-prometheus-performance-analysis/">full performance comparison between Netdata and Prometheus</a>.</p>
+<p>To achieve these astonishing results, we made the following changes to Netdata since the previous release:</p>
+<h4 id="new-slots-streaming-protocol">New <code>SLOTS</code> streaming protocol</h4>
+<p>A new streaming protocol, allows Netdata children and parents to share a common index of the metrics streamed, allowing the parents to receive metrics without consulting hashtables, reducing the overall overhead on parents by about 30%, without increasing the overhead on children (the children just number each metric).</p>
+<p>The new protocol, called <code>SLOTS</code>, is automatically selected when both the child and the parent support it.</p>
+<h4 id="streaming-compression-algorithms">Streaming compression algorithms</h4>
+<p>Streaming now supports multiple compression algorithms. Previous Netdata releases supported only LZ4, which is known for its speed and average compression ratio. This release adds support for ZSTD, GZIP, and BROTLI.</p>
+<p>ZSTD provides the best balance between compression ratio and CPU consumption, and therefore it is now the default.</p>
+<p>The compression algorithms selection order can be configured on parents, in <code>stream.conf</code>, at the <code>[API]</code> section (parents), by setting <code>compression algorithms order = zstd lz4 brotli gzip</code>.</p>
+<p>If you need to save most bandwidth at the expense of CPU utilization set this so that <code>brotli</code> or <code>gzip</code> appear first in the list, before <code>zstd</code> and <code>lz4</code>.</p>
+<p>This also means that parents can now have a different compression order for each API key, allowing the use of different API keys based on the location of the child (i.e. children that are on billable egress bandwidth can use an API key that prefers the best compression, like <code>brotli</code> and <code>gzip</code>, while children on non-billable egress bandwidth can use an API key that prefers the best CPU utilization, like <code>zstd</code> or <code>lz4</code>).</p>
+<h4 id="gorilla-compression-beta">Gorilla compression beta <a id="v1440-release-highlights-gorilla"></a></h4>
+<p>Gorilla compression is a time series data compression technique, developed by Facebook for their time series database, Gorilla. It’s particularly efficient for compressing data that changes incrementally over time, which is a common characteristic of time series data.</p>
+<p>This release of Netdata includes an adaptation of Gorilla compression, which once enabled, provides 30% additional memory reduction to Netdata.</p>
+<p>This was not ready when we compared Netdata and Prometheus, so the Gorilla compression benefits weren’t accounted in the comparison. By enabling Gorilla compression, Netdata memory reduction is 70%+ compared to Prometheus.</p>
+<p>To try Gorilla compression, edit <code>netdata.conf</code> and set at the <code>[db]</code> section, <code>dbengine page type = gorilla</code>.</p>
+<p>Keep in mind that enabling Gorilla compression changes the dbegnine file format to Gorilla compressed metrics. This version of Netdata can read Gorilla-compressed data from dbengine even if Gorilla compression is not enabled, but previous versions of Netdata cannot read it. So, enable Gorilla, only if you don’t plan to switch back to a previous version of Netdata.</p>
+<p>Our plan is to have Gorilla compression enabled by default at the next release of Netdata.</p>
+<h3 id="systemd-journal-logs">systemd-journal logs <a id="v1440-systemd-journal-logs"></a></h3>
+<p>Our <code>systemd-journal.plugin</code> was already quite faster (10x) than <code>journalctl</code>, but still it was slow when the journal databases is huge (e.g. at journals centralization points where hundreds or thousands of nodes push their logs).</p>
+<p>In this release, we introduce several changes to allow the plugin to work promptly in such environments.</p>
+<h4 id="sampling-and-estimations">Sampling and estimations</h4>
+<p>The biggest performance issue with systemd-journal logs is the query performance when dealing with huge logs databases.</p>
+<p>To overcome this performance issue and provide prompt responses to queries, Netdata now uses the following strategy:</p>
+<ol>
+<li>The latest 500k log entries read from journal files work like before: we read all of them and all the values for all their fields, so that we can have accurate histograms and counters per field value at the filters.</li>
+<li>Once we hit the 500k log entries limit on a single query, we turn on <strong>sampling and estimations</strong>.</li>
+<li>Sampling distributes 500k more log entries to all the journal files to be read, so that the total log entries queried for their field values will be 1M. This means that if we have to read 100 files, 10k log entries per file will be sampled and 10k log entries more will be unsampled. Since files are usually spread over time, this provides a good sample across time.</li>
+<li>When the sampling threshold is hit, Netdata continues reading more log entries without querying the values of the fields. These log entries appear as <code>[unsampled]</code> at the histogram. We know these log entries are there, but the value counters on the field filters do not include them.</li>
+<li>When the <code>[unsampled]</code> threshold is hit, and we have read more than 1% of each file, Netdata estimates the number of entries that will be read from the file and skips the rest of it. This estimation appears as <code>[estimated]</code> in the histogram.</li>
+</ol>
+<p>The above process allows Netdata to provide a histogram of the logs in a timely manner, even when the number of log entries in the visible timeframe is several dozen million.</p>
+<p>A similar process is usually used by log management systems, including Grafana Loki and Elasticsearch. However, Netdata takes a much bigger sample of the data (other systems usually sample only a few thousand log entries, while Netdata usually samples more than a million) and the visualization allows exposing the exact sampling and estimations made at the histogram.</p>
+<p>Image showing <code>[unsampled]</code> and <code>[estimated]</code> on a systemd journal system that collects about 10k nginx log entries per second:
+<img src="https://github.com/netdata/netdata/assets/2662304/18da8997-db3c-4393-9c85-9f27251d8cc8" alt="image"></p>
+<p>Read more about <a href="https://github.com/netdata/netdata/blob/master/collectors/systemd-journal.plugin/README.md#performance-at-scale">journals query performance</a>.</p>
+<h4 id="journals-scan">journals scan</h4>
+<p>On busy logs centralization servers, the number of journal files available in <code>/var/log/journal/remote</code> can grow significantly, slowing down directory listing (even <code>ls -l</code> is very slow on them).</p>
+<p>To overcome this issue, Netdata now uses inotify events and sorts the files to be scanned from the latest to the oldest.</p>
+<p>These changes allow Netdata to present the logs user interface for the most recent journals, immediately after a Netdata restart, while the journals database is scanned in the background.</p>
+<h4 id="logs-ui-is-now-available-when-using-netdata-docker-images">Logs UI is now available when using Netdata docker images</h4>
+<p>We switched Netdata docker images from Alpine Linux to Debian, so that <code>libsystemd</code> will be available inside the docker image, allowing <code>systemd-journal.plugin</code> to be compiled and shipped with Netdata docker images.</p>
+<p>Using Netdata docker images, Netdata can now query the host system journal files, while running inside the container.</p>
+<h4 id="message_id-support">MESSAGE_ID support</h4>
+<p>systemd-journal has a nice feature where certain events of common interest are given a specific <code>MESSAGE_ID</code>. Several such <code>MESSAGE_ID</code>s have been assigned to track common events, like coredumps, units start/stop events, VMs start/stop events, time changes, etc. In total, we found more than 50 total unique events that are tracked this way.</p>
+<p>This version if <code>systemd-journal.plugin</code> automatically tracks and annotates these <code>MESSAGE_ID</code>s using their names allowing quick spotting of events of common interest.</p>
+<p>This feature is available at the <code>MESSAGE_ID</code> field filter, at the right side of the dashboard.</p>
+<h3 id="log2journal-a-new-tool-on-your-quiver-for-managing-logs"><code>log2journal</code>, a new tool on your quiver for managing logs <a id="v1440-util-log2journal"></a></h3>
+<p><code>log2journal</code> is a new utility allowing the conversion of log files into structured systemd-journal log entries. This is currently in beta.</p>
+<p>The utility allows processing logs like this:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">tail</span><span style="color:#79B8FF"> -F</span><span style="color:#9ECBFF"> /var/log/nginx/access.log</span><span style="color:#F97583"> |</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#B392F0">   log2journal</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> nginx-combined</span><span style="color:#F97583"> |</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#B392F0">   systemd-cat-native</span></span></code></pre>
+<p>The above builds a basic pipeline for converting the <code>access.log</code> of an Nginx web server into structured log entries in the local systemd-journal.</p>
+<ul>
+<li><code>tail</code> is responsible for feeding the latest logs lines to <code>log2journal</code>. Multiple files can be specified and <code>log2journal</code> can also pick up the filename from <code>tail</code> and add it as a field to the journal logs.</li>
+<li><code>log2journal</code> extracts fields from the log lines it is fed with. This is a powerful tool that can read <code>json</code> and <code>logfmt</code> logs, but also extract fields using PCRE2 patterns from any log. It supports filtering, renaming, and rewriting rules using command line arguments or yaml configuration files. The output of <code>log2journal</code> is the standard <a href="https://systemd.io/JOURNAL_EXPORT_FORMATS/">Journal Export Format</a>.</li>
+<li><code>systemd-cat-native</code> is another new Netdata utility, reading standard Journal Export Format entries, which are then sent to a local or remote systemd-journal system.</li>
+</ul>
+<p><a href="https://github.com/netdata/netdata/blob/master/collectors/log2journal/README.md">Read more here</a>.</p>
+<p>Image showing structured nginx logs into systemd-journal:
+<img src="https://github.com/netdata/netdata/assets/2662304/16b471ff-c5a1-4fcc-bcd5-83551e089f6c" alt="image"></p>
+<h3 id="netdata-now-logs-to-systemd-journal">Netdata now logs to systemd-journal <a id="v1440-new-logging-mechanism"></a></h3>
+<p>The logging layer of Netdata has been rewritten, so that Netdata logs now go to the systemd-journal, in a namespace called <code>netdata</code>.</p>
+<p>The obvious outcome is that now you can monitor Netdata logs, using Netdata’s <code>systemd-journal.plugin</code> user interface and thanks to journal namespaces, this does not pollute the system logs. But this is just the beginning…</p>
+<p>Netdata utilizes the <code>MESSAGE_ID</code> feature of systemd-journal to register:</p>
+<ul>
+<li>all alert transitions</li>
+<li>all alert notifications</li>
+<li>all connections from Netdata children</li>
+<li>all connections to Netdata parents</li>
+</ul>
+<p>This means that the <code>systemd-journal.plugin</code> user interface, and <code>journalctl</code> can now be used to list all such events uniformly.</p>
+<p>Screenshot of Netdata alert transitions in systemd-journals:
+<img src="https://github.com/netdata/netdata/assets/2662304/a46cfd5f-3e95-4904-b554-e1f662ca37f7" alt="image"></p>
+<p>All Netdata logs are now structured. Netdata can also log in <code>json</code> or <code>logfmt</code> formats. We introduced a lot of new fields to track every aspect of Netdata, in a uniform and consistent way. <a href="https://github.com/netdata/netdata/tree/master/libnetdata/log">Read more here</a>.</p>
+<p>Furthermore, we introduced a new tool called <code>systemd-cat-native</code> allowing any application or shell script to send structured logs to systemd-journal. <a href="">Read more here</a>.</p>
+<h3 id="functions-power-up-your-troubleshooting-toolkit">Functions, power up your troubleshooting toolkit! <a id="v1440-new-functions"></a></h3>
+<p>Several new <strong>Functions</strong> have been added to help us in our troubleshooting journeys. On top of <code>processes</code>, <code>streaming</code> and <code>systemd-journal</code>, we are leveraging the wide range of collectors and metrics Netdata has and bring data in a different visual representation.</p>
+<p>The updated list can be found on our documentation <a href="https://learn.netdata.cloud/docs/visualizations/functions#what-functions-are-currently-available">here</a>, and you can find a summary of the currently available functions with the corresponding CLI tool it relates to:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Function</th><th align="left">Description</th><th>Alternative to CLI tools</th><th align="left">plugin - module</th></tr></thead><tbody><tr><td align="left">block-devices</td><td align="left">Disk I/O activity for all block devices, offering insights into both data transfer volume and operation performance.</td><td><code>iostat</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/proc.plugin#readme">proc</a></td></tr><tr><td align="left">containers-vms</td><td align="left">Insights into the resource utilization of containers and QEMU virtual machines: CPU usage, memory consumption, disk I/O, and network traffic.</td><td><code>docker stats</code>, <code>systemd-cgtop</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/cgroups.plugin#readme">cgroups</a></td></tr><tr><td align="left">ipmi-sensors</td><td align="left">Readings and status of IPMI sensors.</td><td><code>ipmi-sensors</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/freeipmi.plugin#readme">freeipmi</a></td></tr><tr><td align="left">mount-points</td><td align="left">Disk usage for each mount point, including used and available space, both in terms of percentage and actual bytes, as well as used and available inode counts.</td><td><code>df</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/diskspace.plugin#readme">diskspace</a></td></tr><tr><td align="left">network interfaces</td><td align="left">Network traffic, packet drop rates, interface states, MTU, speed, and duplex mode for all network interfaces.</td><td><code>bmon</code>, <code>bwm-ng</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/proc.plugin#readme">proc</a></td></tr><tr><td align="left">processes</td><td align="left">Real-time information about the system’s resource usage, including CPU utilization, memory consumption, and disk IO for every running process.</td><td><code>top</code>, <code>htop</code></td><td align="left"><a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/README.md">apps</a></td></tr><tr><td align="left">systemd-journal</td><td align="left">Viewing, exploring and analyzing systemd journal logs.</td><td><code>journalctl</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/systemd-journal.plugin#readme">systemd-journal</a></td></tr><tr><td align="left">systemd-list-units</td><td align="left">Information about all systemd units, including their active state, description, whether or not they are enabled, and more.</td><td><code>systemctl list-units</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/systemd-journal.plugin#readme">systemd-journal</a></td></tr><tr><td align="left">systemd-services</td><td align="left">System resource utilization for all running systemd services: CPU, memory, and disk IO.</td><td><code>systemd-cgtop</code></td><td align="left"><a href="https://github.com/netdata/netdata/tree/master/collectors/cgroups.plugin#readme">cgroups</a></td></tr><tr><td align="left">streaming</td><td align="left">Comprehensive overview of all Netdata children instances, offering detailed information about their status, replication completion time, and many more.</td><td></td><td align="left"></td></tr></tbody></table>
+<p>In the short-term, we will keep adding more (hopefully) helpful Functions but have longer-term plan where we will want to expand this functionality to potentially allow taking and storing snapshots of the results based on: triggered alerts, or periodical configuration.</p>
+<p>In case you have suggestions we have a running GitHub Discussion open <a href="https://github.com/netdata/netdata/discussions/16438">here</a>.</p>
+<h3 id="new-alert-notification-integrations-to-netdata-cloud">New Alert Notification Integrations to Netdata Cloud <a id="v1440-new-alert-notification-integrations"></a></h3>
+<p>We’ve been working on adding more Alert Notification Integrations to Netdata Cloud and recently added the following new ones:</p>
+<ul>
+<li>Amazon Simple Notification Service (Amazon SNS), and</li>
+<li>Telegram</li>
+</ul>
+<p><img src="https://github.com/netdata/netdata/assets/82235632/92bb724a-b64d-4eb9-8570-49a5a5fdee7a" alt="image"></p>
+<p>The full list of Alert Notification Integrations from Netdata Cloud can be found on our documentation <a href="https://learn.netdata.cloud/docs/alerting/notifications/centralized-cloud-notifications">here</a>.</p>
+<h2 id="acknowledgments">Acknowledgments <a id="v1440-acknowledgments"></a></h2>
+<ul>
+<li>@ClaraCrazy for improving degraded adapters detection in python.d/megacli.</li>
+<li>@thomasbeaudry for adding UPS selftest and status metrics to charts.d/apcupsd.</li>
+<li>@watsonbox for adding LBAs written/read metrics to python.d/smartd_log.</li>
+<li>@sepek for correcting an error in the “Change how long Netdata stores metrics” guide.</li>
+<li>@seniorquico for fixing parsing and adding MAINT status metrics to python.d/haproxy.</li>
+<li>@luisj1983 for correcting errors in the Health API documentation.</li>
+<li>@andyundso for improving apps plugin by adding Erlang in apps_groups.conf.</li>
+<li>@vobruba-martin for adding various improvements to go.d/mysql.</li>
+</ul>
+<h2 id="contributions">Contributions <a id="v1440-contributions"></a></h2>
+<h3 id="collectors">Collectors <a id="v1440-contributions-collectors"></a></h3>
+<details open>
+<summary><b>Improvements</b></summary>
+<ul>
+<li>Add more cases for megacli adapter degraded state (python.d/megacli) (<a href="https://github.com/netdata/netdata/pull/16522">#16522</a>, <a href="https://github.com/ClaraCrazy">@ClaraCrazy</a>)</li>
+<li>Improve estimations accuracy (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16467">#16467</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Implement estimations (systemd-journal.plugin)(<a href="https://github.com/netdata/netdata/pull/16445">#16445</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve startup time (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16443">#16443</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Implement sampling (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16433">#16433</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add cgroup current pids metric (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16369">#16369</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add Ipmi-sensors function (freeipmi.plugin) (<a href="https://github.com/netdata/netdata/pull/16363">#16363</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add UPS status code metric (charts.d/apcupsd) (<a href="https://github.com/netdata/netdata/pull/16361">#16361</a>, <a href="https://github.com/thomasbeaudry">@thomasbeaudry</a>)</li>
+<li>Add Mount-points function (diskspace.plugin) (<a href="https://github.com/netdata/netdata/pull/16345">#16345</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add Block-devices function (proc/diskstats) (<a href="https://github.com/netdata/netdata/pull/16338">#16338</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add UsedBy field to Network-interfaces function (proc/proc_net_dev) (<a href="https://github.com/netdata/netdata/pull/16337">#16337</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add various improvements to Network-interfaces function (proc/proc_net_dev)(<a href="https://github.com/netdata/netdata/pull/16336">#16336</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add Network-interfaces function (proc/proc_net_dev) (<a href="https://github.com/netdata/netdata/pull/16334">#16334</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add Systemd-list-units function (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16318">#16318</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add Containers-vms function (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16314">#16314</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add UPS selftest status metric (charts.d/apcupsd) (<a href="https://github.com/netdata/netdata/pull/16286">#16286</a>, <a href="https://github.com/thomasbeaudry">@thomasbeaudry</a>)</li>
+<li>Add a configuration option to set private cleanup timeout (statsd.plugin) (<a href="https://github.com/netdata/netdata/pull/16269">#16269</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Add container_device label to network interfaces (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16261">#16261</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add selecting multiple sources support (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16252">#16252</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add total LBAs written/read metrics (python.d/smartd_log) (<a href="https://github.com/netdata/netdata/pull/16245">#16245</a>, <a href="https://github.com/watsonbox">@watsonbox</a>)</li>
+<li>Add Erlang to apps_groups.conf (apps.plugin) (<a href="https://github.com/netdata/netdata/pull/16231">#16231</a>, <a href="https://github.com/andyundso">@andyundso</a>)</li>
+<li>Add support for Proxmox vms/containers name resolution in Docker (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16193">#16193</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add nested JSON support to log parser (go.d/weblog) (<a href="https://github.com/netdata/go.d.plugin/pull/1416">#1416</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Bug fixes</b></summary>
+<h4 id="bug-fixes">Bug Fixes</h4>
+<ul>
+<li>Fix configuration loading (charts.d.plugin ) (<a href="https://github.com/netdata/netdata/pull/16471">#16471</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix an issue where systemd-journal would stop trying different socket paths after the first failure (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16458">#16458</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix parsing PD without NCQ status (python.d/adaptec_raid) (<a href="https://github.com/netdata/netdata/pull/16400">#16400</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix Systemd-list-units function expiration time (<a href="https://github.com/netdata/netdata/pull/16393">#16393</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix lack of system.net when running inside LXC (<a href="https://github.com/netdata/netdata/pull/16364">#16364</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix memory leak in Systemd-list-units function (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16333">#16333</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix server status parsing and add MAINT status chart (python.d/haproxy) (<a href="https://github.com/netdata/netdata/pull/16253">#16253</a>, <a href="https://github.com/seniorquico">@seniorquico</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Other</b></summary>
+<h4 id="other">Other</h4>
+<ul>
+<li>Skip timestamp when logging to journald (python.d.plugin) (<a href="https://github.com/netdata/netdata/pull/16516">#16516</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Mute stock jobs logging during check() (python.d.plugin) (<a href="https://github.com/netdata/netdata/pull/16515">#16515</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improvement performance of the plugin (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16509">#16509</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Don’t create runtime disk config by default (proc/diskspace, proc/diskstats) (<a href="https://github.com/netdata/netdata/pull/16503">#16503</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Don’t create runtime device config by default (proc/proc_net_dev) (<a href="https://github.com/netdata/netdata/pull/16501">#16501</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Disable netdata monitoring section by default (<a href="https://github.com/netdata/netdata/pull/16480">#16480</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Change apps oom and net charts order (ebpf.plugin) (<a href="https://github.com/netdata/netdata/pull/16395">#16395</a>, <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+<li>Fix “differ in signedness” warn in cgroups plugin (<a href="https://github.com/netdata/netdata/pull/16391">#16391</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix throttle_duration chart context (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16367">#16367</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Hide summary columns in network and block devices functions (proc/diskstats, proc/proc_net_dev) (<a href="https://github.com/netdata/netdata/pull/16347">#16347</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix crash when a container has no CPU/mem metrics in Containers-vms function (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16331">#16331</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add tcp v6 connect calls to Ebpf_socket function (ebpf.plugin) (<a href="https://github.com/netdata/netdata/pull/16316">#16316</a>, <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+<li>Update journal sources once per minute (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16298">#16298</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Minor updates and cleanup (systemd-journal.plugin) (<a href="https://github.com/netdata/netdata/pull/16267">#16267</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Stop using deprecated distutils module (python.d.plugin) (<a href="https://github.com/netdata/netdata/pull/16259">#16259</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Remove charts.d/nut (<a href="https://github.com/netdata/netdata/pull/16230">#16230</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Don’t log an error opening <code>cgroup.procs</code>/<code>tasks</code> if it does not exist (cgroups.plugin) (<a href="https://github.com/netdata/netdata/pull/16196">#16196</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve exposing metrics by creating a chart for each app group (ebpf.plugin) (<a href="https://github.com/netdata/netdata/pull/16139">#16139</a>, <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+<li>Skip timestamp when logging to journald (go.d.plugin) (<a href="https://github.com/netdata/go.d.plugin/pull/1418">#1418</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Replace logger with structured logger (go.d.plugin) (<a href="https://github.com/netdata/go.d.plugin/pull/1418">#1418</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Use SHOW REPLICA STATUS for MySQL v8.0.22+ (go.d/mysql) (<a href="https://github.com/netdata/go.d.plugin/pull/1392">#1392</a>, <a href="https://github.com/vobruba-martin">@vobruba-martin</a>)</li>
+<li>Use performance_schema instead of information_schema for MySQL v8.0.22+ (go.d/mysql) (<a href="https://github.com/netdata/go.d.plugin/pull/1390">#1390</a>, <a href="https://github.com/vobruba-martin">@vobruba-martin</a>)</li>
+</ul>
+</details>
+<h3 id="packaginginstallation">Packaging/Installation <a id="v1440-contributions-packaging"></a></h3>
+<details open>
+<summary><b>All changes</b></summary>
+<ul>
+<li>Add curl example to create_netdata_conf() (<a href="https://github.com/netdata/netdata/pull/16498">#16498</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix incorrect DEB package build dependencies (<a href="https://github.com/netdata/netdata/pull/16483">#16483</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Update go.d plugin version to v0.57.1 (<a href="https://github.com/netdata/netdata/pull/16465">#16465</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add sbindir_POST to the PATH of bash scripts using <code>systemd-cat-native</code> (<a href="https://github.com/netdata/netdata/pull/16456">#16456</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add LogNamespace to Netdata systemd unit (<a href="https://github.com/netdata/netdata/pull/16454">#16454</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add linking daemon.log to stderr in docker (<a href="https://github.com/netdata/netdata/pull/16447">#16447</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add support for installing a specific major version of the agent on install (<a href="https://github.com/netdata/netdata/pull/16413">#16413</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Improve handling around EPEL requirement for RPM packages (<a href="https://github.com/netdata/netdata/pull/16406">#16406</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Add zstd-dev to install-required-packages (<a href="https://github.com/netdata/netdata/pull/16370">#16370</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix zstd in static build (<a href="https://github.com/netdata/netdata/pull/16349">#16349</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Cleanup systemd unit files After (<a href="https://github.com/netdata/netdata/pull/16332">#16332</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update openssl to 3.1.4 for static build (<a href="https://github.com/netdata/netdata/pull/16303">#16303</a>, <a href="https://github.com/tkatsoulas">@tkatsoulas</a>)</li>
+<li>Fix not removing /etc/cron.d/netdata-updater-daily during uninstall (<a href="https://github.com/netdata/netdata/pull/16233">#16233</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Rename auto-update-method to auto-update-type in kickstart (<a href="https://github.com/netdata/netdata/pull/16229">#16229</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Remove support for Alpine 3.15 (<a href="https://github.com/netdata/netdata/pull/16205">#16205</a>, <a href="https://github.com/tkatsoulas">@tkatsoulas</a>)</li>
+<li>Switch to using Debian as a base for our Docker images. (<a href="https://github.com/netdata/netdata/pull/15823">#15823</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+</ul>
+</details>
+<h3 id="documentation">Documentation <a id="v1440-contributions-documentation"></a></h3>
+<details>
+<summary><b>All changes</b></summary>
+<ul>
+<li>Add with-systemd-units-monitoring example to docker (<a href="https://github.com/netdata/netdata/pull/16513">#16513</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add /var/log mount to docker install guide (<a href="https://github.com/netdata/netdata/pull/16496">#16496</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix spelling in Cloud on-prem documentation (<a href="https://github.com/netdata/netdata/pull/16490">#16490</a>, <a href="https://github.com/M4itee">@M4itee</a>)</li>
+<li>Fix disable or silence alerts examples in Health API doc (<a href="https://github.com/netdata/netdata/pull/16446">#16446</a>, <a href="https://github.com/luisj1983">@luisj1983</a>)</li>
+<li>Fix icon filename in freebsd meta (<a href="https://github.com/netdata/netdata/pull/16441">#16441</a>, <a href="https://github.com/shyamvalsan">@shyamvalsan</a>)</li>
+<li>Add Cloud on-prem documentation (<a href="https://github.com/netdata/netdata/pull/16440">#16440</a>, <a href="https://github.com/M4itee">@M4itee</a>)</li>
+<li>Fix typos in Health reference doc (<a href="https://github.com/netdata/netdata/pull/16439">#16439</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Adds Cloud Telegram notification metadata (<a href="https://github.com/netdata/netdata/pull/16424">#16424</a>, <a href="https://github.com/juacker">@juacker</a>)</li>
+<li>Fix chart labels examples in Health reference doc (<a href="https://github.com/netdata/netdata/pull/16423">#16423</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Improve Netdata Functions documentation (<a href="https://github.com/netdata/netdata/pull/16421">#16421</a>, <a href="https://github.com/shyamvalsan">@shyamvalsan</a>)</li>
+<li>Add /etc/localtime mount to docker install guide (<a href="https://github.com/netdata/netdata/pull/16392">#16392</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Remove ‘families’ from Health reference (<a href="https://github.com/netdata/netdata/pull/16380">#16380</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix indentation in Cloud AWA SNS notification meta (<a href="https://github.com/netdata/netdata/pull/16379">#16379</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Remove alert guides that are not in the repository.(<a href="https://github.com/netdata/netdata/pull/16375">#16375</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Remove unused cloud notification methods docs (<a href="https://github.com/netdata/netdata/pull/16372">#16372</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add configuration documentation for Cloud AWS SNS (<a href="https://github.com/netdata/netdata/pull/16371">#16371</a>, <a href="https://github.com/car12o">@car12o</a>)</li>
+<li>Correct time unit for dbengine tier 2 explanation (<a href="https://github.com/netdata/netdata/pull/16368">#16368</a>, <a href="https://github.com/sepek">@sepek</a>)</li>
+<li>Add assorted improvements to the version policy draft (<a href="https://github.com/netdata/netdata/pull/16362">#16362</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Import alert guides from Netdata Assistant (<a href="https://github.com/netdata/netdata/pull/16355">#16355</a>, <a href="https://github.com/ralphm">@ralphm</a>)</li>
+<li>Update packaging instructions (<a href="https://github.com/netdata/netdata/pull/16344">#16344</a>, <a href="https://github.com/tkatsoulas">@tkatsoulas</a>)</li>
+<li>Fix readme images (<a href="https://github.com/netdata/netdata/pull/16327">#16327</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Fix nightly tag in helm deploy meta (<a href="https://github.com/netdata/netdata/pull/16326">#16326</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Added section Blog posts to readme (<a href="https://github.com/netdata/netdata/pull/16323">#16323</a>, <a href="https://github.com/Aliki92">@Aliki92</a>)</li>
+<li>Add a note for the docker deployment alongside with cetus (<a href="https://github.com/netdata/netdata/pull/16312">#16312</a>, <a href="https://github.com/tkatsoulas">@tkatsoulas</a>)</li>
+<li>Fix missing privileges and mounts in Docker Swarm deploy doc (<a href="https://github.com/netdata/netdata/pull/16308">#16308</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Use proper icons for deploy integrations (<a href="https://github.com/netdata/netdata/pull/16305">#16305</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Change True/False to yes/no in collectors docs (<a href="https://github.com/netdata/netdata/pull/16289">#16289</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix 404s in markdown files (<a href="https://github.com/netdata/netdata/pull/16285">#16285</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Add Forward Secure Sealing in Systemd-Journal doc (<a href="https://github.com/netdata/netdata/pull/16247">#16247</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix apps plugin metric names in meta (<a href="https://github.com/netdata/netdata/pull/16243">#16243</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add active/passive journald centralization without encryption guide (<a href="https://github.com/netdata/netdata/pull/16236">#16236</a>, <a href="https://github.com/tkatsoulas">@tkatsoulas</a>)</li>
+<li>Add document outlining our versioning policy and public API (<a href="https://github.com/netdata/netdata/pull/16227">#16227</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Cleanup journald centralization guide (<a href="https://github.com/netdata/netdata/pull/16225">#16225</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Update info about custom dashboards (<a href="https://github.com/netdata/netdata/pull/16121">#16121</a>, <a href="https://github.com/elizabyte8">@elizabyte8</a>)</li>
+<li>Add info to native packages docs about mirroring our repos (<a href="https://github.com/netdata/netdata/pull/16069">#16069</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Add getting started with netdata Cloud on-prem doc (<a href="https://github.com/netdata/netdata/pull/15954">#15954</a>, <a href="https://github.com/M4itee">@M4itee</a></li>
+</ul>
+</details>
+<h3 id="other-notable-changes">Other Notable Changes <a id="v1440-contributions-other"></a></h3>
+<details open>
+<summary><b>Improvements</b></summary>
+<ul>
+<li>Implement removal of unregistered ephemeral host chart labels (<a href="https://github.com/netdata/netdata/pull/16486">#16486</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Implement ephemeral hosts cleanup (<a href="https://github.com/netdata/netdata/pull/16381">#16381</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Implement structured logging and log to Systemd journal by default (<a href="https://github.com/netdata/netdata/pull/16357">#16357</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Made Streaming function available to all users (<a href="https://github.com/netdata/netdata/pull/16346">#16346</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve database corruption detection during runtime (<a href="https://github.com/netdata/netdata/pull/16343">#16343</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Add Brotli support for streaming (<a href="https://github.com/netdata/netdata/pull/16287">#16287</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add ZSTD compression support for streaming (<a href="https://github.com/netdata/netdata/pull/16268">#16268</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add script to generate self-signed-certificates for systemd-journal-remote (<a href="https://github.com/netdata/netdata/pull/16235">#16235</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Optimizations to make busy parents more efficient (<a href="https://github.com/netdata/netdata/pull/16127">#16127</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add support for gorilla pages for tier 0 (<a href="https://github.com/netdata/netdata/pull/15969">#15969</a>, <a href="https://github.com/vkalintiris">@vkalintiris</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Bug Fixes</b></summary>
+<ul>
+<li>Fix occasional shutdown deadlock (<a href="https://github.com/netdata/netdata/pull/16495">#16495</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix reusing TCP port when binding (<a href="https://github.com/netdata/netdata/pull/16420">#16420</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix counting spaces as CPU cores when reading <code>cpuset.cpus</code> (<a href="https://github.com/netdata/netdata/pull/16385">#16385</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve agent to cloud status update process (<a href="https://github.com/netdata/netdata/pull/16342">#16342</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Other</b></summary>
+<ul>
+<li>Improve logging clarity: change log level to debug for dbengine routine operations on start (<a href="https://github.com/netdata/netdata/pull/16518">#16518</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve logging clarity: remove logging of system info (<a href="https://github.com/netdata/netdata/pull/16517">#16517</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add prefix to logs-management chart names (<a href="https://github.com/netdata/netdata/pull/16514">#16514</a>, <a href="https://github.com/Dim-P">@Dim-P</a>)</li>
+<li>Fix “has aggregated” debug output in apps.plugin (<a href="https://github.com/netdata/netdata/pull/16512">#16512</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Various improvements to log2journal part 4 (<a href="https://github.com/netdata/netdata/pull/16510">#16510</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve logging clarity: reclassify specific messages as information part2 (<a href="https://github.com/netdata/netdata/pull/16508">#16508</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix coverity issue 410232 (<a href="https://github.com/netdata/netdata/pull/16507">#16507</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Improve logging clarity: reclassify specific messages as information part1 (<a href="https://github.com/netdata/netdata/pull/16505">#16505</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix CID 410152 dereference after null check (<a href="https://github.com/netdata/netdata/pull/16502">#16502</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Various improvements to log2journal part 2 (<a href="https://github.com/netdata/netdata/pull/16494">#16494</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix builds on macOS due to missing endianness functions (<a href="https://github.com/netdata/netdata/pull/16489">#16489</a>, <a href="https://github.com/vkalintiris">@vkalintiris</a>)</li>
+<li>Add missing yaml elements to log2journal (<a href="https://github.com/netdata/netdata/pull/16488">#16488</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add option to submit logs to systemd journal to logs-management (<a href="https://github.com/netdata/netdata/pull/16485">#16485</a>, <a href="https://github.com/Dim-P">@Dim-P</a>)</li>
+<li>Add function cancellability to logs-management (<a href="https://github.com/netdata/netdata/pull/16484">#16484</a>, <a href="https://github.com/Dim-P">@Dim-P</a>)</li>
+<li>Move log2journal to collectors/ (<a href="https://github.com/netdata/netdata/pull/16481">#16481</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add YAML configuration support to log2journal (<a href="https://github.com/netdata/netdata/pull/16479">#16479</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Log alarm notifications to health.log (<a href="https://github.com/netdata/netdata/pull/16476">#16476</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Cleanup systemd-journald plugin code (<a href="https://github.com/netdata/netdata/pull/16475">#16475</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Check context post processing queue before sending status to Cloud (<a href="https://github.com/netdata/netdata/pull/16472">#16472</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix error limit to respect the log every (<a href="https://github.com/netdata/netdata/pull/16469">#16469</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix analytics logs (<a href="https://github.com/netdata/netdata/pull/16462">#16462</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix logs bashism (<a href="https://github.com/netdata/netdata/pull/16461">#16461</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix log2journal incorrect log (<a href="https://github.com/netdata/netdata/pull/16460">#16460</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix various logging environment variables issues (<a href="https://github.com/netdata/netdata/pull/16459">#16459</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add environment variable for the Journald socket path (<a href="https://github.com/netdata/netdata/pull/16457">#16457</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix missing argument on log init in xenstat plugin (<a href="https://github.com/netdata/netdata/pull/16451">#16451</a>, <a href="https://github.com/vkalintiris">@vkalintiris</a>)</li>
+<li>Change log flood protection to 1000 log lines / 1 minute (<a href="https://github.com/netdata/netdata/pull/16450">#16450</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Change the interface_speed alarm value to Mbit (<a href="https://github.com/netdata/netdata/pull/16429">#16429</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve logging clarity: removing logging errors from reading filtered alerts (<a href="https://github.com/netdata/netdata/pull/16417">#16417</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Bring back chart id to <code>title</code> in /api/v1/charts (<a href="https://github.com/netdata/netdata/pull/16416">#16416</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix an issue where reused connections were counted as new (<a href="https://github.com/netdata/netdata/pull/16414">#16414</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Remove queue limit from ACLK sync event loop (<a href="https://github.com/netdata/netdata/pull/16411">#16411</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Implement using /host/etc/hostname in Docker (<a href="https://github.com/netdata/netdata/pull/16401">#16401</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix v0 dashboard (<a href="https://github.com/netdata/netdata/pull/16389">#16389</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Use pre-configured message_ids to identify common logs (<a href="https://github.com/netdata/netdata/pull/16383">#16383</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Switch alarm_log to use the buffer json functions (<a href="https://github.com/netdata/netdata/pull/16360">#16360</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Switch to using buffer json functions in charts/chart endpoints (<a href="https://github.com/netdata/netdata/pull/16359">#16359</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Replace rrdset_is_obsolete &#x26; rrdset_isnot_obsolete (<a href="https://github.com/netdata/netdata/pull/16351">#16351</a>, <a href="https://github.com/MrZammler">@MrZammler</a>)</li>
+<li>Add rrddim_get_last_stored_value to simplify function code in internal collectors (<a href="https://github.com/netdata/netdata/pull/16348">#16348</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add api/v2 support to h2o (<a href="https://github.com/netdata/netdata/pull/16340">#16340</a>, <a href="https://github.com/underhood">@underhood</a>)</li>
+<li>Improve unittests (<a href="https://github.com/netdata/netdata/pull/16329">#16329</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix coverity warnings in cgroups (<a href="https://github.com/netdata/netdata/pull/16328">#16328</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Rename newly added functions (<a href="https://github.com/netdata/netdata/pull/16325">#16325</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve performance of alarm log queries by keeping precompiled statements (<a href="https://github.com/netdata/netdata/pull/16321">#16321</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix journal file index when collision is detected (<a href="https://github.com/netdata/netdata/pull/16319">#16319</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Optimize database before agent shutdown (<a href="https://github.com/netdata/netdata/pull/16317">#16317</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Improve shutdown when collectors are active (<a href="https://github.com/netdata/netdata/pull/16315">#16315</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix using absolute path for echo in netdata-claim.sh (<a href="https://github.com/netdata/netdata/pull/16300">#16300</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix various issues identified by coverity (<a href="https://github.com/netdata/netdata/pull/16294">#16294</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix renames in freebsd (<a href="https://github.com/netdata/netdata/pull/16292">#16292</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix retention loading (<a href="https://github.com/netdata/netdata/pull/16290">#16290</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add cmd args for reading specific files to local_listeners (<a href="https://github.com/netdata/netdata/pull/16273">#16273</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix the issue of streaming disconnection when sending REPORT_JOB_STATUS (<a href="https://github.com/netdata/netdata/pull/16272">#16272</a>, <a href="https://github.com/underhood">@underhood</a>)</li>
+<li>Fix sources match in systemd-journal plugin (<a href="https://github.com/netdata/netdata/pull/16271">#16271</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix coverity issue 403725 (<a href="https://github.com/netdata/netdata/pull/16265">#16265</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Improve dimension ML model load (<a href="https://github.com/netdata/netdata/pull/16262">#16262</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Improvements to Dyncfg (<a href="https://github.com/netdata/netdata/pull/16250">#16250</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Drop an unused index from aclk_alert table (<a href="https://github.com/netdata/netdata/pull/16242">#16242</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Add DYNCFG_RESET command to Dynamic configuration (<a href="https://github.com/netdata/netdata/pull/16241">#16241</a>, <a href="https://github.com/underhood">@underhood</a>)</li>
+<li>Reuse ML load prepared statement (<a href="https://github.com/netdata/netdata/pull/16240">#16240</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix meta unittest (<a href="https://github.com/netdata/netdata/pull/16221">#16221</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Minimize hashtable collisions in facets (<a href="https://github.com/netdata/netdata/pull/16215">#16215</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve context load on startup (<a href="https://github.com/netdata/netdata/pull/16203">#16203</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Add support for h2o evloop netdata stream (<a href="https://github.com/netdata/netdata/pull/14868">#14868</a>, <a href="https://github.com/underhood">@underhood</a>)</li>
+<li>Add Logs Management (<a href="https://github.com/netdata/netdata/pull/13291">#13291</a>, <a href="https://github.com/Dim-P">@Dim-P</a>)</li>
+</ul>
+</details>
+<h2 id="deprecation-notice">Deprecation notice <a id="v1440-deprecation-notice"></a></h2>
+<h3 id="changed-in-this-release">Changed in this release</h3>
+<p>In accordance with our previous <a href="https://github.com/netdata/netdata/releases/tag/v1.43.0#v1430-deprecation-notice">deprecation notice</a>, the following items in this release have been changed:</p>
+<ul>
+<li>The <a href="https://github.com/netdata/netdata/tree/v1.42.4/collectors/charts.d.plugin/nut#readme">charts.d/nut</a> collector has been removed. Replacement - <a href="https://github.com/netdata/go.d.plugin/tree/master/modules/upsd#ups-nut">go.d/upsd</a>.</li>
+</ul>
+<p>Other unannounced changes:</p>
+<ul>
+<li>
+<p>Netdata internal metrics (Netdata Monitoring section) are disabled by default to reduce the overall data volume. Later we plan to enable only important internal metrics by default.</p>
+<p>Can be enabled in <code>netdata.conf</code> by uncommenting and changing <code>no</code> to <code>yes</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[plugins]</span></span>
+<span class="line"><span style="color:#6A737D">  # netdata monitoring = no</span></span>
+<span class="line"><span style="color:#6A737D">  # netdata monitoring extended = no</span></span></code></pre>
+</li>
+<li>
+<p>Logging</p>
+<ul>
+<li>Logs format changed to <a href="https://brandur.org/logfmt">logfmt</a>.</li>
+<li>Default logging destination changed to systemd-journal (systemd-only): logs are now sent to the “netdata” namespace in systemd-journal. Systemd-journal provides a centralized repository for all system logs, making it easier to manage and search for logs. To override the default behavior and continue using the file-based logging, refer to the <code>netdata.conf</code> file and make the necessary changes under the <code>[logs]</code> section.</li>
+<li>File-based logging: error.log renamed to daemon.log.</li>
+</ul>
+</li>
+</ul>
+<h3 id="will-be-changed-in-the-next-release">Will be changed in the next release</h3>
+<ul>
+<li>
+<p>To ensure seamless compatibility with future updates, we recommend transitioning from <a href="https://learn.netdata.cloud/docs/installing/build-the-netdata-agent-yourself/compile-from-source-code">source-built installations</a> to our distribution packages or static binaries. Starting with our next release, we will no longer guarantee compatibility when updating source-built installations. This change allows us to focus on enhancing the stability and feature delivery for the rest of our supported <a href="https://learn.netdata.cloud/docs/installing/">installation methods</a>.</p>
+</li>
+<li>
+<p><a href="#v1440-release-highlights-gorilla">Gorilla</a> compression will be enabled by default.</p>
+</li>
+<li>
+<p>The <a href="https://learn.netdata.cloud/docs/exporting/google-cloud-pub-sub">Google Cloud Pub Sub</a> and the <a href="https://learn.netdata.cloud/docs/exporting/aws-kinesis">AWS Kinesis</a> exporters will be removed in the next release. Both of them were not maintained and were not used when building packages. Users can consult the <a href="https://learn.netdata.cloud/docs/exporting/exporting-quickstart">exporting documentation</a> for alternative exporters to use.</p>
+</li>
+<li>
+<p>The <a href="https://learn.netdata.cloud/docs/configuring/optimizing-metrics-database/database-modes-for-parent-child-setups">database modes</a> <code>map</code> and <code>save</code> will be removed in the next release. The <code>dbengine</code> database mode will be used to persist metrics on disk automatically.</p>
+</li>
+<li>
+<p>Per-core CPU metrics will be disabled by default to reduce data volume. Summary (per-system) metrics are still collected. This change enhances performance and resource utilization. Disabled metrics:</p>
+<ul>
+<li><code>cpu.cpu</code> (utilization).</li>
+<li><code>cpu.interrupts</code> (all interrupts).</li>
+<li><code>cpu.softirqs</code> (software interrupts).</li>
+<li><code>cpu.softnet_stat</code> (software interrupts related to network receive work).</li>
+<li><code>cpu.cpu_cstate_residency_time</code> (idle states).</li>
+</ul>
+<p>Can be enabled in <code>netdata.conf</code> by uncommenting and changing <code>no</code> to <code>yes</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[plugin:proc:/proc/stat]</span></span>
+<span class="line"><span style="color:#6A737D">    # per cpu core utilization = no</span></span>
+<span class="line"><span style="color:#6A737D">    # cpu idle states = no</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[plugin:proc:/proc/interrupts]</span></span>
+<span class="line"><span style="color:#6A737D">    # interrupts per core = no</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[plugin:proc:/proc/softirqs]</span></span>
+<span class="line"><span style="color:#6A737D">    # interrupts per core = no</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[plugin:proc:/proc/net/softnet_stat]</span></span>
+<span class="line"><span style="color:#6A737D">    # softnet_stat per core = no</span></span></code></pre>
+</li>
+<li>
+<p>To optimize system performance, several eBPF.plugin modules have been disabled by default. While these modules provide valuable insights into system resource usage, they can also contribute to system overhead. They will expose metrics using Functions (run on demand and for a limited period of time). These modules include:</p>
+<ul>
+<li>cachestat</li>
+<li>fd</li>
+<li>process</li>
+<li>oomkill</li>
+<li>shm</li>
+<li>swap</li>
+</ul>
+</li>
+</ul>
+<h2 id="netdata-release-meetup">Netdata Release Meetup <a id="v1440-netdata-release-meetup"></a></h2>
+<p>Join the Netdata team on the 11th of December at 16:30 UTC for the <a href="https://www.meetup.com/netdata/events/297755934/">Netdata Release Meetup</a>.</p>
+<p>Together we’ll cover:</p>
+<ul>
+<li>Release Highlights.</li>
+<li>Acknowledgments.</li>
+<li>Q&#x26;A with the community.</li>
+</ul>
+<p><a href="https://www.meetup.com/netdata/events/297755934/">RSVP now</a> - we look forward to meeting you.</p>
+<h2 id="support-options">Support options <a id="v1440-support-options"></a></h2>
+<p>As we grow, we stay committed to providing the best support ever seen from an open-source solution. Should you encounter an issue with any of the changes made in this release or any feature in the Netdata Agent, feel free to contact us through one of the following channels:</p>
+<ul>
+<li><a href="https://learn.netdata.cloud">Netdata Learn</a>: Find documentation, guides, and reference material for monitoring and troubleshooting your systems with Netdata.</li>
+<li><a href="https://github.com/netdata/netdata/issues">GitHub Issues</a>: Make use of the Netdata repository to report bugs or open a new feature request.</li>
+<li><a href="https://github.com/netdata/netdata/discussions">GitHub Discussions</a>: Join the conversation around the Netdata development process and be a part of it.</li>
+<li><a href="https://community.netdata.cloud/">Community Forums</a>: Visit the Community Forums and contribute to the collaborative knowledge base.</li>
+<li><a href="https://discord.gg/2eduZdSeC7">Discord Server</a>: Jump into the Netdata Discord and hang out with like-minded sysadmins, DevOps, SREs, and other troubleshooters. More than 1800 engineers are already using it!</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/netdata/netdata/releases/tag/v1.44.0" target="_blank" rel="nofollow noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install.</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.DhIQYmhx.js"></script>  </body></html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WinterFlow.io - Netdata v1.38.0 release notes</title><meta name="description" content="Netdata v1.38 features a new open-source dbengine v2 with major performance/memory gains, runtime Netdata Functions, a centralized Events Feed, expanded Cloud alert notifications (Slack/PagerDuty/Discord/Webhooks), richer RBAC, plus streaming/replication, ML, and packaging enhancements."><link rel="canonical" href="https://winterflow.io/catalog/netdata/releases/v1.38.0/"><meta property="og:type" content="website"><meta property="og:title" content="WinterFlow.io - Netdata v1.38.0 release notes"><meta property="og:description" content="Netdata v1.38 features a new open-source dbengine v2 with major performance/memory gains, runtime Netdata Functions, a centralized Events Feed, expanded Cloud alert notifications (Slack/PagerDuty/Discord/Webhooks), richer RBAC, plus streaming/replication, ML, and packaging enhancements."><meta property="og:url" content="https://winterflow.io/catalog/netdata/releases/v1.38.0/"><meta property="og:image" content="/images/apps/netdata/netdata.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WinterFlow.io - Netdata v1.38.0 release notes"><meta name="twitter:description" content="Netdata v1.38 features a new open-source dbengine v2 with major performance/memory gains, runtime Netdata Functions, a centralized Events Feed, expanded Cloud alert notifications (Slack/PagerDuty/Discord/Webhooks), richer RBAC, plus streaming/replication, ML, and packaging enhancements."><meta name="twitter:image" content="/images/apps/netdata/netdata.png"><meta name="keywords" content="netdata release notes, netdata changelog, netdata versions, netdata version history, netdata releases, netdata release history, netdata v1.38.0 release notes, v1.38.0 changelog, v1.38.0 release notes"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/_astro/index.iQr8qRLF.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>  <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/netdata/netdata.png" alt="Netdata logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Netdata</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Real-time infrastructure monitoring platform</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#infra" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> infra </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> grafana, prometheus, zabbix, datadog </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://www.netdata.cloud/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://learn.netdata.cloud/docs/ask-netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/netdata/screenshot-1.png" alt="Netdata screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="space-y-3"> <div class="flex items-center justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/netdata/netdata/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-start justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">Available in:</span> <div class="flex flex-wrap justify-end gap-2"> <span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> free </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> pro </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> business </span> </div> </div> </div> </div> <div class="border-t border-gray-200 pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Netdata" data-app-slug="netdata" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 17.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path> </svg>
+Join Waiting List
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.netdata.cloud/pricing/" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy a license →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/netdata/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/netdata/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h1 class="text-2xl font-semibold text-gray-900">v1.38.0</h1> <span class="text-sm text-gray-500">2023-02-06</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <ul>
+<li>
+<p><a href="#v1380-release-highlights">Release Highlights</a></p>
+<ul>
+<li>
+<p><strong><a href="#v1380-dbenginev2">DBENGINE v2</a></strong><br>
+The new open-source database engine for Netdata Agents, offering huge performance, scalability and stability improvements, with a fraction of memory footprint!</p>
+</li>
+<li>
+<p><strong><a href="#v1380-functions">FUNCTION: Processes</a></strong><br>
+Netdata beyond metrics! We added the ability for <strong>runtime functions</strong>, that can be implemented by any data collection plugin, to offer unlimited visibility to anything, even not-metrics, that can be valuable while troubleshooting.</p>
+</li>
+<li>
+<p><strong><a href="#v1380-feed">Events Feed</a></strong><br>
+Centralized view of Space and Infrastructure level events about topology changes and alerts.</p>
+</li>
+<li>
+<p><strong><a href="#v1380-notifications">NOTIFICATIONS: Slack, PagerDuty, Discord, Webhooks</a></strong><br>
+Netdata Cloud now supports <strong>Slack</strong>, <strong>PagerDuty</strong>, <strong>Discord</strong>, <strong>Webhooks</strong>.</p>
+</li>
+<li>
+<p><strong><a href="#v1380-rbac">Role-based access model</a></strong><br>
+Netdata Cloud supports more roles, offering finer control over access to infrastructure.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#v1380-integrations">Integrations</a><br>
+New and improved plugins for data collection, alert notifications, and data exporters.</p>
+<ul>
+<li><a href="#v1380-collectors">Collectors</a></li>
+<li><a href="#v1380-notifications">Notifications</a></li>
+<li><a href="#v1380-exporters">Exporters</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#v1380-health">Health Monitoring and Alerts Notification Engine</a><br>
+Changes to the Netdata Health Monitoring and Notifications engine.</p>
+</li>
+<li>
+<p><a href="#v1380-visualization">Visualizations / Charts and Dashboards</a></p>
+</li>
+<li>
+<p><a href="#v1380-database">Database</a></p>
+</li>
+<li>
+<p><a href="#v1380-streaming">Streaming and Replication</a></p>
+</li>
+<li>
+<p><a href="#v1380-api">API</a></p>
+</li>
+<li>
+<p><a href="#v1380-ml">Machine Learning</a></p>
+</li>
+<li>
+<p><a href="#v1380-packaging">Installation and Packaging</a></p>
+</li>
+<li>
+<p><a href="#v1380-documentation">Documentation and Demos</a></p>
+</li>
+<li>
+<p><a href="#v1380-administration">Administration</a></p>
+</li>
+<li>
+<p><a href="#v1380-other">Other Notable Changes</a></p>
+</li>
+<li>
+<p><a href="#v1380-deprecation">Deprecation notice</a></p>
+</li>
+<li>
+<p><a href="#v1380-release-meetup">Netdata Agent release meetup</a></p>
+</li>
+<li>
+<p><a href="#v1380-support-options">Support options</a></p>
+</li>
+<li>
+<p><a href="#v1380-ack">Acknowledgements</a></p>
+</li>
+</ul>
+<blockquote>
+<p>❗We are keeping our codebase healthy by removing features that are end-of-life. Read the <a href="#v1380-deprecation">deprecation notice</a> to check if you are affected.</p>
+</blockquote>
+<h3 id="netdata-open-source-growth">Netdata open-source growth</h3>
+<!-- Retrieve most of these stats from netdata/netdata/README.md badges -->
+<ul>
+<li>Almost 62,000 GitHub Stars</li>
+<li>Over four million monitored servers</li>
+<li>Almost 88 million sessions served</li>
+<li>Over 600 thousand total nodes in Netdata Cloud</li>
+</ul>
+<h2 id="release-highlights">Release highlights <a id="v1380-release-highlights"></a></h2>
+<h3 id="dramatic-performance-and-stability-improvements-with-a-smaller-agent-footprint">Dramatic performance and stability improvements, with a smaller agent footprint <a id="v1380-dbenginev2"></a></h3>
+<p>We completely reworked our custom-made, time series database (dbengine), resulting in stunning improvements to performance, scalability, and stability, while at the same time significantly reducing the <a href="https://github.com/netdata/netdata/tree/master/database/engine#memory-requirements">agent memory requirements</a>.</p>
+<p>On production-grade hardware (e.g. 48 threads, 32GB ram) Netdata Agent Parents can easily collect 2 million points/second while servicing data queries for 10 million points / second, and running ML training and Health querying 1 million points / second each!</p>
+<p>For standalone installations, the 64bit version of Netdata runs stable at about 150MB RAM (Reside Set Size + SHARED), with everything enabled (the 32bit version at about 80MB RAM, again with everything enabled).</p>
+<p><img src="https://user-images.githubusercontent.com/2662304/212779720-e448f6cd-a60a-48d0-930d-f2569bcd6fc6.png" alt="image"></p>
+<details>
+<summary>Read more about the changes over dbengine v1</summary>
+<h4 id="key-highlights-of-the-new-dbengine">Key highlights of the new dbengine</h4>
+<h5 id="disk-based-indexing">Disk based indexing</h5>
+<p>We introduced a new journal file format (<code>*.jnfv2</code>) that is way faster to initialize during loading. This file is used as a disk-based index for all metric data available on disk (metrics retention), reducing the memory requirements of dbengine by about 80%.</p>
+<h5 id="new-caching">New caching</h5>
+<p>3 new <strong>caches</strong> (main cache, open journal cache, extent cache) have been added to speed up queries and control the memory footprint of dbengine.</p>
+<p>These caches combined, offer excellent caching even for the most demanding queries. Cache hit ratio now rarely falls bellow 50%, while for the most common use cases, it is constantly above 90%.</p>
+<p>The 3 caches support <strong>memory ballooning</strong> and autoconfigure themselves, so they don’t require any user configuration in <code>netdata.conf</code>.</p>
+<p>At the same time, their memory footprint is <strong>predictable</strong>: twice the memory of the currently collected metrics, across all tiers. The exact equation is:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>METRICS x 4KB x (TIERS - 1) x 2 + 32MB</span></span></code></pre>
+<p>Where:</p>
+<ul>
+<li><code>METRICS x 4KB x TIERS</code> is the size of the concurrently collected metrics.</li>
+<li><code>4KB</code> is the page size for each metric.</li>
+<li><code>TIERS</code> is whatever configured for <code>[db].storage tiers</code> in <code>netdata.conf</code>; use <code>(TIERS - 1)</code> when using 3 tiers or more (3 is the default).</li>
+<li><code>x 2 + 32MB</code> is the commitment of the new dbengine.</li>
+</ul>
+<p>The new combination of caches makes Netdata memory footprint <strong>independent of retention</strong>! The amount of metric data on disk, does not any longer affect the memory footprint of Netdata, it can be just a few MB, or even hundreds of GB!</p>
+<p>The caches try to keep the memory footprint at 97% of the predefined size (i.e. twice the concurrently collected metrics size). They automatically enter a survival mode when memory goes above this, by paralleling LRU evictions and metric data flushing (saving to disk). This system has 3 distinct levels of operation:</p>
+<ul>
+<li><strong>aggressive evictions</strong>, when caches are above 99% full; in this mode cache query threads are turned into page evictors, trying to remove the least used data from the caches.</li>
+<li><strong>critical evictions</strong>, when caches are above 101% full; in this mode every thread that accesses the cache is turned into a batch evictor, not leaving the cache until the cache size is again within acceptable limits.</li>
+<li><strong>flushing critical</strong>, when too many unsaved data reside in memory; in this mode, flushing is parallelized, trying to push data to disk as soon as possible.</li>
+</ul>
+<p>The caches are now shared across all dbengine instances (all tiers).</p>
+<p>LRU evictions are now smarter: the caches know when metrics are referenced by queries or by collectors and favor the ones that have been used recently by data queries.</p>
+<h5 id="new-dbengine-query-engine">New dbengine query engine</h5>
+<p>The new dbengine query engine is totally asynchronous, working in parallel while other threads are processing metrics points. Chart and Context queries, but also Replication queries, now take advantage of this feature and ask dbengine to preload metric data in advance, before they are actually needed. This makes Netdata amazingly fast to respond in data queries, even on busy parent that at the same time collect millions of points.</p>
+<p>At the same time we support prioritization of queries based on their nature:</p>
+<ul>
+<li><strong>High priority queries</strong>, are all those that can potentially block data collection. Such queries are <strong>tiers backfilling</strong> and the last replication query for each metric (immediately after which, streaming is enabled).</li>
+<li><strong>Normal priority queries</strong>, are the ones that are initiated by users.</li>
+<li><strong>Low priority queries</strong>, are the ones that can be delayed without affecting quality of the results, like Health and Replication queries.</li>
+<li><strong>Best effort queries</strong>, are the lowest priority ones and are currently used by ML training queries.</li>
+</ul>
+<p>Starvation is prevented by allowing 2% of lower priority queries for each higher priority queue. So, even when backfilling is performed full speed at 15 million points per second, user queries are satisfied up to 300k points per second.</p>
+<p>Internally all caches are partitioned to allow parallelism up to the number of cores the system has available. On busy parents with a lot of data and capable hardware it is now easy for Netdata to respond to queries using 10 million points per second.</p>
+<p>At the same time, <strong>extent deduplication</strong> has been added, to prevent the unnecessary loading and uncompression of an extent multiple times in a short time. This works like this: while a request to load an extent is in flight, and up to the time the actual extent has been loaded and uncompressed in memory, more requests to extract data from it can be added to the same in flight request! Since dbengine trying to keep metrics of the same charts to the same extent, combined with the feature we added to prepare ahead multiple queries, this extent deduplication now provides hit of above 50% for normal chart and context queries!</p>
+<h5 id="metrics-registry">Metrics registry</h5>
+<p>A new <strong>metrics registry</strong> has been added that maintains an index of all metrics in the database, for all tiers combined.</p>
+<p>Initialization is the metrics registry is fully multithreaded utilizing all the resources available on busy parents, improving start-up times significantly.</p>
+<p>This metrics registry is now the only memory requirement related to retention. It keeps in memory the first and the last timestamps, along with a few more metadata, of all the metrics for which retention is available on disk. The metrics registry needs about 150 bytes per metric.</p>
+<h4 id="streaming">Streaming <a id="v1380-stream"></a></h4>
+<p>The biggest change in streaming is that the parent agents now inherit the clock of their children, for their data. So, all timestamps about collected metrics reflect the timestamps on the children that collected them. If a child clock is ahead of the parent clock, the parent will still accept collected points for the child, and it will process them and save them, but on parent node restart the parent will refuse to load future data about a child database. This has been done in such a way that if the clock of the child is fixed (by adjusting it backwards), after a parent restart the child will be able to push fresh metrics to the parent again.</p>
+<p>Related to the memory footprint of the agent, streaming buffers were ballooning up to the configured size and remained like that for the lifetime of the agent. Now the streaming buffers are increased to satisfy the demand, but then they are again decreased to a minimum size. On busy parents this has a significant impact on the overall memory footprint of the agent (10MB buffer per node x 200 child nodes on this parent, is 2GB - now they return to a few KB per node).</p>
+<p>Active-Active parent clusters are now more reliable by detecting stale child connections and disconnecting them.</p>
+<p>Several child to parent connection issues have been solved.</p>
+<h4 id="replication">Replication <a id="v1380-repl"></a></h4>
+<p>Replication now uses the new features of dbengine and pipelines queries preparation and metric data loading, improving drastically its performance. At the same time, the replication step is now automatically adjusted to the page size of dbengine, allowing replication to use the data are already loaded by dbengine and saving resources at the next iteration.</p>
+<p>A single replication thread can now push metrics at a rate of above 1 million points / second on capable hardware.</p>
+<p>Solved an issue with replication, where if the replicated time-frame had a gap at the beginning of the replicated period, then no replication was performed for that chart. Now replication skips the gap and continues replicating all the points available.</p>
+<p>Replication does not replicate now empty points. The new dbengine has controls in place to insert gaps into the database which metrics are missing. Utilizing this feature, we have now stopped replicating empty points, saving bandwidth and processing time.</p>
+<p>Replication was increasing the streaming buffers above the configured ones, when big replication messages had to fit in it. Now, instead of increasing the streaming buffers, we interrupt the replication query at a point that the buffer will be sufficient to accept the message. When queries are interrupted like this, the remaining query is then repeated until all of it executed.</p>
+<p>Replication and data collection are now synchronized atomically at the sending side, to ensure that the parent will not have gaps at the point the replication ends and streaming starts.</p>
+<p>Replication had discrepancies when the db mode was not <code>dbengine</code>. To solve these discrepancies, combined with the storage layer API changes introduced by the new dbengine, we had to rewrite them to be compliant. Replication can now function properly, without gaps at the parents, even when the child has db mode <code>alloc</code>, <code>ram</code>, <code>save</code> or <code>map</code>.</p>
+<h4 id="netdata-startup-and-shutdown">Netdata startup and shutdown</h4>
+<p>Several improvements have been performed to speed up agent startup and shutdown. Combined with the new dbengine, now Netdata starts instantly on single node installations and uses just a fraction of the time that was needed by the previous stable version, even on very busy parents with huge databases (hundreds of GB).</p>
+<p>Special care has been taken to ensure that during shutdown the agent prioritizes dbengine flushing to disk of any unsaved data. So, now during shutdown, data collection is first stopped and then the hot and dirty pages of the main cache are flushed to disk before proceeding with other cleanup activities.</p>
+</details>
+<h3 id="functions">Functions <a id="v1380-functions"></a></h3>
+<p>After the groundwork done on the Netdata Agent in v1.37.0, Netdata Agent collectors are able to expose functions that can be executed on-demand, at run-time, by the data collecting agent, even when queries are executed via a Netdata Agent Parent. We are now utilizing this capability to provide the first of many powerful features via the Netdata Cloud UI.</p>
+<p>Netdata Functions on Netdata Cloud allow you to trigger specific routines to be executed by a given Agent on request. These routines can range from a simple reader that fetches real time information to help you troubleshoot (like the list of currently running processing, currently running db queries, currently open connections, etc.), to routines that trigger an action on your behalf (restart a service, rotate logs, etc.), directly on the node. The key point is to remove the need to open an ssh connection to your node to execute a command like <code>top</code> while you are troubleshooting.</p>
+<p>The routines are triggered directly from the Netdata Cloud UI, with the request going through the secure, already established by the agent <a href="https://learn.netdata.cloud/docs/agent/aclk">Agent-Cloud Link (ACLK)</a>. Moreover, unlike many of the commands you’d issue from the shell, Netdata Functions come with powerful capabilities like auto-refresh, sorting, filtering, search and more! And, as everything about Netdata, they are fast!</p>
+<h4 id="what-functions-are-currently-available">What functions are currently available?</h4>
+<p>At the moment, just one, to display detailed information on the currently running processes on the node, replacing <code>top</code> and <code>iotop</code>. The function is provided by the <a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/README.md">apps.plugin</a> collector.</p>
+<p><img src="https://user-images.githubusercontent.com/82235632/215847598-ebfa80f9-58e8-4538-ba36-daddd7e3ea58.gif" alt="chrome_tABzCnU6BP"></p>
+<details>
+<summary>Read more about the Netdata Functions</summary>
+<h4 id="how-do-functions-work">How do functions work?</h4>
+<p>The nitty-gritty details are in PR “Allow netdata plugins to expose functions for querying more information about specific charts” (<a href="https://github.com/netdata/netdata/pull/13720">#13720</a>). In short:</p>
+<ul>
+<li>Each plugin can register to the main Netdata agent process a set of functions that it supports for the host it runs (global functions), or a given chart (chart local functions), along with the acceptable parameters and parameter values for each one. The plugin also defines the format of the response it will provide, if a certain function is called.</li>
+<li>The agent makes the information available via its API, but also returns the available functions for a chart in the response of every <code>data</code> query call, that returns the metric values.</li>
+<li>To execute a registered function, one needs to call the <code>/api/v1/functions</code> endpoint (<a href="https://editor.swagger.io/?url=https://raw.githubusercontent.com/netdata/netdata/master/web/api/netdata-swagger.yaml">see it in swagger</a>). However, for security reasons, the specific call is protected, meaning it is disabled from the HTTP API and will return a 403. Only the cloud can call the particular endpoint and only via the secure and protected Agent-Cloud Link (ACLK).</li>
+<li>When the endpoint is called, the agent daemon invokes the requested function on the collector via <a href="https://github.com/netdata/netdata/tree/master/collectors/plugins.d#function">a new plugins.d API endpoint</a>. Note that the <code>plugins.d</code> API has for the first time become bidirectional, precisely to support the daemon querying this type of information.</li>
+</ul>
+<h4 id="how-do-functions-work-with-streaming">How do functions work with streaming?</h4>
+<p>The definitions of functions are transmitted to parent nodes via streaming, so that the parents know all the functions available on all child database they maintain. This works even across multiple levels of parents.</p>
+<p>When a parent node is connected to Netdata Cloud, it is capable of triggering the call to the respective child node, to run any of its functions. When multiple parents are involved, all of them will propagate the request to the right child to execute the function.</p>
+<h4 id="why-are-they-available-only-on-netdata-cloud">Why are they available only on Netdata Cloud?</h4>
+<p>Since these functions are able to execute routines on the node and expose information beyond metric data (even action buttons could be implemented using functions), our concern is to ensure no sensitive information or disruptive actions are exposed through the unprotected Agent’s API.</p>
+<p>Since Netdata Cloud provides all the infrastructure to authenticate users, assign roles to them and establishes a secure communication channel to Netdata Agents <a href="https://github.com/netdata/netdata/blob/master/aclk/README.md">ACLK</a>, this concern is addressed. Netdata Cloud is free forever for everyone, providing a lot more than just the agent dashboard and is our main focus of development for new visualization features.</p>
+<h4 id="next-steps">Next steps</h4>
+<p>For even more details please check <a href="https://learn.netdata.cloud/docs/nightly/concepts/netdata-functions">our docs</a>.</p>
+<p>If you have ideas or requests for other functions:</p>
+<ul>
+<li>Participate in the relevant <a href="https://github.com/netdata/netdata/discussions/14412">GitHub Discussion</a></li>
+<li>Open a <a href="https://github.com/netdata/netdata-cloud/issues/new?assignees=&#x26;labels=feature+request%2Cneeds+triage&#x26;template=FEAT_REQUEST.yml&#x26;title=%5BFeat%5D%3A+">feature request</a> on the Netdata Cloud repo</li>
+<li>Engage with our community on the <a href="https://discord.com/invite/mPZ6WZKKG2">Netdata discord server</a>.</li>
+</ul>
+</details>
+<h3 id="events-feed">Events feed<a id="v1380-feed"></a></h3>
+<p><em>Coming by Feb 15th</em></p>
+<p>The <strong>Events feed</strong> is a powerful new feature that tracks events that happen on your infrastructure, or in your Space. The feed lets you investigate events that occurred in the past, which is obviously invaluable for troubleshooting. Common use cases are ones like when a node goes offline, and you want to understand what events happened before that. A detailed event history can also assist in attributing sudden pattern changes in a time series to specific changes in your environment.</p>
+<p>We start from humble beginnings, capturing <a href="#v1380-topology-events">topology events</a> (node state transitions) and <a href="#v1380-alert-events">alert state transitions</a>. We intend to expand the events we capture to include infrastructure changes like deployments or services starting/stopping and we plan to provide a way to display the events in the standard Netdata charts.</p>
+<h4 id="what-are-the-available-events">What are the available events?</h4>
+<blockquote>
+<p>⚠️ Based on your space’s plan different allowances are defined to query past data. The length of the history is provided in this table:</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left"><strong>Domains of events</strong></th><th align="left"><strong>Community</strong></th><th align="left"><strong>Pro</strong></th><th align="left"><strong>Business</strong></th></tr></thead><tbody><tr><td align="left"><strong><a href="#v1380-topology-events">Topology events</a></strong> <p>Node state transition events, e.g. live or offline.</p></td><td align="left">4 hours</td><td align="left">7 days</td><td align="left">14 days</td></tr><tr><td align="left"><strong><a href="#v1380-alert-events">Alert events</a></strong> <p>Alert state transition events, can be seen as an alert history log.</p></td><td align="left">4 hours</td><td align="left">7 days</td><td align="left">90 days</td></tr></tbody></table>
+<h5 id="topology-events">Topology events <a id="v1380-topology-events"></a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left"><strong>Event name</strong></th><th align="left"><strong>Description</strong></th></tr></thead><tbody><tr><td align="left">Node Became Live</td><td align="left">The node is collecting and streaming metrics to Cloud.</td></tr><tr><td align="left">Node Became Stale</td><td align="left">The node is offline and not streaming metrics to Cloud. It can show historical data from a parent node.</td></tr><tr><td align="left">Node Became Offline</td><td align="left">The node is offline, not streaming metrics to Cloud and not available in any parent node.</td></tr><tr><td align="left">Node Created</td><td align="left">The node is created, but it is still Unseen on Cloud, didn’t establish a successful connection yet.</td></tr><tr><td align="left">Node Removed</td><td align="left">The node was removed from the Space through the <code>Delete</code> action, if it becomes Live again it will be automatically added.</td></tr><tr><td align="left">Node Restored</td><td align="left">The node is restored, if node becomes Live after a remove action it is re-added to the Space.</td></tr><tr><td align="left">Node Deleted</td><td align="left">The node is deleted from the Space, see this as an hard delete and won’t be re-added to the Space if it becomes live.</td></tr><tr><td align="left">Agent Claimed</td><td align="left">The agent was successfully registered to Netdata Cloud and is able to connect.</td></tr><tr><td align="left">Agent Connected</td><td align="left">The agent connected to the Netdata Cloud MQTT server (Agent-Cloud Link established).</td></tr><tr><td align="left">Agent Disconnected</td><td align="left">The agent disconnected from the Netdata Cloud MQTT server (Agent-Cloud Link severed).</td></tr><tr><td align="left">Agent Authenticated</td><td align="left">The agent successfully authenticated itself to Netdata Cloud.</td></tr><tr><td align="left">Agent Authentication Failed</td><td align="left">The agent failed to authenticate itself to Netdata Cloud.</td></tr></tbody></table>
+<h5 id="alert-events">Alert events <a id="v1380-alert-events"></a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left"><strong>Event name</strong></th><th align="left"><strong>Description</strong></th></tr></thead><tbody><tr><td align="left">Node Alert State Changed</td><td align="left">These are node alert state transition events and can be seen as an alert history log. You can see transitions to or from any of these states: Cleared, Warning, Critical, Removed, Error or Unknown</td></tr></tbody></table>
+<h3 id="additional-alert-notification-methods-on-netdata-cloud">Additional alert notification methods on Netdata Cloud <a id="v1380-notifications"></a></h3>
+<p><em>Coming by Feb 15th</em></p>
+<p>Every Netdata Agent comes with hundreds of pre-installed health alerts designed to notify you when an anomaly or performance issue affects your node or the applications it runs. All these events, from all your nodes, are centralized at Netdata Cloud.</p>
+<p>Before this release, Netdata Cloud was only dispatching centralized email alert notifications to your team whenever an alert enters a warning, critical, or unreachable state. However, the agent supported tens of notification delivery methods, which we hadn’t provided via the cloud.</p>
+<p>We are now adding to Netdata Cloud more alert notification integration methods. We categorize them similarly to our <a href="#v1380-paidplans">subscription plans</a>, as Community, Pro and Business. On this release, we added <strong>Discord</strong> (Community Plan), <strong>web hook</strong> (Pro Plan), <strong>PagerDuty</strong> and <strong>Slack</strong> (Business Plan).</p>
+<p><img src="https://user-images.githubusercontent.com/82235632/215892088-cc82043b-b2c5-47b8-9a76-99a6f3cc8950.gif" alt="chrome_2M3bGJxVTS"></p>
+<details>
+<summary>More details on notifications</summary>
+<h4 id="notification-method-availability">Notification method availability</h4>
+<blockquote>
+<p>⚠️ Netdata Cloud notification methods availability depends on your <a href="#v1380-paidplans">subscription plan</a>.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left"><strong>Notification methods</strong></th><th align="center"><strong>Community</strong></th><th align="center"><strong>Pro</strong></th><th align="center"><strong>Business</strong></th></tr></thead><tbody><tr><td align="left">Email</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left">Discord</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left">Web hook</td><td align="center">-</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left">PagerDuty</td><td align="center">-</td><td align="center">-</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left">Slack</td><td align="center">-</td><td align="center">-</td><td align="center">:heavy_check_mark:</td></tr></tbody></table>
+<h4 id="notification-method-types">Notification method types</h4>
+<p>Notification integrations are classified based on whether they need to be configured per user (<strong>Personal</strong> notifications), or at the system level (<strong>System</strong> notifications).</p>
+<p>Email notifications are <strong>Personal</strong>, meaning that administrators can enable or disable them globally, and each user can enable or disable them for them, per room. Email notifications are sent to the destination of the channel which is a user-specific attribute, e.g. user’s e-mail. The users are the ones who can manage what specific configurations they want for the Space / Room(s) and the desired Notification level, via their User Profile page under <strong>Notifications</strong>.</p>
+<p>All other introduced methods are classified as <strong>System</strong>, as the destination is a target that usually isn’t specific to a single user, e.g. slack channel. These notification methods allow for fine-grain rule settings to be done by administrators. Administrators are able to specify different targets depending on Rooms or Notification level settings.</p>
+<p>For more details please check the documentation <a href="https://learn.netdata.cloud/docs/nightly/operations/alerts/alert-notifications">here</a>.</p>
+</details>
+<h3 id="improved-role-based-access-model">Improved role-based access model <a id="v1380-rbac"></a></h3>
+<p><em>Coming by Feb 15th</em></p>
+<p>Netdata Cloud already provides a role-based-access mechanism, that allows you to control what functionalities in the app users can access.
+Each user can be assigned only one role, which fully specifies all the capabilities they are afforded.</p>
+<p>With the advent of the <a href="#v1380-paidplans">paid plans</a> we revamped the roles to cover needs expressed by our users, like providing more limited access to your customers, or being able to join any room. We also aligned the offered roles to the target audience of each plan. The end result is the following:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left"><strong>Role</strong></th><th align="center"><strong>Community</strong></th><th align="center"><strong>Pro</strong></th><th align="center"><strong>Business</strong></th></tr></thead><tbody><tr><td align="left"><strong>Administrators</strong> <p>This role allows users to manage Spaces, War Rooms, Nodes, Users, and Plan &#x26; Billing settings.</p><p>Provides access to all War Rooms in the space</p></td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left"><strong>Managers</strong> <p>This role allows users to manage War Rooms and Users. </p><p>Provides access to all War Rooms and Nodes in the space.</p></td><td align="center">-</td><td align="center">-</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left"><strong>Troubleshooters</strong> <p>This role is for users focused on using Netdata to troubleshoot, not manage entities.</p><p>Provides access to all War Rooms and Nodes in the space.</p></td><td align="center">-</td><td align="center">:heavy_check_mark:</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left"><strong>Observers</strong> <p>This role is for read-only access, with restricted access to explicitly defined War Rooms and only the Nodes that appear in those War Rooms.</p><p> 💡 Ideal for restricting your customer’s access to their own dedicated rooms.</p></td><td align="center">-</td><td align="center">-</td><td align="center">:heavy_check_mark:</td></tr><tr><td align="left"><strong>Billing</strong> <p>This role is for users that only need to manage billing options and see invoices, with no further access to the system.</p></td><td align="center">-</td><td align="center">-</td><td align="center">:heavy_check_mark:</td></tr></tbody></table>
+<p><img src="https://user-images.githubusercontent.com/82235632/215895022-97e8f93d-8c47-4c22-bfae-d25f9bd80a40.png" alt="image"></p>
+<h2 id="integrations">Integrations <a id="v1380-integrations"></a></h2>
+<h3 id="collectors">Collectors <a id="v1380-collectors"></a></h3>
+<h4 id="proc">Proc</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/collect/system-metrics">proc plugin</a> gathers metrics from the <code>/proc</code> and <code>/sys</code> folders in Linux
+systems, along with a few other endpoints, and is responsible for the bulk of the system metrics collected and
+visualized by Netdata. It collects CPU, memory, disks, load, networking, mount points, and more.</p>
+<p>We added a “cpu” label to the per core utilization % charts. Previously, the only way to filter or group by core was to use the “instance”, i.e. the chart name. The new label makes the displayed dimensions much more user-friendly.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14255">fixed</a> the issues we had with collection of CPU/memory metrics when running inside an LXC container as a <code>systemd</code> service.</p>
+<p>We also <a href="https://github.com/netdata/netdata/pull/14252">fixed</a> the missing network stack metrics, when IPv6 is disabled.</p>
+<p>Finally, we improved how the <code>loadavg</code> alerts behave when the number of processors <a href="https://github.com/netdata/netdata/pull/14286">is 0</a>, or <a href="https://github.com/netdata/netdata/pull/14265">unknown</a>.</p>
+<h4 id="apps">Apps</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/collect/application-metrics">apps plugin</a> breaks down system resource usage
+to processes, users and user groups, by reading whole process tree, collecting resource usage information for every process found running.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14156">fixed</a> the <code>nodejs</code> application group <code>node</code>, which incorrectly included <code>node_exporter</code>. The rule now is that the process must be called <code>node</code> to be included in that group.</p>
+<p>We also <a href="https://github.com/netdata/netdata/pull/14188">added a telegraf application group</a>.</p>
+<h4 id="containers-and-vms-cgroups">Containers and VMs (CGROUPS)</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/cgroups.plugin">cgroups plugin</a> reads information on Linux Control Groups to monitor containers, virtual machines and systemd services.</p>
+<p>The “net” section in a <code>cgroups</code> container would occasionally pick the wrong / random interface name to display in the navigation menu. We <a href="https://github.com/netdata/netdata/pull/14174">removed the interface name</a> from the <code>cgroup</code> “net” family. The information is available in the cloud as labels and on the agent as chart names and ids.</p>
+<h4 id="ebpf">eBPF</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/ebpf.plugin">eBPF plugin</a> helps you troubleshoot and debug how applications interact with the Linux kernel.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14270">improved</a> the speed and resource impact of the collector shutdown, by reducing the number of threads running in parallel.</p>
+<p>We fixed a bug with eBPF routines that would sometimes cause kernel panic and system reboot on RedHat 8.* family OSs. <a href="https://github.com/netdata/netdata/pull/14090">#14090</a>, <a href="https://github.com/netdata/netdata/pull/14131">#14131</a></p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14131">fixed</a> an <code>ebpf.d</code> crash: <code>sysmalloc</code> Assertion failed, then killed with <code>SIGTERM</code>.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14131">fixed</a> a crash when building eBPF while using a memory address sanitizer.</p>
+<p>The eBPF collector also creates charts for each running application through an integration with the <code>apps.plugin</code>.
+This integration helps you understand how specific applications interact with the Linux kernel. In systems with many VMs (like Proxmox), this integration
+can cause a large load. We used to have the integration turned on by default, with the ability to disable it from <code>ebpf.d.conf</code>. We have now done the opposite, having the integration disabled by default, with the ability to enable it. <a href="https://github.com/netdata/netdata/pull/14147">#14147</a></p>
+<h4 id="windows-monitoring">Windows Monitoring</h4>
+<p>We have been making tremendous improvements on how we <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/wmi">monitor Windows Hosts</a>. The work will be completed in the next release. For now, we can say that we have done some preparatory work by <a href="https://github.com/netdata/netdata/pull/14001">adding more info to existing charts</a>, adding metrics for <a href="https://github.com/netdata/go.d.plugin/pull/1041">MS SQL Server</a>, <a href="https://github.com/netdata/go.d.plugin/pull/972">IIS</a> in 1.37, <a href="https://github.com/netdata/go.d.plugin/pull/1003">Active Directory</a>, <a href="https://github.com/netdata/go.d.plugin/pull/1013">ADFS</a> and <a href="https://github.com/netdata/go.d.plugin/pull/1007">ADCS</a>.</p>
+<p>We also <a href="https://github.com/netdata/go.d.plugin/pull/1065">reorganized the navigation menu</a>, so that Windows application metrics don’t appear under the generic “WMI” category, but on their own category, just like Linux applications.</p>
+<p>We invite you to try out with these collectors either from a remote Linux machine, or using our new <a href="https://github.com/netdata/msi-installer">MSI installer</a>, which however is not suitable for production. Your feedback will be really appreciated, as we invest on making Windows Monitoring a first class citizen of Netdata.</p>
+<h4 id="generic-prometheus-endpoint-monitoring">Generic Prometheus Endpoint Monitoring</h4>
+<p>Our <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/prometheus">Generic Prometheus Collector</a> gathers metrics from any <a href="https://prometheus.io/">Prometheus</a> endpoint that uses
+the <a href="https://prometheus.io/docs/instrumenting/exposition_formats/">OpenMetrics exposition format</a>.</p>
+<p>To allow better grouping and filtering of the collected metrics we now <a href="https://github.com/netdata/go.d.plugin/pull/1004">create a chart with labels per label set</a>.</p>
+<p>We also <a href="https://github.com/netdata/go.d.plugin/pull/1027">fixed the handling of Summary/Histogram NaN values</a>.</p>
+<h4 id="tcp-endpoint-monitoring">TCP endpoint monitoring</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/portcheck">TCP endpoint (portcheck) collector</a>  monitors TCP service availability and response time.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14137">enriched</a> the <code>portcheck</code> alarms with labels that show the problematic host and port.</p>
+<h4 id="http-endpoint-monitoring">HTTP endpoint monitoring</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/httpcheck">HTTP endpoint monitoring collector (httpcheck)</a> monitors their availability and response time.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/14133">enriched the alerts</a> with labels that show the slow or unavailable URL relevant to the alert.</p>
+<h4 id="host-reachability-ping">Host reachability (ping)</h4>
+<p>The new <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/ping">host reachability collector</a> replaced <code>fping</code> in v1.37.0.
+We <a href="https://github.com/netdata/netdata/pull/14073">removed</a> the deprecated <code>fping.plugin</code>, in accordance with the v1.37.0 deprecation notice.</p>
+<h4 id="rabbitmq">RabbitMQ</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/rabbitmq">RabbitMQ collector</a> monitors the open source message broker, by
+querying its <code>overview</code>, <code>node</code> and <code>vhosts</code> HTTP endpoints.</p>
+<p>We <a href="https://github.com/netdata/go.d.plugin/pull/1047">added monitoring of the RabitMQ queues</a> that was available in the older Python module and
+<a href="https://github.com/netdata/go.d.plugin/pull/1052">fixed an issue</a> with the new metrics.</p>
+<h4 id="mongodb">MongoDB</h4>
+<p>We monitor the <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/mongodb">MongoDB</a> NoSQL database <a href="https://www.mongodb.com/docs/manual/reference/command/serverStatus/#mongodb-dbcommand-dbcmd.serverStatus">serverStatus</a> and <a href="mongodb.com/docs/manual/reference/command/dbStats/#dbstats">dbStats</a>.</p>
+<p>To allow better grouping and filtering of the collected metrics we now <a href="https://github.com/netdata/go.d.plugin/pull/1042">create a chart per database, repl set member, shard and additional metrics</a>. We also <a href="https://github.com/netdata/go.d.plugin/pull/1046">improved</a> the <code>cursors_by_lifespan_count</code> chart dimension names, to make them clearer.</p>
+<h4 id="postgresql">PostgreSQL</h4>
+<p>Our powerful <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/postgressql">PostgreSQL database collector</a> has been enhanced with
+an improved <a href="https://github.com/netdata/go.d.plugin/pull/1039">WAL replication lag calculation</a> and <a href="https://github.com/netdata/go.d.plugin/pull/1018">better support of versions before 10</a>.</p>
+<h4 id="redis">Redis</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/redis">Redis collector</a> monitors the in-memory data structure store via its <a href="https://redis.io/commands/info/">INFO ALL</a> command.</p>
+<p>We now support password protected Redis instances, by <a href="https://github.com/netdata/go.d.plugin/pull/1051">allowing users to set the username/password</a> in the collector configuration.</p>
+<h4 id="consul">Consul</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/consul">Consul collector</a> is production ready! <a href="https://www.consul.io/">Consul by HashiCorp</a> is a powerful and complex identity-based networking solution, which is not trivial to monitor. We were lucky to have the assistance of HashiCorp itself in this endeavor, which resulted in a monitoring solution of exceptional quality. Look for common blog posts and announcements in the coming weeks!</p>
+<h4 id="nginx-plus">NGINX Plus</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/nginxplus">NGINX Plus collector</a> monitors the load balancer, API gateway, and reverse proxy built on top of NGINX, by utilizing its <a href="https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/">Live Activity Monitoring</a> capabilities.</p>
+<p>We improved the collector that was launched last November with <a href="https://github.com/netdata/netdata/pull/14080">additional information</a> explaining the charts and the <a href="https://github.com/netdata/go.d.plugin/pull/1010">addition of SSL error metrics</a>.</p>
+<h4 id="elastic-search">Elastic Search</h4>
+<p>The <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/elasticsearch">Elastic Search collector</a> monitors the search engine’s instances
+via several of the provided local interfaces.</p>
+<p>To allow better grouping and filtering of the collected metrics we now <a href="https://github.com/netdata/go.d.plugin/pull/1040">create a chart per node index, a dimension per health status</a>. We also <a href="https://github.com/netdata/netdata/pull/14197">added several OOB alerts</a>.</p>
+<h4 id="nvidia-gpu">NVIDIA GPU</h4>
+<p>Our <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/nvidia_smi">NVIDIA GPU Collector</a> monitors memory usage, fan speed, PCIE bandwidth utilization, temperature, and other GPU performance metrics using the <code>nvidia-smi</code> cli tool.</p>
+<p>Multi-Instance GPU (MIG) is a feature from NVIDIA that lets users partition a single GPU to smaller GPU instances.
+We <a href="https://github.com/netdata/go.d.plugin/pull/1067">added MIG metrics</a> for uncorrectable errors and memory usage.</p>
+<p>We also <a href="https://github.com/netdata/go.d.plugin/pull/1048">added metrics for voltage</a> and <a href="https://github.com/netdata/netdata/pull/14315">PCIe bandwidth utilization percentage</a>.</p>
+<p>Last but not least, we significantly improved the collector’s performance, by switching to <a href="https://github.com/netdata/go.d.plugin/pull/1023">collecting data using the CSV format</a>.</p>
+<h4 id="pi-hole">Pi-hole</h4>
+<p>We monitor <a href="https://learn.netdata.cloud/docs/agent/collectors/go.d.plugin/modules/pihole">Pi-hole</a>, the Linux network-level advertisement and Internet tracker blocking application via its <a href="https://github.com/pi-hole/AdminLTE">PHP API</a>.</p>
+<p>We <a href="https://github.com/netdata/go.d.plugin/pull/1037">fixed</a> an issue with the requests failing against an authenticated API.</p>
+<h4 id="network-time-protocol-ntp-daemon">Network Time Protocol (NTP) daemon</h4>
+<p>The ntpd program is an operating system daemon which sets and maintains the system time of day in synchronism with Internet standard time-servers (<a href="https://linux.die.net/man/8/ntpd">man page</a>).</p>
+<p>We rewrote our previous python.d collector in go, improving its performance and maintainability.<br>
+The new collector still monitors the system variables of a local <code>ntpd</code> daemon and optionally the variables of its polled peers.
+Similarly to <code>ntpq</code>, the <a href="http://doc.ntp.org/current-stable/ntpq.html">standard NTP query program</a>, we used the NTP Control Message Protocol over a UDP socket.</p>
+<p>The python collector <a href="#v1380-deprecation">will be deprecated in the next release</a>, with no effect on current users.</p>
+<h3 id="notifications">Notifications <a id="v1380-collectors"></a></h3>
+<p>See <a href="#v1380-notifications">Additional alert notification methods on Netdata Cloud</a></p>
+<p>The agents can now <a href="https://github.com/netdata/netdata/pull/14153">send notifications to Mattermost</a>, using the Slack integration! <a href="https://mattermost.com/">Mattermost</a> has a <a href="https://jeffschering.github.io/mmdocs/monolith/developer/api.html#incoming-webhooks">Slack-compatible API</a> that only required a couple of additional parameters. Kudos to @je2555!</p>
+<h3 id="exporters">Exporters <a id="v1380-exporters"></a></h3>
+<p>Netdata can <a href="https://learn.netdata.cloud/guides/export/export-netdata-metrics-graphite">export and visualize Netdata metrics in Graphite</a>.</p>
+<p>Our exporter was broken in v1.37.0 due to our host labels for ephemeral nodes. we fixed the issue with <a href="https://github.com/netdata/netdata/pull/14105">#14105</a>.</p>
+<h2 id="alerts-and-notification-engine">Alerts and Notification Engine <a id="v1380-health"></a></h2>
+<h3 id="health-engine">Health Engine</h3>
+<p>To improve performance and stability, we made <a href="https://github.com/netdata/netdata/pull/14244">health run in a single thread</a>.</p>
+<h3 id="notifications-engine">Notifications Engine</h3>
+<p>The agent alert notifications are controlled by the configuration file <a href="https://github.com/netdata/netdata/blob/master/health/notifications/health_alarm_notify.conf">health_alarm_notify.conf</a>. Previously, if one used the <code>|critical</code> modifier, the recipients would always get at least 2 notifications: critical and clear. There was no way how to stop sending clear/warning notifications afterwards. We <a href="https://github.com/netdata/netdata/pull/14330">added</a> the <code>|nowarn</code> and <code>|noclear</code> notification modifiers, to allow users to really receive just the transitions to the critical state.</p>
+<p>We also <a href="https://github.com/netdata/netdata-cloud/issues/656">fixed the broken redirects from alert notifications to cleared alerts</a>.</p>
+<h3 id="alerts">Alerts</h3>
+<h4 id="chart-labels-in-alerts">Chart labels in alerts</h4>
+<p>We constantly strive to improve the clarity of the information provided by the hundreds of out of the box alerts we provide.
+We can now provide more fine-tuned information on each alert, as we <a href="https://github.com/netdata/netdata/pull/14173">started using  specific chart labels instead of <code>family</code></a>.
+To provide the capability we also had to <a href="https://github.com/netdata/netdata/pull/14206">change the format of alert info variables</a> to support the more complex syntax.</p>
+<h4 id="globally-enabledisable-specific-alerts">Globally enable/disable specific alerts</h4>
+<p>Administrators can now globally, permanently disable specific OOB alerts via <code>netdata.conf</code>. Previously the options where to <a href="https://learn.netdata.cloud/docs/monitor/configure-alarms">edit individual alert configuration files</a>, or to use the <a href="https://learn.netdata.cloud/docs/agent/web/api/health#health-management-api">health management API</a>.</p>
+<p>The <code>[health]</code> section of <code>netdata.conf</code> now support the setting <code>enabled_alarms</code>. It’s value defines which alarms to load from both user and stock directories. The value is a <a href="/libnetdata/simple_pattern/README.md">simple pattern</a> list of alarm or template names, with the default value of <code>*</code>, meaning that all alerts are loaded. For example, to disable specific alarms, you can provide <code>enabled alarms = !oom_kill *</code>, which will load all alarms except <code>oom_kill</code>.</p>
+<h2 id="visualizations--charts-and-dashboards">Visualizations / Charts and Dashboards <a id="v1380-visualization"></a></h2>
+<p>Our main focus for visualization is on the Netdata Cloud <strong>Overview</strong> dashboard. This dashboard is our flagship, on which everything we do, all slicing and dicing capabilities of Netdata, are added and integrated. We are working hard to make this dashboard powerful enough, so that the need to learn a query language for configuring and customizing monitoring dashboards, will be eliminated.</p>
+<p>On this release, we virtualized all items on the dashboard, allowing us to achieve exceptional performance on page rendering. In previous releases there were issues on dashboards with thousands of charts. Now the number of items in the page is irrelevant!</p>
+<p>To make slicing and dicing of data easier, we ordered the on-chart selectors in a way that is more natural for most users:</p>
+<p><img src="https://user-images.githubusercontent.com/2662304/216680995-807e5e52-571b-423e-a139-5e06c1938785.png" alt="image"></p>
+<p>This bar above the chart now describes the data presented, in plain English: <strong>On 6 out of 20 Nodes, group by dimension, the SUM() of 23 Instances, using All dimensions, each as AVG() every 3s</strong></p>
+<p>A tool-tip provides more information about the missing nodes:
+<img src="https://user-images.githubusercontent.com/2662304/216684441-ed39f836-39df-4347-85b2-095a00aa1249.png" alt="image"></p>
+<p>And the drop-down menu now shows the exact nodes that contributed data to the query, together with a short explanation on why nodes did not provide any data:
+<img src="https://user-images.githubusercontent.com/2662304/216681780-eaa0cac3-ab72-4195-8323-e379376e5411.png" alt="image"></p>
+<p>Additionally, the pop-out icon next to each node can be used to jump to the single node dashboard of this node.</p>
+<p>All the slicing and dicing controls (Nodes, Dimensions, Instances), now support filtering. As shown above, there is a search box in the drop-down and a tick-mark to the left of each item in the list, which can be used to instantly filter the data presented.</p>
+<p>At the same time, we re-worked most of the Netdata collectors to add labels to the charts, allowing the chart to be pivoted directly from the <strong>group by</strong> drop-down menu. On the following image, we see the same chart as above, but now the data have been grouped by the label <code>device</code>, the values of which became dimensions of the chart.</p>
+<p><img src="https://user-images.githubusercontent.com/2662304/216682808-6622cde1-70f0-49dd-ac41-c9fa8d88fb08.png" alt="image"></p>
+<p>The data can be instantly be filtered by original dimension (<code>reads</code> and <code>writes</code> in this example), like this:
+<img src="https://user-images.githubusercontent.com/2662304/216683340-de8c60b5-e66a-441f-9c5c-e45159680df3.png" alt="image"></p>
+<p>or even by a specific instance (<code>disk</code> in this example), like this:
+<img src="https://user-images.githubusercontent.com/2662304/216683602-cf4cf1c2-5283-484d-97f6-e49787ed1ac4.png" alt="image"></p>
+<p>On the Instances drop down list (shown above), the pop-out icon to the right of each instance can be used to quickly jump to the single node dashboard, and we also made this function automatically scroll the dashboard to relative chart’s position and filter on that chart the specific instance from which the jump was made.</p>
+<p>Our goal is to polish and fine tune this interface, to the degree that it will be possible to slice and dice any data, without learning a query language, directly from the dashboard. We believe that this will simplify monitoring significantly, make it more accessible to people, and it will eventually allow all of us to troubleshoot issues without any prior knowledge of the underlying data structures.</p>
+<p>At the same time, we worked to improve switching between rooms and tabs within a room, by saving the last visible chart and the selected page filters, we are restored automatically when the user switches back to the same room and tab.</p>
+<p>For the ordering of the sections and subsections on the dashboard menu, we made a change to allow currently collected charts to overwrite the position of the section and subsection (we call it <code>priority</code>). Before this change, archived metrics (old metrics that are retained due to retention), were participating in the election of the <code>priority</code> for a section or subsection and because the retention Netdata maintains by default is more than a year, changes to the <code>priority</code> were never propagated to the UI.</p>
+<h4 id="bug-fixes">Bug fixes</h4>
+<p>We fixed:</p>
+<ul>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/662">The alignment of the anomaly rate pop-down chart</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/704">The width of the right-hand menu bar</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/695">A crash when filtering dimensions</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/649">The warning when a user tries to leave the last space</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/653">The filters of the Metric Correlation screen incorrectly persisting</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/692">The wrong value being shown for whether a node has ML enabled</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/688">The node filter on the anomalies tab</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/648">The visibility of the chart actions menu that appears inside a chart</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/667">Logstash metrics not being displayed in Netdata Cloud</a></li>
+<li><a href="https://github.com/netdata/netdata-cloud/issues/679">The home tab not being updated with the correct number of nodes, after deleting a node</a></li>
+</ul>
+<h3 id="real-time-functions">Real Time Functions</h3>
+<p>See <a href="#v1380-functions">Functions</a></p>
+<h3 id="events-feed-1">Events Feed</h3>
+<p>See <a href="#v1380-feed">Events Feed</a>.</p>
+<h2 id="database">Database <a id="v1380-database"></a></h2>
+<h3 id="new-database-engine">New database engine</h3>
+<p>See <a href="#v1380-dbenginev2">Dramatic performance and stability improvements, with a smaller agent footprint</a></p>
+<h3 id="metadata-sync">Metadata sync</h3>
+<p>Saving metadata to SQLite is now faster. Metadata saving starts asynchronously when the agent starts and continues as long as there are metadata to be saved. We implemented optimizations by grouping queries into transactions. At runtime this grouping happens per chart, which on shutdown it happens per host. These changes made metadata syncing up to 4x faster.</p>
+<h2 id="streaming-and-replication">Streaming and Replication <a id="v1380-streaming"></a></h2>
+<p>We introduced very significant reliability and performance improvements to the streaming protocol and the database replication.  See <a href="#v1380-stream">Streaming</a>, <a href="#v1380-repl">Replication</a>.</p>
+<p>At the same time, we fixed SSL handshake issues on established SSL connections, provide stable streaming SSL connectivity between Netdata agents.</p>
+<h2 id="api">API <a id="v1380-api"></a></h2>
+<p>Data queries for charts and contexts now have the following additional features:</p>
+<ol>
+<li>The query planner that decided which tier to use for each query, now prefers higher tiers, to speed up queries</li>
+<li>Joining of multiple tiers to the same query now prefers higher resolution tiers and joining is accurate. To achieve that, behind the scenes the query planner expands the query of each tier to overlap with its previous and next and at the time they intersect, it reads points from all the overlapping tiers to decide how exactly the join should happen.</li>
+<li>Data queries now utilize the parallelism of the new dbengine, to pipeline query preparation of the dimensions of the chart or context being queried, and then preloading metric data for dimensions that are in the pipeline.</li>
+</ol>
+<h2 id="machine-learning">Machine Learning <a id="v1380-ml"></a></h2>
+<p>We have been busy at work under the hood of the Netdata agent to introduce new capabilities that let you extend the “training window” used by Netdata’s <a href="https://learn.netdata.cloud/docs/nightly/setup/configure-machine-learning-ml-powered-anomaly-detection">native anomaly detection capabilities</a>.</p>
+<p><img src="https://user-images.githubusercontent.com/43294513/217060868-1217b7b9-b6cb-4cba-b4cf-7571864ad4e8.png" alt="image"></p>
+<p>We have <a href="https://learn.netdata.cloud/docs/nightly/setup/configure-machine-learning-ml-powered-anomaly-detection#descriptions-minmax">introduced a new ML parameter</a> called <code>number of models per dimension</code> which will control the number of most recently trained models used during scoring.</p>
+<p>Below is some pseudo-code of how the trained models are actually used in producing <a href="https://learn.netdata.cloud/docs/nightly/setup/configure-machine-learning-ml-powered-anomaly-detection#anomaly-bit">anomaly bits</a> (which give you an “<a href="https://learn.netdata.cloud/docs/nightly/setup/configure-machine-learning-ml-powered-anomaly-detection#anomaly-rate">anomaly rate</a>” over any window of time) each second.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># preprocess recent observations into a "feature vector"</span></span>
+<span class="line"><span style="color:#E1E4E8">latest_feature_vector </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> preprocess_data([recent_data])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># loop over each trained model</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> model </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> models:</span></span>
+<span class="line"><span style="color:#6A737D">    # if recent feature vector is considered normal by any model, stop scoring</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> model.score(latest_feature_vector) </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> dimension_anomaly_score_threshold:</span></span>
+<span class="line"><span style="color:#E1E4E8">        anomaly_bit </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#F97583">        break</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">        # only if all models agree the feature vector is anomalous is it considered anomalous by netdata</span></span>
+<span class="line"><span style="color:#E1E4E8">        anomaly_bit </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span></span></code></pre>
+<p>The aim here is to only use those additional stored models when we need to. So essentially once one model suggests a feature vector looks anomalous we check all saved models and only when they all agree that something is anomalous does the anomaly bit get to be finally set to 1 to signal that Netdata considered the most recent feature vector unlike anything seen in all the models (spanning a wider training window) checked.</p>
+<p>Read more in <a href="https://blog.netdata.cloud/extending-anomaly-detection-training-window/">this blog post</a>!</p>
+<p>We now <a href="https://github.com/netdata/netdata/pull/14207">create ML charts on child hosts</a>, when a parent runs a ML for a child. These charts use the parent’s hostname to differentiate multiple parents that might run ML for a child.</p>
+<p>Finally, we <a href="https://github.com/netdata/netdata/pull/14198">refactored the ML code and added support for multiple KMeans models</a>.</p>
+<h2 id="installation-and-packaging">Installation and Packaging <a id="v1380-packaging"></a></h2>
+<h3 id="new-hosting-of-build-artifacts">New hosting of build artifacts <a id="v1380-build"></a></h3>
+<p>We are always looking to improve the ways we make the agent available to users. Where we host our build artifacts is an important piece of the puzzle, and we’ve taken some significant steps in the past couple of months.</p>
+<h4 id="new-hosting-of-nightly-build-artifacts">New hosting of nightly build artifacts <a id="v1380-nightlies"></a></h4>
+<p>As of 2023-01-16, our nightly build artifacts are being hosted as GitHub releases on the new <a href="https://github.com/netdata/netdata-nightlies/">https://github.com/netdata/netdata-nightlies/</a> repository instead of being hosted on Google Cloud Storage. In most cases, this should have no functional impact for users, and no changes should be required on user systems.</p>
+<h4 id="new-hosting-of-native-package-repositories">New hosting of native package repositories <a id="v1380-packagerepos"></a></h4>
+<p>As part of improving support for our native packages, we are migrating off of Package Cloud to our own self-hosted package repositories located at <a href="https://repo.netdata.cloud/repos/">https://repo.netdata.cloud/repos/</a>. This new infrastructure provides a number of benefits, including signed packages, easier on-site caching, more rapid support for newly released distributions, and the ability to support native packages for a wider variety of distributions.</p>
+<p>Our RPM repositories <a href="https://github.com/netdata/netdata/discussions/14161">have already been fully migrated</a> and the DEB repositories <a href="https://github.com/netdata/netdata/discussions/14300">are currently in the process of being migrated</a>.</p>
+<h4 id="official-docker-images-now-available-on-ghcr-and-quay">Official Docker images now available on GHCR and Quay <a id="v1380-dockerimgs"></a></h4>
+<p>In addition to Docker Hub, our official Docker images are now available on <a href="https://github.com/netdata/netdata/pkgs/container/netdata">GHCR</a> and <a href="https://quay.io/repository/netdata/netdata">Quay</a>. The images are identical across all three registries, including using the same tagging.</p>
+<p>You can use our Docker images from GHCR or Quay by either configuring them as registries with your local container tooling, or by using <code>ghcr.io/netdata/netdata</code> or <code>quay.io/netdata/netdata</code> instead of <code>netdata/netdata</code>.</p>
+<h3 id="kickstart">kickstart</h3>
+<p>The directives <code>--local-build-options</code> and <code>--static-install-options</code> used to only accept a single option each. We now <a href="https://github.com/netdata/netdata/pull/14287">allow multiple options to be entered</a>.</p>
+<p>We <a href="https://github.com/netdata/netdata/pull/13881">renamed</a> the <code>--install</code> option to <code>--install-prefix</code>, to clarify that it affects the directory under which the Netdata agent will be installed.</p>
+<p>To help prevent user errors, passing an unrecognized option to the kickstart script <a href="https://github.com/netdata/netdata/pull/12943">now results in a fatal error</a> instead of just a warning.</p>
+<p>We previously used <code>grep</code> to get some info on <code>login</code> or <code>group</code>, which could not handle cases with centralized authentication like Active Directory or FreeIPA or pure LDAP. We <a href="https://github.com/netdata/netdata/pull/14316">now use “getent group”</a> to get the group information.</p>
+<h3 id="rpms">RPMs</h3>
+<p>We <a href="https://github.com/netdata/netdata/pull/14140">fixed the required permissions</a> of the <code>cgroup-network</code> and <code>ebpf.plugin</code> in RPM packages.</p>
+<h3 id="opensuse">OpenSUSE</h3>
+<p>We <a href="https://github.com/netdata/netdata/pull/14260">fixed the binary package updates</a> that were failing with an error on “Zypper upgrade”.</p>
+<h3 id="freebsd">FreeBSD</h3>
+<p>We <a href="https://github.com/netdata/netdata/pull/14095">fixed the missing required package installation of “tar”</a>.</p>
+<h3 id="macos">MacOS</h3>
+<p>We <a href="https://github.com/netdata/netdata/pull/14304">fixed some crashes on MacOS</a>.</p>
+<h3 id="proxmox">Proxmox</h3>
+<p>Netdata on Proxmox virtualization management servers must be allowed to resolve VM/container names and read their CPU and memory limits.
+We now <a href="https://github.com/netdata/netdata/pull/14168">explicitly add</a> the <code>netdata</code> user to the <code>www-data</code> group on Proxmox, so that users don’t have to do it manually.</p>
+<h3 id="other">Other</h3>
+<p>We <a href="https://github.com/netdata/netdata/pull/14180">fixed the path to “netdata.pid”</a> in the logrotate postrotate script, which causes some errors during log rotation.</p>
+<p>We also <a href="https://github.com/netdata/netdata/pull/14239">added pre gcc v5 support</a> and allowed building without dbengine.</p>
+<h2 id="documentation-and-demos">Documentation and Demos <a id="v1380-documentation"></a></h2>
+<h4 id="learn">Learn</h4>
+<p>We have been working hard to revamp <a href="https://learn.netdata.cloud">Netdata Learn</a>. We are revising not just its structure and content, but also the
+Continuous Integration processes around it. We’re getting close to the finish line, but you may notice that we currently publish two versions; <code>1.37.x</code>
+is frozen with the state of the docs as of the 1.37.1 release, and the <code>nightly</code> version has the target experience.
+While not yet ready for production, the <code>nightly</code> version is the only place where information on the latest features and changes is available.<br>
+The following screenshot shows how you can switch between versions.</p>
+<img width="697" alt="image" src="https://user-images.githubusercontent.com/43294513/216357310-c1e8000d-d846-408f-906d-0557ef12266e.png">
+<p>Be aware that you may encounter some broken links or missing pages while we are sorting out the several hundred markdown documents and several thousand links they include. We ask for your patience and expect that by the next release we’ll have properly launched the new, more easy to navigate and use
+version.</p>
+<h4 id="demo-space">Demo space</h4>
+<p>The <a href="https://app.netdata.cloud/spaces/netdata-demo">Netdata Demo space</a> on Netdata Cloud is constantly being updated with new rooms, for various
+use cases. You <a href="https://github.com/netdata/netdata-cloud/issues/714">don’t even need a cloud account</a> to see our powerful infrastructure monitoring in action, so what are you waiting for?</p>
+<p><a href="https://app.netdata.cloud/spaces/netdata-demo"><img height="300" src="https://user-images.githubusercontent.com/43294513/216787761-9ade2d7e-69d9-47a8-b32f-363052b4f33c.png"></a></p>
+<h2 id="administration">Administration <a id="v1380-administration"></a></h2>
+<h3 id="logging">Logging</h3>
+<p>We have improved the readability of our main error log file <code>error.log</code>, by <a href="https://github.com/netdata/netdata/pull/14309">moving data collection specific log messages</a> to <code>collector.log</code>. For the same reason we <a href="https://github.com/netdata/netdata/pull/14117">reduced the log verbosity of streaming connections</a>.</p>
+<h3 id="new-configuration-editing-script">New configuration editing script</h3>
+<p>We reimplemented the <code>edit-config</code> script we install in the user config directory, adding a few new features, and fixing a number of outstanding issues with the previous script.</p>
+<p>Overall changes from the existing script:</p>
+<ul>
+<li>Error messages are now clearly prefixed with <code>ERROR:</code> instead of looking no different from other output from the script.</li>
+<li>We now have proper support for command-line arguments. In particular, <code>edit-config --help</code> now properly returns usage information instead of throwing an error. Other supported options are <code>--file</code> for explicitly specifying the file to edit (using this is not required, but we should ideally encourage it), and <code>--editor</code> to specify an editor of choice on the command-line.</li>
+<li>We now can handle editing configuration for a Docker container on the host side, instead of requiring it to be done in the container. This is done by copying the file out of the container itself. The script includes primitive auto-detection that should work in most common cases, but the user can also use the new <code>--container</code> option to bypass the auto-detection and explicitly specify a container ID or name to use. Supports both Docker and Podman.</li>
+<li>Instead of templating in the user config directory at build time, the script now uses the directory it was run from as the target for copying stock config files to. This is required for the above-mentioned Docker support, and also makes it a bit easier to test the script without having to do a full build of Netdata. Users can still override this by setting <code>NETDATA_USER_CONFIG_DIR</code> in the environment, just like with the old script.</li>
+<li>Similarly, instead of templating the stock config directory at build time, we now determine it at runtime by inspecting the <code>.environment</code> file created by the install, falling back first to inferring the location from the script’s path and if that fails using the ‘default’ of <code>/usr/lib/netdata/conf.d</code>. From a user perspective, this changes nothing for any type of install we officially support and for any third-party packages I know of. This results in a slight simplification of the build code, as well as making testing of the script much easier (you can now literally just copy it to the right place, and it should work). Users can still override this by setting <code>NETDATA_STOCK_CONFIG_DIR</code>.</li>
+<li>Instead of listing all known files in the help text, we now require the user to run the script with the <code>--list</code> option. This has two specific benefits:
+<ul>
+<li>It ensures that the actual usage information won’t end up scrolled off the top of the screen by the list of known files.</li>
+<li>It avoids the expensive container checks and stock config directory computation when the user just needs the help output.</li>
+</ul>
+</li>
+<li>We now do a quick check of the validity of the editor (either auto-detected or user-supplied) instead of just blindly trusting that it’s usable. This should not result in any user-visible changes, but will provide a more useful error message if the user mistypes the name of their editor of choice.</li>
+<li>Instead of blindly excluding paths starting with <code>/</code> or <code>.</code>, we now do a proper prefix check for the supplied file path to make sure it’s under the user config directory. This provides tow specific benefits:
+<ul>
+<li>We no longer blindly copy files into directories that are not ours. For example, with the existing script, you can do <code>/etc/netdata/edit-config apps_groups.conf</code>, and it will blindly copy the stock <code>apps_groups.conf</code> file to the current directory. With the new script, this will throw an error instead.</li>
+<li>Invoking the script using absolute paths that point under the user config directory will work properly. In particular, this means that you do not need to be in the user config directory when invoking the script, provided you use a proper path. Running <code>netdata/edit-config netdata/apps_groups.conf</code> when in <code>/etc</code> will now work, and <code>/etc/netdata/edit-config /etc/netdata/apps_groups.conf</code> will work from anywhere on the system.</li>
+</ul>
+</li>
+<li>If the requested file does not exist, and we do not provide a stock version of it, the script will now create an empty file instead of throwing an error. This is intended to allow it to behave better when dealing with configuration for third-party plugins (we may also want to define a standard location for third party plugins to store their stock configuration to improve this further, but that’s out of scope for this PR).</li>
+</ul>
+<h3 id="netdata-monitoring">Netdata Monitoring</h3>
+<p>The new Netdata Monitoring section on our dashboard has dozens of charts detailing the operation of Netdata. All new components have their charts, dbengine, metrics registry, the new caches, the dbengine query router, etc.</p>
+<p>At the same time, we added a chart detailing the memory used by the agent and the function it is used for. This was the hardest to gather, since information was spread all over the place, but thankfully the internals of the agents have changed drastically in the last few months, allowing us to have a better visibility on memory consumption. At its heart, the agent is now mainly an array allocator (ARAL) and a dictionary (indexed and ordered lists of objects), carefully crafted to achieve their maximum performance when multithreaded. Everything we do, from data collection, to health, streaming, replication, etc., is actually business logic on top of these elements.</p>
+<h3 id="cli">CLI</h3>
+<p><code>netdatacli version</code> <a href="https://github.com/netdata/netdata/pull/14094">now returns the version of netdata</a>.</p>
+<h2 id="other-notable-changes">Other Notable Changes <a id="v1380-other"></a></h2>
+<h3 id="netdata-paid-subscriptions">Netdata Paid Subscriptions <a id="v1380-paidplans"></a></h3>
+<p><em>Coming by Feb 15th</em></p>
+<p>At Netdata we take pride in our commitment to the principle of providing free and unrestricted access to high-quality monitoring solutions. We offer our free SaaS offering - what we call the <strong>Community plan</strong> - and the Open Source Agent, which feature unlimited nodes and users, unlimited metrics, and retention, providing real-time, high-fidelity, out-of-the-box infrastructure monitoring for packaged applications, containers, and operating systems.</p>
+<p>We also start providing paid subscriptions, designed to provide additional features and capabilities for businesses that need tighter and customizable integration of the free monitoring solution to their processes. These are divided into three different plans: <strong>Pro</strong>, <strong>Business</strong>, and <strong>Enterprise</strong>. Each plan offers a different set of features and capabilities to meet the needs of businesses of different sizes and with different monitoring requirements.</p>
+<p>You can change your plan at any time. Any remaining balance will be credited to your account, even for yearly plans. Netdata designed this in order to respect the unpredictability of world dynamics. Less anxiety about choosing the right commitments in order to save money in the long run.</p>
+<p><img src="https://user-images.githubusercontent.com/82235632/215895884-be6c705b-8115-4ce9-a5ee-ec65b7ae8ccb.png" alt="image"></p>
+<p>The paid Netdata Cloud plans work as subscriptions and overall consist of:</p>
+<ul>
+<li>A flat fee component (price per space)</li>
+<li>An on-demand, metered component, that is related to the usage of Netdata Cloud. For us, usage is directly linked to the number of nodes you have running, regardless of how many metrics each node collects. (see details below).</li>
+</ul>
+<p>Netdata provides two billing frequency options:</p>
+<ul>
+<li>Monthly - Pay as you go, where we charge both the flat fee and the on-demand component every month</li>
+<li>Yearly - Annual prepayment, where we charge upfront the flat fee and committed amount related to your estimated usage of Netdata (see details below)</li>
+</ul>
+<p>The detailed feature list and pricing in available in <a href="https://www.netdata.cloud/pricing">netdata.cloud/pricing</a>.</p>
+<details>
+<summary>More details on usage pricing</summary>
+<h4 id="running-nodes-and-billing">Running nodes and billing</h4>
+<p>The only dynamic variable we consider for billing is the number of concurrently running nodes or agents. We only charge you for your active running nodes. We obviously <strong>don’t count offline nodes</strong>, which were connected in a previous month and are currently offline, with their metrics unavailable. But we go further and <strong>don’t count stale nodes</strong> either, which are available to query through a Netdata parent agent but are not actively collecting metrics at the moment.</p>
+<p>To ensure we don’t overcharge any user due to sporadic spikes throughout a month or even at a certain point in a day we:</p>
+<ul>
+<li>Calculate a <strong>daily P90 count of your running nodes</strong>. We take a daily snapshot of your running nodes, and using the node state change events (live, offline) we guarantee that a daily P90 figure is calculated to remove any temporary spikes within the day.</li>
+<li>Do a running <strong>P90 calculation from the start to the end of the monthly billing cycle</strong>. This way, we guarantee that we remove spikes that happened in just a couple of days within a single month.</li>
+</ul>
+<p>:note: Even if you have a yearly billing frequency, we track the p90 counts monthly, to charge any potential overage over your committed nodes.</p>
+<h4 id="committed-nodes">Committed nodes</h4>
+<p>When you subscribe to a Yearly plan you need to specify the number of nodes that you commit to. in addition to the discounted flat fee, you then get a 25% discount on the per node fee, as you’re also committing to have those connected for a year. The charge for the committed nodes is part of your annual prepayment (<code>node discounted price x committed nodes x 12 months</code>).</p>
+<p>If in a given month your usage is over these committed nodes, we charge the undiscounted cost per node for the overage.</p>
+</details>
+<h4 id="agent-cloud-link-support-for-authenticated-proxies">Agent-Cloud link support for authenticated proxies</h4>
+<p>The Agent-Cloud link (<a href="https://learn.netdata.cloud/docs/agent/aclk">ACLK</a>) is the mechanism responsible for securely connecting a Netdata Agent to your web browser
+through Netdata Cloud. The ACLK establishes an outgoing secure WebSocket (WSS) connection to Netdata Cloud on port
+<code>443</code>. The ACLK is encrypted, safe, and <em>is only established if you connect your node</em>.</p>
+<p>We have always supported unauthenticated HTTP proxies for the ACLK. We have now <a href="https://github.com/netdata/netdata/pull/13762">added support for HTTP Basic authentication</a>.</p>
+<p>We also <a href="https://github.com/netdata/netdata/pull/14164">fixed a race condition on the ACLK query thread startup</a>.</p>
+<h2 id="deprecation-notice">Deprecation notice <a id="v1380-deprecation"></a></h2>
+<p>The following items will be removed in our next minor release (v1.39.0):</p>
+<blockquote>
+<p>Patch releases (if any) will not be affected.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component</th><th align="center">Type</th><th align="center">Will be replaced by</th></tr></thead><tbody><tr><td><a href="https://github.com/netdata/netdata/tree/v1.37.1/collectors/python.d.plugin/ntpd">python.d/ntpd</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/ntpd">go.d/ntpd</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.37.1/collectors/python.d.plugin/proxysql">python.d/proxysql</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/proxysql">go.d/proxysql</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.37.1/collectors/python.d.plugin/rabbitmq">python.d/rabbitmq</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/rabbitmq">go.d/rabbitmq</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.37.1/collectors/python.d.plugin/nvidia_smi">python.d/nvidia_smi</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/nvidia_smi">go.d/nvidia_smi</a></td></tr></tbody></table>
+<h3 id="deprecated-in-this-release">Deprecated in this release</h3>
+<p>In accordance with our previous <a href="https://github.com/netdata/netdata/releases/tag/v1.37.0#v1370-deprecation">deprecation notice</a>, the following items have been removed in this release:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component</th><th align="center">Type</th><th align="center">Replaced by</th></tr></thead><tbody><tr><td><a href="https://github.com/netdata/netdata/tree/v1.36.1/collectors/python.d.plugin/dockerd">python.d/dockerd</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/docker">go.d/docker</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.36.1/collectors/python.d.plugin/logind">python.d/logind</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/logind">go.d/logind</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.36.1/collectors/python.d.plugin/mongodb">python.d/mongodb</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/mongodb">go.d/mongodb</a></td></tr><tr><td><a href="https://github.com/netdata/netdata/tree/v1.36.1/collectors/fping.plugin">fping</a></td><td align="center">collector</td><td align="center"><a href="https://github.com/netdata/go.d.plugin/tree/master/modules/ping">go.d/ping</a></td></tr></tbody></table>
+<details>
+<summary>We also removed support for Fedora 35, OpenSuse Leap 15.3 and Fedora 36 ARMv7 native packages.</summary>
+<ul>
+<li><a href="https://github.com/netdata/netdata/pull/14136">Removed Fedora 35 from the list of supported platforms</a></li>
+<li><a href="https://github.com/netdata/netdata/pull/13416">Removed openSUSE Leap 15.3 from CI and support</a></li>
+<li><a href="https://github.com/netdata/netdata/pull/14233">Dropped ARMv7 native packages for Fedora 36</a></li>
+</ul>
+</details>
+<h2 id="netdata-agent-release-meetup">Netdata Agent Release Meetup <a id="v1380-release-meetup"></a></h2>
+<p>Join the Netdata team on the <strong>7th of February, at 17:00 UTC</strong> for the <a href="https://discord.gg/NQqdEbtn?event=1070676611785031720">Netdata Agent Release Meetup</a>.</p>
+<p>Together we’ll cover:</p>
+<ul>
+<li>Release Highlights.</li>
+<li>Acknowledgements.</li>
+<li>Q&#x26;A with the community.</li>
+</ul>
+<p><a href="https://www.meetup.com/netdata-infrastructure-monitoring-meetup-group/events/291356599/">RSVP now</a> - we look forward to meeting you.</p>
+<h2 id="support-options">Support options <a id="v1380-support-options"></a></h2>
+<p>As we grow, we stay committed to providing the best support ever seen from an open-source solution. Should you encounter an issue with any of the changes made in this release or any feature in the Netdata Agent, feel free to contact us through one of the following channels:</p>
+<ul>
+<li><a href="https://learn.netdata.cloud">Netdata Learn</a>: Find documentation, guides, and reference material for monitoring and troubleshooting your systems with Netdata.</li>
+<li><a href="https://github.com/netdata/netdata/issues">GitHub Issues</a>: Make use of the Netdata repository to report bugs or open a new feature request.</li>
+<li><a href="https://github.com/netdata/netdata/discussions">GitHub Discussions</a>: Join the conversation around the Netdata development process and be a part of it.</li>
+<li><a href="https://community.netdata.cloud/">Community Forums</a>: Visit the Community Forums and contribute to the collaborative knowledge base.</li>
+<li><a href="https://discord.gg/2eduZdSeC7">Discord Server</a>: Jump into the Netdata Discord and hang out with like-minded sysadmins, DevOps, SREs, and other troubleshooters. More than 1400 engineers are already using it!</li>
+</ul>
+<h2 id="acknowledgements">Acknowledgements <a id="v1380-ack"></a></h2>
+<p>We would like to thank our dedicated, talented contributors that make up this amazing community. The time and expertise
+that you volunteer are essential to our success. We thank you and look forward to continuing to grow together to build a
+remarkable product.</p>
+<ul>
+<li>@je2555 for <a href="https://github.com/netdata/netdata/pull/14153">enabling alert notifications to Mattermost</a> using Slack-compatible webhooks.</li>
+<li>@rex4539 for <a href="https://github.com/netdata/netdata/pull/14194">fixing various typos in documentation</a>.</li>
+<li>@artemsafiyulin for <a href="https://github.com/netdata/go.d.plugin/pull/1039">fixing</a> the replication lag calculation of the postgreSQL collector.</li>
+<li>@vobruba-martin for <a href="https://github.com/netdata/netdata/pull/14330">adding</a> <code>|nowarn</code> and <code>|noclear</code> notification modifiers to agent notifications.</li>
+<li>@ghanapunq for adding <a href="https://github.com/netdata/netdata/pull/14315">PCIe bandwidth utilization metrics</a> to NVIDIA GPU monitoring.</li>
+<li>@Kerleyark and @mikerenfro for <a href="https://github.com/netdata/netdata/pull/14099">verifying</a> that the CSV format significantly improves the performance of the NVIDIA GPU collector.</li>
+<li>@martindue for <a href="https://github.com/netdata/netdata/pull/14435">fixing the negative temperatures bug</a> in 1-wire sensor monitoring.</li>
+</ul>
+<h2 id="new-contributors">New Contributors</h2>
+<ul>
+<li>@je2555 made their first contribution in <a href="https://github.com/netdata/netdata/pull/14153">https://github.com/netdata/netdata/pull/14153</a></li>
+<li>@ghanapunq made their first contribution in <a href="https://github.com/netdata/netdata/pull/14315">https://github.com/netdata/netdata/pull/14315</a></li>
+<li>@martindue made their first contribution in <a href="https://github.com/netdata/netdata/pull/14435">https://github.com/netdata/netdata/pull/14435</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/netdata/netdata/compare/v1.37.0...v1.38.0">https://github.com/netdata/netdata/compare/v1.37.0…v1.38.0</a></p> </div> <div class="mt-6"> <a href="https://github.com/netdata/netdata/releases/tag/v1.38.0" target="_blank" rel="nofollow noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install.</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.DhIQYmhx.js"></script>  </body></html>

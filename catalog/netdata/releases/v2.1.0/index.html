@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WinterFlow.io - Netdata v2.1.0 release notes</title><meta name="description" content="New release delivers a streaming architecture with 30–50% CPU reduction, improved memory and multi‑parent scaling, plus Cloud enhancements (auto room assignment, configurable alert repeats, dashboard favorites) and bulk dynamic config for collectors/alerts; some components deprecated."><link rel="canonical" href="https://winterflow.io/catalog/netdata/releases/v2.1.0/"><meta property="og:type" content="website"><meta property="og:title" content="WinterFlow.io - Netdata v2.1.0 release notes"><meta property="og:description" content="New release delivers a streaming architecture with 30–50% CPU reduction, improved memory and multi‑parent scaling, plus Cloud enhancements (auto room assignment, configurable alert repeats, dashboard favorites) and bulk dynamic config for collectors/alerts; some components deprecated."><meta property="og:url" content="https://winterflow.io/catalog/netdata/releases/v2.1.0/"><meta property="og:image" content="/images/apps/netdata/netdata.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WinterFlow.io - Netdata v2.1.0 release notes"><meta name="twitter:description" content="New release delivers a streaming architecture with 30–50% CPU reduction, improved memory and multi‑parent scaling, plus Cloud enhancements (auto room assignment, configurable alert repeats, dashboard favorites) and bulk dynamic config for collectors/alerts; some components deprecated."><meta name="twitter:image" content="/images/apps/netdata/netdata.png"><meta name="keywords" content="netdata release notes, netdata changelog, netdata versions, netdata version history, netdata releases, netdata release history, netdata v2.1.0 release notes, v2.1.0 changelog, v2.1.0 release notes"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/_astro/index.iQr8qRLF.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>  <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/netdata/netdata.png" alt="Netdata logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Netdata</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Real-time infrastructure monitoring platform</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#infra" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> infra </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> grafana, prometheus, zabbix, datadog </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://www.netdata.cloud/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://learn.netdata.cloud/docs/ask-netdata" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/netdata/screenshot-1.png" alt="Netdata screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="space-y-3"> <div class="flex items-center justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/netdata/netdata/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-start justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">Available in:</span> <div class="flex flex-wrap justify-end gap-2"> <span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> free </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> pro </span><span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> business </span> </div> </div> </div> </div> <div class="border-t border-gray-200 pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Netdata" data-app-slug="netdata" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 17.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path> </svg>
+Join Waiting List
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.netdata.cloud/pricing/" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy a license →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/netdata/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/netdata/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h1 class="text-2xl font-semibold text-gray-900">v2.1.0</h1> <span class="text-sm text-gray-500">2024-12-19</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#v210-netdata-open-source-growth">Netdata Growth</a></li>
+<li><a href="#v210-release-summary">Summary</a></li>
+<li><a href="#v210-release-highlights">Highlights</a></li>
+<li><a href="#v210-acknowledgments">Acknowledgments</a></li>
+<li><a href="#v210-contributions">Contributions</a>
+<ul>
+<li><a href="#v210-contributions-collectors">Collectors</a></li>
+<li><a href="#v210-contributions-packaging">Packaging/Installation</a></li>
+<li><a href="#v210-contributions-documentation">Documentation</a></li>
+<li><a href="#v210-contributions-other">Other Notable Changes</a></li>
+</ul>
+</li>
+<li><a href="#v210-deprecation-notice">Deprecation notice</a></li>
+<li><a href="#v210-support-options">Support options</a></li>
+</ul>
+<h3 id="netdata-growth">Netdata Growth <a id="v210-netdata-open-source-growth"></a></h3>
+<ul>
+<li><strong>1.5 million downloads per day</strong></li>
+<li><strong>72.6k GitHub stars!</strong></li>
+<li><strong>651M Docker Hub pulls!</strong></li>
+</ul>
+<p>Netdata continues to experience phenomenal growth, with over <strong>1.5 million downloads daily</strong> through Cloudflare and Docker Hub, fueling observability for users worldwide.</p>
+<p>Thanks to your unwavering support ❤️, Netdata is the leader in the observability category in the CNCF landscape, ahead of all other solutions, including Elasticsearch, Grafana, and Prometheus, in GitHub stars. This demonstrates the trust and admiration of our community.</p>
+<p>This success drives rapid adoption among enterprises, reflecting the growing recognition of Netdata as the <strong>go-to observability solution</strong> for both <strong>cloud-native</strong> and <strong>on-premises environments</strong>. Our commitment remains steadfast: to deliver cutting-edge, <strong>AI-powered observability</strong> with unmatched performance and simplicity—all while being significantly more affordable.</p>
+<p>As we evolve, our focus on empowering businesses with <strong>higher-fidelity AI insights</strong> ensures Netdata remains the easiest and fastest way to optimize infrastructure and applications at any scale. 🚀</p>
+<p>You like Netdata? <a href="https://github.com/netdata/netdata">Give Netdata a ⭐ too, on GitHub!</a></p>
+<h2 id="release-summary">Release Summary <a id="v210-release-summary"></a></h2>
+<p>This release focuses heavily on <strong>streaming functionality</strong>, enabling <strong>unprecedented scalability</strong>, <strong>reduced CPU overhead</strong>, and <strong>optimized memory utilization</strong>. Netdata has been re-architected to meet the demands of enterprise environments while maintaining its hallmark ease of use and affordability.</p>
+<h2 id="release-summary--1">Release Summary <a id="v210-release-summary"></a></h2>
+<p>This release focuses heavily on <strong>streaming functionality</strong>, enabling <strong>unprecedented scalability</strong>, <strong>reduced CPU overhead</strong>, and <strong>optimized memory utilization</strong>. Netdata has been re-architected to meet the demands of enterprise environments while maintaining its hallmark ease of use and affordability.</p>
+<h2 id="release-highlights">Release Highlights <a id="v210-release-highlights"></a></h2>
+<h3 id="major-performance-and-scalability-improvements">Major Performance and Scalability Improvements <a id="v210-scalability-improvements"></a></h3>
+<p>This release significantly enhances Netdata’s performance and streaming capabilities, with particular focus on multi-parent infrastructures:</p>
+<ul>
+<li><strong>Optimized CPU Usage</strong>: Streamlined ML model distribution and improved thread management reduce CPU utilization by 30–50% in parent-child setups.</li>
+<li><strong>Smarter Memory Management</strong>: New features prevent out-of-memory situations while maximizing cache usage for better query performance.</li>
+<li><strong>Enhanced Multi-Parent Scalability</strong>: Improved load balancing and connection handling for more stable operation at scale.</li>
+<li><strong>Optimized Query Processing</strong>: Prioritized handling of user queries ensures responsive experience even under heavy load.</li>
+</ul>
+<p><strong>Detailed Technical Improvements</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>Feature</th><th>Benefit</th></tr></thead><tbody><tr><td><strong>CPU Optimization</strong></td><td>ML Model Streaming</td><td>• ML models now stream between Netdata Agents alongside metric data<br>• Options for edge or central ML training<br>• 30-50% CPU reduction in parent-child setups<br>• <strong>Note</strong>: Next major version will disable ML training on children by default</td></tr><tr><td></td><td>Thread Management</td><td>• Streaming threads fixed to match CPU cores<br>• Single thread handles ingestion and re-streaming per node<br>• Reduced context switches and cross-CPU communication</td></tr><tr><td><strong>Memory Management</strong></td><td>Out-of-Memory Protection</td><td>• Dynamic cache adjustment maintains 10% system memory buffer (max 5 GiB)<br>• Container-aware (supports cgroups v1 and v2)<br>• Configurable via <code>[db].dbengine out of memory protection</code></td></tr><tr><td></td><td>Cache Optimization</td><td>• Option to utilize all available memory for caching<br>• Reduced disk I/O on busy parent nodes<br>• Enable with <code>[db].dbengine use all ram for caches</code></td></tr><tr><td></td><td>ML Training Management</td><td>• Dynamic queue management prevents memory overload<br>• Consistent performance during heavy ML workloads</td></tr><tr><td><strong>Scalability</strong></td><td>Parent Cluster Load Distribution</td><td>• Random parent selection for load distribution<br>• Prevents single-node bottlenecks in large deployments</td></tr><tr><td></td><td>Connection Handling</td><td>• Randomized reconnection timing<br>• Prevents connection floods<br>• Smoother large-scale reconnect handling</td></tr><tr><td><strong>Query Performance</strong></td><td>Query Prioritization</td><td>• Immediate response to user queries under any load<br>• Connection operations get secondary priority<br>• Background tasks (replication, ML) yield to high-priority operations<br>• Quick new node integration through expedited backfilling</td></tr><tr><td></td><td>Real-Time Response</td><td>• Responsive user experience during heavy processing<br>• Efficient concurrent query handling<br>• Maintains performance during high-load background operations</td></tr></tbody></table>
+<h3 id="cloud-automated-room-assignment-with-label-based-rules">Cloud: Automated Room Assignment with Label-Based Rules <a id="v210-automated-room-assignment"></a></h3>
+<p>Netdata Cloud Dashboard introduces <a href="https://github.com/netdata/netdata/blob/master/docs/netdata-cloud/node-rule-based-room-assignment.md">node rule-based room assignment</a>—a powerful new feature that transforms how you organize your infrastructure monitoring:</p>
+<ul>
+<li><strong>Dynamic Room Assignment</strong>: Nodes are automatically placed into relevant rooms based on their host labels, eliminating manual organization.</li>
+<li><strong>Rule-Based Management</strong>: Create flexible rules using host labels to define where nodes belong, ensuring consistent organization.</li>
+<li><strong>Scale-Ready Architecture</strong>: As your infrastructure grows, new nodes are automatically sorted into appropriate rooms, maintaining clean monitoring structure.</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/9aaba4a8-f715-4aaf-8624-b4b9576816ca" alt="Dynamic Room Allocation"></p>
+<h3 id="cloud-configurable-alert-repeat-notifications">Cloud: Configurable Alert Repeat Notifications <a id="v210-alert-repeat-notifications"></a></h3>
+<p>Netdata Cloud enhances alert management with customizable notification repeats:</p>
+<ul>
+<li><strong>Custom Repeat Intervals</strong>: Set how often you want to be reminded about ongoing alerts for each notification channel.</li>
+<li><strong>Automated Follow-ups</strong>: Receive automatic notification repeats for unresolved alerts based on your specified timeframe.</li>
+<li><strong>Channel-Specific Settings</strong>: Configure different repeat frequencies for each integration to match your workflow.</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/6bb8c6dc-90ed-41b0-b0a5-a3d032e1ccb6" alt="Repeat Notifications">
+<img src="https://github.com/user-attachments/assets/280842bb-99c8-4ae6-89e4-eecfcf462234" alt="Help Text"></p>
+<h3 id="cloud-pin-your-essential-charts-with-dashboard-favorites">Cloud: Pin Your Essential Charts with Dashboard Favorites <a id="v210-dashboard-favorites"></a></h3>
+<p>Netdata Cloud Dashboard introduces favorites pinning for faster access to your critical monitoring views:</p>
+<ul>
+<li><strong>One-Click Pinning</strong>: Select and pin your most important charts and sections directly from the dashboard.</li>
+<li><strong>Quick-Access Organization</strong>: Pinned items appear at the top of your Table of Contents for instant visibility.</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/e619b102-6c92-48ca-8f88-fdadc39373e8" alt="Favourites"></p>
+<h3 id="dynamic-configuration-bulk-operations-for-collectors-and-alerts">Dynamic Configuration: Bulk Operations for Collectors and Alerts <a id="v210-dyncfg-bulk-ops"></a></h3>
+<p>Dynamic Configuration in Netdata now supports bulk operations on monitoring settings. You can perform the following operations on multiple collector jobs and health checks at once:</p>
+<ul>
+<li>Enable/Disable</li>
+<li>Restart</li>
+<li>Delete</li>
+</ul>
+<h2 id="acknowledgments">Acknowledgments <a id="v210-acknowledgments"></a></h2>
+<ul>
+<li>@orisano for removing a duplicated row in logging readme.</li>
+</ul>
+<h2 id="contributions">Contributions <a id="v210-contributions"></a></h2>
+<h3 id="collectors">Collectors <a id="v210-contributions-collectors"></a></h3>
+<details open>
+<summary><b>Improvements</b></summary>
+<ul>
+<li>Add dyncfg support for Virtual Nodes (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19205">#19205</a>, <a href="https://github.com/netdata/netdata/pull/19207">#19207</a>, <a href="https://github.com/netdata/netdata/pull/19214">#19214</a>, <a href="https://github.com/netdata/netdata/pull/19238">#19238</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add monitoring of /run/reboot-required (proc.plugin) (<a href="https://github.com/netdata/netdata/pull/19109">#19109</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add “force_http2” option to collectors that use HTTP for metrics collection (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19047">#19047</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add support for checking full chain expiry time (go.d/x509check) (<a href="https://github.com/netdata/netdata/pull/19001">#19001</a>,<a href="https://github.com/netdata/netdata/pull/19004">#19004</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add data collection status chart and alert (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/18981">#18981</a>, <a href="https://github.com/netdata/netdata/pull/18989">#18989</a>, <a href="https://github.com/netdata/netdata/pull/18990">#18990</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add cluster support for RabbitMQ collector (go.d/rabbitmq) (<a href="https://github.com/netdata/netdata/pull/18965">#18965</a>, <a href="https://github.com/netdata/netdata/pull/18972">#18972</a>, <a href="https://github.com/netdata/netdata/pull/18976">#18976</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+</ul>
+</details>
+<details open>
+<summary><b>Bug fixes</b></summary>
+<ul>
+<li>Prevent connection leak when Ping fails (go.d/mongodb) (<a href="https://github.com/netdata/netdata/pull/19232">#19232</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Properly release file locks during service reload (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19153">#19153</a>, <a href="https://github.com/netdata/netdata/pull/19154">#19154</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Handle “HPE Smart Array” line in HPSSA collector (go.d/hpssa) (<a href="https://github.com/netdata/netdata/pull/19084">#19084</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Handle missing sysName gracefully in SNMP collector (go.d/snmp) (<a href="https://github.com/netdata/netdata/pull/18970">#18970</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Other</b></summary>
+<ul>
+<li>Add MegaCli64 to ndsudo (<a href="https://github.com/netdata/netdata/pull/19223">#19223</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Code refactor for simplicity (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19143">#19143</a>, <a href="https://github.com/netdata/netdata/pull/19145">#19145</a>, <a href="https://github.com/netdata/netdata/pull/19146">#19146</a>, <a href="https://github.com/netdata/netdata/pull/19155">#19155</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Minor Hyper-V fixes (windows/hyperv) (<a href="https://github.com/netdata/netdata/pull/19130">#19130</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Reduce EBPF memory usage (<a href="https://github.com/netdata/netdata/pull/19117">#19117</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Disable python example collector (python.d/example) (<a href="https://github.com/netdata/netdata/pull/19114">#19114</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Disable monitoring of /run/reboot-required on non-Debian systems (proc/reboot_required) (<a href="https://github.com/netdata/netdata/pull/19110">#19110</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve error handling in callback functions in socket package (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19103">#19103</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Correct close idle connections in web package (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19052">#19052</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Implement terminating on QUIT command (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19038">#19038</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Preserve original process names in metrics labels (windows/netframework) (<a href="https://github.com/netdata/netdata/pull/19036">#19036</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Auto-adjust GOMAXPROCS based on container CPU limits (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/19023">#19023</a>, <a href="https://github.com/netdata/netdata/pull/19026">#19026</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Code cleanup and renames (go.d.plugin) (<a href="https://github.com/netdata/netdata/pull/18987">#18987</a>, <a href="https://github.com/netdata/netdata/pull/19081">#19081</a>, <a href="https://github.com/netdata/netdata/pull/19087">#19087</a>, <a href="https://github.com/netdata/netdata/pull/19090">#19090</a>, <a href="https://github.com/netdata/netdata/pull/19180">#19180</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+</ul>
+</details>
+<h3 id="packaginginstallation">Packaging/Installation <a id="v210-contributions-packaging"></a></h3>
+<details open>
+<summary><b>All changes</b></summary>
+<ul>
+<li>Add PCRE2 development library to required packages (<a href="https://github.com/netdata/netdata/pull/19217">#19217</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Disable compilation of H2O (<a href="https://github.com/netdata/netdata/pull/19216">#19216</a>, <a href="https://github.com/netdata/netdata/pull/19218">#19218</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Use <code>setuid</code> as a fallback for static builds when <code>setcap</code> fails for plugins (<a href="https://github.com/netdata/netdata/pull/19215">#19215</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix native package availability check on Debian-based systems in kickstart (<a href="https://github.com/netdata/netdata/pull/19183">#19183</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update deb repository config fetched by kickstart to the latest version (<a href="https://github.com/netdata/netdata/pull/19181">#19181</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update incorrect checksum for Golang (32-bit Linux) (<a href="https://github.com/netdata/netdata/pull/19127">#19127</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add —dev option to installer (<a href="https://github.com/netdata/netdata/pull/19034">#19034</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Improve Windows installer (<a href="https://github.com/netdata/netdata/pull/18983">#18983</a>, <a href="https://github.com/netdata/netdata/pull/19122">#19122</a>, <a href="https://github.com/netdata/netdata/pull/19132">#19132</a>, <a href="https://github.com/netdata/netdata/pull/19159">#19159</a> <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+</ul>
+</details>
+<h3 id="documentation">Documentation <a id="v210-contributions-documentation"></a></h3>
+<details>
+<summary><b>All changes</b></summary>
+<ul>
+<li>Fix deployment command for Windows Agent nightly version (<a href="https://github.com/netdata/netdata/pull/19236">#19236</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update network requirements to use domain-based allowlisting for Cloud connectivity (<a href="https://github.com/netdata/netdata/pull/19222">#19222</a>, <a href="https://github.com/M4itee">@M4itee</a>)</li>
+<li>Add a user guide for dynamic room configuration (<a href="https://github.com/netdata/netdata/pull/19199">#19199</a>, <a href="https://github.com/kapantzak">@kapantzak</a>)</li>
+<li>Remove a duplicated row in logging readme (<a href="https://github.com/netdata/netdata/pull/19190">#19190</a>, <a href="https://github.com/orisano">@orisano</a>)</li>
+<li>Reorder silent mode and add full pipeline command examples (<a href="https://github.com/netdata/netdata/pull/19176">#19176</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Fixup URLs in package repo documentation to use index files (<a href="https://github.com/netdata/netdata/pull/19174">#19174</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>docs: leftover links + changes on api-tokens.md (<a href="https://github.com/netdata/netdata/pull/19162">#19162</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve Cloud Authentication and Authorization docs (<a href="https://github.com/netdata/netdata/pull/19160">#19160</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve Cloud Plans and ACLK docs (<a href="https://github.com/netdata/netdata/pull/19140">#19140</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve Cloud readme (<a href="https://github.com/netdata/netdata/pull/19139">#19139</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Reorganize Netdata repo readme introduction for clearer project overview (<a href="https://github.com/netdata/netdata/pull/19134">#19134</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update window plugin metadata  (<a href="https://github.com/netdata/netdata/pull/19129">#19129</a>, <a href="https://github.com/netdata/netdata/pull/19147">#19147</a>, <a href="https://github.com/netdata/netdata/pull/19158">#19158</a>, <a href="https://github.com/netdata/netdata/pull/19171">#19171</a>, <a href="https://github.com/netdata/netdata/pull/19175">#19175</a>, <a href="https://github.com/netdata/netdata/pull/19188">#19188</a>, <a href="https://github.com/netdata/netdata/pull/19182">#19182</a> <a href="https://github.com/thiagoftsm">@thiagoftsm</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix formatting, typos, and some simplifications in the <code>docs/</code> directory (<a href="https://github.com/netdata/netdata/pull/19112">#19112</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve Cloud On Prem docs (<a href="https://github.com/netdata/netdata/pull/19104">#19104</a>,<a href="https://github.com/netdata/netdata/pull/19105">#19105</a>, [#19107](<a href="https://github.com/netdata/netdata/pull/19107">https://github.com/netdata/netdata/pull/19107</a> <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve Organize Your Infrastructure documentation (<a href="https://github.com/netdata/netdata/pull/19101">#19101</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve readability of Claiming documentation (<a href="https://github.com/netdata/netdata/pull/19100">#19100</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve Registry docs (<a href="https://github.com/netdata/netdata/pull/19095">#19095</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Fix full-text search instructions and typos in systemd-journal plugin readme (<a href="https://github.com/netdata/netdata/pull/19093">#19093</a>, <a href="https://github.com/netdata/netdata/pull/19066">#19066</a> <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Improve Daemon docs(<a href="https://github.com/netdata/netdata/pull/19091">#19091</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Remove stale docs, and update links and optimization documentation (<a href="https://github.com/netdata/netdata/pull/19089">#19089</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Remove Go windows integration (<a href="https://github.com/netdata/netdata/pull/19078">#19078</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Split database overview and configuration reference (<a href="https://github.com/netdata/netdata/pull/19077">#19077</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Improve database docs (<a href="https://github.com/netdata/netdata/pull/19075">#19075</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Update sizing Netdata Agent pages (<a href="https://github.com/netdata/netdata/pull/19074">#19074</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Simplify collector configuration page (<a href="https://github.com/netdata/netdata/pull/19072">#19072</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Create a terminology dictionary for Netdata (<a href="https://github.com/netdata/netdata/pull/19071">#19071</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Update terminology from “claim” to “connect” for Node connection process (<a href="https://github.com/netdata/netdata/pull/19060">#19060</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Update Windows installation docs (<a href="https://github.com/netdata/netdata/pull/19054">#19054</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Cleanup Securing Agents section docs (<a href="https://github.com/netdata/netdata/pull/19053">#19053</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Update documentation about our native package repos (<a href="https://github.com/netdata/netdata/pull/19049">#19049</a>, <a href="https://github.com/Ferroin">@Ferroin</a>)</li>
+<li>Capitalize the word “Agent” and “Cloud” (<a href="https://github.com/netdata/netdata/pull/19043">#19043</a>, <a href="https://github.com/netdata/netdata/pull/19044">#19044</a>, <a href="https://github.com/Ancairon">@Ancairon</a>)</li>
+<li>Remove references to old MSI installer from go.d/windows metadata (<a href="https://github.com/netdata/netdata/pull/19024">#19024</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Add deprecation notice go.d/windows collector (<a href="https://github.com/netdata/netdata/pull/19009">#19009</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Update Windows installation and deployment documentation (<a href="https://github.com/netdata/netdata/pull/18765">#18765</a>, <a href="https://github.com/netdata/netdata/pull/18928">#18928</a>, <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+</ul>
+</details>
+<h3 id="other-notable-changes">Other Notable Changes <a id="v210-contributions-other"></a></h3>
+<details open>
+<summary><b>Improvements</b></summary>
+<ul>
+<li>Optimize metric processing for high-volume data collection from Child nodes (<a href="https://github.com/netdata/netdata/pull/18945">#18945</a>, <a href="https://github.com/netdata/netdata/pull/19137">#19137</a>, <a href="https://github.com/netdata/netdata/pull/19167">#19167</a>, <a href="https://github.com/netdata/netdata/pull/19168">#19168</a>, <a href="https://github.com/netdata/netdata/pull/19186">#19186</a>, <a href="https://github.com/netdata/netdata/pull/19193">#19193</a>, <a href="https://github.com/netdata/netdata/pull/19196">#19196</a>, <a href="https://github.com/netdata/netdata/pull/19204">#19204</a>, <a href="https://github.com/netdata/netdata/pull/19206">#19206</a> <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+</ul>
+</details>
+<details open>
+<summary><b>Bug Fixes</b></summary>
+<ul>
+<li>Dynamic updates of Virtual Host name now properly sync to Netdata Cloud (<a href="https://github.com/netdata/netdata/pull/19163">#19163</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+</ul>
+</details>
+<details>
+<summary><b>Other</b></summary>
+<ul>
+<li>Improve shutdown handling by preventing data file rotation and deferring alert state changes to startup (<a href="https://github.com/netdata/netdata/pull/19241">#19241</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Rename some internal charts context for better organization (<a href="https://github.com/netdata/netdata/pull/19239">#19239</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>RRDHOST system-info isolation (<a href="https://github.com/netdata/netdata/pull/19235">#19235</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Allow more threads to load contexts during startup (<a href="https://github.com/netdata/netdata/pull/19234">#19234</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Release health summary memory when host health monitoring is disabled (<a href="https://github.com/netdata/netdata/pull/19233">#19233</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Fix heap use after free in health (<a href="https://github.com/netdata/netdata/pull/19228">#19228</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fix compiler warnings on 32-bit (<a href="https://github.com/netdata/netdata/pull/19221">#19221</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Remove July arrays (<a href="https://github.com/netdata/netdata/pull/19194">#19194</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Allow recursive readers, even when writers are waiting (<a href="https://github.com/netdata/netdata/pull/19191">#19191</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Send QUIT to plugins (<a href="https://github.com/netdata/netdata/pull/19166">#19166</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add units per context to /api/v3/contexts (<a href="https://github.com/netdata/netdata/pull/19165">#19165</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Fixed bug in streaming sender read (<a href="https://github.com/netdata/netdata/pull/19136">#19136</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Minor beatification of log messages (<a href="https://github.com/netdata/netdata/pull/19135">#19135</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Update macOS identification to use consistent naming in system-info.sh (<a href="https://github.com/netdata/netdata/pull/19128">#19128</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Avoid scanning charts for replication status (<a href="https://github.com/netdata/netdata/pull/19124">#19124</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Move eBPF code from linetdata to src/collector (<a href="https://github.com/netdata/netdata/pull/19121">#19121</a>, <a href="https://github.com/thiagoftsm">@thiagoftsm</a>)</li>
+<li>Change default nice level to 0 (<a href="https://github.com/netdata/netdata/pull/19120">#19120</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Fix undefined behaviour in <code>ebpf_select_pc_prefix()</code> (<a href="https://github.com/netdata/netdata/pull/19116">#19116</a>, <a href="https://github.com/vkalintiris">@vkalintiris</a>)</li>
+<li>Use system environment proxy settings by default for Cloud connection and add connection logging (<a href="https://github.com/netdata/netdata/pull/19098">#19098</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Reset parameter when generating an alert snapshot (<a href="https://github.com/netdata/netdata/pull/19097">#19097</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Correct reporting of metrics count, instance count, and context statistics (<a href="https://github.com/netdata/netdata/pull/19094">#19094</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+<li>Add optional mimalloc allocator support at compile time (<a href="https://github.com/netdata/netdata/pull/19080">#19080</a>, <a href="https://github.com/netdata/netdata/pull/19118">#19118</a>, <a href="https://github.com/stelfrag">@stelfrag</a>)</li>
+<li>Update gorilla compression internal charts family (<a href="https://github.com/netdata/netdata/pull/19068">#19068</a>, <a href="https://github.com/ilyam8">@ilyam8</a>)</li>
+<li>Do not intentionally abort on non-0 exit code (<a href="https://github.com/netdata/netdata/pull/18991">#18991</a>, <a href="https://github.com/vkalintiris">@vkalintiris</a>)</li>
+<li>Add /api/v3/stream_path (<a href="https://github.com/netdata/netdata/pull/18943">#18943</a>, <a href="https://github.com/ktsaou">@ktsaou</a>)</li>
+</ul>
+</details>
+<h2 id="deprecation-notice">Deprecation notice <a id="v210-deprecation-notice"></a></h2>
+<h3 id="important-changes-in-next-major-release">Important Changes in Next Major Release</h3>
+<p>This release will be the last version supporting the following legacy components:</p>
+<p><strong>Deprecated Components</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component Type</th><th>Versions Being Deprecated</th></tr></thead><tbody><tr><td>APIs</td><td>v1, v2</td></tr><tr><td>Dashboards</td><td>v0, v1</td></tr></tbody></table>
+<p><strong>What This Means</strong></p>
+<p>Starting with the next major release, only the v3 API and v3 Dashboard will be supported. These newer versions offer improved performance, enhanced features, and better security.</p>
+<h3 id="important-changes-in-next-release">Important Changes in Next Release</h3>
+<h4 id="1-removal-of-god-windows-collector">1. Removal of go.d Windows Collector</h4>
+<p>The <a href="https://github.com/netdata/netdata/tree/v2.0.3/src/go/plugin/go.d/modules/windows#windows">go.d Windows collector</a> will be removed in the next release. Users should migrate to the native <a href="https://learn.netdata.cloud/docs/netdata-agent/installation/windows">Windows Netdata Agent</a>.</p>
+<h4 id="2-kubernetes-service-discovery-changes">2. Kubernetes Service Discovery Changes</h4>
+<p><strong>Removed Components</strong></p>
+<p>The <a href="https://github.com/netdata/agent-service-discovery">Agent Service Discovery</a> sidecar container will be removed from the Netdata Helm chart as this functionality is now natively integrated into the <code>go.d.plugin</code>.</p>
+<p><strong>Impact on Custom Configurations</strong></p>
+<p>If you have custom Kubernetes service discovery configurations, you will need to update your settings in the following sections:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Old Section</th><th>New Section</th><th>Description</th></tr></thead><tbody><tr><td><code>discovery</code></td><td><code>discover</code></td><td>Section for configuring the Kubernetes service discoverer</td></tr><tr><td><code>build</code></td><td><code>compose</code></td><td>Section for creating data collection job configurations</td></tr></tbody></table>
+<details>
+<summary><b>Example Migration</b></summary>
+<ul>
+<li>
+<p>Previous Configuration Format</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">discovery</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  k8s</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">tags</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unknown</span></span>
+<span class="line"><span style="color:#85E89D">      role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">pod</span></span>
+<span class="line"><span style="color:#85E89D">      local_mode</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">build</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Applications"</span></span>
+<span class="line"><span style="color:#85E89D">    selector</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'!unknown applications'</span></span>
+<span class="line"><span style="color:#85E89D">    tags</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">file</span></span>
+<span class="line"><span style="color:#85E89D">    apply</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">selector</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">apache</span></span>
+<span class="line"><span style="color:#85E89D">        template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">          - module: apache</span></span>
+<span class="line"><span style="color:#9ECBFF">            name: apache-{{.TUID}}</span></span>
+<span class="line"><span style="color:#9ECBFF">            url: http://{{.Address}}/server-status?auto</span></span></code></pre>
+</li>
+<li>
+<p>New Configuration Format</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># Root sections renamed to "discover" and "compose"</span></span>
+<span class="line"><span style="color:#85E89D">discover</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">discoverer</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">k8s</span></span>
+<span class="line"><span style="color:#85E89D">    k8s</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">tags</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unknown</span></span>
+<span class="line"><span style="color:#85E89D">        role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">pod</span></span>
+<span class="line"><span style="color:#85E89D">        pod</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">          local_mode</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">yes</span></span>
+<span class="line"><span style="color:#85E89D">compose</span><span style="color:#E1E4E8">:  </span><span style="color:#6A737D"># Renamed from "build"</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Applications"</span></span>
+<span class="line"><span style="color:#85E89D">    selector</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"app"</span></span>
+<span class="line"><span style="color:#85E89D">    config</span><span style="color:#E1E4E8">:  </span><span style="color:#6A737D"># Renamed from "apply"</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">selector</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"apache"</span></span>
+<span class="line"><span style="color:#85E89D">        template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">          - module: apache</span></span>
+<span class="line"><span style="color:#9ECBFF">            name: apache-{{.TUID}}</span></span>
+<span class="line"><span style="color:#9ECBFF">            url: http://{{.Address}}/server-status?auto</span></span></code></pre>
+</li>
+</ul>
+</details>
+<p><strong>Required Actions</strong></p>
+<ul>
+<li>Migrate to the new syntax before upgrading</li>
+<li>Refer to the current Netdata Helm chart service discovery configuration for the updated syntax.</li>
+</ul>
+<h2 id="support-options">Support options <a id="v210-support-options"></a></h2>
+<p>As we grow, we stay committed to providing the best support ever seen from an open-source solution. Should you encounter an issue with any of the changes made in this release or any feature in the Netdata Agent, feel free to contact us through one of the following channels:</p>
+<ul>
+<li><a href="https://www.netdata.cloud/support/">Premium Support</a>: Customers who wish to have a direct channel with Netdata and prioritized support with defined SLAs can contact us.</li>
+<li><a href="https://learn.netdata.cloud">Netdata Learn</a>: Find documentation, guides, and reference material for monitoring and troubleshooting your systems with Netdata.</li>
+<li><a href="https://github.com/netdata/netdata/issues">GitHub Issues</a>: Make use of the Netdata repository to report bugs or open a new feature request.</li>
+<li><a href="https://github.com/netdata/netdata/discussions">GitHub Discussions</a>: Join the conversation around the Netdata development process and be a part of it.</li>
+<li><a href="https://community.netdata.cloud/">Community Forums</a>: Visit the Community Forums and contribute to the collaborative knowledge base.</li>
+<li><a href="https://discord.gg/2eduZdSeC7">Discord Server</a>: Jump into the Netdata Discord and hang out with like-minded sysadmins, DevOps, SREs, and other troubleshooters. More than 2000 engineers are already using it!</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/netdata/netdata/releases/tag/v2.1.0" target="_blank" rel="nofollow noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install.</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Waiting List
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.DhIQYmhx.js"></script>  </body></html>
