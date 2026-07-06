@@ -1,20 +1,861 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WinterFlow.io - LibreChat self-hosting with Docker</title><meta name="description" content="LibreChat is an AI conversation platform inspired by ChatGPT, integrating multiple AI providers such as OpenAI, Anthropic, AWS Bedrock, and more. It supports customizable AI models, secure multi-user authentication, agents for specialized tasks, and multimodal interactions with images and code execution. The platform emphasizes flexibility with custom API endpoints, extensive tool integration, code interpretation in multiple languages, and a user-friendly interface adaptable for both newcomers and power users. It facilitates enhanced AI conversations with features like message search, prompt templates, and multi-language support."><link rel="canonical" href="https://winterflow.io/catalog/librechat/"><meta property="og:type" content="website"><meta property="og:title" content="WinterFlow.io - LibreChat self-hosting with Docker"><meta property="og:description" content="LibreChat is an AI conversation platform inspired by ChatGPT, integrating multiple AI providers such as OpenAI, Anthropic, AWS Bedrock, and more. It supports customizable AI models, secure multi-user authentication, agents for specialized tasks, and multimodal interactions with images and code execution. The platform emphasizes flexibility with custom API endpoints, extensive tool integration, code interpretation in multiple languages, and a user-friendly interface adaptable for both newcomers and power users. It facilitates enhanced AI conversations with features like message search, prompt templates, and multi-language support."><meta property="og:url" content="https://winterflow.io/catalog/librechat/"><meta property="og:image" content="/images/apps/librechat/librechat.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WinterFlow.io - LibreChat self-hosting with Docker"><meta name="twitter:description" content="LibreChat is an AI conversation platform inspired by ChatGPT, integrating multiple AI providers such as OpenAI, Anthropic, AWS Bedrock, and more. It supports customizable AI models, secure multi-user authentication, agents for specialized tasks, and multimodal interactions with images and code execution. The platform emphasizes flexibility with custom API endpoints, extensive tool integration, code interpretation in multiple languages, and a user-friendly interface adaptable for both newcomers and power users. It facilitates enhanced AI conversations with features like message search, prompt templates, and multi-language support."><meta name="twitter:image" content="/images/apps/librechat/librechat.png"><meta name="keywords" content="librechat self hosted, librechat docker, librechat docker-compose, librechat environment, librechat install, librechat setup, librechat deploy, librechat https, librechat hosting, librechat podman, chatgpt alternative, huggingface chat alternative, microsoft azure openai alternative, anthropic claude alternative, cohiera alternative, mistral ai alternative, openrouter alternative, openai playground alternative, llama reasoning alternative, perplexity ai alternative"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D9kvoPK7.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>  <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LibreChat self-hosting with Docker | WinterFlow.io</title><meta name="description" content="LibreChat is the ultimate open-source app for all your AI conversations, fully customizable and compatible with any AI provider — all in one sleek…"><link rel="canonical" href="https://winterflow.io/catalog/librechat/"><meta property="og:type" content="website"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="LibreChat self-hosting with Docker | WinterFlow.io"><meta property="og:description" content="LibreChat is the ultimate open-source app for all your AI conversations, fully customizable and compatible with any AI provider — all in one sleek…"><meta property="og:url" content="https://winterflow.io/catalog/librechat/"><meta property="og:image" content="https://winterflow.io/images/apps/librechat/librechat.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="LibreChat self-hosting with Docker | WinterFlow.io"><meta name="twitter:description" content="LibreChat is the ultimate open-source app for all your AI conversations, fully customizable and compatible with any AI provider — all in one sleek…"><meta name="twitter:image" content="https://winterflow.io/images/apps/librechat/librechat.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LibreChat","description":"Enhanced ChatGPT clone","url":"https://winterflow.io/catalog/librechat/","image":"https://winterflow.io/images/apps/librechat/librechat.png","applicationCategory":"WebApplication","operatingSystem":"Linux (Docker)","softwareVersion":"v0.8.6","license":"https://github.com/danny-avila/LibreChat/blob/main/LICENSE","sameAs":["https://librechat.ai/","https://github.com/danny-avila/LibreChat","https://www.librechat.ai/docs"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"LibreChat","item":"https://winterflow.io/catalog/librechat/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.B5Qy6kMW.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>    <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
 Back to Catalog
-</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/librechat/librechat.png" alt="LibreChat logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">LibreChat</h1> <p class="mt-4 text-lg leading-8 text-gray-600">AI chat platform combining multiple AI models and extended features</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#ai" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> AI </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> chatgpt, huggingface chat, microsoft azure openai, anthropic claude, cohiera, mistral ai, openrouter, openai playground, llama reasoning, perplexity ai </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://librechat.ai/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/librechat/librechat.png" alt="LibreChat logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">LibreChat</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Enhanced ChatGPT clone</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#ai" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> AI </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> chatgpt, perplexity, anthropic, claude, grok, gemini </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://librechat.ai/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
 Website
 </a> <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
 Repository
 </a> <a href="https://www.librechat.ai/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
 Docs
-</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="space-y-3"> <div class="flex items-center justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/danny-avila/LibreChat/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-start justify-between border-b border-gray-200 py-2"> <span class="text-sm text-gray-600">Available in:</span> <div class="flex flex-wrap justify-end gap-2"> <span class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium capitalize text-blue-700"> business </span> </div> </div> </div> </div> <div class="border-t border-gray-200 pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="LibreChat" data-app-slug="librechat" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/danny-avila/LibreChat/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 40,311 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="LibreChat" data-app-slug="librechat" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
 Install with Winterflow
 </button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
 </a><a href="https://github.com/sponsors/danny-avila" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
 </a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
 About
 </span> <a href="/catalog/librechat/releases/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
-Versions (54)
-</a> </div> <div class="mt-6 text-gray-600 space-y-6"> <p class="text-lg text-gray-900">LibreChat is an AI conversation platform inspired by ChatGPT, integrating multiple AI providers such as OpenAI, Anthropic, AWS Bedrock, and more. It supports customizable AI models, secure multi-user authentication, agents for specialized tasks, and multimodal interactions with images and code execution. The platform emphasizes flexibility with custom API endpoints, extensive tool integration, code interpretation in multiple languages, and a user-friendly interface adaptable for both newcomers and power users. It facilitates enhanced AI conversations with features like message search, prompt templates, and multi-language support.</p>  </div> </div> </div> </div> </section>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Versions (8)
+</a> </div> <div class="mt-6 text-gray-600 space-y-6"> <p class="text-lg text-gray-900">LibreChat is the ultimate open-source app for all your AI conversations, fully customizable and compatible with any AI provider — all in one sleek interface</p>  <section class="mt-12"> <h2 class="text-2xl font-semibold text-gray-900">LibreChat Docker Compose example</h2> <p class="mt-4 text-gray-600">
+Self-host LibreChat on your own server, homelab, or VPS starting from this Docker Compose example.
+                  It runs LibreChat in Docker containers using the official <code class="rounded bg-gray-100 px-1 py-0.5 text-sm">ghcr.io/danny-avila/librechat:latest, mongo, getmeili/meilisearch:v1.12.3, ankane/pgvector:latest, ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest</code> images, with persistent volumes and automatic restarts preconfigured.
+                  Review the environment variables and adjust them to your setup, save the file as  <code class="rounded bg-gray-100 px-1 py-0.5 text-sm">compose.yml</code> (or  <code class="rounded bg-gray-100 px-1 py-0.5 text-sm">docker-compose.yml</code>), and start the stack with  <code class="rounded bg-gray-100 px-1 py-0.5 text-sm">docker compose up -d</code>.
+</p> <div class="js-code-block relative mt-4"> <button type="button" class="js-copy-code absolute right-3 top-3 rounded-md bg-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors duration-200 hover:bg-slate-600">
+Copy
+</button> <pre class="overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm leading-6 text-slate-100"><code>services:
+  api:
+    depends_on:
+      - mongodb
+      - rag_api
+    image: ghcr.io/danny-avila/librechat:latest
+    restart: unless-stopped
+    user: &quot;1000:1000&quot;
+    extra_hosts:
+      - &quot;host.docker.internal:host-gateway&quot;
+    environment:
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MEILI_HOST=http://meilisearch:7700
+      - RAG_PORT=8000
+      - RAG_API_URL=http://rag_api:8000
+      - HOST=localhost
+      - PORT=3080
+      - RAG_PORT=8000
+      - RAG_API_URL=http://rag_api:8000
+      - MONGO_URI=mongodb://127.0.0.1:27017/LibreChat
+      #The maximum number of connections in the connection pool. */
+      - MONGO_MAX_POOL_SIZE=
+      #The minimum number of connections in the connection pool. */
+      - MONGO_MIN_POOL_SIZE=
+      #The maximum number of connections that may be in the process of being established concurrently by the connection pool. */
+      - MONGO_MAX_CONNECTING=
+      #The maximum number of milliseconds that a connection can remain idle in the pool before being removed and closed. */
+      - MONGO_MAX_IDLE_TIME_MS=
+      #The maximum time in milliseconds that a thread can wait for a connection to become available. */
+      - MONGO_WAIT_QUEUE_TIMEOUT_MS=
+      # Set to false to disable automatic index creation for all models associated with this connection. */
+      - MONGO_AUTO_INDEX=
+      # Set to `false` to disable Mongoose automatically calling `createCollection()` on every model created on this connection. */
+      - MONGO_AUTO_CREATE=
+      - DOMAIN_CLIENT=http://localhost:3080
+      - DOMAIN_SERVER=http://localhost:3080
+      - NO_INDEX=true
+      # Use the address that is at most n number of hops away from the Express application.
+      # req.socket.remoteAddress is the first hop, and the rest are looked for in the X-Forwarded-For header from right to left.
+      # A value of 0 means that the first untrusted address would be req.socket.remoteAddress, i.e. there is no reverse proxy.
+      # Defaulted to 1.
+      - TRUST_PROXY=1
+      # Use when process console logs in cloud deployment like GCP/AWS
+      - CONSOLE_JSON=false
+      - DEBUG_LOGGING=true
+      - DEBUG_CONSOLE=false
+      - PROXY=
+      - ANTHROPIC_API_KEY=user_provided
+      - GOOGLE_KEY=user_provided
+      - OPENAI_API_KEY=user_provided
+      - DEBUG_OPENAI=false
+      - ASSISTANTS_API_KEY=user_provided
+      - DEBUG_PLUGINS=true
+      - CREDS_KEY=f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0
+      - CREDS_IV=e2341419ec3dd3d19b13a1a87fafcbfb
+      # Azure AI Search
+      #-----------------
+      - AZURE_AI_SEARCH_SERVICE_ENDPOINT=
+      - AZURE_AI_SEARCH_INDEX_NAME=
+      - AZURE_AI_SEARCH_API_KEY=
+      - AZURE_AI_SEARCH_API_VERSION=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_QUERY_TYPE=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_TOP=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_SELECT=
+      # Flux
+      #-----------------
+      - FLUX_API_BASE_URL=https://api.us1.bfl.ai
+      # Google
+      #-----------------
+      - GOOGLE_SEARCH_API_KEY=
+      - GOOGLE_CSE_ID=
+      # YOUTUBE
+      #-----------------
+      - YOUTUBE_API_KEY=
+      # SerpAPI
+      #-----------------
+      - SERPAPI_API_KEY=
+      # Stable Diffusion
+      #-----------------
+      - SD_WEBUI_URL=http://host.docker.internal:7860
+      # Tavily
+      #-----------------
+      - TAVILY_API_KEY=
+      # Traversaal
+      #-----------------
+      - TRAVERSAAL_API_KEY=
+      # WolframAlpha
+      #-----------------
+      - WOLFRAM_APP_ID=
+      # Zapier
+      #-----------------
+      - ZAPIER_NLA_API_KEY=
+      - SEARCH=true
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_HOST=http://0.0.0.0:7700
+      - MEILI_MASTER_KEY=meili_master_key_secret
+      - STT_API_KEY=
+      - TTS_API_KEY=
+      - OPENAI_MODERATION=false
+      - OPENAI_MODERATION_API_KEY=
+      - BAN_VIOLATIONS=true
+      - BAN_DURATION=1000 * 60 * 60 * 2
+      - BAN_INTERVAL=20
+      - LOGIN_VIOLATION_SCORE=1
+      - REGISTRATION_VIOLATION_SCORE=1
+      - CONCURRENT_VIOLATION_SCORE=1
+      - MESSAGE_VIOLATION_SCORE=1
+      - NON_BROWSER_VIOLATION_SCORE=20
+      - TTS_VIOLATION_SCORE=0
+      - STT_VIOLATION_SCORE=0
+      - FORK_VIOLATION_SCORE=0
+      - IMPORT_VIOLATION_SCORE=0
+      - FILE_UPLOAD_VIOLATION_SCORE=0
+      - LOGIN_MAX=7
+      - LOGIN_WINDOW=5
+      - REGISTER_MAX=5
+      - REGISTER_WINDOW=60
+      - LIMIT_CONCURRENT_MESSAGES=true
+      - CONCURRENT_MESSAGE_MAX=2
+      - LIMIT_MESSAGE_IP=true
+      - MESSAGE_IP_MAX=40
+      - MESSAGE_IP_WINDOW=1
+      - LIMIT_MESSAGE_USER=false
+      - MESSAGE_USER_MAX=40
+      - MESSAGE_USER_WINDOW=1
+      - ILLEGAL_MODEL_REQ_SCORE=5
+      - ALLOW_EMAIL_LOGIN=true
+      - ALLOW_REGISTRATION=true
+      - ALLOW_SOCIAL_LOGIN=false
+      - ALLOW_SOCIAL_REGISTRATION=false
+      - ALLOW_PASSWORD_RESET=false
+      # ALLOW_ACCOUNT_DELETION=true # note: enabled by default if omitted/commented out
+      - ALLOW_UNVERIFIED_EMAIL_LOGIN=false
+      - SESSION_EXPIRY=1000 * 60 * 15
+      - REFRESH_TOKEN_EXPIRY=(1000 * 60 * 60 * 24) * 7
+      - JWT_SECRET=16f8c0ef4a5d391b26034086c628469d3f9f497f08163ab9b40137092f2909ef
+      - JWT_REFRESH_SECRET=eaa5191f2914e30b9387fd84e254e4ba6fc51b4654968a9b0803b456a54b8418
+      # Discord
+      - DISCORD_CLIENT_ID=
+      - DISCORD_CLIENT_SECRET=
+      - DISCORD_CALLBACK_URL=/oauth/discord/callback
+      # Facebook
+      - FACEBOOK_CLIENT_ID=
+      - FACEBOOK_CLIENT_SECRET=
+      - FACEBOOK_CALLBACK_URL=/oauth/facebook/callback
+      # GitHub
+      - GITHUB_CLIENT_ID=
+      - GITHUB_CLIENT_SECRET=
+      - GITHUB_CALLBACK_URL=/oauth/github/callback
+      # Google
+      - GOOGLE_CLIENT_ID=
+      - GOOGLE_CLIENT_SECRET=
+      - GOOGLE_CALLBACK_URL=/oauth/google/callback
+      # Apple
+      - APPLE_CLIENT_ID=
+      - APPLE_TEAM_ID=
+      - APPLE_KEY_ID=
+      - APPLE_PRIVATE_KEY_PATH=
+      - APPLE_CALLBACK_URL=/oauth/apple/callback
+      # OpenID
+      - OPENID_CLIENT_ID=
+      - OPENID_CLIENT_SECRET=
+      - OPENID_ISSUER=
+      - OPENID_SESSION_SECRET=
+      - OPENID_SCOPE=&quot;openid profile email&quot;
+      - OPENID_CALLBACK_URL=/oauth/openid/callback
+      - OPENID_REQUIRED_ROLE=
+      - OPENID_REQUIRED_ROLE_TOKEN_KIND=
+      - OPENID_REQUIRED_ROLE_PARAMETER_PATH=
+      # Set to determine which user info property returned from OpenID Provider to store as the User&#39;s username
+      - OPENID_USERNAME_CLAIM=
+      # Set to determine which user info property returned from OpenID Provider to store as the User&#39;s name
+      - OPENID_NAME_CLAIM=
+      # Optional audience parameter for OpenID authorization requests
+      - OPENID_AUDIENCE=
+      - OPENID_BUTTON_LABEL=
+      - OPENID_IMAGE_URL=
+      # Set to true to automatically redirect to the OpenID provider when a user visits the login page
+      # This will bypass the login form completely for users, only use this if OpenID is your only authentication method
+      - OPENID_AUTO_REDIRECT=false
+      # Set to true to use PKCE (Proof Key for Code Exchange) for OpenID authentication
+      - OPENID_USE_PKCE=false
+      #Set to true to reuse openid tokens for authentication management instead of using the mongodb session and the custom refresh token.
+      - OPENID_REUSE_TOKENS=
+      #By default, signing key verification results are cached in order to prevent excessive HTTP requests to the JWKS endpoint.
+      #If a signing key matching the kid is found, this will be cached and the next time this kid is requested the signing key will be served from the cache.
+      #Default is true.
+      - OPENID_JWKS_URL_CACHE_ENABLED=
+      - OPENID_JWKS_URL_CACHE_TIME=# 600000 ms eq to 10 minutes leave empty to disable caching
+      #Set to true to trigger token exchange flow to acquire access token for the userinfo endpoint.
+      - OPENID_ON_BEHALF_FLOW_FOR_USERINFO_REQUIRED=
+      - OPENID_ON_BEHALF_FLOW_USERINFO_SCOPE=&quot;user.read&quot; # example for Scope Needed for Microsoft Graph API
+      # Set to true to use the OpenID Connect end session endpoint for logout
+      - OPENID_USE_END_SESSION_ENDPOINT=
+      # SAML
+      # Note: If OpenID is enabled, SAML authentication will be automatically disabled.
+      - SAML_ENTRY_POINT=
+      - SAML_ISSUER=
+      - SAML_CERT=
+      - SAML_CALLBACK_URL=/oauth/saml/callback
+      - SAML_SESSION_SECRET=
+      # Attribute mappings (optional)
+      - SAML_EMAIL_CLAIM=
+      - SAML_USERNAME_CLAIM=
+      - SAML_GIVEN_NAME_CLAIM=
+      - SAML_FAMILY_NAME_CLAIM=
+      - SAML_PICTURE_CLAIM=
+      - SAML_NAME_CLAIM=
+      # Logint buttion settings (optional)
+      - SAML_BUTTON_LABEL=
+      - SAML_IMAGE_URL=
+      # Enable Entra ID people search integration in permissions/sharing system
+      # When enabled, the people picker will search both local database and Entra ID
+      - USE_ENTRA_ID_FOR_PEOPLE_SEARCH=false
+      # When enabled, entra id groups owners will be considered as members of the group
+      - ENTRA_ID_INCLUDE_OWNERS_AS_MEMBERS=false
+      # Microsoft Graph API scopes needed for people/group search
+      # Default scopes provide access to user profiles and group memberships
+      - OPENID_GRAPH_SCOPES=User.Read,People.Read,GroupMember.Read.All
+      # LDAP
+      - LDAP_URL=
+      - LDAP_BIND_DN=
+      - LDAP_BIND_CREDENTIALS=
+      - LDAP_USER_SEARCH_BASE=
+      #LDAP_SEARCH_FILTER=&quot;mail=&quot;
+      - LDAP_CA_CERT_PATH=
+      - EMAIL_SERVICE=
+      - EMAIL_HOST=
+      - EMAIL_PORT=25
+      - EMAIL_ENCRYPTION=
+      - EMAIL_ENCRYPTION_HOSTNAME=
+      - EMAIL_ALLOW_SELFSIGNED=
+      - EMAIL_USERNAME=
+      - EMAIL_PASSWORD=
+      - EMAIL_FROM_NAME=
+      - EMAIL_FROM=noreply@librechat.ai
+      - FIREBASE_API_KEY=
+      - FIREBASE_AUTH_DOMAIN=
+      - FIREBASE_PROJECT_ID=
+      - FIREBASE_STORAGE_BUCKET=
+      - FIREBASE_MESSAGING_SENDER_ID=
+      - FIREBASE_APP_ID=
+      - AWS_ENDPOINT_URL=
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+      - AWS_REGION=
+      - AWS_BUCKET_NAME=
+      - AZURE_STORAGE_CONNECTION_STRING=
+      - AZURE_STORAGE_PUBLIC_ACCESS=false
+      - AZURE_CONTAINER_NAME=files
+      - ALLOW_SHARED_LINKS=true
+      - ALLOW_SHARED_LINKS_PUBLIC=true
+      - APP_TITLE=LibreChat
+      # CUSTOM_FOOTER=&quot;My custom footer&quot;
+      - HELP_AND_FAQ_URL=https://librechat.ai
+      #=====================================================#
+      #                  OpenWeather                        #
+      #=====================================================#
+      - OPENWEATHER_API_KEY=
+    volumes:
+      - ./librechat.yaml:/app/librechat.yaml:ro
+      - api_images:/app/client/public/images
+      - api_uploads:/app/uploads
+      - api_logs:/app/api/logs
+
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    user: &quot;1000:1000&quot;
+    volumes:
+      - mongo_db:/data/db
+    command: mongod --noauth
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12.3
+    restart: unless-stopped
+    user: &quot;1000:1000&quot;
+    environment:
+      - MEILI_HOST=http://0.0.0.0:7700
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_MASTER_KEY=meili_master_key_secret
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_MAX_INDEXING_MEMORY=500MB
+      - MEILI_MAX_INDEXING_THREADS=2
+      - MEILI_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS=5
+    volumes:
+      - meili_v1123:/meili_data
+
+  vectordb:
+    image: ankane/pgvector:latest
+    environment:
+      POSTGRES_DB: &quot;mydatabase&quot;
+      POSTGRES_USER: &quot;myuser&quot;
+      POSTGRES_PASSWORD: &quot;mypassword&quot;
+    restart: unless-stopped
+    volumes:
+      - pgdata2:/var/lib/postgresql/data
+
+  rag_api:
+    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:latest
+    environment:
+      - DB_HOST=vectordb
+      - RAG_PORT=8000
+      - HOST=localhost
+      - PORT=3080
+      - RAG_PORT=8000
+      - RAG_API_URL=http://rag_api:8000
+      - MONGO_URI=mongodb://127.0.0.1:27017/LibreChat
+      #The maximum number of connections in the connection pool. */
+      - MONGO_MAX_POOL_SIZE=
+      #The minimum number of connections in the connection pool. */
+      - MONGO_MIN_POOL_SIZE=
+      #The maximum number of connections that may be in the process of being established concurrently by the connection pool. */
+      - MONGO_MAX_CONNECTING=
+      #The maximum number of milliseconds that a connection can remain idle in the pool before being removed and closed. */
+      - MONGO_MAX_IDLE_TIME_MS=
+      #The maximum time in milliseconds that a thread can wait for a connection to become available. */
+      - MONGO_WAIT_QUEUE_TIMEOUT_MS=
+      # Set to false to disable automatic index creation for all models associated with this connection. */
+      - MONGO_AUTO_INDEX=
+      # Set to `false` to disable Mongoose automatically calling `createCollection()` on every model created on this connection. */
+      - MONGO_AUTO_CREATE=
+      - DOMAIN_CLIENT=http://localhost:3080
+      - DOMAIN_SERVER=http://localhost:3080
+      - NO_INDEX=true
+      # Use the address that is at most n number of hops away from the Express application.
+      # req.socket.remoteAddress is the first hop, and the rest are looked for in the X-Forwarded-For header from right to left.
+      # A value of 0 means that the first untrusted address would be req.socket.remoteAddress, i.e. there is no reverse proxy.
+      # Defaulted to 1.
+      - TRUST_PROXY=1
+      # Use when process console logs in cloud deployment like GCP/AWS
+      - CONSOLE_JSON=false
+      - DEBUG_LOGGING=true
+      - DEBUG_CONSOLE=false
+      - PROXY=
+      - ANTHROPIC_API_KEY=user_provided
+      - GOOGLE_KEY=user_provided
+      - OPENAI_API_KEY=user_provided
+      - DEBUG_OPENAI=false
+      - ASSISTANTS_API_KEY=user_provided
+      - DEBUG_PLUGINS=true
+      - CREDS_KEY=f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0
+      - CREDS_IV=e2341419ec3dd3d19b13a1a87fafcbfb
+      # Azure AI Search
+      #-----------------
+      - AZURE_AI_SEARCH_SERVICE_ENDPOINT=
+      - AZURE_AI_SEARCH_INDEX_NAME=
+      - AZURE_AI_SEARCH_API_KEY=
+      - AZURE_AI_SEARCH_API_VERSION=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_QUERY_TYPE=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_TOP=
+      - AZURE_AI_SEARCH_SEARCH_OPTION_SELECT=
+      # Flux
+      #-----------------
+      - FLUX_API_BASE_URL=https://api.us1.bfl.ai
+      # Google
+      #-----------------
+      - GOOGLE_SEARCH_API_KEY=
+      - GOOGLE_CSE_ID=
+      # YOUTUBE
+      #-----------------
+      - YOUTUBE_API_KEY=
+      # SerpAPI
+      #-----------------
+      - SERPAPI_API_KEY=
+      # Stable Diffusion
+      #-----------------
+      - SD_WEBUI_URL=http://host.docker.internal:7860
+      # Tavily
+      #-----------------
+      - TAVILY_API_KEY=
+      # Traversaal
+      #-----------------
+      - TRAVERSAAL_API_KEY=
+      # WolframAlpha
+      #-----------------
+      - WOLFRAM_APP_ID=
+      # Zapier
+      #-----------------
+      - ZAPIER_NLA_API_KEY=
+      - SEARCH=true
+      - MEILI_NO_ANALYTICS=true
+      - MEILI_HOST=http://0.0.0.0:7700
+      - MEILI_MASTER_KEY=meili_master_key_secret
+      - STT_API_KEY=
+      - TTS_API_KEY=
+      - OPENAI_MODERATION=false
+      - OPENAI_MODERATION_API_KEY=
+      - BAN_VIOLATIONS=true
+      - BAN_DURATION=1000 * 60 * 60 * 2
+      - BAN_INTERVAL=20
+      - LOGIN_VIOLATION_SCORE=1
+      - REGISTRATION_VIOLATION_SCORE=1
+      - CONCURRENT_VIOLATION_SCORE=1
+      - MESSAGE_VIOLATION_SCORE=1
+      - NON_BROWSER_VIOLATION_SCORE=20
+      - TTS_VIOLATION_SCORE=0
+      - STT_VIOLATION_SCORE=0
+      - FORK_VIOLATION_SCORE=0
+      - IMPORT_VIOLATION_SCORE=0
+      - FILE_UPLOAD_VIOLATION_SCORE=0
+      - LOGIN_MAX=7
+      - LOGIN_WINDOW=5
+      - REGISTER_MAX=5
+      - REGISTER_WINDOW=60
+      - LIMIT_CONCURRENT_MESSAGES=true
+      - CONCURRENT_MESSAGE_MAX=2
+      - LIMIT_MESSAGE_IP=true
+      - MESSAGE_IP_MAX=40
+      - MESSAGE_IP_WINDOW=1
+      - LIMIT_MESSAGE_USER=false
+      - MESSAGE_USER_MAX=40
+      - MESSAGE_USER_WINDOW=1
+      - ILLEGAL_MODEL_REQ_SCORE=5
+      - ALLOW_EMAIL_LOGIN=true
+      - ALLOW_REGISTRATION=true
+      - ALLOW_SOCIAL_LOGIN=false
+      - ALLOW_SOCIAL_REGISTRATION=false
+      - ALLOW_PASSWORD_RESET=false
+      # ALLOW_ACCOUNT_DELETION=true # note: enabled by default if omitted/commented out
+      - ALLOW_UNVERIFIED_EMAIL_LOGIN=false
+      - SESSION_EXPIRY=1000 * 60 * 15
+      - REFRESH_TOKEN_EXPIRY=(1000 * 60 * 60 * 24) * 7
+      - JWT_SECRET=16f8c0ef4a5d391b26034086c628469d3f9f497f08163ab9b40137092f2909ef
+      - JWT_REFRESH_SECRET=eaa5191f2914e30b9387fd84e254e4ba6fc51b4654968a9b0803b456a54b8418
+      # Discord
+      - DISCORD_CLIENT_ID=
+      - DISCORD_CLIENT_SECRET=
+      - DISCORD_CALLBACK_URL=/oauth/discord/callback
+      # Facebook
+      - FACEBOOK_CLIENT_ID=
+      - FACEBOOK_CLIENT_SECRET=
+      - FACEBOOK_CALLBACK_URL=/oauth/facebook/callback
+      # GitHub
+      - GITHUB_CLIENT_ID=
+      - GITHUB_CLIENT_SECRET=
+      - GITHUB_CALLBACK_URL=/oauth/github/callback
+      # Google
+      - GOOGLE_CLIENT_ID=
+      - GOOGLE_CLIENT_SECRET=
+      - GOOGLE_CALLBACK_URL=/oauth/google/callback
+      # Apple
+      - APPLE_CLIENT_ID=
+      - APPLE_TEAM_ID=
+      - APPLE_KEY_ID=
+      - APPLE_PRIVATE_KEY_PATH=
+      - APPLE_CALLBACK_URL=/oauth/apple/callback
+      # OpenID
+      - OPENID_CLIENT_ID=
+      - OPENID_CLIENT_SECRET=
+      - OPENID_ISSUER=
+      - OPENID_SESSION_SECRET=
+      - OPENID_SCOPE=&quot;openid profile email&quot;
+      - OPENID_CALLBACK_URL=/oauth/openid/callback
+      - OPENID_REQUIRED_ROLE=
+      - OPENID_REQUIRED_ROLE_TOKEN_KIND=
+      - OPENID_REQUIRED_ROLE_PARAMETER_PATH=
+      # Set to determine which user info property returned from OpenID Provider to store as the User&#39;s username
+      - OPENID_USERNAME_CLAIM=
+      # Set to determine which user info property returned from OpenID Provider to store as the User&#39;s name
+      - OPENID_NAME_CLAIM=
+      # Optional audience parameter for OpenID authorization requests
+      - OPENID_AUDIENCE=
+      - OPENID_BUTTON_LABEL=
+      - OPENID_IMAGE_URL=
+      # Set to true to automatically redirect to the OpenID provider when a user visits the login page
+      # This will bypass the login form completely for users, only use this if OpenID is your only authentication method
+      - OPENID_AUTO_REDIRECT=false
+      # Set to true to use PKCE (Proof Key for Code Exchange) for OpenID authentication
+      - OPENID_USE_PKCE=false
+      #Set to true to reuse openid tokens for authentication management instead of using the mongodb session and the custom refresh token.
+      - OPENID_REUSE_TOKENS=
+      #By default, signing key verification results are cached in order to prevent excessive HTTP requests to the JWKS endpoint.
+      #If a signing key matching the kid is found, this will be cached and the next time this kid is requested the signing key will be served from the cache.
+      #Default is true.
+      - OPENID_JWKS_URL_CACHE_ENABLED=
+      - OPENID_JWKS_URL_CACHE_TIME=# 600000 ms eq to 10 minutes leave empty to disable caching
+      #Set to true to trigger token exchange flow to acquire access token for the userinfo endpoint.
+      - OPENID_ON_BEHALF_FLOW_FOR_USERINFO_REQUIRED=
+      - OPENID_ON_BEHALF_FLOW_USERINFO_SCOPE=&quot;user.read&quot; # example for Scope Needed for Microsoft Graph API
+      # Set to true to use the OpenID Connect end session endpoint for logout
+      - OPENID_USE_END_SESSION_ENDPOINT=
+      # SAML
+      # Note: If OpenID is enabled, SAML authentication will be automatically disabled.
+      - SAML_ENTRY_POINT=
+      - SAML_ISSUER=
+      - SAML_CERT=
+      - SAML_CALLBACK_URL=/oauth/saml/callback
+      - SAML_SESSION_SECRET=
+      # Attribute mappings (optional)
+      - SAML_EMAIL_CLAIM=
+      - SAML_USERNAME_CLAIM=
+      - SAML_GIVEN_NAME_CLAIM=
+      - SAML_FAMILY_NAME_CLAIM=
+      - SAML_PICTURE_CLAIM=
+      - SAML_NAME_CLAIM=
+      # Logint buttion settings (optional)
+      - SAML_BUTTON_LABEL=
+      - SAML_IMAGE_URL=
+      # Enable Entra ID people search integration in permissions/sharing system
+      # When enabled, the people picker will search both local database and Entra ID
+      - USE_ENTRA_ID_FOR_PEOPLE_SEARCH=false
+      # When enabled, entra id groups owners will be considered as members of the group
+      - ENTRA_ID_INCLUDE_OWNERS_AS_MEMBERS=false
+      # Microsoft Graph API scopes needed for people/group search
+      # Default scopes provide access to user profiles and group memberships
+      - OPENID_GRAPH_SCOPES=User.Read,People.Read,GroupMember.Read.All
+      # LDAP
+      - LDAP_URL=
+      - LDAP_BIND_DN=
+      - LDAP_BIND_CREDENTIALS=
+      - LDAP_USER_SEARCH_BASE=
+      #LDAP_SEARCH_FILTER=&quot;mail=&quot;
+      - LDAP_CA_CERT_PATH=
+      - EMAIL_SERVICE=
+      - EMAIL_HOST=
+      - EMAIL_PORT=25
+      - EMAIL_ENCRYPTION=
+      - EMAIL_ENCRYPTION_HOSTNAME=
+      - EMAIL_ALLOW_SELFSIGNED=
+      - EMAIL_USERNAME=
+      - EMAIL_PASSWORD=
+      - EMAIL_FROM_NAME=
+      - EMAIL_FROM=noreply@librechat.ai
+      - FIREBASE_API_KEY=
+      - FIREBASE_AUTH_DOMAIN=
+      - FIREBASE_PROJECT_ID=
+      - FIREBASE_STORAGE_BUCKET=
+      - FIREBASE_MESSAGING_SENDER_ID=
+      - FIREBASE_APP_ID=
+      - AWS_ENDPOINT_URL=
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+      - AWS_REGION=
+      - AWS_BUCKET_NAME=
+      - AZURE_STORAGE_CONNECTION_STRING=
+      - AZURE_STORAGE_PUBLIC_ACCESS=false
+      - AZURE_CONTAINER_NAME=files
+      - ALLOW_SHARED_LINKS=true
+      - ALLOW_SHARED_LINKS_PUBLIC=true
+      - APP_TITLE=LibreChat
+      # CUSTOM_FOOTER=&quot;My custom footer&quot;
+      - HELP_AND_FAQ_URL=https://librechat.ai
+      #=====================================================#
+      #                  OpenWeather                        #
+      #=====================================================#
+      - OPENWEATHER_API_KEY=
+    restart: unless-stopped
+    depends_on:
+      - vectordb
+
+volumes:
+  pgdata2:
+  meili_v1123:
+  api_images:
+  api_uploads:
+  api_logs:
+  mongo_db:</code></pre> </div>  <div class="mt-8"> <h3 class="text-lg font-semibold text-gray-900">Extra files</h3> <p class="mt-2 text-gray-600">
+The Docker Compose configuration above bind-mounts the following file. Save  it next to your <code class="rounded bg-gray-100 px-1 py-0.5 text-sm">compose.yml</code>,
+                      keeping the same relative path.
+</p> <div class="mt-5"> <p class="font-mono text-sm font-medium text-gray-800">librechat.yaml</p> <div class="js-code-block relative mt-2"> <button type="button" class="js-copy-code absolute right-3 top-3 rounded-md bg-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors duration-200 hover:bg-slate-600">
+Copy
+</button> <pre class="overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm leading-6 text-slate-100"><code># For more information, see the Configuration Guide:
+# https://www.librechat.ai/docs/configuration/librechat_yaml
+# Example: https://github.com/danny-avila/LibreChat/blob/main/librechat.example.yaml
+
+# Configuration version (required)
+version: 1.2.1
+
+# Cache settings: Set to true to enable caching
+cache: true
+
+# File storage configuration
+# Single strategy for all file types (legacy format, still supported)
+# fileStrategy: &quot;s3&quot;
+
+# Granular file storage strategies (new format - recommended)
+# Allows different storage strategies for different file types
+# fileStrategy:
+#   avatar: &quot;s3&quot;        # Storage for user/agent avatar images
+#   image: &quot;firebase&quot;   # Storage for uploaded images in chats
+#   document: &quot;local&quot;   # Storage for document uploads (PDFs, text files, etc.)
+
+# Available strategies: &quot;local&quot;, &quot;s3&quot;, &quot;firebase&quot;
+# If not specified, defaults to &quot;local&quot; for all file types
+# You can mix and match strategies based on your needs:
+# - Use S3 for avatars for fast global access
+# - Use Firebase for images with automatic optimization
+# - Use local storage for documents for privacy/compliance
+
+# Custom interface configuration
+interface:
+  customWelcome: &#39;Welcome to LibreChat! Enjoy your experience.&#39;
+  # Enable/disable file search as a chatarea selection (default: true)
+  # Note: This setting does not disable the Agents File Search Capability.
+  # To disable the Agents Capability, see the Agents Endpoint configuration instead.
+  fileSearch: true
+  # Privacy policy settings
+  privacyPolicy:
+    externalUrl: &#39;https://librechat.ai/privacy-policy&#39;
+    openNewTab: true
+
+  # Terms of service
+  termsOfService:
+    externalUrl: &#39;https://librechat.ai/tos&#39;
+    openNewTab: true
+    modalAcceptance: true
+    modalTitle: &#39;Terms of Service for LibreChat&#39;
+    modalContent: |
+      # Terms and Conditions for LibreChat
+
+      *Effective Date: February 18, 2024*
+
+      Welcome to LibreChat, the informational website for the open-source AI chat platform, available at https://librechat.ai. These Terms of Service (&quot;Terms&quot;) govern your use of our website and the services we offer. By accessing or using the Website, you agree to be bound by these Terms and our Privacy Policy, accessible at https://librechat.ai//privacy.
+
+      ## 1. Ownership
+
+      Upon purchasing a package from LibreChat, you are granted the right to download and use the code for accessing an admin panel for LibreChat. While you own the downloaded code, you are expressly prohibited from reselling, redistributing, or otherwise transferring the code to third parties without explicit permission from LibreChat.
+
+      ## 2. User Data
+
+      We collect personal data, such as your name, email address, and payment information, as described in our Privacy Policy. This information is collected to provide and improve our services, process transactions, and communicate with you.
+
+      ## 3. Non-Personal Data Collection
+
+      The Website uses cookies to enhance user experience, analyze site usage, and facilitate certain functionalities. By using the Website, you consent to the use of cookies in accordance with our Privacy Policy.
+
+      ## 4. Use of the Website
+
+      You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else&#39;s use and enjoyment of the Website. Prohibited behavior includes harassing or causing distress or inconvenience to any person, transmitting obscene or offensive content, or disrupting the normal flow of dialogue within the Website.
+
+      ## 5. Governing Law
+
+      These Terms shall be governed by and construed in accordance with the laws of the United States, without giving effect to any principles of conflicts of law.
+
+      ## 6. Changes to the Terms
+
+      We reserve the right to modify these Terms at any time. We will notify users of any changes by email. Your continued use of the Website after such changes have been notified will constitute your consent to such changes.
+
+      ## 7. Contact Information
+
+      If you have any questions about these Terms, please contact us at contact@librechat.ai.
+
+      By using the Website, you acknowledge that you have read these Terms of Service and agree to be bound by them.
+
+  endpointsMenu: true
+  modelSelect: true
+  parameters: true
+  sidePanel: true
+  presets: true
+  prompts: true
+  bookmarks: true
+  multiConvo: true
+  agents: true
+  peoplePicker:
+    users: true
+    groups: true
+    roles: true
+  marketplace:
+    use: false
+  fileCitations: true
+  # Temporary chat retention period in hours (default: 720, min: 1, max: 8760)
+  # temporaryChatRetention: 1
+
+# Example Cloudflare turnstile (optional)
+#turnstile:
+#  siteKey: &quot;your-site-key-here&quot;
+#  options:
+#    language: &quot;auto&quot;    # &quot;auto&quot; or an ISO 639-1 language code (e.g. en)
+#    size: &quot;normal&quot;      # Options: &quot;normal&quot;, &quot;compact&quot;, &quot;flexible&quot;, or &quot;invisible&quot;
+
+# Example Registration Object Structure (optional)
+#registration:
+#  socialLogins: [&#39;github&#39;, &#39;google&#39;, &#39;discord&#39;, &#39;openid&#39;, &#39;facebook&#39;, &#39;apple&#39;, &#39;saml&#39;]
+  # allowedDomains:
+  # - &quot;gmail.com&quot;
+
+# Example Balance settings
+# balance:
+#   enabled: false
+#   startBalance: 20000
+#   autoRefillEnabled: false
+#   refillIntervalValue: 30
+#   refillIntervalUnit: &#39;days&#39;
+#   refillAmount: 10000
+
+# speech:
+#   tts:
+#     openai:
+#       url: &#39;&#39;
+#       apiKey: &#39;${TTS_API_KEY}&#39;
+#       model: &#39;&#39;
+#       voices: [&#39;&#39;]
+
+#
+#   stt:
+#     openai:
+#       url: &#39;&#39;
+#       apiKey: &#39;${STT_API_KEY}&#39;
+#       model: &#39;&#39;
+
+# rateLimits:
+#   fileUploads:
+#     ipMax: 100
+#     ipWindowInMinutes: 60  # Rate limit window for file uploads per IP
+#     userMax: 50
+#     userWindowInMinutes: 60  # Rate limit window for file uploads per user
+#   conversationsImport:
+#     ipMax: 100
+#     ipWindowInMinutes: 60  # Rate limit window for conversation imports per IP
+#     userMax: 50
+#     userWindowInMinutes: 60  # Rate limit window for conversation imports per user
+
+# Example Actions Object Structure
+#actions:
+#  allowedDomains:
+#    - &#39;swapi.dev&#39;
+#    - &#39;librechat.ai&#39;
+#    - &#39;google.com&#39;
+
+# Example MCP Servers Object Structure
+# mcpServers:
+#   everything:
+#     # type: sse # type can optionally be omitted
+#     url: http://localhost:3001/sse
+#     timeout: 60000  # 1 minute timeout for this server, this is the default timeout for MCP servers.
+#   puppeteer:
+#     type: stdio
+#     command: npx
+#     args:
+#       - -y
+#       - &quot;@modelcontextprotocol/server-puppeteer&quot;
+#     timeout: 300000  # 5 minutes timeout for this server
+#   filesystem:
+#     # type: stdio
+#     command: npx
+#     args:
+#       - -y
+#       - &quot;@modelcontextprotocol/server-filesystem&quot;
+#       - /home/user/LibreChat/
+#     iconPath: /home/user/LibreChat/client/public/assets/logo.svg
+#   mcp-obsidian:
+#     command: npx
+#     args:
+#       - -y
+#       - &quot;mcp-obsidian&quot;
+#       - /path/to/obsidian/vault
+
+# Definition of custom endpoints
+endpoints:
+  # assistants:
+  #   disableBuilder: false # Disable Assistants Builder Interface by setting to `true`
+  #   pollIntervalMs: 3000  # Polling interval for checking assistant updates
+  #   timeoutMs: 180000  # Timeout for assistant operations
+  #   # Should only be one or the other, either `supportedIds` or `excludedIds`
+  #   supportedIds: [&quot;asst_supportedAssistantId1&quot;, &quot;asst_supportedAssistantId2&quot;]
+  #   # excludedIds: [&quot;asst_excludedAssistantId&quot;]
+  #   # Only show assistants that the user created or that were created externally (e.g. in Assistants playground).
+  #   # privateAssistants: false # Does not work with `supportedIds` or `excludedIds`
+  #   # (optional) Models that support retrieval, will default to latest known OpenAI models that support the feature
+  #   retrievalModels: [&quot;gpt-4-turbo-preview&quot;]
+  #   # (optional) Assistant Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
+  #   capabilities: [&quot;code_interpreter&quot;, &quot;retrieval&quot;, &quot;actions&quot;, &quot;tools&quot;, &quot;image_vision&quot;]
+  # agents:
+  #   # (optional) Default recursion depth for agents, defaults to 25
+  #   recursionLimit: 50
+  #   # (optional) Max recursion depth for agents, defaults to 25
+  #   maxRecursionLimit: 100
+  #   # (optional) Disable the builder interface for agents
+  #   disableBuilder: false
+  #   # (optional) Maximum total citations to include in agent responses, defaults to 30
+  #   maxCitations: 30
+  #   # (optional) Maximum citations per file to include in agent responses, defaults to 7
+  #   maxCitationsPerFile: 7
+  #   # (optional) Minimum relevance score for sources to be included in responses, defaults to 0.45 (45% relevance threshold)
+  #   # Set to 0.0 to show all sources (no filtering), or higher like 0.7 for stricter filtering
+  #   minRelevanceScore: 0.45
+  #   # (optional) Agent Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
+  #   capabilities: [&quot;execute_code&quot;, &quot;file_search&quot;, &quot;actions&quot;, &quot;tools&quot;]
+
+# fileConfig:
+#   endpoints:
+#     assistants:
+#       fileLimit: 5
+#       fileSizeLimit: 10  # Maximum size for an individual file in MB
+#       totalSizeLimit: 50  # Maximum total size for all files in a single request in MB
+#       supportedMimeTypes:
+#         - &quot;image/.*&quot;
+#         - &quot;application/pdf&quot;
+#     openAI:
+#       disabled: true  # Disables file uploading to the OpenAI endpoint
+#     default:
+#       totalSizeLimit: 20
+#     YourCustomEndpointName:
+#       fileLimit: 2
+#       fileSizeLimit: 5
+#   serverFileSizeLimit: 100  # Global server file size limit in MB
+#   avatarSizeLimit: 2  # Limit for user avatar image size in MB
+#   imageGeneration: # Image Gen settings, either percentage or px
+#     percentage: 100
+#     px: 1024
+#   # Client-side image resizing to prevent upload errors
+#   clientImageResize:
+#     enabled: false  # Enable/disable client-side image resizing (default: false)
+#     maxWidth: 1900  # Maximum width for resized images (default: 1900)
+#     maxHeight: 1900  # Maximum height for resized images (default: 1900)
+#     quality: 0.92  # JPEG quality for compression (0.0-1.0, default: 0.92)
+# # See the Custom Configuration Guide for more information on Assistants Config:
+# # https://www.librechat.ai/docs/configuration/librechat_yaml/object_structure/assistants_endpoint
+
+# Memory configuration for user memories
+# memory:
+#   # (optional) Disable memory functionality
+#   disabled: false
+#   # (optional) Restrict memory keys to specific values to limit memory storage and improve consistency
+#   validKeys: [&quot;preferences&quot;, &quot;work_info&quot;, &quot;personal_info&quot;, &quot;skills&quot;, &quot;interests&quot;, &quot;context&quot;]
+#   # (optional) Maximum token limit for memory storage (not yet implemented for token counting)
+#   tokenLimit: 10000
+#   # (optional) Enable personalization features (defaults to true if memory is configured)
+#   # When false, users will not see the Personalization tab in settings
+#   personalize: true
+#   # Memory agent configuration - either use an existing agent by ID or define inline
+#   agent:
+#     # Option 1: Use existing agent by ID
+#     id: &quot;your-memory-agent-id&quot;
+#     # Option 2: Define agent inline
+#     # provider: &quot;openai&quot;
+#     # model: &quot;gpt-4o-mini&quot;
+#     # instructions: &quot;You are a memory management assistant. Store and manage user information accurately.&quot;
+#     # model_parameters:
+#     #   temperature: 0.1</code></pre> </div> </div> </div> <p class="mt-2 text-sm text-gray-500">
+Prefer a managed setup? WinterFlow installs, configures, and updates LibreChat for you using this same Docker Compose
+                  configuration.
+</p> </section> </div> </div> </div> </div> </section> <script type="module">const o=async e=>{if(window.isSecureContext&&navigator.clipboard){await navigator.clipboard.writeText(e);return}const t=document.createElement("textarea");t.value=e,t.style.position="fixed",t.style.opacity="0",document.body.appendChild(t),t.select();try{if(!document.execCommand("copy"))throw new Error("execCommand failed")}finally{t.remove()}};document.querySelectorAll(".js-copy-code").forEach(e=>{e.addEventListener("click",async()=>{const t=e.closest(".js-code-block")?.querySelector("code")?.textContent??"";try{await o(t),e.textContent="Copied!"}catch{e.textContent="Copy failed"}setTimeout(()=>{e.textContent="Copy"},2e3)})});</script> </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
 Join the Waitlist
 </button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
 Join Team Waitlist
@@ -24,4 +865,4 @@ Install with Winterflow
 Install with Winterflow
 </button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
 Submit Request
-</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.DhIQYmhx.js"></script>  </body></html>
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
