@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mealie v3.0.0 release notes | WinterFlow.io</title><meta name="description" content="Upgraded the frontend to Vue 3 and Nuxt 3, expanded the food seed database, and added support for creating recipes from multiple images."><link rel="canonical" href="https://winterflow.io/catalog/mealie/releases/v3.0.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Mealie v3.0.0 release notes | WinterFlow.io"><meta property="og:description" content="Upgraded the frontend to Vue 3 and Nuxt 3, expanded the food seed database, and added support for creating recipes from multiple images."><meta property="og:url" content="https://winterflow.io/catalog/mealie/releases/v3.0.0/"><meta property="og:image" content="https://winterflow.io/images/apps/mealie/mealie.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Mealie v3.0.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Upgraded the frontend to Vue 3 and Nuxt 3, expanded the food seed database, and added support for creating recipes from multiple images."><meta name="twitter:image" content="https://winterflow.io/images/apps/mealie/mealie.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Mealie","item":"https://winterflow.io/catalog/mealie/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/mealie/releases/"},{"@type":"ListItem","position":5,"name":"v3.0.0","item":"https://winterflow.io/catalog/mealie/releases/v3.0.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.Cu_Sl5z2.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/mealie/mealie.png" alt="Mealie logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mealie</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Self-hosted recipe manager, meal planner, and shopping list</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> paprika, mealime, plan to eat </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://docs.mealie.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/mealie-recipes/mealie" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/mealie-recipes/mealie/tree/mealie-next/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/mealie/mealie-home.png" alt="Mealie screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/mealie-recipes/mealie/blob/mealie-next/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 12,674 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Mealie" data-app-slug="mealie" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/mealie-recipes/mealie" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/hay-kot" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor hay-kot on GitHub →
+</a><a href="https://www.buymeacoffee.com/haykot" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy Me a Coffee →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/mealie/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (96)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/mealie/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v3.0.0</h2> <span class="text-sm text-gray-500">2025-07-11</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="">🍴🍴🍴🍴🍴🍴</h1>
+<h2 id="-breaking-changes">🚨 Breaking changes</h2>
+<blockquote>
+<p>[!CAUTION]</p>
+<h3 id="️-updated-admin-routes">⚠️ Updated Admin Routes</h3>
+<p>We’ve consolidated the admin user routes to streamline the API. The old routes under <code>/api/users</code> have been removed and replaced with new routes under <code>/api/admin/users</code>. The underlying functions are unchanged, so switching to the new routes should be seamless.</p>
+<ul>
+<li><code>GET /api/users</code> → <code>GET /api/admin/users</code></li>
+<li><code>POST /api/users</code> → <code>POST /api/admin/users</code></li>
+<li><code>GET /api/users/{item_id}</code> → <code>GET /api/admin/users/{item_id}</code></li>
+<li><code>DELETE /api/users/{item_id}</code> → <code>DELETE /api/admin/users/{item_id}</code></li>
+</ul>
+<p>For more info check out PR #5050</p>
+</blockquote>
+<blockquote>
+<p>[!CAUTION]</p>
+<h3 id="-removed-backend-jinja2-template-rendering">🚫 Removed Backend Jinja2 Template Rendering</h3>
+<p>We have removed the ability to provide and render Jinja2 templates via the backend API. This feature was never exposed in the UI and was difficult to use securely in user-facing scenarios. Users who previously relied on backend template rendering are encouraged to switch to client-side templating solutions.</p>
+<p>For more info check out PR #5631</p>
+</blockquote>
+<h2 id="-highlights">🎉 Highlights</h2>
+<h3 id="-frontend-upgrade-to-vue-3--nuxt-3">🆙 Frontend Upgrade to Vue 3 &#x26; Nuxt 3</h3>
+<p>We’ve successfully upgraded the Mealie frontend to Nuxt 3 and Vue 3! 🎉
+This was a major overhaul that touched nearly every file in the frontend codebase. While the transition initially introduced a number of visual and functional issues, we’re confident that the vast majority have been resolved and that the new frontend is stable moving forward.
+You may also notice some minor visual tweaks to make the interface more streamlined.
+This upgrade significantly reduces technical debt and enables us to take advantage of the improved tooling and performance in the Nuxt 3 &#x26; Vue 3 ecosystem. We haven’t seen any remaining issues, but if you come across something that’s no longer working as it did before, we’d appreciate a heads-up!</p>
+<h3 id="-expanded-and-categorized-food-seed-file">🍎 Expanded and Categorized Food Seed File</h3>
+<p>We’ve significantly increased the size of the food database — from 214 to over 2,500 foods! Additionally, all foods are now categorized, making sorted shopping lists ready to use right out of the box.
+If you update your existing foods using the new seed file, please note that we do not overwrite existing entries, so some of your previously existing foods may remain uncategorized.
+If you use Mealie in another language, please help us translate the new foods so everyone can enjoy the updated seed file. You can contribute translations on <a href="https://crowdin.com/project/mealie">Mealie’s Crowdin page</a>.
+Big thanks to @Cameronwyatt for sticking with this through all the Crowdin limitations.</p>
+<h3 id="️-create-recipes-from-multiple-images">🖼️ Create Recipes from Multiple Images</h3>
+<p>You can now create recipes using multiple images, making it easier to capture every step or angle of your cooking process. Along with this new feature, we’ve refreshed the visuals on the recipe creation page to provide a smoother, more intuitive experience.</p>
+<h3 id="-option-to-hide-password-login">🔒 Option to Hide Password Login</h3>
+<p>You can now configure the frontend to hide the username and password fields on the login page by setting the environment variable <code>ALLOW_PASSWORD_LOGIN</code> to <code>false</code>.  This streamlines the login experience for OIDC and other external auth users by removing the standard login fields.</p>
+<h2 id="-new-features">✨ New features</h2>
+<ul>
+<li>feat: setting to hide password login @cdanis (#4943)</li>
+<li>feat: remove unnecessary UI components if allowPasswordLogin is true @SurfBurger (#5484)</li>
+<li>feat: add the selected recipe servings and yields in the content of the recipe post action @felixschndr (#5340)</li>
+<li>feat: Migrate to Nuxt 3 framework @mrth2 (#5184)</li>
+<li>feat: Update food seeding logic &#x26; increase food seed size @Cameronwyatt (#5514)</li>
+<li>feat: create recipe from multiple images @SkepticMystic (#5590)</li>
+<li>feat: new create from image visuals @Kuchenpirat (#5595)</li>
+<li>feat: Consolidate Admin User APIs @michael-genson (#5050)</li>
+<li>feat: Replace google-fonts module with nuxt/fonts @p0lycarpio (#5618)</li>
+</ul>
+<h2 id="-bug-fixes">🐛 Bug fixes</h2>
+<ul>
+<li>fix: “NOT IN” doesn’t apply filter properly @michael-genson (#5154)</li>
+<li>fix: spelling of GitHub @Kuchenpirat (#5244)</li>
+<li>fix: update admin scripts paths in docs @Kuchenpirat (#5263)</li>
+<li>fix: remove unmaintained ios shortcut @Kuchenpirat (#5280)</li>
+<li>fix: Pre-download NLTK during Docker build @michael-genson (#5290)</li>
+<li>fix: build pull request image only in mealie repo @Kuchenpirat (#5327)</li>
+<li>fix: Add missing group_id to RecipeTag and TagBase schemas @robertdanahome (#5342)</li>
+<li>fix: handle recipe-scraper returning a int causing clean_time to return None @miawgogo (#5522)</li>
+<li>fix: Fixing the OpenAPI Spec and the Call to delete a shared recipe. @sravankaruturi (#5537)</li>
+<li>fix: #5511, list item state doesn’t change when offline @cm226 (#5512)</li>
+<li>fix: Various Nuxt Upgrade Issues @michael-genson (#5545)</li>
+<li>fix: shopping list button in one row @Kuchenpirat (#5547)</li>
+<li>fix: pwa not being installable after nuxt 3 upgrade @Kuchenpirat (#5552)</li>
+<li>fix: Remove “Ingredients” From OpenAI Prompt For Instructions @michael-genson (#5546)</li>
+<li>fix: passwort strength indicator @Kuchenpirat (#5553)</li>
+<li>fix: pwa share target @Kuchenpirat (#5557)</li>
+<li>fix: delete recipe instructions after nuxt 3 upgrade @Kuchenpirat (#5560)</li>
+<li>fix: mealplanner day title card height &#x26; alignment @Kuchenpirat (#5561)</li>
+<li>fix: register create group flow @Kuchenpirat (#5565)</li>
+<li>fix: Cookbooks not rendering on sidebar @michael-genson (#5570)</li>
+<li>fix: markdown list padding and replace nuxtjs/mdc @Kuchenpirat (#5577)</li>
+<li>fix: recipe image creation @Kuchenpirat (#5579)</li>
+<li>fix: get recipe image by url @Kuchenpirat (#5588)</li>
+<li>fix: Nuxt3 upgrades UI fixes &#x26; improvements @p0lycarpio (#5589)</li>
+<li>fix: check for OPENAI_MODEL in OPENAI_FEATURE @jknndy (#5603)</li>
+<li>fix: recipe page warnings @Kuchenpirat (#5609)</li>
+<li>fix: recipe timeline visuals (nuxt 3) @Kuchenpirat (#5608)</li>
+<li>fix: remove unused deps @Kuchenpirat (#5610)</li>
+<li>fix: truncate slugs when too long @hay-kot (#5633)</li>
+<li>fix: load from env if available vs file @hay-kot (#5635)</li>
+<li>fix: workflow permissions @hay-kot (#5636)</li>
+<li>fix: workflow branch target/base @hay-kot (#5637)</li>
+<li>fix: 500 error on recipe share link  @Kuchenpirat (#5627)</li>
+<li>fix: lint error from locale sync @Kuchenpirat (#5644)</li>
+<li>fix: AppButtonCopy errors in tooltip &#x26; console @p0lycarpio (#5612)</li>
+<li>fix: Refactor Stores and Fix Missing Public Cookbooks @michael-genson (#5611)</li>
+<li>fix: nutrition info visuals @Kuchenpirat (#5659)</li>
+<li>fix: Remove redundant get_one call in patch_one method @jknndy (#5619)</li>
+<li>fix: Preserve “Completed On” Date In Checked Shopping List Items @michael-genson (#5665)</li>
+<li>fix: Recipe Timeline Not Filtering @michael-genson (#5666)</li>
+<li>fix: Remove Padding On Print @michael-genson (#5668)</li>
+<li>fix: Restore Servings To Print View @michael-genson (#5669)</li>
+</ul>
+<h2 id="-maintenance">🧰 Maintenance</h2>
+<details>
+<summary>57 changes</summary>
+<ul>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5243)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5245)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5246)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5248)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5250)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5252)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5269)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5262)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5281)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5301)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5320)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5310)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5344)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5360)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5370)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5372)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5374)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5379)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5390)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5394)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5396)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5398)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5407)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5418)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5424)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5428)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5438)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5446)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5457)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5458)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5471)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5474)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5485)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5491)</li>
+<li>chore: Relax Stalebot @michael-genson (#5498)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5497)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5500)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5501)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5507)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5515)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5564)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5605)</li>
+<li>chore: automatic crowdin sync via gh actions @hay-kot (#5630)</li>
+<li>chore: remove unused jinja export option @hay-kot (#5631)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5632)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5640)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5641)</li>
+<li>chore: automatic locale sync @github-actions (#5639)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5643)</li>
+<li>chore: automatic locale sync @github-actions (#5642)</li>
+<li>chore(auto): Update pre-commit hooks @github-actions (#5652)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5653)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5656)</li>
+<li>chore: Upgrade Pillow HEIF @michael-genson (#5657)</li>
+<li>chore: Fix Dockerfile “AS” Case @michael-genson (#5662)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5664)</li>
+<li>chore(l10n): New Crowdin updates @hay-kot (#5672)</li>
+</ul>
+</details>
+<h2 id="-documentation">📚 Documentation</h2>
+<ul>
+<li>docs(auto): Update image tag, for release v2.8.0 @github-actions (#5236)</li>
+<li>docs: Add community docs for an iOS shortcut (attempt 2) @ant385525 (#5345)</li>
+<li>docs: document necessity of forwarded-allow-ips with OIDC behind reverse-proxy https @oddlama (#5461)</li>
+<li>docs: remove duplicate headline @Kuchenpirat (#5558)</li>
+<li>docs: typo in app_settings_constructor docstring @jknndy (#5592)</li>
+</ul>
+<h2 id="-internal-development">🔨 Internal development</h2>
+<ul>
+<li>dev: add pull request image build workflow (only internal branches for now) @Kuchenpirat (#5235)</li>
+</ul>
+<h2 id="️-dependency-updates">⬆️ Dependency updates</h2>
+<details>
+<summary>122 changes</summary>
+<ul>
+<li>fix(deps): update dependency alembic to v1.15.1 @renovate (#5178)</li>
+<li>fix(deps): update dependency openai to v1.66.5 @renovate (#5197)</li>
+<li>fix(deps): update dependency sqlalchemy to v2.0.39 @renovate (#5204)</li>
+<li>fix(deps): update dependency pillow-heif to ^0.22.0 @renovate (#5219)</li>
+<li>chore(deps): update dependency coverage to v7.7.0 @renovate (#5227)</li>
+<li>chore(deps): update dependency pre-commit to v4.2.0 @renovate (#5238)</li>
+<li>fix(deps): update dependency openai to v1.67.0 @renovate (#5247)</li>
+<li>fix(deps): update dependency openai to v1.68.0 @renovate (#5254)</li>
+<li>chore(deps): update dependency ruff to v0.11.1 @renovate (#5253)</li>
+<li>fix(deps): update dependency openai to v1.68.2 @renovate (#5259)</li>
+<li>chore(deps): update dependency ruff to v0.11.2 @renovate (#5258)</li>
+<li>fix(deps): update dependency fastapi to v0.115.12 @renovate (#5268)</li>
+<li>chore(deps): update dependency pylint to v3.3.6 @renovate (#5251)</li>
+<li>chore(deps): update dependency coverage to v7.7.1 @renovate (#5260)</li>
+<li>fix(deps): update dependency orjson to v3.10.16 @renovate (#5270)</li>
+<li>chore(deps): update dependency pytest-asyncio to ^0.26.0 @renovate (#5274)</li>
+<li>fix(deps): update dependency python-dotenv to v1.1.0 @renovate (#5275)</li>
+<li>fix(deps): update dependency typing-extensions to v4.13.0 @renovate (#5278)</li>
+<li>fix(deps): update dependency sqlalchemy to v2.0.40 @renovate (#5283)</li>
+<li>fix(deps): update dependency openai to v1.69.0 @renovate (#5284)</li>
+<li>fix(deps): update dependency pydantic to v2.11.1 @renovate (#5285)</li>
+<li>fix(deps): update dependency alembic to v1.15.2 @renovate (#5289)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.10 @renovate (#5293)</li>
+<li>chore(deps): update dependency rich to v14 @renovate (#5294)</li>
+<li>fix(deps): update dependency apprise to v1.9.3 @renovate (#5295)</li>
+<li>chore(deps): update dependency coverage to v7.8.0 @renovate (#5297)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.11 @renovate (#5304)</li>
+<li>chore(deps): update dependency ruff to v0.11.3 @renovate (#5311)</li>
+<li>fix(deps): update dependency pydantic to v2.11.2 @renovate (#5312)</li>
+<li>fix(deps): update dependency openai to v1.70.0 @renovate (#5300)</li>
+<li>fix(deps): update dependency authlib to v1.5.2 @renovate (#5308)</li>
+<li>fix(deps): update dependency rapidfuzz to v3.13.0 @renovate (#5314)</li>
+<li>chore(deps): update dependency ruff to v0.11.4 @renovate (#5317)</li>
+<li>fix(deps): update dependency lxml to v5.3.2 @renovate (#5318)</li>
+<li>fix(deps): update dependency openai to v1.71.0 @renovate (#5322)</li>
+<li>fix(deps): update dependency openai to v1.72.0 @renovate (#5328)</li>
+<li>fix(deps): update dependency pydantic to v2.11.3 @renovate (#5325)</li>
+<li>fix(deps): update dependency openai to v1.73.0 @renovate (#5335)</li>
+<li>chore(deps): update dependency ruff to v0.11.5 @renovate (#5333)</li>
+<li>fix(deps): update dependency typing-extensions to v4.13.2 @renovate (#5313)</li>
+<li>fix(deps): update dependency pillow to v11.2.1 @renovate (#5337)</li>
+<li>fix(deps): update dependency openai to v1.74.0 @renovate (#5346)</li>
+<li>fix(deps): update dependency openai to v1.75.0 @renovate (#5357)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.12 @renovate (#5359)</li>
+<li>chore(deps): update dependency ruff to v0.11.6 @renovate (#5361)</li>
+<li>fix(deps): update dependency beautifulsoup4 to v4.13.4 @renovate (#5352)</li>
+<li>fix(deps): update dependency aniso8601 to v10.0.1 @renovate (#5368)</li>
+<li>fix(deps): update dependency html2text to v2025 @renovate (#5347)</li>
+<li>fix(deps): update dependency openai to v1.76.0 @renovate (#5381)</li>
+<li>fix(deps): update dependency uvicorn to v0.34.2 @renovate (#5343)</li>
+<li>fix(deps): update dependency pydantic-settings to v2.9.1 @renovate (#5366)</li>
+<li>fix(deps): update dependency lxml to v5.4.0 @renovate (#5378)</li>
+<li>chore(deps): update dependency ruff to v0.11.7 @renovate (#5388)</li>
+<li>fix(deps): update dependency recipe-scrapers to v15.7.1 @renovate (#5412)</li>
+<li>fix(deps): update dependency openai to v1.77.0 @renovate (#5404)</li>
+<li>chore(deps): update dependency ruff to v0.11.8 @renovate (#5410)</li>
+<li>fix(deps): update dependency tzdata to v2025 @renovate (#5365)</li>
+<li>fix(deps): update dependency ingredient-parser-nlp to v2.1.0 @renovate (#5373)</li>
+<li>fix(deps): update dependency orjson to v3.10.18 @renovate (#5403)</li>
+<li>fix(deps): update dependency pydantic to v2.11.4 @renovate (#5405)</li>
+<li>chore(deps): update dependency pylint to v3.3.7 @renovate (#5416)</li>
+<li>fix(deps): update dependency openai to v1.78.0 @renovate (#5429)</li>
+<li>chore(deps): update dependency ruff to v0.11.9 @renovate (#5434)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.13 @renovate (#5435)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.14 @renovate (#5442)</li>
+<li>fix(deps): update dependency openai to v1.78.1 @renovate (#5441)</li>
+<li>fix(deps): update dependency openai to v1.79.0 @renovate (#5450)</li>
+<li>chore(deps): update dependency ruff to v0.11.10 @renovate (#5447)</li>
+<li>fix(deps): update dependency sqlalchemy to v2.0.41 @renovate (#5445)</li>
+<li>fix(deps): update dependency ingredient-parser-nlp to v2.1.1 @renovate (#5455)</li>
+<li>fix(deps): update dependency openai to v1.81.0 @renovate (#5463)</li>
+<li>chore(deps): update dependency coverage to v7.8.1 @renovate (#5462)</li>
+<li>fix(deps): update dependency alembic to v1.16.1 @renovate (#5464)</li>
+<li>chore(deps): update dependency ruff to v0.11.11 @renovate (#5466)</li>
+<li>fix(deps): update dependency openai to v1.82.0 @renovate (#5467)</li>
+<li>fix(deps): update dependency pydantic to v2.11.5 @renovate (#5468)</li>
+<li>fix(deps): update dependency authlib to v1.6.0 @renovate (#5469)</li>
+<li>chore(deps): update dependency coverage to v7.8.2 @renovate (#5470)</li>
+<li>chore(deps): update dependency freezegun to v1.5.2 @renovate (#5472)</li>
+<li>chore(deps): update dependency pytest-asyncio to v1 @renovate (#5473)</li>
+<li>chore(deps): update dependency ruff to v0.11.12 @renovate (#5486)</li>
+<li>chore(deps): update dependency mypy to v1.16.0 @renovate (#5487)</li>
+<li>fix(deps): update dependency openai to v1.82.1 @renovate (#5488)</li>
+<li>fix(deps): update dependency uvicorn to v0.34.3 @renovate (#5495)</li>
+<li>fix(deps): update dependency typing-extensions to v4.14.0 @renovate (#5499)</li>
+<li>chore(deps): update dependency pytest to v8.4.0 @renovate (#5502)</li>
+<li>fix(deps): update dependency openai to v1.83.0 @renovate (#5503)</li>
+<li>fix(deps): update dependency openai to v1.84.0 @renovate (#5505)</li>
+<li>fix(deps): update dependency recipe-scrapers to v15.8.0 @renovate (#5506)</li>
+<li>chore(deps): update dependency ruff to v0.11.13 @renovate (#5510)</li>
+<li>fix(deps): update dependency openai to v1.85.0 @renovate (#5518)</li>
+<li>fix(deps): update dependency openai to v1.86.0 @renovate (#5520)</li>
+<li>fix(deps): update dependency requests to v2.32.4 [security] @renovate (#5519)</li>
+<li>chore(deps): update dependency mypy to v1.16.1 @renovate (#5533)</li>
+<li>fix(deps): update dependency pydantic to v2.11.7 @renovate (#5527)</li>
+<li>fix(deps): update dependency fastapi to v0.115.13 @renovate (#5538)</li>
+<li>chore(deps): update dependency coverage to v7.9.1 @renovate (#5523)</li>
+<li>fix(deps): update dependency openai to v1.88.0 @renovate (#5536)</li>
+<li>fix(deps): update dependency alembic to v1.16.2 @renovate (#5535)</li>
+<li>fix(deps): update dependency openai to v1.90.0 @renovate (#5555)</li>
+<li>chore(deps): update dependency pytest to v8.4.1 @renovate (#5542)</li>
+<li>chore(deps): update dependency ruff to ^0.12.0 @michael-genson (#5568)</li>
+<li>fix(deps): update dependency openai to v1.91.0 @renovate (#5567)</li>
+<li>fix(deps): update dependency python-dotenv to v1.1.1 @renovate (#5571)</li>
+<li>chore(deps): update dependency ruff to v0.12.1 @renovate (#5587)</li>
+<li>fix(deps): update dependency openai to v1.92.2 @renovate (#5584)</li>
+<li>fix(deps): update dependency pydantic-settings to v2.10.1 @renovate (#5559)</li>
+<li>fix(deps): update dependency openai to v1.93.0 @renovate (#5591)</li>
+<li>fix(deps): update dependency pillow to v11.3.0 [security] @renovate (#5615)</li>
+<li>chore(deps): update dependency mkdocs-material to v9.6.15 @renovate (#5613)</li>
+<li>fix(deps): update dependency fastapi to v0.115.14 @renovate (#5581)</li>
+<li>fix(deps): update dependency lxml to v6 @renovate (#5585)</li>
+<li>fix(deps): update dependency tzdata to v2025 @renovate (#5534)</li>
+<li>fix(deps): update dependency uvicorn to ^0.35.0 @renovate (#5598)</li>
+<li>chore(deps): update dependency ruff to v0.12.2 @renovate (#5625)</li>
+<li>fix(deps): update dependency tzdata to v2025 @renovate (#5624)</li>
+<li>fix(deps): update dependency typing-extensions to v4.14.1 @renovate (#5629)</li>
+<li>fix(deps): update dependency openai to v1.93.1 @renovate (#5655)</li>
+<li>fix(deps): update dependency openai to v1.93.2 @renovate (#5660)</li>
+<li>fix(deps): update dependency openai to v1.93.3 @renovate (#5663)</li>
+<li>fix(deps): update dependency openai to v1.94.0 @renovate (#5667)</li>
+<li>chore(deps): update dependency ruff to v0.12.3 @renovate (#5673)</li>
+</ul>
+</details>
+<h2 id="-new-contributors">🙏 New Contributors</h2>
+<ul>
+<li>@ant385525 made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5345">https://github.com/mealie-recipes/mealie/pull/5345</a></li>
+<li>@robertdanahome made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5342">https://github.com/mealie-recipes/mealie/pull/5342</a></li>
+<li>@oddlama made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5461">https://github.com/mealie-recipes/mealie/pull/5461</a></li>
+<li>@cdanis made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/4943">https://github.com/mealie-recipes/mealie/pull/4943</a></li>
+<li>@SurfBurger made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5484">https://github.com/mealie-recipes/mealie/pull/5484</a></li>
+<li>@miawgogo made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5522">https://github.com/mealie-recipes/mealie/pull/5522</a></li>
+<li>@sravankaruturi made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5537">https://github.com/mealie-recipes/mealie/pull/5537</a></li>
+<li>@cm226 made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5512">https://github.com/mealie-recipes/mealie/pull/5512</a></li>
+<li>@mrth2 made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5184">https://github.com/mealie-recipes/mealie/pull/5184</a></li>
+<li>@jknndy made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5592">https://github.com/mealie-recipes/mealie/pull/5592</a></li>
+<li>@SkepticMystic made their first contribution in <a href="https://github.com/mealie-recipes/mealie/pull/5590">https://github.com/mealie-recipes/mealie/pull/5590</a></li>
+</ul>
+<h1 id="-1">🍴🍴🍴🍴🍴🍴</h1> </div> <div class="mt-6"> <a href="https://github.com/mealie-recipes/mealie/releases/tag/v3.0.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
