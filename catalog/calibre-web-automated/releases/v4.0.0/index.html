@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Calibre-Web Automated v4.0.0 release notes | WinterFlow.io</title><meta name="description" content="This major update introduces smart duplicate detection, Magic Shelves, automated eReader sending, a rebuilt OAuth system, deep analytics, and significant…"><link rel="canonical" href="https://winterflow.io/catalog/calibre-web-automated/releases/v4.0.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Calibre-Web Automated v4.0.0 release notes | WinterFlow.io"><meta property="og:description" content="This major update introduces smart duplicate detection, Magic Shelves, automated eReader sending, a rebuilt OAuth system, deep analytics, and significant…"><meta property="og:url" content="https://winterflow.io/catalog/calibre-web-automated/releases/v4.0.0/"><meta property="og:image" content="https://winterflow.io/images/apps/calibre-web-automated/calibre-web-automated.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Calibre-Web Automated v4.0.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This major update introduces smart duplicate detection, Magic Shelves, automated eReader sending, a rebuilt OAuth system, deep analytics, and significant…"><meta name="twitter:image" content="https://winterflow.io/images/apps/calibre-web-automated/calibre-web-automated.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Calibre-Web Automated","item":"https://winterflow.io/catalog/calibre-web-automated/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/calibre-web-automated/releases/"},{"@type":"ListItem","position":5,"name":"v4.0.0","item":"https://winterflow.io/catalog/calibre-web-automated/releases/v4.0.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.Cu_Sl5z2.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/calibre-web-automated/calibre-web-automated.png" alt="Calibre-Web Automated logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Calibre-Web Automated</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Automated, all-in-one self-hosted ebook library built on Calibre-Web and Calibre</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> Kindle, Kobo </p> </div> <div class="mt-6 flex flex-wrap gap-4">  <a href="https://github.com/crocodilestick/Calibre-Web-Automated" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/crocodilestick/Calibre-Web-Automated/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 5,880 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Calibre-Web Automated" data-app-slug="calibre-web-automated" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/crocodilestick/Calibre-Web-Automated" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://ko-fi.com/crocodilestick" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support on Ko-fi →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/calibre-web-automated/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (27)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/calibre-web-automated/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.0.0</h2> <span class="text-sm text-gray-500">2026-01-29</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <blockquote>
+<p>[!NOTE]<br>
+“I’m honestly so excited to finally share this update with you all. We’ve tackled the duplicate book problem once and for all, built a sick stats system that actually shows you how your library is being used, added dynamic/Magic Shelves, and a powerful &#x26; robust new OAuth system. The amount of new features and fixes in this release is incredible. This is the biggest, most community-driven update CWA has ever had and I’m very grateful to everyone that helped work on it.” - CrocodileStick</p>
+</blockquote>
+<h1 id="supporting-the-project-️">Supporting the Project ❤️</h1>
+<p>CWA is and always will be free and open source. If it makes your library life easier and you’re able to support development, contributions go directly to:</p>
+<ul>
+<li>Testing hardware (ereader devices &#x26; tablets ect.)</li>
+<li>Development tools and infrastructure</li>
+<li>Coffee ☕ (lots of coffee)</li>
+</ul>
+<p><a href="https://ko-fi.com/crocodilestick"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="ko-fi"></a></p>
+<hr>
+<h1 id="major-changes">Major Changes 🚀</h1>
+<h2 id="new-smart-duplicate-detection--management"><strong>NEW:</strong> Smart Duplicate Detection &#x26; Management 🔍🔗</h2>
+<p>Say goodbye to duplicate book headaches! The completely rebuilt duplicate system is smarter, faster, and actually catches duplicates you didn’t even know you had.</p>
+<ul>
+<li>
+<p><strong>Automatic Detection:</strong></p>
+<ul>
+<li><strong>Hybrid SQL + Python Detection</strong> - Combines performant SQL queries with intelligent fuzzy matching to find 95% of duplicates other systems miss</li>
+<li><strong>Post-Ingest Scanning</strong> - Automatically checks for duplicates after importing new books</li>
+<li><strong>Scheduled Scans</strong> - Background task runs periodic checks with configurable cron scheduling</li>
+<li><strong>Incremental Scanning</strong> - Only scans books added/modified since last check instead of your whole library</li>
+<li><strong>Smart Title Normalization</strong> - Strips articles (A, The, etc.), special characters, and whitespace for accurate matching</li>
+<li><strong>Language-Aware</strong> - No more accidental flagging of translations as duplicates</li>
+</ul>
+</li>
+<li>
+<p><strong>Powerful Management:</strong></p>
+<ul>
+<li><strong>Auto-Resolution</strong> - Optionally auto-merge duplicates based on your preferences (keep newest, keep oldest, or manual)</li>
+<li><strong>One-Click Merging</strong> - Merge duplicates directly from the Duplicates Manager with format consolidation</li>
+<li><strong>Batch Operations</strong> - Select and merge multiple duplicate groups at once</li>
+</ul>
+</li>
+<li>
+<p><strong>You’re In Control:</strong></p>
+<ul>
+<li><strong>Configure What Counts as a Duplicate</strong> - Decide exactly what matching criteria to use</li>
+<li><strong>Adjustable Thresholds</strong> - Set how strict or lenient the fuzzy matching should be</li>
+<li><strong>Format Awareness</strong> - Choose whether different formats of the same book count as duplicates</li>
+</ul>
+</li>
+<li>
+<p><strong>Beautiful, Useful Notifications:</strong></p>
+<ul>
+<li><strong>Optional Alerts</strong> - Real-time feedback when duplicates are found or resolved, keeping you on top of your library whether you want to go <strong>full-auto</strong> or <strong>curate your library by hand</strong> (toggleable in CWA Settings)</li>
+<li><strong>Task Progress</strong> - Monitor duplicate scans &#x26; related jobs in the Tasks panel</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README_images/duplicate-detection-system.gif?raw=true" alt=""></p>
+<p><strong>Finally, a duplicate system that actually works!</strong> ✨</p>
+<h2 id="new-magic-shelves"><strong>NEW:</strong> Magic Shelves 🪄📚</h2>
+<p><strong>Magic Shelves</strong> are dynamic, rules-based collections that automatically populate based on criteria you define. Think of them as smart playlists for your books!</p>
+<ul>
+<li>
+<p><strong>Universal Filtering System:</strong></p>
+<ul>
+<li>Filter by <strong>Title, Author, Series, Publisher, Language, Tags, Read Status, Rating, Publication Date, Identifiers (ISBN, Hardcover ID, etc.)</strong></li>
+<li><strong>Multiple filter types:</strong> Exact match, contains, starts with, ends with, regex patterns</li>
+<li><strong>Combine multiple rules</strong> with AND/OR logic for incredibly specific collections</li>
+<li><strong>Date range filtering</strong> with validation for publication years and addition dates</li>
+</ul>
+</li>
+<li>
+<p><strong>Pre-Built Templates:</strong></p>
+<ul>
+<li><strong>Recently Added</strong> - Your newest acquisitions at a glance</li>
+<li><strong>Highly Rated</strong> - Books you’ve rated 4+ stars</li>
+<li><strong>No Cover</strong> - Quickly identify books missing cover art</li>
+<li><strong>Recent Publications</strong> - Books published in the last year</li>
+<li><strong>Incomplete Series</strong> - Series where you’re missing entries</li>
+<li><strong>Yet to Read</strong> - Books you haven’t started</li>
+<li>All templates automatically created for new users and backfilled for existing users</li>
+</ul>
+</li>
+<li>
+<p><strong>Advanced Features:</strong></p>
+<ul>
+<li><strong>Kobo Sync Integration</strong> - Magic Shelves can sync to your Kobo device just like regular shelves!</li>
+<li><strong>Tag-Based Syncing</strong> - Automatically sync books to Kobo when they match Magic Shelf criteria</li>
+<li><strong>Real-Time Updates</strong> - Shelves update automatically as your library changes</li>
+<li><strong>Custom Icons</strong> - Choose from hundreds of emojis to personalize your shelves</li>
+<li><strong>Book Counts &#x26; Caching</strong> - Lightning-fast performance with smart caching and tooltips showing item counts in sidebar</li>
+<li><strong>Stats Tracking</strong> - Magic Shelf usage is also tracked in the new stats dashboard system</li>
+</ul>
+</li>
+<li>
+<p><strong>Beautiful UI:</strong></p>
+<ul>
+<li>Modern, intuitive interface for creating and managing Magic Shelves</li>
+<li>Visual rule builder with drag-and-drop priority</li>
+<li>Live preview of matching books</li>
+<li>Mobile-optimized with conditional formatting</li>
+</ul>
+</li>
+</ul>
+<p><strong>Your library can organize itself now!</strong> 🎉</p>
+<p><img src="https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README_images/magic-shelf-showcase.gif?raw=true" alt=""></p>
+<h2 id="new-auto-send-to-ereader"><strong>NEW:</strong> Auto-Send to eReader 📧⚡</h2>
+<p>Set it and forget it! Books can now be automatically emailed to your eReader as soon as they’re ingested.</p>
+<ul>
+<li><strong>Fully Automated Delivery:</strong>
+<ul>
+<li><strong>Hands-Free Reading</strong> - New books automatically appear on your Kindle, Kobo, or other eReader</li>
+<li><strong>Smart Scheduling</strong> - Configurable delay (1-60 minutes) allows time for metadata fetching and EPUB fixes before sending</li>
+<li><strong>Format Selection</strong> - Automatically sends in your preferred format (EPUB, MOBI, AZW3, etc.)</li>
+<li><strong>Multiple Recipients</strong> - Send to multiple email addresses/devices at once</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README_images/new-send-to-ereader-modal.png?raw=true" alt=""></p>
+<ul>
+<li>
+<p><strong>Integration with CWA Pipeline:</strong></p>
+<ul>
+<li><strong>Works with EPUB Fixer</strong> - Books are automatically fixed before sending to prevent Amazon rejections</li>
+<li><strong>Works with Auto-Metadata</strong> - Fetch metadata first, then send fully-tagged books</li>
+<li><strong>Task Tracking</strong> - Monitor auto-send jobs in the Tasks panel</li>
+<li><strong>Toast Notifications</strong> - Get notified when books are successfully sent</li>
+</ul>
+</li>
+<li>
+<p><strong>Flexible Configuration:</strong></p>
+<ul>
+<li><strong>Per-User Settings</strong> - Each user can configure their own auto-send preferences</li>
+<li><strong>Conditional Sending</strong> - Only send books that match certain criteria (format, author, etc.)</li>
+<li><strong>Email Customization</strong> - Custom subject lines for Amazon’s “convert” feature</li>
+</ul>
+</li>
+</ul>
+<p><strong>Wake up to new books on your eReader every morning!</strong> 🌅📚</p>
+<h2 id="new-automatic-metadata-fetching-on-ingest-️"><strong>NEW:</strong> Automatic Metadata Fetching on Ingest! 🏷️🤖</h2>
+<p>No more manually searching for metadata after importing books! CWA can now automatically fetch and apply metadata during the ingest process.</p>
+<ul>
+<li>
+<p><strong>Seamless Integration:</strong></p>
+<ul>
+<li><strong>Fetch on Import</strong> - Optionally fetch metadata automatically when books are ingested</li>
+<li><strong>Pre-Send Enrichment</strong> - Fetch metadata before auto-sending to eReader so your books arrive fully tagged</li>
+<li><strong>Provider Selection</strong> - Uses your preferred metadata providers (Google Books, Kobo, Hardcover, etc.)</li>
+<li><strong>Smart Fallback</strong> - If one provider fails, automatically tries the next configured provider and you control the hierarchy. Your library, your choice.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configurable Behavior:</strong></p>
+<ul>
+<li><strong>Toggle On/Off</strong> - Enable or disable auto-fetch in CWA Settings</li>
+<li><strong>Timing Control</strong> - Set when metadata fetch happens in the ingest workflow</li>
+<li><strong>Quality Control</strong> - Choose whether to overwrite existing metadata or only fill in missing fields</li>
+<li><strong>Choose Which Fields Get Updated</strong> - Only ever want certain fields to be automatically updated and others to be left alone? No problem! You can choose what gets updated when.</li>
+<li><strong>Smart Metadata Application System</strong> - When enabled, fetched metadata will only replace existing data if it appears to be better quality (e.g., longer descriptions, higher resolution covers). When disabled, fetched metadata will replace existing data as-is from the preferred provider.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Your books arrive perfectly tagged, automatically!</strong> 📖✨</p>
+<h2 id="new-deep-stats--analytics"><strong>NEW:</strong> Deep Stats &#x26; Analytics 📊✨</h2>
+<p>Ever wondered who’s using your library the most, what devices people prefer, or when peak reading hours are? The <strong>CWA Stats</strong> page has been completely rebuilt from scratch with <strong>4 major sections</strong> packed with insights!</p>
+<h3 id="user-activity-statistics">User Activity Statistics 👥</h3>
+<ul>
+<li><strong>Top Users by Downloads</strong> - See who’s using your library the most</li>
+<li><strong>Reading Velocity</strong> - Track pages read and reading speed per user</li>
+<li><strong>Device Breakdown</strong> - Understand what devices your users prefer (Kobo, Kindle, web, etc.)</li>
+<li><strong>Format Preferences</strong> - Which formats are most popular?</li>
+<li><strong>Peak Usage Hours</strong> - Heat map showing when your library is busiest</li>
+<li><strong>Average Session Duration</strong> - How long users spend browsing</li>
+<li><strong>Search Success Rate</strong> - Percentage of searches that result in book views/downloads</li>
+<li><strong>Failed Auth Attempts</strong> - Security monitoring for unauthorized access attempts</li>
+</ul>
+<h3 id="library-statistics">Library Statistics 📚</h3>
+<ul>
+<li><strong>Publication Year Distribution</strong> - Visualize your collection’s age range</li>
+<li><strong>Largest Series</strong> - See which series dominate your library</li>
+<li><strong>Rating Statistics</strong> - Average ratings, most highly-rated books</li>
+<li><strong>Most Fixed Books</strong> - Books that required the most EPUB fixes</li>
+<li><strong>Top Enforced Books</strong> - Books with the most metadata enforcement runs</li>
+<li><strong>Import Source Flows</strong> - Track where your books are coming from</li>
+<li><strong>Format Distribution</strong> - Breakdown of all formats in your library</li>
+<li><strong>Language Distribution</strong> - See the linguistic diversity of your collection</li>
+</ul>
+<h3 id="api-usage-statistics">API Usage Statistics 🔌</h3>
+<ul>
+<li><strong>OPDS Feed Activity</strong> - Monitor OPDS usage and popular feeds</li>
+<li><strong>Kobo Sync Stats</strong> - Track Kobo device syncs and downloads</li>
+<li><strong>KOReader Sync Stats</strong> - KOReader progress sync activity</li>
+<li><strong>REST API Calls</strong> - External API usage tracking</li>
+<li><strong>Hardcover Sync Stats</strong> - Hardcover.app integration activity</li>
+</ul>
+<h3 id="time-based-analytics--export">Time-Based Analytics &#x26; Export ⏰</h3>
+<ul>
+<li><strong>User-Selectable Time Periods</strong> - View stats for custom date ranges (last 7 days, 30 days, 90 days, all time, custom)</li>
+<li><strong>User-Specific Filtering</strong> - Drill down into individual user statistics</li>
+<li><strong>CSV Export</strong> - Export any stat section as CSV for external analysis</li>
+<li><strong>Beautiful Charts</strong> - Interactive graphs with consistent dark mode styling</li>
+<li><strong>Real-Time Updates</strong> - Stats update as your library is used</li>
+</ul>
+<p><strong>Finally see what’s really happening in your library!</strong> 📈</p>
+<p><img src="https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README_images/cwa-stats-showcse.gif?raw=true" alt=""></p>
+<h2 id="new-oauth-that-actually-works-️"><strong>NEW:</strong> OAuth That Actually Works 🛡️🔐</h2>
+<p>Let’s be honest, OAuth has been a pain point for way too long. The redirect loops, the session weirdness, the cryptic errors—we’ve heard you. It’s been completely rewritten from scratch to actually work properly.</p>
+<ul>
+<li><strong>New OAuth Features:</strong>
+<ul>
+<li><strong>Auto-User Creation for LDAP &#x26; Reverse Proxy:</strong> Seamlessly integrate with Active Directory, OpenLDAP, and FreeIPA. New users can now be automatically provisioned upon their first login!</li>
+<li><strong>Reverse Proxy:</strong> Support for Authelia, Authentik, and Traefik ForwardAuth with configurable auto-creation of users.</li>
+<li><strong>Hybrid Flow Strategy</strong> - Google/GitHub use modern direct login, Generic OIDC uses dedicated flow for better compatibility</li>
+<li><strong>Disable Standard Login</strong> - Option to force OAuth-only authentication if that’s your setup</li>
+<li><strong>Admin Role Protection</strong> - Prevents accidentally removing the last admin via OAuth</li>
+<li><strong>JWT Group Mapping</strong> - Properly extracts username/email from JWT tokens for various providers</li>
+<li><strong>Admin Toggle</strong> - Admin roles now have an explicit enable/disable toggle to prevent accidents</li>
+<li><strong>Generic OIDC Support:</strong> Connect to any OpenID Connect provider with ease!</li>
+<li><strong>Security First:</strong> Enhanced input validation, SQL injection protection, and comprehensive audit logging ensure your library stays safe.</li>
+</ul>
+</li>
+</ul>
+<p><strong>No more OAuth headaches—it just works now!</strong> 🎉</p>
+<h2 id="new-better-kobo-integration"><strong>NEW:</strong> Better Kobo Integration 📱💜</h2>
+<p>Kobo support has been dramatically improved with better device communication, sync reliability, and metadata integration.</p>
+<h3 id="enhanced-device-support--endpoints">Enhanced Device Support &#x26; Endpoints 📡</h3>
+<ul>
+<li><strong>Featured Products Endpoint</strong> - New <code>/v1/products/featuredforkoboplus/</code> endpoint for newer firmware</li>
+<li><strong>Category Products</strong> - Added <code>/v1/categories/&#x3C;category>/products</code> endpoint</li>
+<li><strong>Expired Token Handling</strong> - Returns proper 401 when authorization token expires instead of cryptic errors</li>
+<li><strong>Better Temp File Management</strong> - Fixed race condition causing incorrect books to download due to stale temp files</li>
+</ul>
+<h3 id="annotation--progress-sync">Annotation &#x26; Progress Sync 🔄</h3>
+<ul>
+<li><strong>Cascade Delete Safety</strong> - Fixed orphaned progress sync records when books deleted (Thanks to <strong><a href="https://github.com/doxxx">doxxx</a></strong>!)</li>
+<li><strong>Safe Migration</strong> - Automatic database migration to add foreign key constraints for data integrity</li>
+<li><strong>Unit Tests</strong> - Added unit tests for cascade deletion behavior</li>
+<li><strong>Hardcover Client Handling</strong> - Gracefully handles missing per-user Hardcover tokens</li>
+</ul>
+<h3 id="metadata-provider-integration-️">Metadata Provider Integration 🏷️</h3>
+<ul>
+<li><strong>Kobo Metadata Provider</strong> - Added Kobo as a first-class metadata source for better book information (Thanks to <strong><a href="https://github.com/opswhisperer">opswhisperer</a></strong>!)</li>
+<li><strong>Hardcover Sync Fixes</strong> - Resolved Kobo annotations not syncing to Hardcover properly</li>
+</ul>
+<p><strong>Your Kobo experience just got a whole lot better!</strong> 🎉</p>
+<h2 id="new-enhanced-send-to-ereader-experience-️"><strong>NEW:</strong> Enhanced Send-to-eReader Experience 📧✈️</h2>
+<p>We’ve completely rebuilt the “Send to eReader” functionality to give you total control over how your books are delivered.</p>
+<ul>
+<li><strong>New Modal Interface:</strong>
+<ul>
+<li><strong>Multiple Recipients:</strong> Send a book to multiple email addresses at once</li>
+<li><strong>Ad-Hoc Sending:</strong> Type in any email address on the fly—perfect for sending a book to a friend or a temporary device without adding it to your profile</li>
+<li><strong>User-to-User:</strong> Easily send books to other users on your CWA instance</li>
+</ul>
+</li>
+<li><strong>Custom Subjects:</strong> Users can now customize the email subject line (e.g., “convert”) to trigger specific behaviors on Amazon’s end (Thanks to <strong><a href="https://github.com/marauder37">marauder37</a></strong>!)</li>
+</ul>
+<h2 id="new-epub-fixer-20---no-more-amazon-e999-errors"><strong>NEW:</strong> EPUB Fixer 2.0 - No More Amazon E999 Errors! 📧✅</h2>
+<p>Ever had Amazon reject your perfectly good EPUB with a cryptic E999 error? The EPUB Fixer has been completely overhauled to eliminate those rejections once and for all.</p>
+<h3 id="critical-fixes-for-kindle-compatibility">Critical Fixes for Kindle Compatibility</h3>
+<ul>
+<li><strong>IETF BCP 47 Language Tags</strong> - Properly detects and repairs malformed <code>&#x3C;dc:language></code> tags (e.g., <code>en-US</code> vs. <code>en</code>) that trigger Amazon’s E999 rejection—the #1 cause of Send-to-Kindle failures</li>
+<li><strong>XML Declaration Repairs</strong> - Fixes malformed XML declarations in OPF/NCX files that cause silent corruption</li>
+<li><strong>UTF-8 Encoding Declaration</strong> - Ensures all files have proper UTF-8 declarations to prevent character encoding errors</li>
+<li><strong>NCX Table of Contents Links</strong> - Resolves broken hyperlinks in the navigation document that cause reading app crashes</li>
+</ul>
+<h3 id="content--asset-cleanup">Content &#x26; Asset Cleanup</h3>
+<ul>
+<li><strong>Broken CSS &#x26; Font Removal</strong> - Detects and removes malformed CSS files and corrupted font files that Amazon’s validator rejects</li>
+<li><strong>Stray Image Tag Cleanup</strong> - Removes <code>&#x3C;img></code> tags with no source attribute that cause rendering errors</li>
+<li><strong>Improved Parsing Order</strong> - Optimized XML processing order prevents further corruption during fixes</li>
+</ul>
+<p>The Amazon Send-to-Kindle service is notoriously strict about EPUB compliance. These fixes target the most common rejection causes found in EPUBs from Calibre conversions, Sigil edits, and web downloads.</p>
+<p><strong>Send books to Kindle with confidence—no more E999 errors!</strong> 📬</p>
+<h2 id="new-hardcoverapp-id-auto-fetch"><strong>NEW:</strong> Hardcover.app ID Auto-Fetch 💜🤖</h2>
+<p>Automatically populate your library with Hardcover identifiers for better tracking and metadata!</p>
+<ul>
+<li>
+<p><strong>Automatic ID Assignment:</strong></p>
+<ul>
+<li><strong>Background Task</strong> - Scheduled task automatically fetches Hardcover IDs for books missing them</li>
+<li><strong>Task Scheduling</strong> - Integrated with CWA’s task scheduler using <code>schedule_task()</code> method</li>
+<li><strong>Batch Processing</strong> - Efficiently processes multiple books in queue</li>
+<li><strong>Smart Matching</strong> - Uses title/author to find correct Hardcover editions</li>
+</ul>
+</li>
+<li>
+<p><strong>Settings Integration:</strong></p>
+<ul>
+<li><strong>Configurable</strong> - Enable/disable auto-fetch in CWA Settings</li>
+<li><strong>Progress Tracking</strong> - Monitor auto-fetch tasks in Tasks panel</li>
+<li><strong>Invalid Token Handling</strong> - Gracefully handles invalid Hardcover tokens with user-friendly messages</li>
+</ul>
+</li>
+</ul>
+<p><strong>Keep your Hardcover.app integration up-to-date automatically!</strong> 💜</p>
+<h2 id="new-performance--ui-overhaul"><strong>NEW:</strong> Performance &#x26; UI Overhaul 🎨⚡</h2>
+<p>Across the board optimizations make CWA feel snappier and more responsive than ever, especially on large libraries.</p>
+<h3 id="major-performance-wins">Major Performance Wins 🚀</h3>
+<ul>
+<li><strong>Advanced Search Refactor</strong> - Queries now fetch only the necessary data for the current page, drastically reducing memory usage and load times for large libraries</li>
+<li><strong>Hot Books Optimization</strong> - Eliminated “N+1 query” issues by fetching all book details in a single efficient database query—book pages now load instantly on 50,000+ libraries</li>
+<li><strong>Thumbnail System 2.0:</strong>
+<ul>
+<li><strong>WebP Optimization</strong> - Converted all background images and thumbnails to WebP, reducing page weight by <strong>97%</strong>!</li>
+<li><strong>Always-Active</strong> - Thumbnails are now a core feature, ensuring covers load instantly even on large libraries</li>
+<li><strong>Lazy Loading</strong> - Improved lazy loading for covers makes scrolling smooth</li>
+</ul>
+</li>
+<li><strong>SQLAlchemy Optimization</strong> - All queries now use <code>joinedload(Books.data)</code> to prevent N+1 queries and detached instance errors</li>
+<li><strong>New Internal Task Scheduler:</strong> A brand new, robust internal scheduler now manages background tasks, ensuring reliability even across container restarts</li>
+<li><strong>Python 3.13 Upgrade:</strong> The base image has been upgraded to Python 3.13, future-proofing the application and improving performance</li>
+</ul>
+<h3 id="mobile-ui-improvements">Mobile UI Improvements 📱</h3>
+<ul>
+<li><strong>Better Dark Mode Layouts</strong> - Fixed numerous positioning issues in Dark Mode and improved the layout of book descriptions and login screens on mobile devices</li>
+<li><strong>Responsive Tables</strong> - Users table no longer scrolls off screen at lower resolutions</li>
+<li><strong>Touch Targets</strong> - Larger, more accessible buttons for mobile users</li>
+</ul>
+<h3 id="book-list-power-tools-️">Book List Power Tools 🛠️</h3>
+<ul>
+<li><strong>Bulk Actions</strong> - Added “Select All” and “Unselect All” buttons, plus Shift-Click functionality to select ranges of books</li>
+<li><strong>Quick Actions</strong> - Hover over any book to instantly Mark as Read, Send to eReader, or Edit Metadata</li>
+<li><strong>Clickable Duplicates</strong> - Book titles in Duplicates Manager now link to book pages for easy verification</li>
+</ul>
+<h3 id="profile--settings">Profile &#x26; Settings 👤</h3>
+<ul>
+<li><strong>Profile Pictures</strong> - Live preview before saving, client-side auto-resize for fast uploads</li>
+<li><strong>Show Password Toggle</strong> - Added on the login screen for easier password entry</li>
+<li><strong>Better Organized Settings</strong> - Got rid of CW’s clunky old menus with clean card-based layouts</li>
+</ul>
+<p><strong>Everything just feels faster and more polished!</strong> ✨</p>
+<h2 id="new-better-metadata--ingest"><strong>NEW:</strong> Better Metadata &#x26; Ingest 📋✨</h2>
+<p>The ingest system has been refined with better logging, smarter error handling, and more reliable processing.</p>
+<ul>
+<li>
+<p><strong>Ingest Improvements:</strong></p>
+<ul>
+<li><strong>Better Logging</strong> - Enhanced logging for ingest_processor to track file progress</li>
+<li><strong>Error Recovery</strong> - More robust error handling for failed imports</li>
+<li><strong>Checksum Split Awareness</strong> - Checksums now respect split library configuration (Thanks to <strong><a href="https://github.com/SethMilliken">SethMilliken</a></strong>!)</li>
+<li><strong>Books Path Argument</strong> - Added <code>--books-path</code> to <code>generate_book_checksums.py</code> for flexibility</li>
+</ul>
+</li>
+<li>
+<p><strong>Metadata Features:</strong></p>
+<ul>
+<li><strong>Permission Fixes</strong> - Resolved metadata update permission errors on network shares</li>
+</ul>
+</li>
+</ul>
+<p><strong>Smarter, more reliable book processing!</strong> 🤖</p>
+<h2 id="new-network-share-mode---deploy-anywhere"><strong>NEW:</strong> Network Share Mode - Deploy Anywhere 🌐💾</h2>
+<p>Running CWA on a NAS or network share? Network Share Mode makes it possible with intelligent adaptations for NFS/SMB environments.</p>
+<blockquote>
+<p>[!IMPORTANT]
+Always set NETWORK_SHARE_MODE=true when running CWA on NFS/SMB shares to prevent database corruption and permission errors.</p>
+</blockquote>
+<h3 id="what-it-does">What It Does</h3>
+<ul>
+<li><strong>Disables SQLite WAL Mode</strong> - Write-Ahead Logging requires file locking guarantees that many network filesystems can’t provide. When <code>NETWORK_SHARE_MODE=true</code>, CWA automatically disables WAL on <code>metadata.db</code> and <code>app.db</code> to prevent “database is locked” errors and corruption risks
+<blockquote>
+<p>[!WARNING]
+Enabling WAL mode on network shares can cause “database is locked” errors and potential data loss.</p>
+</blockquote>
+</li>
+<li><strong>Skips Permission Operations</strong> - Suppresses recursive <code>chown</code> operations that fail or cause permission conflicts on network shares (NFS often ignores or misinterprets ownership changes)</li>
+<li><strong>Polling-Based File Watching</strong> - Switches from <code>inotify</code> to a polling watcher that scans for new files every 5 seconds. Network filesystems often don’t propagate filesystem events reliably, and polling ensures ingest always works
+<blockquote>
+<p>[!NOTE]
+Polling mode may introduce a few seconds of delay when detecting new files, but ensures reliability on network shares.
+[!TIP]
+You can force polling mode on any setup with CWA_WATCH_MODE=poll.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="when-you-need-it">When You Need It</h3>
+<ul>
+<li><strong>NFS Mounts</strong> - Synology, TrueNAS, QNAP network shares</li>
+<li><strong>SMB/CIFS Shares</strong> - Windows network drives, Samba shares</li>
+<li><strong>Docker Desktop</strong> - Auto-detected! Docker Desktop mounts don’t reliably propagate <code>inotify</code> events from the host filesystem</li>
+<li><strong>“Database is locked” Errors</strong> - If you’re seeing these on a network share, this mode will eliminate them</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<p>Set the environment variable in your docker-compose:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">environment</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">NETWORK_SHARE_MODE=true</span></span></code></pre>
+<p><strong>Advanced:</strong> Force polling mode without disabling WAL using <code>CWA_WATCH_MODE=poll</code> for edge cases.</p>
+<p><strong>Deploy on any storage backend with confidence!</strong> 💪</p>
+<hr>
+<h1 id="minor-changes">Minor Changes ✨</h1>
+<h2 id="stability--performance-️">Stability &#x26; Performance 🏗️</h2>
+<ul>
+<li>
+<p><strong>Database &#x26; Session Management:</strong></p>
+<ul>
+<li><strong>Session Management</strong> - Fixed session management issues causing “DetachedInstanceError” across multiple endpoints</li>
+<li><strong>Race Condition Fixes</strong> - Added robust error handling for race conditions in cover_enforcer metadata log processing</li>
+</ul>
+</li>
+<li>
+<p><strong>Task System:</strong></p>
+<ul>
+<li><strong>Scheduled Task Safety</strong> - Fixed race conditions in scheduled tasks causing database session corruption</li>
+<li><strong>Task Cancellation</strong> - Proper cleanup when cancelling long-running tasks</li>
+<li><strong>Better Error Handling</strong> - Improved error messages and recovery for failed background tasks</li>
+</ul>
+</li>
+</ul>
+<h2 id="security--https">Security &#x26; HTTPS 🔒</h2>
+<ul>
+<li>
+<p><strong>HTTPS Support:</strong></p>
+<ul>
+<li><strong>Internal API HTTPS</strong> - Internal API calls (ingest, library conversion) now respect SSL configuration</li>
+<li><strong>Health Check Fallback</strong> - Dockerfile HEALTHCHECK falls back to HTTPS if HTTP fails</li>
+<li><strong>External Link Upgrades</strong> - Upgraded ISFDB and Rakuten links to HTTPS</li>
+<li><strong>Helper Function</strong> - Added <code>get_internal_api_url()</code> for dynamic localhost URL generation</li>
+</ul>
+</li>
+<li>
+<p><strong>CSRF Protection:</strong></p>
+<ul>
+<li><strong>Better Coverage</strong> - Added CSRF tokens to all forms and AJAX requests that were missing them</li>
+<li><strong>Magic Shelf Forms</strong> - Fixed CSRF validation on Magic Shelf edit pages</li>
+<li><strong>Clearer Error Messages</strong> - Better feedback when CSRF validation fails</li>
+</ul>
+</li>
+</ul>
+<h2 id="uiux-improvements">UI/UX Improvements 🎨</h2>
+<ul>
+<li>
+<p><strong>Visual Polish:</strong></p>
+<ul>
+<li><strong>Fixed Hardcoded Branding</strong> - All leftover “Calibre-Web” references replaced</li>
+<li><strong>Page Title Fixes</strong> - HTML characters no longer show up in page titles</li>
+<li><strong>CSRF Token Coverage</strong> - Added CSRF tokens to all AJAX requests that were missing them</li>
+<li><strong>Dark Mode Consistency</strong> - Fixed remaining dark mode styling issues across all pages</li>
+<li><strong>Task Table Styling</strong> - Fixed Tasks table inheriting both bordered and non-bordered classes</li>
+</ul>
+</li>
+<li>
+<p><strong>Book Management:</strong></p>
+<ul>
+<li><strong>Duplicate Format Prevention</strong> - Validate book ID before adding format to prevent duplicates</li>
+<li><strong>File Size Display</strong> - Fixed file size inconsistency for email attachments</li>
+<li><strong>Cover Hover Links</strong> - Fixed book hover links not respecting X-Script-Name in dark theme</li>
+<li><strong>Clickable Duplicates</strong> - Book titles in Duplicates Manager now link to book pages</li>
+</ul>
+</li>
+</ul>
+<h2 id="system-administration">System Administration 🔧</h2>
+<ul>
+<li>
+<p><strong>Architecture Support:</strong></p>
+<ul>
+<li><strong>Unsupported Arch Warnings</strong> - Added warnings for users on unsupported architectures</li>
+<li><strong>libasound2t64</strong> - Added missing audio library for certain environments (Thanks to <strong><a href="https://github.com/jeffonthemove">jeffonthemove</a></strong>!)</li>
+</ul>
+</li>
+<li>
+<p><strong>Service Management:</strong></p>
+<ul>
+<li><strong>s6-notifyoncheck Fix</strong> - Corrected service readiness notification</li>
+<li><strong>cwa-init Improvements</strong> - Better initialization sequence and error handling</li>
+<li><strong>Logger Fixes</strong> - Changed <code>logger.get_logger()</code> to use <code>log</code> variable</li>
+</ul>
+</li>
+</ul>
+<h2 id="developer-experience-️">Developer Experience 🛠️</h2>
+<ul>
+<li>
+<p><strong>Testing:</strong></p>
+<ul>
+<li><strong>CI/CD Fixes</strong> - Resolved Docker build and test suite failures</li>
+<li><strong>OAuth Tests</strong> - Fixed new OAuth test in CI pipeline</li>
+<li><strong>Unit Test Coverage</strong> - Added tests for cascade deletion, checksums, and Magic Shelves</li>
+</ul>
+</li>
+<li>
+<p><strong>Code Quality:</strong></p>
+<ul>
+<li><strong>Split Library Refactor</strong> - Improved error handling and test coverage for split library functionality</li>
+<li><strong>Schema Updates</strong> - Fixed comments in DB schemas causing SQL errors</li>
+<li><strong>Type Safety</strong> - Better null checking and type validation throughout codebase</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="new-integrations--providers">New Integrations &#x26; Providers 🔌</h2>
+<ul>
+<li><strong>LitRes Provider:</strong> Added support for LitRes metadata (Thanks to <strong><a href="https://github.com/nstwfdev">nstwfdev</a></strong>!)</li>
+<li><strong>Kubernetes Support:</strong> Added Kubernetes deployment examples (Thanks to <strong><a href="https://github.com/opswhisperer">opswhisperer</a></strong>!)</li>
+</ul>
+<h2 id="documentation">Documentation 📚</h2>
+<ul>
+<li><strong>Massive Wiki Updates:</strong> Comprehensive guides for OAuth, LDAP, Authentication, Magic Shelves, and Testing</li>
+</ul>
+<h1 id="bugfixes">Bugfixes 🐛</h1>
+<h3 id="critical-fixes">Critical Fixes 🚨</h3>
+<ul>
+<li><strong>Cover Enforcer Locking</strong> - Fixed database locking and race conditions in cover_enforcer preventing metadata updates</li>
+<li><strong>Foreign Key Cascade</strong> - Safe cascade deletion for progress sync tables prevents orphaned records</li>
+<li><strong>OAuth Token Storage</strong> - Fixed “NoneType object has no attribute token” error</li>
+<li><strong>Reverse Proxy Race</strong> - Fixed UnboundLocalError when reverse proxy authentication disabled</li>
+<li><strong>Session Expiry</strong> - No more unexpected session expirations or redirect loops</li>
+</ul>
+<h2 id="format--conversion">Format &#x26; Conversion 🔄</h2>
+<ul>
+<li><strong>EPUB to PDF Conversion</strong> - Resolved “Cannot convert EPUB to PDF” error</li>
+<li><strong>Filename Handling</strong> - Fixed filename issues during PDF conversion</li>
+<li><strong>Case Sensitivity</strong> - Fixed <code>*.PDF</code> (uppercase) files not being recognized during upload</li>
+<li><strong>Format Validation</strong> - Better validation of supported formats before processing</li>
+</ul>
+<h2 id="oauth--authentication-issues">OAuth &#x26; Authentication Issues 🔐</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/758">#758</a></strong> - Generic OAuth2 connection not working due to internal 500 error</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/807">#807</a></strong> - OAuth token storage error: ‘NoneType object has no attribute token’</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/876">#876</a></strong> - Admin role lockout protection needed for OAuth users</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/887">#887</a></strong> - UnboundLocalError when reverse proxy auth disabled</li>
+</ul>
+<h2 id="kobo-integration-issues">Kobo Integration Issues 📱</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/798">#798</a></strong> - Issue with sync from Kobo annotations to Hardcover</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/802">#802</a></strong> - Kobo sync downloading incorrect books due to stale temp files and book hover links not respecting X-Script-Name in dark theme</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/821">#821</a></strong> - Hardcover client initialization error for users without per-user token</li>
+</ul>
+<h2 id="epub--kindle-compatibility">EPUB &#x26; Kindle Compatibility 📚</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/920">#920</a></strong> - EPUB language tag handling causing Amazon Kindle E999 rejections</li>
+</ul>
+<h2 id="format--upload-issues">Format &#x26; Upload Issues 📤</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/801">#801</a></strong> - *.PDF (uppercase extension) not working when uploading books</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/813">#813</a></strong> - Cannot convert EPUB to PDF</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/866">#866</a></strong> - Duplicate format being added to books</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/867">#867</a></strong> - File size display inconsistency for email attachments</li>
+</ul>
+<h2 id="ui--display-issues">UI &#x26; Display Issues 🎨</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/672">#672, #756, #759, #900</a></strong> - Series index formatfloat filter causing 500 errors</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/882">#882</a></strong> - HTML characters rendering in page titles</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/906">#906</a></strong> - Inconsistent tag visibility in category views and shelves</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/925">#925</a></strong> - 500 Internal Server Error when API request made to book without formats</li>
+<li><strong>Send Selected Path</strong> - Fixed <code>/send_selected/</code> request path prefix (Thanks to <strong><a href="https://github.com/tmacphail">tmacphail</a></strong>!)</li>
+<li><strong>Magic Shelf Nav</strong> - Fixed Magic Shelves not appearing in sidebar</li>
+</ul>
+<h2 id="metadata--library-issues-️">Metadata &#x26; Library Issues 🏷️</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/878">#878</a></strong> - Metadata update permission errors on network shares</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/905">#905</a></strong> - Invalid Hardcover tokens not handled gracefully</li>
+</ul>
+<h2 id="settings--configuration-️">Settings &#x26; Configuration ⚙️</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/903">#903</a></strong> - Can’t save CWA Settings on latest DEV-335 due to duplicate detection settings</li>
+<li><strong>Wildcard Accept-Language</strong> - Suppressed locale parsing error for wildcard headers to prevent log spam</li>
+</ul>
+<h2 id="system--performance-issues">System &#x26; Performance Issues ⚡</h2>
+<ul>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/818">#818</a></strong> - Internal API calls not respecting SSL configuration</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/875">#875</a></strong> - Logger.get_logger() does not exist error</li>
+<li><strong><a href="https://github.com/crocodilestick/Calibre-Web-Automated/issues/918">#918</a></strong> - Race conditions in scheduled tasks causing database session corruption</li>
+</ul>
+<hr>
+<h1 id="translations">Translations 🌍</h1>
+<p><strong>Updated:</strong></p>
+<ul>
+<li><strong>Portuguese (Brazil)</strong> (pt-BR) - Fixed wrong and missing messages (Thanks to <strong><a href="https://github.com/alexantao">alexantao</a></strong>!)</li>
+<li><strong>German</strong> (de) - Multiple translation updates (Thanks to <strong><a href="https://github.com/ManuelDrescher">ManuelDrescher</a></strong>, <strong><a href="https://github.com/marodeur80">marodeur80</a></strong>!)</li>
+<li><strong>Dutch</strong> (nl) - Significant contributions from <strong><a href="https://github.com/jordibrouwer">jordibrouwer</a></strong> &#x26; <strong><a href="https://github.com/helmerzNL">helmerzNL</a></strong>!</li>
+<li><strong>Polish</strong> (pl) - Updated Polish translations (Thanks to <strong><a href="https://github.com/FilipMakowski">FilipMakowski</a></strong>!)</li>
+<li><strong>Russian</strong> (ru) - Continued improvements</li>
+<li><strong>Spanish, Italian, French, Hungarian, Korean, Chinese</strong> - Various fixes and improvements</li>
+</ul>
+<hr>
+<h1 id="thanks-to-our-contributors">Thanks to our Contributors! 🙏</h1>
+<p>This release represents <strong>over 600 commits</strong> from an incredible community of developers, testers, translators, and users. Special recognition to:</p>
+<h2 id="core-contributors">Core Contributors 💎</h2>
+<ul>
+<li><strong>@BrachiumX</strong> - Duplicate merging, Kobo sync enhancements, Magic Shelf fixes, settings persistence</li>
+<li><strong>@doxxx</strong> - Cascade delete implementation and testing</li>
+<li><strong>@mehalter</strong> - WWW-Authenticate header compliance</li>
+<li><strong>@navels</strong> - Ingest metadata improvements and auto-send enhancements</li>
+<li><strong>@SethMilliken</strong> - Checksum split library awareness</li>
+<li><strong>@Caligatio</strong> - OAuth loop fixes and logging improvements</li>
+<li><strong>@aaronpowell</strong> - Duplicate merging UI</li>
+<li><strong>@halkeye</strong> - Logger fixes</li>
+</ul>
+<h2 id="feature-contributors">Feature Contributors ✨</h2>
+<ul>
+<li><strong>@ManuelDrescher</strong> - German translations (multiple PRs)</li>
+<li><strong>@helmerzNL</strong> - Dutch translation updates</li>
+<li><strong>@FilipMakowski</strong> - Polish translation updates</li>
+<li><strong>@alexantao</strong> - Portuguese (Brazil) translation fixes</li>
+<li><strong>@jeffonthemove</strong> - libasound2t64 addition</li>
+<li><strong>@tmacphail</strong> - Script root support fixes</li>
+<li><strong>@galeksandrp</strong> - README typo fixes</li>
+<li><strong>@Olen</strong> - Reverse proxy loading fixes</li>
+<li><strong>@Nementon</strong> - s6-notifyoncheck fixes</li>
+<li><strong>@thetorminal</strong> - Shelfmark updates and Grand Hotel font</li>
+<li><strong>@KucharczykL</strong> - Font updates</li>
+<li><strong>@ceruleandeep</strong> - Kobo sync improvements</li>
+<li><strong>@angelicadvocate</strong> for Profile Pictures &#x26; Retained Formats</li>
+<li><strong>@opswhisperer</strong> for Kobo Metadata &#x26; K8s examples</li>
+<li><strong>@sirwolfgang</strong> for KOReader Sync</li>
+<li><strong>@wolffshots</strong> for Hardcover Annotation Sync</li>
+<li><strong>@jgoguen</strong> for Amazon fixes, KFX support, and Local Build tools</li>
+<li><strong>@domoel</strong> for Two-way deletion sync</li>
+<li><strong>@natabat</strong> for Ingest on Upload</li>
+<li><strong>@marauder37</strong> for Custom Email Subjects</li>
+<li><strong>@nstwfdev</strong> for Russian translations &#x26; LitRes</li>
+</ul>
+<h2 id="bug-hunters--testers">Bug Hunters &#x26; Testers 🐛</h2>
+<p>Thank you to everyone who filed detailed bug reports, tested dev builds, and helped us track down elusive issues. The quality of this release is a testament to your dedication!</p>
+<hr>
+<h1 id="upcoming-changes">Upcoming changes</h1>
+<p>Major changes are still coming to CWA including:</p>
+<ul>
+<li>A brand new Svelte based Frontend. The days of the current Bootstrap UI are numbers and migrating to Svelte ensures that the new UI will still be easy to edit and add to for as many contributors as possible due to it’s very familiar syntax to traditional sites and can be compiled with Capacitor for native mobile apps which is very exiting</li>
+<li>A new web reader, epub.js is a little dated now and there are now much better alternatives</li>
+<li>A much more robust &#x26; powerful progress syncing system that will be able to have CWA act as a single source of truth for reading progress no matter what device you read from</li>
+<li>Full Text Search functionality</li>
+<li>🐁 is coming very soon, the integration just had to be as sensible &#x26; respectful to the 🐁 and it’s servers as possible and a good balance has now been reached</li>
+</ul>
+<h1 id="supporting-the-project-️-1">Supporting the Project ❤️</h1>
+<p>CWA is and always will be free and open source. If it makes your library life easier and you’re able to support development, contributions go directly to:</p>
+<ul>
+<li>Testing hardware (Kobo devices, tablets, various platforms)</li>
+<li>Development tools and infrastructure</li>
+<li>Coffee ☕ (lots of coffee)</li>
+</ul>
+<p><a href="https://ko-fi.com/crocodilestick/tip">Support on Ko‑fi</a></p> </div> <div class="mt-6"> <a href="https://github.com/crocodilestick/Calibre-Web-Automated/releases/tag/v4.0.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
