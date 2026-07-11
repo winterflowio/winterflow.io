@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TREK v3.1.0 release notes | WinterFlow.io</title><meta name="description" content="A major architectural rewrite featuring a NestJS backend, React 19 frontend, shared Zod contracts, 18 security fixes, and new features like…"><link rel="canonical" href="https://winterflow.io/catalog/trek/releases/v3.1.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="TREK v3.1.0 release notes | WinterFlow.io"><meta property="og:description" content="A major architectural rewrite featuring a NestJS backend, React 19 frontend, shared Zod contracts, 18 security fixes, and new features like…"><meta property="og:url" content="https://winterflow.io/catalog/trek/releases/v3.1.0/"><meta property="og:image" content="https://winterflow.io/images/apps/trek/trek.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="TREK v3.1.0 release notes | WinterFlow.io"><meta name="twitter:description" content="A major architectural rewrite featuring a NestJS backend, React 19 frontend, shared Zod contracts, 18 security fixes, and new features like…"><meta name="twitter:image" content="https://winterflow.io/images/apps/trek/trek.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"TREK","item":"https://winterflow.io/catalog/trek/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/trek/releases/"},{"@type":"ListItem","position":5,"name":"v3.1.0","item":"https://winterflow.io/catalog/trek/releases/v3.1.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/trek/trek.png" alt="TREK logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">TREK</h1> <p class="mt-4 text-lg leading-8 text-gray-600">A self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> tripit, wanderlog </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://demo.liketrek.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/mauriceboe/TREK/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/trek/dashboard.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/trek/trip-planner.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/trek/budget.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/mauriceboe/TREK/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 9,986 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="TREK" data-app-slug="trek" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.buymeacoffee.com/mauriceboe" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy Me a Coffee →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/trek/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (81)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/trek/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v3.1.0</h2> <span class="text-sm text-gray-500">2026-06-16</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <img width="5292" height="1404" alt="Release 3 1 0 (1)" src="https://github.com/user-attachments/assets/15938097-99cd-4d40-b044-896ddd1a344f">
+<h1 id="trek-310">TREK 3.1.0</h1>
+<blockquote>
+<p><strong>TREK 3 — rebuilt from the inside out.</strong> A modern <strong>NestJS</strong> backend, a <strong>React 19</strong> frontend, and an end-to-end <strong>shared Zod contract</strong> layer so the client and server can never drift. On top of that foundation: a Splitwise-style <strong>Costs</strong> rework, <strong>Passkey</strong> login, <strong>AirTrail</strong> flight sync, multi-leg flights, real road routing, a reworked dashboard, five new languages, and a comprehensive offline/PWA hardening pass.</p>
+<p><strong>This release also fixes 18 privately-reported security vulnerabilities — including a critical authentication bypass. Updating to 3.1.0 is strongly recommended for every self-hosted instance. See <a href="#security--update-strongly-recommended">Security</a> below.</strong></p>
+</blockquote>
+<hr>
+<h2 id="-proxmox-ve-community-script-users-please-wait-before-updating-to-v310">⚠ Proxmox VE community-script users: please wait before updating to v3.1.0</h2>
+<p>v3.1.0 changes how TREK is built and run:</p>
+<ul>
+<li>the repo is now an npm workspaces monorepo (client + server + new shared package) with a single root lockfile,</li>
+<li>the server is now compiled (dist/) instead of run directly via tsx,</li>
+<li>there are new build/runtime requirements (e.g. kitinerary-extractor for booking import).</li>
+</ul>
+<p>The community-scripts (<a href="https://community-scripts.org/scripts/trek">https://community-scripts.org/scripts/trek</a>) LXC helper for TREK still targets the old 3.0.x layout. If you run its Update option right now, the build will fail and may leave your container in a broken state.</p>
+<p><strong>What to do</strong>: stay on your current version for now. An updated script is being submitted to ProxmoxVED and will roll out to ProxmoxVE after review — we’ll post here once it’s live. Your data (/opt/trek/data, /opt/trek/uploads) and .env are safe in the meantime.</p>
+<p>Docker, Unraid, Helm and manual installs are not affected.</p>
+<hr>
+<h2 id="trek-3--nestjs--react-19">TREK 3 — NestJS + React 19</h2>
+<p>The biggest architectural change in TREK’s history. The Express backend has been migrated to <strong>NestJS</strong>, the frontend upgraded to <strong>React 19</strong>, and both halves now share a single <strong>Zod contract</strong> package as the source of truth for every request and response.</p>
+<ul>
+<li><strong>NestJS backend</strong> — modular architecture with dependency injection, replacing the previous Express app (#1087, foundation harness #1050)</li>
+<li><strong>React 19 frontend</strong> — upgraded across the whole client</li>
+<li><strong>Shared Zod contracts</strong> — one typed, validated schema package consumed by both client and server, so API shapes stay in lockstep</li>
+<li><strong>Monorepo build pipeline</strong> — <code>shared</code> is now a properly built package; i18n moved into it so every surface reads from one translation set (#1056, #1066)</li>
+<li><strong>Pilot-then-migrate</strong> — the cutover started with a single module (<code>/api/weather</code>) to prove the harness before the full migration (#1053)</li>
+</ul>
+<p>Migrations run automatically on startup — no manual steps.</p>
+<hr>
+<h2 id="security--update-strongly-recommended">Security — Update Strongly Recommended</h2>
+<p>This release closes <strong>18 privately-reported vulnerabilities</strong>, disclosed through coordinated private reporting. They range from a <strong>critical authentication bypass</strong> down to low-severity hardening. <strong>All self-hosted instances should update to 3.1.0.</strong></p>
+<h3 id="critical">Critical</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Advisory</th><th>Issue</th></tr></thead><tbody><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-mjh4-w6fq-54qm">GHSA-mjh4-w6fq-54qm</a></td><td><strong>MFA bypass</strong> — the pre-2FA <code>mfa_token</code> was accepted as a full session token (JWT purpose confusion)</td></tr></tbody></table>
+<h3 id="high">High</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Advisory</th><th>Issue</th></tr></thead><tbody><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-fvgw-r58q-4cw4">GHSA-fvgw-r58q-4cw4</a></td><td><strong>OIDC account takeover</strong> — an SSO identity could be linked to an existing local account without <code>email_verified</code></td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-627x-pmfq-98qv">GHSA-627x-pmfq-98qv</a></td><td><strong>SQL injection</strong> via unvalidated column names in journey entry update</td></tr></tbody></table>
+<h3 id="medium">Medium</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Advisory</th><th>Issue</th></tr></thead><tbody><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-xmqx-m462-52qr">GHSA-xmqx-m462-52qr</a></td><td>OIDC login CSRF / session fixation — <code>state</code> was not bound to the initiating browser</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-6vv9-669j-468p">GHSA-6vv9-669j-468p</a></td><td>Arbitrary file deletion under <code>/uploads</code> via attacker-controlled trip <code>cover_image</code></td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-mggj-xgv8-95fp">GHSA-mggj-xgv8-95fp</a></td><td>MCP share-link tools let a non-owner member mint a public trip share link</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-jx25-7cj6-88hq">GHSA-jx25-7cj6-88hq</a></td><td>Cross-trip IDOR — budget member paid-flag toggle not scoped to the trip</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-p7pv-2jpm-qjx3">GHSA-p7pv-2jpm-qjx3</a></td><td>Journey share permission flags (timeline/gallery/map) enforced only client-side</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-pfr2-fgv9-q5xv">GHSA-pfr2-fgv9-q5xv</a></td><td>Stored HTML injection via reservation endpoint labels rendered into map markers</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-h66w-m5g2-cqpc">GHSA-h66w-m5g2-cqpc</a></td><td>Path traversal in the public journey photo proxy (local provider) reads auth-gated uploads</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-3frp-pcr3-w932">GHSA-3frp-pcr3-w932</a></td><td>Stored HTML injection via journey entry story in the PDF export</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-24x9-fcj9-vp6w">GHSA-24x9-fcj9-vp6w</a></td><td>IDOR in the journey photo proxy — a share token resolves arbitrary asset IDs</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-6f5j-xgjg-h9q7">GHSA-6f5j-xgjg-h9q7</a></td><td>MCP tools bypass the admin-configurable RBAC permission system</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-rrrf-7cf6-8736">GHSA-rrrf-7cf6-8736</a></td><td>A settings password change did not invalidate existing sessions / tokens</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-f5vh-p2h5-x735">GHSA-f5vh-p2h5-x735</a></td><td>Blind SSRF via unvalidated redirect-following in Google/Naver list import and Maps URL resolution</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-mx6m-qxv8-w624">GHSA-mx6m-qxv8-w624</a></td><td>IDOR — any authenticated user could read another user’s journey share token (full journey leak)</td></tr></tbody></table>
+<h3 id="low">Low</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Advisory</th><th>Issue</th></tr></thead><tbody><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-w6f3-fp9r-xp6p">GHSA-w6f3-fp9r-xp6p</a></td><td>Admin backup restore extracted archives without a decompression-size limit (zip bomb)</td></tr><tr><td><a href="https://github.com/mauriceboe/TREK/security/advisories/GHSA-g8rf-gqrw-4qf9">GHSA-g8rf-gqrw-4qf9</a></td><td>Stored cross-user HTML injection via trip title in the Journey suggestion banner</td></tr></tbody></table>
+<p>Reported through coordinated private disclosure by <strong>@bytejmp</strong>, <strong>@tonghuaroot</strong>, <strong>@therawdev</strong>, and <strong>@shukla304</strong>. Thank you for reporting these responsibly.</p>
+<hr>
+<h2 id="costs--splitwise-style-expense-splitting">Costs — Splitwise-Style Expense Splitting</h2>
+<p>Budget has been reworked into <strong>Costs</strong>: a proper shared-expense tracker built for group trips.</p>
+<p><strong>Please note</strong>: Due to the major transition from a budgeting tool to a cost tracker, previous settings in the budget add-on (e.g., cost splitting) cannot be automatically carried over and get a reset. All entries will be retained in the new add-on but will be assigned to the “Other” category.</p>
+<ul>
+<li><strong>Splitwise-style splitting</strong> — record who paid and split a cost across trip members, with running per-person balances</li>
+<li><strong>Settle up</strong> — one-tap minimal-transfer settlement with persisted history and undo</li>
+<li><strong>Multi-currency</strong> — log expenses in any currency (#551)</li>
+<li><strong>Multi-payer support</strong> — costs aren’t tied to a single payer</li>
+<li><strong>Fixed categories</strong> — a consistent category set for cleaner reporting</li>
+<li><strong>Mobile-first</strong> — redesigned for phone use end to end</li>
+</ul>
+<hr>
+<h2 id="passkey-webauthn-login">Passkey (WebAuthn) Login</h2>
+<ul>
+<li><strong>Passwordless sign-in</strong> — register a passkey and log in with Face ID / Touch ID / a security key (#297, #1111)</li>
+<li><strong>WebAuthn standard</strong> — platform and roaming authenticators supported</li>
+<li><strong>Coexists with existing auth</strong> — passkeys sit alongside password, SSO, and MFA</li>
+</ul>
+<hr>
+<h2 id="authentication">Authentication</h2>
+<ul>
+<li><strong>Remember me option</strong> — Add a Remember me checkbox on login screen to extend session expiry (#1189)</li>
+</ul>
+<hr>
+<h2 id="airtrail-integration">AirTrail Integration</h2>
+<p>Two-way flight sync with <a href="https://github.com/johnyhv/airtrail">AirTrail</a> (#214, #1158).</p>
+<ul>
+<li><strong>Import flights</strong> — pull your flight history from AirTrail into TREK</li>
+<li><strong>Two-way sync</strong> — flights flow in both directions and stay aligned</li>
+<li><strong>Reservation-aware</strong> — imported flights land as transport reservations</li>
+</ul>
+<hr>
+<h2 id="planner--maps">Planner &#x26; Maps</h2>
+<ul>
+<li><strong>Real road routes (OSRM)</strong> — when route display is enabled, day routes follow actual roads with travel-time connectors instead of straight-line estimates; the hidden route-calculation setting is gone, so enabled routes always use real road geometry (#1060, #1064)</li>
+<li><strong>Multi-leg (layover) flights</strong> — model connecting flights with layovers as a single booking (#872, #1146)</li>
+<li><strong>Reorder whole days + insert a day</strong> — drag entire days around and insert a new day into a trip (#589, #1148)</li>
+<li><strong>Explore places on the map</strong> — discover and add points of interest (OpenStreetMap / Overpass) directly from the planner map; instance-wide Mapbox token support (#1147)</li>
+<li><strong>More transport types</strong> — bus, taxi, bicycle, ferry and others (#1105)</li>
+<li><strong>Richer imported places</strong> — list-imported places are enriched via the Places API (#886, #1161)</li>
+<li><strong>Route optimization around accommodation</strong> + confirm-before-delete on notes (#1123)</li>
+<li><strong>Category-coloured markers</strong> — map marker borders reflect the place’s category colour (#1062)</li>
+<li><strong>Mobile route tools</strong> — planner route tools are reachable from the mobile day-plan sheet (#1142)</li>
+</ul>
+<hr>
+<h2 id="reservations">Reservations</h2>
+<ul>
+<li><strong>Native booking-confirmation import</strong> — drop in a booking confirmation and TREK extracts the details via KDE <strong>KItinerary</strong> (#1102)</li>
+</ul>
+<hr>
+<h2 id="dashboard-rework">Dashboard Rework</h2>
+<ul>
+<li><strong>Boarding-pass hero</strong> — the next trip rendered as a boarding-pass-style hero card (#1079)</li>
+<li><strong>Atlas row &#x26; live widgets</strong> — visited-countries row, upcoming reservations, and travel stats (country / distance) on the dashboard</li>
+<li><strong>Mobile glass UI</strong> — frosted-glass styling and a context-aware bottom navigation</li>
+<li><strong>OIDC PKCE</strong> — PKCE on the OIDC login flow</li>
+</ul>
+<hr>
+<h2 id="packing">Packing</h2>
+<ul>
+<li><strong>Weight × quantity</strong> — bag and total weight calculations multiply item weight by quantity (#898)</li>
+<li><strong>More bag colours</strong> — sub-bags stop repeating colours (#1156)</li>
+<li><strong>Per-item quantity on bulk import</strong> — bulk import respects each item’s quantity (#1157)</li>
+</ul>
+<hr>
+<h2 id="internationalization">Internationalization</h2>
+<ul>
+<li><strong>Five new languages</strong> — Japanese, Korean, Turkish, Ukrainian, and Greek (#829, #977, #1029, #1055, #1061, #1075)</li>
+<li><strong>i18n in the shared package</strong> — all locales now live in <code>shared</code> and are consumed by every surface (#1066)</li>
+</ul>
+<hr>
+<h2 id="offline--pwa-overhaul">Offline &#x26; PWA Overhaul</h2>
+<p>A focused hardening pass on the offline-first PWA, closing a series of sync, cache, and data-isolation issues.</p>
+<ul>
+<li><strong>Hardened sync</strong> — temporary IDs are remapped on flush, ID collisions are prevented, and failed mutations are surfaced instead of lost (#1175)</li>
+<li><strong>Reconnect re-hydration</strong> — the active trip store re-hydrates on reconnect / coming back online, and trip-scoped slices reset and hydrate uniformly in <code>loadTrip</code> (#1180, #1181, #1184)</li>
+<li><strong>Offline tiles for real trips</strong> — offline map tiles now cover the actual trip area with a coherent cap and zoom-clamp (#1177)</li>
+<li><strong>Bounded blob cache</strong> — the offline blob cache is scoped, evicted, and capped; place-photo caches no longer grow unbounded; Dexie is used as a fallback when a network read fails (#1178, #1179, #1174, H2/H3)</li>
+<li><strong>Idempotency for multi-day offline</strong> — idempotency-key TTL lengthened so it survives being offline for days (#1182)</li>
+<li><strong>Realtime dedup</strong> — corrected <code>assignment:created</code> echo de-duplication (#1183)</li>
+<li><strong>Persistent storage</strong> — offline storage is persisted and the Mapbox offline policy is honoured (#1184, #1058)</li>
+<li><strong>Security: cross-user offline data leak</strong> — fixed an offline data leak between users on a shared device (#1176)</li>
+</ul>
+<hr>
+<h2 id="fixes--hardening">Fixes &#x26; Hardening</h2>
+<ul>
+<li><strong>Batched bug fixes</strong> — Atlas regions, planner overlays, imports, Safari modals, and more across several rounds (#1094, #1139, #1145, #1155)</li>
+<li><strong>Backend/frontend hardening &#x26; consistency</strong> cleanups (#1113)</li>
+<li><strong>Journey</strong> — PhotoLightbox z-index above the mobile entry view (#1101)</li>
+<li><strong>Various</strong> — 2FA autofocus, viewer-timezone times on shared views, duplicate-place guard (#1159)</li>
+<li><strong>Map/planner/dashboard polish</strong> plus small community-requested features (#1155)</li>
+<li><strong>Self-hosted fonts</strong> — app fonts switched to self-hosted Poppins / Geist, dropping the Google Fonts CDN dependency (#1106)</li>
+</ul>
+<hr>
+<h2 id="contributors">Contributors</h2>
+<p>Thanks to everyone who contributed to 3.1.0:</p>
+<ul>
+<li>@mauriceboe</li>
+<li>@jubnl</li>
+<li>@Dkafetzis</li>
+<li>@Larinel</li>
+<li>@SkyLostTR</li>
+<li>@gzor</li>
+<li>@jufy111</li>
+<li>@ppuassi</li>
+<li>@rossanorbr</li>
+<li>@sharkpaw</li>
+<li>@soma3978</li>
+</ul>
+<p>And to the security researchers who reported responsibly: <strong>@bytejmp</strong>, <strong>@tonghuaroot</strong>, <strong>@therawdev</strong>, <strong>@shukla304</strong>.</p>
+<hr>
+<h2 id="stats">Stats</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Commits</td><td>58</td></tr><tr><td>Merged PRs</td><td>45+</td></tr><tr><td>Files changed</td><td>1,750</td></tr><tr><td>Lines added</td><td>138,000+</td></tr><tr><td>Contributors</td><td>11</td></tr></tbody></table>
+<hr>
+<h2 id="upgrading">Upgrading</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> mauriceboe/trek:3.1.0</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> up</span><span style="color:#79B8FF"> -d</span></span></code></pre>
+<p>Migrations run automatically on startup. No manual steps required.</p>
+<blockquote>
+<p><strong>Security:</strong> because 3.1.0 fixes a critical authentication bypass and 17 other vulnerabilities, updating promptly is strongly recommended.</p>
+</blockquote> </div> <div class="mt-6"> <a href="https://github.com/mauriceboe/TREK/releases/tag/v3.1.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

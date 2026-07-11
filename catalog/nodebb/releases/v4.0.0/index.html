@@ -1,0 +1,927 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NodeBB v4.0.0 release notes | WinterFlow.io</title><meta name="description" content="This major release introduces extensive ActivityPub federation support, enabling interaction with the fediverse, alongside significant performance…"><link rel="canonical" href="https://winterflow.io/catalog/nodebb/releases/v4.0.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="NodeBB v4.0.0 release notes | WinterFlow.io"><meta property="og:description" content="This major release introduces extensive ActivityPub federation support, enabling interaction with the fediverse, alongside significant performance…"><meta property="og:url" content="https://winterflow.io/catalog/nodebb/releases/v4.0.0/"><meta property="og:image" content="https://winterflow.io/images/apps/nodebb/nodebb.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="NodeBB v4.0.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This major release introduces extensive ActivityPub federation support, enabling interaction with the fediverse, alongside significant performance…"><meta name="twitter:image" content="https://winterflow.io/images/apps/nodebb/nodebb.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"NodeBB","item":"https://winterflow.io/catalog/nodebb/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/nodebb/releases/"},{"@type":"ListItem","position":5,"name":"v4.0.0","item":"https://winterflow.io/catalog/nodebb/releases/v4.0.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/nodebb/nodebb.png" alt="NodeBB logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">NodeBB</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Node.js based forum software built for the modern web</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> discourse, vanilla forums, circle </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://nodebb.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/NodeBB/NodeBB" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.nodebb.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/nodebb/screenshot.png" alt="NodeBB screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/NodeBB/NodeBB/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 15,156 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="NodeBB" data-app-slug="nodebb" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/NodeBB/NodeBB" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/nodebb/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/nodebb/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.0.0</h2> <span class="text-sm text-gray-500">2025-01-20</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p>Release build (major) of NodeBB @ 2025-01-20T18:53:47.134Z</p>
+<h4 id="v400-2025-01-20">v4.0.0 (2025-01-20)</h4>
+<h5 id="breaking-changes">Breaking Changes</h5>
+<ul>
+<li>add new <code>escape</code> option to getPostSummaryByPids [breaking] (16c8a652)</li>
+<li>core html stripping on plaintext, remove ‘filter:teasers.configureStripTags’ hook, remove html stripping from teaser generation (c01f1549)</li>
+</ul>
+<h5 id="documentation-changes">Documentation Changes</h5>
+<ul>
+<li>add <code>resizeImageWidth</code> to openapi definition for /api/config route (7c1b9000)</li>
+<li>fix comment (e5331b84)</li>
+<li>schema update for activitypub acp route (3a05171f)</li>
+<li>update comment to reflect new behaviour (2cbd63dc)</li>
+</ul>
+<h5 id="new-features">New Features</h5>
+<ul>
+<li>fix activitypub toggler to be more complete; tests. #13054 (af4d07fb)</li>
+<li>add activitypub file to translations (74831034)</li>
+<li>save audience into post hash (for remote posts) (b537437c)</li>
+<li>add <code>filter:topics.hasThumbs</code> filter hook (f4835695)</li>
+<li>append uploaded images into thumbnail set (cc65214d)</li>
+<li>#12976, shares collection (e83036a9)</li>
+<li>pending follows and logic for remote users, #12938 (2851e56b)</li>
+<li>#12935, show ‘shared this to x’ in topic event when moving topics out of cid -1 (fcf0f799)</li>
+<li>support for FEP fb2a (new-style account metadata) (549a6b7d)</li>
+<li>#12924, parse incoming custom fields from remote users (0f351ba7)</li>
+<li>#12924, custom user fields for local users now federating out (62fe70f2)</li>
+<li>add title property to custom emoji markup (3968c822)</li>
+<li>#12683, parse incoming emoji tags and replace in content prior to storage in database (09b1e119)</li>
+<li>fire new hook <code>filter:activitypub.mocks.note</code> on note mocking (4ba41a68)</li>
+<li>handle receipt of <code>Add</code> activity #12707 (3023b251)</li>
+<li>associate new topics created from asserted notes with their originating context, if that context is resolvable (6f237c57)</li>
+<li>#12822, send all outgoing links to <code>/ap</code> first to see if it’s activitypub enabled, parse if able, otherwise redirect as normal (069c8228)</li>
+<li>normalization middleware to ensure incoming objects’ data types are as expected (simplifies later logic) (13c048a5)</li>
+<li>send Update(Note) on chat message deletion and restoration, serving Tombstone if deleted (61445d3d)</li>
+<li>handle Update(Note) when object has limited visibility, #12834 (e5948464)</li>
+<li>check room counts on actor prune, #12834 (e0e2051d)</li>
+<li>federate  on chat message edit, #12834 (1659015c)</li>
+<li>notify users on new message from remote users, fix use of parseInt in generating chat notification (2464d13c)</li>
+<li>handle incoming non-public activities as chat message, #12834 (b82e20df)</li>
+<li>federating out chat messages (2ab5ea39)</li>
+<li>update mdidleware.assert.message so roomId is optional (2b71434e)</li>
+<li>#12647, federate out <code>Add</code> activity on inbox.create and local post creation (bd44783e)</li>
+<li>send 308 when activitypub request for remote post comes in, #12831 (7f1f4859)</li>
+<li>dynamic category icon generation (edff3394)</li>
+<li>enable web-push plugin on first install (34c4cefe)</li>
+<li>service worker icon and badge support (4ae86145)</li>
+<li>update <code>buildRecipients</code> to include all topic participants and their followers, #12735 (6752a541)</li>
+<li>notification rescind support (d6bab253)</li>
+<li>update service worker to handle push and notificationclick (5109b539)</li>
+<li>add onmessage handler for service worker (40fe4d88)</li>
+<li>extend activitypubApi.create.note to accept a post object to reduce unnecessary calls to retrieve post summary (b63440cb)</li>
+<li>moving a topic out of cid -1 federates an Announce activity, #12734 (daa665eb)</li>
+<li>additional copy re: editing remote posts, #12732 (c3e14912)</li>
+<li>allow use of vanity domains pointing to an account hosted elsewhere (709a02d9)</li>
+<li>show local users who follow (or are followed) by a remote user, on a remote user’s profile (a884681a)</li>
+<li>additional logic to handle special case where a queried object id reports a context, but it is not actually contained in the resolved context’s collection (f9937a84)</li>
+<li>#12695 Topic Synchronization via resolvable <code>context</code> (ff0c289e)</li>
+<li>activitypub.get; allow the passing-in of custom headers via existing <code>options</code> parameter (da25fd21)</li>
+<li>add post attachments to topic thumbnails (2aeabce5)</li>
+<li>icon replacing user status for remote users, denoting that they are from outside the local instance, #12688 (a81ef609)</li>
+<li>allow activitypub request cache to be ignored (485b7758)</li>
+<li>send join date in local actor mock (3c9337b7)</li>
+<li>AP note replies collection, closes #12675 (26a7c51a)</li>
+<li>topic backfill logic via resolvable context #12647 (e75ec39b)</li>
+<li>send out <code>Update(Actor)</code> when a category is edited (09d8fbf9)</li>
+<li>instance-level allow andd deny list for federatioN (6e2178b0)</li>
+<li>store encountered instances by last seen date (d0a1ebcf)</li>
+<li>sending out 1b12-style Announce activities on incoming Create/Update/Like/Delete/Undo(Like) activities, when they pertain to notes (6569066e)</li>
+<li>assert actors when mocking post (f5b856f4)</li>
+<li>check to/cc/audience for local category and put topic there instead (overrides passed-in cid) (b6ffc47c)</li>
+<li>plumb audience into _activitypub when mocking posts (d9f1fa3a)</li>
+<li>send cause to ap.get error handler, delete local account representation if assertion fails with a 410 (3567f55a)</li>
+<li>#12589, add nodeinfo endpoint (578a53dd)</li>
+<li>add timestamp to most activity ids (42f514b7)</li>
+<li>show category followers in category federation ACP page (7313d5c6)</li>
+<li>logic for remote user deletion, cronjob, and ACP options for pruning options (4bb2c1a8)</li>
+<li>remote user deletion logic, #12611 (539300ff)</li>
+<li>allow user.exists to respond to requests for remote uids too (3dca79dd)</li>
+<li>pruning of stale notes older than 30 days with no engagement (709c9132)</li>
+<li>save remote user urls backreference (ff53f3c0)</li>
+<li>add another sanitization round before federating to remove classes from all tags in output html, closes #12573 (7c79e231)</li>
+<li>passing in types to parsePost for more specific handling by plugins (8cf96176)</li>
+<li>track incoming requests by id, analytics increment for some metrics, ignore repeated requests by id (4e9cd8ef)</li>
+<li>added analytics.peek (b106a6a0)</li>
+<li>Note deletion logic and refactoring, #12551 (ccd187e0)</li>
+<li>handle receipt of Update(Tombstone) (f4043959)</li>
+<li>on post delete, federate out an Update(Tombstone) (96db519b)</li>
+<li>serve Tombstone objects for soft deleted posts (5e9d47a1)</li>
+<li>ability to query remote users by webfinger handle (97615267)</li>
+<li>support the ability to search for posts and users by url (4cbb1f2a)</li>
+<li>basic retry queue (50bc9a37)</li>
+<li>on post edit, also target anyone who announced the post and their followers (807c3eac)</li>
+<li>add id to reject activity (32d1adf6)</li>
+<li>openapi spec for acp category federation page (fc3f3a78)</li>
+<li>support rescinding user flags (61a595de)</li>
+<li>slightly better title generation (b9d6aa46)</li>
+<li>help modal for world page (cf291a51)</li>
+<li>remove <code>/world/all</code> route, add intro header to <code>/world</code> (af324dae)</li>
+<li>add id to Like (ab055a77)</li>
+<li>handle 1b14 announce for remote content too (2ce3a116)</li>
+<li>resolve Crate and Announce activities (f802564e)</li>
+<li>utility functions to get local followers/counts given a remote actor uri, plumb cid into notes.assert via inbox.announce if a local cid is following the sending actor (452cb0a9)</li>
+<li>send id back during accepts (b7629c6e)</li>
+<li>handle Undo(Flag) (a1a7fb77)</li>
+<li>send undo when rescinding/deleting a report (c1dfa8d2)</li>
+<li>federate flag creation (2a2b855f)</li>
+<li>bulk purge flags (7bacbf76)</li>
+<li>rescind post flags (9ab1a2d1)</li>
+<li>integrate post uploads into attachments for outgoing note mocks (fdbd30dc)</li>
+<li>add id to profile updates (4d07ca4c)</li>
+<li>noremalize actor property in middleware (18ba2e38)</li>
+<li>save remote post url into hash for use (525b7c2c)</li>
+<li>note attachments via link preview plugin (6fc6cc33)</li>
+<li>add ids for undoing follows (3cc09d20)</li>
+<li>send back follow id in Accept (66b0d81c)</li>
+<li>add id to follows and verify accepts (72dbcfe3)</li>
+<li>resolve objects from ids in middleware (102c174e)</li>
+<li>filter out topics in cid -1 from tagged topics page, closes #12489 (d437d969)</li>
+<li>sign public key requests (fcd5447c)</li>
+<li>populate and send link tag/header respectively for activitypub-enabled content (4e0d7dd3)</li>
+<li>basic AP Flag support (d9eba6d2)</li>
+<li>send unique identifiers for note activities (9fc194e3)</li>
+<li>upgrade script to re-assert all known actors to save URL into hash, and bump mentions (943cef6d)</li>
+<li>sorting an filtering in /world (d1fa6a59)</li>
+<li>make the /api/world data more category-like (e266b447)</li>
+<li>add more properties from /category to /world (3c6966fb)</li>
+<li>follow redirects in API (e0138cbe)</li>
+<li>add checks to only continue with topic assertion if there is a relation to existing content, #12442 (55e947a0)</li>
+<li>add assertion lock on activitypub.notes.assert (2688b6bb)</li>
+<li>have category actor send Announce(Note) on remote replies to topics in a cid (04c743eb)</li>
+<li>have category actor send Announce(Note) activity on posts from that cid (7df5cabb)</li>
+<li>ability to update category handles (9dc20d0c)</li>
+<li>category handles, #12434 (3cc99a17)</li>
+<li>rename ‘world’ category to ‘uncategorized’ (9a5d4ffb)</li>
+<li>plumb pid into return data from posts.loadPostTools, add link to view original post, for remote content (17f62f24)</li>
+<li>add TTL cache for Actors.assert (d75894eb)</li>
+<li>log all post edits to the event log, return eid when logging events, plumb eid into Update(Note) to federate out as a unique id (83392f3c)</li>
+<li>if Update(Note) is received for a post that does not already exist, assert it (0bfdbb6a)</li>
+<li>return count of new notes in assertTopic (519e025e)</li>
+<li>add /world and /world/all to available nav items (f31d8c2e)</li>
+<li>mentions support (e4c1ca1e)</li>
+<li>allow user.search to handle remote handles, beginning of mentions support (1b64fdb5)</li>
+<li>integrate notifications for remote likes, follows, and announces. (c707a32a)</li>
+<li>federate tags out on new post (if new topic) (e1c43112)</li>
+<li>restrict loopback calls (77a3efb4)</li>
+<li>fine-grained privileges integration for fediverse users and world pseudo-category (1bd8f9a1)</li>
+<li>temporarily deny handling non-public notes (eaba2aa3)</li>
+<li>shared inbox (49c69a0f)</li>
+<li>security, cross-check key ownership against received actor (a94341f4)</li>
+<li>attachments support (e5b6ee97)</li>
+<li>save tids to individual user inboxes based on recipient list, new /world/all route (89128634)</li>
+<li>save actor follower URL backreference and sorted set backreference (da085b0e)</li>
+<li>infinite scrolling for /world (874b24cb)</li>
+<li>record remote Announce(Note) (6508287d)</li>
+<li>handle Announce(Note) when Note is a piece of remote content (94dcd29e)</li>
+<li>Announce(Note) and Undo(Announce) (415b4fe1)</li>
+<li>exposed method to find topic events based on a subset of saved info, returns topic event ids (b9821c52)</li>
+<li>topic and category S2S get responses (a461e5dd)</li>
+<li>send proper content-type on AP S2S responses (d18e65c4)</li>
+<li>category actors, stub outbox (88733a51)</li>
+<li>returning following and follower collections upon request (ae042ce3)</li>
+<li>Like(Note) and Undo(Like); federating likes (607c4623)</li>
+<li>origin checking on received Update activities (6930973d)</li>
+<li>Update(Note) (0e59f312)</li>
+<li>Update(Person) (6e87cf57)</li>
+<li>activitypub response to note retrieval via pid (6b517252)</li>
+<li>added mocks.actor and Update(Person) activity on profile update (8453b83e)</li>
+<li>Create(Note) on new topic or reply (0e016c6e)</li>
+<li>proper webfinger response for instance actor (da0211b1)</li>
+<li>application actor + public key for uid 0 signs, moved homepage route to after core routes are generated (9885f94a)</li>
+<li>native parsing of title for topics (981b4f14)</li>
+<li>beginnings of the /world route (04423232)</li>
+<li>handle Update(note) (ac672f08)</li>
+<li>handle Create(note) (f7477536)</li>
+<li>flesh out more topic info, fix navigator (7e89eadb)</li>
+<li>some additional work to properly save and retrieve remote topic data (4bd7a574)</li>
+<li>ability to browse to any ActivityPub note and have the entire topic chain render (485cf200)</li>
+<li>add activitypub request cache (326bb995)</li>
+<li>assertNotes method (ab40ba61)</li>
+<li>ability to load remote post data in a topic (3ce84b39)</li>
+<li>plumb uid into .addParentPosts() so .assertNotes() can be properly called (0d478b2c)</li>
+<li>stub lib for retrieving and mocking posts (f1e5e5a0)</li>
+<li>send name property in getActor response (5e1e8099)</li>
+<li>ability to browse follower/following lists of remote accounts (2a77ae55)</li>
+<li>expose following/follower counts in actor response (7fd15d66)</li>
+<li>show remote followers/following in user profile pages (739b0548)</li>
+<li>update mockProfile to accept actor uris as well as actor objects (672c7014)</li>
+<li>accept and undo support (4c1b2b3f)</li>
+<li>update activitypub helper resolveLocalUid to accept both webfinger name and full URL as input (1f79f542)</li>
+<li>follow/unfollow logic and receipt (c02271c7)</li>
+<li>actor cache, method to resolve inboxes, stub code for sending requests. Now base64 encoding digest as expected by Mastodon (cdc4275f)</li>
+<li>http signatures support, .sign() and .verify() AP helper methods (e7184eb8)</li>
+<li>add webfinger ttl cache (4f5f025d)</li>
+<li>add .has() call to cache/ttl (57895b72)</li>
+<li>ability to view federated profiles via url manipulation (a05b674e)</li>
+<li>followers and following endpoints (7e1dac39)</li>
+<li>inbox and outbox routes, stub controllers (81b6260f)</li>
+<li>global switch for disabling federation, + test (099124c4)</li>
+<li>activitypub actor endpoint for user accounts (2dec357a)</li>
+<li><strong>activitypub:</strong>  show world category in selectors (953231fc)</li>
+</ul>
+<h5 id="bug-fixes">Bug Fixes</h5>
+<ul>
+<li>ap webfinger test (3e33e1a3)</li>
+<li>if user is logged in after registration don’t go back to /login (23b37f62)</li>
+<li>closes #13056, guard against undefined keyid,compare (6073a25b)</li>
+<li>bug where newly create cids were not responding via webfinger, 404 on webfinger errors, not 400 (c17809e4)</li>
+<li>#12990, local references via remote posts are not linkified properly, + tests for helper (98280d30)</li>
+<li>#12984, fix pids numeric sorting, handle non-integers (4dc740a2)</li>
+<li>add deprecation note re: as:audience (3cf3f93a)</li>
+<li>#13021, save details of follow request before sending the follow, avoid race condition (16616814)</li>
+<li>handle ap send errors with object body (450322d1)</li>
+<li>thumbs.get to handle null case from mime.getType (50b510e3)</li>
+<li>post upload sync duplication bug (cfeb49dd)</li>
+<li>language fallbacks for activitypub-related strings (37a4fd7c)</li>
+<li>add sourceContent prop to posts API; fix other tests (e1db9642)</li>
+<li>add sourceContent prop to posts API (8ebe6de1)</li>
+<li>add missing file for openapi tests (e6b20ed3)</li>
+<li>activitypub tests (12fb205b)</li>
+<li>broken tests (9c78255e)</li>
+<li>#13014, possible fix for peertube incompatibility: strip hash value from key IDs during check (0ad8ed9d)</li>
+<li>#12996, invalid title generation when remote post content has markdown source (1d36ab6d)</li>
+<li>#13017, probe redirection if url is identical to id (39705a17)</li>
+<li>#13016, remote account deletion frontend UI bug (2005a02a)</li>
+<li>add missing catch, closes #13012 (45021b5b)</li>
+<li>check if url is undefined (fa81078a)</li>
+<li>#12941, inherit audience from earlier posts in the chain so as to send a coherent value to Lemmy instances, re: lemmynet/lemmy#5278 (97384b2c)</li>
+<li>add 10s timeout for AP message send (25d6ef43)</li>
+<li>ignore subsequent shares of the same topic by that user (d734ce49)</li>
+<li>#12972, allow bridgyfed accounts to pass isWebfinger regex validation (a7e6cfe8)</li>
+<li>bump harmony (ee8ec61e)</li>
+<li>fix double thumb due to post attachments (755b9855)</li>
+<li>lemmy integration, handle <code>image</code> property as topic thumb (b15a684a)</li>
+<li>wrap try..catch around topics.reply in note assertion to output errors (b551abce)</li>
+<li>have options.update also trigger handle and search updates on actor assertion (050acb4f)</li>
+<li>separate out removals vs. additions in actor assertion in order to hopefully resolve #12959 (546ffed2)</li>
+<li>openapi schema for ap routes (c86b6f24)</li>
+<li>get version directly from package.json (3340720e)</li>
+<li>set linkValue for remote user fields (3d653cbb)</li>
+<li>crash due to missing param when calling getCustomUserFields (e5fdf9f1)</li>
+<li>set a user-agent when sending requests (64339e61)</li>
+<li>persist <code>sourceContent</code> into post hash when ingesting remote posts, update markdown so that field is parsed instead of ignoring content (1839388b)</li>
+<li>use fediverse pseudo-user for webfinger privilege checks (f32184b2)</li>
+<li>regression on remote deletes, received object is not always a simple id (d7fe3558)</li>
+<li>thrown exception from failed note assertion (830aab66)</li>
+<li>one more (304fa554)</li>
+<li>another fix re: 3780fdc6ff9fb23048266b43ceae86646fb795cc (69d5544a)</li>
+<li>thrown exception from failed note assertion (f7a294a7)</li>
+<li>additional fixes re: 3780fdc6ff9fb23048266b43ceae86646fb795cc (97861dd1)</li>
+<li>regression on remote deletes, received object is not always a simple id (3780fdc6)</li>
+<li>#12939 convert custom emoji in actor summary into images (78a9e86c)</li>
+<li>translate custom field names and values when federating out (e6edcefd)</li>
+<li>bump emoji-android version (552298f8)</li>
+<li>bump harmony and re-tag (593a1933)</li>
+<li>bump emoji to 6.0.1 (efa0cac3)</li>
+<li>bump harmony (00b2dd49)</li>
+<li>strip html from remote custom fields, linkify if url detected in now-plaintext field value (065f84b6)</li>
+<li>handling of empty custom user fields from remote users (1bebb82b)</li>
+<li>don’t send custom fields in remote user actor object if no value is entered (09f00f8e)</li>
+<li>hotfix for empty user fields (ce1efd39)</li>
+<li>bump mentions (e5f804ff)</li>
+<li>#12928, topic showing wrong queued posts in-topic when topic is remote (7b747c8f)</li>
+<li>replace parseInt that was excluding remote pids from calculation (93bb73c1)</li>
+<li>#12923, inability to start chat with remote users via profile (b6a2520f)</li>
+<li>inability to directly post to a nodebb category from the fediverse (55ab85ac)</li>
+<li>#12919, handle when buildTopicsSortedSet returns a non-array (e4e6b1d2)</li>
+<li>#12912, strip custom emoji from remote content titles (7adc3140)</li>
+<li>don’t chop off colons when generating titles as they could interfere with emoji (f449fafc)</li>
+<li>#12893, topic with pages returning OrderedCollectionPage instead of OrderedCollection. (d685b20e)</li>
+<li>missing return (cf3555fa)</li>
+<li>#12887, strip target attribute from remote posts’ html (3eb0a0ed)</li>
+<li>#12866 again, more tests (a59dae3f)</li>
+<li>raise probe timeout to 2s (94e34907)</li>
+<li>topic count not showing up on category page (dd363446)</li>
+<li>#12882, view original post circles back to same topic (93844321)</li>
+<li>#12883, activitypub probe timeout (f8729571)</li>
+<li>errant mention detection via actors.note (22dbf15e)</li>
+<li>#12880, refactored ap controller.list to use <code>buildTopicsSortedSet</code>, moved out poor man’s intersect to internal method (05c8ee9f)</li>
+<li>don’t trust timestamps on received items (b1d779ca)</li>
+<li>use <code>categories.getTopicIds</code> instead of duplicating existing logic to get world tids (7bf41138)</li>
+<li>#12866, improve title generator, refactor tests (beb85604)</li>
+<li>one more fix (eccad588)</li>
+<li>debug return not restored back (0e982fcf)</li>
+<li>#12865, crash on liking a chat message (fc3243d6)</li>
+<li>possible fix to escaped emoji in titles (f5324501)</li>
+<li>#12707 ensure actor matches context attributedTo (998273cd)</li>
+<li>federate out an Add on post creation even if there are no category followers (15516862)</li>
+<li>accidental sending of Set to ActivityPub.send (3030a720)</li>
+<li>#12857 byebye cheerio (8492b5f4)</li>
+<li>inputIndex check (cac4f8e7)</li>
+<li>convert some more verbose logging to use ap logging helper (6208ab8d)</li>
+<li>regression introduced by 903d03891941902ddac80b380552530e1853c306 (d451adaf)</li>
+<li>lint (c34407d8)</li>
+<li>errant parseInt in canEditDelete (0f1b1164)</li>
+<li>guard against missing to/cc (1d5f490d)</li>
+<li>object not array (873d033b)</li>
+<li>backend logic fixes for #12853 (b472c589)</li>
+<li>groups not showing up on new reply (1bf09907)</li>
+<li>re-enable logging only for dev mode (a226ee9e)</li>
+<li>defer postdata retrieval (9062691a)</li>
+<li><code>inReplyTo</code> incorrectly including system messages, #12834 (7ad7bc47)</li>
+<li>remote debug log (e9a27db2)</li>
+<li>error on replying to remote mids #12834 (adf33cfa)</li>
+<li>proper urls in <code>to</code>, #12834 (94ac57ea)</li>
+<li>simplify uid logic, explicitly mention all participants, even local users, #12834 (70fe8689)</li>
+<li>adjust timestamp after message creation instead of passing timestamp in, #12834 (0346e92b)</li>
+<li>limited visibility remote posts with greater scope than asserted roomId should add those users to the chat room, #12834 (22931be1)</li>
+<li>empty mid on frontend for remote posts (8abfd951)</li>
+<li>recent chats string generation to handle remote users #12834 (0a17a0b9)</li>
+<li>inReplyTo bug, #12834 (fc1d064d)</li>
+<li>remove sender from recipients, #12834 (8f7d0499)</li>
+<li>private note <code>inReplyTo</code> url, #12834 (f3045309)</li>
+<li><code>inReplyTo</code> for private notes so that refer to the immediately previous message if not explicitly defined (f4a02d9c)</li>
+<li>duplicate logic and double-parsing issue, #12834 (8a1abe68)</li>
+<li>federate out a Create(Note) instead of just the note… doi… (74d5ced2)</li>
+<li>chat room kicking of remote users, (un)read logic for remote users (there is none), sendNotification to only apply to local uids (52080ba2)</li>
+<li>restrict the ability to make a remote user a chat room owner (b610b520)</li>
+<li>display of remote users in chat room search (f5129017)</li>
+<li>also ignore non-public notes on Update activity (2713d13c)</li>
+<li>bump web-push (f57758b9)</li>
+<li>logic tweak (15f60b24)</li>
+<li>fall back to inReplyTo traversal on context resolution failure (903d0389)</li>
+<li>tests (45a0b818)</li>
+<li>null defense (3d25a079)</li>
+<li>#12821, improvements to search bar and search logic (0b83e5b8)</li>
+<li>lint (c265666c)</li>
+<li>parse aboutme when mocking a user (c5e10c1a)</li>
+<li>remove superfluous service-worker code (90cc7e61)</li>
+<li>explicitly set <code>updated</code> property when federating notes out (6fe4d446)</li>
+<li>buttons for general settings (5bc907a0)</li>
+<li>bump mentions (e0c410cd)</li>
+<li>actors.assert attempting to process things that aren’t actors, #12809 (6b4b4b1a)</li>
+<li>carry out mime-type guessing on incoming attachments (71ce3089)</li>
+<li>re-use already parsed html in api.posts.edit’s call to getPostSummaryByPids, delay federating out edit activity for 5s to give link preview a chance to resolve (b04a1105)</li>
+<li>id on 1b12 announces (047d5992)</li>
+<li>better handling for remote posts that do not contain content (3c55d102)</li>
+<li>#12799 add externally linked images to <code>attachment</code> (1a0a2cd1)</li>
+<li>remove includeUncontrolled as we are posting messages, and that only works with windows you control lol (028b6d74)</li>
+<li>add logic to automatically take over clients from old service workers (1fbf9114)</li>
+<li>closes #12787, filter null topics (c2600b12)</li>
+<li>remove use of jquery $(this) in ajaxify (176f4d0d)</li>
+<li>crash when AP S2S call made to retrieve a remote user account (not allowed); now returning 404 (d42d3b1c)</li>
+<li>prevent crash if items is undefined (a80e3141)</li>
+<li>regression that caused replies to not get federated (652d6c6e)</li>
+<li>#12760, add proper security context for application actor (045e16d3)</li>
+<li>on topic move out of cid -1, also federate to the public address (909437c3)</li>
+<li>bump harmony (6ed32f67)</li>
+<li>type casting in user block logic (0f63f67b)</li>
+<li>restrict announce activity to topic moving OUT of cid -1 (f3eb6d50)</li>
+<li>#12751, topics:recent zset not updated when tid moved in/out of cid -1 (76551c71)</li>
+<li>bump mentions (e6d8e059)</li>
+<li>bump composer (22952c54)</li>
+<li>bump composer (e2879563)</li>
+<li>#12732 editing of remote post content (25bf97ae)</li>
+<li>#12733, html present in generated title for remote topics (34747122)</li>
+<li>#12729, replies to existing topics from Pixelfed not asserting properly due to incorrect <code>toPid</code> (f481cde1)</li>
+<li>move topic reply call in notes.assert to its own line (95e6d2b4)</li>
+<li>#12510, blocking of a single remote user causes content from all remote users to be blocked (53aee401)</li>
+<li>serve category actor image instead of nothing, serve brand logo in icon (cbe0a0ad)</li>
+<li>lint (d33fb92d)</li>
+<li>have note federation call .parsePost instead of firing plugin hook (93536386)</li>
+<li>always send replies uri instead of null if no replies exist, @trwnh (ff08fbb7)</li>
+<li>send <code>null</code> instead of empty array in <code>replies</code> property if mocked note has no replies (9bd6896d)</li>
+<li>bug that caused remote replies to other remote content to not always assert (2ced3502)</li>
+<li>bugs in user searching causing remote lookups to fail (1f896fb6)</li>
+<li><code>audience</code> property in topic actor response (9a54f6bc)</li>
+<li>updating of post counts for remote users (3e494dc7)</li>
+<li>add privilege check to user follows (399d4103)</li>
+<li>accidental passing of string instead of constant (7bf349b6)</li>
+<li>lint (fc5a829c)</li>
+<li>update upgrade script date (b9f37c5c)</li>
+<li>include follower sets for reassertion (be393d57)</li>
+<li>missing await (5c9ac5d3)</li>
+<li>null check for note attachments for thumbs view (2aa04837)</li>
+<li>incorrect parsing of context items during note assertion, logic error with slicing (60408f23)</li>
+<li>logging in topic actor logic (bc00835c)</li>
+<li>issue with topic actors not returning proper json (609035b5)</li>
+<li>off by one error @barisusakli (cfbaf145)</li>
+<li>map to actual mainPid value (7bdf3769)</li>
+<li>skip topic retrieval when cid is -1, as it is done again later (92191995)</li>
+<li>flawed logic in generating topic context collection (31c7226e)</li>
+<li>rename announcers to shares (3c0d7616)</li>
+<li>catch thrown errors in src/api/activitypub (fdc0d670)</li>
+<li>federating category mentions (00a26679)</li>
+<li>send html in category description (f605e188)</li>
+<li>Update activity handling for non-Person actors (5e343a83)</li>
+<li>remove await from category update federation call (bacbfba9)</li>
+<li>issue where incrementing user hash fields didn’t use the right key name for remote announce @barisusakli (e84cfd8c)</li>
+<li>lint (b0eec67d)</li>
+<li>send back empty array if no direct replies, bug with reply generation (af6ae6ee)</li>
+<li>accidental passing-in of an array into getUserField, breaks in pgsql? (8e1fccf0)</li>
+<li>hardcoded tid in topic thumbs test (78a6c60c)</li>
+<li>tighten up logic in checkToPid internal method (f629b20f)</li>
+<li>partial revert to fix url_parsed not being available at top of file @barisusakli (8ecbb5cc)</li>
+<li>removal of topics from applicable user inboxes when synced (46341673)</li>
+<li>tweak logic for topic counters sorted sets, #12642 (0d549f1d)</li>
+<li>#12667; handle cases where received id is not a URL (d92efb8a)</li>
+<li>#12673 fullname not defined in some remote actors (f662a606)</li>
+<li>only send Update(Actor) to followers, #12674 (26946c7f)</li>
+<li>missing sorted set member removal on category unfollow (a748068c)</li>
+<li>add timestamp to follow activity to make it unique (eab231ee)</li>
+<li>additional logging for activities with no context property (cb5e5b4b)</li>
+<li>update handling of Announce(Create(Note)) to also handle non-note types (600b1a86)</li>
+<li>push instead of unshift, now that order is reversed (cc0bbcb7)</li>
+<li>wrong property name for OrderedCollection items (a2fb939b)</li>
+<li>improper sourceContent in mocks (615aaa01)</li>
+<li>#12662, add original activity actor to Announced activity’s cc (d6f44d8e)</li>
+<li>remove duplicate 1b12 announce in notes.assert (already handled in inbox) (4dbb73a4)</li>
+<li>#12652, incorrect user, post, topic counters with AP enabled (fe70a2b8)</li>
+<li>incorrect activity id sent out on 1b12 announce (ef97a784)</li>
+<li>#12654, incorrect location of <code>sharedInbox</code> property (b66d998d)</li>
+<li>regression that caused new notes to have undefined cid and fail privilege check (a371c9fc)</li>
+<li>move call to retrieve cid followers out of loop (89dd2fb0)</li>
+<li>do not retrieve remote outbox count when asserting actor (16f8f536)</li>
+<li>double sanitization (d9ac7f49)</li>
+<li>dont load  cid=-1 in tag filter dropdown (7d679db2)</li>
+<li>change setImmediate to a 5s timeout to give plugins (or anything waiting for the return value of the API call) a chance to finish execution (7fada44b)</li>
+<li>openapi spec for v3 posts get (4b86b378)</li>
+<li>wrap ap note creation in setImmediate to let internal hooks have a chance to wrap up first (a3c6c872)</li>
+<li>improper sanitization and parsing in mocks.note (59818031)</li>
+<li>remove parseInt on users controller (5a2fa52c)</li>
+<li>send additional @context entry for <code>publicKey</code> support, fixes #12604 (4eb998d5)</li>
+<li>null case handling (e6e6c2a2)</li>
+<li>category follow schema test (4b8a9e58)</li>
+<li>getCidByPid call returning improper values because a remote url to a local post was passed in (4030c09e)</li>
+<li>1b12 conformance for inbox.create as well (c8bc6e55)</li>
+<li>re-add sending of Announce(Note) for microblog support, #12434 (89d2363d)</li>
+<li>FEP 1b12 conformance, federate Announce(Create(Note)) instead of Announce(Note), #12434 (be95b5b1)</li>
+<li>missing openapi schema change (e9a0d495)</li>
+<li>eliminate infinite loop in actors.assert via user.getUsersFields (18e58318)</li>
+<li>minor adjustment in logic to work around relation logic (1219d7d3)</li>
+<li>introduce artificial 5s delay for 1b12 announces (101062cb)</li>
+<li>move logic to move topic on note assertion earlier in the flow so it actually runs (acd1630b)</li>
+<li>post count (badb7e2c)</li>
+<li>skip follower count check if cid follower is found (f29214e0)</li>
+<li>don’t crash process on error in cronjobs (89465ec6)</li>
+<li>handle missing fullname in actor removal logic (ae3fa85f)</li>
+<li>guard against infinite loop during topic purge batch call (6272d059)</li>
+<li>unintentional parseInt during post purge (bcfac00b)</li>
+<li>pid in api call (70625133)</li>
+<li>missing await on topic purge (6ecc791d)</li>
+<li>don’t attempt user reset token cleaning if uid is not a number (8d790964)</li>
+<li>set (f83a3672)</li>
+<li>incorrect use of .map on a Set (c6f2155f)</li>
+<li>another crash (f8d9f644)</li>
+<li>closes #12618, handle missing selector (35eb2d0d)</li>
+<li>crash in mocks.profile (6f37825b)</li>
+<li>bug that stopped remote users with dashes in their handle from being properly asserted (76290e37)</li>
+<li>parse incoming HTML to remove useless classes too (47406d13)</li>
+<li>update post cache clearing logic to call helper function (547fc17d)</li>
+<li>have replies provide <code>name</code> when mocked (b6653d15)</li>
+<li>lint (f93b237e)</li>
+<li>remove .only (a0054400)</li>
+<li>minor cleanup (129017f7)</li>
+<li>Notes.delete to delete announcer zsets too (b5b89038)</li>
+<li>rename api.activitypub.create.post to .note() (2d7ca48d)</li>
+<li>canPurge logic fault (d40d0b06)</li>
+<li>allow remote content to skip isReady check on topic creation/reply (5bfde4c4)</li>
+<li>Topic.isOwner check to handle remote users (0a1ad87d)</li>
+<li>special handling for privsTopics.canPurge for remote posts (b67a7c3c)</li>
+<li>Posts.isMain cast pid to String instead (9fbd48b1)</li>
+<li>special logic for purge privilege checks (9f44e99f)</li>
+<li>unnecessary parseInt in post purge api method (eda97da1)</li>
+<li>type error in attachment emptying method (336ea1ee)</li>
+<li>tag notification if pid is not int (baada2fc)</li>
+<li>encode most uses of pid to avoid more bugs like #12545 (c973a9ca)</li>
+<li>allow quoting AP posts, fixes #12545 (43dfb60f)</li>
+<li>Update(Note) federation should only apply to local content (6f9fa660)</li>
+<li>attach announcers and their followers to cc, not to targets, only attach announcers to targets (51089a34)</li>
+<li>bump harmony (2cd9088c)</li>
+<li>inability to query local content via remote url (ac74d9c5)</li>
+<li>ensure consistent return type from notes.assert (a7aeabc8)</li>
+<li>remove unnecessary check and guard against unsupported URIs before fetching (af986758)</li>
+<li>handle retry queue invalidation across a cluster (22b42f11)</li>
+<li>use batch.processArray properly (729f0fca)</li>
+<li>if an unknown post is navigated to by a logged-in user, automatically assert the post and add it to their inbox (4e7b12b9)</li>
+<li>bump harmony (e341a5d8)</li>
+<li>bump composer-default (4e006adb)</li>
+<li>save followersUrl to remote user hashes (738d47c7)</li>
+<li>notifications for tag followers not being sent if author is a remote user (8de2352e)</li>
+<li>send topic title in context object (05cdb7d9)</li>
+<li>partOf and type (109f4232)</li>
+<li>if post count is less than posts per page, don’t paginate in ordered collection (1a21c8ad)</li>
+<li>send id for category announces (0336e8f0)</li>
+<li>post deletion of remote posts (5e203197)</li>
+<li>update title generator to include the punctuation, and also take into account question marks and exclamation marks (6ac5a779)</li>
+<li>remove unneeded <code>flagged</code> property in favour of flagId, use existing language key for rescind-report (449ffd66)</li>
+<li>have category sync routes return full api response, openapi schema for that pair of routes (b7ad4317)</li>
+<li>update signature parsing logic to handle values with equal signs in them, closes #12538 (596a5e4b)</li>
+<li>unintentional object pollution by buildForSelectCategories (40b9dabd)</li>
+<li>better logic for choosing webfinger lookups (ed84eed8)</li>
+<li>don’t look up webfinger when it’s not necessary (dd71340a)</li>
+<li>update hasRelation condition to be true if cid is passed in in options (6964b1fd)</li>
+<li>handle requests to URI IDs correctly (1ecbf02a)</li>
+<li>handle URI actor IDs (70001664)</li>
+<li>percent-encode outgoing webfinger requests (3d1e2cde)</li>
+<li>bump harmony (59021d8a)</li>
+<li>icon:text and icon:bgColor for remote users (3721f819)</li>
+<li>handle Announce(Create(Note)) (a9a7fd1e)</li>
+<li>use system pseudo-user for topic move call (dce33446)</li>
+<li>if the topic already existed in -1, move it to another category if one was passed in options (49a64dc7)</li>
+<li>add back reverse lookup for notes assertion checking via cids (407dda78)</li>
+<li>actors.assert should return false if webfinger cannot resolve to an id (b7ff7be2)</li>
+<li>support reporting remote content in Flag (026449dc)</li>
+<li>#12505, convert relative urls in links and images into absolute urls, uses same logic as for emails (7c4ae8eb)</li>
+<li>#12502, improper decrement (6befff5e)</li>
+<li>send userslug in preferredUsername (64258dac)</li>
+<li>wrong variable name (50f31b23)</li>
+<li>change default attachment type to Link, or Image if mediaType matches (bb4e418d)</li>
+<li>save modified actor back to req.body (c3365908)</li>
+<li>you scurvy cur! (52271cae)</li>
+<li>handle (created) and (expires) in http signatures (4d23a837)</li>
+<li>#12496, url in schema (f7833386)</li>
+<li>handle remote userslugs with non-lowercase letters (f5ea470d)</li>
+<li>send hs2019 as algo (to match cavage-12, handle incoming algorithm value (8d0876b8)</li>
+<li>bump harmony (b8daa02f)</li>
+<li>throw errors when local objects don’t exist (959e1820)</li>
+<li>#12493, send unescaped fullname through via AP if displayname is set/used (e0f542c9)</li>
+<li>send only the id into actors.assert (465a46f2)</li>
+<li>use a slightly better error code to indicate object resolution failure (c92b5e07)</li>
+<li>assume object is full object and not just id everywhere (e0166ccc)</li>
+<li>use resolved object in likes (962c6351)</li>
+<li>reject accepts of invalid follows and return when already following (b6168202)</li>
+<li>handle resolved objects in flag (41f77f8f)</li>
+<li>additional verbose logging for signature verification (464dd806)</li>
+<li>bump mentions (6b169e04)</li>
+<li>default to showing alternate as link to the post object (86107535)</li>
+<li>pid via index calculation (de83d6b0)</li>
+<li>support ldjson with ActivityStreams profile in actor queries (c30c1288)</li>
+<li>early return on invalid actor (2d1524ee)</li>
+<li>use actor id in flags (e25f0621)</li>
+<li>make sort work with world filters (cd8a91fe)</li>
+<li>uppercase digest algorithm name for compatibility reasons (5c1c1d21)</li>
+<li>better handle null return from notes.assert (cbfc8d25)</li>
+<li>bump mentions (86caf237)</li>
+<li>actor assertion logic to ignore loopback urls (f40df387)</li>
+<li>lol (983153fb)</li>
+<li>maybe last tweak (42bdffdc)</li>
+<li>tweak upgrade script again (ae146024)</li>
+<li>tweak upgrade script again (166e3e2f)</li>
+<li>add timeout on activitypub.get, tweak upgrade script (442e98e4)</li>
+<li>tests, save actor URL into userRemote hash (59709a3c)</li>
+<li>show locally captured remote posts when browsing remote profiles (1084f21d)</li>
+<li>have getCidsByPrivilege include cid -1 when set is categories:cid (e828e87e)</li>
+<li>updateLastOnlineTime for remote uids (893788a2)</li>
+<li>bump harmony (2cbc3913)</li>
+<li>adjust world schema (a3dce463)</li>
+<li>redirect to /api/world for API requests (495d5435)</li>
+<li>lint (f078e1e2)</li>
+<li>skip notes.assert checks for Announce(Note) if it’s a remote object, do our own checks; #12442 (4fcd2bb2)</li>
+<li>getSortedTopics; filter out topics in cid -1 unless explicitly asked for (dff5d1c6)</li>
+<li>#12444 add uncategorized topics counted stats to separate sorted set (8dcdf8ef)</li>
+<li>undefined object in notes.assert (1fb3c4fd)</li>
+<li>typo (bab41d12)</li>
+<li>restore userOrGroupExists, as alias to slugTaken (e0f6b707)</li>
+<li>send handle as category actor’s preferredUsername, #12434 (803975fd)</li>
+<li>use CategoryObject in admins-mods schema def (aafdefa7)</li>
+<li>only send activitypub+json links via webfinger if activitypub is global enabled (65bb8666)</li>
+<li>bump harmony (9c03e6e9)</li>
+<li>resolve interoperability issues with Misskey, et al. (003c6469)</li>
+<li>bump harmony (da2a1e20)</li>
+<li>issue where cid -1 appeared in all category searches (8f131b71)</li>
+<li>bump harmony (2756aae7)</li>
+<li>post urls to use  prefix instead of linking out directly to origin server, exposed encodeURIComponent as a template helper for themes (2408ecd8)</li>
+<li>regression that caused S2S calls to topics to return with a 404 (5a2d17df)</li>
+<li>restore accidentally removed calls to updateLocalRecipients and saveAttachments (5f60f75f)</li>
+<li>properly handle empty fields param (c76d4018)</li>
+<li>circular object ref. (7af07151)</li>
+<li>tweak maxTags handling (ccd9c7ed)</li>
+<li>bump mentions (ff6cc90c)</li>
+<li>send topic notif on reply (1a92239c)</li>
+<li>typo (44a183dd)</li>
+<li>double-OP issue when remote reply comes in to local mainPid (0a2482cf)</li>
+<li>filter out system tags and prune extra tags beyond number allowed, when creating topic from remote data (7aa56c72)</li>
+<li>resolve toPid to local pid if able (ebd750b4)</li>
+<li>tweak user.search to better handle local usernames with colons in them (c346177b)</li>
+<li>accidental saving of ephemeral _activitypub object into db, should plumb into hooks only (81b319f4)</li>
+<li>handle actor assertion failure if mocked profile does not have a fullname (338c568c)</li>
+<li>template helper (52c143aa)</li>
+<li>tests (4b2495b5)</li>
+<li>remove unused param in addParentPosts (01f7af92)</li>
+<li>only dereference id if it doesn’t exist locally — fewer calls (eb8ff75b)</li>
+<li>specify param for api test for /world (b1491ca3)</li>
+<li>AP S2S handling for /user/:userslug route (9cd6b496)</li>
+<li>handle fetch failures on helpers.query (5768a437)</li>
+<li>more duplicate detection in to/cc (ceab77e4)</li>
+<li>markAsRead to handle remote topics (17c55922)</li>
+<li>parse questions like a post (90e7d3a1)</li>
+<li>properly build recipients… old logic was just plain wrong :shipit: (1e663239)</li>
+<li>reallow topic:read privilege for fediverse group (97e5b0fd)</li>
+<li>only serve local posts via S2S when queried (00101d9e)</li>
+<li>note not federated out to mentioned users’ inboxes (6423d514)</li>
+<li>update styling of available nav items in ACP (6aece689)</li>
+<li>remove unresolvable actors from parsing prior to mocking profile (39da3ab6)</li>
+<li>send explicitly empty array for attachment prop in mocks.note (4a8b06e8)</li>
+<li>remove some privs from fediverse in world category (6999bd68)</li>
+<li>inability to retrieve previously-unknown remote users via url manipulation (28f38b26)</li>
+<li>tags received via AP should only be of type Hashtag (as mentions are also in tag prop (81b81e54)</li>
+<li>data schema of reject activities (beaedc86)</li>
+<li>fallbacks for if preferredUsername is not set (9f8c706f)</li>
+<li>pass proper uid to privilege check in AP note federation (95427c4a)</li>
+<li>remove console logging (4c2cbb5b)</li>
+<li>move fallback 0 return in parseIntFields to other side of ternary conditional (5b74f6da)</li>
+<li>remove intFields hack and update db.parseIntFields to only parseInt if field value is a number (f368a1a8)</li>
+<li>truthy check in notes.assert (6671b511)</li>
+<li>remote user avatars in notifications (aef1215f)</li>
+<li>bump mentions (ae09aa20)</li>
+<li>properly handle if mainPid is not a number (1ca9994f)</li>
+<li>mainPid detection in unprocessed ids in assertTopic (b529610b)</li>
+<li>redir on bad world filter (0cf6af9b)</li>
+<li>serve fallback images on category actor (8cb984d4)</li>
+<li>bump markdown (44452a3b)</li>
+<li>missing invocation of generatePostUrl in generateRepliedTo helper (a08b2efb)</li>
+<li>unable to process Update(Person) (96a3a746)</li>
+<li>crash in resolveLocalId if Number is passed in (d51f5e59)</li>
+<li>missing await, and handle local posts with no toPid (i.e. reply to OP) (0b6b86d1)</li>
+<li>don’t overwrite title if present, on assertTopic (a3368a69)</li>
+<li>bump markdown (b1894276)</li>
+<li>copy fixes, rename upgrade script, disable federation on upgrades (281e9d6e)</li>
+<li>update ap-related deps to prerelease versions (10abb82e)</li>
+<li>defer federation of new topics when topic is scheduled, tie activitypub api module to global enable toggle (5f85e700)</li>
+<li>lint (563db78f)</li>
+<li>put postcount retrieval behind try..catch so errors are handled appropriately (28370b10)</li>
+<li>side-effects from adding toPid to post intFields (now removed) (b0115951)</li>
+<li>revert introduction of toPid into post intFields, manually cast toPid as int in getPostSummaryByPids if present and numeric (3a870360)</li>
+<li>check origin only if object is a string (92a8951b)</li>
+<li>send string to validator (893dd523)</li>
+<li>regression re: attachment handling (53d1c10e)</li>
+<li>parseIntFields for tids (31fd135f)</li>
+<li>handle undo(Announce) of remote notes (cfbbf4ca)</li>
+<li>assert actors on note assertion, resolve crash if announcing something that’s already been announced (6a7f8f14)</li>
+<li>don’t crash when no attachment, oops (0edaf17c)</li>
+<li>sanitize post remote post content regardless (8b0ccc80)</li>
+<li>wrong id parsed in announce (068c4fa9)</li>
+<li>accidental overwrite of hoisted internal variable (56cfae07)</li>
+<li>include mainPid in topic counts calculation (5c04e805)</li>
+<li>guests visiting /world should see all remote topics (19d017b9)</li>
+<li>timestamp calculation (6a11c89b)</li>
+<li>better handling of missing of invalid to, cc, timestamp values (76d5feb7)</li>
+<li>remote announces not showing up in local inboxes (814c4794)</li>
+<li>handle inaccessible boosts (9439987e)</li>
+<li>remove invalid/inaccessible object from parent traversal chain on get error (672a907d)</li>
+<li>handle invalid score (609a9a37)</li>
+<li>mainPid accidental int (22da3a6a)</li>
+<li>getParentChain error handling (69f1ace3)</li>
+<li>take mainPid into account in syncUserInboxes (d13980c8)</li>
+<li>typo (de71b733)</li>
+<li>stringify error body in ap.send (401b4c5f)</li>
+<li>activitypub.get failure handling (12968b62)</li>
+<li>only log warning on ap.send failure (ce4b5679)</li>
+<li>rejig some tertiary conditionals, fix broken inReplyTo when toPid is not defined and mainPid is a remote post (5fee4e33)</li>
+<li>resolveLocalId to return null values instead of throwing for no resolution (11dba85d)</li>
+<li>don’t crash on activitypub.send non-2xx, better logging for successful sends (ac56289f)</li>
+<li>replies to remote content overriding mainPid in topic (2b1a3477)</li>
+<li>assertTopic incorrectly creating new id if passed-in id did not match the actual object’s id (f1b8f3fe)</li>
+<li>urls in posts and announces (4fb6574c)</li>
+<li>remove now unused world/:tid route and assoc. controller (a61e7fe7)</li>
+<li>cast cids passed in to getCategoriesFields as ints (aafdebd2)</li>
+<li>logic error (80377599)</li>
+<li>logic derp (9795abbf)</li>
+<li>new language source file for activitypub text (21a2876e)</li>
+<li>getUserInfo internal method in topic events to not filter out uids because getUsersFields already does it (f7259ccb)</li>
+<li>category following and acceptance logic (25f0d484)</li>
+<li>properly assert resources in AP router (d2f14c36)</li>
+<li>update preferredUsername in category actor to match webfinger representation (d213ce79)</li>
+<li>follower calls to return empty item list unless a page is explicitly passed in (94361721)</li>
+<li>move all actor object urls to immutable variants (86a607ce)</li>
+<li>send proper @context value for posts (was missing) (457bfe16)</li>
+<li>remote follows, yet again (fef18824)</li>
+<li>a bunch of broken things, added test for Create(Note) (a3a0edb7)</li>
+<li>error handling for actor.assert (fa1c5490)</li>
+<li>missing break statement (2c834263)</li>
+<li>reject spiders on remote profile GETs (a355c05d)</li>
+<li>send back correct actor id on webfinger calls (25434d2a)</li>
+<li>parseInt on timestamp from post (ddf17ee5)</li>
+<li>/uid/:uid route to return actor (0b3ca8e3)</li>
+<li>the id of an actor should be its immutable uri (/uid/:uid) and not userslug (e07c3131)</li>
+<li>unused require, tests (3c24cfb4)</li>
+<li>send full as:Image object for icon and image in mocked actor object (0af97dd4)</li>
+<li>clear post cache on Update(Note) (f51bbe91)</li>
+<li>webfinger loopback (1ee03f2b)</li>
+<li>revert home page routing change and moved instance actor endpoint to (e00a03bb)</li>
+<li>restore avatars in topic list (3bdaa8a8)</li>
+<li>send preferredUsername in application actor response (f8cfe64c)</li>
+<li>note assertion on Create(Note) and Update(Note) to use instance key instead of uid 1’s user key (4cc7ee65)</li>
+<li>add workaround for nodejs/undici#1305 required to remove sec-fetch-mode header (2cb37088)</li>
+<li>response, not res (9e58b04c)</li>
+<li>automatically reject unsigned POSTs to inbox (a3e1a666)</li>
+<li>handle case where pubKey cannot be found (33f3da8a)</li>
+<li>user data in /world (518169fe)</li>
+<li>bookmark in topic data is nullable now (970a5a6e)</li>
+<li>saving teaserPid, timestamp, lastposttime in topic, fixed post index issue in loading topics (60bc27ec)</li>
+<li>preserve cid if set (e038eb05)</li>
+<li>incorrect author uid saved in topic (75654852)</li>
+<li>infinite scroll for posts (8cd3ff1a)</li>
+<li>reply expansion (5ac02765)</li>
+<li>issues related to adding new reply chains to an existing topic, resolveId method in notes module (2981f663)</li>
+<li>simplify increasePostCount logic by combining methods (81d81098)</li>
+<li>have mocks.posts return same number of items as received (d992239d)</li>
+<li>show full names for remote users (d1cdb8f8)</li>
+<li>improper params sent to get and getActor (9221506b)</li>
+<li>restore hostname prop in getActor method (ec3c6b67)</li>
+<li>ActivityPub.get now throws on failure, handle in getActor (7ec75f58)</li>
+<li>send in mocked profile data in follow routes as well (942a9b7e)</li>
+<li>tests (c66b1867)</li>
+<li>isUri helper so that it passes ci tests (27e256d2)</li>
+<li>frontend follow logic, as uid is no longer webfinger slug (fcca9259)</li>
+<li>use simpler getSortedSetRevRange instead of unnecessary zunion call (283e460a)</li>
+<li>accept and undo logic saving improper id into database, updated follow logic so remote follow is not added to collection until an accept is received (759d69e0)</li>
+<li>relax activity-failed condition (3339baac)</li>
+<li>additional refactors and updates to follow/unfollow logic (6a54e009)</li>
+<li>bug where body wasn’t properly sent on ap-style content-types (ac344011)</li>
+<li>send actor uris in follow instead of webfinger ids (543daee8)</li>
+<li>some wip code regarding handling a follow activity, remove unfollow activity as that does not exist (f3b0794d)</li>
+<li>accidental double-hash in sign/verify (0eadad84)</li>
+<li>incorrect logic (71e3d26b)</li>
+<li>update proceedOnActivityPub middleware to handle how Mastodon doesn’t send the ‘Accepts’ header (dd480aa4)</li>
+<li>another bad call to request lib (88527884)</li>
+<li>broken call to request lib, tests (8d796170)</li>
+<li>update isJSON test in request lib (510763af)</li>
+<li>handle null actor uri in helpers.query (a21110fd)</li>
+<li>unused require (7f46f07c)</li>
+<li>store remote followed users count separately from local (e794f1d2)</li>
+<li>icon text and bgColor in remote profiles (4324f09c)</li>
+<li>add basic sanity-checking to middleware.validateActivity (99cc60c8)</li>
+<li>incorrect host/hostname usage in well-known test (bcee1c8d)</li>
+<li>save remote follower count separately from local follower count (4218ecc4)</li>
+<li>missing req.body when parsing ActivityPub requests (e6753ce5)</li>
+<li>bugs, more prep to start making calls to self (5d95765e)</li>
+<li>moved .well-known assets to separate router file, added basic webfinger implementation (51d8f3b1)</li>
+<li><strong>deps:</strong>
+<ul>
+<li>update dependency ace-builds to v1.37.5 (#13058) (76a14de3)</li>
+<li>update dependency fs-extra to v11.3.0 (#13055) (9a401b5b)</li>
+<li>update dependency postcss to v8.5.1 (#13050) (3ba1d264)</li>
+<li>update dependency nodebb-plugin-web-push to v0.7.2 (#13049) (e9a4c42b)</li>
+<li>update dependency nodebb-plugin-2factor to v7.5.8 (#13048) (3827f438)</li>
+<li>update dependency sass to v1.83.4 (#13046) (8e62800b)</li>
+<li>update dependency postcss to v8.5.0 (#13044) (c4c89116)</li>
+<li>update dependency cron to v3.5.0 (#13042) (5e5d920b)</li>
+<li>pin dependencies (#12987) (430d1479)</li>
+<li>update dependency satori to ^0.12.0 (#12995) (05f7b58c)</li>
+<li>update dependency tough-cookie to v5.1.0 (#13039) (34b0cf6b)</li>
+<li>update fontsource monorepo to v5.1.1 (#13029) (b1e87aa9)</li>
+<li>update dependency fetch-cookie to v3.1.0 (#13006) (df69b399)</li>
+<li>update dependency ace-builds to v1.37.4 (#12988) (3a33cd5b)</li>
+<li>update dependency esbuild to v0.24.2 (#12989) (701780fe)</li>
+<li>update dependency sanitize-html to v2.14.0 (#12994) (bfc962b9)</li>
+<li>update dependency ioredis to v5.4.2 (#12993) (7943fcde)</li>
+<li>update dependency cron to v3.4.0 (#13026) (de571d24)</li>
+<li>update dependency sass to v1.83.1 (#13028) (438f4e0a)</li>
+<li>update dependency nodebb-widget-essentials to v7.0.32 (#13027) (de076a21)</li>
+<li>#12683 bump emoji plugin to v6 (e8fda4c0)</li>
+<li>swap ntfy for web-push plugin (aa060d31)</li>
+<li>persona v4 support (83993cad)</li>
+<li>bump markdown (daed7413)</li>
+</ul>
+</li>
+</ul>
+<h5 id="other-changes">Other Changes</h5>
+<ul>
+<li>fix paranthesis (8fd8079a)</li>
+<li>remove unused utils (7e450e1d)</li>
+<li>remove unused function (26765fe9)</li>
+<li>remove unused (530241e0)</li>
+<li>comment out actor assertion call in Users.getUsersFields (691f6917)</li>
+<li>fix some but not all tests (76453650)</li>
+<li>fix privileges in test runner (aadac705)</li>
+<li>unused requires, linting fixes (3e02efcd)</li>
+<li>additional logging (08f8babd)</li>
+<li>fix eslint errors (47b3ffb9)</li>
+</ul>
+<h5 id="performance-improvements">Performance Improvements</h5>
+<ul>
+<li>~18x speedup of /world route (f6f01ba3)</li>
+<li>get rid of exists call, load all attachments  in one call (9b8c834e)</li>
+<li>use batch in resolveInboxes (644bcec5)</li>
+<li>get rid of getPidByIndex, use postAtIndex (ad22b54e)</li>
+<li>‘-inf’ faster (c95075e1)</li>
+<li>move attachments to post hash (291bf7db)</li>
+</ul>
+<h5 id="refactors">Refactors</h5>
+<ul>
+<li>use helpers.log (40257663)</li>
+<li>add <code>thumbsOnly</code> option to thumbs retrieval method so that embeds/attachments don’t show up in composer thumbnail modal (51fd65ab)</li>
+<li>split (and remove) activitypub.json file and move strings to more appropriate locations (e4e10636)</li>
+<li>topic thumb logic so that <code>isDraft</code> is based on topic existence, and not whether it is a UUID, as remote topics are also UUIDs. (3439fdb6)</li>
+<li>post object schema to its own reference object, added sourceContent as optional value in post data (3073abd9)</li>
+<li>prolly dont need exists check (a42c9a6b)</li>
+<li>buildTopicsSortedSet (c1093c92)</li>
+<li>expose buildRecipients as a main activitypub lib method, call buildReceipients in ap controller actors for notes (5e47b194)</li>
+<li>followers url filtering logic, #12834 (ca683c6d)</li>
+<li>check HTTP signatures on all activitypub requests (8ef0df57)</li>
+<li>simplified ajaxify.check and likely made it equally more confusing (cf6c4c52)</li>
+<li>split out logic to determine ajaxification into exported method (fc4f6a4c)</li>
+<li>standardization; onNewPost internal method to return a superset of post summary (9357e718)</li>
+<li>follow/accept/undo logic to pass the same timestamp throughout the follow’s lifetime (e015339c)</li>
+<li>store local follow backreferences for remote users (both followers and following), update actor pruning to take local follow counts into consideration, fixes #12701 (39f92eac)</li>
+<li>collection logic out to an activitypub helper (352857cf)</li>
+<li>context item retrieval logic (20aee8e9)</li>
+<li>announces (c021e7e8)</li>
+<li>single db call (c231ab78)</li>
+<li>actor pruning logic (6227ab90)</li>
+<li>catch errors (f76a5863)</li>
+<li>add method from mentions into core (3eca9785)</li>
+<li>dont need exist check, if post doesnt exist getPostData returns null (b2d03da9)</li>
+<li>User.getUidsByUserslugs, so it works with multiple slugs (eb6fe339)</li>
+<li>suggest topics, use strings for tids (3488a4bf)</li>
+<li>unused winston (869df3c2)</li>
+<li>change to info (d1625d5f)</li>
+<li>remove verbose logs, (2ae58570)</li>
+<li>comment out verbose logs (ba2d1841)</li>
+<li>get rid of noop (eaf43541)</li>
+<li>single cache.del call (9868a728)</li>
+<li>#12553, buildRecipients so that it is separate from addressing in mocks.js (1fa93465)</li>
+<li>use batch.processArray for sending AP messages (ea6e15bf)</li>
+<li>context actor to serve an as:OrderedCollection instead of as:Page, and added context property (as per FEP-7888) to refer to it, changed audience to point to category (4b29a1b9)</li>
+<li>post announce logic to save to separate zset instead of to topic events, closes #12536 (119800d9)</li>
+<li>remove unnecessary flag routes added in 9ab1a2d (53b352d0)</li>
+<li>split activitypub tests to subfolder files (94eafe1d)</li>
+<li>use URLSearchParams instead of multiple encodeURIComponent (844d1402)</li>
+<li>stub routes for category synchronization, refactor remote follow logic to allow categories to conduct follows as well (59a9dd84)</li>
+<li>use a helper to resolve actor URI (b921f8d1)</li>
+<li>use getSortedSetUnion in syncUserInboxes instead (6c1a0fb1)</li>
+<li>use one internal rejection method (ac765f1e)</li>
+<li>use topics.post, topics.reply, and posts.edit in Create(Note), Create(Note), and Update(Note), respectively (f7c8967e)</li>
+<li>use topics.create internal method instead of directly setting topic hash, handle incoming tags for OP (f5a61079)</li>
+<li>assertTopic to only call setObject when it is a new topic (bdcd862c)</li>
+<li>resolveId method, add hostname verification (ed4ccbfc)</li>
+<li>use existing sets for topics (instead of topicRemote, etc.) (ec2b375a)</li>
+<li>activitypub sending to handle signed requests from categories (35819cc9)</li>
+<li>replace JIT actor retrieval with actor assertion and storage logic (ef8cd34b)</li>
+<li>added mocks.note in preparation for AP note retrieval logic, inReplyTo is always populated now, unless new topic (5de4f084)</li>
+<li>simplify remote (un)follow controller (c9feb925)</li>
+<li>guard dispatcher definition so non-Node runtimes won’t have issues (2ce14f50)</li>
+<li>generate a topic id when asserting a new topic (2ff70fdd)</li>
+<li>move activitypub-related middlewares to their own file (538776f9)</li>
+<li>simplify mocks.post as it only needs minimal data for saving into db (2bd9e984)</li>
+<li>move mockProfile and mockPost to separate mocks.js (06e15834)</li>
+<li>update ActivityPub.get and all methods calling it to take a uid so that requests can be signed (a1c8c3a0)</li>
+<li>validator check to helper method (2e330d8b)</li>
+<li>move profile mocking logic to discrete method in main activitypub lib (8d4fd9c0)</li>
+<li>update ap libs to use core request lib (5c881d3f)</li>
+<li>update activitypub.getActor to accept either url or webfinger id (68d5e4a8)</li>
+<li>minor restructure to move logic out of main controller file to src/api (c803b212)</li>
+<li>acp tpl + config option (ab3ff320)</li>
+</ul>
+<h5 id="code-style-changes">Code Style Changes</h5>
+<ul>
+<li>remove unused variable (9f94653b)</li>
+</ul>
+<h5 id="tests">Tests</h5>
+<ul>
+<li>fix spec (b80f0dab)</li>
+<li>missing ; (866588f7)</li>
+<li>fix guest handles in onNewPost (81f7371a)</li>
+<li>have actor assertion always use cache for tests (ad05f06b)</li>
+<li>fix broken test in category follows (4949d6c4)</li>
+<li>add attachments (6042f4a7)</li>
+<li>refactor tests to support additional Note tests (0c0f01b5)</li>
+<li>use encoded parameters in webfinger tests (8fd4ae2d)</li>
+<li>fix well-known error code repsonse (175521ba)</li>
+<li>refactor AP tests (42a09241)</li>
+<li>fix tests (e138b915)</li>
+<li>fix tests to reflect new immutable IDs, and added new tests for resource retrieval (42bb3c33)</li>
+<li>fix error copy (91a509c4)</li>
+<li>allow http proto on ci (24c1dfac)</li>
+<li>fixed improper signed_string reconstruction in <code>.verify()</code> (cc0d1886)</li>
+<li>fix webfinger test (9dfa1b72)</li>
+<li>added passing test cases for .sign() and .verify() (a10df987)</li>
+<li>updated activitypub test suite (1c8e13bb)</li>
+<li>added test cases for activitypub integration, WIP (4bd8d28a)</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/NodeBB/NodeBB/releases/tag/v4.0.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

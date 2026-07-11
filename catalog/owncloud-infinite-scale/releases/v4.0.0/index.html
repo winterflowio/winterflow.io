@@ -1,0 +1,818 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ownCloud Infinite Scale v4.0.0 release notes | WinterFlow.io</title><meta name="description" content="This release includes numerous bug fixes, performance enhancements, and updates to the web client and reva, while restricting YAML configuration to…"><link rel="canonical" href="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v4.0.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="ownCloud Infinite Scale v4.0.0 release notes | WinterFlow.io"><meta property="og:description" content="This release includes numerous bug fixes, performance enhancements, and updates to the web client and reva, while restricting YAML configuration to…"><meta property="og:url" content="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v4.0.0/"><meta property="og:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ownCloud Infinite Scale v4.0.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release includes numerous bug fixes, performance enhancements, and updates to the web client and reva, while restricting YAML configuration to…"><meta name="twitter:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"ownCloud Infinite Scale","item":"https://winterflow.io/catalog/owncloud-infinite-scale/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/"},{"@type":"ListItem","position":5,"name":"v4.0.0","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/v4.0.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png" alt="ownCloud Infinite Scale logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">ownCloud Infinite Scale</h1> <p class="mt-4 text-lg leading-8 text-gray-600">The new cloud-native file sync and share platform from ownCloud</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> dropbox, google drive, box </p> </div> <div class="mt-6 flex flex-wrap gap-4">  <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://doc.owncloud.com/ocis/next/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/owncloud/ocis/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Apache-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 2,042 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="ownCloud Infinite Scale" data-app-slug="owncloud-infinite-scale" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/owncloud-infinite-scale/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/owncloud-infinite-scale/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.0.0</h2> <span class="text-sm text-gray-500">2023-08-25</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="changes-in-400">Changes in 4.0.0</h1>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Bugfix - Add default store to postprocessing: <a href="https://github.com/owncloud/ocis/pull/6578">#6578</a></li>
+<li>Bugfix - Add token to LinkAccessedEvent: <a href="https://github.com/owncloud/ocis/pull/6554">#6554</a></li>
+<li>Bugfix - Add missing timestamps: <a href="https://github.com/owncloud/ocis/pull/6515">#6515</a></li>
+<li>Bugfix - Check public auth first: <a href="https://github.com/owncloud/ocis/pull/6900">#6900</a></li>
+<li>Bugfix - Don’t connect to ldap on startup: <a href="https://github.com/owncloud/ocis/pull/6565">#6565</a></li>
+<li>Bugfix - Let clients cache web and theme assets: <a href="https://github.com/owncloud/ocis/pull/6914">#6914</a></li>
+<li>Bugfix - Fix CORS issues: <a href="https://github.com/owncloud/ocis/pull/6912">#6912</a></li>
+<li>Bugfix - Handle the bad request status: <a href="https://github.com/owncloud/ocis/pull/6469">#6469</a></li>
+<li>Bugfix - Fix error message on 400 response for thumbnail requests: <a href="https://github.com/owncloud/ocis/issues/2064">#2064</a></li>
+<li>Bugfix - Graph service did not honor the OCIS_LDAP_GROUP_SCHEMA_MEMBER setting: <a href="https://github.com/owncloud/ocis/issues/7032">#7032</a></li>
+<li>Bugfix - Fix nats registry: <a href="https://github.com/owncloud/ocis/pull/6881">#6881</a></li>
+<li>Bugfix - Fix the oidc role assigner: <a href="https://github.com/owncloud/ocis/pull/6605">#6605</a></li>
+<li>Bugfix - Fix the default document language for OnlyOffice: <a href="https://github.com/owncloud/ocis/pull/6878">#6878</a></li>
+<li>Bugfix - Fix the routing capability: <a href="https://github.com/owncloud/web/issues/9367">#9367</a></li>
+<li>Bugfix - Fix the search: <a href="https://github.com/owncloud/ocis/pull/6947">#6947</a></li>
+<li>Bugfix - Fix search shares: <a href="https://github.com/owncloud/ocis/pull/6741">#6741</a></li>
+<li>Bugfix - Restart Postprocessing: <a href="https://github.com/owncloud/ocis/pull/6726">#6726</a></li>
+<li>Change - YAML configuration files are restricted to yaml-1.2: <a href="https://github.com/owncloud/ocis/issues/6510">#6510</a></li>
+<li>Enhancement - Add ‘ocis decomposedfs check-treesize’ command: <a href="https://github.com/owncloud/ocis/pull/6556">#6556</a></li>
+<li>Enhancement - Add IDs to graph resource logging: <a href="https://github.com/owncloud/ocis/pull/6593">#6593</a></li>
+<li>Enhancement - Add permissions to report: <a href="https://github.com/owncloud/ocis/pull/6528">#6528</a></li>
+<li>Enhancement - Add command for rebuilding the jsoncs3 share manager indexes: <a href="https://github.com/owncloud/ocis/pull/6986">#6986</a></li>
+<li>Enhancement - Add more metadata to the remote item: <a href="https://github.com/owncloud/ocis/pull/6300">#6300</a></li>
+<li>Enhancement - Add X-Request-Id to all responses: <a href="https://github.com/owncloud/ocis/pull/6715">#6715</a></li>
+<li>Enhancement - Add SSE Endpoint: <a href="https://github.com/owncloud/ocis/pull/5998">#5998</a></li>
+<li>Enhancement - We added the storage id to the audit log for spaces: <a href="https://github.com/owncloud/ocis/pull/6548">#6548</a></li>
+<li>Enhancement - Make the post logout redirect uri configurable: <a href="https://github.com/owncloud/ocis/pull/6583">#6583</a></li>
+<li>Enhancement - Make the app provider service name configurable: <a href="https://github.com/owncloud/ocis/pull/6482">#6482</a></li>
+<li>Enhancement - Add old &#x26; new values to audit logs: <a href="https://github.com/owncloud/ocis/pull/6537">#6537</a></li>
+<li>Enhancement - Bump Hugo: <a href="https://github.com/owncloud/ocis/pull/6787">#6787</a></li>
+<li>Enhancement - Bump reva to 2.16.0: <a href="https://github.com/owncloud/ocis/pull/6829">#6829</a></li>
+<li>Enhancement - Bump sonarcloud: <a href="https://github.com/owncloud/ocis/pull/6961">#6961</a></li>
+<li>Enhancement - Clarify license text in the dev docs: <a href="https://github.com/owncloud/ocis/pull/6755">#6755</a></li>
+<li>Enhancement - Use reva client selectors: <a href="https://github.com/owncloud/ocis/pull/6452">#6452</a></li>
+<li>Enhancement - Configure max grpc message size: <a href="https://github.com/owncloud/ocis/pull/6849">#6849</a></li>
+<li>Enhancement - Thumbnails can be disabled for webdav &#x26; web now: <a href="https://github.com/owncloud/ocis/pull/6577">#6577</a></li>
+<li>Enhancement - Add companion URL config: <a href="https://github.com/owncloud/ocis/pull/6453">#6453</a></li>
+<li>Enhancement - Add imprint and privacy url config: <a href="https://github.com/owncloud/ocis/pull/6462">#6462</a></li>
+<li>Enhancement - Add logged out url config: <a href="https://github.com/owncloud/ocis/pull/6549">#6549</a></li>
+<li>Enhancement - Add WEB_OPTION_OPEN_LINKS_WITH_DEFAULT_APP env variable: <a href="https://github.com/owncloud/ocis/pull/6328">#6328</a></li>
+<li>Enhancement - Add postprocessing mimetype to extension helper: <a href="https://github.com/owncloud/ocis/pull/6133">#6133</a></li>
+<li>Enhancement - Provide Search filter for locations: <a href="https://github.com/owncloud/ocis/pull/6713">#6713</a></li>
+<li>Enhancement - Add search result content preview and term highlighting: <a href="https://github.com/owncloud/ocis/pull/6634">#6634</a></li>
+<li>Enhancement - Add WEB_OPTION_TOKEN_STORAGE_LOCAL env variable: <a href="https://github.com/owncloud/ocis/pull/6760">#6760</a></li>
+<li>Enhancement - Evaluate policy resource information on single file shares: <a href="https://github.com/owncloud/ocis/pull/6888">#6888</a></li>
+<li>Enhancement - Extendable policy mimetype extension mapping: <a href="https://github.com/owncloud/ocis/pull/6869">#6869</a></li>
+<li>Enhancement - Fix envvar defaults: <a href="https://github.com/owncloud/ocis/pull/6516">#6516</a></li>
+<li>Enhancement - Skip if the simulink is a directory: <a href="https://github.com/owncloud/ocis/pull/6574">#6574</a></li>
+<li>Enhancement - Fix the groupname validation: <a href="https://github.com/owncloud/ocis/pull/6490">#6490</a></li>
+<li>Enhancement - Fix the username validation: <a href="https://github.com/owncloud/ocis/pull/6437">#6437</a></li>
+<li>Enhancement - Add static secret to gn endpoints: <a href="https://github.com/owncloud/ocis/pull/6946">#6946</a></li>
+<li>Enhancement - Improve the notification logs: <a href="https://github.com/owncloud/ocis/pull/6862">#6862</a></li>
+<li>Enhancement - Move graph to service tracerprovider: <a href="https://github.com/owncloud/ocis/pull/6695">#6695</a></li>
+<li>Enhancement - Move proxy to service tracerprovider: <a href="https://github.com/owncloud/ocis/pull/6591">#6591</a></li>
+<li>Enhancement - Nats named connections: <a href="https://github.com/owncloud/ocis/pull/6979">#6979</a></li>
+<li>Enhancement - Remove deprecated environment variables: <a href="https://github.com/owncloud/ocis/pull/7099">#7099</a></li>
+<li>Enhancement - Add functionality to retry postprocessing: <a href="https://github.com/owncloud/ocis/pull/6500">#6500</a></li>
+<li>Enhancement - Update go-micro kubernetes registry: <a href="https://github.com/owncloud/ocis/pull/6457">#6457</a></li>
+<li>Enhancement - Update web to v7.0.1: <a href="https://github.com/owncloud/ocis/pull/6470">#6470</a></li>
+<li>Enhancement - Update web to v7.1.0-rc.5: <a href="https://github.com/owncloud/ocis/pull/6944">#6944</a></li>
+<li>Enhancement - Update web to v7.1.0: <a href="https://github.com/owncloud/ocis/pull/7107">#7107</a></li>
+<li>Enhancement - Allow disabling wopi chat: <a href="https://github.com/owncloud/ocis/pull/6544">#6544</a></li>
+</ul>
+<h2 id="details">Details</h2>
+<ul>
+<li>
+<p>Bugfix - Add default store to postprocessing: <a href="https://github.com/owncloud/ocis/pull/6578">#6578</a></p>
+<p>Postprocessing did not have a default store especially <code>database</code> and <code>table</code> are needed to
+talk to nats-js</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6578">https://github.com/owncloud/ocis/pull/6578</a></p>
+</li>
+<li>
+<p>Bugfix - Add token to LinkAccessedEvent: <a href="https://github.com/owncloud/ocis/pull/6554">#6554</a></p>
+<p>We added the link token to the LinkAccessedEvent</p>
+<p><a href="https://github.com/owncloud/ocis/issues/3753">https://github.com/owncloud/ocis/issues/3753</a>
+<a href="https://github.com/owncloud/ocis/pull/6554">https://github.com/owncloud/ocis/pull/6554</a>
+<a href="https://github.com/cs3org/reva/pull/3993">https://github.com/cs3org/reva/pull/3993</a></p>
+</li>
+<li>
+<p>Bugfix - Add missing timestamps: <a href="https://github.com/owncloud/ocis/pull/6515">#6515</a></p>
+<p>We have added missing timestamps to the audit service</p>
+<p><a href="https://github.com/owncloud/ocis/issues/3753">https://github.com/owncloud/ocis/issues/3753</a>
+<a href="https://github.com/owncloud/ocis/pull/6515">https://github.com/owncloud/ocis/pull/6515</a></p>
+</li>
+<li>
+<p>Bugfix - Check public auth first: <a href="https://github.com/owncloud/ocis/pull/6900">#6900</a></p>
+<p>When authenticating in proxy, first check for public link authorization.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6900">https://github.com/owncloud/ocis/pull/6900</a></p>
+</li>
+<li>
+<p>Bugfix - Don’t connect to ldap on startup: <a href="https://github.com/owncloud/ocis/pull/6565">#6565</a></p>
+<p>This leads to misleading error messages. Instead we connect on first request</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6565">https://github.com/owncloud/ocis/pull/6565</a></p>
+</li>
+<li>
+<p>Bugfix - Let clients cache web and theme assets: <a href="https://github.com/owncloud/ocis/pull/6914">#6914</a></p>
+<p>We needed to remove “must-revalidate” from the cache-control header to allow clients to cache
+the web and theme assets.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6914">https://github.com/owncloud/ocis/pull/6914</a></p>
+</li>
+<li>
+<p>Bugfix - Fix CORS issues: <a href="https://github.com/owncloud/ocis/pull/6912">#6912</a></p>
+<p>We fixed the CORS issues when client asking for the ‘Cache-Control’ header before load the file</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5108">https://github.com/owncloud/ocis/issues/5108</a>
+<a href="https://github.com/owncloud/ocis/pull/6912">https://github.com/owncloud/ocis/pull/6912</a></p>
+</li>
+<li>
+<p>Bugfix - Handle the bad request status: <a href="https://github.com/owncloud/ocis/pull/6469">#6469</a></p>
+<p>Handle the bad request status for the CreateStorageSpace function</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6414">https://github.com/owncloud/ocis/issues/6414</a>
+<a href="https://github.com/owncloud/ocis/pull/6469">https://github.com/owncloud/ocis/pull/6469</a>
+<a href="https://github.com/cs3org/reva/pull/3948">https://github.com/cs3org/reva/pull/3948</a></p>
+</li>
+<li>
+<p>Bugfix - Fix error message on 400 response for thumbnail requests: <a href="https://github.com/owncloud/ocis/issues/2064">#2064</a></p>
+<p>Fix the error message when the thumbnail request returns a ‘400 Bad Request’ response.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/2064">https://github.com/owncloud/ocis/issues/2064</a>
+<a href="https://github.com/owncloud/ocis/pull/6911">https://github.com/owncloud/ocis/pull/6911</a></p>
+</li>
+<li>
+<p>Bugfix - Graph service did not honor the OCIS_LDAP_GROUP_SCHEMA_MEMBER setting: <a href="https://github.com/owncloud/ocis/issues/7032">#7032</a></p>
+<p>We fixed issue when using a custom LDAP attribute for group members. The graph service did not
+honor the OCIS_LDAP_GROUP_SCHEMA_MEMBER environment variable</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7032">https://github.com/owncloud/ocis/issues/7032</a></p>
+</li>
+<li>
+<p>Bugfix - Fix nats registry: <a href="https://github.com/owncloud/ocis/pull/6881">#6881</a></p>
+<p>Using <code>nats</code> as service registry did work, but when a service would restart and gets a new ip it
+couldn’t re-register. We fixed this by using <code>"put"</code> register action instead of the default
+<code>"create"</code></p>
+<p><a href="https://github.com/owncloud/ocis/pull/6881">https://github.com/owncloud/ocis/pull/6881</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the oidc role assigner: <a href="https://github.com/owncloud/ocis/pull/6605">#6605</a></p>
+<p>The update role method did not allow to set a role when the user already has two roles. This makes
+no sense as the user is supposed to have only one and the update will fix that. We still log an error
+level log to make the admin aware of that.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6605">https://github.com/owncloud/ocis/pull/6605</a>
+<a href="https://github.com/owncloud/ocis/pull/6618">https://github.com/owncloud/ocis/pull/6618</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the default document language for OnlyOffice: <a href="https://github.com/owncloud/ocis/pull/6878">#6878</a></p>
+<p>Fix the default document language for OnlyOffice</p>
+<p><a href="https://github.com/owncloud/enterprise/issues/5807">https://github.com/owncloud/enterprise/issues/5807</a>
+<a href="https://github.com/owncloud/ocis/pull/6878">https://github.com/owncloud/ocis/pull/6878</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the routing capability: <a href="https://github.com/owncloud/web/issues/9367">#9367</a></p>
+<p>Fix the routing capability</p>
+<p><a href="https://github.com/owncloud/web/issues/9367">https://github.com/owncloud/web/issues/9367</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the search: <a href="https://github.com/owncloud/ocis/pull/6947">#6947</a></p>
+<p>We fixed the issue when search using the current folder option shows the file/folders outside
+the folder if search keyword is same as current folder</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6935">https://github.com/owncloud/ocis/issues/6935</a>
+<a href="https://github.com/owncloud/ocis/pull/6947">https://github.com/owncloud/ocis/pull/6947</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search shares: <a href="https://github.com/owncloud/ocis/pull/6741">#6741</a></p>
+<p>We fixed a problem where searching shares did not yield results when the resource was not shared
+from the space root.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6741">https://github.com/owncloud/ocis/pull/6741</a></p>
+</li>
+<li>
+<p>Bugfix - Restart Postprocessing: <a href="https://github.com/owncloud/ocis/pull/6726">#6726</a></p>
+<p>In case the postprocessing service cannot find the specified upload when restarting
+postprocessing, it will now send a <code>RestartPostprocessing</code> event to retrigger complete
+postprocessing</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6726">https://github.com/owncloud/ocis/pull/6726</a></p>
+</li>
+<li>
+<p>Change - YAML configuration files are restricted to yaml-1.2: <a href="https://github.com/owncloud/ocis/issues/6510">#6510</a></p>
+<p>For parsing YAML based configuration files we utilize the gookit/config module. That module
+has dropped support for older variants of the YAML format. It now only supports the YAML 1.2
+syntax. If you’re using yaml configuration files, please make sure to update your files
+accordingly. The most significant change likely is that only the string <code>true</code> and <code>false</code>
+(including <code>TRUE</code>,<code>True</code>, <code>FALSE</code> and <code>False</code>) are now parsed as booleans. <code>Yes</code>, <code>On</code> and
+other values are not longer considered valid values for booleans.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6510">https://github.com/owncloud/ocis/issues/6510</a>
+<a href="https://github.com/owncloud/ocis/pull/6493">https://github.com/owncloud/ocis/pull/6493</a></p>
+</li>
+<li>
+<p>Enhancement - Add ‘ocis decomposedfs check-treesize’ command: <a href="https://github.com/owncloud/ocis/pull/6556">#6556</a></p>
+<p>We added a ‘ocis decomposedfs check-treesize’ command for checking (and reparing) the
+treesize metadata of a storage space.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6556">https://github.com/owncloud/ocis/pull/6556</a></p>
+</li>
+<li>
+<p>Enhancement - Add IDs to graph resource logging: <a href="https://github.com/owncloud/ocis/pull/6593">#6593</a></p>
+<p>Graph access logs were unsuable as they didn’t contain IDs to match them to a request</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6593">https://github.com/owncloud/ocis/pull/6593</a></p>
+</li>
+<li>
+<p>Enhancement - Add permissions to report: <a href="https://github.com/owncloud/ocis/pull/6528">#6528</a></p>
+<p>The webdav REPORT endpoint only returned permissions for personal spaces and shares. Now also
+for project spaces.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6528">https://github.com/owncloud/ocis/pull/6528</a></p>
+</li>
+<li>
+<p>Enhancement - Add command for rebuilding the jsoncs3 share manager indexes: <a href="https://github.com/owncloud/ocis/pull/6986">#6986</a></p>
+<p>We added a command for rebuilding the jsoncs3 share manager indexes.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6986">https://github.com/owncloud/ocis/pull/6986</a>
+<a href="https://github.com/owncloud/ocis/pull/6971">https://github.com/owncloud/ocis/pull/6971</a></p>
+</li>
+<li>
+<p>Enhancement - Add more metadata to the remote item: <a href="https://github.com/owncloud/ocis/pull/6300">#6300</a></p>
+<p>We added the drive alias, the space name and the relative path to the remote item. This is needed
+to resolve shared files directly on the source space.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6300">https://github.com/owncloud/ocis/pull/6300</a></p>
+</li>
+<li>
+<p>Enhancement - Add X-Request-Id to all responses: <a href="https://github.com/owncloud/ocis/pull/6715">#6715</a></p>
+<p>We added the X-Request-Id to all responses to increase the debuggability of the platform.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6715">https://github.com/owncloud/ocis/pull/6715</a></p>
+</li>
+<li>
+<p>Enhancement - Add SSE Endpoint: <a href="https://github.com/owncloud/ocis/pull/5998">#5998</a></p>
+<p>Add a server-sent events (sse) endpoint for the userlog service</p>
+<p><a href="https://github.com/owncloud/ocis/pull/5998">https://github.com/owncloud/ocis/pull/5998</a></p>
+</li>
+<li>
+<p>Enhancement - We added the storage id to the audit log for spaces: <a href="https://github.com/owncloud/ocis/pull/6548">#6548</a></p>
+<p>We added the storage id to the audit log for spaces</p>
+<p><a href="https://github.com/owncloud/ocis/issues/3753">https://github.com/owncloud/ocis/issues/3753</a>
+<a href="https://github.com/owncloud/ocis/pull/6548">https://github.com/owncloud/ocis/pull/6548</a></p>
+</li>
+<li>
+<p>Enhancement - Make the post logout redirect uri configurable: <a href="https://github.com/owncloud/ocis/pull/6583">#6583</a></p>
+<p>We added a config option to change the redirect uri after the logout action of the web client.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6536">https://github.com/owncloud/ocis/issues/6536</a>
+<a href="https://github.com/owncloud/ocis/pull/6583">https://github.com/owncloud/ocis/pull/6583</a></p>
+</li>
+<li>
+<p>Enhancement - Make the app provider service name configurable: <a href="https://github.com/owncloud/ocis/pull/6482">#6482</a></p>
+<p>We needed to make the service name of the app provider configurable. This needs to be changed
+when using more than one app provider. Each of them needs be found by a unique service name.
+Possible examples are: <code>app-provider-collabora</code>, <code>app-provider-onlyoffice</code>,
+<code>app-provider-office365</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6482">https://github.com/owncloud/ocis/pull/6482</a></p>
+</li>
+<li>
+<p>Enhancement - Add old &#x26; new values to audit logs: <a href="https://github.com/owncloud/ocis/pull/6537">#6537</a></p>
+<p>We have added old &#x26; new values to the audit logs We have added the missing events for role changes</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6537">https://github.com/owncloud/ocis/pull/6537</a></p>
+</li>
+<li>
+<p>Enhancement - Bump Hugo: <a href="https://github.com/owncloud/ocis/pull/6787">#6787</a></p>
+<p>Bump hugo pkg (needed for docs generation) to <code>v0.115.2</code></p>
+<p><a href="https://github.com/owncloud/ocis/pull/6787">https://github.com/owncloud/ocis/pull/6787</a></p>
+</li>
+<li>
+<p>Enhancement - Bump reva to 2.16.0: <a href="https://github.com/owncloud/ocis/pull/6829">#6829</a></p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4086">cs3org/reva#4086</a>: Fix ocs status code for not enough permission response</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4078">cs3org/reva#4078</a>: fix the default document language for OnlyOffice</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4051">cs3org/reva#4051</a>: Set treesize when creating a storage space</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4089">cs3org/reva#4089</a>: Fix wrong import</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4082">cs3org/reva#4082</a>: Fix propfind permissions</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4076">cs3org/reva#4076</a>: Fix WebDAV permissions for space managers</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4078">cs3org/reva#4078</a>: fix the default document language for OnlyOffice</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4081">cs3org/reva#4081</a>: Propagate sizeDiff</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4051">cs3org/reva#4051</a>: Set treesize when creating a storage space</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4093">cs3org/reva#4093</a>: Fix the error handling</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4111">cs3org/reva#4111</a>: Return already exists error when child already exists</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4086">cs3org/reva#4086</a>: Fix ocs status code for not enough permission response</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4101">cs3org/reva#4101</a>: Make the jsoncs3 share manager indexes more robust</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4099">cs3org/reva#4099</a>: Fix logging upload errors</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4078">cs3org/reva#4078</a>: Fix the default document language for OnlyOffice</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4082">cs3org/reva#4082</a>: Fix propfind permissions</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4100">cs3org/reva#4100</a>: S3ng include md5 checksum on put</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4096">cs3org/reva#4096</a>: Fix the user shares list</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4076">cs3org/reva#4076</a>: Fix WebDAV permissions for space managers</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4117">cs3org/reva#4117</a>: Fix jsoncs3 atomic persistence</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4081">cs3org/reva#4081</a>: Propagate sizeDiff</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4091">cs3org/reva#4091</a>: Register WebDAV HTTP methods with chi</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4107">cs3org/reva#4107</a>: Return lock when requested</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4075">cs3org/reva#4075</a>: Revert 4065 - bypass proxy on upload</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4070">cs3org/reva#4070</a>: Selectable Propagators</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4074">cs3org/reva#4074</a>: Allow configuring the max size of grpc messages</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4085">cs3org/reva#4085</a>: Add registry refresh</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4090">cs3org/reva#4090</a>: Add Capability for sse</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4072">cs3org/reva#4072</a>: Allow to specify a shutdown timeout</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4083">cs3org/reva#4083</a>: Allow for rolling back migrations</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4014">cs3org/reva#4014</a>: En-/Disable DEPTH:inifinity in PROPFIND</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4089">cs3org/reva#4089</a>: Async propagation (experimental)</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4074">cs3org/reva#4074</a>: Allow configuring the max size of grpc messages</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4083">cs3org/reva#4083</a>: Allow for rolling back migrations</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4014">cs3org/reva#4014</a>: En-/Disable DEPTH:inifinity in PROPFIND</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4072">cs3org/reva#4072</a>: Allow to specify a shutdown timeout</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4103">cs3org/reva#4103</a>: Add .oform mimetype</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4098">cs3org/reva#4098</a>: Allow naming nats connections</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4085">cs3org/reva#4085</a>: Add registry refresh</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4097">cs3org/reva#4097</a>: Remove app ticker logs</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4090">cs3org/reva#4090</a>: Add Capability for sse</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4110">cs3org/reva#4110</a>: Tracing events propgation</li>
+</ul>
+<p><a href="Https://github.com/owncloud/ocis/pull/6899">Https://github.com/owncloud/ocis/pull/6899</a>
+<a href="https://github.com/owncloud/ocis/pull/6919">https://github.com/owncloud/ocis/pull/6919</a>
+<a href="https://github.com/owncloud/ocis/pull/6928">https://github.com/owncloud/ocis/pull/6928</a>
+<a href="https://github.com/owncloud/ocis/pull/6979">https://github.com/owncloud/ocis/pull/6979</a></p>
+<p>Update reva to v2.15.0</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4004">cs3org/reva#4004</a>: Add path to public link POST</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3993">cs3org/reva#3993</a>: Add token to LinkAccessedEvent</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4007">cs3org/reva#4007</a>: Close archive writer properly</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3982">cs3org/reva#3982</a>: Fixed couple of smaller space lookup issues</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4003">cs3org/reva#4003</a>: Don’t connect ldap on startup</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4032">cs3org/reva#4032</a>: Temporarily exclude ceph-iscsi when building revad-ceph image</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4042">cs3org/reva#4042</a>: Fix writing 0 byte msgpack metadata</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3970">cs3org/reva#3970</a>: Fix enforce-password issue</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4057">cs3org/reva#4057</a>: Properly handle not-found errors when getting a public share</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4048">cs3org/reva#4048</a>: Fix messagepack propagation</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4056">cs3org/reva#4056</a>: Fix destroys data destination when moving issue</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4012">cs3org/reva#4012</a>: Fix mtime if 0 size file uploaded</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4010">cs3org/reva#4010</a>: Omit spaceroot when archiving</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4047">cs3org/reva#4047</a>: Publish events synchrously</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4039">cs3org/reva#4039</a>: Restart Postprocessing</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3963">cs3org/reva#3963</a>: Treesize interger overflows</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3943">cs3org/reva#3943</a>: When removing metadata always use correct database and table</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3978">cs3org/reva#3978</a>: Decomposedfs no longer os.Stats when reading node metadata</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3959">cs3org/reva#3959</a>: Drop unnecessary stat</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3948">cs3org/reva#3948</a>: Handle the bad request status</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3955">cs3org/reva#3955</a>: Fix panic</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3977">cs3org/reva#3977</a>: Prevent direct access to trash items</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3933">cs3org/reva#3933</a>: Concurrently invalidate mtime cache in jsoncs3 share manager</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3985">cs3org/reva#3985</a>: Reduce jsoncs3 lock congestion</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3960">cs3org/reva#3960</a>: Add trace span details</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3951">cs3org/reva#3951</a>: Link context in metadata client</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3950">cs3org/reva#3950</a>: Use plain otel tracing in metadata client</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/3975">cs3org/reva#3975</a>: Decomposedfs now resolves the parent without an os.Stat</li>
+<li>Change <a href="https://github.com/cs3org/reva/pull/3947">cs3org/reva#3947</a>: Bump golangci-lint to 1.51.2</li>
+<li>Change <a href="https://github.com/cs3org/reva/pull/3945">cs3org/reva#3945</a>: Revert golangci-lint back to 1.50.1</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3966">cs3org/reva#3966</a>: Add space metadata to ocs shares list</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3953">cs3org/reva#3953</a>: Client selector pool</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3941">cs3org/reva#3941</a>: Adding tracing for jsoncs3</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3965">cs3org/reva#3965</a>: ResumePostprocessing Event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3981">cs3org/reva#3981</a>: We have updated the UserFeatureChangedEvent to reflect value changes</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3986">cs3org/reva#3986</a>: Allow disabling wopi chat</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4060">cs3org/reva#4060</a>: We added a go-micro based app-provider registry</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4013">cs3org/reva#4013</a>: Add new WebDAV permissions</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3987">cs3org/reva#3987</a>: Cache space indexes</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3973">cs3org/reva#3973</a>: More logging for metadata propagation</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4059">cs3org/reva#4059</a>: Improve space index performance</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3994">cs3org/reva#3994</a>: Load matching spaces concurrently</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4049">cs3org/reva#4049</a>: Do not invalidate filemetadata cache early</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4040">cs3org/reva#4040</a>: Allow to use external trace provider in micro service</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4019">cs3org/reva#4019</a>: Allow to use external trace provider</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4045">cs3org/reva#4045</a>: Log error message in grpc interceptor</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3989">cs3org/reva#3989</a>: Parallelization of jsoncs3 operations</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3809">cs3org/reva#3809</a>: Trace decomposedfs syscalls</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4067">cs3org/reva#4067</a>: Trace upload progress</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3887">cs3org/reva#3887</a>: Trace requests through datagateway</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4052">cs3org/reva#4052</a>: Update go-ldap to v3.4.5</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4065">cs3org/reva#4065</a>: Upload directly to dataprovider</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4046">cs3org/reva#4046</a>: Use correct tracer name</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3986">cs3org/reva#3986</a>: Allow disabling wopi chat writer properly</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/6829">https://github.com/owncloud/ocis/pull/6829</a>
+<a href="https://github.com/owncloud/ocis/pull/6529">https://github.com/owncloud/ocis/pull/6529</a>
+<a href="https://github.com/owncloud/ocis/pull/6544">https://github.com/owncloud/ocis/pull/6544</a>
+<a href="https://github.com/owncloud/ocis/pull/6507">https://github.com/owncloud/ocis/pull/6507</a>
+<a href="https://github.com/owncloud/ocis/pull/6572">https://github.com/owncloud/ocis/pull/6572</a>
+<a href="https://github.com/owncloud/ocis/pull/6590">https://github.com/owncloud/ocis/pull/6590</a>
+<a href="https://github.com/owncloud/ocis/pull/6812">https://github.com/owncloud/ocis/pull/6812</a></p>
+</li>
+<li>
+<p>Enhancement - Bump sonarcloud: <a href="https://github.com/owncloud/ocis/pull/6961">#6961</a></p>
+<p>Bump sonarcloud to <code>5.0</code> to avoid java errors</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6961">https://github.com/owncloud/ocis/pull/6961</a></p>
+</li>
+<li>
+<p>Enhancement - Clarify license text in the dev docs: <a href="https://github.com/owncloud/ocis/pull/6755">#6755</a></p>
+<p>Explain the usage of the EULA for binary builds.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6755">https://github.com/owncloud/ocis/pull/6755</a></p>
+</li>
+<li>
+<p>Enhancement - Use reva client selectors: <a href="https://github.com/owncloud/ocis/pull/6452">#6452</a></p>
+<p>Use reva client selectors instead of the static clients, this introduces the ocis service
+registry in reva. The service discovery now resolves reva services by name and the client
+selectors pick a random registered service node.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6452">https://github.com/owncloud/ocis/pull/6452</a>
+<a href="https://github.com/cs3org/reva/pull/3939">https://github.com/cs3org/reva/pull/3939</a>
+<a href="https://github.com/cs3org/reva/pull/3953">https://github.com/cs3org/reva/pull/3953</a></p>
+</li>
+<li>
+<p>Enhancement - Configure max grpc message size: <a href="https://github.com/owncloud/ocis/pull/6849">#6849</a></p>
+<p>Add a configuration option for the grpc max message size</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6849">https://github.com/owncloud/ocis/pull/6849</a></p>
+</li>
+<li>
+<p>Enhancement - Thumbnails can be disabled for webdav &#x26; web now: <a href="https://github.com/owncloud/ocis/pull/6577">#6577</a></p>
+<p>We added an env var <code>OCIS_DISABLE_PREVIEWS</code> to disable the thumbnails for web &#x26; webdav via a
+global setting. For each service this behaviour can be disabled using the local env vars
+<code>WEB_OPTION_DISABLE_PREVIEWS</code> (old) and <code>WEBDAV_DISABLE_PREVIEWS</code> (new).</p>
+<p><a href="https://github.com/owncloud/ocis/issues/192">https://github.com/owncloud/ocis/issues/192</a>
+<a href="https://github.com/owncloud/ocis/pull/6577">https://github.com/owncloud/ocis/pull/6577</a></p>
+</li>
+<li>
+<p>Enhancement - Add companion URL config: <a href="https://github.com/owncloud/ocis/pull/6453">#6453</a></p>
+<p>Introduce a config to set the Uppy Companion URL via <code>WEB_OPTION_UPLOAD_COMPANION_URL</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6453">https://github.com/owncloud/ocis/pull/6453</a></p>
+</li>
+<li>
+<p>Enhancement - Add imprint and privacy url config: <a href="https://github.com/owncloud/ocis/pull/6462">#6462</a></p>
+<p>Introduce a config to set the imprint and privacy url via <code>WEB_OPTION_IMPRINT_URL</code> and
+<code>WEB_OPTION_PRIVACY_URL</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6462">https://github.com/owncloud/ocis/pull/6462</a></p>
+</li>
+<li>
+<p>Enhancement - Add logged out url config: <a href="https://github.com/owncloud/ocis/pull/6549">#6549</a></p>
+<p>Introduce a config to set the more button url on the access denied page in web via
+<code>WEB_OPTION_ACCESS_DENIED_HELP_URL</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6549">https://github.com/owncloud/ocis/pull/6549</a></p>
+</li>
+<li>
+<p>Enhancement - Add WEB_OPTION_OPEN_LINKS_WITH_DEFAULT_APP env variable: <a href="https://github.com/owncloud/ocis/pull/6328">#6328</a></p>
+<p>We introduced the open file links with default app feature in web which is enabled by default,
+this is now configurable and can be disabled by setting the env
+<code>WEB_OPTION_OPEN_LINKS_WITH_DEFAULT_APP</code> to <code>false</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6328">https://github.com/owncloud/ocis/pull/6328</a></p>
+</li>
+<li>
+<p>Enhancement - Add postprocessing mimetype to extension helper: <a href="https://github.com/owncloud/ocis/pull/6133">#6133</a></p>
+<p>Add rego helper to resolve extensions from mimetype
+<code>ocis.mimetype.extensions(mimetype)</code>. Besides that, a rego print helper is included also
+<code>print("PRINT MESSAGE EXAMPLE")</code></p>
+<p><a href="https://github.com/owncloud/ocis/pull/6133">https://github.com/owncloud/ocis/pull/6133</a></p>
+</li>
+<li>
+<p>Enhancement - Provide Search filter for locations: <a href="https://github.com/owncloud/ocis/pull/6713">#6713</a></p>
+<p>The search result REPORT response now can be restricted the by the current folder via api
+(recursive) The scope needed for “current folder” (default is to search all available spaces)</p>
+<ul>
+<li>part of the oc:pattern:“scope:<uuid> /Test”</uuid></li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/6713">https://github.com/owncloud/ocis/pull/6713</a>
+OCIS-3705</p>
+</li>
+<li>
+<p>Enhancement - Add search result content preview and term highlighting: <a href="https://github.com/owncloud/ocis/pull/6634">#6634</a></p>
+<p>The search result REPORT response now contains a content preview which highlights the search
+term. The feature is only available if content extraction (e.g. apache tika) is configured</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6426">https://github.com/owncloud/ocis/issues/6426</a>
+<a href="https://github.com/owncloud/ocis/pull/6634">https://github.com/owncloud/ocis/pull/6634</a></p>
+</li>
+<li>
+<p>Enhancement - Add WEB_OPTION_TOKEN_STORAGE_LOCAL env variable: <a href="https://github.com/owncloud/ocis/pull/6760">#6760</a></p>
+<p>We introduced the feature to store the access token in the local storage, this feature is
+disabled by default, but can be enabled by setting the env <code>WEB_OPTION_TOKEN_STORAGE_LOCAL</code>
+to <code>true</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6760">https://github.com/owncloud/ocis/pull/6760</a>
+<a href="https://github.com/owncloud/ocis/pull/6771">https://github.com/owncloud/ocis/pull/6771</a></p>
+</li>
+<li>
+<p>Enhancement - Evaluate policy resource information on single file shares: <a href="https://github.com/owncloud/ocis/pull/6888">#6888</a></p>
+<p>The policy environment for single file shares now also includes information about the
+resource. As a result, it is now possible to set up and check rules for them.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6888">https://github.com/owncloud/ocis/pull/6888</a></p>
+</li>
+<li>
+<p>Enhancement - Extendable policy mimetype extension mapping: <a href="https://github.com/owncloud/ocis/pull/6869">#6869</a></p>
+<p>The extension mimetype mappings known from rego can now be extended. To do this, ocis must be
+informed where the mimetype file (apache mime.types file format) is located.</p>
+<p><code>export POLICIES_ENGINE_MIMES=OCIS_CONFIG_DIR/mime.types</code></p>
+<p><a href="https://github.com/owncloud/ocis/pull/6869">https://github.com/owncloud/ocis/pull/6869</a></p>
+</li>
+<li>
+<p>Enhancement - Fix envvar defaults: <a href="https://github.com/owncloud/ocis/pull/6516">#6516</a></p>
+<p>Defaults for the envvar OCIS_LDAP_DISABLE_USER_MECHANISM were not used consistently,
+correct is <code>attribute</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6513">https://github.com/owncloud/ocis/issues/6513</a>
+<a href="https://github.com/owncloud/ocis/pull/6516">https://github.com/owncloud/ocis/pull/6516</a></p>
+</li>
+<li>
+<p>Enhancement - Skip if the simulink is a directory: <a href="https://github.com/owncloud/ocis/pull/6574">#6574</a></p>
+<p>Skip the error if the simulink is pointed to a directory</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6567">https://github.com/owncloud/ocis/issues/6567</a>
+<a href="https://github.com/owncloud/ocis/pull/6574">https://github.com/owncloud/ocis/pull/6574</a></p>
+</li>
+<li>
+<p>Enhancement - Fix the groupname validation: <a href="https://github.com/owncloud/ocis/pull/6490">#6490</a></p>
+<p>Fixed the ability to create a group with an empty name</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5050">https://github.com/owncloud/ocis/issues/5050</a>
+<a href="https://github.com/owncloud/ocis/pull/6490">https://github.com/owncloud/ocis/pull/6490</a></p>
+</li>
+<li>
+<p>Enhancement - Fix the username validation: <a href="https://github.com/owncloud/ocis/pull/6437">#6437</a></p>
+<p>Fix the username validation when an admin update the user</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6436">https://github.com/owncloud/ocis/issues/6436</a>
+<a href="https://github.com/owncloud/ocis/pull/6437">https://github.com/owncloud/ocis/pull/6437</a></p>
+</li>
+<li>
+<p>Enhancement - Add static secret to gn endpoints: <a href="https://github.com/owncloud/ocis/pull/6946">#6946</a></p>
+<p>The global notifications POST and DELETE endpoints (used only for deprovision notifications
+at the moment) can now be called by adding a static secret to the header. Admins can still call
+this endpoint without knowing the secret</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6946">https://github.com/owncloud/ocis/pull/6946</a></p>
+</li>
+<li>
+<p>Enhancement - Improve the notification logs: <a href="https://github.com/owncloud/ocis/pull/6862">#6862</a></p>
+<p>Improve the notification logs when the user has no email address</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6855">https://github.com/owncloud/ocis/issues/6855</a>
+<a href="https://github.com/owncloud/ocis/pull/6862">https://github.com/owncloud/ocis/pull/6862</a></p>
+</li>
+<li>
+<p>Enhancement - Move graph to service tracerprovider: <a href="https://github.com/owncloud/ocis/pull/6695">#6695</a></p>
+<p>This moves the graph to initialise a service tracer provider at service initialisation time,
+instead of using a package global tracer provider.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6695">https://github.com/owncloud/ocis/pull/6695</a></p>
+</li>
+<li>
+<p>Enhancement - Move proxy to service tracerprovider: <a href="https://github.com/owncloud/ocis/pull/6591">#6591</a></p>
+<p>This moves the proxy to initialise a service tracer provider at service initialisation time,
+instead of using a package global tracer provider.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6591">https://github.com/owncloud/ocis/pull/6591</a></p>
+</li>
+<li>
+<p>Enhancement - Nats named connections: <a href="https://github.com/owncloud/ocis/pull/6979">#6979</a></p>
+<p>Names the nats connections for easier debugging</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6979">https://github.com/owncloud/ocis/pull/6979</a></p>
+</li>
+<li>
+<p>Enhancement - Remove deprecated environment variables: <a href="https://github.com/owncloud/ocis/pull/7099">#7099</a></p>
+<p>We have removed all environment variables that have been marked as deprecated and marked for
+removal for 4.0.0</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7099">https://github.com/owncloud/ocis/pull/7099</a></p>
+</li>
+<li>
+<p>Enhancement - Add functionality to retry postprocessing: <a href="https://github.com/owncloud/ocis/pull/6500">#6500</a></p>
+<p>Adds a ctl command to manually retry failed postprocessing on uploads</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6500">https://github.com/owncloud/ocis/pull/6500</a></p>
+</li>
+<li>
+<p>Enhancement - Update go-micro kubernetes registry: <a href="https://github.com/owncloud/ocis/pull/6457">#6457</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/6457">https://github.com/owncloud/ocis/pull/6457</a>
+<a href="https://github.com/go-micro/plugins/pull/114">https://github.com/go-micro/plugins/pull/114</a>
+<a href="https://github.com/go-micro/plugins/pull/113">https://github.com/go-micro/plugins/pull/113</a></p>
+</li>
+<li>
+<p>Enhancement - Update web to v7.0.1: <a href="https://github.com/owncloud/ocis/pull/6470">#6470</a></p>
+<p>Tags: web</p>
+<p>We updated ownCloud Web to v7.0.1. Please refer to the changelog (linked) for details on the web
+release.</p>
+<h2 id="summary--bugfix-owncloudweb9153">Summary * Bugfix <a href="https://github.com/owncloud/web/pull/9153">owncloud/web#9153</a>:</h2>
+<p>Reduce space preloading</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6470">https://github.com/owncloud/ocis/pull/6470</a>
+<a href="https://github.com/owncloud/web/releases/tag/v7.0.1">https://github.com/owncloud/web/releases/tag/v7.0.1</a></p>
+</li>
+<li>
+<p>Enhancement - Update web to v7.1.0-rc.5: <a href="https://github.com/owncloud/ocis/pull/6944">#6944</a></p>
+<p>Tags: web</p>
+<p>We updated ownCloud Web to v7.1.0-rc.5. Please refer to the changelog (linked) for details on
+the web release.</p>
+<h2 id="summary--bugfix-owncloudweb9078">Summary * Bugfix <a href="https://github.com/owncloud/web/pull/9078">owncloud/web#9078</a>:</h2>
+<p>Favorites list update on removal * Bugfix
+<a href="https://github.com/owncloud/web/pull/9213">owncloud/web#9213</a>: Space creation does
+not block reoccurring event * Bugfix
+<a href="https://github.com/owncloud/web/issues/9247">owncloud/web#9247</a>: Uploading to
+folders that contain special characters * Bugfix
+<a href="https://github.com/owncloud/web/issues/9259">owncloud/web#9259</a>: Relative user
+quota display limited to two decimals * Bugfix
+<a href="https://github.com/owncloud/web/issues/9261">owncloud/web#9261</a>: Remember
+location after token invalidation * Bugfix
+<a href="https://github.com/owncloud/web/pull/9299">owncloud/web#9299</a>: Authenticated
+public links breaking uploads * Bugfix
+<a href="https://github.com/owncloud/web/issues/9315">owncloud/web#9315</a>: Switch columns
+displayed on small screens in “Shared with me” view * Bugfix
+<a href="https://github.com/owncloud/web/pull/9351">owncloud/web#9351</a>: Media controls
+overflow on mobile screens * Bugfix
+<a href="https://github.com/owncloud/web/pull/9389">owncloud/web#9389</a>: Space editors see
+empty trashbin and delete actions in space trashbin * Bugfix
+<a href="https://github.com/owncloud/web/pull/9461">owncloud/web#9461</a>: Merging folders *
+Bugfix <a href="https://github.com/owncloud/web/pull/9496">owncloud/web/#9496</a>: Logo not
+showing * Bugfix <a href="https://github.com/owncloud/web/pull/9489">owncloud/web/#9489</a>:
+Public drop zone * Bugfix
+<a href="https://github.com/owncloud/web/pull/9487">owncloud/web/#9487</a>: Respect
+supportedClouds config * Bugfix
+<a href="https://github.com/owncloud/web/pull/9507">owncloud/web/#9507</a>: Space description
+edit modal is cut off vertically * Bugfix
+<a href="https://github.com/owncloud/web/pull/9501">owncloud/web/#9501</a>: Add cloud importer
+translations * Bugfix
+<a href="https://github.com/owncloud/web/pull/9510">owncloud/web/#9510</a>: Double items after
+moving a file with the same name * Enhancement
+<a href="https://github.com/owncloud/web/pull/7967">owncloud/web#7967</a>: Add hasPriority
+property for editors per extension * Enhancement
+<a href="https://github.com/owncloud/web/issues/8422">owncloud/web#8422</a>: Improve
+extension app topbar * Enhancement
+<a href="https://github.com/owncloud/web/issues/8445">owncloud/web#8445</a>: Open
+individually shared file in dedicated view * Enhancement
+<a href="https://github.com/owncloud/web/issues/8599">owncloud/web#8599</a>: Shrink table
+columns * Enhancement
+<a href="https://github.com/owncloud/web/pull/8921">owncloud/web#8921</a>: Add whitespace
+context-menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/8983">owncloud/web#8983</a>: Deny share access *
+Enhancement <a href="https://github.com/owncloud/web/pull/8984">owncloud/web#8984</a>: Long
+breadcrumb strategy * Enhancement
+<a href="https://github.com/owncloud/web/pull/9044">owncloud/web#9044</a>: Search tag filter *
+Enhancement <a href="https://github.com/owncloud/web/pull/9046">owncloud/web#9046</a>: Single
+file link open with default app * Enhancement
+<a href="https://github.com/owncloud/web/pull/9052">owncloud/web#9052</a>: Drag &#x26; drop on parent
+folder * Enhancement
+<a href="https://github.com/owncloud/web/pull/9055">owncloud/web#9055</a>: Respect archiver
+limits * Enhancement
+<a href="https://github.com/owncloud/web/issues/9056">owncloud/web#9056</a>: Enable download
+(archive) on spaces * Enhancement
+<a href="https://github.com/owncloud/web/pull/9059">owncloud/web#9059</a>: Search full-text
+filter * Enhancement
+<a href="https://github.com/owncloud/web/pull/9077">owncloud/web#9077</a>: Advanced search
+button * Enhancement
+<a href="https://github.com/owncloud/web/pull/9077">owncloud/web#9077</a>: Search breadcrumb *
+Enhancement <a href="https://github.com/owncloud/web/pull/9088">owncloud/web#9088</a>: Use app
+icons for files * Enhancement
+<a href="https://github.com/owncloud/web/pull/9140">owncloud/web#9140</a>: Upload file on paste</p>
+<ul>
+<li>Enhancement <a href="https://github.com/owncloud/web/issues/9151">owncloud/web#9151</a>:
+Cloud import * Enhancement
+<a href="https://github.com/owncloud/web/issues/9174">owncloud/web#9174</a>: Privacy
+statement in account menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/9178">owncloud/web#9178</a>: Add login button to
+top bar * Enhancement
+<a href="https://github.com/owncloud/web/pull/9195">owncloud/web#9195</a>: Project spaces list
+viewmode * Enhancement
+<a href="https://github.com/owncloud/web/pull/9199">owncloud/web#9199</a>: Add pagination
+options to admin settings * Enhancement
+<a href="https://github.com/owncloud/web/pull/9200">owncloud/web#9200</a>: Add batch actions to
+search result list * Enhancement
+<a href="https://github.com/owncloud/web/issues/9216">owncloud/web#9216</a>: Restyle possible
+sharees * Enhancement
+<a href="https://github.com/owncloud/web/pull/9226">owncloud/web#9226</a>: Streamline URL
+query names * Enhancement
+<a href="https://github.com/owncloud/web/pull/9263">owncloud/web#9263</a>: Access denied page
+update message * Enhancement
+<a href="https://github.com/owncloud/web/issues/9280">owncloud/web#9280</a>: Hover tooltips in
+topbar * Enhancement
+<a href="https://github.com/owncloud/web/pull/9294">owncloud/web#9294</a>: Search list add
+highlighted file content * Enhancement
+<a href="https://github.com/owncloud/web/pull/9299">owncloud/web#9299</a>: Resolve pulic links
+to their actual location * Enhancement
+<a href="https://github.com/owncloud/web/pull/9304">owncloud/web#9304</a>: Add search location
+filter * Enhancement
+<a href="https://github.com/owncloud/web/pull/9344">owncloud/web#9344</a>: Ambiguation for URL
+view mode params * Enhancement
+<a href="https://github.com/owncloud/web/pull/9346">owncloud/web#9346</a>: Batch actions
+redesign * Enhancement
+<a href="https://github.com/owncloud/web/pull/9348">owncloud/web#9348</a>: Tag comma
+separation on client side * Enhancement
+<a href="https://github.com/owncloud/web/issues/9377">owncloud/web#9377</a>: User
+notification for blocked pop-ups and redirects * Enhancement
+<a href="https://github.com/owncloud/web/pull/9386">owncloud/web#9386</a>: Allow local storage
+for auth token * Enhancement
+<a href="https://github.com/owncloud/web/pull/9394">owncloud/web#9394</a>: Button styling *
+Enhancement <a href="https://github.com/owncloud/web/issues/9449">owncloud/web#9449</a>:
+Error notifications include x-request-id * Enhancement
+<a href="https://github.com/owncloud/web/pull/9426">owncloud/web#9426</a>: Add error log to
+upload dialog</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/6944">https://github.com/owncloud/ocis/pull/6944</a>
+<a href="https://github.com/owncloud/web/releases/tag/v7.1.0-rc.5">https://github.com/owncloud/web/releases/tag/v7.1.0-rc.5</a></p>
+</li>
+<li>
+<p>Enhancement - Update web to v7.1.0: <a href="https://github.com/owncloud/ocis/pull/7107">#7107</a></p>
+<p>Tags: web</p>
+<p>We updated ownCloud Web to v7.1.0. Please refer to the changelog (linked) for details on the web
+release.</p>
+<h2 id="summary--bugfix-owncloudweb9078-1">Summary * Bugfix <a href="https://github.com/owncloud/web/pull/9078">owncloud/web#9078</a>:</h2>
+<p>Favorites list update on removal * Bugfix
+<a href="https://github.com/owncloud/web/pull/9213">owncloud/web#9213</a>: Space creation does
+not block reoccurring event * Bugfix
+<a href="https://github.com/owncloud/web/issues/9247">owncloud/web#9247</a>: Uploading to
+folders that contain special characters * Bugfix
+<a href="https://github.com/owncloud/web/issues/9259">owncloud/web#9259</a>: Relative user
+quota display limited to two decimals * Bugfix
+<a href="https://github.com/owncloud/web/issues/9261">owncloud/web#9261</a>: Remember
+location after token invalidation * Bugfix
+<a href="https://github.com/owncloud/web/pull/9299">owncloud/web#9299</a>: Authenticated
+public links breaking uploads * Bugfix
+<a href="https://github.com/owncloud/web/issues/9315">owncloud/web#9315</a>: Switch columns
+displayed on small screens in “Shared with me” view * Bugfix
+<a href="https://github.com/owncloud/web/pull/9351">owncloud/web#9351</a>: Media controls
+overflow on mobile screens * Bugfix
+<a href="https://github.com/owncloud/web/pull/9389">owncloud/web#9389</a>: Space editors see
+empty trashbin and delete actions in space trashbin * Bugfix
+<a href="https://github.com/owncloud/web/issues/9461">owncloud/web#9461</a>: Merging folders *
+Enhancement <a href="https://github.com/owncloud/web/pull/7967">owncloud/web#7967</a>: Add
+hasPriority property for editors per extension * Enhancement
+<a href="https://github.com/owncloud/web/issues/8422">owncloud/web#8422</a>: Improve
+extension app topbar * Enhancement
+<a href="https://github.com/owncloud/web/issues/8445">owncloud/web#8445</a>: Open
+individually shared file in dedicated view * Enhancement
+<a href="https://github.com/owncloud/web/issues/8599">owncloud/web#8599</a>: Shrink table
+columns * Enhancement
+<a href="https://github.com/owncloud/web/pull/8921">owncloud/web#8921</a>: Add whitespace
+context-menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/8983">owncloud/web#8983</a>: Deny share access *
+Enhancement <a href="https://github.com/owncloud/web/pull/8984">owncloud/web#8984</a>: Long
+breadcrumb strategy * Enhancement
+<a href="https://github.com/owncloud/web/pull/9044">owncloud/web#9044</a>: Search tag filter *
+Enhancement <a href="https://github.com/owncloud/web/pull/9046">owncloud/web#9046</a>: Single
+file link open with default app * Enhancement
+<a href="https://github.com/owncloud/web/pull/9052">owncloud/web#9052</a>: Drag &#x26; drop on parent
+folder * Enhancement
+<a href="https://github.com/owncloud/web/pull/9055">owncloud/web#9055</a>: Respect archiver
+limits * Enhancement
+<a href="https://github.com/owncloud/web/issues/9056">owncloud/web#9056</a>: Enable download
+(archive) on spaces * Enhancement
+<a href="https://github.com/owncloud/web/pull/9059">owncloud/web#9059</a>: Search full-text
+filter * Enhancement
+<a href="https://github.com/owncloud/web/pull/9077">owncloud/web#9077</a>: Advanced search
+button * Enhancement
+<a href="https://github.com/owncloud/web/pull/9077">owncloud/web#9077</a>: Search breadcrumb *
+Enhancement <a href="https://github.com/owncloud/web/pull/9088">owncloud/web#9088</a>: Use app
+icons for files * Enhancement
+<a href="https://github.com/owncloud/web/pull/9140">owncloud/web#9140</a>: Upload file on paste</p>
+<ul>
+<li>Enhancement <a href="https://github.com/owncloud/web/issues/9151">owncloud/web#9151</a>:
+Cloud import * Enhancement
+<a href="https://github.com/owncloud/web/issues/9174">owncloud/web#9174</a>: Privacy
+statement in account menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/9178">owncloud/web#9178</a>: Add login button to
+top bar * Enhancement
+<a href="https://github.com/owncloud/web/pull/9195">owncloud/web#9195</a>: Project spaces list
+viewmode * Enhancement
+<a href="https://github.com/owncloud/web/pull/9199">owncloud/web#9199</a>: Add pagination
+options to admin settings * Enhancement
+<a href="https://github.com/owncloud/web/pull/9200">owncloud/web#9200</a>: Add batch actions to
+search result list * Enhancement
+<a href="https://github.com/owncloud/web/issues/9216">owncloud/web#9216</a>: Restyle possible
+sharees * Enhancement
+<a href="https://github.com/owncloud/web/pull/9226">owncloud/web#9226</a>: Streamline URL
+query names * Enhancement
+<a href="https://github.com/owncloud/web/pull/9263">owncloud/web#9263</a>: Access denied page
+update message * Enhancement
+<a href="https://github.com/owncloud/web/issues/9280">owncloud/web#9280</a>: Hover tooltips in
+topbar * Enhancement
+<a href="https://github.com/owncloud/web/pull/9294">owncloud/web#9294</a>: Search list add
+highlighted file content * Enhancement
+<a href="https://github.com/owncloud/web/pull/9299">owncloud/web#9299</a>: Resolve pulic links
+to their actual location * Enhancement
+<a href="https://github.com/owncloud/web/pull/9304">owncloud/web#9304</a>: Add search location
+filter * Enhancement
+<a href="https://github.com/owncloud/web/pull/9344">owncloud/web#9344</a>: Ambiguation for URL
+view mode params * Enhancement
+<a href="https://github.com/owncloud/web/pull/9346">owncloud/web#9346</a>: Batch actions
+redesign * Enhancement
+<a href="https://github.com/owncloud/web/pull/9348">owncloud/web#9348</a>: Tag comma
+separation on client side * Enhancement
+<a href="https://github.com/owncloud/web/issues/9377">owncloud/web#9377</a>: User
+notification for blocked pop-ups and redirects * Enhancement
+<a href="https://github.com/owncloud/web/pull/9386">owncloud/web#9386</a>: Allow local storage
+for auth token * Enhancement
+<a href="https://github.com/owncloud/web/pull/9394">owncloud/web#9394</a>: Button styling *
+Enhancement <a href="https://github.com/owncloud/web/pull/9436">owncloud/web#9436</a>: Add
+error log to upload dialog</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/7107">https://github.com/owncloud/ocis/pull/7107</a>
+<a href="https://github.com/owncloud/web/releases/tag/v7.1.0">https://github.com/owncloud/web/releases/tag/v7.1.0</a></p>
+</li>
+<li>
+<p>Enhancement - Allow disabling wopi chat: <a href="https://github.com/owncloud/ocis/pull/6544">#6544</a></p>
+<p>Add a configreva for the new reva disable-chat feature</p>
+<p><a href="https://github.com/owncloud/ocis/pull/6544">https://github.com/owncloud/ocis/pull/6544</a></p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/owncloud/ocis/releases/tag/v4.0.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

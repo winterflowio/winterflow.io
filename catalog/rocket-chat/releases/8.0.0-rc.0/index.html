@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Rocket.Chat 8.0.0-rc.0 release notes | WinterFlow.io</title><meta name="description" content="This release removes numerous deprecated methods and endpoints, promotes several preview features to stable, and drops support for MongoDB versions 5.x…"><link rel="canonical" href="https://winterflow.io/catalog/rocket-chat/releases/8.0.0-rc.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Rocket.Chat 8.0.0-rc.0 release notes | WinterFlow.io"><meta property="og:description" content="This release removes numerous deprecated methods and endpoints, promotes several preview features to stable, and drops support for MongoDB versions 5.x…"><meta property="og:url" content="https://winterflow.io/catalog/rocket-chat/releases/8.0.0-rc.0/"><meta property="og:image" content="https://winterflow.io/images/apps/rocket-chat/rocket-chat.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Rocket.Chat 8.0.0-rc.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release removes numerous deprecated methods and endpoints, promotes several preview features to stable, and drops support for MongoDB versions 5.x…"><meta name="twitter:image" content="https://winterflow.io/images/apps/rocket-chat/rocket-chat.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Rocket.Chat","item":"https://winterflow.io/catalog/rocket-chat/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/rocket-chat/releases/"},{"@type":"ListItem","position":5,"name":"8.0.0-rc.0","item":"https://winterflow.io/catalog/rocket-chat/releases/8.0.0-rc.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/rocket-chat/rocket-chat.png" alt="Rocket.Chat logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Rocket.Chat</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open-source team communication and collaboration platform</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> Slack, Microsoft Teams, Discord </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://rocket.chat/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/RocketChat/Rocket.Chat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.rocket.chat/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/RocketChat/Rocket.Chat/blob/develop/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Multiple </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 45,759 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Rocket.Chat" data-app-slug="rocket-chat" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/RocketChat/Rocket.Chat" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://rocket.chat/pricing/" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Rocket.Chat pricing →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/rocket-chat/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/rocket-chat/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">8.0.0-rc.0</h2> <span class="text-sm text-gray-500">2025-12-21</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h3 id="engine-versions">Engine versions</h3>
+<ul>
+<li>Node: <code>22.16.0</code></li>
+<li>Deno: <code>1.43.5</code></li>
+<li>MongoDB: <code>8.0</code></li>
+<li>Apps-Engine: <code>1.59.0-rc.0</code></li>
+</ul>
+<h3 id="major-changes">Major Changes</h3>
+<ul>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36829">#36829</a>) Removes the deprecated sendConfirmationEmail method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37460">#37460</a>) Removes deprecated <code>livechat:removeUnit</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36836">#36836</a>) Removes the deprecated livechat:getTagsList method</p>
+<p>Removes the deprecated livechat:getUnitsFromUser method</p>
+<p>Removes the deprecated livechat:getFirstRoomMessage method</p>
+<p>Removes the deprecated livechat:getDepartmentForwardRestrictions method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37672">#37672</a>) Removes deprecated VoIP permissions</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36941">#36941</a>) Makes Voice Calls enabled by default when available</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37672">#37672</a>) Removes deprecated VoIP from Omnichannel</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37461">#37461</a>) Removes deprecated <code>livechat:saveUnit</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36864">#36864</a>) Removes the deprecated <code>authorization:removeUserFromRole</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36976">#36976</a>) Promotes Timestamp Parser from preview state to stable</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37123">#37123</a>) Removes ecdh functionality and related settings</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/35436">#35436</a> by <a href="https://github.com/blackmamba1231">@blackmamba1231</a>) Removes deprecated <code>canAccessRoom</code> meteor method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36925">#36925</a>) Removes deprecated Realtime API method: <code>livechat:getAnalyticsChartData</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37392">#37392</a>) Removes deprecated <code>livechat:returnAsInquiry</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37390">#37390</a>) Removes deprecated <code>removeCustomField</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37672">#37672</a>) Removes Deprecated FreeSwitch integration</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36851">#36851</a>) Removes the deprecated <code>getUserRoles</code> method in favor of the <code>/v1/roles.getUsersInPublicRoles</code> endpoint.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37388">#37388</a>) Removes deprecated <code>setAdminStatus</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/35961">#35961</a>) Removes support of MongoDB versions 5.x and 6.x</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36823">#36823</a>) Removes deprecated meteor method <code>muteUserInRoom</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36825">#36825</a>) Removes the deprecated method <code>createToken</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37022">#37022</a>) Promotes Resizable Contextualbars from preview state to stable.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36837">#36837</a>) Removes the deprecated <code>setReaction</code> meteor method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36824">#36824</a>) Removes deprecated Realtime API method: <code>livechat:closeRoom</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36832">#36832</a>) Removes the deprecated <code>setCustomFields</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36931">#36931</a>) Removes deprecated Realtime API method: <code>livechat:removeAllClosedRooms</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36830">#36830</a>) Removes the deprecated <code>getAvatarSuggestion</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37462">#37462</a>) Removes deprecated <code>livechat:saveDepartment</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37397">#37397</a>) Removes deprecated <code>livechat:setUpConnection</code> method</p>
+</li>
+<li>
+<p>Removes the deprecated <code>getRoomRoles</code> method</p>
+</li>
+<li>
+<p>Removes the deprecated <code>authorization:deleteRole</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37391">#37391</a>) Removes deprecated <code>livechat:removeRoom</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36849">#36849</a>) Removes deprecated <code>appId</code> parameter from the <code>oauth-apps.get</code> endpoint.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37463">#37463</a>) Removes deprecated <code>sendFileLivechatMessage</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/32590">#32590</a>) Removes the setting <code>API_Use_REST_For_DDP_Calls</code>. Turning this on meant websocket was only used for realtime data/events, and any other meteor method calls goes over method.call endpoint. For microservice deployments, this had to be turned on. Now method calls will always happen over http endpoints.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36966">#36966</a>) Promotes quick reactions from preview state to stable</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36821">#36821</a>) Removes <code>/api/v1/banners.getnew</code> deprecated endpoint</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36871">#36871</a>) Removes the <code>livechat:transfer</code> deprecated method
+Removes the <code>livechat/room.transfer</code> deprecated endpoint
+Creates the <code>livechat/visitor.department.transfer</code> for visitors department transfer use</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36924">#36924</a>) Removes deprecated Realtime API method: <code>livechat:getRoutingConfig</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36809">#36809</a>) Removes deprecated Realtime API method: <code>livechat:changeLivechatStatus</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36951">#36951</a>) Removes the deprecated param <code>hideRoomsWithNoActivity</code> and adjust the api tests accordingly. Endpoint always returns rooms that are not empty.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36838">#36838</a>) Removes the deprecated <code>insertOrUpdateUser</code> meteor method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37406">#37406</a>) Removes deprecated <code>livechat:removeTag</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37810">#37810</a>) Fixes role assignment precedence in SAML provisioning, ensuring that SAML-specific default roles take priority over global registration roles, and preventing role merging when both are configured.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36831">#36831</a>) Removes the deprecated setUsername method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37446">#37446</a>) Removes deprecated <code>removeCannedResponse</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37405">#37405</a>) Removes deprecated <code>saveCannedResponse</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37396">#37396</a>) Removes deprecated <code>livechat:sendTranscript</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36857">#36857</a>) Removes the deprecated <code>/api/v1/rooms.upload</code> endpoint</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36908">#36908</a>) Removes the deprecated livechat:resumeOnHold method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36935">#36935</a>) Removes <code>addUserToRole</code> and <code>removeUserFromRole</code> type declaration and deprecation logger</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37393">#37393</a>) Removes deprecated <code>livechat:saveAgentInfo</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36907">#36907</a>) Removes the deprecated <code>GET</code> Method from <code>/api/v1/apps</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37114">#37114</a>) Removes stdout logging functionality, related components and settings</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36647">#36647</a>) Removes deprecated ‘e2e.updateGroupKey’ method and related type declarations</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37421">#37421</a>) Removes deprecated <code>livechat:saveCustomField</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36896">#36896</a>) Removes the deprecated roleName parameter from /api/v1/roles.addUserToRole and /api/v1/roles.removeUserFromRole</p>
+<p>Removes the ability to pass a role name to the role parameter type from /api/v1/roles.getUsersInRole</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36828">#36828</a>) Removes the deprecated <code>setUserPassword</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37285">#37285</a>) Promotes Enhanced Navigation from preview state to stable.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37464">#37464</a>) Removes deprecated <code>livechat:takeInquiry</code> method</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36865">#36865</a>) Removes the deprecated <code>authorization:addUserToRole</code> method</p>
+</li>
+</ul>
+<h3 id="minor-changes">Minor Changes</h3>
+<ul>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36570">#36570</a>) REST endpoint <code>/v1/users.createToken</code> is not deprecated anymore. It now requires a <code>secret</code> parameter to generate a token for a user. This change is part of the effort to enhance security by ensuring that tokens are generated with an additional layer of validation. The <code>secret</code> parameter is validated against a new environment variable <code>CREATE_TOKENS_FOR_USERS_SECRET</code>.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37719">#37719</a>) Adds a new method to the Apps-Engine that allows apps to retrieve multiple rooms from database</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37659">#37659</a>) Changes the position of the buttons in Unique ID change detected modal in order to highlight configuration update instead of new workspace</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37233">#37233</a>) Validates attachment fields to require <code>title</code> and <code>value</code> properties on APIs <code>chat.postMessage</code> and <code>chat.sendMessage</code>.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37224">#37224</a>) Enhance user’s deactivated state handling to correctly distinguish between pending and deactivated users.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37091">#37091</a>) Adds Attribute Based Access Control (ABAC) for private channels &#x26; private teams.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37771">#37771</a>) Introduces an info button to voice call’s in-chat history message, which opens a contextual bar with more detailed information about the voice call.</p>
+</li>
+</ul>
+<h3 id="patch-changes">Patch Changes</h3>
+<ul>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37663">#37663</a>) Removes the deprecated meteor method: <code>livechat:saveTag</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37688">#37688</a>) Adds deprecation warning for <code>livechat:removeMonitor</code> and new endpoint replacing it; <code>livechat/monitor.remove</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37690">#37690</a>) Adds a deprecation warning for <code>livechat:saveBusinessHour</code> and new endpoint replacing it; <code>livechat/business-hours.save</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37612">#37612</a>) Adds invitation request support to rooms</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37745">#37745</a>) Fixes an issue where its not being possible to change the password in account security page</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37721">#37721</a>) Disables read receipts indicators in federated rooms. This feature will be re-enabled when fully compatible with federation.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37823">#37823</a>) Fixes members tab > add members not removing selected items</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37791">#37791</a>) Fixes an issue where cases of invites that were canceled or disinvited were not being handled.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37874">#37874</a>) Security Hotfix (<a href="https://docs.rocket.chat/docs/security-fixes-and-updates">https://docs.rocket.chat/docs/security-fixes-and-updates</a>)</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36822">#36822</a>) Removes deprecated meteor method <code>unmuteUserInRoom</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37819">#37819</a>) Removes deprecated method <code>livechat:removeBusinessHour</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37654">#37654</a>) Fixes an issue that could cause slashcommands to disappear for the user in certain high-availability scenarios</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37443">#37443</a>) Fixes an issue where custom status is not updating immediately if the value is empty</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37730">#37730</a>) Adds an execution flag to apps-engine runtime that helps prevent the publishing of faulty builds</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37722">#37722</a>) Fixes an issue with the build that prevented Deno runtime to run on air-gapped environments</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37504">#37504</a>) Fixes create channel modal not validating federated access permission</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37523">#37523</a>) Fixes license add-on validations for federated rooms</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37061">#37061</a>) Adds deprecation warning on <code>livechat:addMonitor</code> with new endpoint replacing it; <code>livechat/monitors.create</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37713">#37713</a>) Fixes a condition where the <code>SAML_Custom_Default_default_user_role</code> setting, used to define the default SAML role when none is provided, would fail when a role name was used instead of an ID.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/36827">#36827</a>) Removes deprecated method <code>saveUserProfile</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37643">#37643</a>) Adds invitation badge to room members list</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37664">#37664</a>) Removes the deprecated meteor method: <code>livechat:addMonitor</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37829">#37829</a>) Fixes an issue where iframe external commands sent via <code>window.postMessage</code> were not being handled correctly when Rocket.Chat was embedded inside an iframe.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37717">#37717</a>) Fixes incorrect URL generation in Global Search “Jump to message” feature, resolving navigation issues when jumping to messages across different channels.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37845">#37845</a>) Fixes push notifications continuing after logout due to missing token cleanup.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37822">#37822</a>) Fixes an issue where it‘s not being possible to configure department’s <code>chatClosingTags</code> without enabling <code>requestTagBeforeClosingTag</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37707">#37707</a>) Fixes an issue that caused Third-party login to not work properly</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37662">#37662</a>) removes the deprecated meteor method: <code>livechat:removeMonitor</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37852">#37852</a>) Adds improvements to the push notifications logic; the logic now truncates messages and titles larger than 240, and 65 characters respectively.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37281">#37281</a>) Adds deprecation warning for <code>livechat:saveTag</code> and new endpoint to replace it; <code>livechat/tags.save</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37656">#37656</a>) Fixes an issue where the client failed to load properly when the “First Channel After Login” setting began with a hash (#), ensuring users are routed to the correct channel.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37846">#37846</a>) Fixes /v1/users.logout not marking user sessions as logged out, leaving stale sessions active.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37551">#37551</a>) Ensures presence stays accurate by refreshing connections on heartbeats and removing stale sessions.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37677">#37677</a>) Fixes an issue where membership updates were not reflected when the user was the first member on their own server.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37718">#37718</a>) Fixes the missing dispatch of <code>startup</code> iframe event on client startup.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37729">#37729</a>) Fixes inconsistency in roomLeft event payload by aligning it to the standard outgoing events signature.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37729">#37729</a>) Removes sensitive data from outgoing events debug logs.</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37635">#37635</a>) Adds invitation badge to sidebar</p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37772">#37772</a>) Removes deprecated method <code>livechat:saveBusinessHour</code></p>
+</li>
+<li>
+<p>(<a href="https://github.com/RocketChat/Rocket.Chat/pull/37775">#37775</a>) Adds deprecation warning for <code>livechat:removeBusinessHour</code> and new endpoint to replace it; <code>livechat/business-hours.remove</code></p>
+</li>
+<li>
+<details><summary>Updated dependencies [347b8f973440f3e2239f79c00c2d9b430859eef2, 04d24848bd8733caefc45d42c53f004177865a53, b802430fbfdc7fa69a976468dc6dee6f3c4de26f, 872da49986436d2efa65fc42e416b45d706fd59c, 0ccb9692b434bc88b4bc5009d39e024c03f01b86, 176d5eae3fb249d7d20c3e260d9fadc1a56a2fca, ac11ea05ffadeca978c794ff38d5199d9acb2c29, 2de4547580c472f4458568629d7bf98fd5faf342, ac11ea05ffadeca978c794ff38d5199d9acb2c29, 1baa03cced8f94584da1224ad59cad86f219707a, 0c0258604632342f42fc36cabac2d6cfe0e477c4, f3f0b273ab49e9d1048ba43d52eb36005274905e, ac11ea05ffadeca978c794ff38d5199d9acb2c29, a1d65f493fdb039d34ef4f65d243a97931763f4b, 70872896b912004dc016297b6e875d873d81dc3a, bd5edfc2993c93bd77f42dcd30d38b57eeb50481, 94b87d9ef40647d77fe83f3f84dca46a94515b39, ddc935727e9a7275813006d9dcaa7fe866610844, 733c94b996204151f580de2dd7f3402124b70977, d3538e7045c41f91b8c561d44e5485ff93b93745, a5a7343a835b04812c70699be1b13e54f0e10d48, 73d9eb2783176954f42aa2cbeda8abf1d49ac260, 611e4cdfa04849416a58071646b853b95e9b817b, 476a070b0099b95e4c463ee85960c4dcfbd87120, 239f4b1171bcf448cfba345cc90c4b5cd7c21afc, 9e03ed5c5ea829c62c2da2de9413a27a4696f8a3, dc67590d14d510b069dee074c55314c56f74bb11, be80b724a636877294b5e5baa501d070941131dd, 4aa3634186d97f4144c39f6b42a65107d3d30df0, 4793aca8796d8a3b4c645a2ed685028067119d8d, 0b660a5933b137ae142d78318d8c4022f1f4f1ca, dccdcc5b4a0da4814f72a020bc4eccb8ea2497d8, 5ac1863be4c6e82666989f4b569928c0805691ff, ec0f8b435dd12c218adffa8892737c7ced4debb8, f056c451c2926e849f52b95fed957945398ef5f6, cb3c5e3455606a045f95f168dae6ed32a387697c, 5b3f93c47a03b628d613a77005e92021cd6cee4b, 8bf0bab1eb84f903976b7833691d17236eac8dcd, 55dc368f3f679e93bffb9f04efe3944832cf3336]:</summary>
+<ul>
+<li>@rocket.chat/rest-typings@8.0.0-rc.0</li>
+<li>@rocket.chat/web-ui-registration@26.0.0-rc.0</li>
+<li>@rocket.chat/apps-engine@1.59.0-rc.0</li>
+<li>@rocket.chat/apps@0.6.0-rc.0</li>
+<li>@rocket.chat/core-typings@8.0.0-rc.0</li>
+<li>@rocket.chat/i18n@2.0.0-rc.0</li>
+<li>@rocket.chat/media-calls@0.2.0-rc.0</li>
+<li>@rocket.chat/model-typings@2.0.0-rc.0</li>
+<li>@rocket.chat/ui-contexts@26.0.0-rc.0</li>
+<li>@rocket.chat/ui-voip@16.0.0-rc.0</li>
+<li>@rocket.chat/models@2.0.0-rc.0</li>
+<li>@rocket.chat/core-services@0.12.0-rc.0</li>
+<li>@rocket.chat/message-types@0.1.0-rc.0</li>
+<li>@rocket.chat/federation-matrix@0.0.9-rc.0</li>
+<li>@rocket.chat/gazzodown@26.0.0-rc.0</li>
+<li>@rocket.chat/ui-client@26.0.0-rc.0</li>
+<li>@rocket.chat/fuselage-ui-kit@26.0.0-rc.0</li>
+<li>@rocket.chat/media-signaling@0.1.1-rc.0</li>
+<li>@rocket.chat/ui-kit@0.39.0-rc.0</li>
+<li>@rocket.chat/abac@0.1.0-rc.0</li>
+<li>@rocket.chat/jwt@0.2.0-rc.0</li>
+<li>@rocket.chat/tools@0.2.4-rc.0</li>
+<li>@rocket.chat/presence@0.2.47-rc.0</li>
+<li>@rocket.chat/logger@1.0.0-rc.0</li>
+<li>@rocket.chat/omnichannel-services@0.3.44-rc.0</li>
+<li>@rocket.chat/api-client@0.2.47-rc.0</li>
+<li>@rocket.chat/http-router@7.9.14-rc.0</li>
+<li>@rocket.chat/license@1.1.7-rc.0</li>
+<li>@rocket.chat/pdf-worker@0.3.26-rc.0</li>
+<li>@rocket.chat/cron@0.1.47-rc.0</li>
+<li>@rocket.chat/ui-avatar@22.0.0-rc.0</li>
+<li>@rocket.chat/ui-theming@0.4.4</li>
+<li>@rocket.chat/ui-video-conf@26.0.0-rc.0</li>
+<li>@rocket.chat/omni-core-ee@0.0.12-rc.0</li>
+<li>@rocket.chat/instance-status@0.1.47-rc.0</li>
+<li>@rocket.chat/omni-core@0.0.12-rc.0</li>
+<li>@rocket.chat/network-broker@0.2.26-rc.0</li>
+<li>@rocket.chat/server-cloud-communication@0.0.2</li>
+</ul>
+</details>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/RocketChat/Rocket.Chat/releases/tag/8.0.0-rc.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

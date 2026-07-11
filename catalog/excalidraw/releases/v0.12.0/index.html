@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Excalidraw v0.12.0 release notes | WinterFlow.io</title><meta name="description" content="This release introduces custom element integration, library management APIs, and an eraser tool, while updating appState and export mechanisms."><link rel="canonical" href="https://winterflow.io/catalog/excalidraw/releases/v0.12.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Excalidraw v0.12.0 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces custom element integration, library management APIs, and an eraser tool, while updating appState and export mechanisms."><meta property="og:url" content="https://winterflow.io/catalog/excalidraw/releases/v0.12.0/"><meta property="og:image" content="https://winterflow.io/images/apps/excalidraw/excalidraw.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Excalidraw v0.12.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces custom element integration, library management APIs, and an eraser tool, while updating appState and export mechanisms."><meta name="twitter:image" content="https://winterflow.io/images/apps/excalidraw/excalidraw.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Excalidraw","item":"https://winterflow.io/catalog/excalidraw/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/excalidraw/releases/"},{"@type":"ListItem","position":5,"name":"v0.12.0","item":"https://winterflow.io/catalog/excalidraw/releases/v0.12.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/excalidraw/excalidraw.png" alt="Excalidraw logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Excalidraw</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Virtual whiteboard for sketching hand-drawn style diagrams</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> Miro, FigJam, Google Jamboard </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://excalidraw.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/excalidraw/excalidraw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.excalidraw.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/excalidraw/excalidraw/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 126,906 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Excalidraw" data-app-slug="excalidraw" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/excalidraw/excalidraw" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/excalidraw" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/excalidraw/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (15)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/excalidraw/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v0.12.0</h2> <span class="text-sm text-gray-500">2022-07-07</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="0120-2022-07-07">0.12.0 (2022-07-07)</h2>
+<h3 id="excalidraw-api">Excalidraw API</h3>
+<h4 id="features">Features</h4>
+<ul>
+<li>
+<p><a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#loadLibraryFromBlob"><code>loadLibraryFromBlob</code></a> now takes an additional parameter <code>defaultStatus</code> which sets the default status of library item if not present, defaults to <code>unpublished</code> <a href="https://github.com/excalidraw/excalidraw/pull/5067">#5067</a>.</p>
+</li>
+<li>
+<p>Add <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#dockedSidebarBreakpoint"><code>UIOptions.dockedSidebarBreakpoint</code></a> to customize at which point to break from the docked sidebar <a href="https://github.com/excalidraw/excalidraw/pull/5274">#5274</a>.</p>
+</li>
+<li>
+<p>Added support for supplying user <code>id</code> in the Collaborator object (see <code>collaborators</code> in <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#updateScene"><code>updateScene()</code></a>), which will be used to deduplicate users when rendering collaborator avatar list. Cursors will still be rendered for every user. <a href="https://github.com/excalidraw/excalidraw/pull/5309">#5309</a></p>
+</li>
+<li>
+<p>Export API to <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#setCursor">set</a> and <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#resetCursor">reset</a> mouse cursor on the canvas <a href="https://github.com/excalidraw/excalidraw/pull/5215">#5215</a>.</p>
+</li>
+<li>
+<p>Export <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#onPointerDown"><code>sceneCoordsToViewportCoords</code></a> and <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#onPointerDown"><code>viewportCoordsToSceneCoords</code></a> utilities <a href="https://github.com/excalidraw/excalidraw/pull/5187">#5187</a>.</p>
+</li>
+<li>
+<p>Added <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#useHandleLibrary"><code>useHandleLibrary</code></a> hook to automatically handle importing of libraries when <code>#addLibrary</code> URL hash key is present, and potentially for initializing library as well <a href="https://github.com/excalidraw/excalidraw/pull/5115">#5115</a>.</p>
+<p>Also added <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#parseLibraryTokensFromUrl"><code>parseLibraryTokensFromUrl</code></a> to help in manually importing library from URL if desired.</p>
+<h5 id="breaking-change">BREAKING CHANGE</h5>
+<ul>
+<li>Libraries are no longer automatically initialized from URL when <code>#addLibrary</code> hash key is present. Host apps now need to handle this themselves with the help of either of the above APIs (<code>useHandleLibrary</code> is recommended).</li>
+</ul>
+</li>
+<li>
+<p>Added <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#updateLibrary"><code>updateLibrary</code></a> API to update (replace/merge) the library <a href="https://github.com/excalidraw/excalidraw/pull/5115">#5115</a>.</p>
+<h5 id="breaking-change-1">BREAKING CHANGE</h5>
+<ul>
+<li><code>updateScene</code> API no longer supports passing <code>libraryItems</code>. Instead, use the <code>updateLibrary</code> API.</li>
+</ul>
+</li>
+<li>
+<p>Add support for integrating custom elements <a href="https://github.com/excalidraw/excalidraw/pull/5164">#5164</a>.</p>
+<ul>
+<li>Add <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#onPointerDown"><code>onPointerDown</code></a> callback which gets triggered on pointer down events.</li>
+<li>Add <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#onScrollChange"><code>onScrollChange</code></a> callback which gets triggered when scrolling the canvas.</li>
+<li>Add API <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#setActiveTool"><code>setActiveTool</code></a> which host can call to set the active tool.</li>
+</ul>
+</li>
+<li>
+<p>Exported <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#loadSceneOrLibraryFromBlob"><code>loadSceneOrLibraryFromBlob</code></a> function <a href="https://github.com/excalidraw/excalidraw/pull/5057">#5057</a>.</p>
+</li>
+<li>
+<p>Export <a href="https://github.com/excalidraw/excalidraw/blob/master/src/constants.ts#L92"><code>MIME_TYPES</code></a> supported by Excalidraw <a href="https://github.com/excalidraw/excalidraw/pull/5135">#5135</a>.</p>
+</li>
+<li>
+<p>Support <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L50"><code>avatarUrl</code></a> for collaborators. Now onwards host can pass <code>avatarUrl</code> to render the customized avatar for collaborators <a href="https://github.com/excalidraw/excalidraw/pull/5114">#5114</a>, renamed in <a href="https://github.com/excalidraw/excalidraw/pull/5177">#5177</a>.</p>
+</li>
+<li>
+<p>Support <code>libraryItems</code> argument in <code>initialData.libraryItems</code> and <code>updateScene({ libraryItems })</code> to be a Promise resolving to <code>LibraryItems</code>, and support functional update of <code>libraryItems</code> in <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#updateScene"><code>updateScene({ libraryItems })</code></a>. <a href="https://github.com/excalidraw/excalidraw/pull/5101">#5101</a>.</p>
+</li>
+<li>
+<p>Expose util <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#mergeLibraryItems"><code>mergeLibraryItems</code></a> <a href="https://github.com/excalidraw/excalidraw/pull/5101">#5101</a>.</p>
+</li>
+<li>
+<p>Expose util <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#exportToClipboard"><code>exportToClipboard</code></a> which allows to copy the scene contents to clipboard as <code>svg</code>, <code>png</code> or <code>json</code> <a href="https://github.com/excalidraw/excalidraw/pull/5103">#5103</a>.</p>
+</li>
+<li>
+<p>Expose <code>window.EXCALIDRAW_EXPORT_SOURCE</code> which you can use to overwrite the <code>source</code> field in exported data <a href="https://github.com/excalidraw/excalidraw/pull/5095">#5095</a>.</p>
+</li>
+<li>
+<p>The <code>exportToBlob</code> utility now supports the <code>exportEmbedScene</code> option when generating a png image <a href="https://github.com/excalidraw/excalidraw/pull/5047">#5047</a>.</p>
+</li>
+<li>
+<p>Exported <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#restoreLibraryItems"><code>restoreLibraryItems</code></a> API <a href="https://github.com/excalidraw/excalidraw/pull/4995">#4995</a>.</p>
+</li>
+</ul>
+<h4 id="fixes">Fixes</h4>
+<ul>
+<li>
+<p>Allow returning <code>null </code> in <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#renderFooter"><code>renderFooter</code></a> prop <a href="https://github.com/excalidraw/excalidraw/pull/5282">#5282</a>.</p>
+</li>
+<li>
+<p>Transpile <code>browser-fs-access</code> dependency so that its <code>for await</code> syntax doesn’t force <code>es2018</code> requirement onto dependent projects <a href="https://github.com/excalidraw/excalidraw/pull/5041">#5041</a>.</p>
+</li>
+<li>
+<p>Use <code>window.EXCALIDRAW_ASSET_PATH</code> for fonts when exporting to svg <a href="https://github.com/excalidraw/excalidraw/pull/5065">#5065</a>.</p>
+</li>
+<li>
+<p>Library menu now properly rerenders if open when library is updated using <code>updateScene({ libraryItems })</code> <a href="https://github.com/excalidraw/excalidraw/pull/4995">#4995</a>.</p>
+</li>
+</ul>
+<h4 id="refactor">Refactor</h4>
+<ul>
+<li>Rename <code>appState.elementLocked</code> to <code>appState.activeTool.locked</code> <a href="https://github.com/excalidraw/excalidraw/pull/4983">#4983</a>.</li>
+<li>Expose <a href="https://github.com/excalidraw/excalidraw/blob/master/src/packages/excalidraw/README.md#serializeLibraryAsJSON"><code>serializeLibraryAsJSON</code></a> helper that we use when saving Excalidraw Library to a file.</li>
+</ul>
+<h5 id="breaking-change-2">BREAKING CHANGE</h5>
+<p>You will need to pass <code>activeTool.locked</code> instead of <code>elementType</code> from now onwards in <code>appState</code>.</p>
+<ul>
+<li>Rename <code>appState.elementType</code> to <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L80"><code>appState.activeTool</code></a> which is now an object <a href="https://github.com/excalidraw/excalidraw/pull/4968">#4698</a>.</li>
+</ul>
+<h5 id="breaking-change-3">BREAKING CHANGE</h5>
+<p>You will need to pass <code>activeTool</code> instead of <code>elementType</code> from now onwards in <code>appState</code></p>
+<h3 id="build">Build</h3>
+<ul>
+<li>Use only named exports <a href="https://github.com/excalidraw/excalidraw/pull/5045">#5045</a>.</li>
+</ul>
+<h4 id="breaking-change-4">BREAKING CHANGE</h4>
+<p>You will need to import the named export from now onwards to use the component</p>
+<p>Using bundler :point_down:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { Excalidraw } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@excalidraw/excalidraw"</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<p>In Browser :point_down:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#E1E4E8">React.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(ExcalidrawLib.Excalidraw, opts);</span></span></code></pre>
+<h2 id="excalidraw-library">Excalidraw Library</h2>
+<p><strong><em>This section lists the updates made to the excalidraw library and will not affect the integration.</em></strong></p>
+<h3 id="features-1">Features</h3>
+<ul>
+<li>
+<p>Throttle scene rendering to animation framerate <a href="https://github.com/excalidraw/excalidraw/pull/5422">#5422</a></p>
+</li>
+<li>
+<p>Make toast closable and allow custom duration <a href="https://github.com/excalidraw/excalidraw/pull/5308">#5308</a></p>
+</li>
+<li>
+<p>Collab component state handling rewrite &#x26; fixes <a href="https://github.com/excalidraw/excalidraw/pull/5046">#5046</a></p>
+</li>
+<li>
+<p>Support debugging PWA in dev <a href="https://github.com/excalidraw/excalidraw/pull/4853">#4853</a></p>
+</li>
+<li>
+<p>Redirect vscode.excalidraw.com to vscode marketplace <a href="https://github.com/excalidraw/excalidraw/pull/5285">#5285</a></p>
+</li>
+<li>
+<p>Go-to-excalidrawplus button <a href="https://github.com/excalidraw/excalidraw/pull/5202">#5202</a></p>
+</li>
+<li>
+<p>Autoredirect to Excalidraw+ if special cookie is present <a href="https://github.com/excalidraw/excalidraw/pull/5183">#5183</a></p>
+</li>
+<li>
+<p>Support resubmitting published library items <a href="https://github.com/excalidraw/excalidraw/pull/5174">#5174</a></p>
+</li>
+<li>
+<p>Support adding multiple library items on canvas <a href="https://github.com/excalidraw/excalidraw/pull/5116">#5116</a></p>
+</li>
+<li>
+<p>Support customType in activeTool <a href="https://github.com/excalidraw/excalidraw/pull/5144">#5144</a></p>
+</li>
+<li>
+<p>Stop event propagation when key handled <a href="https://github.com/excalidraw/excalidraw/pull/5091">#5091</a></p>
+</li>
+<li>
+<p>Rewrite library state management &#x26; related refactor <a href="https://github.com/excalidraw/excalidraw/pull/5067">#5067</a></p>
+</li>
+<li>
+<p>Delay initial loading message &#x26; tweak design <a href="https://github.com/excalidraw/excalidraw/pull/5049">#5049</a></p>
+</li>
+<li>
+<p>Reconcile when saving to firebase <a href="https://github.com/excalidraw/excalidraw/pull/4991">#4991</a></p>
+</li>
+<li>
+<p>Hide trash button during collaboration <a href="https://github.com/excalidraw/excalidraw/pull/5037">#5037</a></p>
+</li>
+<li>
+<p>Refactor local persistence &#x26; fix race condition on SW reload <a href="https://github.com/excalidraw/excalidraw/pull/5032">#5032</a></p>
+</li>
+<li>
+<p>Element locking <a href="https://github.com/excalidraw/excalidraw/pull/4964">#4964</a></p>
+</li>
+<li>
+<p>Copy to clipboard all text nodes as text <a href="https://github.com/excalidraw/excalidraw/pull/5013">#5013</a></p>
+</li>
+<li>
+<p>Create and expose serializeLibraryAsJSON <a href="https://github.com/excalidraw/excalidraw/pull/5009">#5009</a></p>
+</li>
+<li>
+<p>Hide penMode button on reload if not enabled <a href="https://github.com/excalidraw/excalidraw/pull/4992">#4992</a></p>
+</li>
+<li>
+<p>Eraser toggle to switch back to the previous tool <a href="https://github.com/excalidraw/excalidraw/pull/4981">#4981</a></p>
+</li>
+<li>
+<p>Save penDetected and penMode, and detect pen already on ToolButton click <a href="https://github.com/excalidraw/excalidraw/pull/4955">#4955</a></p>
+</li>
+<li>
+<p>Support binding text to container via context menu <a href="https://github.com/excalidraw/excalidraw/pull/4935">#4935</a></p>
+</li>
+<li>
+<p>Map shortcut O to ellipse and Add eraser shortcut E <a href="https://github.com/excalidraw/excalidraw/pull/4930">#4930</a></p>
+</li>
+<li>
+<p>Update eraser cursor <a href="https://github.com/excalidraw/excalidraw/pull/4922">#4922</a></p>
+</li>
+<li>
+<p>Add Eraser 🎉 <a href="https://github.com/excalidraw/excalidraw/pull/4887">#4887</a></p>
+</li>
+<li>
+<p>Added optional REACT_APP_WS_SERVER_URL for forks usecases <a href="https://github.com/excalidraw/excalidraw/pull/4889">#4889</a></p>
+</li>
+<li>
+<p>Rewrite collab server connecting <a href="https://github.com/excalidraw/excalidraw/pull/4881">#4881</a></p>
+</li>
+<li>
+<p>Support vertical text align for bound containers <a href="https://github.com/excalidraw/excalidraw/pull/4852">#4852</a></p>
+</li>
+<li>
+<p>Support custom colors 🎉 <a href="https://github.com/excalidraw/excalidraw/pull/4843">#4843</a></p>
+</li>
+<li>
+<p>Support Links in Exported SVG <a href="https://github.com/excalidraw/excalidraw/pull/4791">#4791</a></p>
+</li>
+<li>
+<p>Scale font size when bound text containers resized with shift pressed <a href="https://github.com/excalidraw/excalidraw/pull/4828">#4828</a></p>
+</li>
+</ul>
+<h3 id="fixes-1">Fixes</h3>
+<ul>
+<li>
+<p>Autorelease job name <a href="https://github.com/excalidraw/excalidraw/pull/5412">#5412</a></p>
+</li>
+<li>
+<p>Action name for autorelease <a href="https://github.com/excalidraw/excalidraw/pull/5411">#5411</a></p>
+</li>
+<li>
+<p>Typecast file to fix the build <a href="https://github.com/excalidraw/excalidraw/pull/5410">#5410</a></p>
+</li>
+<li>
+<p>File handle not persisted when importing excalidraw files <a href="https://github.com/excalidraw/excalidraw/pull/5372">#5372</a></p>
+</li>
+<li>
+<p>Library not scrollable when no published items installed <a href="https://github.com/excalidraw/excalidraw/pull/5352">#5352</a></p>
+</li>
+<li>
+<p>Focus traps inside popovers <a href="https://github.com/excalidraw/excalidraw/pull/5317">#5317</a></p>
+</li>
+<li>
+<p>Unable to use cmd/ctrl-delete/backspace in inputs <a href="https://github.com/excalidraw/excalidraw/pull/5348">#5348</a></p>
+</li>
+<li>
+<p>Delay loading until language imported <a href="https://github.com/excalidraw/excalidraw/pull/5344">#5344</a></p>
+</li>
+<li>
+<p>Command to trigger release <a href="https://github.com/excalidraw/excalidraw/pull/5347">#5347</a></p>
+</li>
+<li>
+<p>Remove unnecessary options passed to language detector <a href="https://github.com/excalidraw/excalidraw/pull/5336">#5336</a></p>
+</li>
+<li>
+<p>Stale <code>appState.pendingImageElement</code> <a href="https://github.com/excalidraw/excalidraw/pull/5322">#5322</a></p>
+</li>
+<li>
+<p>Non-letter shortcuts being swallowed by color picker <a href="https://github.com/excalidraw/excalidraw/pull/5316">#5316</a></p>
+</li>
+<li>
+<p>Bind text to correct container when nested <a href="https://github.com/excalidraw/excalidraw/pull/5307">#5307</a></p>
+</li>
+<li>
+<p>Copy bound text style when copying element having bound text <a href="https://github.com/excalidraw/excalidraw/pull/5305">#5305</a></p>
+</li>
+<li>
+<p>Copy arrow head when using copy styles <a href="https://github.com/excalidraw/excalidraw/pull/5303">#5303</a></p>
+</li>
+<li>
+<p>Unsafely accessing draggingElement <a href="https://github.com/excalidraw/excalidraw/pull/5216">#5216</a></p>
+</li>
+<li>
+<p>Library load button does not work <a href="https://github.com/excalidraw/excalidraw/pull/5205">#5205</a></p>
+</li>
+<li>
+<p>Do not deselect when not zooming using touchscreen pinch <a href="https://github.com/excalidraw/excalidraw/pull/5181">#5181</a></p>
+</li>
+<li>
+<p>Wheel zoom normalization <a href="https://github.com/excalidraw/excalidraw/pull/5165">#5165</a></p>
+</li>
+<li>
+<p>Hide sidebar when <code>custom</code> tool active <a href="https://github.com/excalidraw/excalidraw/pull/5179">#5179</a></p>
+</li>
+<li>
+<p>Don’t save deleted ExcalidrawElements to Firebase <a href="https://github.com/excalidraw/excalidraw/pull/5108">#5108</a></p>
+</li>
+<li>
+<p>Eraser removed deleted elements <a href="https://github.com/excalidraw/excalidraw/pull/5155">#5155</a></p>
+</li>
+<li>
+<p>Handle <code>ColorPicker</code> parentSelector being undefined <a href="https://github.com/excalidraw/excalidraw/pull/5152">#5152</a></p>
+</li>
+<li>
+<p>Library multiselect not accounting for published state <a href="https://github.com/excalidraw/excalidraw/pull/5132">#5132</a></p>
+</li>
+<li>
+<p>Chart display fix <a href="https://github.com/excalidraw/excalidraw/pull/5154">#5154</a></p>
+</li>
+<li>
+<p>Update opacity of bound text when opacity of container updated <a href="https://github.com/excalidraw/excalidraw/pull/5142">#5142</a></p>
+</li>
+<li>
+<p>Jumping of text when typing single line in bound text <a href="https://github.com/excalidraw/excalidraw/pull/5139">#5139</a></p>
+</li>
+<li>
+<p>Remove opacity scroll wheel interaction <a href="https://github.com/excalidraw/excalidraw/pull/5111">#5111</a></p>
+</li>
+<li>
+<p>Propagate keydown events from excalidraw-wysiwyg inputs <a href="https://github.com/excalidraw/excalidraw/pull/5099">#5099</a></p>
+</li>
+<li>
+<p>Don’t bind text to container if double clicked else instead of center <a href="https://github.com/excalidraw/excalidraw/pull/5105">#5105</a></p>
+</li>
+<li>
+<p>ToolIcon height not using rem <a href="https://github.com/excalidraw/excalidraw/pull/5092">#5092</a></p>
+</li>
+<li>
+<p>Excalidraw named export type <a href="https://github.com/excalidraw/excalidraw/pull/5078">#5078</a></p>
+</li>
+<li>
+<p>BoundElementIds when arrows bound to elements are deleted <a href="https://github.com/excalidraw/excalidraw/pull/5077">#5077</a></p>
+</li>
+<li>
+<p>Don’t merge libraryItems on updateScene <a href="https://github.com/excalidraw/excalidraw/pull/5076">#5076</a></p>
+</li>
+<li>
+<p>SVG metadata extraction regex on multiline elements <a href="https://github.com/excalidraw/excalidraw/pull/5074">#5074</a></p>
+</li>
+<li>
+<p>Eraser cursor showing on theme change when not using eraser <a href="https://github.com/excalidraw/excalidraw/pull/4990">#4990</a></p>
+</li>
+<li>
+<p>Update <code>storage.rules</code> <a href="https://github.com/excalidraw/excalidraw/pull/5020">#5020</a></p>
+</li>
+<li>
+<p>Add image button not working on iPad <a href="https://github.com/excalidraw/excalidraw/pull/5038">#5038</a></p>
+</li>
+<li>
+<p>Ensure svg image dimensions are always set <a href="https://github.com/excalidraw/excalidraw/pull/5044">#5044</a></p>
+</li>
+<li>
+<p>Pinch zoom in view mode <a href="https://github.com/excalidraw/excalidraw/pull/5001">#5001</a></p>
+</li>
+<li>
+<p>Select whole group on righclick &#x26; few lock-related fixes <a href="https://github.com/excalidraw/excalidraw/pull/5022">#5022</a></p>
+</li>
+<li>
+<p>Export serializeLibraryAsJSON from the package <a href="https://github.com/excalidraw/excalidraw/pull/5017">#5017</a></p>
+</li>
+<li>
+<p>Support copying PNG to clipboard on Safari <a href="https://github.com/excalidraw/excalidraw/pull/3746">#3746</a></p>
+</li>
+<li>
+<p>More copyText fixes <a href="https://github.com/excalidraw/excalidraw/pull/5016">#5016</a></p>
+</li>
+<li>
+<p>Copy to clipboard all text nodes as text <a href="https://github.com/excalidraw/excalidraw/pull/5014">#5014</a></p>
+</li>
+<li>
+<p>Update cursorButton once freedraw is released <a href="https://github.com/excalidraw/excalidraw/pull/4996">#4996</a></p>
+</li>
+<li>
+<p>Decouple actionFinalize and actionErase <a href="https://github.com/excalidraw/excalidraw/pull/4984">#4984</a></p>
+</li>
+<li>
+<p>Using stale state when switching tools <a href="https://github.com/excalidraw/excalidraw/pull/4989">#4989</a></p>
+</li>
+<li>
+<p>UpdateWysiwygStyle updatedElement is undefined TypeError <a href="https://github.com/excalidraw/excalidraw/pull/4980">#4980</a></p>
+</li>
+<li>
+<p>Adding check for link length to prevent early return <a href="https://github.com/excalidraw/excalidraw/pull/4982">#4982</a></p>
+</li>
+<li>
+<p>Show link icon for bound text containers <a href="https://github.com/excalidraw/excalidraw/pull/4960">#4960</a></p>
+</li>
+<li>
+<p>Cancel erase elements on pointer up if eraser is not active on pointer up <a href="https://github.com/excalidraw/excalidraw/pull/4956">#4956</a></p>
+</li>
+<li>
+<p>Restore original opacities when alt pressed while erasing <a href="https://github.com/excalidraw/excalidraw/pull/4954">#4954</a></p>
+</li>
+<li>
+<p>Don’t bind text to container if already present <a href="https://github.com/excalidraw/excalidraw/pull/4946">#4946</a></p>
+</li>
+<li>
+<p>Erase all elements which are hit with single point click <a href="https://github.com/excalidraw/excalidraw/pull/4934">#4934</a></p>
+</li>
+<li>
+<p>Add multiElement-edit finalize action to Desktop (currently only visible in Mobile view) <a href="https://github.com/excalidraw/excalidraw/pull/4764">#4764</a></p>
+</li>
+<li>
+<p>Hide eraser in view mode in desktop <a href="https://github.com/excalidraw/excalidraw/pull/4929">#4929</a></p>
+</li>
+<li>
+<p>Undo when erasing elements by clicking <a href="https://github.com/excalidraw/excalidraw/pull/4921">#4921</a></p>
+</li>
+<li>
+<p>Undo when erasing <a href="https://github.com/excalidraw/excalidraw/pull/4900">#4900</a></p>
+</li>
+<li>
+<p>Incorrectly erasing on mobile <a href="https://github.com/excalidraw/excalidraw/pull/4899">#4899</a></p>
+</li>
+<li>
+<p>Don’t crash on drop highlighted text onto canvas <a href="https://github.com/excalidraw/excalidraw/pull/4890">#4890</a></p>
+</li>
+<li>
+<p>Paste styles shortcut <a href="https://github.com/excalidraw/excalidraw/pull/4886">#4886</a></p>
+</li>
+<li>
+<p>Freedraw element’s background fill color missing from SVG when exporting with package API exportToSvg() <a href="https://github.com/excalidraw/excalidraw/pull/4871">#4871</a></p>
+</li>
+<li>
+<p>Improve pointer syncing performance <a href="https://github.com/excalidraw/excalidraw/pull/4883">#4883</a></p>
+</li>
+<li>
+<p>Collab room initialization <a href="https://github.com/excalidraw/excalidraw/pull/4882">#4882</a></p>
+</li>
+<li>
+<p>Ensure verticalAlign properties not shown when no element selected <a href="https://github.com/excalidraw/excalidraw/pull/4860">#4860</a></p>
+</li>
+<li>
+<p>Binding text to non-bindable containers and not always preferring selection <a href="https://github.com/excalidraw/excalidraw/pull/4655">#4655</a></p>
+</li>
+<li>
+<p>Don’t show align icons for single bound container element <a href="https://github.com/excalidraw/excalidraw/pull/4846">#4846</a></p>
+</li>
+<li>
+<p>Redraw text bounding box when pasting styles <a href="https://github.com/excalidraw/excalidraw/pull/4845">#4845</a></p>
+</li>
+<li>
+<p>Restore cursor position after bound text container value updated <a href="https://github.com/excalidraw/excalidraw/pull/4836">#4836</a></p>
+</li>
+<li>
+<p>Support resizing multiple bound text containers <a href="https://github.com/excalidraw/excalidraw/pull/4824">#4824</a></p>
+</li>
+<li>
+<p>Also check overflowY: overlay in detectScroll <a href="https://github.com/excalidraw/excalidraw/pull/4806">#4806</a></p>
+</li>
+<li>
+<p>Stuck resizing when resizing bound text container very fast beyond threshold <a href="https://github.com/excalidraw/excalidraw/pull/4804">#4804</a></p>
+</li>
+</ul>
+<h3 id="refactor-1">Refactor</h3>
+<ul>
+<li>Don’t pass array to handleBindTextResize <a href="https://github.com/excalidraw/excalidraw/pull/4826">#4826</a></li>
+</ul>
+<h3 id="build-1">Build</h3>
+<ul>
+<li>
+<p>Extract all i18n files into locales folder <a href="https://github.com/excalidraw/excalidraw/pull/5419">#5419</a></p>
+</li>
+<li>
+<p>Automate release step fully <a href="https://github.com/excalidraw/excalidraw/pull/5414">#5414</a></p>
+</li>
+<li>
+<p>Use next and preview tags instead of separate packages for next and preview release <a href="https://github.com/excalidraw/excalidraw/pull/5346">#5346</a></p>
+</li>
+<li>
+<p>Support runtime React Jsx in @excalidraw/utils <a href="https://github.com/excalidraw/excalidraw/pull/4866">#4866</a></p>
+</li>
+<li>
+<p>Release @excalidraw/utils 0.1.1 <a href="https://github.com/excalidraw/excalidraw/pull/4862">#4862</a></p>
+</li>
+<li>
+<p>Remove build packages workflow <a href="https://github.com/excalidraw/excalidraw/pull/4835">#4835</a></p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/excalidraw/excalidraw/releases/tag/v0.12.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

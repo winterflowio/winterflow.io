@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mastodon v4.4.0 release notes | WinterFlow.io</title><meta name="description" content="Mastodon 4.4 introduces remote quote post support, new profile widgets, age verification on sign-up, and a transition from Webpack to Vite, while…"><link rel="canonical" href="https://winterflow.io/catalog/mastodon/releases/v4.4.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Mastodon v4.4.0 release notes | WinterFlow.io"><meta property="og:description" content="Mastodon 4.4 introduces remote quote post support, new profile widgets, age verification on sign-up, and a transition from Webpack to Vite, while…"><meta property="og:url" content="https://winterflow.io/catalog/mastodon/releases/v4.4.0/"><meta property="og:image" content="https://winterflow.io/images/apps/mastodon/mastodon.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Mastodon v4.4.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Mastodon 4.4 introduces remote quote post support, new profile widgets, age verification on sign-up, and a transition from Webpack to Vite, while…"><meta name="twitter:image" content="https://winterflow.io/images/apps/mastodon/mastodon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Mastodon","item":"https://winterflow.io/catalog/mastodon/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/mastodon/releases/"},{"@type":"ListItem","position":5,"name":"v4.4.0","item":"https://winterflow.io/catalog/mastodon/releases/v4.4.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/mastodon/mastodon.png" alt="Mastodon logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mastodon</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Your self-hosted, globally interconnected microblogging community</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> Twitter/X, Threads </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://joinmastodon.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/mastodon/mastodon" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.joinmastodon.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/mastodon/mastodon/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 50,096 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Mastodon" data-app-slug="mastodon" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/mastodon/mastodon" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.patreon.com/mastodon" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support on Patreon →
+</a><a href="https://github.com/sponsors/mastodon" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> GitHub Sponsors →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/mastodon/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/mastodon/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.4.0</h2> <span class="text-sm text-gray-500">2025-07-08</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
+<p>For a user-focused highlight of these changes, see <a href="https://blog.joinmastodon.org/2025/07/mastodon-4.4/">https://blog.joinmastodon.org/2025/07/mastodon-4.4/</a>
+For changes of particular interest to application developers, see <a href="https://blog.joinmastodon.org/2025/07/mastodon-4-4-for-devs/">https://blog.joinmastodon.org/2025/07/mastodon-4-4-for-devs/</a>
+For a more detailed run-down on the changes, see the Changelog section below!</p>
+<h2 id="upgrade-overview">Upgrade overview</h2>
+<blockquote>
+<p>[!TIP]
+A <a href="https://github.com/mastodon/mastodon/releases/tag/v4.4.1">hotfix release</a> is available for this branch, please update directly to it.</p>
+</blockquote>
+<p>This release contains upgrade notes that deviate from the norm:</p>
+<p>:warning: The minimum supported version for Redis has been bumped to 6.2<br>
+:warning: The minimum supported version for PostgreSQL has been bumped to 13<br>
+:warning: The minimum supported version for Ruby has been bumped to 3.2<br>
+:warning: The minimum supported version for Node.js has been bumped to 20<br>
+:warning: Support for Redis namespaces has been dropped<br>
+:warning: Requires updating the metadata for the Elasticsearch accounts index<br>
+:warning: Rolling updates from versions earlier than Mastodon 4.3 are not supported<br>
+:warning: Import jobs from Mastodon versions earlier than Mastodon 4.2 are not supported<br>
+:warning: ImageMagick is being deprecated and may be removed in a future version<br>
+ℹ️ The new experimental Fediverse Auxiliary Service Providers feature requires a new <code>fasp</code> sidekiq queue<br>
+ℹ️ Requires streaming server restart<br>
+ℹ️ Requires database migrations</p>
+<p>For more information, view the complete release notes and scroll down to the upgrade instructions section.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li><strong>Add “Followers you know” widget to user profiles and hover cards</strong> (#34652, #34678, #34681, #34697, #34699, #34769, #34774 and #34914 by @diondiondion)</li>
+<li><strong>Add featured tab to profiles on web UI and rework pinned posts</strong> (#34405, #34483, #34491, #34754, #34855, #34858, #34868, #34869, #34927, #34995, #35056 and #34931 by @ChaosExAnima, @ClearlyClaire, @Gargron, and @diondiondion)</li>
+<li>Add endorsed accounts to featured tab in web UI (#34421 and #34568 by @Gargron)<br>
+This also includes the following new REST API endpoints:
+<ul>
+<li><code>GET /api/v1/accounts/:id/endorsements</code>: <a href="https://docs.joinmastodon.org/methods/accounts/#endorsements">https://docs.joinmastodon.org/methods/accounts/#endorsements</a></li>
+<li><code>POST /api/v1/accounts/:id/endorse</code>: <a href="https://docs.joinmastodon.org/methods/accounts/#endorse">https://docs.joinmastodon.org/methods/accounts/#endorse</a></li>
+<li><code>POST /api/v1/accounts/:id/unendorse</code>: <a href="https://docs.joinmastodon.org/methods/accounts/#unendorse">https://docs.joinmastodon.org/methods/accounts/#unendorse</a></li>
+</ul>
+</li>
+<li>Add ability to add and remove hashtags from featured tags in web UI (#34489, #34887, and #34490 by @ClearlyClaire and @Gargron)<br>
+This is achieved through the new REST API endpoints:
+<ul>
+<li><code>POST /api/v1/tags/:id/feature</code>: <a href="https://docs.joinmastodon.org/methods/tags/#feature">https://docs.joinmastodon.org/methods/tags/#feature</a></li>
+<li><code>POST /api/v1/tags/:id/unfeature</code>: <a href="https://docs.joinmastodon.org/methods/tags/#unfeature">https://docs.joinmastodon.org/methods/tags/#unfeature</a></li>
+</ul>
+</li>
+<li>Add reminder when about to post without alt text in web UI (#33760 and #33784 by @Gargron)</li>
+<li>Add a warning in Web UI when composing a post when the selected and detected language are different (#33042, #33683, #33700, #33724, #33770, and #34193 by @ClearlyClaire and @Gargron)</li>
+<li>Add support for verifying and displaying remote quote posts (#34370, #34481, #34510, #34551, #34480, #34479, #34553, #34584, #34623, #34738, #34766, #34770, #34772, #34773, #34786, #34790, #34864, #34957, #34961, #35016, #35022, #35036, #34946, #34945 and #34958 by @ClearlyClaire and @diondiondion)<br>
+Support for verifying remote quotes according to <a href="https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md">FEP-044f</a> and displaying them in the Web UI has been implemented.<br>
+Quoting other people is not implemented yet, and it is currently not possible to mark your own posts as allowing quotes. However, a new “Who can quote” setting has been added to the “Posting defaults” section of the user settings. This setting allows you to set a default that will be used for new posts made on Mastodon 4.5 and newer, when quote posts will be fully implemented.<br>
+In the REST API, quote posts are represented by a new <code>quote</code> attribute on <code>Status</code> and <code>StatusEdit</code> entities: <a href="https://docs.joinmastodon.org/entities/StatusEdit/#quote">https://docs.joinmastodon.org/entities/StatusEdit/#quote</a> <a href="https://docs.joinmastodon.org/entities/Status/#quote">https://docs.joinmastodon.org/entities/Status/#quote</a></li>
+<li>Add ability to reorder and translate server rules (#34637, #34737, #34494, #34756, #34820, #34997, #35170, #35174 and #35174 by @ChaosExAnima and @ClearlyClaire)<br>
+Rules are now shown in the user’s language, if a translation has been set.<br>
+In the REST API, <code>Rule</code> entities now have a new <code>translations</code> attribute: <a href="https://docs.joinmastodon.org/entities/Rule/#translations">https://docs.joinmastodon.org/entities/Rule/#translations</a></li>
+<li>Add emoji from Twemoji 15.1.0, including in the emoji picker/completion (#33395, #34321, #34620, and #34677 by @ChaosExAnima, @ClearlyClaire, @TheEssem, and @eramdam)</li>
+<li>Add option to remove account from followers in web UI (#34488 by @Gargron)</li>
+<li>Add relationship tags to profiles and hover cards in web UI (#34467 and #34792 by @Gargron and @diondiondion)</li>
+<li>Add ability to open posts in a new tab by middle-clicking in web UI (#32988, #33106, #33419, and #34700 by @ClearlyClaire, @Gargron, and @tribela)</li>
+<li>Add new filter action to blur media (#34256 by @ClearlyClaire)<br>
+In the REST API, this adds a new possible value of <code>blur</code> to the <code>filter_action</code> attribute: <a href="https://docs.joinmastodon.org/entities/Filter/#filter_action">https://docs.joinmastodon.org/entities/Filter/#filter_action</a></li>
+<li>Add dropdown menu to hashtag links in web UI (#34393 by @Gargron)</li>
+<li><strong>Add server setting to allow referrer</strong> (#33214, #33239, #33903, and #34731 by @ChaosExAnima, @ClearlyClaire, @Gargron, and @renchap)<br>
+In order to protect the privacy of users of small or thematic servers, Mastodon previously avoided transmitting referrer information when clicking outside links, which unfortunately made Mastodon completely invisible to other websites, even though the privacy implications on large generic servers are very limited.<br>
+Server administrators can now chose to opt in to transmit referrer information when following an external link. Only the domain name is transmitted, not the referrer path.</li>
+<li>Add double tap to zoom and swipe to dismiss to media modal in web UI (#34210 by @Gargron)</li>
+<li>Add link from Web UI for Hashtags to the Moderation UI (#31448 by @ThisIsMissEm)</li>
+<li><strong>Add terms of service</strong> (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126, #35127 and #35233 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)<br>
+Server administrators can now fill in Terms of Service and notify their users of upcoming changes.</li>
+<li>Add optional bulk mailer settings (#35191 and #35203 by @oneiros)<br>
+This adds the optional environment variables <code>BULK_SMTP_PORT</code>, <code>BULK_SMTP_SERVER</code>, <code>BULK_SMTP_LOGIN</code> and so on analogous to <code>SMTP_PORT</code>, <code>SMTP_SERVER</code>, <code>SMTP_LOGIN</code> and related SMTP configuration environment variables.<br>
+When <code>BULK_SMTP_SERVER</code> is set, this group of variables is used instead of the regular ones for sending announcement notification emails and Terms of Service notification emails.</li>
+<li><strong>Add age verification on sign-up</strong> (#34150, #34663, and #34636 by @ClearlyClaire and @Gargron)<br>
+Server administrators now have a setting to set a minimum age requirement for creating a new server, asking users for their date of birth. The date of birth is checked against the minimum age requirement server-side but not stored.<br>
+The following REST API changes have been made to accommodate this:
+<ul>
+<li><code>registrations.min_age</code> has been added to the <code>Instance</code> entity: <a href="https://docs.joinmastodon.org/entities/Instance/#registrations-min_age">https://docs.joinmastodon.org/entities/Instance/#registrations-min_age</a></li>
+<li>the <code>date_of_birth</code> parameter has been added to the account creation API: <a href="https://docs.joinmastodon.org/methods/accounts/#create">https://docs.joinmastodon.org/methods/accounts/#create</a></li>
+</ul>
+</li>
+<li>Add ability to dismiss alt text badge by tapping it in web UI (#33737 by @Gargron)</li>
+<li>Add loading indicator to timeline gap indicators in web UI (#33762 by @Gargron)</li>
+<li>Add interaction modal when trying to interact with a poll while logged out (#32609 by @ThisIsMissEm)</li>
+<li><strong>Add experimental FASP support</strong> (#34031, #34415, #34765, #34965, #34964, #34033, #35218, #35262 and #35263 by @oneiros)<br>
+This is a first step towards supporting “Fediverse Auxiliary Service Providers” (<a href="https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications">https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications</a>). This is mostly interesting to developers who would like to implement their own FASP, but also includes the capability to share data with a discovery provider (see <a href="https://www.fediscovery.org">https://www.fediscovery.org</a>).</li>
+<li>Add ability for admins to send announcements to all users via email (#33928 and #34411 by @ClearlyClaire)<br>
+This is meant for critical announcements only, as this will potentially send a lot of emails and cannot be opted out of by users.</li>
+<li>Add Server Moderation Notes (#31529 by @ThisIsMissEm)</li>
+<li>Add loading spinner to “Post” button when sending a post (#35153 by @diondiondion)</li>
+<li>Add option to use system scrollbar styling (#32117 by @vmstan)</li>
+<li>Add hover cards to follow suggestions (#33749 by @ClearlyClaire)</li>
+<li>Add <code>t</code> hotkey for post translations (#33441 by @ClearlyClaire)</li>
+<li>Add timestamp to all announcements in Web UI (#18329 by @ClearlyClaire)</li>
+<li>Add dropdown menu with quick actions to lists of accounts in web UI (#34391, #34709, and #34767 by @Gargron, @diondiondion, and @mkljczk)</li>
+<li>Add support for displaying “year in review” notification in web UI (#32710, #32765, #32709, #32807, #32914, #33148, and #33882 by @Gargron and @mjankowski)<br>
+Note that the notification is currently not generated automatically, and at the moment requires a manual undocumented administrator action.</li>
+<li>Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033, #35109 and #35278 by @oneiros)<br>
+For now, this needs to be explicitly enabled through the <code>http_message_signatures</code> feature flag (<code>EXPERIMENTAL_FEATURES=http_message_signatures</code>). This currently only covers verifying such signatures (inbound HTTP requests), not issuing them (outbound HTTP requests).</li>
+<li>Add experimental Async Refreshes API (#34918 by @oneiros)</li>
+<li>Add experimental server-side feature to fetch remote replies (#32615, #34147, #34149, #34151, #34615, #34682, and #34702 by @ClearlyClaire and @sneakers-the-rat)<br>
+This experimental feature causes the server to recursively fetch replies in background tasks whenever a user opens a remote post. This happens asynchronously and the client is currently not notified of the existence of new replies, which will thus only be displayed the next time this post’s context gets requested.<br>
+This feature needs to be explicitly enabled server-side by setting <code>FETCH_REPLIES_ENABLED</code> environment variable to <code>true</code>.</li>
+<li>Add simple feature flag system through the <code>EXPERIMENTAL_FEATURES</code> environment variable (#34038 and #34124 by @oneiros)<br>
+This allows enabling comma-separated feature flags for experimental features.<br>
+The current supported feature flags are <code>inbound_quotes</code>, <code>fasp</code> and <code>http_message_signatures</code>.</li>
+<li>Add <code>dev:populate_sample_data</code> rake task to populate test data (#34676, #34733, #34771, #34787, and #34791 by @ClearlyClaire and @diondiondion)</li>
+<li>Add support for displaying fallback representation when receiving MathML (#27107 by @4e554c4c)</li>
+<li>Add warning for Elasticsearch index analyzers mismatch (#34515 and #34567 by @ClearlyClaire and @Gargron)</li>
+<li>Add <code>-only-mapping</code> option to <code>tootctl search deploy</code> (#34466 and #34566 by @Gargron)</li>
+<li>Add server-side support for grouping account sign-up notifications (#34298 by @ClearlyClaire)</li>
+<li>Add <code>registrations.reason_required</code> attribute to <code>/api/v2/instance</code> response (#34280 by @ClearlyClaire)<br>
+This is documented at <a href="https://docs.joinmastodon.org/entities/Instance/#registrations-reason_required">https://docs.joinmastodon.org/entities/Instance/#registrations-reason_required</a></li>
+<li>Add <code>EXTRA_MEDIA_HOSTS</code> environment variable to add extra hosts to Content-Security-Policy (#34184 by @shleeable)</li>
+<li>Add <code>Deprecation</code> headers on deprecated API endpoints (#34262 and #34397 by @ClearlyClaire)<br>
+This is documented at <a href="https://docs.joinmastodon.org/api/guidelines/#deprecations">https://docs.joinmastodon.org/api/guidelines/#deprecations</a></li>
+<li>Add <code>about</code>, <code>privacy_policy</code> and <code>terms_of_service</code> URLs to <code>/api/v2/instance</code> (#33849 by @ClearlyClaire)</li>
+<li>Add API to delete media attachments that are not in use (#33991 and #34035 by @ClearlyClaire and @ThisIsMissEm)<br>
+<code>DELETE /api/v1/media/:id</code>: <a href="https://docs.joinmastodon.org/methods/media/#delete">https://docs.joinmastodon.org/methods/media/#delete</a></li>
+<li>Add optional <code>delete_media</code> parameter to <code>DELETE /api/v1/statuses/:id</code> (#33988 by @ClearlyClaire)<br>
+This is documented at <a href="https://docs.joinmastodon.org/methods/statuses/#delete">https://docs.joinmastodon.org/methods/statuses/#delete</a></li>
+<li>Add <code>og:locale</code> to expose status language in OpenGraph previews (#34012 by @ThisIsMissEm)</li>
+<li>Add <code>-skip-filled-timeline</code> option to <code>tootctl feed build</code> to skip half-filled feeds (#33844 by @ClearlyClaire)</li>
+<li>Add support for changing the base Docker registry with the <code>BASE_REGISTRY</code> <code>ARG</code> (#33712 by @wolfspyre)</li>
+<li>Add an optional metric exporter (#33734, #33840, #34172, #34192, #34223, and #35005 by @oneiros and @renchap)<br>
+Optionally enable the <code>prometheus_exporter</code> ruby gem (see <a href="https://github.com/discourse/prometheus_exporter">https://github.com/discourse/prometheus_exporter</a>) to collect and expose metrics. See the documentation for all the details: <a href="https://docs.joinmastodon.org/admin/config/#prometheus">https://docs.joinmastodon.org/admin/config/#prometheus</a></li>
+<li>Add <code>attribution_domains</code> attribute to <code>PATCH /api/v1/accounts/update_credentials</code> (#32730 by @c960657)<br>
+This is documented at <a href="https://docs.joinmastodon.org/methods/accounts/#update_credentials">https://docs.joinmastodon.org/methods/accounts/#update_credentials</a></li>
+<li>Add support for standard WebPush in addition to previous draft (#33572, #33528, and #33587 by @ClearlyClaire and @p1gp1g)</li>
+<li>Add support for Active Record query log tags (#33342 by @renchap)</li>
+<li>Add OTel trace &#x26; span IDs to logs (#33339 and #33362 by @renchap)</li>
+<li>Add missing <code>on_delete: :cascade</code> foreign keys option to various database columns (#33175 by @mjankowski)</li>
+<li>Add explicit migration breakpoints (#33089 by @ClearlyClaire)</li>
+<li>Add rel alternate rss/json links to pages for tags (#33179 by @mjankowski)</li>
+<li>Add media attachment description limit to instance API response (#33153 by @mjankowski)<br>
+This adds the <code>configuration.media_attachments.description_limit</code> attribute to the <code>Instance</code> entity, documented at <a href="https://docs.joinmastodon.org/entities/Instance/#description_limit">https://docs.joinmastodon.org/entities/Instance/#description_limit</a></li>
+<li>Add <code>maxlength</code> to registration reason input (#33162 by @mjankowski)</li>
+<li>Add <code>REPLICA_PREPARED_STATEMENTS</code> and <code>REPLICA_DB_TASKS</code> environment variables (#32908 by @shleeable)<br>
+See documentation at <a href="https://docs.joinmastodon.org/admin/scaling/#read-replicas">https://docs.joinmastodon.org/admin/scaling/#read-replicas</a></li>
+<li>Add a range of reserved usernames to reduce potential misuse by malicious actors (#32828 by @jmking-iftas)</li>
+<li>Add operations on relays to the admin audit log (#32819 by @ThisIsMissEm)</li>
+<li>Add userinfo OAuth endpoint (#32548 by @ThisIsMissEm)</li>
+<li>Add the standard VCS attributes to OpenTelemetry spans (#32904 by @renchap)</li>
+<li>Add endpoint to remove web push subscription (#32626 by @oneiros)<br>
+Mastodon now sets a new <code>Unsubscribe-URL</code> request header when performing WebPush requests. This URL can be used by the WebPush server to disable the WebPush subscription on Mastodon’s side in case of unfixable errors.</li>
+<li>Add missing content warning text to RSS feeds (#32406 by @mjankowski)</li>
+<li>Add Swiss German to languages dropdown (#29281 by @FlohEinstein)</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>Change design of navigation panel in Web UI, change layout on narrow screens (#34910, #34987, #35017, #34986, #35029, #35065, #35067, #35072, #35074, #35075, #35101, #35173, #35183, #35193 and #35225 by @ClearlyClaire, @Gargron, and @diondiondion)</li>
+<li>Change design of lists in web UI (#32881, #33054, and #33036 by @Gargron)</li>
+<li>Change design of edit media modal in web UI (#33516, #33702, #33725, #33725, #33771, and #34345 by @Gargron)</li>
+<li>Change design of audio player in web UI (#34520, #34740, #34865, #34929, #34933, and #35034 by @ClearlyClaire, @Gargron, and @diondiondion)</li>
+<li>Change design of interaction modal in web UI (#33278 by @Gargron)</li>
+<li>Change list timelines to reflect added and removed users retroactively (#32930 by @Gargron)</li>
+<li>Change account search to be more forgiving of spaces (#34455 by @Gargron)</li>
+<li>Change unfollow button label from “Mutual” to “Unfollow” in web UI (#34392 by @Gargron)</li>
+<li>Change “Specific people” to “Private mention” in menu in web UI (#33963 by @Gargron)</li>
+<li>Change “Explore” to “Trending” and remove explanation banners (#34985 by @Gargron)</li>
+<li>Change media attachments of moderated posts to not be accessible (#34872 by @Gargron)
+Moderators will still be able to access them while they are kept, but they won’t be accessible to the public in the meantime.</li>
+<li>Change language names in compose box language picker to be localized (#33402 by @c960657)</li>
+<li>Change onboarding flow in web UI (#32998, #33119, #33471 and #34962 by @ClearlyClaire and @Gargron)</li>
+<li>Change Advanced Web UI to use the new main menu instead of the “Getting started” column (#35117 by @diondiondion)</li>
+<li>Change emoji categories in admin interface to be ordered by name (#33630 by @ShadowJonathan)</li>
+<li>Change design of rich text elements in web UI (#32633 by @Gargron)</li>
+<li>Change wording of “single choice” to “pick one” in poll authoring form (#32397 by @ThisIsMissEm)</li>
+<li>Change returned favorite and boost counts to use those provided by the remote server, if available (#32620, #34594, #34618, and #34619 by @ClearlyClaire and @sneakers-the-rat)</li>
+<li>Change label of favourite notifications on private mentions (#31659 by @ClearlyClaire)</li>
+<li>Change wording of “discard draft?” confirmation dialogs (#35192 by @diondiondion)</li>
+<li>Change <code>libvips</code> to be enabled by default in place of ImageMagick (#34741 and #34753 by @ClearlyClaire and @diondiondion)</li>
+<li>Change avatar and header size limits from 2MB to 8MB when using libvips (#33002 by @Gargron)</li>
+<li>Change search to use query params in web UI (#32949 and #33670 by @ClearlyClaire and @Gargron)</li>
+<li>Change build system from Webpack to Vite (#34454, #34450, #34758, #34768, #34813, #34808, #34837, #34732, #35007, #35035 and #35177 by @ChaosExAnima, @ClearlyClaire, @mjankowski, and @renchap)</li>
+<li>Change account creation API to forbid creation from user tokens (#34828 by @ThisIsMissEm)</li>
+<li>Change <code>/api/v2/instance</code> to be enabled without authentication when limited federation mode is enabled (#34576 by @ClearlyClaire)</li>
+<li>Change <code>DEFAULT_LOCALE</code> to not override unauthenticated users’ browser language (#34535 by @ClearlyClaire)<br>
+If you want to preserve the old behavior, you can add <code>FORCE_DEFAULT_LOCALE=true</code>.</li>
+<li>Change size of profile picture on profile page from 90px to 92px (#34807 by @larouxn)</li>
+<li>Change passthrough video processing to emit <code>moov</code> atom at start of video (#34726 by @ClearlyClaire)</li>
+<li>Change kerning to be disabled for Japanese text to preserve monospaced alignment for readability (#34448 by @nagutabby)</li>
+<li>Change error handling of various endpoints to return 422 instead of 500 on invalid parameters (#29308, #34434, and #34452 by @danielmbrasil and @mjankowski)</li>
+<li>Change Web UI to use <code>&#x3C;time></code> tags for various timestamps (#34131 by @scarf005)</li>
+<li>Change devcontainer to be accessible from local network (#34269 by @ChaosExAnima)</li>
+<li>Change video transcoding code to skip re-encoding yuvj420p videos (#34098 by @rinsuki)</li>
+<li>Change web client settings to be saved earlier and more often (#34074 by @ClearlyClaire)</li>
+<li>Change test coverage report generation to be disabled by default, with opt-in through the <code>COVERAGE</code> environment variable (#33824 by @mjankowski)</li>
+<li>Change devcontainer to store bootsnap cache outside of bind mounts (#33677 by @c960657)</li>
+<li>Change error handling in the <code>mastodon:setup</code> rake task to summarize encountered errors at the end (#33603 by @mjankowski)</li>
+<li>Change tooltip of some moderation interface timestamps to include time in addition to date (#33191 by @ThisIsMissEm)</li>
+<li>Change organization and wording of <code>README.md</code>, <code>CONTRIBUTING.md</code> and <code>DEVELOPMENT.md</code> (#32143, #33328, #33517, #33637, #33728, #34675, and #34761 by @Lamparter, @andypiper, @diondiondion, @larouxn, @mikkelricky, and @mjankowski)</li>
+<li>Change custom CSS to be cached for longer and invalidated based on its contents (#33207 and #33583 by @mjankowski and @tribela)</li>
+<li>Change <code>tootctl maintenance fix-duplicates</code> to disable database statement timeouts (#33484 by @mjankowski)</li>
+<li>Change some icons in settings sidebar to avoid “double icon” near each other (#33449 by @mjankowski)</li>
+<li>Change animation on feed generation screen in web UI (#33311 by @Gargron)</li>
+<li>Change OTel instrumentation to not start traces with Redis spans (#33090 by @robbkidd)</li>
+<li>Change new post delivery to skip suspended followers (#27509 and #33030 by @ClearlyClaire and @oneiros)</li>
+<li>Change URL truncation to account for ellipses (#33229 by @FND)</li>
+<li>Change ability to navigate of unconfirmed users (#33209 by @Gargron)</li>
+<li>Change hashtag trends to be stored in the database instead of redis (#32837, #33189, and #34016 by @Gargron and @onekopaka)</li>
+<li>Change “social web” to “fediverse” in a few banners in web UI (#33101 by @Gargron)</li>
+<li>Change server rules to be collapsible (#33039 by @Gargron)</li>
+<li>Change design of modal loading and error screens in web UI (#33092 by @Gargron)</li>
+<li>Change error messages to be more accurate when failing to add an account to a list (#33082 by @Gargron)</li>
+<li>Change timezone picker in the default settings to show the default timezone (#31803 by @c960657)</li>
+<li>Change <code>tootctl accounts modify --disable-2fa</code> to remove webauthn credentials (#29883 by @mszpro)</li>
+<li>Change preview card processing to be more liberal in what it accepts (#31357 by @c960657)</li>
+<li>Change scheduled statuses to be discarded if the author’s account is frozen (#30729 by @PauloVilarinho)</li>
+<li>Change display of statuses in admin panel (#30813 by @ThisIsMissEm)</li>
+<li>Change parsing of <code>ALLOWED_PRIVATE_ADDRESSES</code> to happen at startup (#32850 by @ClearlyClaire)</li>
+<li>Change WebPush delivery to skip notifications older than 2 days old (#32842 by @ThisIsMissEm)</li>
+<li>Change PWA manifest to prefer official mobile apps (#27254 by @jake-anto)</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><strong>Remove support for Redis namespaces</strong> (#34664 and #34665 by @ClearlyClaire)<br>
+See <a href="https://github.com/mastodon/redis_namespace_migration">https://github.com/mastodon/redis_namespace_migration</a></li>
+<li>Remove support for imports started on pre-4.2.0 Mastodon versions (#34371 by @mjankowski)</li>
+<li>Remove support for PostgreSQL 12 and earlier (#34744 by @ClearlyClaire)</li>
+<li>Remove support for Node.JS &#x3C; 20 (#34390 by @renchap)</li>
+<li>Remove support for Redis &#x3C; 6.2 (#30413 by @ClearlyClaire)</li>
+<li>Remove support for Ruby 3.1 (#32363 by @mjankowski)</li>
+<li>Remove support for OAuth Password Grant Type (#30960 by @ThisIsMissEm)<br>
+<a href="https://docs.joinmastodon.org/spec/oauth/#token">https://docs.joinmastodon.org/spec/oauth/#token</a></li>
+<li>Remove <code>OTP_SECRET</code> environment variable and legacy OTP code (#34743, #34757, #34748, and #34810 by @ClearlyClaire and @mjankowski)<br>
+This breaks zero-downtime migrations from versions earlier than 4.3.0.</li>
+<li>Remove broken support for HTTP Basic Authentication (#34501 by @ThisIsMissEm)</li>
+<li>Remove system tooltip for alt text in web UI (#33736 by @Gargron)</li>
+<li>Remove <code>thing_type</code> and <code>thing_id</code> columns from settings table (#31971 and #33196 by @ClearlyClaire and @mjankowski)</li>
+<li>Remove redundant temporary index creation in <code>tootctl status remove</code> (#33023 by @ClearlyClaire)</li>
+<li>Remove duplicate indexes from database (#32454 by @mjankowski)</li>
+<li>Remove redundant title attribute in column links (#32258 by @c960657)</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Fix remote suspension of a user causing local instance to remove remote follows (#27588 by @ShadowJonathan)</li>
+<li>Fix blocked accounts not being automatically removed from trending statuses (#34891 by @ClearlyClaire)</li>
+<li>Fix nested buttons in search popout in web UI (#34871 by @Gargron)</li>
+<li>Fix not being able to scroll dropdown on touch devices in web UI (#34873 by @Gargron)</li>
+<li>Fix inconsistent filtering of silenced accounts for other silenced accounts (#34863 by @ClearlyClaire)</li>
+<li>Fix update checker listing updates older or equal to current running version (#33906 by @ClearlyClaire)</li>
+<li>Fix clicking a status multiple times causing duplicate entries in browser history (#35118 by @ClearlyClaire)</li>
+<li>Fix “Alt text” button submitting form in moderation interface (#35147 by @ClearlyClaire)</li>
+<li>Fix Firefox sometimes not updating spellcheck language in textarea (#35148 by @ClearlyClaire)</li>
+<li>Fix <code>NoMethodError</code> in edge case of emoji cache handling (#34749 by @dariusk)</li>
+<li>Fix handling of inlined <code>featured</code> collections in ActivityPub actor objects (#34789 and #34811 by @ClearlyClaire)</li>
+<li>Fix long link names in admin sidebar being truncated (#34727 by @diondiondion)</li>
+<li>Fix admin dashboard crash on specific Elasticsearch connection errors (#34683 by @ClearlyClaire)</li>
+<li>Fix OIDC account creation failing for long display names (#34639 by @defnull)</li>
+<li>Fix use of the deprecated <code>/api/v1/instance</code> endpoint in the moderation interface (#34613 by @renchap)</li>
+<li>Fix inaccessible “Clear search” button (#35152 and #35281 by @diondiondion)</li>
+<li>Fix search operators sometimes getting lost (#35190 by @ClearlyClaire)</li>
+<li>Fix directory scroll position reset (#34560 by @przucidlo)</li>
+<li>Fix needlessly complex SVG paths for oEmbed and logo (#34538 by @edent)</li>
+<li>Fix avatar sizing with long account name in some UI elements (#34514 by @gomasy)</li>
+<li>Fix empty menu section in status dropdown (#34431 by @ClearlyClaire)</li>
+<li>Fix the delete suggestion button not working (#34396 and #34398 by @ClearlyClaire and @renchap)</li>
+<li>Fix popover/dialog backgrounds not being blurred on older Webkit browsers (#35220 by @diondiondion)</li>
+<li>Fix radio buttons not always being correctly centered (#34389 by @ChaosExAnima)</li>
+<li>Fix visual glitches with adding post filters (#34387 by @ChaosExAnima)</li>
+<li>Fix bugs with upload progress (#34325 by @ChaosExAnima)</li>
+<li>Fix being unable to hide controls in full screen video in web UI (#34308 by @Gargron)</li>
+<li>Fix extra space under left-indented vertical videos (#34313 by @ClearlyClaire)</li>
+<li>Fix glitchy iOS media attachment drag interactions (#35057 by @diondiondion)</li>
+<li>Fix zoomed images being blurry in Safari (#35052 by @diondiondion)</li>
+<li>Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096, #35150 and #35251 by @diondiondion)</li>
+<li>Fix digits in media player time readout not having a consistent width (#35038 by @diondiondion)</li>
+<li>Fix wrong text color for “Open in advanced web interface” banner in high-contrast theme (#35032 by @diondiondion)</li>
+<li>Fix hover card for limited accounts not hiding information as expected (#35024 by @diondiondion)</li>
+<li>Fix some animations not respecting the reduced animation preferences (#35018 by @ChaosExAnima)</li>
+<li>Fix direction of media gallery arrows in RTL locales (#35014 by @diondiondion)</li>
+<li>Fix cramped layout of follower recommendations on small viewports (#34967 and #35023 by @diondiondion)</li>
+<li>Fix two composers being shown at the same time in some cases (#35006 by @ChaosExAnima)</li>
+<li>Fix handling of remote attachments with multiple media types (#34996 by @ClearlyClaire)</li>
+<li>Fix broken colors in some themed SVGs in web UI (#34988 by @Gargron)</li>
+<li>Fix wrong dimensions on blurhash previews of news articles in web UI (#34990 by @Gargron)</li>
+<li>Fix wrong styles on action bar in media modal in web UI (#34989 by @Gargron)</li>
+<li>Fix search column input not updating on param change (#34951 by @PGrayCS)</li>
+<li>Fix account note textarea being interactable before the relationship gets fetched (#34932 by @ClearlyClaire)</li>
+<li>Fix SASS deprecation notices (#34278 by @ChaosExAnima)</li>
+<li>Fix display of failed-to-load image attachments in web UI (#34217 by @Gargron)</li>
+<li>Fix duplicate REST API requests on submitting account personal note with ctrl+enter (#34213 by @ClearlyClaire)</li>
+<li>Fix unnecessary rerenders in composer dropdown menu (#34133 by @ClearlyClaire)</li>
+<li>Fix behavior of database schema loading with <code>SKIP_POST_DEPLOYMENT_MIGRATIONS</code> (#34089 by @ClearlyClaire)</li>
+<li>Fix infinite scroll not working on profile media tab in web UI (#33860 and #34171 by @ClearlyClaire and @Gargron)</li>
+<li>Fix minor inefficiencies in domain suspension code (#33897 by @larouxn)</li>
+<li>Fix potential inefficiency in media privacy system check (#33858 by @ClearlyClaire)</li>
+<li>Fix public timeline inefficiency by adding the <code>language</code> column to the public timelines index (#33779 by @ClearlyClaire)</li>
+<li>Fix re-encoding of high-framerate VFR videos with FFmpeg 6+ (#33634 by @ClearlyClaire)</li>
+<li>Fix error when processing invalid <code>Announce</code> activity with missing object (#33570 by @ShadowJonathan)</li>
+<li>Fix color contrast in report modal (#33468 by @ClearlyClaire)</li>
+<li>Fix error 500 when passing an invalid <code>lang</code> parameter (#33467 by @ClearlyClaire)</li>
+<li>Fix <code>/share</code> not using server-set characters limit (#33459 by @kescherCode)</li>
+<li>Fix audio player modal having white-on-white buttons in light theme (#33444 by @ClearlyClaire)</li>
+<li>Fix favorite &#x26; bookmark text toggle in timeline, status and image view (#27209 by @gunchleoc)</li>
+<li>Fix Web UI erroneously stopping to offer expanding search results after second page (#33428 by @ClearlyClaire)</li>
+<li>Fix missing value limits for <code>UserRole</code> position (#33172 and #33349 by @mjankowski)</li>
+<li>Fix clicking on a profile mention while logged out potentially leading to incorrect account (#33324 by @ClearlyClaire)</li>
+<li>Fix missing <code>NOT NULL</code> constraints on various database columns (#33244, #33284, #33308, #33330, #33374, and #34498 by @ClearlyClaire and @mjankowski)</li>
+<li>Fix long account username overflowing on profiles (#33286 by @mjankowski)</li>
+<li>Fix Vagrant failure to sync dangling symlinks (#28101 by @filippog)</li>
+<li>Fix Chromium showing scrollbar on embedded posts (#33237 by @ClearlyClaire)</li>
+<li>Fix missing top border on Admin Hashtags UI (#31443 by @ThisIsMissEm)</li>
+<li>Fix design of search bar on explore screen in light theme in web UI (#33224 by @Gargron)</li>
+<li>Fix various visual sign-up flow issues (#33206 by @Gargron)</li>
+<li>Fix support of bidi text in account profiles (#33088 by @mokazemi)</li>
+<li>Fix wording of the error returned when scheduling a status too soon (#33156 by @mjankowski)</li>
+<li>Fix <code>inbox_url</code> presence on Relay not being validated (#32364 by @mjankowski)</li>
+<li>Fix ability to include multiple copies of <code>embed.js</code> (#33107 by @YKWeyer)</li>
+<li>Fix <code>rel="me"</code> check being case-sensitive (#32238 by @c960657)</li>
+<li>Fix wrong video dimensions for some rotated videos (#33008 and #33261 by @Gargron and @tribela)</li>
+<li>Fix error when viewing statuses to deleted replies in moderation view (#32986 by @ClearlyClaire)</li>
+<li>Fix missing autofocus on boost modal (#32953 by @tribela)</li>
+<li>Fix logic in “last used at per application” OAuth token list (#32912 by @mjankowski)</li>
+<li>Fix admin dashboard linking to pages the user does not have permission to see (#32843 by @ThisIsMissEm)</li>
+<li>Fix backspace navigation hotkey going back two pages instead of one on some browsers (#32826 by @c960657)</li>
+<li>Fix typo in translation string (#32821 by @ThisIsMissEm)</li>
+<li>Fix list of follow requests not having a back button (#32797 by @ClearlyClaire)</li>
+<li>Fix out-of-view post contents being inconsistent with in-view post contents (#32778, #32887, and #32895 by @ClearlyClaire)</li>
+<li>Fix <code>httplog</code> gem being used in production (#32776 and #32796 by @ClearlyClaire and @oneiros)</li>
+<li>Fix use of deprecated <code>execCommand</code> for copying text by using the <code>clipboard</code> API (#32598 by @renchap)</li>
+<li>Fix some translation strings not being properly pluralized (#27094 by @gunchleoc)</li>
+</ul>
+<h2 id="upgrade-notes">Upgrade notes</h2>
+<p>To get the code for v4.4.0, use <code>git fetch &#x26;&#x26; git checkout v4.4.0</code>.</p>
+<blockquote>
+<p>[!NOTE]
+As always, make sure you have backups of the database before performing any upgrades. If you are using docker-compose, this is how a backup command might look: <code>docker exec mastodon_db_1 pg_dump -Fc -U postgres postgres > name_of_the_backup.dump</code></p>
+</blockquote>
+<h3 id="dependencies">Dependencies</h3>
+<p>External dependencies have changed since v4.3.0, with the Redis, Ruby, PostgreSQL and Node.js minimum versions being higher. In addition, <code>libvips</code> is now enabled by default, requiring a new dependency if you were not already using it.</p>
+<ul>
+<li>Ruby: 3.2 or newer</li>
+<li>PostgreSQL: 13 or newer</li>
+<li>Elasticsearch (recommended, for full-text search): 7.x (OpenSearch should also work)</li>
+<li>LibreTranslate (optional, for translations): 1.3.3 or newer</li>
+<li>Redis: 6.2 or newer</li>
+<li>Node: 20 or newer</li>
+<li>libvips (optional, instead of ImageMagick): 8.13 or newer</li>
+<li>ImageMagick (optional if using libvips): 6.9.7-7 or newer</li>
+</ul>
+<h3 id="imagemagick-deprecation-and-libvips-replacement">ImageMagick deprecation and libvips replacement</h3>
+<p>ImageMagick support in Mastodon is being deprecated in favor of libvips, a more efficient library to process image attachments.</p>
+<p>Libvips is now used in default instead of ImageMagick. This means that if you are not using the container image, and did not previously enable libvips through <code>MASTODON_USE_LIBVIPS=true</code>, you will need to install libvips 8.13 or newer (<code>libvips-tools</code> package on Debian and Ubuntu).</p>
+<p>If you want to keep using ImageMagick for the time being, set the <code>MASTODON_USE_LIBVIPS</code> environment variable to <code>false</code>.</p>
+<p>Support for ImageMagick will be dropped altogether in a future version.</p>
+<h3 id="migrating-from-redis-namespaces">Migrating from Redis namespaces</h3>
+<p>As a result of one of our dependencies dropping support for Redis namespaces, we had to drop them as well. This means if you use <code>REDIS_NAMESPACE</code>, Mastodon will refuse to start, and you will have to perform an additional migration step.</p>
+<p>You can find migration scripts as well as more details at <a href="https://github.com/mastodon/redis_namespace_migration">https://github.com/mastodon/redis_namespace_migration</a></p>
+<h3 id="ongoing-import-jobs-from-mastodon-41-and-earlier">Ongoing import jobs from Mastodon 4.1 and earlier</h3>
+<p>The feature to import follows, bookmarks, lists, mutes and blocks was entirely rewritten in Mastodon 4.2, leading to two different implementations co-existing in Mastodon 4.2 and 4.3 to ensure a smooth upgrade.</p>
+<p>Mastodon 4.4 removes the old implementation, so jobs started on 4.1 or earlier will not be able to proceed on Mastodon 4.4 and later. Therefore, if updating from an earlier version of Mastodon, we recommend running Mastodon 4.2 or 4.3 long enough for any pending <code>ImportWorker</code> or <code>Import::RelationshipWorker</code> job to finish. This should only be a matter of minutes, and should not be a concern if you are updating from Mastodon 4.2 or 4.3.</p>
+<h3 id="fediverse-auxiliary-service-providers-and-fasp-sidekiq-queue">Fediverse Auxiliary Service Providers and <code>fasp</code> Sidekiq queue</h3>
+<p>This release introduces a new experimental feature allowing the use of auxiliary service providers.</p>
+<p>This feature uses a new <code>fasp</code> Sidekiq queue, and while it is not required if you don’t use this feature, we recommend reviewing your Sidekiq configuration to make sure at least one Sidekiq process handles the <code>fasp</code> queue.</p>
+<h3 id="update-steps">Update steps</h3>
+<p>The following instructions are for updating from 4.3.9.</p>
+<p>If you are upgrading directly from an earlier release, please carefully read the upgrade notes for the skipped releases as well, as they often require extra steps such as database migrations. If you are upgrading from a pre-4.3 version, please fully update to Mastodon 4.3 first or stop all Mastodon processes before updating, and please have a look at the “Ongoing import jobs from Mastodon 4.1 and earlier” section if you are updating from a pre-4.2 version.</p>
+<p>If you are updating from 4.4.0-beta.1 or 4.4.0-beta.2, or 4.4.0-rc.1, only a few of these steps are relevant, see the next section.</p>
+<h3 id="non-docker">Non-Docker</h3>
+<blockquote>
+<p>[!TIP]
+The <code>charlock_holmes</code> gem may fail to build on some systems with recent versions of gcc.
+If you run into this issue, try <code>BUNDLE_BUILD__CHARLOCK_HOLMES="--with-cxxflags=-std=c++17" bundle install</code>.</p>
+</blockquote>
+<ol>
+<li>If you are using <code>rbenv</code>, <a href="https://github.com/rbenv/ruby-build/wiki#updating-ruby-build">update the list of available versions</a> and install the proper Ruby version by doing <code>RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install</code> in the Mastodon install directory (e.g. <code>/home/mastodon/live</code>)</li>
+<li>Install dependencies with <code>bundle install</code> and <code>yarn install --immutable</code></li>
+<li>Precompile the assets: <code>RAILS_ENV=production bundle exec rails assets:precompile</code></li>
+<li>Run the <em>pre-deployment</em> database migrations by specifying the <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true</code> environment variable: <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true RAILS_ENV=production bundle exec rails db:migrate</code></li>
+<li>Restart all Mastodon processes.</li>
+<li>Run the <em>post-deployment</em> database migrations: <code>RAILS_ENV=production bundle exec rails db:migrate</code></li>
+<li>If you use Elasticsearch or OpenSearch, rebuild the account search index mappings with <code>RAILS_ENV=production bin/tootctl search deploy --only-mapping --only=accounts</code></li>
+</ol>
+<h3 id="when-using-docker">When using Docker</h3>
+<ol>
+<li>Run the <em>pre-deployment</em> database migrations by specifying the <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true</code> environment variable: <code>docker-compose run --rm -e SKIP_POST_DEPLOYMENT_MIGRATIONS=true web bundle exec rails db:migrate</code></li>
+<li>Restart all Mastodon processes.</li>
+<li>Run the <em>post-deployment</em> database migrations: <code>docker-compose run --rm web bundle exec rails db:migrate</code></li>
+<li>If you use Elasticsearch or OpenSearch, rebuild the account search index mappings with <code>docker-compose run --rm web bin/tootctl search deploy --only-mapping --only=accounts</code></li>
+</ol>
+<h2 id="update-steps-from-440-beta1-440-beta2-or-440-rc1">Update steps from 4.4.0-beta.1, 4.4.0-beta.2 or 4.4.0-rc.1</h2>
+<p>The following instructions are for updating from 4.4.0-beta.1, 4.4.0-beta.2 or 4.4.0-rc.1, see the section above if you are updating from an older version.</p>
+<h3 id="non-docker-1">Non-Docker</h3>
+<blockquote>
+<p>[!TIP]
+The <code>charlock_holmes</code> gem may fail to build on some systems with recent versions of gcc.
+If you run into this issue, try <code>BUNDLE_BUILD__CHARLOCK_HOLMES="--with-cxxflags=-std=c++17" bundle install</code>.</p>
+</blockquote>
+<ol>
+<li>Install dependencies with <code>bundle install</code> and <code>yarn install --immutable</code></li>
+<li>Precompile the assets: <code>RAILS_ENV=production bundle exec rails assets:precompile</code></li>
+<li>Run the <em>pre-deployment</em> database migrations by specifying the <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true</code> environment variable: <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true RAILS_ENV=production bundle exec rails db:migrate</code></li>
+<li>Restart all Mastodon processes.</li>
+</ol>
+<h3 id="when-using-docker-1">When using Docker</h3>
+<ol>
+<li>Run the <em>pre-deployment</em> database migrations by specifying the <code>SKIP_POST_DEPLOYMENT_MIGRATIONS=true</code> environment variable: <code>docker-compose run --rm -e SKIP_POST_DEPLOYMENT_MIGRATIONS=true web bundle exec rails db:migrate</code></li>
+<li>Restart all Mastodon processes.</li>
+</ol> </div> <div class="mt-6"> <a href="https://github.com/mastodon/mastodon/releases/tag/v4.4.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

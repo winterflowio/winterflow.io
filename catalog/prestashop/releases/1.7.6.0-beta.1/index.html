@@ -1,0 +1,808 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PrestaShop 1.7.6.0-beta.1 release notes | WinterFlow.io</title><meta name="description" content="This release introduces extensive Back Office page migrations, a new mail template generator, and various performance improvements and bug fixes across…"><link rel="canonical" href="https://winterflow.io/catalog/prestashop/releases/1.7.6.0-beta.1/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="PrestaShop 1.7.6.0-beta.1 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces extensive Back Office page migrations, a new mail template generator, and various performance improvements and bug fixes across…"><meta property="og:url" content="https://winterflow.io/catalog/prestashop/releases/1.7.6.0-beta.1/"><meta property="og:image" content="https://winterflow.io/images/apps/prestashop/prestashop.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PrestaShop 1.7.6.0-beta.1 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces extensive Back Office page migrations, a new mail template generator, and various performance improvements and bug fixes across…"><meta name="twitter:image" content="https://winterflow.io/images/apps/prestashop/prestashop.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"PrestaShop","item":"https://winterflow.io/catalog/prestashop/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/prestashop/releases/"},{"@type":"ListItem","position":5,"name":"1.7.6.0-beta.1","item":"https://winterflow.io/catalog/prestashop/releases/1.7.6.0-beta.1/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/prestashop/prestashop.png" alt="PrestaShop logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">PrestaShop</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source e-commerce platform for building an online store</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> shopify, woocommerce, bigcommerce, magento </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://www.prestashop-project.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/PrestaShop/PrestaShop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.prestashop-project.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/PrestaShop/PrestaShop/blob/develop/docs/licenses/LICENSE.txt" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Multiple </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 9,140 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="PrestaShop" data-app-slug="prestashop" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/PrestaShop/PrestaShop" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/prestashop/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/prestashop/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">1.7.6.0-beta.1</h2> <span class="text-sm text-gray-500">2019-05-13</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="known-issues">Known Issues</h2>
+<p>Incomplete Improvements</p>
+<ul>
+<li>Better alert for customer creation and customer info edit forms <a href="https://github.com/PrestaShop/PrestaShop/issues/13640">#13640</a></li>
+</ul>
+<p>Issues</p>
+<ul>
+<li>Some native modules wordings do not have domain <a href="https://github.com/PrestaShop/PrestaShop/issues/13476">#13476</a></li>
+<li>Bulk action &#x26; the Select all doesn’t work in the SQL manager page <a href="https://github.com/PrestaShop/PrestaShop/issues/13620">#13620</a></li>
+<li>BO - We can create a new customer successfully without setting required field “Partner offers” <a href="https://github.com/PrestaShop/PrestaShop/issues/13556">#13556</a></li>
+<li>ToggleColumn option name changed between 1.7.5 and 1.7.6 <a href="https://github.com/PrestaShop/PrestaShop/issues/13544">#13544</a></li>
+<li>Catalog > Monitoring > Empty categories list status toggling action not working <a href="https://github.com/PrestaShop/PrestaShop/issues/13541">#13541</a></li>
+<li>Message with gift wrapping option in order not display in back office <a href="https://github.com/PrestaShop/PrestaShop/issues/13478">#13478</a></li>
+<li>Strange behavior when we are moving the mouse under the “Status” label <a href="https://github.com/PrestaShop/PrestaShop/issues/12068">#12068</a></li>
+<li>Private comment in Order <a href="https://github.com/PrestaShop/PrestaShop/issues/13428">#13428</a></li>
+<li>New theme &#x26; logo page - Design fixes <a href="https://github.com/PrestaShop/PrestaShop/issues/13467">#13467</a></li>
+<li>Old admincustomer URL in notifications <a href="https://github.com/PrestaShop/PrestaShop/issues/13450">#13450</a></li>
+<li>Discount line not always removed during checkout <a href="https://github.com/PrestaShop/PrestaShop/issues/12969">#12969</a></li>
+<li>Vertically align the pagination system components <a href="https://github.com/PrestaShop/PrestaShop/issues/12392">#12392</a></li>
+<li>Help isn’t displayed on add customer page <a href="https://github.com/PrestaShop/PrestaShop/issues/13449">#13449</a></li>
+<li>An exception is displayed when we try to upload in the logo section with an image which has a not recognized format <a href="https://github.com/PrestaShop/PrestaShop/issues/13729">#13729</a></li>
+<li>Tax excl column in catalog page doesn’t take into account specific prices <a href="https://github.com/PrestaShop/PrestaShop/issues/13731">#13731</a></li>
+</ul>
+<h2 id="full-changelog">Full Changelog</h2>
+<ul>
+<li>Back Office:
+<ul>
+<li>New feature:
+<ul>
+<li>#13221: Allow trans() to fall back on the legacy translation system when used with modules (by @eternoendless)</li>
+<li>#12974: Cms page category listing position update (by @tomas862)</li>
+<li>#13004: Integrate new modern mail theme (compiled from MJML) (by @jolelievre)</li>
+<li>#12981: Migration of  “Design -> pages -> cms page listing”  (by @tomas862)</li>
+<li>#12647: Migration of “Design -> pages -> add new / edit page category” (by @tomas862)</li>
+<li>#12163: Migration of shop parameters->contact->contacts add new edit contact form (by @tomas862)</li>
+<li>#12706: Kpis list are now customizables using hooks (by @mickaelandrieu)</li>
+<li>#10595: Migration of “Shop parameters >Traffic &#x26; SEO > SEO &#x26; URL > Add new / edit page” form (by @tomas862)</li>
+<li>#12046: Introduce Mail Template Generator (by @jolelievre)</li>
+<li>#10877: Migration of  “Design > Pages” page cms category listing (by @tomas862)</li>
+<li>#11894: Migration of international/localization/currencies page form and some exchange rate actions (by @tomas862)</li>
+<li>#12128: Add migrated customers page helper card (by @matks)</li>
+<li>#11153: Migration of “Catalog > Brand &#x26; Suppliers > Suppliers” listing (by @tomas862)</li>
+<li>#10774: Migration of “International > Localization > Currencies” page listing (by @tomas862)</li>
+<li>#11484: Add final price column in products list (by @PrestaShark)</li>
+<li>#10992: Migrate Customer view page (by @sarjon)</li>
+<li>#11408: Migrate Categories Add/Edit actions - tests fixed (by @matks)</li>
+<li>#11049: Add Helper Card to Employees page (by @sarjon)</li>
+<li>#11075: Improve AdminSecurity and DemoRestricted annotations to allow to pass query parameters to keep (by @tomas862)</li>
+<li>#10120: Migration of Advanced Parameters -> Import (Step 2) (by @rokaszygmantas)</li>
+<li>#10790: Migrate Employee options configuration (by @sarjon)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#13603: Add id for orders view page to ease E2E testing (by @matks)</li>
+<li>#13404: Add missing showcase card in CMS page (by @tomas862)</li>
+<li>#13234: Add Showcase card in Categories page (by @sarjon)</li>
+<li>#13158: Fix error bubbling inside the translatable type (by @tomas862)</li>
+<li>#13125: Add CMS page listing position update functionality (by @tomas862)</li>
+<li>#13048: Integrate mail generator (by @jolelievre)</li>
+<li>#12331: Migration of Theme &#x26; Logo page with style and ux improvements (by @tomas862)</li>
+<li>#12436: Introduces new File type input design for all new and migrated back-office pages  (by @tomas862)</li>
+<li>#13123: Display shop path in Information page (by @unlocomqx)</li>
+<li>#12707: New design for employee profile [Back-Office] (by @YeLnatSs)</li>
+<li>#13033: Filter out registered hooks in module positions list (by @unlocomqx)</li>
+<li>#12914: Significantly reduce number of SQL requests to get the employee authorizations (by @Quetzacoalt91)</li>
+<li>#13095: Update dashboard links (by @eternoendless)</li>
+<li>#13012: Update Twig to v1.38 (by @matks)</li>
+<li>#12850: “Module Manager” tab should be the first tab in Modules Tab (by @rblaurin)</li>
+<li>#12214: Migrate “Advanced Parameters > Team > Employees > Add new employee” page (by @rokaszygmantas)</li>
+<li>#12928: Allow multiple grids on same page (by @jolelievre)</li>
+<li>#12971: Enable customers page (by @sarjon)</li>
+<li>#12945: Build assets (by @matks)</li>
+<li>#12644: Add margin between buttons on Traffic &#x26; SEO page (by @YeLnatSs)</li>
+<li>#12699: Refacto addons store controller and handle addons failure (by @matks)</li>
+<li>#12838: Replace hardcoded currency sign in specific price form (by @metineren)</li>
+<li>#12784: Add module main class parse error to log message (by @teemumantynen)</li>
+<li>#12717: Add re-usable rewrite link copier service (by @tomas862)</li>
+<li>#12505: Improve error handling in migrated controllers (by @sarjon)</li>
+<li>#12761: Remove timeout from product image upload (by @JohnMidity)</li>
+<li>#12713: Enable usage of roles for Module Updates and Module Alerts pages and manage access (by @matks)</li>
+<li>#12622: Refactor AddonsStoreController to use annotations and some improvements (by @matks)</li>
+<li>#12316: Update access rules for SystemInformationController and MemcacheServer (by @matks)</li>
+<li>#10911: Build new theme using Webpack 4 (by @CaptainYouz)</li>
+<li>#12094: Refactor OrderPreferencesController to use annotations (by @matks)</li>
+<li>#12076: Refacto ProductPreferencesController to use annotations (by @matks)</li>
+<li>#12074: Refacto PreferencesController to use annotations (by @matks)</li>
+<li>#12098: Refactor Shipping/ referencesController to use annotations (by @matks)</li>
+<li>#12097: Refacto PaymentMethodsController to use annotations (by @matks)</li>
+<li>#12099: Refactor MaintenanceController to use annotations (by @matks)</li>
+<li>#12077: Refacto ThemeCatalogController to use annotations (by @matks)</li>
+<li>#11439: Migrate Customer list actions (by @sarjon)</li>
+<li>#11561: Migrate legacy import logic to adapters and hide Import page 2 (by @rokaszygmantas)</li>
+<li>#11877: Align grid search and reset buttons to the right (by @tomas862)</li>
+<li>#11481: Add cover &#x26; menu thumbnail images deleting for category (by @sarjon)</li>
+<li>#11919: Use env variable for admin dir with default value in assets build script (by @spolischook)</li>
+<li>#11785: Update dependencies with security breaches (by @jolelievre)</li>
+<li>#11732: Avoid using short bool (by @MathiasReker)</li>
+<li>#11735: Elseif instead of else if (by @MathiasReker)</li>
+<li>#11739: Remove blackslash (by @MathiasReker)</li>
+<li>#11741: Use brackets for index brace (by @MathiasReker)</li>
+<li>#11235: Prevent unnecessary Order objects from being created in Admin Orders (by @mnastalski)</li>
+<li>#10199: Fix quantity placeholder issue in the Stock management page (by @CaptainYouz)</li>
+<li>#11160: Form handling improvements in import page step 1 and 2 (by @rokaszygmantas)</li>
+<li>#11095: Update grid design regarding grid gear icon position and dropdown toggle icon modification (by @tomas862)</li>
+<li>#11266: Allow BO hooks to use the method $this->render() (by @Quetzacoalt91)</li>
+<li>#11093: Set sortable flag by default to “true” on ToggleColumn (by @tomas862)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#13381: Use tinymce in migrated pages (by @matks)</li>
+<li>#13481: Improve preview and test mail feature, improve and fix a few templates (by @jolelievre)</li>
+<li>#13643: Fixes incorrect hook names for identifiable object forms. (by @tomas862)</li>
+<li>#13219: ScrollIntoView if field is invalid (by @PierreRambaud)</li>
+<li>#13623: Fix categories deleting in bulk action (by @sarjon)</li>
+<li>#13372: Add missing security annotations (by @rokaszygmantas)</li>
+<li>#13504: Fix backoffice translations for third-party modules (by @eternoendless)</li>
+<li>#13576: Fix deleting profile  (by @sarjon)</li>
+<li>#13563: Do not get data from null currency (by @Quetzacoalt91)</li>
+<li>#13233: Enable ‘back’ GET parameter management (by @tomas862)</li>
+<li>#13550: Add missing check in Manufacturer image uploader (by @zuk3975)</li>
+<li>#13547: Deprecate Language::installEmailsLanguagePack (by @jolelievre)</li>
+<li>#13484: Fixes Categories grid filtering by position (by @sarjon)</li>
+<li>#13535: Fix responsive showcase cards  (by @YeLnatSs)</li>
+<li>#13508: Enable ChoiceTree javascript in manufacturers form  (by @zuk3975)</li>
+<li>#13528: Fix calendar overflow (by @zuk3975)</li>
+<li>#13152: Updates characters length for Category meta fields (by @sarjon)</li>
+<li>#13477: Fix issue on order with free gift (by @tomlev)</li>
+<li>#13439: Improvements on LegacyUrlConverter, “tab” alias, insensitive and prevent infinite redirection loop (by @jolelievre)</li>
+<li>#13431: Fix parameters list in product lookup (by @Quetzacoalt91)</li>
+<li>#13434: Remove material icons on SQL manager page (by @marionf)</li>
+<li>#13429: Build outdated assets for 1.7.6.x (by @matks)</li>
+<li>#13367: Remove deactivated currencies from new CLDR (by @tomlev)</li>
+<li>#13351: Mail generator fixes (by @jolelievre)</li>
+<li>#13363: Fix syntax error in tpl (by @Quetzacoalt91)</li>
+<li>#13349: Make all grids responsive (by @eternoendless)</li>
+<li>#13273: Fix domain errors (by @matks)</li>
+<li>#13264: Restores deleted generatable_text_widget from template (by @sarjon)</li>
+<li>#13216: Enable help bar on suppliers page (by @PierreRambaud)</li>
+<li>#13199: Fix Profiles form twig template compatibility with twig v2 (by @matks)</li>
+<li>#13108: Fix missing lang entries in Configuration (by @rblaurin)</li>
+<li>#13177: Fix notice undefined index: icon on Design -> Positions (by @Matt75)</li>
+<li>#13161: Remove icons from Customers form (by @sarjon)</li>
+<li>#12931: Make footer on product page spread itself when the menu is hidden (by @dineshbadrukhiya)</li>
+<li>#13157: Fix Add/Edit brand icon (by @matks)</li>
+<li>#13145: Fix bug with incorrect error display within the forms (by @tomas862)</li>
+<li>#13093: Add missing label and delete legacy tax controller as it was migrated (by @rokaszygmantas)</li>
+<li>#13105: Validate theme zip file and show error messages (by @rokaszygmantas)</li>
+<li>#13088: Ensure translations are always saved with the selected theme in back office (by @mickaelandrieu)</li>
+<li>#13122: Fix notice when iso code does not exist in array (by @Quetzacoalt91)</li>
+<li>#13104: Fix bad variable in Customers Add/Edit template (by @matks)</li>
+<li>#13094: Fix product demo link_rewrite (by @marionf)</li>
+<li>#13079: Fix visual glitches in new theme (by @eternoendless)</li>
+<li>#13054: Escape all import output data (by @PierreRambaud)</li>
+<li>#13043: Fix to handle fancybox customer creation in Add an Order page (by @matks)</li>
+<li>#13063: Module Manager: Use categoryParentEnglishName instead of category name (by @PierreRambaud)</li>
+<li>#13066: Fix npm install not working anymore on new-theme (by @PierreRambaud)</li>
+<li>#12523: Solved problem with texture upload when attribute has hex color (by @kpodemski)</li>
+<li>#13049: Fix BO scaling in mobile (by @eternoendless)</li>
+<li>#12705: Update OrderHistory to manage {followup} &#x26; {shipping_number} vars in all email templates, not only in in_transit template (by @jf-viguier)</li>
+<li>#12946: Fix recurring technical error when saving modifications in a Carrier (by @Matt75)</li>
+<li>#12897: Enable lite display for new theme (by @matks)</li>
+<li>#12874: Fix Symfony console crash because of DocumentationLinkProvider service definition (by @jolelievre)</li>
+<li>#12788: Remove html escaping of errors (by @bilfeldt)</li>
+<li>#12794: Add missing columns in products_import.csv (by @rblaurin)</li>
+<li>#12730: Fix fatal error in product catalog when short description is too long (by @rblaurin)</li>
+<li>#12751: Fix saving shop association in migrated add/edit forms (by @rokaszygmantas)</li>
+<li>#12787: Add legacy links to all meta page routes (by @tomas862)</li>
+<li>#12711: Fix shipping cost becoming free if more than a half or available quantity ordered (by @LedCloud)</li>
+<li>#12723: Fix specific price without discount being added (by @rblaurin)</li>
+<li>#12709: Refactor MetaController to secure search usage (by @matks)</li>
+<li>#12716: Prevent including jQuery in the new theme (by @eternoendless)</li>
+<li>#12668: Fix help sidebar when adding/editing language (by @sarjon)</li>
+<li>#12465: Fix duplicate HTML id (by @mickaelandrieu)</li>
+<li>#12563: Fix error in admin panel when visiting a category that’s not under Index (by @mowcixo)</li>
+<li>#12597: The lang parameter in the url is now shop dependent (by @helgvor-stoll)</li>
+<li>#12471: Use AdminSecurity annotation for ajax call for Sql Manager (by @matks)</li>
+<li>#12479: Avoid module sorting function warnings when module data is invalid (by @matks)</li>
+<li>#8993: Fix HTML formated configuration not saved (by @shaffe-fr)</li>
+<li>#11175: Allow product default supplier reference to be updated, if the product supplier is already attached to the product (by @simondaigre)</li>
+<li>#12240: Adds missing argument in MetaController which caused page crash (by @tomas862)</li>
+<li>#12096: Fix access rights to Administration page (by @matks)</li>
+<li>#12140: Default carrier name was displayed as 0 (by @Gitdyr)</li>
+<li>#11693: Fix search feature value and pagination (by @studiox3)</li>
+<li>#12052: SERP: Avoid mutating a prop directly + fix url encode (by @PierreRambaud)</li>
+<li>#11854: Add customer_message table name into SQL request (by @Klemart3D)</li>
+<li>#11932: Can’t sort tax included for now (by @PierreRambaud)</li>
+<li>#11936: Description has a max length and can not exceeded (by @PierreRambaud)</li>
+<li>#11922: Fix searching issue in the Credit Slips page (by @khouloudbelguith)</li>
+<li>#11907: Fix error when updating the product details in order (by @PeeyushAgrawalWebkul)</li>
+<li>#11851: Fix error “getimagesize(): php_network_getaddresses” when trying to change the order status to payment accepted (by @PierreRambaud)</li>
+<li>#11850: Fix header (by @PierreRambaud)</li>
+<li>#11200: Fix address changes not impacted when creating an order from another order (by @jf-viguier)</li>
+<li>#11201: Addresses changes not impacted when creating an order from another order (by @jf-viguier)</li>
+<li>#11526: Fix wrong protocol in the File Manager Dialog (by @freakstatic)</li>
+<li>#11535: Display the right front url in multistore menu (by @jolelievre)</li>
+<li>#10981: Change BO product list price source for multistore (by @mafisz)</li>
+<li>#11256: Fixes error reported in #9687, regarding carrier list in the modal to … (by @manfield)</li>
+<li>#11424: Improvement needs on hover of “Ok” button of source code modal on product page (by @dineshbadrukhiya)</li>
+<li>#10904: Fix date filtering in AdminSpecificPriceRuleController (by @Matt75)</li>
+<li>#11179: Fix sorting issue in the webservice page (by @khouloudbelguith)</li>
+<li>#10535: Fix typos (by @MathiasReker)</li>
+<li>#10930: Allow product import to change previous id_category_default when you force ID (by @itisco)</li>
+<li>#10939: Fix bad annotation in AttributeGroupLang, AttributeLang and TabLang (by @Fabuloops)</li>
+<li>#10808: Adjusted URL to be SSL agnostic (by @alu-)</li>
+<li>#10924: Fix right side block of attribute and attribute groups in combination tab not appearing (by @dineshbadrukhiya)</li>
+<li>#10781: Fixes new webservice list behavior in multishop context and fixes warning message display (by @tomas862)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#13466: Brand and address export actions (by @zuk3975)</li>
+<li>#13251: Removes unnecessary return on update everywhere (by @tomas862)</li>
+<li>#13144: Cms page fixes (by @zuk3975)</li>
+<li>#13162: Tax page fixes (by @zuk3975)</li>
+<li>#13164: Manufacturer page fixes (by @zuk3975)</li>
+<li>#13159: Remove ‘Constraint’ suffix from TypedRegex constraint and validator (by @zuk3975)</li>
+<li>#12795: Brand address create/edit actions migration (by @zuk3975)</li>
+<li>#12995: Migrate Cms page create/edit actions (by @zuk3975)</li>
+<li>#13076: Migrate Add/Edit Profiles page (by @sarjon)</li>
+<li>#13014: Final Migration of Categories page (by @sarjon)</li>
+<li>#13067: Fix manufacturers namespace typos and wrong typecasts in commands (by @zuk3975)</li>
+<li>#12735: Brands create/edit migration (by @zuk3975)</li>
+<li>#12641: Migrate tax create/edit form (by @zuk3975)</li>
+<li>#12912: Fix Traffic and SEO route paths (by @matks)</li>
+<li>#12423: Taxes list migration (by @zuk3975)</li>
+<li>#12610: Taxes Options configuration form migration (by @zuk3975)</li>
+<li>#11470: Improve birthdate validation (by @zessx)</li>
+<li>#11723: Migrate customer Add/Edit actions (by @sarjon)</li>
+<li>#11519: Migrate Customers KPIs and required fields configuration (by @sarjon)</li>
+<li>#11527: Migrate customer view actions (by @sarjon)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Front Office:
+<ul>
+<li>New feature:
+<ul>
+<li>#13103: Introduce new hooks displayProductActions &#x26; displayPersonalInformationTop (by @Quetzacoalt91)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#13047: New design for prices and taxes (by @YeLnatSs)</li>
+<li>#13135: Add variable to tell if prices are tax included or not (by @eternoendless)</li>
+<li>#13009: Change product canonical url to parent, no more redirection (by @jolelievre)</li>
+<li>#12564: Allow Doctrine entities in modules, make doctrine available for FO, modules autoload on FO (by @jolelievre)</li>
+<li>#11943: Improve performance by avoiding parsing YAML files during ModuleManagerBuilder init (by @jocel1)</li>
+<li>#10253: Add modal-dialog-centered class to classic theme (by @CaptainYouz)</li>
+<li>#12748: Remove obsolete P3P policy (by @MathiasReker)</li>
+<li>#12753: Allow ipv6 to be used in htaccess redirects (by @Quetzacoalt91)</li>
+<li>#12017: Weak token implementation (by @PierreRambaud)</li>
+<li>#11534: Move scroll forcing from core to classic (by @dennispw)</li>
+<li>#10487: Added breadcrumb to the manufacturers pages (by @SebBareyre)</li>
+<li>#11661: Reset quantity value to min value after adding to cart (by @jolelievre)</li>
+<li>#11614: Allow modules to add custom product flags (by @kpodemski)</li>
+<li>#11607: Remove useless space (by @MathiasReker)</li>
+<li>#11491: Classic theme footer block design improvement (by @dineshbadrukhiya)</li>
+<li>#11455: Remove unnecessary spaces on header of the checkout page (by @dineshbadrukhiya)</li>
+<li>#11362: Dont expose Powered-By: Prestashop  (by @MathiasReker)</li>
+<li>#11215: Remove inline-style color in test-data (by @dineshbadrukhiya)</li>
+<li>#10769: Keep variant id_attribute in ProductLazyArray (by @Piraito)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#13664: Remove id_attribute parameter from product link when it is equal to 0 (by @jolelievre)</li>
+<li>#13617: Fix not null voucher with free shipping producing php error (by @tomlev)</li>
+<li>#13635: Fix product link should not include attribute parameter equals to zero (by @jolelievre)</li>
+<li>#13407: Fix labels display computing (by @jolelievre)</li>
+<li>#13578: Automatically add dni field in Address format for countries which need it (by @jolelievre)</li>
+<li>#13440: Change checkout behaviour (needs to be validated after meeting) (by @jolelievre)</li>
+<li>#13411: Hide tax label in front when tax display is disabled in the shop (by @jolelievre)</li>
+<li>#13525: Fix currency display on not existing language (by @tomlev)</li>
+<li>#13003: Add behat tests for free shipping (by @tomlev)</li>
+<li>#13261: Fix lang on currency install (by @tomlev)</li>
+<li>#13201: Fix search results if shop has non-default ‘visitor’ group and categories that are only accessible for the non-default visitor group (by @fgschaefer)</li>
+<li>#13218: Fix breadcrumb in search results page leads to 404 page (by @PierreRambaud)</li>
+<li>#12872: Fix label “Web only”  (by @YeLnatSs)</li>
+<li>#13150: Add a missing space that could trigger an SQL error (by @chrisvanberg)</li>
+<li>#13106: Do not go to the latest step when you change a previous step state in checkout (by @PierreRambaud)</li>
+<li>#12893: Fix bug on contact when mail is too long (by @YeLnatSs)</li>
+<li>#13081: Empty filter should not be shown (by @PierreRambaud)</li>
+<li>#11688: Fix catalog mode in products list and product page (by @jolelievre)</li>
+<li>#12391: Fix Broken Authentication and Session Management (by @arnaudschaeffer)</li>
+<li>#12892: Limit carrier image size on checkout page (by @YeLnatSs)</li>
+<li>#12964: Wrong specific price refresh on product page with combinations (by @PierreRambaud)</li>
+<li>#12965: Fix wrong cart calculation when using cart rule with virtual products (by @tomlev)</li>
+<li>#12817: Robots should not index search content (by @watou)</li>
+<li>#12733: Changed the regex to force space and hyphen in postcode validation (by @jojotjebaby)</li>
+<li>#12696: Fix missing comma in sql upgrade file (by @tomlev)</li>
+<li>#12403: Attribute min not allowed on element input at this point, change type from text to number (by @dominictayloruk)</li>
+<li>#12406: Revert “Fix translation on account creation email error” (by @marionf)</li>
+<li>#12341: Use show_price to display price in schema.org tags (by @arnaudschaeffer)</li>
+<li>#12227: Fix ps_viewedproduct in classic theme (by @SharakPL)</li>
+<li>#10341: Fix main page slider display on all devices (by @CaptainYouz)</li>
+<li>#12023: When downloading a virtual good,  check if the order was made by the current user (by @garnele007)</li>
+<li>#10297: Fix image dimensions in Product Card view (by @CaptainYouz)</li>
+<li>#11726: Force DNI fields required if associated Country needs it (by @jolelievre)</li>
+<li>#10294: Fix minimum order amount for secondary currency (by @sadlyblue)</li>
+<li>#11754: Fix wrong discount details on order page / on invoice (by @tomlev)</li>
+<li>#11608: Fix deprecated jquery shortcut function ‘load’ (by @Fabuloops)</li>
+<li>#11745: Fix for password recovery error messages (by @web-fu)</li>
+<li>#11656: Correctly display percentage in cart (by @jolelievre)</li>
+<li>#11645: Fix discount computing to take combination into account (by @jolelievre)</li>
+<li>#11604: Fix wrong html attribute (by @SebBareyre)</li>
+<li>#11576: Add .gif support to webpack.config.js (by @adviva)</li>
+<li>#11605: Remove useless space (by @SebBareyre)</li>
+<li>#11495: Fix category description below the image (by @dineshbadrukhiya)</li>
+<li>#11563: Fix typo for “Environment” comment (by @Klemart3D)</li>
+<li>#9041: Fix override of ProductController (by @nenes25)</li>
+<li>#11103: Fix discount display when display preference is set without tax (by @tomlev)</li>
+<li>#11282: Convert customization price to current currency (by @unlocomqx)</li>
+<li>#11419: Noto Sans fonts updated to version 2.001 hinted (by @ProBackup-nl)</li>
+<li>#10867: Remove inline-style of Arial font (by @MathiasReker)</li>
+<li>#10643: Fix password validation message when password is too short (by @rdy4ever)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Core:
+<ul>
+<li>New feature:
+<ul>
+<li>#12708: Deprecate admin endpoints outside index.php (by @Quetzacoalt91)</li>
+<li>#11321: Translation Manager of Back Office can now manage legacy translations of modules (by @mickaelandrieu)</li>
+<li>#9337: Migrate “Brands” listing page (a.k.a manufacturers) (by @sarjon)</li>
+<li>#12758: Added a Theme Enabler command (by @mickaelandrieu)</li>
+<li>#10455: New CLDR implementation (by @tomlev)</li>
+<li>#12284: Include script handler to manage installation of modules (by @mickaelandrieu)</li>
+<li>#12089: Implement AbstractTypedCollection with tests (by @jolelievre)</li>
+<li>#10974: Implement form handlers for SqlManager form - part 1 (by @sarjon)</li>
+<li>#10839: Migrate languages list (by @sarjon)</li>
+<li>#10197: Added a schema generator (by @mickaelandrieu)</li>
+<li>#9132: Add hook for extra fields on customer address form (by @PeeyushAgrawalWebkul)</li>
+<li>#10816: Migrate “Layout customization” part of Them &#x26; Logo controller (by @sarjon)</li>
+<li>#10797: Migrate Employee list  (by @sarjon)</li>
+<li>#10864: Implement image source parser (by @sarjon)</li>
+<li>#10160: Migrate categories listing (by @sarjon)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#13735: Update native modules (by @eternoendless)</li>
+<li>#13402: Add new hooks of 1.7.6.0 in fixtures (by @Quetzacoalt91)</li>
+<li>#13238: Update themes folders license headers (by @matks)</li>
+<li>#13239: Update js folder license headers (by @matks)</li>
+<li>#13237: Update tests folders license headers (by @matks)</li>
+<li>#13235: Update src folder license headers (by @matks)</li>
+<li>#12941: Remove unnecessary return on update (by @eternoendless)</li>
+<li>#12999: Remove calls to old CLDR (by @Quetzacoalt91)</li>
+<li>#13141: Performance: avoid useless attributes queries (by @123monsite-regis)</li>
+<li>#12996: Domain improvements: naming and namespace (by @sarjon)</li>
+<li>#11730: Use of static instead of ClassName (by @MathiasReker)</li>
+<li>#11970: Unary operator spaces (by @MathiasReker)</li>
+<li>#11977: Function declaration (by @MathiasReker)</li>
+<li>#11975: Space after semicolon (by @MathiasReker)</li>
+<li>#13008: Adds phpdoc on range objectmodel (by @Matt75)</li>
+<li>#12782: Fixes for migrated Categories add/edit actions (by @sarjon)</li>
+<li>#12956: Customization - improve phpdoc and constants usage (by @Matt75)</li>
+<li>#12959: Make Tools curl throw an exception when it fails in dev mode (by @matks)</li>
+<li>#10406: Document and add tests to Faceted Search system (by @mickaelandrieu)</li>
+<li>#12251: Improve version (by @eternoendless)</li>
+<li>#12749: Remove 9 duplicates from array in getProductAttributeWhitelist(). Items sorted to check dupes. (by @toslan)</li>
+<li>#12810: Install ps_faviconnotificationbo automatically (by @eternoendless)</li>
+<li>#12808: Deprecate Cart::addExtraCarriers() (by @eternoendless)</li>
+<li>#12570: Add Drag &#x26; Drop styling for category position column (by @sarjon)</li>
+<li>#12346: Add Category form builder &#x26; handler (by @sarjon)</li>
+<li>#12498: Add showcase card for Suppliers list (by @sarjon)</li>
+<li>#12598: Restore composer file (by @PierreRambaud)</li>
+<li>#12532: Updated Core using new version of Composer script handler (by @mickaelandrieu)</li>
+<li>#12208: Add filter on the modules folder to avoid caching all files by Twig (by @Quetzacoalt91)</li>
+<li>#10783: Migration of Advanced Parameters > Team > Profiles page. (by @rokaszygmantas)</li>
+<li>#11968: Switch case space (by @MathiasReker)</li>
+<li>#11859: Replace tabs with spaces in htaccess (by @MathiasReker)</li>
+<li>#11961: Improvements in the Domain namespace (by @sarjon)</li>
+<li>#12247: Bump version to 1.7.6.0 (by @eternoendless)</li>
+<li>#12222: Add notice for docker-compose (by @PierreRambaud)</li>
+<li>#12211: Add breadcrumb to the search results page (by @SebBareyre)</li>
+<li>#11992: Replace calls to is_null by comparison (by @MathiasReker)</li>
+<li>#12082: Update Nginx configuration for multishop (by @PierreRambaud)</li>
+<li>#12150: Allow specific versions of libs to be ignored (by @Quetzacoalt91)</li>
+<li>#12031: Make pre-commit execute linter only if php files have been staged (by @eternoendless)</li>
+<li>#11985: PHP unit test case static method calls (by @MathiasReker)</li>
+<li>#11899: Introduce HelperList title_icon property (by @matks)</li>
+<li>#11866: Order imports (by @MathiasReker)</li>
+<li>#11867: Remove unneeded curly braces (by @MathiasReker)</li>
+<li>#11869: Remove unneeded control parentheses (by @MathiasReker)</li>
+<li>#11857: Replace tabs with spaces (by @MathiasReker)</li>
+<li>#11823: Fix namespace (by @MathiasReker)</li>
+<li>#11781: Fix blank lines: Add and remove (by @MathiasReker)</li>
+<li>#11729: Use binary mode to write files (by @MathiasReker)</li>
+<li>#10486: Split grid service definitions in separate files (by @sarjon)</li>
+<li>#10533: Add old product ID on actionProductAdd hook when duplicating a product (by @duGuillaume)</li>
+<li>#10975: Introduced a new function for Products.php for retrive a product ID given it reference (by @runningz)</li>
+<li>#11696: Combine consecutive issets (by @MathiasReker)</li>
+<li>#11708: Modernize types casting (by @MathiasReker)</li>
+<li>#11710: Include is not a function (by @MathiasReker)</li>
+<li>#11695: Array indentation (by @MathiasReker)</li>
+<li>#11685: Fix php-cs-fixer “non printable character” (by @MathiasReker)</li>
+<li>#11736: Remove unused imports (by @MathiasReker)</li>
+<li>#11757: Remove empty statement (by @MathiasReker)</li>
+<li>#11744: Fix PhpDoc Validate::isColor() (by @EdouardTack)</li>
+<li>#11697: Combine consecutive unsets (by @MathiasReker)</li>
+<li>#11635: Improve use of protocol (by @MathiasReker)</li>
+<li>#11738: No PHP closing tag and no EOL (by @MathiasReker)</li>
+<li>#11712: Normalize use of operators (by @MathiasReker)</li>
+<li>#11733: Add function type (by @MathiasReker)</li>
+<li>#11734: Remove comma in single array (by @MathiasReker)</li>
+<li>#11709: Use echo instead of print (by @MathiasReker)</li>
+<li>#11707: Do not use alias functions (by @MathiasReker)</li>
+<li>#11704: Remove useless return (by @MathiasReker)</li>
+<li>#11703: Do not use short echo tags (by @MathiasReker)</li>
+<li>#11701: Use logical operators (by @MathiasReker)</li>
+<li>#11699: Hash to slash comment (by @MathiasReker)</li>
+<li>#11694: Align multiline comment (by @MathiasReker)</li>
+<li>#11653: Allow override of <em>PS_DEBUG_PROFILING</em> (by @SebBareyre)</li>
+<li>#11678: Fix use of protocol (by @MathiasReker)</li>
+<li>#11672: Non printable character (by @MathiasReker)</li>
+<li>#11643: Additional PHP Improvements (by @MathiasReker)</li>
+<li>#11666: Fully qualified strict types (by @MathiasReker)</li>
+<li>#11667: Heredoc to nowdoc (by @MathiasReker)</li>
+<li>#11671: Use constant instead of function (by @MathiasReker)</li>
+<li>#11669: Improve error suppression (by @MathiasReker)</li>
+<li>#11566: Build all the assets using a single command (by @eternoendless)</li>
+<li>#11313: Only call ntree regeneration at this end of a WS call and optimize regenerateEntireNtree (by @jocel1)</li>
+<li>#11510: Add PHP 7.3 polyfills (by @Quetzacoalt91)</li>
+<li>#11397: Add total_shipping_tax_excl, incl in email data (by @sitte)</li>
+<li>#11417: Lossless compression of all images (by @MathiasReker)</li>
+<li>#11246: Replace deprecated library PhpExcel by PhpSpreadsheet (by @MartinFinkenflugel)</li>
+<li>#11249: Fix declaration of method arguments (by @Seleda)</li>
+<li>#11140: Remove unreachable code (by @idnovate)</li>
+<li>#11139: Deprecate legacy Db service (by @sarjon)</li>
+<li>#10770: Update CacheClearer adapter (by @sarjon)</li>
+<li>#10777: Migration of Shop parameters > Contact > Contacts page. (by @rokaszygmantas)</li>
+<li>#10834: Allow release creator to be run without version parameter (by @Quetzacoalt91)</li>
+<li>#10699: Change getcwd() for <strong>DIR</strong> (by @DanielBoettner)</li>
+<li>#10704: Add TranslatableType (by @sarjon)</li>
+<li>#9247: Add themes in gitignore (except classic) (by @Quetzacoalt91)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#13684: Wrong discount subtotal when customergroup is set to use ex taxes (by @tomlev)</li>
+<li>#13604: Forbid URLS to be added in customer names (by @PierreRambaud)</li>
+<li>#13605: Add missing translation domains (by @matks)</li>
+<li>#13560: Remove duplicate method call (by @eternoendless)</li>
+<li>#13540: Update upgrade scripts to PS 1.7.6.0 (by @Quetzacoalt91)</li>
+<li>#13470: Removes GetDefaultGroupHandler adapter  (by @sarjon)</li>
+<li>#13435: Fixes option for MaterialMultipleChoiceTableType (by @sarjon)</li>
+<li>#13409: Do not call removed cldr lib (by @Quetzacoalt91)</li>
+<li>#13353: Fixes default Customer group overriding (by @sarjon)</li>
+<li>#13189: Harmonize Grids naming (by @sarjon)</li>
+<li>#13256: Fixes to Customer subdomain &#x26; controller (by @sarjon)</li>
+<li>#13246: Add missing hook description (by @eternoendless)</li>
+<li>#13242: Add missing hook description for additionalCustomerAddressFields (by @eternoendless)</li>
+<li>#13222: Do not try to install an unsupported language (by @PierreRambaud)</li>
+<li>#13208: Fix broken page when requesting a duplicate _legacy_link (by @PierreRambaud)</li>
+<li>#13209: Properly set error headers (by @jocel1)</li>
+<li>#13146: Fixes missing fields validation in Language command handlers (by @sarjon)</li>
+<li>#13115: Fix strpos arguments order (by @quasilyte)</li>
+<li>#12550: Improve the way VAT is managed for price calculation (by @prestamodule)</li>
+<li>#13057: Fix search action configuration for grids (by @sarjon)</li>
+<li>#12967: Foward $locale to Translate::getModuleTranslation() (by @eternoendless)</li>
+<li>#11962: Do not stripslashes value from _GET &#x26; _POST (by @PierreRambaud)</li>
+<li>#12960: DoctrineBuilderExtension uses YamlParser for its config (by @jolelievre)</li>
+<li>#12940: Do not look for translations if no locale (by @matks)</li>
+<li>#12841: Add deprecation notice for hook actionAjaxDieBefore (by @eternoendless)</li>
+<li>#12803: Fallback on language code when locale is empty (by @Quetzacoalt91)</li>
+<li>#12756: Fix bug when overriding the Address class (by @dariusakafest)</li>
+<li>#12739: Revert new theme to Webpack 2 (by @PierreRambaud)</li>
+<li>#12559: Remove translations from db when Language is deleted (by @sarjon)</li>
+<li>#12152: Fix timezone standard is ignored (by @michaesc)</li>
+<li>#11764: Fix undefined property (by @idnovate)</li>
+<li>#12473: Order Creation: fix out of stock status (by @rGaillard)</li>
+<li>#12484: Fix missing tag for CustomerType (by @sarjon)</li>
+<li>#12124: Remove unwanted umask (by @PierreRambaud)</li>
+<li>#12399: Actually use arguments passed to CountryDataProvider->getCountries() (by @TysonAndre)</li>
+<li>#12397: Fix use of array_merge in HookFinder->addExpectedInstanceClasses (by @TysonAndre)</li>
+<li>#12367: Move PositionColumn in its original folder (by @Quetzacoalt91)</li>
+<li>#12344: Fix translation on account creation email error (by @SebBareyre)</li>
+<li>#11442: Fixed the problem with the type of a return value in Module::onInstall() (by @zapalm)</li>
+<li>#12139: Fix some Symfony service definitions (by @matks)</li>
+<li>#12125: Fix bad GridFactory service definition (by @matks)</li>
+<li>#12014: Unify algorithm for calculating average tax rate for products in a cart (by @eternoendless)</li>
+<li>#12010: Make filtering of LazyArrays return a new instance (by @eternoendless)</li>
+<li>#12015: Fix typo in example Nginx config file (by @mwht)</li>
+<li>#11809: Fix misuse of information returned by getimagesize (by @olivier-monaco)</li>
+<li>#11876: Fix lang table multi-store data issue (by @Dan-Orchard)</li>
+<li>#11892: Fix missing const definition (by @sarjon)</li>
+<li>#11895: Fix categories grid id (by @sarjon)</li>
+<li>#11884: Do not allow null for low_stock_alert (by @eternoendless)</li>
+<li>#11706: Fix implode calls (by @MathiasReker)</li>
+<li>#11679: Fix issue with deleting a category with subcategories on Multistore (by @MathiasReker)</li>
+<li>#11691: Fix bug on pdf logo path (by @SebBareyre)</li>
+<li>#11747: Convert comments to php docs in some cases (by @MathiasReker)</li>
+<li>#11731: Fix typo in Phpdoc (by @MathiasReker)</li>
+<li>#11714: Fix line ending (by @MathiasReker)</li>
+<li>#11711: Add missing braces (by @MathiasReker)</li>
+<li>#11559: Keep first try of translator initialization in memory (by @Quetzacoalt91)</li>
+<li>#11564: Fix shop name in the subject of mail (by @khouloudbelguith)</li>
+<li>#9034: Added missing Rewrite base on Api rule (by @123monsite-regis)</li>
+<li>#10465: Fixed bug on inc/dec product quantity in cart with vouchers  discounts (by @sete391)</li>
+<li>#11469: Fix SQL update when last_connection_date is null (by @Quetzacoalt91)</li>
+<li>#11204: Fix incorrect comparison when out of stock (by @andromaque)</li>
+<li>#11202: Fix a bug where PrestaShop cookie is set on every page when a cookie value is NULL (by @jocel1)</li>
+<li>#11214: Handle bad address use case for Carrier Tax Rate (by @matks)</li>
+<li>#11151: Fix MailsProvider service declaration name (by @mickaelandrieu)</li>
+<li>#11168: Remove Throwable from core (by @sarjon)</li>
+<li>#10917: Add getConfiguration to PrestaShopBundle (by @Quetzacoalt91)</li>
+<li>#10536: Delete search indexes after deleting a product (by @MathiasReker)</li>
+<li>#10722: Update Smarty and Symfony to latest (by @eternoendless)</li>
+<li>#9042: Fix controller override (by @nenes25)</li>
+<li>#12243: Update gitignore (by @PierreRambaud)</li>
+<li>#13171: Outdated assets (by @PierreRambaud)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#12926: Migration of Manufacturers view action (by @sarjon)</li>
+<li>#11783: Migrate customers searching via ajax (by @sarjon)</li>
+<li>#12766: Remove duplicate CLDR service (by @matks)</li>
+<li>#12447: Remove legacy Webservice controller (by @sarjon)</li>
+<li>#12446: Enable new Languages page (by @sarjon)</li>
+<li>#12398: Fix unused variables where straightforward to do so (by @TysonAndre)</li>
+<li>#12293: Migrate actions of Languages list (by @sarjon)</li>
+<li>#12400: Remove a harmless duplicate array entry in PositionsController (by @TysonAndre)</li>
+<li>#12263: Migrate Add/Edit actions for webservice keys (by @sarjon)</li>
+<li>#11997: Happy new year 2019 (by @Quetzacoalt91)</li>
+<li>#11135: Migrate Employees list actions (by @sarjon)</li>
+<li>#12249: Migrate legacy test TermsAndConditionsTest and refactor related class (by @matks)</li>
+<li>#11885: Migration of Languages adding/editing (by @sarjon)</li>
+<li>#11169: Migrate Theme &#x26; Logo (by @sarjon)</li>
+<li>#12022: Use Symfony Cache Clear in ModuleManager instead of deprecated CacheClearer (by @matks)</li>
+<li>#10916: Migrate customers listing (by @sarjon)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Installer:
+<ul>
+<li>New feature:
+<ul>
+<li>#12864: Remove ps_legalcompliance from composer.json  (by @Quetzacoalt91)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#13734: Update translations catalogue for 1.7.6 (by @eternoendless)</li>
+<li>#13069: Update demo features (by @marionf)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#13471: Set null values when trying to retrieve the non-existing default shop (by @Quetzacoalt91)</li>
+<li>#13223: Fix SQL syntax error in upgrade file to PS 1.7.6 (by @Quetzacoalt91)</li>
+<li>#13078: Revert “Fix delivery slips failure when upgrading” (by @Quetzacoalt91)</li>
+<li>#12666: Fix delivery slips failure when upgrading (by @rblaurin)</li>
+<li>#12155: Fix fixtures not generating thumbnails (by @PierreRambaud)</li>
+<li>#12141: Change php requirements in INSTALL.txt (by @PierreRambaud)</li>
+<li>#9366: Don’t display the system step if mandatory requirements are OK (by @rGaillard)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Web Services:
+<ul>
+<li>Improvement:
+<ul>
+<li>#12329: API and Products: Add missing combination IDs in the pack content (by @Quetzacoalt91)</li>
+<li>#11938: Make customer’s product customization information reachable in WebServices (by @eternoendless)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#12836: Fixes fatal error when trying to get the images of a product with no images  (by @mowcixo)</li>
+<li>#12201: Fix SQL exception when creating a product_option without values (by @mowcixo)</li>
+<li>#11902: Fix API error with php 7.2 (by @DelecroixQuentin)</li>
+<li>#11192: Correctly call hook for product update in Product class (by @alexll)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Localization:
+<ul>
+<li>Bug fix:
+<ul>
+<li>#10843: Fix typo in download_product.txt (by @antonellamarengo)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#12747: Fix PhpDoc for AttributeGroupCore::getAttributes() (by @BadPixxel)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tests:
+<ul>
+<li>New feature:
+<ul>
+<li>#13167: Move lint checks in GitHub action (by @Quetzacoalt91)</li>
+<li>#12091: Geo-location: By IP address (by @ansar21mallouli)</li>
+<li>#12086: Location: zone and country (by @ansar21mallouli)</li>
+<li>#12049: Change position, unhook and transplant a module (by @ansar21mallouli)</li>
+<li>#12030: Filters by category in catalog page (by @ansar21mallouli)</li>
+<li>#12001: Filters in catalog page (by @ansar21mallouli)</li>
+<li>#12007: Delivery slip test (by @YosraAk)</li>
+<li>#11897: Generate invoice pdf by date and status (by @hadrich-hatem)</li>
+<li>#11891: Credit slip, credit slip pdf and credit slip options (by @hadrich-hatem)</li>
+<li>#11804: Localization: local units and configuration (by @ansar21mallouli)</li>
+<li>#11800: Create, edit and delete feature (by @hadrich-hatem)</li>
+<li>#11768: Import localization pack (by @ansar21mallouli)</li>
+<li>#11766: Create, edit, delete, exchange rate currency (by @ansar21mallouli)</li>
+<li>#9309: Check buttons in header product page (by @hadrich-hatem)</li>
+<li>#9312: Check order details (selenium tests) (by @fatmaBouchekoua)</li>
+<li>#11184: Advanced localization (by @ansar21mallouli)</li>
+<li>#9341: Identity (Selenium tests) (by @fatmaBouchekoua)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#13356: Adds unit tests for FormHandlerFactory (by @sarjon)</li>
+<li>#13176: Allow to use date as parameter for nightly builds (by @PierreRambaud)</li>
+<li>#13127: Do not run tests with the StarterTheme anymore (by @Quetzacoalt91)</li>
+<li>#13052: Remove usage of TRAVIS_BUILD_DIR (by @PierreRambaud)</li>
+<li>#12804: Use string value for CSRF token in DeliveryControllerTest (by @matks)</li>
+<li>#12793: Allow Travis phpHigh build to fail as it is an informative check, not not a mandatory check (by @matks)</li>
+<li>#12495: Add a descriptif comment for the broken test “installation language &#x3C;> country ” (by @YosraAk)</li>
+<li>#12490: Add a descriptive comment for the broken test “create_edit_delete_contact” (by @YosraAk)</li>
+<li>#12488: Add a descriptif comment for the broken test “create_edit_delete_language” (by @YosraAk)</li>
+<li>#12496: Add a descriptif comment for the broken test “autoupgrade” (by @YosraAk)</li>
+<li>#12494: Add a descriptif comment for the broken test “sort filter file” (by @YosraAk)</li>
+<li>#12493: Add a descriptif comment for the broken test “linkWidget” (by @YosraAk)</li>
+<li>#12492: Add a descriptif comment for the broken test “page” (by @YosraAk)</li>
+<li>#12491: Add a descriptif comment for the broken test “category” (by @YosraAk)</li>
+<li>#12487: Add a descriptif comment for the broken test “configuration” (by @YosraAk)</li>
+<li>#12482: Add a descriptif comment for the broken test “Delete category” (by @YosraAk)</li>
+<li>#12486: Add a descriptif comment for the broken test “read_more_module” (by @YosraAk)</li>
+<li>#12485: Add a descriptif comment for the broken test “create_feature” (by @YosraAk)</li>
+<li>#12481: Add a descriptif comment for the broken test “create_product_with_combination” (by @YosraAk)</li>
+<li>#12480: Add a descriptif comment for the broken test “shopping_carts_view” (by @YosraAk)</li>
+<li>#12021: Add unit tests for CommandBus, DocumentationLinkProvider and UrlFileChecker (by @matks)</li>
+<li>#12378: Improve report files generation (by @PierreRambaud)</li>
+<li>#12369: Fix deprecation notices reported by Composer (by @Quetzacoalt91)</li>
+<li>#12304: Add unit tests for Core IdentifiableObject classes (by @matks)</li>
+<li>#12324: Separate nightly tests and reports (by @PierreRambaud)</li>
+<li>#12298: Improve logging for nightly tests (by @PierreRambaud)</li>
+<li>#12232: Add unit tests for Core/Kpi (by @matks)</li>
+<li>#12256: Wrong duration time while combine nightly tests reports (by @PierreRambaud)</li>
+<li>#12183: Restore survival test for Import page (by @matks)</li>
+<li>#12188: Add test link id (by @ansar21mallouli)</li>
+<li>#11725: Nightly tests build on Google Cloud Platform (by @PierreRambaud)</li>
+<li>#11920: Add advice when lint fails + Display all files in error in Travis lint job (by @Quetzacoalt91)</li>
+<li>#12060: Enable PHP CS Fixer on tests folder (by @matks)</li>
+<li>#11865: PHP unit set up tear down visibility (by @MathiasReker)</li>
+<li>#11677: Fix wrong name (by @MathiasReker)</li>
+<li>#11674: Simplify PHP unit construct (by @MathiasReker)</li>
+<li>#11675: Simplify PHP unit expectations (by @MathiasReker)</li>
+<li>#11676: Use camelcase instead of snakecase in functions (by @MathiasReker)</li>
+<li>#11565: Allow tests high and fix conflicts in file (by @PierreRambaud)</li>
+<li>#11237: Improved survival tests (by @mickaelandrieu)</li>
+<li>#10724: Clean php-cs-fixer files (by @matks)</li>
+<li>#9421: Update test high : create product with combination/create virtual … (by @fouratachour)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#13464: Apply CS Fixer on 1.7.6.x (by @Quetzacoalt91)</li>
+<li>#13113: Fix typo on static (by @Quetzacoalt91)</li>
+<li>#12574: Fix PositionsControllerTest for good (by @jolelievre)</li>
+<li>#12238: Wrong directory to check if there are files reported by mochawesome (by @PierreRambaud)</li>
+<li>#12225: Add a json check when running report combine (by @PierreRambaud)</li>
+<li>#12210: Update nightly tests (by @PierreRambaud)</li>
+<li>#12166: Update php-cs-fixer to a recent version to be compatible with PHP7.3 (by @PierreRambaud)</li>
+<li>#12079: Fix static cache reset on ObjectModel (by @tomlev)</li>
+<li>#10477: Added an Error Data Listener (by @mickaelandrieu)</li>
+<li>#12013: Isolate legacy tests into suites to fix develop branch (by @matks)</li>
+<li>#11898: Fix travis script for running tests and fix broken tests (by @matks)</li>
+<li>#11549: Fix unable to build tests container (by @PierreRambaud)</li>
+<li>#11306: Fix linter jobs of Travis (by @Quetzacoalt91)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#13686: Add close welcome module for tests 11_international (by @boubkerbribri)</li>
+<li>#13683: Add close welcome module for tests 10_modules (by @boubkerbribri)</li>
+<li>#13680: Fix tests customer (by @boubkerbribri)</li>
+<li>#13630: Fix Onboarding close method (by @boubkerbribri)</li>
+<li>#13656: Fix for tests in order test suite (by @SimonGrn)</li>
+<li>#13657: Fix the check of the success message when saving and deleting a currency (by @nesrineabdmouleh)</li>
+<li>#13667: Fix test Feature 1 create edit delete feature (by @boubkerbribri)</li>
+<li>#13676: Add close welcome modal for tests Manufacturer (by @boubkerbribri)</li>
+<li>#13693: Fix first test of the order test suite (by @SimonGrn)</li>
+<li>#13696: Add welcome module for tests discount (by @boubkerbribri)</li>
+<li>#13700: Fix test 3 of the shop parameters test suite (by @SimonGrn)</li>
+<li>#13637: Add handling of the welcome modal and document the blocking issue for the last step (by @SimonGrn)</li>
+<li>#13661: Fix for test 4 of the order test suite after canonical url fix (by @SimonGrn)</li>
+<li>#13651: Adding close welcome module in tests product (by @boubkerbribri)</li>
+<li>#13659: Adding close welcome module in tests Attribute  (by @boubkerbribri)</li>
+<li>#13612: Fix test 05 create order without account (by @boubkerbribri)</li>
+<li>#13615: Fix test Product suite full (by @nesrineabdmouleh)</li>
+<li>#13545: Fix test Employee Suite Full (by @boubkerbribri)</li>
+<li>#13616: Fix method used to change quantity (by @SimonGrn)</li>
+<li>#13602: Fix for test 2 of the orders test suite (by @SimonGrn)</li>
+<li>#13502: Fix test Category suite full (by @boubkerbribri)</li>
+<li>#13597: Fix test 09_delivery_slips_pdf_and_options (by @boubkerbribri)</li>
+<li>#13570: Fix broken selectors and logic for the test suite 9 (customer) (by @SimonGrn)</li>
+<li>#13588: Fixing some tests orders (by @boubkerbribri)</li>
+<li>#13581: Fix test feature update (by @ntiepresta)</li>
+<li>#13568: Fix tests 10_module Suite Full (by @boubkerbribri)</li>
+<li>#13561: Fix for tests 1 and 2 of the shop parameters test suite (by @SimonGrn)</li>
+<li>#13503: FIx test Create Attribute Suite Full (by @boubkerbribri)</li>
+<li>#13534: Fix tests manufacturer (by @boubkerbribri)</li>
+<li>#13552: Fix tests International/localization and international/taxes (by @boubkerbribri)</li>
+<li>#13536: Fixes e2e broken selectors (by @mbadrani)</li>
+<li>#12634: Behat cart tests (by @tomlev)</li>
+<li>#12679: Add some fixes to the campaign full (by @YosraAk)</li>
+<li>#12678: Create virtual product (by @ansar21mallouli)</li>
+<li>#12431: Update product quantity test (by @YosraAk)</li>
+<li>#12362: Go to next and previous page test (by @ansar21mallouli)</li>
+<li>#12355: Print the delivery slip (by @ansar21mallouli)</li>
+<li>#12351: Update create order in FO test (by @YosraAk)</li>
+<li>#12343: Print invoice order (by @ansar21mallouli)</li>
+<li>#12317: Create order in BO test (by @ansar21mallouli)</li>
+<li>#12315: Create order as a guest test and update readme file (by @YosraAk)</li>
+<li>#12289: Update sort module test (by @ansar21mallouli)</li>
+<li>#12281: Update zip module test (by @YosraAk)</li>
+<li>#12266: Migrate ImageTagSourceParserTest in tests folder (by @matks)</li>
+<li>#12272: Add checkFile step after downloading a file (by @YosraAk)</li>
+<li>#12245: Update check notifications test (by @ansar21mallouli)</li>
+<li>#12219: Update click on discover test (by @ansar21mallouli)</li>
+<li>#12220: Update file tests (by @YosraAk)</li>
+<li>#12217: Update search module test (by @ansar21mallouli)</li>
+<li>#12206: Installation test (by @ansar21mallouli)</li>
+<li>#12190: Update check the addons catalog page test (by @ansar21mallouli)</li>
+<li>#12181: Update onboarding test (by @YosraAk)</li>
+<li>#12122: Add a new brand address test (by @ansar21mallouli)</li>
+<li>#12115: Update create manufacturers test (by @ansar21mallouli)</li>
+<li>#12112: Update bulk actions in catalog page test (by @ansar21mallouli)</li>
+<li>#12104: Update delete shopping cart test (by @ansar21mallouli)</li>
+<li>#12067: Add some fixes to the campaign full (by @YosraAk)</li>
+<li>#12054: Migrate legacy unit test for Hashing (by @matks)</li>
+<li>#12045: Update autoupgrade test (by @YosraAk)</li>
+<li>#11776: Fix campaign full tests on develop branch (by @YosraAk)</li>
+<li>#11525: Introduce modern unit tests for new test structure (by @matks)</li>
+<li>#11529: Migrate tests-legacy tests to namespace LegacyTests (by @matks)</li>
+<li>#11464: Cleanup /tests directory (by @sarjon)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/PrestaShop/PrestaShop/releases/tag/1.7.6.0-beta.1" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

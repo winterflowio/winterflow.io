@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v9.36 release notes | WinterFlow.io</title><meta name="description" content="This release fixes critical security vulnerabilities regarding unauthenticated token minting and introduces extensive REST API expansions, including bulk…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v9.36/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v9.36 release notes | WinterFlow.io"><meta property="og:description" content="This release fixes critical security vulnerabilities regarding unauthenticated token minting and introduces extensive REST API expansions, including bulk…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v9.36/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v9.36 release notes | WinterFlow.io"><meta name="twitter:description" content="This release fixes critical security vulnerabilities regarding unauthenticated token minting and introduces extensive REST API expansions, including bulk…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v9.36","item":"https://winterflow.io/catalog/wekan/releases/v9.36/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 20,984 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v9.36</h2> <span class="text-sm text-gray-500">2026-06-11</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="v936-2026-06-10-wekan--release">v9.36 2026-06-10 WeKan ® release</h1>
+<p>This release fixes the following CRITICAL SECURITY ISSUES of <a href="https://wekan.fi/hall-of-fame/tokenbleed/">TokenBleed</a>:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/commit/08ae61161cd9602f79f441e3922ffe890b3f11de">Fixed TokenBleed: unauthenticated login-token minting via un-awaited auth check in <code>POST /api/createtoken/:userId</code></a>
+(CWE-863, CWE-287). <code>Authentication.checkUserId</code> in <code>server/authentication.js</code> is an
+<code>async</code> function, so its 401 (undefined <code>userId</code>) and 403 (not an admin) throws become
+rejected promises rather than synchronous exceptions. The REST handlers in
+<code>server/models/users.js</code> and <code>server/models/boards.js</code> called it without <code>await</code> inside a
+plain synchronous <code>try/catch</code>, which cannot catch a rejected promise, so the failed check
+never stopped execution. <code>POST /api/createtoken/:userId</code> then went on to mint and return a
+usable login token for any user ID in the URL — including an admin — with no credentials at
+all (unauthenticated account takeover). The same detached-rejection bypass also affected
+<code>GET /api/users</code>, <code>GET /api/users/:userId</code>, <code>PUT /api/users/:userId</code>, <code>POST /api/users/</code>,
+<code>DELETE /api/users/:userId</code>, <code>POST /api/deletetoken</code>, <code>GET /api/boards</code>,
+<code>GET /api/boards_count</code>, <code>DELETE /api/boards/:boardId</code>, <code>GET /api/users/:userId/boards</code> and
+<code>POST /api/boards/:boardId/copy</code>. Fixed by awaiting every async <code>Authentication</code> check (and
+making the two non-<code>async</code> handlers <code>async</code>) so a failed check rejects before any privileged
+code runs. The same un-awaited pattern in the board/card/Excel/PDF export handlers
+(<code>models/export.js</code>, <code>models/exportExcel.js</code>, <code>models/exportExcelCard.js</code>, <code>models/exportPDF.js</code>,
+which were backstopped by <code>exporter.canExport()</code>) and in the checklist-create handler
+(<code>server/models/checklists.js</code>) was given the same await pass. Affected Wekan v9.35 and earlier.
+Thanks to Zion Boggan, xet7 and Claude.</li>
+</ul>
+<p>and adds the following updates:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/commit/f1c2f1f40f21b9f467cfe7265d22bc98fb401b57">Improved Security Advisory process</a>.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/26a03f4845b9c81902f3f955d79287a4bc61d3c4">Improved Contributing</a>.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/d1c71d0526eb8890fc0d8b875d94ab96f094a8c3">Improved Code of Conduct</a>.
+Thanks to xet7.</li>
+<li>Update release scripts, trying to fix GitHub Actions builds.
+<a href="https://github.com/wekan/wekan/commit/8f59d76a4e38429b434dc9e4be66a30ac1dc156e">Part 1</a>,
+<a href="https://github.com/wekan/wekan/commit/5357bb47c3cf09f60a9838aadb5d21e3895c4f39">Part 2</a>.
+Thanks to xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/447877733b40a085e347a9fd12ee09d8cb263d43">Updated dependencies</a>.
+Thanks to developers of dependencies.</li>
+</ul>
+<p>and fixes the following bugs:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/commit/77d60b21a1912cda81a6fa96449a8dd99761d5d7">Fix Admin Panel / Reports icons and spacing</a>.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/9cc066041040074befcf3dea49e7ef37b22816cc">Fix MultiSelect, so that it’s possible to click select checkbox or minicard to select</a>.
+Thanks to xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/3fe8f602c8c5ade128f5d7e439bff47f51a28045">Fix LDAP_SYNC_ADMIN_GROUPS</a>.
+so that admin status sync and group/role sync no longer require
+LDAP_GROUP_FILTER_ENABLE=true, which only controls the login restriction filter
+Thanks to xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/d5f6aa196606f229c2c1871a56fb0549fbdab40e">Expand and fix REST API</a>
+(Admin API, board member, card field, card copy/move).
+REST routes live in <code>server/models/*.js</code> (using <code>WebApp.handlers.get/post/put/delete</code>),
+their schemas in <code>models/*.js</code>, OpenAPI docs are generated by <code>openapi/generate_openapi.py</code>
+into <code>public/api/wekan.yml</code>, and <code>api.py</code> is the Python CLI wrapper.
+<code>api.py</code> already gained CLI wrappers for the endpoints that exist today:
+<code>addboardmember</code>, <code>removeboardmember</code>, <code>setboardmemberrole</code>, <code>setcardmembers</code>,
+<code>setcardassignees</code>, <code>setcarddate</code>, <code>setcardlabels</code>, <code>movecard</code>.</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/5998">#5998</a>: Add/remove user to
+board with a role (BoardAdmin, Normal, etc).</strong>
+Already exists server-side: <code>POST /api/boards/:boardId/members/:userId/add</code>
+and <code>POST /api/boards/:boardId/members/:userId/remove</code> (action=add/remove), and
+<code>POST /api/boards/:boardId/members/:memberId</code> to change an existing member’s
+permission flags (<code>isAdmin</code>, <code>isCommentOnly</code>, <code>isWorker</code>, <code>isNoComments</code>,
+<code>isNormalAssignedOnly</code>, <code>isCommentAssignedOnly</code>, <code>isReadOnly</code>,
+<code>isReadAssignedOnly</code>). <code>api.py</code> now wraps these with a friendly <code>ROLE</code>
+name → flags mapping.
+Implemented: the API itself now also accepts a single named <code>role</code>
+(<code>admin</code>/<code>normal</code>/<code>commentOnly</code>/<code>worker</code>/<code>readOnly</code>/<code>normalAssignedOnly</code>/
+<code>commentAssignedOnly</code>/<code>readAssignedOnly</code>/<code>noComments</code>), mapped to the permission
+booleans server-side by <code>boardMemberRoleToFlags</code> (<code>server/lib/utils.js</code>). When
+<code>role</code> is present it wins over the individual flags; an unknown role returns 400.
+Members are identified by <code>userId</code> only. Wired into both
+<code>POST .../members/:userId/add</code> and <code>POST .../members/:memberId</code>.
+Thanks to xet7 and Claude.</li>
+<li><strong>Add/Remove board member to card as card member or card assignee.</strong>
+Already exists via <code>PUT /api/boards/:boardId/lists/:listId/cards/:cardId</code> with
+<code>members</code> / <code>assignees</code> (array, or ” to clear). <code>api.py</code> now wraps these as
+<code>setcardmembers</code> / <code>setcardassignees</code>. These REPLACE the list.
+Implemented: merge-style endpoints to add/remove a single member or assignee
+(<code>POST</code>/<code>DELETE /api/boards/:boardId/lists/:listId/cards/:cardId/members/:memberId</code>
+and <code>.../assignees/:assigneeId</code>), using <code>$addToSet</code>/<code>$pull</code> so callers don’t
+read-modify-write the whole array. Adding validates board membership
+(<code>canAssignCardMember</code>) and rejects non-members with 400; removing a stale id is
+allowed. Wrapped in <code>api.py</code> as <code>addcardmember</code>/<code>removecardmember</code>/
+<code>addcardassignee</code>/<code>removecardassignee</code>.
+Thanks to xet7 and Claude.</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/5897">#5897</a>: Create Linked Card.</strong>
+Linked cards reference another card; the data model uses <code>linkedId</code> /
+<code>type: 'cardType-linkedCard'</code>. Implemented by reusing the existing
+<code>POST /api/boards/:boardId/lists/:listId/cards</code> route: when <code>linkedId</code> is present
+in the body the new card is created via <code>Card.link</code> (type cardType-linkedCard)
+instead of holding its own content. Linking across boards is allowed; the caller
+must have write access to the destination board and read access to the linked
+card’s board (<code>checkBoardAccess</code>). Wrapped in <code>api.py</code> as <code>linkcard</code>.
+Thanks to xet7 and Claude.</li>
+<li><strong>Fix Issue <a href="https://github.com/wekan/wekan/issues/5846">#5846</a>: Add/Remove card
+dates (Received/Start/Due/End).</strong> Setting dates already worked via <code>PUT</code> card with
+<code>receivedAt</code>, <code>startAt</code>, <code>dueAt</code>, <code>endAt</code>, but the handler only wrote a date when
+the value was truthy (<code>if (req.body.receivedAt)</code>), so an empty string could NOT
+clear a date — removing a date via the API did not work. Fixed in
+<code>server/models/cards.js</code>: whenever a date field is present in the request body, an
+empty string / <code>null</code> / <code>"null"</code> now <code>$unset</code>s the date and any other value sets
+it. <code>api.py</code> wraps this as <code>setcarddate ... DATETYPE [DATEVALUE]</code> (omit DATEVALUE,
+or pass an empty string, to clear).
+Thanks to xet7 and Claude.</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/5819">#5819</a>: Bulk add/remove labels
+with API, and BoardAdmin label management in the right sidebar Labels
+hamburger/trigram menu.</strong>
+<code>PUT</code> card <code>labelIds</code> REPLACES the whole label set (wrapped as <code>setcardlabels</code>).
+Implemented: a multi-card bulk endpoint <code>POST /api/boards/:boardId/cards/labels</code>
+taking <code>{cardIds, addLabelIds, removeLabelIds}</code> that MERGES — existing labels are
+kept, <code>removeLabelIds</code> are dropped, <code>addLabelIds</code> are added, de-duplicated, across
+all listed cards in one request. <code>addLabelIds</code> are validated against the board’s
+labels (request rejected with the offending ids otherwise); cards not on the board
+are reported in <code>notFound</code>. Wrapped in <code>api.py</code> as <code>bulkcardlabels</code>.
+Board label creation via <code>PUT /api/boards/:boardId/labels</code> is now gated to
+BoardAdmin (<code>allowIsBoardAdmin</code>); normal members can still apply existing labels
+to cards (including via the bulk endpoint). Still planned: the right-sidebar
+Labels hamburger/trigram menu BoardAdmin-only UI. Thanks to xet7 and Claude.</li>
+<li><strong>Fix Issue <a href="https://github.com/wekan/wekan/issues/5813">#5813</a>: Card number is not
+unique when concurrently creating multiple cards via REST API; many cards got the
+same card number.</strong> Root cause: <code>Board.getNextCardNumber()</code> (<code>models/boards.js</code>)
+read the current max <code>cardNumber</code> and returned <code>max + 1</code>; two concurrent card
+creations read the same max and both got the same number — a classic
+read-then-increment race. Fixed by allocating card numbers from an atomic
+per-board counter (<code>Counters.incrementCounterAsync('cardNumber-&#x3C;boardId>')</code> in
+<code>models/counters.js</code>), a single atomic <code>findOneAndUpdate($inc)</code> that is safe under
+concurrency. Existing boards (and imported boards with existing cards) are
+<strong>lazy-seeded</strong> on first use: the counter is initialized to the board’s current
+max <code>cardNumber</code> via an idempotent <code>$setOnInsert</code> upsert, so no migration is
+needed and no number an existing card already has is reissued. Card numbers may
+have gaps (deleting a card does not decrement the counter), which is intended.
+Numbering stays per-board. The client keeps the old max + 1 read (card numbers are
+not authoritative there; the server insert recomputes). See also #4743 below.
+Thanks to xet7 and Claude.</li>
+<li><strong>Copy/Move Swimlane/List/Card to the same or a different board, before/after a
+position counted (number of swimlanes/lists/cards) from the top-left.</strong>
+Implemented: target position is a 0-based index counted from the top-left
+(“after N items”); the server converts it to a <code>sort</code> value between siblings via
+<code>computeSortForIndex</code> (<code>server/lib/utils.js</code>). New endpoints:
+<code>POST /api/boards/:boardId/lists/:listId/cards/:cardId/copy</code>,
+<code>POST /api/boards/:boardId/swimlanes/:swimlaneId/copy</code> and <code>.../move</code>,
+<code>POST /api/boards/:boardId/lists/:listId/copy</code> and <code>.../move</code>. Copy is a FULL
+deep copy via the existing model <code>copy()</code> methods (cards, checklists,
+attachments, custom-field values). Destination board write access is required
+(may differ from source). Wrapped in <code>api.py</code> as <code>copycard</code>,
+<code>copyswimlane</code>/<code>moveswimlane</code>, <code>copylist</code>/<code>movelist</code>. NOTE: <code>List.move</code> merges
+into an existing same-titled list on the destination board when one exists (a
+pre-existing model behavior); same-board list move is a pure reposition.
+Thanks to xet7 and Claude.</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/4815">#4815</a>: API to get My Cards and
+Due Cards (also needs a user-scoped API).</strong>
+The web UI already has My Cards and Due Cards views. Implemented: a single
+<code>GET /api/user/cards</code> endpoint returning the current user’s cards (where they are
+a member or assignee), with a <code>?due=true</code> filter for cards that have a due date
+and an optional <code>?from=</code>/<code>?to=</code> (ISO 8601) due-date range. Returns a compact
+minicard-like field set, sorted by due date. Wrapped in <code>api.py</code> as <code>mycards</code>.
+(Cross-user/admin querying, board filter and pagination were not requested for the
+first version; revisit if needed for users in very many boards.)
+Thanks to xet7 and Claude.</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/4811">#4811</a>: After adding a card via
+the API, does the card count update properly?</strong>
+To verify: <code>GET /api/boards/:boardId/cards_count</code> and
+<code>GET /api/boards/:boardId/lists/:listId/cards_count</code> after <code>POST</code> card creation.
+Card counts are computed from the cards collection, so they should reflect
+API-created cards; this needs a regression test confirming counts update
+immediately after API create/delete (and are not stale due to caching).</li>
+<li><strong>Issue <a href="https://github.com/wekan/wekan/issues/3062">#3062</a>: API for the Card
+Settings that live under Board Settings.</strong>
+Board Settings card defaults (which fields/badges show on cards and minicards) are
+the board’s <code>allows*</code> toggles. Implemented: <code>GET</code>/<code>PUT /api/boards/:boardId/cardSettings</code> exposing those board-level <code>allows*</code> settings
+(read requires board access; write requires board write access). <code>PUT</code> accepts any
+subset of the recognized keys and ignores unknown ones. Per-user card presentation
+settings are intentionally out of scope. Wrapped in <code>api.py</code> as <code>getcardsettings</code>/
+<code>setcardsetting</code>.
+Thanks to xet7 and Claude.</li>
+<li><strong>Fix Issue <a href="https://github.com/wekan/wekan/issues/4743">#4743</a>: Using the REST API
+to manipulate many cards crashes WeKan (100% CPU, server becomes
+unreachable/unusable, REST calls time out with HTTP 408).</strong>
+Reported workflow: every night delete all cards in a board and recreate them
+(create card → edit with custom fields/dates/labels → list all → delete all),
+done in a tight loop with no delay; WeKan eventually pegs CPU and stops
+responding. Same root area as #5813 (concurrent card creation), plus the cost of
+per-card cascade work (activities, server-side reactivity, custom-field defaults,
+before/after hooks) under bursts.
+Implemented so far: (1) atomic card numbering (see #5813) removes the hot
+read-modify-write contention; (2) bulk create/delete endpoints
+<code>POST /api/boards/:boardId/lists/:listId/cards/bulk</code> (body
+<code>{authorId, swimlaneId, cards:[...]}</code>) and
+<code>DELETE /api/boards/:boardId/cards/bulk</code> (body <code>{cardIds:[...]}</code>), each capped at
+500 items per request, so a sync job sends one request instead of hundreds —
+directly addressing the reporter’s nightly delete-all/recreate workflow. Wrapped in
+<code>api.py</code> as <code>bulkaddcards</code> / <code>bulkdeletecards</code>. Bulk create returns a per-card
+result/error array; bulk delete returns <code>{deleted, notFound}</code> and only touches
+cards on the given board.
+Still planned/optional: per-token rate limiting and batched/optional activity
+logging were considered but not chosen for now; the bulk endpoints plus the atomic
+card numbering are expected to remove the hot contention. Revisit rate limiting if
+storms persist.
+Thanks to xet7 and Claude.</li>
+<li><strong>Fix REST API auth bugs found by the new E2E tests: awaited the membership/admin
+checks and return explicit status codes (CWE-862).</strong> Several auth helpers
+(<code>checkAdminOrCondition</code>, <code>checkUserId</code>) are async, so calling them without
+<code>await</code> let a denied caller’s rejection slip past while the handler kept running:
+on card create that performed the write anyway (auth bypass), and on the board
+member endpoints the un-awaited rejection surfaced to the client as an HTTP 503.
+Fixes:
+<ul>
+<li>The pre-existing single-card create (<code>POST .../cards</code>) and the new bulk-create
+endpoint now <code>await</code> the membership check, so a logged-in non-board-member can
+no longer create cards.</li>
+<li>The board member add/remove/permission endpoints
+(<code>POST .../members/:userId/add</code>, <code>.../remove</code>, <code>POST .../members/:memberId</code>)
+now require <strong>board admin</strong> (or site admin), awaited, returning a clean 401/403
+— instead of the previous un-awaited <code>checkUserId</code> (nominally site-admin-only,
+but effectively bypassed) that 503’d on denial.</li>
+<li>Board-label creation (<code>PUT .../labels</code>) is gated to board admin / site admin,
+and it plus <code>GET /api/user/cards</code> return explicit 401/403 instead of letting an
+auth helper throw (which, under Express 4, would otherwise leave the request
+hanging). These were all found by the new REST API E2E test below. Thanks to
+xet7 and Claude.</li>
+</ul>
+</li>
+<li><strong>End-to-end tests for the new REST API behavior and permissions.</strong> A new
+Playwright spec <code>tests/playwright/specs/17-rest-api.e2e.js</code> exercises the new/changed
+endpoints against a running server (real Bearer-token auth → real HTTP request →
+MongoDB change verified directly), asserting both correct data AND correct
+permissions: bulk create/delete (#4743), unique card numbers under bulk create
+(#5813), bulk label merge + rejection of off-board labels + BoardAdmin-gated label
+creation (#5819), add board member by named role + invalid-role rejection and
+card-member add validated against board membership (#5998), add/clear card date
+(#5846), linked-card creation (#5897), copy-card-to-position deep copy, board card
+settings GET/PUT (#3062), <code>GET /api/user/cards</code> with due filter (#4815), and that an
+unauthenticated request is denied. These use Playwright’s HTTP <code>request</code> client (no
+browser is launched, so they run fast). The pure data/permission helpers they rely
+on live in <code>server/lib/utils.js</code> (<code>boardMemberRoleToFlags</code>, <code>computeSortForIndex</code>,
+<code>mergeLabelIds</code>, <code>canAssignCardMember</code>, <code>isCardDateClear</code>).</li>
+<li><strong><code>rebuild-wekan.sh</code> test menu reorganized.</strong> There is now a menu option per test
+type so each can be run on its own: “Run ALL tests on <a href="http://localhost:3000">http://localhost:3000</a> (start
+server, progress + summary)” (starts the server and runs import regression + Mocha +
+Node E2E + Playwright Chromium, streaming progress and printing a per-suite PASS/FAIL
+summary), plus standalone “Test Mocha unit + security + API-logic tests”, “Test import
+regression”, “Test Node E2E regressions”, and the existing per-browser Playwright
+options. Playwright holds the browser-UI specs (01–16) and the API E2E spec (17);
+the fast unit/security/policy tests stay in the Mocha suite (<code>meteor test --once --driver-package meteortesting:mocha</code>).
+Thanks to xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/a532ee7f14726dbf1eec956978d08436d7c47550">Fix tests</a>.
+Thanks to xet7 and Claude.</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v9.36" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

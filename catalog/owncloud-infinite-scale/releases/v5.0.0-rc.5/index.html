@@ -1,0 +1,1773 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ownCloud Infinite Scale v5.0.0-rc.5 release notes | WinterFlow.io</title><meta name="description" content="This release introduces service accounts, KQL search syntax, password policies, and numerous bug fixes across ocis, Web, and Reva, while deprecating…"><link rel="canonical" href="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v5.0.0-rc.5/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="ownCloud Infinite Scale v5.0.0-rc.5 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces service accounts, KQL search syntax, password policies, and numerous bug fixes across ocis, Web, and Reva, while deprecating…"><meta property="og:url" content="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v5.0.0-rc.5/"><meta property="og:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ownCloud Infinite Scale v5.0.0-rc.5 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces service accounts, KQL search syntax, password policies, and numerous bug fixes across ocis, Web, and Reva, while deprecating…"><meta name="twitter:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"ownCloud Infinite Scale","item":"https://winterflow.io/catalog/owncloud-infinite-scale/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/"},{"@type":"ListItem","position":5,"name":"v5.0.0-rc.5","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/v5.0.0-rc.5/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png" alt="ownCloud Infinite Scale logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">ownCloud Infinite Scale</h1> <p class="mt-4 text-lg leading-8 text-gray-600">The new cloud-native file sync and share platform from ownCloud</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> dropbox, google drive, box </p> </div> <div class="mt-6 flex flex-wrap gap-4">  <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://doc.owncloud.com/ocis/next/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/owncloud/ocis/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Apache-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 2,042 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="ownCloud Infinite Scale" data-app-slug="owncloud-infinite-scale" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/owncloud-infinite-scale/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/owncloud-infinite-scale/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v5.0.0-rc.5</h2> <span class="text-sm text-gray-500">2024-02-26</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="incremental-changes-since-500-rc4">Incremental changes since 5.0.0-rc.4</h1>
+<h2 id="ocis">ocis</h2>
+<ul>
+<li>Bugfix - Fix search response: <a href="https://github.com/owncloud/ocis/pull/7815">#7815</a></li>
+<li>Bugfix - Fix Content-Disposition header for downloads: <a href="https://github.com/owncloud/ocis/pull/8381">#8381</a></li>
+<li>Bugfix - Fix an error when move: <a href="https://github.com/owncloud/ocis/pull/8396">#8396</a></li>
+<li>Bugfix - Fix extended env parser: <a href="https://github.com/owncloud/ocis/pull/8409">#8409</a></li>
+<li>Bugfix - Graph/drives/permission Expiration date update: <a href="https://github.com/owncloud/ocis/pull/8413">#8413</a></li>
+<li>Bugfix - Fix search error message: <a href="https://github.com/owncloud/ocis/pull/8444">#8444</a></li>
+<li>Bugfix - Graph/sharedWithMe align IDs with webdav response: <a href="https://github.com/owncloud/ocis/pull/8467">#8467</a></li>
+<li>Bugfix - Bump reva to pull in changes to fix recursive trashcan purge: <a href="https://github.com/owncloud/ocis/pull/8505">#8505</a></li>
+<li>Change - Deprecate sharing cs3 backends: <a href="https://github.com/owncloud/ocis/pull/8478">#8478</a></li>
+<li>Enhancement - Improve ocis single binary start: <a href="https://github.com/owncloud/ocis/pull/8320">#8320</a></li>
+<li>Enhancement - Use environment variables in yaml config files: <a href="https://github.com/owncloud/ocis/pull/8339">#8339</a></li>
+<li>Enhancement - Bump reva: <a href="https://github.com/owncloud/ocis/pull/8340">#8340</a></li>
+<li>Enhancement - Allow sending multiple user ids in one sse event: <a href="https://github.com/owncloud/ocis/pull/8379">#8379</a></li>
+<li>Enhancement - Allow to skip service listing: <a href="https://github.com/owncloud/ocis/pull/8408">#8408</a></li>
+<li>Enhancement - Add a make step to validate the env var annotations: <a href="https://github.com/owncloud/ocis/pull/8436">#8436</a></li>
+</ul>
+<h2 id="web">Web</h2>
+<ul>
+<li>Bugfix <a href="https://github.com/owncloud/web/issues/10473">owncloud/web#10473</a>: Public link file download</li>
+<li>Bugfix <a href="https://github.com/owncloud/web/pull/10489">owncloud/web#10489</a>: Wrong share permissions when resharing off</li>
+</ul>
+<h2 id="reva">Reva</h2>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4464">cs3org/reva#4464</a>: Don’t check lock grants</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4516">cs3org/reva#4516</a>: The sharemanager can now reject grants with resharing permissions</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4512">cs3org/reva#4512</a>: Bump dependencies</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4498">cs3org/reva#4498</a>: Fix Content-Disposition header in dav</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4517">cs3org/reva#4517</a>: Fix duplicated items in the sharejail root</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4528">cs3org/reva#4528</a>: Respect IfNotExist option when uploading in cs3 metadata storage</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4503">cs3org/reva#4503</a>: Fix an error when move</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4533">cs3org/reva#4533</a>: Fix recursive trashcan purge</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4492">cs3org/reva#4492</a>: Fix the resource name</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4532">cs3org/reva#4532</a>: Jsoncs3 cache fixes</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4529">cs3org/reva#4529</a>: We aligned some OCS return codes with oc10</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4507">cs3org/reva#4507</a>: Make tusd CORS headers configurable</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4527">cs3org/reva#4527</a>: Unify datagateway method handling</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4530">cs3org/reva#4530</a>: Drop unnecessary grant exists check</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4501">cs3org/reva#4501</a>: Allow sending multiple user ids in one sse event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4485">cs3org/reva#4485</a>: Modify the concurrency default</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4526">cs3org/reva#4526</a>: Configurable s3 put options</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4491">cs3org/reva#4491</a>: Add filename incrementor for secret filedrops</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4490">cs3org/reva#4490</a>: Lazy initialize public share manager</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4494">cs3org/reva#4494</a>: Start implementation of a plain posix storage driver</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4502">cs3org/reva#4502</a>: Add spaceindex.AddAll()</li>
+</ul>
+<h2 id="all-changes-in-v500-rc5">All changes in v5.0.0-rc.5</h2>
+<ul>
+<li>Bugfix - Fix wrong compile date: <a href="https://github.com/owncloud/ocis/pull/6132">#6132</a></li>
+<li>Bugfix - Fix the kql-bleve search: <a href="https://github.com/owncloud/ocis/pull/7290">#7290</a></li>
+<li>Bugfix - Bring back the USERS_LDAP_USER_SCHEMA_ID variable: <a href="https://github.com/owncloud/ocis/issues/7312">#7312</a></li>
+<li>Bugfix - Do not reset state of received shares when rebuilding the jsoncs3 index: <a href="https://github.com/owncloud/ocis/issues/7319">#7319</a></li>
+<li>Bugfix - Deprecate redundant encryptions settings for notification service: <a href="https://github.com/owncloud/ocis/issues/7345">#7345</a></li>
+<li>Bugfix - Check school number for duplicates before adding a school: <a href="https://github.com/owncloud/ocis/pull/7351">#7351</a></li>
+<li>Bugfix - Don’t reload web config: <a href="https://github.com/owncloud/ocis/pull/7369">#7369</a></li>
+<li>Bugfix - Delete outdated userlog events: <a href="https://github.com/owncloud/ocis/pull/7410">#7410</a></li>
+<li>Bugfix - Set the mountpoint on auto accept: <a href="https://github.com/owncloud/ocis/pull/7460">#7460</a></li>
+<li>Bugfix - Fix default language fallback: <a href="https://github.com/owncloud/ocis/issues/7465">#7465</a></li>
+<li>Bugfix - GetUserByClaim fixed for Active Directory: <a href="https://github.com/owncloud/ocis/pull/7476">#7476</a></li>
+<li>Bugfix - Fix preview request 500 error when made too early: <a href="https://github.com/owncloud/ocis/issues/7502">#7502</a></li>
+<li>Bugfix - Fix 403 in docs pipeline: <a href="https://github.com/owncloud/ocis/issues/7509">#7509</a></li>
+<li>Bugfix - Fix the auth service env variable: <a href="https://github.com/owncloud/ocis/pull/7523">#7523</a></li>
+<li>Bugfix - Token storage config fixed: <a href="https://github.com/owncloud/ocis/pull/7528">#7528</a></li>
+<li>Bugfix - Set existing mountpoint on auto accept: <a href="https://github.com/owncloud/ocis/pull/7592">#7592</a></li>
+<li>Bugfix - Return 423 status code on tag create: <a href="https://github.com/owncloud/ocis/pull/7596">#7596</a></li>
+<li>Bugfix - Fix libre-graph status codes: <a href="https://github.com/owncloud/ocis/issues/7678">#7678</a></li>
+<li>Bugfix - Fix unlock via space API: <a href="https://github.com/owncloud/ocis/pull/7726">#7726</a></li>
+<li>Bugfix - Disable DEPTH infinity in PROPFIND: <a href="https://github.com/owncloud/ocis/pull/7746">#7746</a></li>
+<li>Bugfix - Fix the tgz mime type: <a href="https://github.com/owncloud/ocis/pull/7772">#7772</a></li>
+<li>Bugfix - Fix natsjs cache: <a href="https://github.com/owncloud/ocis/pull/7790">#7790</a></li>
+<li>Bugfix - Fix search service start: <a href="https://github.com/owncloud/ocis/pull/7795">#7795</a></li>
+<li>Bugfix - Fix search response: <a href="https://github.com/owncloud/ocis/pull/7815">#7815</a></li>
+<li>Bugfix - The race conditions in tests: <a href="https://github.com/owncloud/ocis/pull/7847">#7847</a></li>
+<li>Bugfix - Do not purge expired upload sessions that are still postprocessing: <a href="https://github.com/owncloud/ocis/pull/7859">#7859</a></li>
+<li>Bugfix - Fix the public link update: <a href="https://github.com/owncloud/ocis/pull/7862">#7862</a></li>
+<li>Bugfix - Fix jwt config of policies service: <a href="https://github.com/owncloud/ocis/pull/7893">#7893</a></li>
+<li>Bugfix - Updating logo with new theme structure: <a href="https://github.com/owncloud/ocis/pull/7930">#7930</a></li>
+<li>Bugfix - Password policy return code was wrong: <a href="https://github.com/owncloud/ocis/pull/7952">#7952</a></li>
+<li>Bugfix - Removed outdated and unused dependency from idp package: <a href="https://github.com/owncloud/ocis/issues/7957">#7957</a></li>
+<li>Bugfix - Update permission validation: <a href="https://github.com/owncloud/ocis/pull/7963">#7963</a></li>
+<li>Bugfix - Renaming a user to a string with capital letters: <a href="https://github.com/owncloud/ocis/pull/7964">#7964</a></li>
+<li>Bugfix - Improve OCM support: <a href="https://github.com/owncloud/ocis/pull/7973">#7973</a></li>
+<li>Bugfix - Permissions of a role with duplicate ID: <a href="https://github.com/owncloud/ocis/pull/7976">#7976</a></li>
+<li>Bugfix - Non durable streams for sse service: <a href="https://github.com/owncloud/ocis/pull/7986">#7986</a></li>
+<li>Bugfix - Fix empty trace ids: <a href="https://github.com/owncloud/ocis/pull/8023">#8023</a></li>
+<li>Bugfix - Fix search by containing special characters: <a href="https://github.com/owncloud/ocis/pull/8050">#8050</a></li>
+<li>Bugfix - Fix the upload postprocessing: <a href="https://github.com/owncloud/ocis/pull/8117">#8117</a></li>
+<li>Bugfix - Disallow to delete a file during the processing: <a href="https://github.com/owncloud/ocis/pull/8132">#8132</a></li>
+<li>Bugfix - Fix wrong naming in nats-js-kv registry: <a href="https://github.com/owncloud/ocis/pull/8140">#8140</a></li>
+<li>Bugfix - IDP CS3 backend sessions now survive a restart: <a href="https://github.com/owncloud/ocis/pull/8142">#8142</a></li>
+<li>Bugfix - Fix patching of language: <a href="https://github.com/owncloud/ocis/pull/8182">#8182</a></li>
+<li>Bugfix - Fix search service to not log expected cases as errors: <a href="https://github.com/owncloud/ocis/pull/8200">#8200</a></li>
+<li>Bugfix - Updating and reset logo failed: <a href="https://github.com/owncloud/ocis/pull/8211">#8211</a></li>
+<li>Bugfix - Cleanup graph/pkg/service/v0/driveitems.go: <a href="https://github.com/owncloud/ocis/pull/8228">#8228</a></li>
+<li>Bugfix - Cleanup <code>search/pkg/search/search.go</code>: <a href="https://github.com/owncloud/ocis/pull/8230">#8230</a></li>
+<li>Bugfix - Graph/sharedWithMe works for shares from project spaces now: <a href="https://github.com/owncloud/ocis/pull/8233">#8233</a></li>
+<li>Bugfix - Fix PATCH/DELETE status code for drives that don’t support them: <a href="https://github.com/owncloud/ocis/pull/8235">#8235</a></li>
+<li>Bugfix - Fix nats authentication: <a href="https://github.com/owncloud/ocis/pull/8236">#8236</a></li>
+<li>Bugfix - Fix the resource name: <a href="https://github.com/owncloud/ocis/pull/8246">#8246</a></li>
+<li>Bugfix - Apply role constraints when creating shares via the graph API: <a href="https://github.com/owncloud/ocis/pull/8247">#8247</a></li>
+<li>Bugfix - Fix concurrent access to a map: <a href="https://github.com/owncloud/ocis/pull/8269">#8269</a></li>
+<li>Bugfix - Fix nats registry: <a href="https://github.com/owncloud/ocis/pull/8281">#8281</a></li>
+<li>Bugfix - Remove invalid environment variables: <a href="https://github.com/owncloud/ocis/pull/8303">#8303</a></li>
+<li>Bugfix - Fix concurrent shares config: <a href="https://github.com/owncloud/ocis/pull/8317">#8317</a></li>
+<li>Bugfix - Fix Content-Disposition header for downloads: <a href="https://github.com/owncloud/ocis/pull/8381">#8381</a></li>
+<li>Bugfix - Signed url verification: <a href="https://github.com/owncloud/ocis/pull/8385">#8385</a></li>
+<li>Bugfix - Fix an error when move: <a href="https://github.com/owncloud/ocis/pull/8396">#8396</a></li>
+<li>Bugfix - Fix extended env parser: <a href="https://github.com/owncloud/ocis/pull/8409">#8409</a></li>
+<li>Bugfix - Graph/drives/permission Expiration date update: <a href="https://github.com/owncloud/ocis/pull/8413">#8413</a></li>
+<li>Bugfix - Fix search error message: <a href="https://github.com/owncloud/ocis/pull/8444">#8444</a></li>
+<li>Bugfix - Graph/sharedWithMe align IDs with webdav response: <a href="https://github.com/owncloud/ocis/pull/8467">#8467</a></li>
+<li>Bugfix - Bump reva to pull in changes to fix recursive trashcan purge: <a href="https://github.com/owncloud/ocis/pull/8505">#8505</a></li>
+<li>Bugfix - Fix last month search: <a href="https://github.com/golang/go/issues/31145">#31145</a></li>
+<li>Change - Auto-Accept Shares: <a href="https://github.com/owncloud/ocis/pull/7097">#7097</a></li>
+<li>Change - Change the default TUS chunk size: <a href="https://github.com/owncloud/ocis/pull/7273">#7273</a></li>
+<li>Change - Remove privacyURL and imprintURL from the config: <a href="https://github.com/owncloud/ocis/pull/7938/">#7938</a></li>
+<li>Change - Remove accessDeniedHelpUrl from the config: <a href="https://github.com/owncloud/ocis/pull/7970">#7970</a></li>
+<li>Change - Deprecate sharing cs3 backends: <a href="https://github.com/owncloud/ocis/pull/8478">#8478</a></li>
+<li>Enhancement - Add the Banned Passwords List: <a href="https://github.com/cs3org/reva/pull/4197">#4197</a></li>
+<li>Enhancement - Introduce service accounts: <a href="https://github.com/owncloud/ocis/pull/6427">#6427</a></li>
+<li>Enhancement - SSE for messaging: <a href="https://github.com/owncloud/ocis/pull/6992">#6992</a></li>
+<li>Enhancement - Support spec violating AD FS access token issuer: <a href="https://github.com/owncloud/ocis/pull/7140">#7140</a></li>
+<li>Enhancement - Add OCIS_LDAP_BIND_PASSWORD as replacement for LDAP_BIND_PASSWORD: <a href="https://github.com/owncloud/ocis/issues/7176">#7176</a></li>
+<li>Enhancement - Keyword Query Language (KQL) search syntax: <a href="https://github.com/owncloud/ocis/pull/7212">#7212</a></li>
+<li>Enhancement - Introduce clientlog service: <a href="https://github.com/owncloud/ocis/pull/7217">#7217</a></li>
+<li>Enhancement - Proxy uses service accounts for provisioning: <a href="https://github.com/owncloud/ocis/pull/7240">#7240</a></li>
+<li>Enhancement - The password policies change request: <a href="https://github.com/owncloud/ocis/pull/7264">#7264</a></li>
+<li>Enhancement - Introduce natsjs registry: <a href="https://github.com/owncloud/ocis/issues/7272">#7272</a></li>
+<li>Enhancement - Add the password policies: <a href="https://github.com/owncloud/ocis/pull/7285">#7285</a></li>
+<li>Enhancement - Add login URL config: <a href="https://github.com/owncloud/ocis/pull/7317">#7317</a></li>
+<li>Enhancement - Improve SSE format: <a href="https://github.com/owncloud/ocis/pull/7325">#7325</a></li>
+<li>Enhancement - New value <code>auto</code> for NOTIFICATIONS_SMTP_AUTHENTICATION: <a href="https://github.com/owncloud/ocis/issues/7356">#7356</a></li>
+<li>Enhancement - Make sse service scalable: <a href="https://github.com/owncloud/ocis/pull/7382">#7382</a></li>
+<li>Enhancement - Edit wrong named enves: <a href="https://github.com/owncloud/ocis/pull/7406">#7406</a></li>
+<li>Enhancement - Thumbnail generation with image processors: <a href="https://github.com/owncloud/ocis/pull/7409">#7409</a></li>
+<li>Enhancement - Set default for Async Uploads to true: <a href="https://github.com/owncloud/ocis/pull/7416">#7416</a></li>
+<li>Enhancement - The default language added: <a href="https://github.com/owncloud/ocis/pull/7417">#7417</a></li>
+<li>Enhancement - Add “Last modified” filter Chip: <a href="https://github.com/owncloud/ocis/pull/7455">#7455</a></li>
+<li>Enhancement - Config for disabling Web extensions: <a href="https://github.com/owncloud/ocis/pull/7486">#7486</a></li>
+<li>Enhancement - Store and index metadata: <a href="https://github.com/owncloud/ocis/pull/7490">#7490</a></li>
+<li>Enhancement - Add support for audio files to the thumbnails service: <a href="https://github.com/owncloud/ocis/pull/7491">#7491</a></li>
+<li>Enhancement - Implement sharing roles: <a href="https://github.com/owncloud/ocis/pull/7524">#7524</a></li>
+<li>Enhancement - Add new permission to delete public link password: <a href="https://github.com/owncloud/ocis/pull/7538">#7538</a></li>
+<li>Enhancement - Add config to enforce passwords on all public links: <a href="https://github.com/owncloud/ocis/pull/7547">#7547</a></li>
+<li>Enhancement - Tika content extraction cleanup for search: <a href="https://github.com/owncloud/ocis/pull/7553">#7553</a></li>
+<li>Enhancement - Allow configuring storage registry with envvars: <a href="https://github.com/owncloud/ocis/pull/7554">#7554</a></li>
+<li>Enhancement - Add search MediaType filter: <a href="https://github.com/owncloud/ocis/pull/7602">#7602</a></li>
+<li>Enhancement - Add Sharing NG endpoints: <a href="https://github.com/owncloud/ocis/pull/7633">#7633</a></li>
+<li>Enhancement - Configs for Web embed mode: <a href="https://github.com/owncloud/ocis/pull/7670">#7670</a></li>
+<li>Enhancement - Support login page background configuration: <a href="https://github.com/owncloud/ocis/issues/7674">#7674</a></li>
+<li>Enhancement - Add new permissions: <a href="https://github.com/owncloud/ocis/pull/7700">#7700</a></li>
+<li>Enhancement - Add preferred language to user settings: <a href="https://github.com/owncloud/ocis/pull/7720">#7720</a></li>
+<li>Enhancement - Add user filter startswith and contains: <a href="https://github.com/owncloud/ocis/pull/7739">#7739</a></li>
+<li>Enhancement - Allow configuring additional routes: <a href="https://github.com/owncloud/ocis/pull/7741">#7741</a></li>
+<li>Enhancement - Default link permission config: <a href="https://github.com/owncloud/ocis/pull/7783">#7783</a></li>
+<li>Enhancement - Add banned password list to the default deployments: <a href="https://github.com/owncloud/ocis/pull/7784">#7784</a></li>
+<li>Enhancement - Update to go 1.21: <a href="https://github.com/owncloud/ocis/pull/7794">#7794</a></li>
+<li>Enhancement - Add Sharing NG list permissions endpoint: <a href="https://github.com/owncloud/ocis/pull/7805">#7805</a></li>
+<li>Enhancement - Add user list requires filter config: <a href="https://github.com/owncloud/ocis/pull/7866">#7866</a></li>
+<li>Enhancement - Retry antivirus postprocessing step in case of problems: <a href="https://github.com/owncloud/ocis/pull/7874">#7874</a></li>
+<li>Enhancement - Add validation to public share provider: <a href="https://github.com/owncloud/ocis/pull/7877">#7877</a></li>
+<li>Enhancement - Store and index metadata: <a href="https://github.com/owncloud/ocis/pull/7886">#7886</a></li>
+<li>Enhancement - Allow regular users to list other users: <a href="https://github.com/owncloud/ocis/pull/7887">#7887</a></li>
+<li>Enhancement - Add edit public share to sharing NG: <a href="https://github.com/owncloud/ocis/pull/7908/">#7908</a></li>
+<li>Enhancement - Add cli commands for trash-bin: <a href="https://github.com/owncloud/ocis/pull/7917">#7917</a></li>
+<li>Enhancement - Add validation update public share: <a href="https://github.com/owncloud/ocis/pull/7978">#7978</a></li>
+<li>Enhancement - Allow inmemory nats-js-kv stores: <a href="https://github.com/owncloud/ocis/pull/7979">#7979</a></li>
+<li>Enhancement - Disable the password policy: <a href="https://github.com/owncloud/ocis/pull/7985">#7985</a></li>
+<li>Enhancement - Use kv store in natsjs registry: <a href="https://github.com/owncloud/ocis/pull/7987">#7987</a></li>
+<li>Enhancement - Allow authentication nats connections: <a href="https://github.com/owncloud/ocis/pull/7989">#7989</a></li>
+<li>Enhancement - Add RED metrics to the metrics endpoint: <a href="https://github.com/owncloud/ocis/pull/7994">#7994</a></li>
+<li>Enhancement - Add ocm and sciencemesh services: <a href="https://github.com/owncloud/ocis/pull/7998">#7998</a></li>
+<li>Enhancement - Make nats-js-kv the default registry: <a href="https://github.com/owncloud/ocis/pull/8011">#8011</a></li>
+<li>Enhancement - Service Account roles: <a href="https://github.com/owncloud/ocis/pull/8051">#8051</a></li>
+<li>Enhancement - Update antivirus service: <a href="https://github.com/owncloud/ocis/pull/8062">#8062</a></li>
+<li>Enhancement - Remove deprecated environment variables: <a href="https://github.com/owncloud/ocis/pull/8149">#8149</a></li>
+<li>Enhancement - Disable the password policy: <a href="https://github.com/owncloud/ocis/pull/8152">#8152</a></li>
+<li>Enhancement - Allow restarting multiple uploads with one command: <a href="https://github.com/owncloud/ocis/pull/8287">#8287</a></li>
+<li>Enhancement - Modify the concurrency default: <a href="https://github.com/owncloud/ocis/pull/8309">#8309</a></li>
+<li>Enhancement - Improve ocis single binary start: <a href="https://github.com/owncloud/ocis/pull/8320">#8320</a></li>
+<li>Enhancement - Use environment variables in yaml config files: <a href="https://github.com/owncloud/ocis/pull/8339">#8339</a></li>
+<li>Enhancement - Increment filenames on upload collisions in secret filedrops: <a href="https://github.com/owncloud/ocis/pull/8340">#8340</a></li>
+<li>Enhancement - Allow sending multiple user ids in one sse event: <a href="https://github.com/owncloud/ocis/pull/8379">#8379</a></li>
+<li>Enhancement - Allow to skip service listing: <a href="https://github.com/owncloud/ocis/pull/8408">#8408</a></li>
+<li>Enhancement - Add a make step to validate the env var annotations: <a href="https://github.com/owncloud/ocis/pull/8436">#8436</a></li>
+<li>Enhancement - Update web to v8.0.0-rc.5: <a href="https://github.com/owncloud/ocis/pull/8491">#8491</a></li>
+<li>Enhancement - Drop the unnecessary grants exists check when creating shares: <a href="https://github.com/owncloud/ocis/pull/8502">#8502</a></li>
+<li>Enhancement - Update reva to 2.19.0: <a href="https://github.com/owncloud/ocis/pull/8519">#8519</a></li>
+</ul>
+<h2 id="details">Details</h2>
+<ul>
+<li>
+<p>Bugfix - Fix wrong compile date: <a href="https://github.com/owncloud/ocis/pull/6132">#6132</a></p>
+<p>We fixed that current date is always printed.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6124">https://github.com/owncloud/ocis/issues/6124</a>
+<a href="https://github.com/owncloud/ocis/pull/6132">https://github.com/owncloud/ocis/pull/6132</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the kql-bleve search: <a href="https://github.com/owncloud/ocis/pull/7290">#7290</a></p>
+<p>We fixed the issue when 500 on searches that contain ”:”. Added the characters
+escaping according to <a href="https://blevesearch.com/docs/Query-String-Query/">https://blevesearch.com/docs/Query-String-Query/</a></p>
+<p><a href="https://github.com/owncloud/ocis/issues/7282">https://github.com/owncloud/ocis/issues/7282</a>
+<a href="https://github.com/owncloud/ocis/pull/7290">https://github.com/owncloud/ocis/pull/7290</a></p>
+</li>
+<li>
+<p>Bugfix - Bring back the USERS_LDAP_USER_SCHEMA_ID variable: <a href="https://github.com/owncloud/ocis/issues/7312">#7312</a></p>
+<p>We reintroduced the USERS_LDAP_USER_SCHEMA_ID variable which was accidently
+removed from the users service with the 4.0.0 release.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7312">https://github.com/owncloud/ocis/issues/7312</a>
+<a href="https://github.com/owncloud/ocis-charts/issues/397">https://github.com/owncloud/ocis-charts/issues/397</a></p>
+</li>
+<li>
+<p>Bugfix - Do not reset state of received shares when rebuilding the jsoncs3 index: <a href="https://github.com/owncloud/ocis/issues/7319">#7319</a></p>
+<p>We fixed a problem with the “ocis migrate rebuild-jsoncs3-indexes” command which
+reset the state of received shares to “pending”.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7319">https://github.com/owncloud/ocis/issues/7319</a></p>
+</li>
+<li>
+<p>Bugfix - Deprecate redundant encryptions settings for notification service: <a href="https://github.com/owncloud/ocis/issues/7345">#7345</a></p>
+<p>The values <code>tls</code> and <code>ssl</code> for the <code>smtp_encryption</code> configuration setting are
+duplicates of <code>starttls</code> and <code>ssltls</code>. They have been marked as deprecated. A
+warning will be logged when they are still used. Please use <code>starttls</code> instead
+for <code>tls</code> and <code>ssltls</code> instead of `ssl.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7345">https://github.com/owncloud/ocis/issues/7345</a></p>
+</li>
+<li>
+<p>Bugfix - Check school number for duplicates before adding a school: <a href="https://github.com/owncloud/ocis/pull/7351">#7351</a></p>
+<p>We fixed an issue that allowed to create two schools with the same school number</p>
+<p><a href="https://github.com/owncloud/enterprise/issues/6051">https://github.com/owncloud/enterprise/issues/6051</a>
+<a href="https://github.com/owncloud/ocis/pull/7351">https://github.com/owncloud/ocis/pull/7351</a></p>
+</li>
+<li>
+<p>Bugfix - Don’t reload web config: <a href="https://github.com/owncloud/ocis/pull/7369">#7369</a></p>
+<p>When requesting <code>config.json</code> file from the server, web service would reload the
+file if a path is set. This will remove config entries set via Envvar. Since we
+want to have the possiblity to set configuration from both sources we removed
+the reading from file. The file will still be loaded on service startup.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7369">https://github.com/owncloud/ocis/pull/7369</a></p>
+</li>
+<li>
+<p>Bugfix - Delete outdated userlog events: <a href="https://github.com/owncloud/ocis/pull/7410">#7410</a></p>
+<p>Userlog will now delete events when the user has no longer access to the
+underlying resource</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7410">https://github.com/owncloud/ocis/pull/7410</a></p>
+</li>
+<li>
+<p>Bugfix - Set the mountpoint on auto accept: <a href="https://github.com/owncloud/ocis/pull/7460">#7460</a></p>
+<p>On shares auto accept set a mountpoint with same logic as ocs handler</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7460">https://github.com/owncloud/ocis/pull/7460</a></p>
+</li>
+<li>
+<p>Bugfix - Fix default language fallback: <a href="https://github.com/owncloud/ocis/issues/7465">#7465</a></p>
+<p>Add the default language for the webui, the settings, userlog and notification
+service.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7465">https://github.com/owncloud/ocis/issues/7465</a></p>
+</li>
+<li>
+<p>Bugfix - GetUserByClaim fixed for Active Directory: <a href="https://github.com/owncloud/ocis/pull/7476">#7476</a></p>
+<p>The reva ldap backend for the users and groups service did not hex escape binary
+uuids in LDAP filter correctly this could cause problems in Active Directory
+setups for services using the GetUserByClaim CS3 request with claim “userid”.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7469">https://github.com/owncloud/ocis/issues/7469</a>
+<a href="https://github.com/owncloud/ocis/pull/7476">https://github.com/owncloud/ocis/pull/7476</a></p>
+</li>
+<li>
+<p>Bugfix - Fix preview request 500 error when made too early: <a href="https://github.com/owncloud/ocis/issues/7502">#7502</a></p>
+<p>Fix the status code and message when a thumbnail request is made too early.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7502">https://github.com/owncloud/ocis/issues/7502</a>
+<a href="https://github.com/owncloud/ocis/pull/7507">https://github.com/owncloud/ocis/pull/7507</a></p>
+</li>
+<li>
+<p>Bugfix - Fix 403 in docs pipeline: <a href="https://github.com/owncloud/ocis/issues/7509">#7509</a></p>
+<p>Docs pipeline was not routed through our proxies which could lead to requests
+being blacklisted</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7509">https://github.com/owncloud/ocis/issues/7509</a>
+<a href="https://github.com/owncloud/ocis/pull/7511">https://github.com/owncloud/ocis/pull/7511</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the auth service env variable: <a href="https://github.com/owncloud/ocis/pull/7523">#7523</a></p>
+<p>We the auth service env variable to the service specific name. Before it was
+configurable via <code>AUTH_MACHINE_JWT_SECRET</code> and now is configurable via
+<code>AUTH_SERVICE_JWT_SECRET</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7523">https://github.com/owncloud/ocis/pull/7523</a></p>
+</li>
+<li>
+<p>Bugfix - Token storage config fixed: <a href="https://github.com/owncloud/ocis/pull/7528">#7528</a></p>
+<p>The token storage config in the config.json for web was missing when it was set
+to <code>false</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7462">https://github.com/owncloud/ocis/issues/7462</a>
+<a href="https://github.com/owncloud/ocis/pull/7528">https://github.com/owncloud/ocis/pull/7528</a></p>
+</li>
+<li>
+<p>Bugfix - Set existing mountpoint on auto accept: <a href="https://github.com/owncloud/ocis/pull/7592">#7592</a></p>
+<p>When already having a share for a specific resource, auto accept would use
+custom mountpoints which lead to other errors. Now auto-accept is using the
+existing mountpoint of a share.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7592">https://github.com/owncloud/ocis/pull/7592</a></p>
+</li>
+<li>
+<p>Bugfix - Return 423 status code on tag create: <a href="https://github.com/owncloud/ocis/pull/7596">#7596</a></p>
+<p>When a file is locked, return 423 status code instead 500 on tag create</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7596">https://github.com/owncloud/ocis/pull/7596</a></p>
+</li>
+<li>
+<p>Bugfix - Fix libre-graph status codes: <a href="https://github.com/owncloud/ocis/issues/7678">#7678</a></p>
+<p>Creating group: <a href="https://owncloud.dev/libre-graph-api/#/groups/CreateGroup">https://owncloud.dev/libre-graph-api/#/groups/CreateGroup</a>
+changed: 200 -> 201</p>
+<p>Creating users: <a href="https://owncloud.dev/libre-graph-api/#/users/CreateUser">https://owncloud.dev/libre-graph-api/#/users/CreateUser</a> changed:
+200 -> 201</p>
+<p>Export GDPR: <a href="https://owncloud.dev/libre-graph-api/#/user/ExportPersonalData">https://owncloud.dev/libre-graph-api/#/user/ExportPersonalData</a>
+changed: 201 -> 202</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7678">https://github.com/owncloud/ocis/issues/7678</a>
+<a href="https://github.com/owncloud/ocis/pull/7705">https://github.com/owncloud/ocis/pull/7705</a></p>
+</li>
+<li>
+<p>Bugfix - Fix unlock via space API: <a href="https://github.com/owncloud/ocis/pull/7726">#7726</a></p>
+<p>We fixed a bug that caused Error 500 when user try to unlock file using fileid
+The handleSpaceUnlock has been added</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7708">https://github.com/owncloud/ocis/issues/7708</a>
+<a href="https://github.com/owncloud/ocis/pull/7726">https://github.com/owncloud/ocis/pull/7726</a>
+<a href="https://github.com/cs3org/reva/pull/4338">https://github.com/cs3org/reva/pull/4338</a></p>
+</li>
+<li>
+<p>Bugfix - Disable DEPTH infinity in PROPFIND: <a href="https://github.com/owncloud/ocis/pull/7746">#7746</a></p>
+<p>We fixed the Disabled DEPTH infinity in PROPFIND for: Personal
+/remote.php/dav/files/admin Public link share
+/remote.php/dav/public-files/<token> Trashbin
+/remote.php/dav/spaces/trash-bin/<personal-space-id></personal-space-id></token></p>
+<p><a href="https://github.com/owncloud/ocis/issues/7359">https://github.com/owncloud/ocis/issues/7359</a>
+<a href="https://github.com/owncloud/ocis/pull/7746">https://github.com/owncloud/ocis/pull/7746</a>
+<a href="https://github.com/cs3org/reva/pull/4278">https://github.com/cs3org/reva/pull/4278</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the tgz mime type: <a href="https://github.com/owncloud/ocis/pull/7772">#7772</a></p>
+<p>We have fixed a bug when the tgz mime type was not “application/gzip”</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7744">https://github.com/owncloud/ocis/issues/7744</a>
+<a href="https://github.com/owncloud/ocis/pull/7772">https://github.com/owncloud/ocis/pull/7772</a></p>
+</li>
+<li>
+<p>Bugfix - Fix natsjs cache: <a href="https://github.com/owncloud/ocis/pull/7790">#7790</a></p>
+<p>The nats-js cache was not working. It paniced and wrote a lot of error logs.
+Both is fixed now.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7790">https://github.com/owncloud/ocis/pull/7790</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search service start: <a href="https://github.com/owncloud/ocis/pull/7795">#7795</a></p>
+<p>The <code>search</code> service would sometimes not start correctly because config values
+are overwritten by default configuration.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7795">https://github.com/owncloud/ocis/pull/7795</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search response: <a href="https://github.com/owncloud/ocis/pull/7815">#7815</a></p>
+<p>We fixed the search response code from 500 to 400 when the request is invalid</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7812">https://github.com/owncloud/ocis/issues/7812</a>
+<a href="https://github.com/owncloud/ocis/pull/7815">https://github.com/owncloud/ocis/pull/7815</a></p>
+</li>
+<li>
+<p>Bugfix - The race conditions in tests: <a href="https://github.com/owncloud/ocis/pull/7847">#7847</a></p>
+<p>We fixed the race conditions in tests.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7846">https://github.com/owncloud/ocis/issues/7846</a>
+<a href="https://github.com/owncloud/ocis/pull/7847">https://github.com/owncloud/ocis/pull/7847</a></p>
+</li>
+<li>
+<p>Bugfix - Do not purge expired upload sessions that are still postprocessing: <a href="https://github.com/owncloud/ocis/pull/7859">#7859</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/7859">https://github.com/owncloud/ocis/pull/7859</a>
+<a href="https://github.com/owncloud/ocis/pull/7958">https://github.com/owncloud/ocis/pull/7958</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the public link update: <a href="https://github.com/owncloud/ocis/pull/7862">#7862</a></p>
+<p>We fixed a bug when normal users can update the public link to delete its
+password if permission is not sent in data.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7821">https://github.com/owncloud/ocis/issues/7821</a>
+<a href="https://github.com/owncloud/ocis/pull/7862">https://github.com/owncloud/ocis/pull/7862</a></p>
+</li>
+<li>
+<p>Bugfix - Fix jwt config of policies service: <a href="https://github.com/owncloud/ocis/pull/7893">#7893</a></p>
+<p>Removes jwt config of policies service</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7893">https://github.com/owncloud/ocis/pull/7893</a></p>
+</li>
+<li>
+<p>Bugfix - Updating logo with new theme structure: <a href="https://github.com/owncloud/ocis/pull/7930">#7930</a></p>
+<p>Updating and resetting the logo when using the new <code>theme.json</code> structure in Web
+has been fixed.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7930">https://github.com/owncloud/ocis/pull/7930</a></p>
+</li>
+<li>
+<p>Bugfix - Password policy return code was wrong: <a href="https://github.com/owncloud/ocis/pull/7952">#7952</a></p>
+<p>We fixed the status code on SharingNG update permissions for public shares.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7952">https://github.com/owncloud/ocis/pull/7952</a></p>
+</li>
+<li>
+<p>Bugfix - Removed outdated and unused dependency from idp package: <a href="https://github.com/owncloud/ocis/issues/7957">#7957</a></p>
+<p>We’ve removed the outdated and apparently unused dependency <code>cldr</code> from the
+<code>kpop</code> dependency inside the idp web ui. This resolves a security issue around
+an oudated <code>xmldom</code> package version, originating from said <code>kpop</code> library.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7957">https://github.com/owncloud/ocis/issues/7957</a>
+<a href="https://github.com/owncloud/ocis/pull/7988">https://github.com/owncloud/ocis/pull/7988</a></p>
+</li>
+<li>
+<p>Bugfix - Update permission validation: <a href="https://github.com/owncloud/ocis/pull/7963">#7963</a></p>
+<p>We fixed a bug where the permission validation was not working correctly.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7963">https://github.com/owncloud/ocis/pull/7963</a>
+<a href="https://github.com/cs3org/reva/pull/4405">https://github.com/cs3org/reva/pull/4405</a></p>
+</li>
+<li>
+<p>Bugfix - Renaming a user to a string with capital letters: <a href="https://github.com/owncloud/ocis/pull/7964">#7964</a></p>
+<p>We fixed the issue that led to correct update but the 404 response code when
+renaming an existing user to a string with capital letters.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7964">https://github.com/owncloud/ocis/pull/7964</a></p>
+</li>
+<li>
+<p>Bugfix - Improve OCM support: <a href="https://github.com/owncloud/ocis/pull/7973">#7973</a></p>
+<p>We improved functionality of the OCM support.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7973">https://github.com/owncloud/ocis/pull/7973</a></p>
+</li>
+<li>
+<p>Bugfix - Permissions of a role with duplicate ID: <a href="https://github.com/owncloud/ocis/pull/7976">#7976</a></p>
+<p>We remove the redundant permissions of a role with duplicate ID.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7931">https://github.com/owncloud/ocis/issues/7931</a>
+<a href="https://github.com/owncloud/ocis/pull/7976">https://github.com/owncloud/ocis/pull/7976</a></p>
+</li>
+<li>
+<p>Bugfix - Non durable streams for sse service: <a href="https://github.com/owncloud/ocis/pull/7986">#7986</a></p>
+<p>Configure sse streams to be non-durable. This functionality is not needed for
+the sse service</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7986">https://github.com/owncloud/ocis/pull/7986</a></p>
+</li>
+<li>
+<p>Bugfix - Fix empty trace ids: <a href="https://github.com/owncloud/ocis/pull/8023">#8023</a></p>
+<p>We changed the default tracing to produce non-empty traceids.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8023">https://github.com/owncloud/ocis/pull/8023</a>
+<a href="https://github.com/owncloud/ocis/pull/8017">https://github.com/owncloud/ocis/pull/8017</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search by containing special characters: <a href="https://github.com/owncloud/ocis/pull/8050">#8050</a></p>
+<p>As the OData query parser interprets characters like ’@’ or ’-’ in a special
+way. Search request for users or groups needs to be quoted. We fixed the
+libregraph users and groups endpoints to handle quoted search terms correctly.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7990">https://github.com/owncloud/ocis/issues/7990</a>
+<a href="https://github.com/owncloud/ocis/pull/8050">https://github.com/owncloud/ocis/pull/8050</a>
+<a href="https://github.com/owncloud/ocis/pull/8035">https://github.com/owncloud/ocis/pull/8035</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the upload postprocessing: <a href="https://github.com/owncloud/ocis/pull/8117">#8117</a></p>
+<p>We fixed the upload postprocessing when the destination file does not exist
+anymore.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7909">https://github.com/owncloud/ocis/issues/7909</a>
+<a href="https://github.com/owncloud/ocis/pull/8117">https://github.com/owncloud/ocis/pull/8117</a></p>
+</li>
+<li>
+<p>Bugfix - Disallow to delete a file during the processing: <a href="https://github.com/owncloud/ocis/pull/8132">#8132</a></p>
+<p>We want to disallow deleting a file during the processing to prevent collecting
+the orphan uploads.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8127">https://github.com/owncloud/ocis/issues/8127</a>
+<a href="https://github.com/owncloud/ocis/pull/8132">https://github.com/owncloud/ocis/pull/8132</a>
+<a href="https://github.com/cs3org/reva/pull/4446">https://github.com/cs3org/reva/pull/4446</a></p>
+</li>
+<li>
+<p>Bugfix - Fix wrong naming in nats-js-kv registry: <a href="https://github.com/owncloud/ocis/pull/8140">#8140</a></p>
+<p>Registers the registry under the correct name</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8140">https://github.com/owncloud/ocis/pull/8140</a></p>
+</li>
+<li>
+<p>Bugfix - IDP CS3 backend sessions now survive a restart: <a href="https://github.com/owncloud/ocis/pull/8142">#8142</a></p>
+<p>We now correctly reinitialize the CS3 backend session after the IDP service has
+been restarted.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8142">https://github.com/owncloud/ocis/pull/8142</a></p>
+</li>
+<li>
+<p>Bugfix - Fix patching of language: <a href="https://github.com/owncloud/ocis/pull/8182">#8182</a></p>
+<p>User would not be able to patch their preferred language when the ldap backend
+is set to <code>read-only</code>. This makes no sense as language is stored elsewhere.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8182">https://github.com/owncloud/ocis/pull/8182</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search service to not log expected cases as errors: <a href="https://github.com/owncloud/ocis/pull/8200">#8200</a></p>
+<p>We changed the search service to not log cases where resources that were about
+to be indexed can no longer be found. Those are expected cases, e.g. when the
+file in question has already been deleted or renamed meanwhile.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8200">https://github.com/owncloud/ocis/pull/8200</a></p>
+</li>
+<li>
+<p>Bugfix - Updating and reset logo failed: <a href="https://github.com/owncloud/ocis/pull/8211">#8211</a></p>
+<p>We fixed a bug when admin tried to update or reset the logo.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8101">https://github.com/owncloud/ocis/issues/8101</a>
+<a href="https://github.com/owncloud/ocis/pull/8211">https://github.com/owncloud/ocis/pull/8211</a></p>
+</li>
+<li>
+<p>Bugfix - Cleanup graph/pkg/service/v0/driveitems.go: <a href="https://github.com/owncloud/ocis/pull/8228">#8228</a></p>
+<p>Main fix is using proto getters to avoid panics. But some other code
+improvements were also done</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8228">https://github.com/owncloud/ocis/pull/8228</a></p>
+</li>
+<li>
+<p>Bugfix - Cleanup <code>search/pkg/search/search.go</code>: <a href="https://github.com/owncloud/ocis/pull/8230">#8230</a></p>
+<p>Now uses proto getters to avoid panics.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8230">https://github.com/owncloud/ocis/pull/8230</a></p>
+</li>
+<li>
+<p>Bugfix - Graph/sharedWithMe works for shares from project spaces now: <a href="https://github.com/owncloud/ocis/pull/8233">#8233</a></p>
+<p>We fixed a bug in the ‘graph/v1beta1/me/drive/sharedWithMe’ endpoint that caused
+an error response when the user received shares from project spaces.
+Additionally the endpoint now behaves more graceful in cases where the
+displayname of the owner or creator of a share or shared resource couldn’t be
+resolved.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8027">https://github.com/owncloud/ocis/issues/8027</a>
+<a href="https://github.com/owncloud/ocis/issues/8215">https://github.com/owncloud/ocis/issues/8215</a>
+<a href="https://github.com/owncloud/ocis/pull/8233">https://github.com/owncloud/ocis/pull/8233</a></p>
+</li>
+<li>
+<p>Bugfix - Fix PATCH/DELETE status code for drives that don’t support them: <a href="https://github.com/owncloud/ocis/pull/8235">#8235</a></p>
+<p>Updating and Deleting the virtual drives for shares is currently not supported.
+Instead of returning a generic 500 status we return a 405 response now.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7881">https://github.com/owncloud/ocis/issues/7881</a>
+<a href="https://github.com/owncloud/ocis/pull/8235">https://github.com/owncloud/ocis/pull/8235</a></p>
+</li>
+<li>
+<p>Bugfix - Fix nats authentication: <a href="https://github.com/owncloud/ocis/pull/8236">#8236</a></p>
+<p>Fixes nats authentication for registry/events/stores</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8236">https://github.com/owncloud/ocis/pull/8236</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the resource name: <a href="https://github.com/owncloud/ocis/pull/8246">#8246</a></p>
+<p>We fixed a problem where after renaming resource as sharer the receiver see a
+new name.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8242">https://github.com/owncloud/ocis/issues/8242</a>
+<a href="https://github.com/owncloud/ocis/pull/8246">https://github.com/owncloud/ocis/pull/8246</a>
+<a href="https://github.com/cs3org/reva/pull/4463">https://github.com/cs3org/reva/pull/4463</a></p>
+</li>
+<li>
+<p>Bugfix - Apply role constraints when creating shares via the graph API: <a href="https://github.com/owncloud/ocis/pull/8247">#8247</a></p>
+<p>We fixed a bug in the graph API for creating and updating shares so that
+Spaceroot specific roles like ‘Manager’ and ‘Co-owner’ can no longer be assigned
+for shares on files or directories.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8131">https://github.com/owncloud/ocis/issues/8131</a>
+<a href="https://github.com/owncloud/ocis/pull/8247">https://github.com/owncloud/ocis/pull/8247</a></p>
+</li>
+<li>
+<p>Bugfix - Fix concurrent access to a map: <a href="https://github.com/owncloud/ocis/pull/8269">#8269</a></p>
+<p>We fixed the race condition that led to concurrent map access in a publicshare
+manager.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8255">https://github.com/owncloud/ocis/issues/8255</a>
+<a href="https://github.com/owncloud/ocis/pull/8269">https://github.com/owncloud/ocis/pull/8269</a>
+<a href="https://github.com/cs3org/reva/pull/4472">https://github.com/cs3org/reva/pull/4472</a></p>
+</li>
+<li>
+<p>Bugfix - Fix nats registry: <a href="https://github.com/owncloud/ocis/pull/8281">#8281</a></p>
+<p>The nats registry would behave badly when configuring <code>nats-js-kv</code> via envvar.
+Reason is the way go-micro initializes. It took 5 developers to find the issue
+and the fix so the details cannot be shared here. Just accept that it is working
+now</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8281">https://github.com/owncloud/ocis/pull/8281</a></p>
+</li>
+<li>
+<p>Bugfix - Remove invalid environment variables: <a href="https://github.com/owncloud/ocis/pull/8303">#8303</a></p>
+<p>We have removed two spaces related environment variables (whether project spaces
+and the share jail are enabled) and hardcoded the only allowed options. Misusing
+those variables would have resulted in invalid config.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8303">https://github.com/owncloud/ocis/pull/8303</a></p>
+</li>
+<li>
+<p>Bugfix - Fix concurrent shares config: <a href="https://github.com/owncloud/ocis/pull/8317">#8317</a></p>
+<p>We fixed setting the config for concurrent web requests, which did not work as
+expected before.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8317">https://github.com/owncloud/ocis/pull/8317</a></p>
+</li>
+<li>
+<p>Bugfix - Fix Content-Disposition header for downloads: <a href="https://github.com/owncloud/ocis/pull/8381">#8381</a></p>
+<p>We have fixed a bug that caused downloads to fail on Chromebased browsers when
+the filename contained special characters.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8361">https://github.com/owncloud/ocis/issues/8361</a>
+<a href="https://github.com/owncloud/ocis/pull/8381">https://github.com/owncloud/ocis/pull/8381</a>
+<a href="https://github.com/cs3org/reva/pull/4498">https://github.com/cs3org/reva/pull/4498</a></p>
+</li>
+<li>
+<p>Bugfix - Signed url verification: <a href="https://github.com/owncloud/ocis/pull/8385">#8385</a></p>
+<p>Signed urls now expire properly</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8385">https://github.com/owncloud/ocis/pull/8385</a></p>
+</li>
+<li>
+<p>Bugfix - Fix an error when move: <a href="https://github.com/owncloud/ocis/pull/8396">#8396</a></p>
+<p>We fixed a bug that caused Internal Server Error when move using destination id</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6739">https://github.com/owncloud/ocis/issues/6739</a>
+<a href="https://github.com/owncloud/ocis/pull/8396">https://github.com/owncloud/ocis/pull/8396</a>
+<a href="https://github.com/cs3org/reva/pull/4503">https://github.com/cs3org/reva/pull/4503</a></p>
+</li>
+<li>
+<p>Bugfix - Fix extended env parser: <a href="https://github.com/owncloud/ocis/pull/8409">#8409</a></p>
+<p>The extended envvar parser would be angry if there are two <code>os.Getenv</code> in the
+same line. We fixed this.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8409">https://github.com/owncloud/ocis/pull/8409</a></p>
+</li>
+<li>
+<p>Bugfix - Graph/drives/permission Expiration date update: <a href="https://github.com/owncloud/ocis/pull/8413">#8413</a></p>
+<p>We fixed a bug in the Update sharing permission the expiration dates can’t be
+removed from link permissions.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8405">https://github.com/owncloud/ocis/issues/8405</a>
+<a href="https://github.com/owncloud/ocis/pull/8413">https://github.com/owncloud/ocis/pull/8413</a></p>
+</li>
+<li>
+<p>Bugfix - Fix search error message: <a href="https://github.com/owncloud/ocis/pull/8444">#8444</a></p>
+<p>We fixed an error message returned when the search request is invalid</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8442">https://github.com/owncloud/ocis/issues/8442</a>
+<a href="https://github.com/owncloud/ocis/pull/8444">https://github.com/owncloud/ocis/pull/8444</a></p>
+</li>
+<li>
+<p>Bugfix - Graph/sharedWithMe align IDs with webdav response: <a href="https://github.com/owncloud/ocis/pull/8467">#8467</a></p>
+<p>The IDs of the driveItems returned by the ‘graph/v1beta1/me/drive/sharedWithMe’
+endpoint are now aligned with the IDs returned in the PROPFIND response of the
+webdav service.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8420">https://github.com/owncloud/ocis/issues/8420</a>
+<a href="https://github.com/owncloud/ocis/issues/8080">https://github.com/owncloud/ocis/issues/8080</a>
+<a href="https://github.com/owncloud/ocis/pull/8467">https://github.com/owncloud/ocis/pull/8467</a></p>
+</li>
+<li>
+<p>Bugfix - Bump reva to pull in changes to fix recursive trashcan purge: <a href="https://github.com/owncloud/ocis/pull/8505">#8505</a></p>
+<p>We have fixed a bug in the trashcan purge process that did not delete folder
+structures recursively.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8473">https://github.com/owncloud/ocis/issues/8473</a>
+<a href="https://github.com/owncloud/ocis/pull/8505">https://github.com/owncloud/ocis/pull/8505</a>
+<a href="https://github.com/cs3org/reva/pull/4533">https://github.com/cs3org/reva/pull/4533</a></p>
+</li>
+<li>
+<p>Bugfix - Fix last month search: <a href="https://github.com/golang/go/issues/31145">#31145</a></p>
+<p>We’ve fixed the last month search edge case when currently is 31-th.</p>
+<p><a href="Https://github.com/owncloud/ocis/issues/7629">Https://github.com/owncloud/ocis/issues/7629</a>
+<a href="https://github.com/owncloud/ocis/pull/7742">https://github.com/owncloud/ocis/pull/7742</a></p>
+<p><a href="https://github.com/golang/go/issues/31145">https://github.com/golang/go/issues/31145</a>
+The
+issue
+is
+related
+to
+the
+build-in
+package
+behavior</p>
+</li>
+<li>
+<p>Change - Auto-Accept Shares: <a href="https://github.com/owncloud/ocis/pull/7097">#7097</a></p>
+<p>Automatically accepts shares. This feature is active by default and can be
+deactivated via the environment variable <code>FRONTEND_AUTO_ACCEPT_SHARES</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7097">https://github.com/owncloud/ocis/pull/7097</a></p>
+</li>
+<li>
+<p>Change - Change the default TUS chunk size: <a href="https://github.com/owncloud/ocis/pull/7273">#7273</a></p>
+<p>We changed the default TUS chunk size from 100MB to 10MB. You can still use the
+old value by configuring it in your deployment.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7273">https://github.com/owncloud/ocis/pull/7273</a></p>
+</li>
+<li>
+<p>Change - Remove privacyURL and imprintURL from the config: <a href="https://github.com/owncloud/ocis/pull/7938/">#7938</a></p>
+<p>We’ve removed the option privacyURL and imprintURL from the config, since other
+clients weren’t able to consume these. In order to be accessible by other
+clients, not just Web, those should be configured via the theme.json file.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7938/">https://github.com/owncloud/ocis/pull/7938/</a></p>
+</li>
+<li>
+<p>Change - Remove accessDeniedHelpUrl from the config: <a href="https://github.com/owncloud/ocis/pull/7970">#7970</a></p>
+<p>We’ve removed the option accessDeniedHelpUrl from the config, since other
+clients weren’t able to consume it. In order to be accessible by other clients,
+not just Web, it should be configured via the theme.json file.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7970">https://github.com/owncloud/ocis/pull/7970</a></p>
+</li>
+<li>
+<p>Change - Deprecate sharing cs3 backends: <a href="https://github.com/owncloud/ocis/pull/8478">#8478</a></p>
+<p>The <code>cs3</code> user and public sharing drivers have already been replaced by
+<code>jsoncs3</code>. We now mark them as deprecated in preparation to kill a lot of unused
+code in reva.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8478">https://github.com/owncloud/ocis/pull/8478</a></p>
+</li>
+<li>
+<p>Enhancement - Add the Banned Passwords List: <a href="https://github.com/cs3org/reva/pull/4197">#4197</a></p>
+<p>Added an option to enable a password check against a banned passwords list
+OCIS-3809</p>
+<p><a href="https://github.com/cs3org/reva/pull/4197">https://github.com/cs3org/reva/pull/4197</a>
+<a href="https://github.com/owncloud/ocis/pull/7314">https://github.com/owncloud/ocis/pull/7314</a></p>
+</li>
+<li>
+<p>Enhancement - Introduce service accounts: <a href="https://github.com/owncloud/ocis/pull/6427">#6427</a></p>
+<p>Introduces service accounts to avoid impersonating users in async processes</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5550">https://github.com/owncloud/ocis/issues/5550</a>
+<a href="https://github.com/owncloud/ocis/pull/6427">https://github.com/owncloud/ocis/pull/6427</a></p>
+</li>
+<li>
+<p>Enhancement - SSE for messaging: <a href="https://github.com/owncloud/ocis/pull/6992">#6992</a></p>
+<p>So far, sse has only been used to exchange messages between the server and the
+client. In order to be able to send more content to the client, we have moved
+the endpoint to a separate service and are now also using it for other
+notifications like:</p>
+<ul>
+<li>notify postprocessing state changes.</li>
+<li>notify file locking and unlocking.</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/6992">https://github.com/owncloud/ocis/pull/6992</a></p>
+</li>
+<li>
+<p>Enhancement - Support spec violating AD FS access token issuer: <a href="https://github.com/owncloud/ocis/pull/7140">#7140</a></p>
+<p>AD FS <code>/adfs/.well-known/openid-configuration</code> has an optional
+<code>access_token_issuer</code> which, in violation of the OpenID Connect spec, takes
+precedence over <code>issuer</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7140">https://github.com/owncloud/ocis/pull/7140</a></p>
+</li>
+<li>
+<p>Enhancement - Add OCIS_LDAP_BIND_PASSWORD as replacement for LDAP_BIND_PASSWORD: <a href="https://github.com/owncloud/ocis/issues/7176">#7176</a></p>
+<p>The enviroment variable <code>OCIS_LDAP_BIND_PASSWORD</code> was added to be more
+consistent with all other global LDAP variables.</p>
+<p><code>LDAP_BIND_PASSWORD</code> is deprecated now and scheduled for removal with the 5.0.0
+release.</p>
+<p>We also deprecated <code>LDAP_USER_SCHEMA_ID_IS_OCTETSTRING</code> for removal with 5.0.0.
+The replacement for it is <code>OCIS_LDAP_USER_SCHEMA_ID_IS_OCTETSTRING</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7176">https://github.com/owncloud/ocis/issues/7176</a></p>
+</li>
+<li>
+<p>Enhancement - Keyword Query Language (KQL) search syntax: <a href="https://github.com/owncloud/ocis/pull/7212">#7212</a></p>
+<p>We’ve introduced support for
+<a href="https://learn.microsoft.com/en-us/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference">KQL</a>
+as the default oCIS search query language.</p>
+<p>Simple queries:</p>
+<ul>
+<li><code>tag:golden tag:"silver"</code></li>
+<li><code>name:file.txt name:"file.docx"</code></li>
+<li><code>content:ahab content:"captain aha*"</code></li>
+</ul>
+<p>Date/-range queries</p>
+<ul>
+<li><code>Mtime:"2023-09-05T08:42:11.23554+02:00"</code></li>
+<li><code>Mtime>"2023-09-05T08:42:11.23554+02:00"</code></li>
+<li><code>Mtime>="2023-09-05T08:42:11.23554+02:00"</code></li>
+<li><code>Mtime&#x3C;"2023-09-05T08:42:11.23554+02:00"</code></li>
+<li><code>Mtime&#x3C;="2023-09-05T08:42:11.23554+02:00"</code></li>
+<li><code>Mtime:today</code> - range: start of today till end of today</li>
+<li><code>Mtime:yesterday</code> - range: start of yesterday till end of yesterday</li>
+<li><code>Mtime:"this week"</code> - range: start of this week till end of this week</li>
+<li><code>Mtime:"this month"</code> - range: start of this month till end of this month</li>
+<li><code>Mtime:"last month"</code> - range: start of last month till end of last month</li>
+<li><code>Mtime:"this year"</code> - range: start of this year till end of this year</li>
+<li><code>Mtime:"last year"</code> - range: start of last year till end of last year</li>
+</ul>
+<p>Conjunctive normal form queries:</p>
+<ul>
+<li><code>tag:golden AND tag:"silver</code>, <code>tag:golden OR tag:"silver</code>, <code>tag:golden NOT tag:"silver</code></li>
+<li><code>(tag:book content:ahab*)</code>, <code>tag:(book pdf)</code></li>
+</ul>
+<p>Complex queries:</p>
+<ul>
+<li><code>(name:"moby di*" OR tag:bestseller) AND tag:book NOT tag:read</code></li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/issues/7042">https://github.com/owncloud/ocis/issues/7042</a>
+<a href="https://github.com/owncloud/ocis/issues/7179">https://github.com/owncloud/ocis/issues/7179</a>
+<a href="https://github.com/owncloud/ocis/issues/7114">https://github.com/owncloud/ocis/issues/7114</a>
+<a href="https://github.com/owncloud/web/issues/9636">https://github.com/owncloud/web/issues/9636</a>
+<a href="https://github.com/owncloud/web/issues/9646">https://github.com/owncloud/web/issues/9646</a>
+<a href="https://github.com/owncloud/ocis/pull/7212">https://github.com/owncloud/ocis/pull/7212</a>
+<a href="https://github.com/owncloud/ocis/pull/7043">https://github.com/owncloud/ocis/pull/7043</a>
+<a href="https://github.com/owncloud/ocis/pull/7247">https://github.com/owncloud/ocis/pull/7247</a>
+<a href="https://github.com/owncloud/ocis/pull/7248">https://github.com/owncloud/ocis/pull/7248</a>
+<a href="https://github.com/owncloud/ocis/pull/7254">https://github.com/owncloud/ocis/pull/7254</a>
+<a href="https://github.com/owncloud/ocis/pull/7262">https://github.com/owncloud/ocis/pull/7262</a>
+<a href="https://github.com/owncloud/web/pull/9653">https://github.com/owncloud/web/pull/9653</a>
+<a href="https://github.com/owncloud/web/pull/9672">https://github.com/owncloud/web/pull/9672</a></p>
+</li>
+<li>
+<p>Enhancement - Introduce clientlog service: <a href="https://github.com/owncloud/ocis/pull/7217">#7217</a></p>
+<p>Add the clientlog service which will send machine readable notifications to
+clients</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7217">https://github.com/owncloud/ocis/pull/7217</a></p>
+</li>
+<li>
+<p>Enhancement - Proxy uses service accounts for provisioning: <a href="https://github.com/owncloud/ocis/pull/7240">#7240</a></p>
+<p>The proxy service now uses a service account for provsioning task, like role
+assignment and user auto-provisioning. This cleans up some technical debt that
+required us to mint reva tokes inside the proxy service.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5550">https://github.com/owncloud/ocis/issues/5550</a>
+<a href="https://github.com/owncloud/ocis/pull/7240">https://github.com/owncloud/ocis/pull/7240</a></p>
+</li>
+<li>
+<p>Enhancement - The password policies change request: <a href="https://github.com/owncloud/ocis/pull/7264">#7264</a></p>
+<p>The variables renaming OCIS-3767</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7264">https://github.com/owncloud/ocis/pull/7264</a></p>
+</li>
+<li>
+<p>Enhancement - Introduce natsjs registry: <a href="https://github.com/owncloud/ocis/issues/7272">#7272</a></p>
+<p>Introduce a registry based on the natsjs object store</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7272">https://github.com/owncloud/ocis/issues/7272</a>
+<a href="https://github.com/owncloud/ocis/pull/7487">https://github.com/owncloud/ocis/pull/7487</a></p>
+</li>
+<li>
+<p>Enhancement - Add the password policies: <a href="https://github.com/owncloud/ocis/pull/7285">#7285</a></p>
+<p>Add the password policies OCIS-3767</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7285">https://github.com/owncloud/ocis/pull/7285</a>
+<a href="https://github.com/owncloud/ocis/pull/7194">https://github.com/owncloud/ocis/pull/7194</a>
+<a href="https://github.com/cs3org/reva/pull/4147">https://github.com/cs3org/reva/pull/4147</a></p>
+</li>
+<li>
+<p>Enhancement - Add login URL config: <a href="https://github.com/owncloud/ocis/pull/7317">#7317</a></p>
+<p>Introduce a config to set the web login URL via <code>WEB_OPTION_LOGIN_URL</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7317">https://github.com/owncloud/ocis/pull/7317</a></p>
+</li>
+<li>
+<p>Enhancement - Improve SSE format: <a href="https://github.com/owncloud/ocis/pull/7325">#7325</a></p>
+<p>Improve format of sse notifications</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7325">https://github.com/owncloud/ocis/pull/7325</a></p>
+</li>
+<li>
+<p>Enhancement - New value <code>auto</code> for NOTIFICATIONS_SMTP_AUTHENTICATION: <a href="https://github.com/owncloud/ocis/issues/7356">#7356</a></p>
+<p>This cause the notifications service to automatically pick a suitable
+authentication method to use with the configured SMTP server. This is also the
+new default behavior. The previous default was to not use authentication at all.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7356">https://github.com/owncloud/ocis/issues/7356</a></p>
+</li>
+<li>
+<p>Enhancement - Make sse service scalable: <a href="https://github.com/owncloud/ocis/pull/7382">#7382</a></p>
+<p>When running multiple sse instances some events would not be reported to the
+user. This is fixed.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7382">https://github.com/owncloud/ocis/pull/7382</a></p>
+</li>
+<li>
+<p>Enhancement - Edit wrong named enves: <a href="https://github.com/owncloud/ocis/pull/7406">#7406</a></p>
+<p>Checked and changed the envvars specified in the task and also removed those
+that are no longer used.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7406">https://github.com/owncloud/ocis/pull/7406</a></p>
+</li>
+<li>
+<p>Enhancement - Thumbnail generation with image processors: <a href="https://github.com/owncloud/ocis/pull/7409">#7409</a></p>
+<p>Thumbnails can now be changed during creation, previously the images were always
+scaled to fit the given frame, but it could happen that the images were cut off
+because they could not be placed better due to the aspect ratio.</p>
+<p>This pr introduces the possibility of specifying how the behavior should be,
+following processors are available</p>
+<ul>
+<li>resize</li>
+<li>fit</li>
+<li>fill</li>
+<li>thumbnail</li>
+</ul>
+<p>The processor can be applied by adding the processor query param to the request,
+e.g. <code>processor=fit</code>, <code>processor=fill</code>, …</p>
+<p>To find out more how the individual processors work please read
+<a href="https://github.com/disintegration/imaging">https://github.com/disintegration/imaging</a></p>
+<p>If no processor is provided it behaves the same as before (resize for gif’s and
+thumbnail for all other)</p>
+<p><a href="https://github.com/owncloud/enterprise/issues/6057">https://github.com/owncloud/enterprise/issues/6057</a>
+<a href="https://github.com/owncloud/ocis/issues/5179">https://github.com/owncloud/ocis/issues/5179</a>
+<a href="https://github.com/owncloud/web/issues/7728">https://github.com/owncloud/web/issues/7728</a>
+<a href="https://github.com/owncloud/ocis/pull/7409">https://github.com/owncloud/ocis/pull/7409</a></p>
+</li>
+<li>
+<p>Enhancement - Set default for Async Uploads to true: <a href="https://github.com/owncloud/ocis/pull/7416">#7416</a></p>
+<p>Async Uploads are meanwhile standard and needed for multiple features. Hence we
+default them to true</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7416">https://github.com/owncloud/ocis/pull/7416</a></p>
+</li>
+<li>
+<p>Enhancement - The default language added: <a href="https://github.com/owncloud/ocis/pull/7417">#7417</a></p>
+<p>The ability of configuration the default language has been added to the setting
+service.</p>
+<p><a href="https://github.com/owncloud/enterprise/issues/5915">https://github.com/owncloud/enterprise/issues/5915</a>
+<a href="https://github.com/owncloud/ocis/pull/7417">https://github.com/owncloud/ocis/pull/7417</a></p>
+</li>
+<li>
+<p>Enhancement - Add “Last modified” filter Chip: <a href="https://github.com/owncloud/ocis/pull/7455">#7455</a></p>
+<p>Add “Last modified” filter Chip</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7431">https://github.com/owncloud/ocis/issues/7431</a>
+<a href="https://github.com/owncloud/ocis/issues/7551">https://github.com/owncloud/ocis/issues/7551</a>
+<a href="https://github.com/owncloud/ocis/pull/7455">https://github.com/owncloud/ocis/pull/7455</a></p>
+</li>
+<li>
+<p>Enhancement - Config for disabling Web extensions: <a href="https://github.com/owncloud/ocis/pull/7486">#7486</a></p>
+<p>A new config for disabling specific Web extensions via their id has been added.</p>
+<p><a href="https://github.com/owncloud/web/issues/8524">https://github.com/owncloud/web/issues/8524</a>
+<a href="https://github.com/owncloud/ocis/pull/7486">https://github.com/owncloud/ocis/pull/7486</a></p>
+</li>
+<li>
+<p>Enhancement - Store and index metadata: <a href="https://github.com/owncloud/ocis/pull/7490">#7490</a></p>
+<p>Audio metadata is now extracted and stored by the search service. It is
+available for driveItems in a folder listing using the Graph API.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7490">https://github.com/owncloud/ocis/pull/7490</a></p>
+</li>
+<li>
+<p>Enhancement - Add support for audio files to the thumbnails service: <a href="https://github.com/owncloud/ocis/pull/7491">#7491</a></p>
+<p>The thumbnails service can now extract artwork from audio files (mp3, ogg, flac)
+and render it just like any other image.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7491">https://github.com/owncloud/ocis/pull/7491</a></p>
+</li>
+<li>
+<p>Enhancement - Implement sharing roles: <a href="https://github.com/owncloud/ocis/pull/7524">#7524</a></p>
+<p>Implement libre graph sharing roles</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7418">https://github.com/owncloud/ocis/issues/7418</a>
+<a href="https://github.com/owncloud/ocis/pull/7524">https://github.com/owncloud/ocis/pull/7524</a></p>
+</li>
+<li>
+<p>Enhancement - Add new permission to delete public link password: <a href="https://github.com/owncloud/ocis/pull/7538">#7538</a></p>
+<p>Users with this new permission can now delete passwords on read-only public
+links. The permission is added to the default roles “Admin” and “Space Admin”.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7538">https://github.com/owncloud/ocis/issues/7538</a>
+<a href="https://github.com/owncloud/ocis/pull/7538">https://github.com/owncloud/ocis/pull/7538</a>
+<a href="https://github.com/cs3org/reva/pull/4270">https://github.com/cs3org/reva/pull/4270</a></p>
+</li>
+<li>
+<p>Enhancement - Add config to enforce passwords on all public links: <a href="https://github.com/owncloud/ocis/pull/7547">#7547</a></p>
+<p>We added the config <code>OCIS_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD</code> to enforce
+passwords on all public shares.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7539">https://github.com/owncloud/ocis/issues/7539</a>
+<a href="https://github.com/owncloud/ocis/pull/7547">https://github.com/owncloud/ocis/pull/7547</a></p>
+</li>
+<li>
+<p>Enhancement - Tika content extraction cleanup for search: <a href="https://github.com/owncloud/ocis/pull/7553">#7553</a></p>
+<p>So far it has not been possible to determine whether the content for search
+should be cleaned up of ‘stop words’ or not. Stop words are filling words like
+“I, you, have, am” etc and defined by the search engine.</p>
+<p>The behaviour can now be set with the newly introduced settings option
+<code>SEARCH_EXTRACTOR_TIKA_CLEAN_STOP_WORDS=false</code> which is enabled by default.</p>
+<p>In addition, the stop word cleanup is no longer as aggressive and now ignores
+numbers, urls, basically everything except the defined stop words.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6674">https://github.com/owncloud/ocis/issues/6674</a>
+<a href="https://github.com/owncloud/ocis/pull/7553">https://github.com/owncloud/ocis/pull/7553</a></p>
+</li>
+<li>
+<p>Enhancement - Allow configuring storage registry with envvars: <a href="https://github.com/owncloud/ocis/pull/7554">#7554</a></p>
+<p>Introduced new envvars to configure the storage registry in the gateway service</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7554">https://github.com/owncloud/ocis/pull/7554</a></p>
+</li>
+<li>
+<p>Enhancement - Add search MediaType filter: <a href="https://github.com/owncloud/ocis/pull/7602">#7602</a></p>
+<p>Add filter MediaType filter shortcuts to search for specific document types. For
+example, a search query mediatype:documents will search for files with the
+following mimetypes:</p>
+<p>Application/msword
+MimeType:application/vnd.openxmlformats-officedocument.wordprocessingml.document
+MimeType:application/vnd.oasis.opendocument.text MimeType:text/plain
+MimeType:text/markdown MimeType:application/rtf
+MimeType:application/vnd.apple.pages</p>
+<p>Besides the document shorthand, it also contains following:</p>
+<ul>
+<li>file</li>
+<li>folder</li>
+<li>document</li>
+<li>spreadsheet</li>
+<li>presentation</li>
+<li>pdf</li>
+<li>image</li>
+<li>video</li>
+<li>audio</li>
+<li>archive</li>
+</ul>
+<h2 id="file">File</h2>
+<h2 id="folder">Folder</h2>
+<h2 id="document">Document:</h2>
+<p>Application/msword
+application/vnd.openxmlformats-officedocument.wordprocessingml.document
+application/vnd.oasis.opendocument.text text/plain text/markdown application/rtf
+application/vnd.apple.pages</p>
+<h2 id="spreadsheet">Spreadsheet:</h2>
+<p>Application/vnd.ms-excel application/vnd.oasis.opendocument.spreadsheet text/csv
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+application/vnd.oasis.opendocument.spreadsheet application/vnd.apple.numbers</p>
+<h2 id="presentations">Presentations:</h2>
+<p>Application/vnd.ms-powerpoint
+application/vnd.openxmlformats-officedocument.presentationml.presentation
+application/vnd.oasis.opendocument.presentation application/vnd.apple.keynote</p>
+<h2 id="pdf">PDF</h2>
+<p>Application/pdf</p>
+<h2 id="image">Image:</h2>
+<p>Image/*</p>
+<h2 id="video">Video:</h2>
+<p>Video/*</p>
+<h2 id="audio">Audio:</h2>
+<p>Audio/*</p>
+<h2 id="archive-zip">Archive (zip …):</h2>
+<p>Application/zip application/x-tar application/x-gzip application/x-7z-compressed
+application/x-rar-compressed application/x-bzip2 application/x-bzip
+application/x-tgz</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7432">https://github.com/owncloud/ocis/issues/7432</a>
+<a href="https://github.com/owncloud/ocis/pull/7602">https://github.com/owncloud/ocis/pull/7602</a></p>
+</li>
+<li>
+<p>Enhancement - Add Sharing NG endpoints: <a href="https://github.com/owncloud/ocis/pull/7633">#7633</a></p>
+<p>We’ve added new sharing ng endpoints to the graph beta api. The following
+endpoints are added:</p>
+<ul>
+<li>/v1beta1/me/drive/sharedByMe</li>
+<li>/v1beta1/me/drive/sharedWithMe</li>
+<li>/v1beta1/roleManagement/permissions/roleDefinitions</li>
+<li>/v1beta1/roleManagement/permissions/roleDefinitions/{roleID}</li>
+<li>/v1beta1/drives/{drive-id}/items/{item-id}/createLink (create a sharing link)</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/issues/7436">https://github.com/owncloud/ocis/issues/7436</a>
+<a href="https://github.com/owncloud/ocis/issues/6993">https://github.com/owncloud/ocis/issues/6993</a>
+<a href="https://github.com/owncloud/ocis/pull/7633">https://github.com/owncloud/ocis/pull/7633</a>
+<a href="https://github.com/owncloud/ocis/pull/7686">https://github.com/owncloud/ocis/pull/7686</a>
+<a href="https://github.com/owncloud/ocis/pull/7684">https://github.com/owncloud/ocis/pull/7684</a>
+<a href="https://github.com/owncloud/ocis/pull/7683">https://github.com/owncloud/ocis/pull/7683</a>
+<a href="https://github.com/owncloud/ocis/pull/7239">https://github.com/owncloud/ocis/pull/7239</a>
+<a href="https://github.com/owncloud/ocis/pull/7687">https://github.com/owncloud/ocis/pull/7687</a>
+<a href="https://github.com/owncloud/ocis/pull/7751">https://github.com/owncloud/ocis/pull/7751</a>
+<a href="https://github.com/owncloud/libre-graph-api/pull/112">https://github.com/owncloud/libre-graph-api/pull/112</a></p>
+</li>
+<li>
+<p>Enhancement - Configs for Web embed mode: <a href="https://github.com/owncloud/ocis/pull/7670">#7670</a></p>
+<p>New configs for the Web embed mode have been added:</p>
+<ul>
+<li><code>enabled</code> Defines if embed mode is enabled.</li>
+<li><code>target</code> Defines how Web is being integrated when running in embed mode.</li>
+<li><code>messagesOrigin</code> Defines a URL under which Web can be integrated via iFrame.</li>
+<li><code>delegateAuthentication</code> Defines whether Web should require authentication to be done by the parent application.</li>
+<li><code>delegateAuthenticationOrigin</code> Defines the host to validate the message event origin against when running Web in ‘embed’ mode.</li>
+</ul>
+<p><a href="https://github.com/owncloud/web/issues/9768">https://github.com/owncloud/web/issues/9768</a>
+<a href="https://github.com/owncloud/ocis/pull/7670">https://github.com/owncloud/ocis/pull/7670</a></p>
+</li>
+<li>
+<p>Enhancement - Support login page background configuration: <a href="https://github.com/owncloud/ocis/issues/7674">#7674</a></p>
+<p>Introduce a new environment variable <code>IDP_LOGIN_BACKGROUND_URL</code> that overrides
+the default background image of the IDP login page when present.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7674">https://github.com/owncloud/ocis/issues/7674</a>
+<a href="https://github.com/owncloud/ocis/pull/7900">https://github.com/owncloud/ocis/pull/7900</a></p>
+</li>
+<li>
+<p>Enhancement - Add new permissions: <a href="https://github.com/owncloud/ocis/pull/7700">#7700</a></p>
+<p>Adds new permissions to admin/spaceadmin/user roles - Favorites.List allows /
+denies the Favorites Listing Request - Favorites.Write is implemented to be
+enforced on marking/unmark files as favouritesShare - Shares.Write permission
+denies / allows sharing completely for a user on all share CUD requests. (User,
+Group)</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7700">https://github.com/owncloud/ocis/pull/7700</a></p>
+</li>
+<li>
+<p>Enhancement - Add preferred language to user settings: <a href="https://github.com/owncloud/ocis/pull/7720">#7720</a></p>
+<p>We have added the preferred language to the libre-graph api &#x26; added endpoints
+for that to ocis.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5455">https://github.com/owncloud/ocis/issues/5455</a>
+<a href="https://github.com/owncloud/ocis/pull/7720">https://github.com/owncloud/ocis/pull/7720</a>
+<a href="https://github.com/owncloud/libre-graph-api/pull/130">https://github.com/owncloud/libre-graph-api/pull/130</a></p>
+</li>
+<li>
+<p>Enhancement - Add user filter startswith and contains: <a href="https://github.com/owncloud/ocis/pull/7739">#7739</a></p>
+<p>We add two new filters to the user list endpoint. The <code>startswith</code> filter allows
+to filter users by the beginning of their name. The <code>contains</code> filter allows to
+filter users by a substring of their name.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/5486">https://github.com/owncloud/ocis/issues/5486</a>
+<a href="https://github.com/owncloud/ocis/pull/7739">https://github.com/owncloud/ocis/pull/7739</a></p>
+</li>
+<li>
+<p>Enhancement - Allow configuring additional routes: <a href="https://github.com/owncloud/ocis/pull/7741">#7741</a></p>
+<p>Allows adding custom routes to the ocis proxy. This enables custom ocis
+extensions.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7741">https://github.com/owncloud/ocis/pull/7741</a></p>
+</li>
+<li>
+<p>Enhancement - Default link permission config: <a href="https://github.com/owncloud/ocis/pull/7783">#7783</a></p>
+<p>A new config for default link permissions that is being announced via
+capabilities has been added. It defaults to 1 (= public link with viewer
+permissions).</p>
+<p><a href="https://github.com/owncloud/web/issues/9919">https://github.com/owncloud/web/issues/9919</a>
+<a href="https://github.com/owncloud/ocis/pull/7783">https://github.com/owncloud/ocis/pull/7783</a></p>
+</li>
+<li>
+<p>Enhancement - Add banned password list to the default deployments: <a href="https://github.com/owncloud/ocis/pull/7784">#7784</a></p>
+<p>We add banned password list to the default deployments</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7724">https://github.com/owncloud/ocis/issues/7724</a>
+<a href="https://github.com/owncloud/ocis/pull/7784">https://github.com/owncloud/ocis/pull/7784</a></p>
+</li>
+<li>
+<p>Enhancement - Update to go 1.21: <a href="https://github.com/owncloud/ocis/pull/7794">#7794</a></p>
+<p>We updated to go 1.21.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7794">https://github.com/owncloud/ocis/pull/7794</a></p>
+</li>
+<li>
+<p>Enhancement - Add Sharing NG list permissions endpoint: <a href="https://github.com/owncloud/ocis/pull/7805">#7805</a></p>
+<p>We’ve added a new sharing ng endpoint which lists all permissions for a given
+item.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6993">https://github.com/owncloud/ocis/issues/6993</a>
+<a href="https://github.com/owncloud/ocis/pull/7805">https://github.com/owncloud/ocis/pull/7805</a></p>
+</li>
+<li>
+<p>Enhancement - Add user list requires filter config: <a href="https://github.com/owncloud/ocis/pull/7866">#7866</a></p>
+<p>Introduce a config to require filters in order to list users in Web via
+<code>WEB_OPTION_USER_LIST_REQUIRES_FILTER</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7866">https://github.com/owncloud/ocis/pull/7866</a></p>
+</li>
+<li>
+<p>Enhancement - Retry antivirus postprocessing step in case of problems: <a href="https://github.com/owncloud/ocis/pull/7874">#7874</a></p>
+<p>The antivirus postprocessing step will now be retried for a configurable amount
+of times in case it can’t get a result from clamav.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7874">https://github.com/owncloud/ocis/pull/7874</a></p>
+</li>
+<li>
+<p>Enhancement - Add validation to public share provider: <a href="https://github.com/owncloud/ocis/pull/7877">#7877</a></p>
+<p>We changed the implementation of the public share provider in reva to do the
+validation on the CS3 Api side. This makes the implementation on the graph side
+smaller.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6993">https://github.com/owncloud/ocis/issues/6993</a>
+<a href="https://github.com/owncloud/ocis/pull/7877">https://github.com/owncloud/ocis/pull/7877</a></p>
+</li>
+<li>
+<p>Enhancement - Store and index metadata: <a href="https://github.com/owncloud/ocis/pull/7886">#7886</a></p>
+<p>Location metadata is now extracted and stored by the search service. It is
+available for driveItems in a folder listing using the Graph API.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7886">https://github.com/owncloud/ocis/pull/7886</a></p>
+</li>
+<li>
+<p>Enhancement - Allow regular users to list other users: <a href="https://github.com/owncloud/ocis/pull/7887">#7887</a></p>
+<p>Regular users can search for other users and groups. The following limitations
+apply:</p>
+<ul>
+<li>Only search queries are allowed (using the <code>$search=term</code> query parameter)</li>
+<li>The search term needs to have at least 3 characters</li>
+<li>for user searches the result set only contains the attributes <code>displayName</code>, <code>userType</code>, <code>mail</code> and <code>id</code></li>
+<li>for group searches the result set only contains the attributes <code>displayName</code>, <code>groupTypes</code> and <code>id</code></li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/issues/7782">https://github.com/owncloud/ocis/issues/7782</a>
+<a href="https://github.com/owncloud/ocis/pull/7887">https://github.com/owncloud/ocis/pull/7887</a></p>
+</li>
+<li>
+<p>Enhancement - Add edit public share to sharing NG: <a href="https://github.com/owncloud/ocis/pull/7908/">#7908</a></p>
+<p>We added the ability to edit public shares to the sharing NG endpoints.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6993">https://github.com/owncloud/ocis/issues/6993</a>
+<a href="https://github.com/owncloud/ocis/pull/7908/">https://github.com/owncloud/ocis/pull/7908/</a></p>
+</li>
+<li>
+<p>Enhancement - Add cli commands for trash-bin: <a href="https://github.com/owncloud/ocis/pull/7917">#7917</a></p>
+<p>We added the <code>list</code> and <code>restore</code> commands to the trash-bin items to the CLI</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7845">https://github.com/owncloud/ocis/issues/7845</a>
+<a href="https://github.com/owncloud/ocis/pull/7917">https://github.com/owncloud/ocis/pull/7917</a>
+<a href="https://github.com/cs3org/reva/pull/4392">https://github.com/cs3org/reva/pull/4392</a></p>
+</li>
+<li>
+<p>Enhancement - Add validation update public share: <a href="https://github.com/owncloud/ocis/pull/7978">#7978</a></p>
+<p>For Sharing NG, we needed validation in the implementing reva service to keep
+the client implementation simple.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7978">https://github.com/owncloud/ocis/pull/7978</a></p>
+</li>
+<li>
+<p>Enhancement - Allow inmemory nats-js-kv stores: <a href="https://github.com/owncloud/ocis/pull/7979">#7979</a></p>
+<p>Adds envvars to keep nats-js-kv stores in memory and not persist them on disc.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7979">https://github.com/owncloud/ocis/pull/7979</a></p>
+</li>
+<li>
+<p>Enhancement - Disable the password policy: <a href="https://github.com/owncloud/ocis/pull/7985">#7985</a></p>
+<p>We add the environment variable that allow to disable the password policy.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7916">https://github.com/owncloud/ocis/issues/7916</a>
+<a href="https://github.com/owncloud/ocis/pull/7985">https://github.com/owncloud/ocis/pull/7985</a>
+<a href="https://github.com/cs3org/reva/pull/4409">https://github.com/cs3org/reva/pull/4409</a></p>
+</li>
+<li>
+<p>Enhancement - Use kv store in natsjs registry: <a href="https://github.com/owncloud/ocis/pull/7987">#7987</a></p>
+<p>Replaces the nats object store with the nats kv store in the natsjs registry</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7987">https://github.com/owncloud/ocis/pull/7987</a></p>
+</li>
+<li>
+<p>Enhancement - Allow authentication nats connections: <a href="https://github.com/owncloud/ocis/pull/7989">#7989</a></p>
+<p>Allow events, store and registry implementation to pass username/password to the
+nats instance</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7989">https://github.com/owncloud/ocis/pull/7989</a></p>
+</li>
+<li>
+<p>Enhancement - Add RED metrics to the metrics endpoint: <a href="https://github.com/owncloud/ocis/pull/7994">#7994</a></p>
+<p>We added three new metrics to the metrics endpoint to support the RED method for
+monitoring microservices.</p>
+<ul>
+<li>Request Rate: The number of requests per second. The total count of requests
+is available under <code>ocis_proxy_requests_total</code>. - Error Rate: The number of
+failed requests per second. The total count of failed requests is available
+under <code>ocis_proxy_errors_total</code>. - Duration: The amount of time each request
+takes. The duration of all requests is available under
+<code>ocis_proxy_request_duration_seconds</code>. This is a histogram metric, so it also
+provides information about the distribution of request durations.</li>
+</ul>
+<p>The metrics are available under the following paths: <code>PROXY_DEBUG_ADDR/metrics</code>
+in a prometheus compatible format and maybe secured by <code>PROXY_DEBUG_TOKEN</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7994">https://github.com/owncloud/ocis/pull/7994</a></p>
+</li>
+<li>
+<p>Enhancement - Add ocm and sciencemesh services: <a href="https://github.com/owncloud/ocis/pull/7998">#7998</a></p>
+<p>We added sciencemesh and ocm services to enable federation.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/7998">https://github.com/owncloud/ocis/pull/7998</a>
+<a href="https://github.com/owncloud/ocis/pull/7576">https://github.com/owncloud/ocis/pull/7576</a>
+<a href="https://github.com/owncloud/ocis/pull/7464">https://github.com/owncloud/ocis/pull/7464</a>
+<a href="https://github.com/owncloud/ocis/pull/7463">https://github.com/owncloud/ocis/pull/7463</a></p>
+</li>
+<li>
+<p>Enhancement - Make nats-js-kv the default registry: <a href="https://github.com/owncloud/ocis/pull/8011">#8011</a></p>
+<p>The previously used default <code>mdns</code> is faulty. Deprecated it together with
+<code>consul</code>, <code>nats</code> and <code>etcd</code> implementations.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8011">https://github.com/owncloud/ocis/pull/8011</a>
+<a href="https://github.com/owncloud/ocis/pull/8027">https://github.com/owncloud/ocis/pull/8027</a></p>
+</li>
+<li>
+<p>Enhancement - Service Account roles: <a href="https://github.com/owncloud/ocis/pull/8051">#8051</a></p>
+<p>Use a hidden role for service accounts. It will not appear in ListRoles calls
+but internally handled by settings service</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8051">https://github.com/owncloud/ocis/pull/8051</a>
+<a href="https://github.com/owncloud/ocis/pull/8074">https://github.com/owncloud/ocis/pull/8074</a></p>
+</li>
+<li>
+<p>Enhancement - Update antivirus service: <a href="https://github.com/owncloud/ocis/pull/8062">#8062</a></p>
+<p>We update the antivirus icap client library and optimize the antivirus scanning
+service. ANTIVIRUS_ICAP_TIMEOUT is now deprecated and
+ANTIVIRUS_ICAP_SCAN_TIMEOUT should be used instead.</p>
+<p>ANTIVIRUS_ICAP_SCAN_TIMEOUT supports human durations like <code>1s</code>, <code>1m</code>, <code>1h</code> and
+<code>1d</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/6764">https://github.com/owncloud/ocis/issues/6764</a>
+<a href="https://github.com/owncloud/ocis/pull/8062">https://github.com/owncloud/ocis/pull/8062</a></p>
+</li>
+<li>
+<p>Enhancement - Remove deprecated environment variables: <a href="https://github.com/owncloud/ocis/pull/8149">#8149</a></p>
+<p>We have removed all deprecated environment variables that have been marked for
+removal for 5.0.0</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8025">https://github.com/owncloud/ocis/issues/8025</a>
+<a href="https://github.com/owncloud/ocis/pull/8149">https://github.com/owncloud/ocis/pull/8149</a></p>
+</li>
+<li>
+<p>Enhancement - Disable the password policy: <a href="https://github.com/owncloud/ocis/pull/8152">#8152</a></p>
+<p>We reworked and moved disabling the password policy logic from the reva to the
+ocis.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/7916">https://github.com/owncloud/ocis/issues/7916</a>
+<a href="https://github.com/owncloud/ocis/pull/8152">https://github.com/owncloud/ocis/pull/8152</a>
+<a href="https://github.com/cs3org/reva/pull/4453">https://github.com/cs3org/reva/pull/4453</a></p>
+</li>
+<li>
+<p>Enhancement - Allow restarting multiple uploads with one command: <a href="https://github.com/owncloud/ocis/pull/8287">#8287</a></p>
+<p>Allows to restart all commands in a specific state.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8287">https://github.com/owncloud/ocis/pull/8287</a></p>
+</li>
+<li>
+<p>Enhancement - Modify the concurrency default: <a href="https://github.com/owncloud/ocis/pull/8309">#8309</a></p>
+<p>We have changed the default MaxConcurrency value from 100 to 5 to prevent too
+frequent gc runs on low memory systems. We have also bumped reva to pull in the
+related changes from there.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8257">https://github.com/owncloud/ocis/issues/8257</a>
+<a href="https://github.com/owncloud/ocis/pull/8309">https://github.com/owncloud/ocis/pull/8309</a>
+<a href="https://github.com/cs3org/reva/pull/4485">https://github.com/cs3org/reva/pull/4485</a></p>
+</li>
+<li>
+<p>Enhancement - Improve ocis single binary start: <a href="https://github.com/owncloud/ocis/pull/8320">#8320</a></p>
+<p>Removes waiting times when starting the single binary. Improves ocis single
+binary boot time from 8s to 2.5s</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8320">https://github.com/owncloud/ocis/pull/8320</a></p>
+</li>
+<li>
+<p>Enhancement - Use environment variables in yaml config files: <a href="https://github.com/owncloud/ocis/pull/8339">#8339</a></p>
+<p>We added the ability to use environment variables in yaml config files. This
+allows to use environment variables in the config files of the ocis services
+which will be replaced by the actual value of the environment variable at
+runtime.</p>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>web:</span></span>
+<span class="line"><span>  http:</span></span>
+<span class="line"><span>    addr: ${SOME_HTTP_ADDR}</span></span></code></pre>
+<p>This makes it possible to use the same config file for different environments
+without the need to change the config file itself. This is especially useful
+when using docker-compose to run the ocis services. It is a common pattern to
+create an .env file which contains the environment variables for the
+docker-compose file. Now you can use the same .env file to configure the ocis
+services.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8339">https://github.com/owncloud/ocis/pull/8339</a></p>
+</li>
+<li>
+<p>Enhancement - Increment filenames on upload collisions in secret filedrops: <a href="https://github.com/owncloud/ocis/pull/8340">#8340</a></p>
+<p>We have bumped reva to pull in the changes needed for automatically increment
+filenames on upload collisions in secret filedrops.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8291">https://github.com/owncloud/ocis/issues/8291</a>
+<a href="https://github.com/owncloud/ocis/pull/8340">https://github.com/owncloud/ocis/pull/8340</a></p>
+</li>
+<li>
+<p>Enhancement - Allow sending multiple user ids in one sse event: <a href="https://github.com/owncloud/ocis/pull/8379">#8379</a></p>
+<p>Sending multiple user ids in one sse event is now possible which reduces the
+number of sent events.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8379">https://github.com/owncloud/ocis/pull/8379</a>
+<a href="https://github.com/cs3org/reva/pull/4501">https://github.com/cs3org/reva/pull/4501</a></p>
+</li>
+<li>
+<p>Enhancement - Allow to skip service listing: <a href="https://github.com/owncloud/ocis/pull/8408">#8408</a></p>
+<p>The ocis version cmd listed all services by default. This is not always
+intended, so we allow to skip the listing of the services by using the
+—skip-services flag.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8070">https://github.com/owncloud/ocis/issues/8070</a>
+<a href="https://github.com/owncloud/ocis/pull/8408">https://github.com/owncloud/ocis/pull/8408</a></p>
+</li>
+<li>
+<p>Enhancement - Add a make step to validate the env var annotations: <a href="https://github.com/owncloud/ocis/pull/8436">#8436</a></p>
+<p>We have added a make step <code>make validate-env-var-annotations</code> to validate the
+env var annotations in to the environment variables.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/8258">https://github.com/owncloud/ocis/issues/8258</a>
+<a href="https://github.com/owncloud/ocis/pull/8436">https://github.com/owncloud/ocis/pull/8436</a></p>
+</li>
+<li>
+<p>Enhancement - Update web to v8.0.0-rc.5: <a href="https://github.com/owncloud/ocis/pull/8491">#8491</a></p>
+<p>Tags: web</p>
+<p>We updated ownCloud Web to v8.0.0-rc.5. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--bugfix">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/issues/10473">owncloud/web#10473</a>: Public link
+file download</p>
+<p>We updated ownCloud Web to v8.0.0-rc.4. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--bugfix-1">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/pull/10489">owncloud/web#10489</a>: Wrong share
+permissions when resharing off</p>
+<p>We updated ownCloud Web to v8.0.0-rc.3. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--bugfix-2">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/pull/10318">owncloud/web#10318</a>: Scrollable
+account page * Bugfix
+<a href="https://github.com/owncloud/web/pull/10321">owncloud/web#10321</a>: Private link
+error messages * Bugfix
+<a href="https://github.com/owncloud/web/pull/10347">owncloud/web#10347</a>: Readonly user
+attributes have no effect on group memberships * Bugfix
+<a href="https://github.com/owncloud/web/pull/10424">owncloud/web#10424</a>: Restore space</p>
+<ul>
+<li>Enhancement <a href="https://github.com/owncloud/web/pull/10356">owncloud/web#10356</a>:
+Preview app add reset button for images</li>
+</ul>
+<p>We updated ownCloud Web to v8.0.0-rc.2. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--bugfix-3">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/pull/10176">owncloud/web#10176</a>: Turned off
+file extensions not always respected * Bugfix
+<a href="https://github.com/owncloud/web/pull/10232">owncloud/web#10232</a>: Skip searchbar
+preview fetch on reload</p>
+<p>We updated ownCloud Web to v8.0.0-rc.1. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--enhancement">Summary * Enhancement</h2>
+<p><a href="https://github.com/owncloud/web/issues/10224">owncloud/web#10224</a>: Harmonize
+AppSwitcher icon colors * Bugfix
+<a href="https://github.com/owncloud/web/issues/10230">owncloud/web#10230</a>: Configurable
+concurrent requests * Bugfix
+<a href="https://github.com/owncloud/web/issues/10158">owncloud/web#10158</a>: GDPR export
+polling * Bugfix
+<a href="https://github.com/owncloud/web/issues/10220">owncloud/web#10220</a>: Loading
+indicator during conflict dialog * Bugfix
+<a href="https://github.com/owncloud/web/issues/10156">owncloud/web#10156</a>: Uploading
+the same files parallel * Bugfix
+<a href="https://github.com/owncloud/web/issues/10179">owncloud/web#10179</a>: Space
+navigate to trash missing * Bugfix
+<a href="https://github.com/owncloud/web/issues/10118">owncloud/web#10118</a>: Tilesview
+has whitespace * Bugfix
+<a href="https://github.com/owncloud/web/issues/10182">owncloud/web#10182</a>: Make
+versions panel readonly in viewers and editors</p>
+<p>We updated ownCloud Web to v8.0.0-beta.2. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--bugfix-4">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/issues/10010">owncloud/web#10010</a>: Displaying
+full video in their dimensions * Bugfix
+<a href="https://github.com/owncloud/web/pull/10149">owncloud/web#10149</a>: Spaces files
+list previews cropped * Bugfix
+<a href="https://github.com/owncloud/web/pull/10149">owncloud/web#10149</a>: Spaces
+overview tile previews zoomed * Bugfix
+<a href="https://github.com/owncloud/web/pull/10154">owncloud/web#10154</a>: Resolving
+links without drive alias</p>
+<p>We updated ownCloud Web to v8.0.0-beta.1. Please refer to the changelog (linked)
+for details on the web release.</p>
+<h2 id="summary--change">Summary * Change</h2>
+<p><a href="https://github.com/owncloud/web/pull/9698">owncloud/web#9698</a>: Theme handling *
+Enhancement <a href="https://github.com/owncloud/web/pull/10111">owncloud/web#10111</a>:
+Registering right sidebar panels as extension * Enhancement
+<a href="https://github.com/owncloud/web/pull/10111">owncloud/web#10111</a>: File sidebar
+in viewer and editor apps</p>
+<p>We updated ownCloud Web to v8.0.0-alpha.13. Please refer to the changelog
+(linked) for details on the web release.</p>
+<h2 id="summary--enhancement-1">Summary * Enhancement</h2>
+<p><a href="https://github.com/owncloud/web/pull/10104">owncloud/web#10104</a>: Create link
+modal</p>
+<p>We updated ownCloud Web to v8.0.0-alpha.12. Please refer to the changelog
+(linked) for details on the web release.</p>
+<h2 id="summary--bugfix-5">Summary * Bugfix</h2>
+<p><a href="https://github.com/owncloud/web/issues/9257">owncloud/web#9257</a>: Filter out
+shares without display name * Bugfix
+<a href="https://github.com/owncloud/web/issues/9483">owncloud/web#9483</a>: PDF loading
+Safari * Bugfix <a href="https://github.com/owncloud/web/pull/9513">owncloud/web#9513</a>:
+Set or remove expiration date on group share not possible * Bugfix
+<a href="https://github.com/owncloud/web/pull/9529">owncloud/web#9529</a>: Shared with
+action menu label alignment * Bugfix
+<a href="https://github.com/owncloud/web/pull/9587">owncloud/web#9587</a>: Internal public
+link resolving * Bugfix
+<a href="https://github.com/owncloud/web/issues/9593">owncloud/web#9593</a>: Audio- &#x26;
+video-loading on Shared with me page * Bugfix
+<a href="https://github.com/owncloud/web/pull/9649">owncloud/web#9649</a>: Add project
+space filter * Bugfix
+<a href="https://github.com/owncloud/web/pull/9663">owncloud/web#9663</a>: Respect the
+open-in-new-tab-config for external apps * Bugfix
+<a href="https://github.com/owncloud/web/pull/9670">owncloud/web#9670</a>: Tiles view
+accessibility * Bugfix
+<a href="https://github.com/owncloud/web/issues/9694">owncloud/web#9694</a>: Special
+characters in username * Bugfix
+<a href="https://github.com/owncloud/web/issues/9788">owncloud/web#9788</a>: Create .space
+folder if it does not exist * Bugfix
+<a href="https://github.com/owncloud/web/issues/9799">owncloud/web#9799</a>: Link resolving
+into default app * Bugfix
+<a href="https://github.com/owncloud/web/pull/9832">owncloud/web#9832</a>: Copy quicklinks
+for webkit navigator * Bugfix
+<a href="https://github.com/owncloud/web/pull/9843">owncloud/web#9843</a>: Fix display path
+on resources * Bugfix
+<a href="https://github.com/owncloud/web/pull/9844">owncloud/web#9844</a>: Upload space
+image * Bugfix <a href="https://github.com/owncloud/web/pull/9861">owncloud/web#9861</a>:
+Duplicated file search request * Bugfix
+<a href="https://github.com/owncloud/web/pull/9873">owncloud/web#9873</a>: Tags are no
+longer editable for a locked file * Bugfix
+<a href="https://github.com/owncloud/web/pull/9881">owncloud/web#9881</a>: Prevent
+rendering of old/wrong set of resources in search list * Bugfix
+<a href="https://github.com/owncloud/web/pull/9915">owncloud/web#9915</a>: Keep both
+folders conflict in same-named folders * Bugfix
+<a href="https://github.com/owncloud/web/pull/9931">owncloud/web#9931</a>: Enabling “invite
+people” for password-protected folder/file * Bugfix
+<a href="https://github.com/owncloud/web/issues/10031">owncloud/web#10031</a>: Icon
+extension mapping * Bugfix
+<a href="https://github.com/owncloud/web/pull/10065">owncloud/web#10065</a>: Logout page
+after token expiry * Bugfix
+<a href="https://github.com/owncloud/web/pull/10083">owncloud/web#10083</a>: Disable
+expiration date for alias link (internal) * Bugfix
+<a href="https://github.com/owncloud/web/pull/10092">owncloud/web#10092</a>: Allow empty
+search query in “in-here” search * Bugfix
+<a href="https://github.com/owncloud/web/pull/10096">owncloud/web#10096</a>: Remove
+password buttons on input if disabled * Change
+<a href="https://github.com/owncloud/web/issues/7338">owncloud/web#7338</a>: Remove
+deprecated code * Enhancement
+<a href="https://github.com/owncloud/ocis/pull/7317">owncloud/web#7317</a>: Make login url
+configurable * Enhancement
+<a href="https://github.com/owncloud/ocis/issues/7497">owncloud/web#7497</a>: Permission
+checks for shares and favorites * Enhancement
+<a href="https://github.com/owncloud/web/issues/7600">owncloud/web#7600</a>: Scroll to
+newly created folder * Enhancement
+<a href="https://github.com/owncloud/web/issues/9302">owncloud/web#9302</a>: Application
+unification * Enhancement
+<a href="https://github.com/owncloud/web/pull/9423">owncloud/web#9423</a>: Show local
+loading spinner in sharing button * Enhancement
+<a href="https://github.com/owncloud/web/pull/9441">owncloud/web#9441</a>: File versions
+tooltip with absolute date * Enhancement
+<a href="https://github.com/owncloud/web/pull/9441">owncloud/web#9441</a>: Disabling
+extensions * Enhancement
+<a href="https://github.com/owncloud/web/pull/9451">owncloud/web#9451</a>: Add SSE to get
+notifications instantly * Enhancement
+<a href="https://github.com/owncloud/web/pull/9525">owncloud/web#9525</a>: Tags form
+improved * Enhancement
+<a href="https://github.com/owncloud/web/pull/9527">owncloud/web#9527</a>: Don’t display
+confirmation dialog on file deletion * Enhancement
+<a href="https://github.com/owncloud/web/issues/9531">owncloud/web#9531</a>: Personal
+shares can be shown and hidden * Enhancement
+<a href="https://github.com/owncloud/web/pull/9552">owncloud/web#9552</a>: Upload
+preparation time * Enhancement
+<a href="https://github.com/owncloud/web/pull/9561">owncloud/web#9561</a>: Indicate
+processing state * Enhancement
+<a href="https://github.com/owncloud/web/pull/9566">owncloud/web#9566</a>: Display locking
+information * Enhancement
+<a href="https://github.com/owncloud/web/pull/9584">owncloud/web#9584</a>: Moving share’s
+“set expiration date” function * Enhancement
+<a href="https://github.com/owncloud/web/pull/9625">owncloud/web#9625</a>: Add keyboard
+navigation to spaces overview * Enhancement
+<a href="https://github.com/owncloud/web/pull/9627">owncloud/web#9627</a>: Add batch
+actions to spaces * Enhancement
+<a href="https://github.com/owncloud/web/pull/9653">owncloud/web#9653</a>: Keyword Query
+Language (KQL) search syntax * Enhancement
+<a href="https://github.com/owncloud/web/pull/9671">owncloud/web#9671</a>: OcModal set
+buttons to same width * Enhancement
+<a href="https://github.com/owncloud/web/pull/9682">owncloud/web#9682</a>: Add password
+policy compatibility * Enhancement
+<a href="https://github.com/owncloud/web/pull/9691">owncloud/web#9691</a>: Password
+generator for public links * Enhancement
+<a href="https://github.com/owncloud/web/pull/9696">owncloud/web#9696</a>: Added app banner
+for mobile devices * Enhancement
+<a href="https://github.com/owncloud/web/pull/9706">owncloud/web#9706</a>: Unify sharing
+expiration date menu items * Enhancement
+<a href="https://github.com/owncloud/web/pull/9727">owncloud/web#9727</a>: Show error if
+password is on a banned password list * Enhancement
+<a href="https://github.com/owncloud/web/pull/9771">owncloud/web#9771</a>: Handle
+postprocessing state via Server Sent Events * Enhancement
+<a href="https://github.com/owncloud/web/pull/9806">owncloud/web#9806</a>: Preview image
+presentation * Enhancement
+<a href="https://github.com/owncloud/web/pull/9809">owncloud/web#9809</a>: Add editors to
+the application menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/9814">owncloud/web#9814</a>: Registering nav
+items as extension * Enhancement
+<a href="https://github.com/owncloud/web/pull/9815">owncloud/web#9815</a>: Add new portal
+into runtime to include footer * Enhancement
+<a href="https://github.com/owncloud/web/pull/9818">owncloud/web#9818</a>: Add <code>mode</code>
+config option * Enhancement
+<a href="https://github.com/owncloud/web/pull/9831">owncloud/web#9831</a>: Last modified
+filter chips * Enhancement
+<a href="https://github.com/owncloud/web/pull/9841">owncloud/web#9841</a>: Add embed mode
+actions * Enhancement
+<a href="https://github.com/owncloud/web/issues/9847">owncloud/web#9847</a>: Provide vendor
+neutral file icons * Enhancement
+<a href="https://github.com/owncloud/web/pull/9853">owncloud/web#9853</a>: Show only create
+folder button in embed mode * Enhancement
+<a href="https://github.com/owncloud/web/pull/9854">owncloud/web#9854</a>: Search query
+term linking * Enhancement
+<a href="https://github.com/owncloud/web/pull/9857">owncloud/web#9857</a>: Add permission
+to delete link passwords when password is enforced * Enhancement
+<a href="https://github.com/owncloud/web/pull/9858">owncloud/web#9858</a>: Remove settings
+icon from searchbar * Enhancement
+<a href="https://github.com/owncloud/web/pull/9863">owncloud/web#9863</a>: Location picker
+in embed mode * Enhancement
+<a href="https://github.com/owncloud/web/pull/9864">owncloud/web#9864</a>: Search tags
+filter chips style aligned * Enhancement
+<a href="https://github.com/owncloud/web/pull/9884">owncloud/web#9884</a>: Enable dark
+theme on importer * Enhancement
+<a href="https://github.com/owncloud/web/pull/9890">owncloud/web#9890</a>: Create shortcuts</p>
+<ul>
+<li>Enhancement <a href="https://github.com/owncloud/web/pull/9905">owncloud/web#9905</a>:
+Manage tags in details panel * Enhancement
+<a href="https://github.com/owncloud/web/pull/9906">owncloud/web#9906</a>: Reorganize “New”
+menu * Enhancement
+<a href="https://github.com/owncloud/web/pull/9912">owncloud/web#9912</a>: Add media type
+filter chip * Enhancement
+<a href="https://github.com/owncloud/web/pull/9940">owncloud/web#9940</a>: Display error
+message for upload to locked folder * Enhancement
+<a href="https://github.com/owncloud/web/issues/9966">owncloud/web#9966</a>: Support more
+audio formats with correct icon * Enhancement
+<a href="https://github.com/owncloud/web/issues/10007">owncloud/web#10007</a>: Additional
+languages * Enhancement
+<a href="https://github.com/owncloud/web/issues/10013">owncloud/web#10013</a>: Shared by
+filter * Enhancement
+<a href="https://github.com/owncloud/web/issues/10014">owncloud/web#10014</a>: Share search
+filter * Enhancement
+<a href="https://github.com/owncloud/web/pull/10024">owncloud/web#10024</a>: Duplicate
+space * Enhancement
+<a href="https://github.com/owncloud/web/pull/10037">owncloud/web#10037</a>: Default link
+permission * Enhancement
+<a href="https://github.com/owncloud/web/pull/10047">owncloud/web#10047</a>: Add explaining
+contextual helper to spaces overview * Enhancement
+<a href="https://github.com/owncloud/web/pull/10057">owncloud/web#10057</a>: Folder tree
+creation during upload * Enhancement
+<a href="https://github.com/owncloud/web/pull/10062">owncloud/web#10062</a>: Show webdav
+information in details view * Enhancement
+<a href="https://github.com/owncloud/web/issues/10072">owncloud/web#10072</a>: Add
+authentication delegation in the Embed mode * Enhancement
+<a href="https://github.com/owncloud/web/pull/10099">owncloud/web#10099</a>: Support
+mandatory filter while listing users * Enhancement
+<a href="https://github.com/owncloud/web/pull/10102">owncloud/web#10102</a>: Registering
+quick actions as extension</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/8491">https://github.com/owncloud/ocis/pull/8491</a>
+<a href="https://github.com/owncloud/ocis/pull/8468">https://github.com/owncloud/ocis/pull/8468</a>
+<a href="https://github.com/owncloud/ocis/pull/8342">https://github.com/owncloud/ocis/pull/8342</a>
+<a href="https://github.com/owncloud/ocis/pull/8154">https://github.com/owncloud/ocis/pull/8154</a>
+<a href="https://github.com/owncloud/ocis/pull/8154">https://github.com/owncloud/ocis/pull/8154</a>
+<a href="https://github.com/owncloud/ocis/pull/8055">https://github.com/owncloud/ocis/pull/8055</a>
+<a href="https://github.com/owncloud/ocis/pull/7930">https://github.com/owncloud/ocis/pull/7930</a>
+<a href="https://github.com/owncloud/ocis/pull/7952">https://github.com/owncloud/ocis/pull/7952</a>
+<a href="https://github.com/owncloud/ocis/pull/7918">https://github.com/owncloud/ocis/pull/7918</a>
+<a href="https://github.com/owncloud/ocis/pull/7883">https://github.com/owncloud/ocis/pull/7883</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.5">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.5</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.4">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.4</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.3">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.3</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.2">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.2</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.2">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.2</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-rc.1">https://github.com/owncloud/web/releases/tag/v8.0.0-rc.1</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-beta.1">https://github.com/owncloud/web/releases/tag/v8.0.0-beta.1</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-beta.2">https://github.com/owncloud/web/releases/tag/v8.0.0-beta.2</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-alpha.13">https://github.com/owncloud/web/releases/tag/v8.0.0-alpha.13</a>
+<a href="https://github.com/owncloud/web/releases/tag/v8.0.0-alpha.12">https://github.com/owncloud/web/releases/tag/v8.0.0-alpha.12</a></p>
+</li>
+<li>
+<p>Enhancement - Drop the unnecessary grants exists check when creating shares: <a href="https://github.com/owncloud/ocis/pull/8502">#8502</a></p>
+<p>We have bumped reva to drop the unnecessary grants exists check when creating
+shares.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/8502">https://github.com/owncloud/ocis/pull/8502</a></p>
+</li>
+<li>
+<p>Enhancement - Update reva to 2.19.0: <a href="https://github.com/owncloud/ocis/pull/8519">#8519</a></p>
+<p>We update reva to the version 2.19.0</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4464">cs3org/reva#4464</a>: Don’t check lock grants</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4516">cs3org/reva#4516</a>: The sharemanager can now reject grants with resharing permissions</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4512">cs3org/reva#4512</a>: Bump dependencies</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4481">cs3org/reva#4481</a>: Distinguish failure and node metadata reversal</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4456">cs3org/reva#4456</a>: Do not lose revisions when restoring the first revision</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4472">cs3org/reva#4472</a>: Fix concurrent access to a map</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4457">cs3org/reva#4457</a>: Fix concurrent map access in sharecache</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4498">cs3org/reva#4498</a>: Fix Content-Disposition header in dav</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4461">cs3org/reva#4461</a>: CORS handling for WebDAV requests fixed</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4462">cs3org/reva#4462</a>: Prevent setting container specific permissions on files</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4479">cs3org/reva#4479</a>: Fix creating documents in the app provider</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4474">cs3org/reva#4474</a>: Make /dav/meta consistent</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4446">cs3org/reva#4446</a>: Disallow to delete a file during the processing</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4517">cs3org/reva#4517</a>: Fix duplicated items in the sharejail root</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4473">cs3org/reva#4473</a>: Decomposedfs now correctly lists sessions</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4528">cs3org/reva#4528</a>: Respect IfNotExist option when uploading in cs3 metadata storage</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4503">cs3org/reva#4503</a>: Fix an error when move</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4466">cs3org/reva#4466</a>: Fix natsjskv store</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4533">cs3org/reva#4533</a>: Fix recursive trashcan purge</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4492">cs3org/reva#4492</a>: Fix the resource name</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4463">cs3org/reva#4463</a>: Fix the resource name</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4448">cs3org/reva#4448</a>: Fix truncating existing files</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4434">cs3org/reva#4434</a>: Fix the upload postprocessing</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4469">cs3org/reva#4469</a>: Handle interrupted uploads</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4532">cs3org/reva#4532</a>: Jsoncs3 cache fixes</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4449">cs3org/reva#4449</a>: Keep failed processing status</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4529">cs3org/reva#4529</a>: We aligned some OCS return codes with oc10</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4507">cs3org/reva#4507</a>: Make tusd CORS headers configurable</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4452">cs3org/reva#4452</a>: More efficient share jail</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4476">cs3org/reva#4476</a>: No need to unmark postprocessing when it was not started</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4454">cs3org/reva#4454</a>: Skip unnecessary share retrieval</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4527">cs3org/reva#4527</a>: Unify datagateway method handling</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4530">cs3org/reva#4530</a>: Drop unnecessary grant exists check</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4475">cs3org/reva#4475</a>: Upload session specific processing flag</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4501">cs3org/reva#4501</a>: Allow sending multiple user ids in one sse event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4485">cs3org/reva#4485</a>: Modify the concurrency default</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4526">cs3org/reva#4526</a>: Configurable s3 put options</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4453">cs3org/reva#4453</a>: Disable the password policy</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4477">cs3org/reva#4477</a>: Extend ResumePostprocessing event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4491">cs3org/reva#4491</a>: Add filename incrementor for secret filedrops</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4490">cs3org/reva#4490</a>: Lazy initialize public share manager</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4494">cs3org/reva#4494</a>: Start implementation of a plain posix storage driver</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4502">cs3org/reva#4502</a>: Add spaceindex.AddAll()</li>
+</ul>
+<h2 id="changelog-for-reva-2180-2023-12-22">Changelog for reva 2.18.0 (2023-12-22)</h2>
+<p>The following sections list the changes in reva 2.18.0 relevant to reva users.
+The changes are ordered by importance.</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4424">cs3org/reva#4424</a>: Fixed panic in receivedsharecache pkg</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4425">cs3org/reva#4425</a>: Fix overwriting files with empty files</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4432">cs3org/reva#4432</a>: Fix /dav/meta endpoint for shares</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4422">cs3org/reva#4422</a>: Fix disconnected traces</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4429">cs3org/reva#4429</a>: Internal link creation</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4407">cs3org/reva#4407</a>: Make ocdav return correct oc:spaceid</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4410">cs3org/reva#4410</a>: Improve OCM support</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4402">cs3org/reva#4402</a>: Refactor upload session</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4421">cs3org/reva#4421</a>: Check permissions before adding, deleting or updating shares</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4403">cs3org/reva#4403</a>: Add validation to update public share</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4409">cs3org/reva#4409</a>: Disable the password policy</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4412">cs3org/reva#4412</a>: Allow authentication for nats connections</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4411">cs3org/reva#4411</a>: Add option to configure streams non durable</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4406">cs3org/reva#4406</a>: Rework cache configuration</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4414">cs3org/reva#4414</a>: Track more upload session metrics</li>
+</ul>
+<h2 id="changelog-for-reva-2170-2023-12-12">Changelog for reva 2.17.0 (2023-12-12)</h2>
+<p>The following sections list the changes in reva 2.17.0 relevant to reva users.
+The changes are ordered by importance.</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4278">cs3org/reva#4278</a>: Disable DEPTH infinity in PROPFIND</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4318">cs3org/reva#4318</a>: Do not allow moves between shares</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4290">cs3org/reva#4290</a>: Prevent panic when trying to move a non-existent file</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4241">cs3org/reva#4241</a>: Allow an empty credentials chain in the auth middleware</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4216">cs3org/reva#4216</a>: Fix an error message</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4324">cs3org/reva#4324</a>: Fix capabilities decoding</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4267">cs3org/reva#4267</a>: Fix concurrency issue</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4362">cs3org/reva#4362</a>: Fix concurrent lookup</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4336">cs3org/reva#4336</a>: Fix definition of “file-editor” role</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4302">cs3org/reva#4302</a>: Fix checking of filename length</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4366">cs3org/reva#4366</a>: Fix CS3 status code when looking up non existing share</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4299">cs3org/reva#4299</a>: Fix HTTP verb of the generate-invite endpoint</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4249">cs3org/reva#4249</a>: GetUserByClaim not working with MSAD for claim “userid”</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4217">cs3org/reva#4217</a>: Fix missing case for “hide” in UpdateShares</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4140">cs3org/reva#4140</a>: Fix missing etag in shares jail</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4229">cs3org/reva#4229</a>: Fix destroying the Personal and Project spaces data</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4193">cs3org/reva#4193</a>: Fix overwrite a file with an empty file</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4365">cs3org/reva#4365</a>: Fix create public share</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4380">cs3org/reva#4380</a>: Fix the public link update</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4250">cs3org/reva#4250</a>: Fix race condition</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4345">cs3org/reva#4345</a>: Fix conversion of custom ocs permissions to roles</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4134">cs3org/reva#4134</a>: Fix share jail</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4335">cs3org/reva#4335</a>: Fix public shares cleanup config</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4338">cs3org/reva#4338</a>: Fix unlock via space API</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4341">cs3org/reva#4341</a>: Fix spaceID in meta endpoint response</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4351">cs3org/reva#4351</a>: Fix 500 when open public link</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4352">cs3org/reva#4352</a>: Fix the tgz mime type</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4388">cs3org/reva#4388</a>: Allow UpdateUserShare() to update just the expiration date</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4214">cs3org/reva#4214</a>: Always pass adjusted default nats options</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4291">cs3org/reva#4291</a>: Release lock when expired</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4386">cs3org/reva#4386</a>: Remove dead enable_home config</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4292">cs3org/reva#4292</a>: Return 403 when user is not permitted to lock</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4389">cs3org/reva#4389</a>: Add audio and location props</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4337">cs3org/reva#4337</a>: Check permissions before creating shares</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4326">cs3org/reva#4326</a>: Add search mediatype filter</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4367">cs3org/reva#4367</a>: Add GGS mime type</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4194">cs3org/reva#4194</a>: Add hide flag to shares</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4358">cs3org/reva#4358</a>: Add default permissions capability for links</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4133">cs3org/reva#4133</a>: Add more metadata to locks</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4353">cs3org/reva#4353</a>: Add support for .docxf files</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4363">cs3org/reva#4363</a>: Add nats-js-kv store</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4197">cs3org/reva#4197</a>: Add the Banned-Passwords List</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4190">cs3org/reva#4190</a>: Add the password policies</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4384">cs3org/reva#4384</a>: Add a retry postprocessing outcome and event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4271">cs3org/reva#4271</a>: Add search capability</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4119">cs3org/reva#4119</a>: Add sse event</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4392">cs3org/reva#4392</a>: Add additional permissions to service accounts</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4344">cs3org/reva#4344</a>: Add url extension to mime type list</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4372">cs3org/reva#4372</a>: Add validation to the public share provider</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4244">cs3org/reva#4244</a>: Allow listing reveived shares by service accounts</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4129">cs3org/reva#4129</a>: Auto-Accept Shares through ServiceAccounts</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4374">cs3org/reva#4374</a>: Handle trashbin file listings concurrently</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4325">cs3org/reva#4325</a>: Enforce Permissions</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4368">cs3org/reva#4368</a>: Extract log initialization</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4375">cs3org/reva#4375</a>: Introduce UploadSessionLister interface</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4268">cs3org/reva#4268</a>: Implement sharing roles</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4160">cs3org/reva#4160</a>: Improve utils pkg</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4335">cs3org/reva#4335</a>: Add sufficient permissions check function</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4281">cs3org/reva#4281</a>: Port OCM changes from master</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4270">cs3org/reva#4270</a>: Opt out of public link password enforcement</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4181">cs3org/reva#4181</a>: Change the variable names for the password policy</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4256">cs3org/reva#4256</a>: Rename hidden share variable name</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/3926">cs3org/reva#3926</a>: Service Accounts</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4359">cs3org/reva#4359</a>: Update go-ldap to v3.4.6</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4170">cs3org/reva#4170</a>: Update password policies</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4232">cs3org/reva#4232</a>: Improve error handling in utils package</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/8519">https://github.com/owncloud/ocis/pull/8519</a>
+<a href="https://github.com/owncloud/ocis/pull/8502">https://github.com/owncloud/ocis/pull/8502</a>
+<a href="https://github.com/owncloud/ocis/pull/8340">https://github.com/owncloud/ocis/pull/8340</a>
+<a href="https://github.com/owncloud/ocis/pull/8381">https://github.com/owncloud/ocis/pull/8381</a>
+<a href="https://github.com/owncloud/ocis/pull/8287">https://github.com/owncloud/ocis/pull/8287</a>
+<a href="https://github.com/owncloud/ocis/pull/8278">https://github.com/owncloud/ocis/pull/8278</a>
+<a href="https://github.com/owncloud/ocis/pull/8264">https://github.com/owncloud/ocis/pull/8264</a>
+<a href="https://github.com/owncloud/ocis/pull/8100">https://github.com/owncloud/ocis/pull/8100</a>
+<a href="https://github.com/owncloud/ocis/pull/8100">https://github.com/owncloud/ocis/pull/8100</a>
+<a href="https://github.com/owncloud/ocis/pull/8038">https://github.com/owncloud/ocis/pull/8038</a>
+<a href="https://github.com/owncloud/ocis/pull/8056">https://github.com/owncloud/ocis/pull/8056</a>
+<a href="https://github.com/owncloud/ocis/pull/7949">https://github.com/owncloud/ocis/pull/7949</a>
+<a href="https://github.com/owncloud/ocis/pull/7793">https://github.com/owncloud/ocis/pull/7793</a>
+<a href="https://github.com/owncloud/ocis/pull/7978">https://github.com/owncloud/ocis/pull/7978</a>
+<a href="https://github.com/owncloud/ocis/pull/7979">https://github.com/owncloud/ocis/pull/7979</a>
+<a href="https://github.com/owncloud/ocis/pull/7963">https://github.com/owncloud/ocis/pull/7963</a>
+<a href="https://github.com/owncloud/ocis/pull/7986">https://github.com/owncloud/ocis/pull/7986</a>
+<a href="https://github.com/owncloud/ocis/pull/7721">https://github.com/owncloud/ocis/pull/7721</a>
+<a href="https://github.com/owncloud/ocis/pull/7727">https://github.com/owncloud/ocis/pull/7727</a>
+<a href="https://github.com/owncloud/ocis/pull/7752">https://github.com/owncloud/ocis/pull/7752</a></p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/owncloud/ocis/releases/tag/v5.0.0-rc.5" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wiki.js 2.0.0-beta.11 release notes | WinterFlow.io</title><meta name="description" content="This release introduces a comprehensive overhaul including a new admin UI, GraphQL schema implementation, advanced authentication modules, improved…"><link rel="canonical" href="https://winterflow.io/catalog/wiki-js/releases/2.0.0-beta.11/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wiki.js 2.0.0-beta.11 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces a comprehensive overhaul including a new admin UI, GraphQL schema implementation, advanced authentication modules, improved…"><meta property="og:url" content="https://winterflow.io/catalog/wiki-js/releases/2.0.0-beta.11/"><meta property="og:image" content="https://winterflow.io/images/apps/wiki-js/wiki-js.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wiki.js 2.0.0-beta.11 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces a comprehensive overhaul including a new admin UI, GraphQL schema implementation, advanced authentication modules, improved…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wiki-js/wiki-js.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wiki.js","item":"https://winterflow.io/catalog/wiki-js/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wiki-js/releases/"},{"@type":"ListItem","position":5,"name":"2.0.0-beta.11","item":"https://winterflow.io/catalog/wiki-js/releases/2.0.0-beta.11/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wiki-js/wiki-js.png" alt="Wiki.js logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wiki.js</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Modern, extensible wiki engine for building and managing collaborative documentation</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> notion, confluence, gitbook, mediawiki </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://js.wiki/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/requarks/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.requarks.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/requarks/wiki/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 28,569 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wiki.js" data-app-slug="wiki-js" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/requarks/wiki" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/wikijs" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wiki-js/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wiki-js/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">2.0.0-beta.11</h2> <span class="text-sm text-gray-500">2019-01-20</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="changes">Changes:</h2>
+<ul>
+<li>abce09210e37acf7b7d908ebe8479c1bfbdcef68 fix: setup locale crash</li>
+<li>3c8dcdcc3717ee5a6f263e3972948e063874c0d5 fix: setup locale crash</li>
+<li>cad45f57fd66b5624eb18283eb4c82d8a52ee135 fix: tables styling</li>
+<li>a1c3d6339c8abc261af1047a530ec38cc6df32cc misc: remove publishing docker build step</li>
+<li>d3d8a78ee3165704929cdc3ffb9bbfb545880edc misc: publish to github test</li>
+<li>51aff58ae05b972937561862c881864cab3e62c7 fix: remove supervisord file</li>
+<li>17712891886bd904848cd3d895480595f67c4e4c feat: twemoji + headers fix</li>
+<li>86c6aabebd1f9fd362d7d59ba93e5e16ee57bcc9 fix: missing apollo-fetch module</li>
+<li>63c044a09bbd58c80ed2dbe23636eef5bd0f9053 feat: check for updates</li>
+<li>959f2ebde1e9920876f6f6c72ea0cbeccf4235ad fix: graphql error notifications</li>
+</ul>
+<details><summary><b>See more</b></summary>
+<ul>
+<li>7e62c01ed1aae5c03f90315dd390281d930fc7e6 feat: page Rules access check</li>
+<li>75eb27740194571fa149ee943cbc99502a24f6b0 feat: guest + user permissions</li>
+<li>aa57ea920e2b46e6646d9fc39bac1d1ca87b389e fix: discard changes redirect</li>
+<li>8c6aca6623e5b4459914226f02cbeb629e247b6a feat: unsaved changes prompt + beta preparations UI</li>
+<li>3b285c5074c3cec08ab36ad5570b7a306f5f4eb1 feat: beta preparation + utf16 editor fix</li>
+<li>4bee20e664d4f3858e29bb48f03536ff5e23ec62 fix: setup groups crash</li>
+<li>771935ee6882bdd658b1c11d5fd73e12d00f7b36 fix: dark theme improvements</li>
+<li>edb97b832d14658fd566852b6cfa5486c2b84369 feat: admin - manage groups + permissions + page rules</li>
+<li>10940ca230a3b6bfd63f8214e7f272e0158dbad5 feat: seo meta + page titles</li>
+<li>fcee4c094591b647fdcdece6abf0d61547928156 feat: admin general + verify account</li>
+<li>2b98a5f27afcb51bc9f731287c2be774db6c4e3a feat: account verification + mail config in admin area</li>
+<li>78ae137f4843fe9bfa8e5af8162719f0b33a85ad feat: register server-side validation + forgot password UI</li>
+<li>901dbb98e02dd6c5127519b18818f5e1dfeb96f4 feat: register validation + create + admin improvements</li>
+<li>17244a0cb3bd72af08d0ccb2017ec856c29e9079 feat: user edit UI + admin UI improvements + fixes</li>
+<li>366a8352783f588a85782b601e2464f6665f83a3 fix: editor flow</li>
+<li>461f4a7e02ec982ab14efd8f98fc9040e4e70077 fix: various docker issues</li>
+<li>157110ed90ae7fac8176b885dacd72ca0e7e6881 fix: TokenExpiredError no longer recognized</li>
+<li>f856da074ee8835b6c9c8621fbf12cc3716ce0df feat: user menu + jwt certs + UI fixes</li>
+<li>74aa09f39c5a1dacbb3b53d6786f6cdee4ca56cc fix: dark mode handling</li>
+<li>a7fc560573c21e6522a8814545ea76c97728f76d feat: added vuescroll</li>
+<li>964712905b63e52a4474eae45d32acca29b4ff6a feat: page history pagination + dark mode fix</li>
+<li>78ba895eee1e046fe7acb4ec5186e2998291f115 feat: source + history (wip)</li>
+<li>076aeaf749f6373c8c3d199e329349b6b2c849cb feat: markdown rendering</li>
+<li>aaeb24a8ec5168472acb0cc9e5bf9b82cf630d73 fix: hide page actions when not applicable</li>
+<li>27adad8dad2f8528bf1f634d668778e7747f392d fix: localization master callback + various fixes</li>
+<li>3abc2546856769784c5f7c772c882f49a6dcf0a9 feat: TOC, scroll to header, page UI improvements</li>
+<li>e067fe3abd82830d1de6191690061541dc193cd7 feat: UI improvements</li>
+<li>763bf4b903c6d96b6be62313e1b531aa1fd4788d feat: sidebar rendering</li>
+<li>0b5a4e0c63db5990bc8a5d330f3267a16108e2d8 feat: content rendering improvements + save fix</li>
+<li>91b79dfa1f705d2be59c585564e7980d3903050c fix: missing filesize server dependency</li>
+<li>200486e0c54988605c395d4eb3736d4d31d39198 fix: docker overwrite views</li>
+<li>48d2111378998f168c2a34473a283b578e4513f2 fix: docker yarn cache</li>
+<li>de10a55c4cfeca2748aacaaf4cd63a2900dd6ba5 fix: dockerfile missing logs folder</li>
+<li>3a846b03e4ef7ebdcc8d7cb1a1b1e14e5f5e31ab fix: dockerfile env vars</li>
+<li>ba324e7eb9bfa2fc90e327a87192d84a747603e6 fix: missing eslint babel files in docker multi-stage</li>
+<li>1e623fcdf50443e96a726b1027154ec0580e716c fix: multi-stage dockerfile</li>
+<li>87840558f57430fad52b024261895f8be8e3cc30 feat: multi-stage dockerfile</li>
+<li>fb29dd511bfaa7117cf5e7c550e672690718454b fix: setup navigation</li>
+<li>9a2a9c220a40adb26999ce2ad111c56af67c1d04 feat: page history UI + nav links fix</li>
+<li>b26f30ae20875a5c3d863749c341323dc871dd36 feat: navigation save / load</li>
+<li>b870a4724d69ad8d07eeb15e719549e1a4646fbd fix: add nvmrc file</li>
+<li>425bce7fa525e0c6268e59551e2b95651b6717f0 fix: readme dev link</li>
+<li>553ebefb869234c77851c6746988a31d92bb8fc2 fix: readme + admin UI fixes</li>
+<li>c08b5ac837b2076c8c94ea494ae7e5d35fe0045a feat: group permissions</li>
+<li>74aa3d906b489547faa1c421a0af9a988b13916d fix: groups edit fetch</li>
+<li>14e34d4346edf622409d0c3f99156cb7fe205d84 feat: jwt renew via graphql + users create/authorize UI</li>
+<li>3caa842d184b073f9e0f7d2254f9a878fb72268b feat: auth advanced settings UI + reload auth on save</li>
+<li>aa08459daf7aea61c43b3329e070471772c21f7d feat: token refresh</li>
+<li>3abd2f917c020e7a1fa489ffc7f95af072bcb823 feat: auth jwt, permissions, login ui (wip)</li>
+<li>563d1a4f9874c656418e95109a8a6555babc0fbd feat: page selector (wip)</li>
+<li>a0d9804116fa791ab2aeea64a2ae793c452432c0 feat: page selector (wip)</li>
+<li>904e2a6efba917f325d2c208b404375b2e52c14f fix: modules non-string config + live trail logging</li>
+<li>32a537ec06310c099af862e245cd0a399fe8de3f fix: dialog header bg</li>
+<li>506616716384dc736c7fed76f29a348d35fce409 fix: streamline admin UI with common save actions</li>
+<li>ed7d3ab540c5f5fff7770d7ea8e4b95b1586a9e1 fix: setup issues + webpack improvements</li>
+<li>edd0c1a00a5c9eb66393477928b46f2606e2a340 feat: admin navigation UI</li>
+<li>ca9ab4705de70c622bd5be170bc12cb98b64e525 fix: contribute resolver</li>
+<li>0bd9c36db5bfcf2777d08712e1d2d36ad3140b99 feat: list sponsors + contributors on contribute admin page</li>
+<li>925b3e1550b18ae8d39c5592c18c682213697e8c fix: mdi icons naming</li>
+<li>d52f21301200128cdde5f51b31a7e0481d668170 feat: markdown anchors</li>
+<li>d393a954952e0d04e30da26d9a65450fe3f8c077 feat: code highlighting client-side</li>
+<li>1bc98068e94583c8adc11a514b7a221545fb73ee fix: editor init bg</li>
+<li>30806d3c8da51ab07d6bcea8bc50f93512ff7166 feat: editor - existing content</li>
+<li>20f2fd29feb0c12a08fda5638f1a8881e5893387 feat: add editor selection + code editor + grapejs POC</li>
+<li>578ea577f0ae81987f21b82770b888a67fea06d8 feat: html code highlighter</li>
+<li>2c6a95f9002b3956b4456d6ed993bbd42cecb0d0 feat: page cache + save/load logic + db fixes</li>
+<li>572393aa7bb54f2d723940614be0d5503e71fd54 feat: sub+sup+imsize markdown renderers</li>
+<li>09d1f580d986ed3d233f814637ef2068a4c52130 feat: rendering pipeline logic</li>
+<li>0b93544677da211ec379a75586653c5ae598f90d feat: admin rendering UI + module configuration UI + UI fixes</li>
+<li>92d0925d5140f8687b255465b2c1dfa9ea061ca0 fix: mssql initial migration crash</li>
+<li>e284822875e6c681afcb4e25595837ce17d2664f misc: updated dependencies + UI fixes</li>
+<li>5e109802c65cce58e3de763cb1b31af47c78ecab feat: admin UI fixes + SAML strategy + dashboard gql</li>
+<li>01f43bfaa5d65979d4e27f052e9f7b54e3fedd6d feat: admin dashboard (wip)</li>
+<li>019537563ec941472918848ab06240d4b071a6a8 feat: admin logging + search</li>
+<li>5919d14670ee028fffa0419b1b2a57ba8fdee7bd feat: loggers + search engines models</li>
+<li>9c6a4f6c20ed8582fdfc0c9e571e3fc44aac1ead refactor: logging + search modules PH</li>
+<li>23f07381c27fbf6b49216b1a14476bb620a1d695 feat: added Makefile + npm scripts for docker dev</li>
+<li>2483dce9412c80b28bd4788cc3fb8d4c4470cefa feat: dev docker-compose</li>
+<li>4cb9f3d9c658aaeef9e9a219f3868798e747eadb feat: rendering modules + admin rendering</li>
+<li>db8e598e9adf4d737261e8121e899df8981baf9b feat: page display + renderers reorg</li>
+<li>4bb522f9d9a4e751779b1d6ab6ac1f27fc9c7ff6 feat: new page UI + db fixes + installer improvements</li>
+<li>04c972c1d0937e7e0f943794a96ff07583a998e4 feat: installer syscheck + prompt (wip)</li>
+<li>96f4e89020e03902559f2f271d99a2901b43ea1a fix: mysql + sqlite incompatible queries</li>
+<li>65f1611741c0c51a6f8ab9360083ad11e6bfae15 feat: installer (wip)</li>
+<li>c4c1cf007b930f992f9dd8bca556b1b9e3eb93d1 feat: xterm + UI fixes</li>
+<li>453c1beab3834696473ac99be66f1dccc0a27635 refactor: views consolidation + css fixes</li>
+<li>a78c6505f0b52f94e719a47dcacdedbe9a8cf49c fix: setup editors add + page view responsive</li>
+<li>2f26d731fc5fedc86a34bcbe34eae4c7f9401f7d feat: themes foundation + editors load improvements</li>
+<li>5620419d0508bdbd727178a238e700125f938910 feat: view page layout (wip) + footer component + fixes</li>
+<li>47dcc90fb7e7ddec1abd8ed0868f9bac5d096139 feat: storage extra metadata + user search fix</li>
+<li>bcd6ceb27178aa76463f9e780def1cffd2a4c421 feat: authentication improvements</li>
+<li>2817c72ec398de078b0349c17fe591c470b99927 feat: core improvements + local fs provider + UI fixes</li>
+<li>803d86ff6397a8838543465ef11d825e60cb3a60 feat: save page - updated + page history</li>
+<li>076e923d48904cfb9d54dfba46242f6d63453ad1 feat: save page + create event for storage targets</li>
+<li>cb84df7a533e992c3199366889883f463ac8c8ce feat: save page</li>
+<li>c7b675bb1c7ba56d81805c1a5414e7339c856dff fix: editor properties UI</li>
+<li>760939f8082d5bdf7ca8cddd627f483a799a61c7 feat: editor page properties</li>
+<li>fd8bf4dbff8e52e60153a75880820036a89b1a77 feat: authentication module refactor + added CAS module</li>
+<li>9e2f1caaf77937596f3a172fa20ba109ca04a0e1 feat: storage module refactor + UI fixes</li>
+<li>bc12db7295aaaa11f04bf011a6ffdb4a8b177d3b feat: admin rendering UI + contribute i18n</li>
+<li>4643336e9df512e1146043092f30dd7d0e7b3526 feat: auth + storage config improvements</li>
+<li>bb102c3356fa703c4d1d84fffc847632516ca478 feat: admin storage - save + list</li>
+<li>2500d8b0541e9a93a3a86d668f270f1d5f563a4c feat: admin auth - save config</li>
+<li>0afa65fa58404399b71db16a4e779a86cdf42f17 feat: auth self-registration config + gql grouping</li>
+<li>49834461a692661a9f6accc5b59e0fee0da05b5f feat: apollo upgrade to 2.0 + dev improvements + localization</li>
+<li>99d7078c2cd18f4bfe21cdf045ea14681c8eb0c5 feat: add localization to admin nav + locale sections</li>
+<li>4b0428212d482edb9fa2d93b6926180a4a4db1aa fix: client login</li>
+<li>197b6b41605ddc5ebee70b39baea28e240e6d161 feat: theming resolvers + config fixes</li>
+<li>1d2d1c66c17d5be3e18e644b06d3219c4ec3e251 feat: admin dark mode</li>
+<li>5efbfc737036a0b7a776887fd2fd5c66d67cb279 feat: admin auth UI + fetch</li>
+<li>dd318eb2db314563e423ddd4f2993149f5a0739b feat: locale namespacing save + auth fetch fix</li>
+<li>416755f17aa4732fdd98d34ca58e66a9885f729a refactor: remove config namespaces</li>
+<li>b1499d1d64586f321f95fe283d9310a6fd809b43 feat: profile components</li>
+<li>17b2117b395f6dcd91f118fde9bc0a8c29ada12d refactor: knex remaining models</li>
+<li>c9b643fbf0a3921d82cfca46781fe63e493fa185 refactor: migrate to objection.js + knex</li>
+<li>e03e6826a8aeca4919e394d13f3936cc86fb38af feat: storage + search modules skeleton</li>
+<li>bf02e1f78b3a2121efe4571faccf61879a319f6f feat: admin locale - multilingual namespaces UI</li>
+<li>dc09d00875d8e3ac0831207d63ece2f11d41caa5 feat: admin group edit / assign / unassign</li>
+<li>ba6b4bc4ddcaa53df349730a1f02f794229bc690 feat: admin - download locale strings from graph</li>
+<li>9f8feb65407d738df6e9ae0ab93f388c2dba18ea feat: admin - save locale settings + system info linux os</li>
+<li>b143aa2f8c768567aa1818269a48a236110a815b feat: sync locales strings</li>
+<li>7786f9042f599e8031f9423833ca877f247067ee feat: locales remote fetch+ deps update + fixes</li>
+<li>3752cf7415fc576c5e1f37b216b83995fa94df53 feat: user-search component UI</li>
+<li>8726494340cfa53a9d947cafed670bb6f00769a9 feat: admin - contribute</li>
+<li>a5173fcf56c17357d928de4940fc3529b12683d8 feat: admin - utilities - support page</li>
+<li>a88f8e6b9c6e0d7eea72392f2a0c55adfbdd7702 feat: admin utilities + telemetry UI, criterias-item component</li>
+<li>38347bc88dfc0e7ec1e76ea0f41260af02b49fe5 feat: criterias component</li>
+<li>e79dfc0822e70809cdc8da14c40a8b6402e97ee2 feat: admin - groups single view</li>
+<li>346493f845a52ae6e63948d1689f075a6c92b0da feat: admin - groups edit UI</li>
+<li>7793df9bd45216151f31f005dcb4e3e1a540c3dc feat: admin groups - list + create, gql refactoring</li>
+<li>cb253f7bfaa77c6b266dfc6941859dde1408e5ca fix: graphiql UI fix</li>
+<li>3f0adc5dafc6fc74a34d5376c64eabbdad58a07d feat: navigation, editor improvements + graphql refactor</li>
+<li>8462e18fc5a12f412a9ab516c12f30fa7abf9e8b feat: admin - system info</li>
+<li>392cbe93887c5d0ac99f39a24009e4057a7b93f4 refactor: dev optimizations + improvements</li>
+<li>3dc9b92596fa5cae1aaaa3aebc9841bbb6bae330 feat: webpack-html-plugin</li>
+<li>1adf98eb8d80b186dbe85d87b61b884c7d6d6517 fix: mdi icons</li>
+<li>ba1a4624480f7f050f3a7ccf345dccfcc208dc0d fix: remove unused deps</li>
+<li>c36e8b969f0c83bc0e4ded72c285bbaf939e7813 feat: upgrade to webpack 4</li>
+<li>97bf7a37dff683e6f264810a81a98a64407d4597 feat: add graphiql to admin-dev</li>
+<li>8e09c6fce1d5c41a88df3029f2ebc5af2344171f refactor: updated loggers + admin UI improvements + setup fixes</li>
+<li>6baa277f512d8b478df28c0fa4b661bdf3461aaa fix: migrate setup to vuetify + remove git related steps</li>
+<li>16d3336cd0136249c536f84426263e6c1b003eb3 refactor: webpack fixes, missing auth icons, auth resolvers</li>
+<li>69a0711d165c4463901610e21e0e3a9d0e6ec3e3 feat: authentication providers resolver - filter + orderBy</li>
+<li>6ff4152e1c603356c97eb67c05f443ace453fb65 feat: admin auth - UI + form fields per provider + refresh</li>
+<li>f5fb21aaba4d5dd4952ed6bdfde6bb5dee337645 feat: vue-apollo + auth providers resolver (wip)</li>
+<li>91b575529c17ac7e7e7e86507ad6a2891334a1ec misc: update dependencies</li>
+<li>7acc4e9fed23ff5da3873635f735aac1f0906387 refactor: global namespace + admin pages UI</li>
+<li>f203173c6cb22a5eb6883f28fb5f520fb5353c9a feat: admin - UI optimizations + search, auth UI</li>
+<li>1ae47dde2e4f54b7e3d09fce39e5136a4b35efdb feat: admin - general, locale, theme, users, system info UI</li>
+<li>0ccdf10c9dccf321177736c58b8f2788f61ab648 feat: admin component</li>
+<li>a4f00e795c9984195efe0a530db138175f2a29e5 fix: move cm theme to component</li>
+<li>e4fd521c124ac1b643b91a7064bb2be7f7602757 feat: cm editor theme</li>
+<li>a30b749bd0bfa7fd4ba455c47ac4f484f8f80e46 feat: editor preview scroll sync + preview styling fixes</li>
+<li>6eb290781d11992e75c8ab74825c158f4156b7cd feat: editor preview tabs, abbr, sup, sub, mark and img size</li>
+<li>5e8dfcc2eac90acc82e949b1934cb1b99ffebbc9 feat: editor preview emoji + task lists</li>
+<li>a3948c7f45ebc76115a3a67dd8e0d4fcbb3a9f71 feat: editor preview styling + code highlighting</li>
+<li>4fa7ed4e933b3f8efddfa85c9eb2edff3914d70e refactor: client structure + editor preview logic</li>
+<li>37c28691ff3762b5c6c6b09b95f618e52fb6cd8a fix: sentry logger transport typo</li>
+<li>1f2d42d34a31d75128902c3f4ab22d4c5e09d905 fix: added missing raven dependency (sentry)</li>
+<li>8830835340439a2caff08230ab0265832709013b fix: editor-code UI fixes</li>
+<li>ce7063ea91f7e64f67969a4e943c3374b1de7579 feat: editor - progress dialog + modal single component</li>
+<li>218fe02e4551e8f97f53005c1274ca4ebaa316ed feat: editor-modal-access UI + editor toolbar</li>
+<li>beb3fe128b64c3f09c47cb1fe2acd7091497307c feat: editor-modal-document UI (2)</li>
+<li>f27c1e86b1c848a3d718f08e405fc51794bf4401 feat: editor-modal-document UI</li>
+<li>c9b6d0ee36e265680ee1ca897e25d9d1f3a159fc feat: insert content speeddial + mobile optimizations</li>
+<li>c6e8120912c7267b84130c642148619056246481 feat: editor-code toolbar dropdowns</li>
+<li>da8b4b662ccc61100581be47d9c73dc11420bbd2 feat: vuetify integration + editor-code actions</li>
+<li>1a051f55694d87067fd55b8dcf07400963a56aea feat: editor-code component</li>
+<li>3471a7a6f9591de856a96520c6b0b9d3ff426f36 refactor: project cleanup + onboarding page</li>
+<li>1d9f057f383e8056e6bd259dffe0e4a230efbbf7 refactor: deps cleanup + fetch locales task</li>
+<li>23a6be121953cc32fb7836f055729003cb37875a refactor: removed 1.x client files</li>
+<li>30ce9c867087bc21fff14cb4060d0e0c77082eaf refactor: cleanup</li>
+<li>8d74c48b7b416fa487e33a66a55fba57ef26a48a refactor: move setup view to vue component</li>
+<li>7b269414d83363fc8ed415485a284f14998b1e74 fix: auth cookie set + graphQL http link</li>
+<li>75d37cbdafafd98780c90acd1113099fd688901c feat: added offline-plugin</li>
+<li>63902907b54233ad537c750ea9319963df3cc60e refactor: dev optimizations</li>
+<li>9e7f6b6eb1b85de082065948e165a36f75063734 refactor: handle HMR</li>
+<li>f0e45ece6f698b0c4afc5c143d62335b605cccc0 refactor: dev mode</li>
+<li>1be3234ba19916d6678362c55bcbc2b11713eff3 refactor: webpack vendor, postcss + fixes</li>
+<li>6227690c947ad17dacd9b34f965488b950cedcdc feat: webpack refactor</li>
+<li>d3720ca008dcb920c061c90cb0755e1c5e9299a6 refactor: added bundle analyzer</li>
+<li>1c8f3e4bc0ebe52b7d9bf2e0362e301fdae61810 refactor: added assets to gitignore</li>
+<li>4fd8dfbbee7301e1edf45af56b672286aa03a8cb refactor: switch to poi compiler</li>
+<li>74bd7221687144b6174c2b11972bc3d533f070c3 refactor: renderers + auth providers + fixes</li>
+<li>24fc806b0e33d49f59889867c64279d2edd84990 fix: remove test logging</li>
+<li>cb0d86906fb03c9b7122a385b130828fbfd46e73 feat: login + TFA authentication</li>
+<li>85717bd36925e05b3b34fd107b9726e749030fa9 feat: navigator sd footer + setup icons fixes</li>
+<li>a155af20f5d12f5d94ef1d1d69e8eae23b77616f feat: added auth0, discord, twitch auth modules</li>
+<li>a4e0e6d35c697846380a53c3ea88947d0cedaa6b feat: navigator sidebar</li>
+<li>8b30d31457fd02224268a3011633473cf9966706 feat: login component, icon svg symbols, project structure</li>
+<li>2d5a3203db30250cff756cb14011c221ef480fe4 feat: modular logging + setup wizard</li>
+<li>18dee58a067bc85d522624f0c07248222041106e feat: config wizard save</li>
+<li>1f350172b98b33c430ceb67c3e4dda37c43f37bc dev: refactor fixes</li>
+<li>5880e932b3dce2290222979137fdedb81d4e1025 dev: added dev config</li>
+<li>e55c5805b41f6a9007a39284c486b3dea7f0effa dev: refactoring + lokalise fetch + process</li>
+<li>26e3e210052aa6abeac9da9cee9e3b7c41a0c973 fix: invisible user rights delete button</li>
+<li>2668dde7bd7241a3a615016da5226e6b5ec1df12 feat: upgradeFromMongo (wip) + panel UI improvements</li>
+<li>82ea0b50fbb45e9152a45d20fb11ea9f87146a22 feat: config wizard UI improv. + upgrade from Mongo</li>
+<li>ba1d83ebcb43cb23fff3f81d417d32f9a73067dd feat: db + redis error handling, setup options, updated deps</li>
+<li>1658fcbf2e76022ff92e04691f0da36674203dbf feat: config wizard UI improvements</li>
+<li>98d311145ba7a5bc025768423ec07139deeb4975 fix: eslint for vue components</li>
+<li>72e3bacc2e430bf2ec42eea2982e0f65d2492dbb feat: Integrate new svg icons set + config wiz UI improvements</li>
+<li>51cd37fd05f0a1ce3c4a40c02056a9a4e3798962 feat: upgraded dependencies</li>
+<li>784b48680ccad1bea749793d41d087d4e0c44163 feat: telemetry module</li>
+<li>b11a90cc065d943ecb2671f44f93e4969a38d070 fix: missing jest-junit dependency</li>
+<li>cbaa20da3f88f17a5d60aecc097a29b0bb3f202c feat: telemetry client module</li>
+<li>a0ce11ff36aad185cb09e4cd05a675df0326c89c Merge pull request #284 from Requarks/master</li>
+<li>0a22bb5ee5404042c11f92a668a302cceaa982d0 fix: revert to 1.x config sample</li>
+<li>3709b8e7bea1141824d8622e772660a2a8820d45 docs: updated README</li>
+<li>dd47ba8c6698c92541b2f99d1e0154465b06d0c2 Merge pull request #283 from Requarks/master</li>
+<li>05c32fb1bd9f843512443812c77bde33ad3f2ef2 Merge branch ‘dev’ into master</li>
+<li>9684d0c9fba0056aebcf82f7552723c0e8a56eed docs: updated 2.0 milestones</li>
+<li>cb99f95665261a54733da01be82e4b9d29c699ec Small fixes and adds in german language</li>
+<li>3493bd578146f82084143d78f43273b838d59d4c feat: themes folder + telemetry option in setup</li>
+<li>24ca6e3664ab9147a38bf7d57d240b1391e0cfd4 fix: locale ja auth typo</li>
+<li>e183167c9ba2f0048f8851c4d6760db96f33fed1 Merge remote-tracking branch ‘origin/master’ into dev</li>
+<li>ca8451720f0bb86e990b5d77423fccc8c1eb747c feat: setup wizard cleanup + upgrade UI</li>
+<li>c94e2d5700724cd2dc3a4735bbe95e9cf1b567e2 feat: config-manager component</li>
+<li>c26fae2edefd140a0f723238dfc669f763ed0839 feat: Kernel module</li>
+<li>2be7f71be86fb3f91fc34313fa42735f3bf67a04 feat: fusebox updates + vue-component-plugin</li>
+<li>501f0a9a536eba8b5edf7cfda443b359f0978c19 feat: auth strategies over GraphQL + svg loading</li>
+<li>51f5c236d6046536c2df13138b891acbe209a6c1 feat: updated dependencies</li>
+<li>32b794770414818bff96fad0621219e5b960b4fd feat: GraphQL translations + login form</li>
+<li>16a47e46cec7fb59bdb1f7fb0e554e70b0976b3f feat: login UI - vector + dynamic colors</li>
+<li>cbe39102c3b6daa2a4db5d08f876125064b3d71a fix: login ldap detection</li>
+<li>759b66469c8b8139dc49524fa698ab38512f0a5c feat: persian locales + auth fix</li>
+<li>cac3d21c6e5d012d3a9f379524294628f4dc5d86 feat: self-contained auth modules + login UI + icons</li>
+<li>52630127cd4eb3ff1a2158b73c80fedf8c0d0087 feat: login page UI</li>
+<li>dd73b036d295f98a0e6522170e6db81d993ea9b7 fix: git config typo</li>
+<li>35cb56c69452aba33cc5e7bfab4315f2ca841170 feat: file resolvers + pull changes from master</li>
+<li>574e4b97f40d087c5267a7ad976329aec357cc2e feat: GraphQL setting, right, folder resolvers</li>
+<li>02183f82ecc783d79ed88bd20af16394ca0cad4f feat: mutations + updated deps</li>
+<li>840eb7e70575c4999e3f66c946705a49318750c0 feat: GraphQL mutations for folder, group, tag, user</li>
+<li>1405b822f4d5188a62bdd931b322c5ba25b2117c feat: GraphQL Date scalar</li>
+<li>7e1cb3d1710c2c98cfa5873d7ead53f637a0db22 feat: GraphQL mutations for User + Group</li>
+<li>e0b788501dff6c959a815c84295fe853e5429045 chore: updated dependencies</li>
+<li>7f955707b7c0b32b63b668983667ba77d850e8f5 chore: updated dependencies</li>
+<li>437b88bf5817a6fdcb2cc64014e908e1687403bc feat: GraphQL schema</li>
+<li>62067caa6295b6ccbe8417e0037da47cc72da248 refactor: remove npm install method</li>
+<li>749766e9bd6c5375926cb3f319c93797592aa04b feat: queue handling</li>
+</ul>
+<p>This list of changes was <a href="https://dev.azure.com/requarks/9fa44551-53c1-4f12-bc5e-cc6a83b50def/_release?releaseId=4&#x26;_a=release-summary">auto generated</a>.</p></details><p></p> </div> <div class="mt-6"> <a href="https://github.com/requarks/wiki/releases/tag/2.0.0-beta.11" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

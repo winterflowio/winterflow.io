@@ -1,0 +1,613 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Leantime v3.2.0 release notes | WinterFlow.io</title><meta name="description" content="This release introduces Laravel-based session management, alpha support for Zapier, improved logging, and several new jsonRPC API endpoints."><link rel="canonical" href="https://winterflow.io/catalog/leantime/releases/v3.2.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Leantime v3.2.0 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces Laravel-based session management, alpha support for Zapier, improved logging, and several new jsonRPC API endpoints."><meta property="og:url" content="https://winterflow.io/catalog/leantime/releases/v3.2.0/"><meta property="og:image" content="https://winterflow.io/images/apps/leantime/leantime.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Leantime v3.2.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces Laravel-based session management, alpha support for Zapier, improved logging, and several new jsonRPC API endpoints."><meta name="twitter:image" content="https://winterflow.io/images/apps/leantime/leantime.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Leantime","item":"https://winterflow.io/catalog/leantime/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/leantime/releases/"},{"@type":"ListItem","position":5,"name":"v3.2.0","item":"https://winterflow.io/catalog/leantime/releases/v3.2.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/leantime/leantime.png" alt="Leantime logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Leantime</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Goal-focused project management system for non-project managers</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello, asana, jira, clickup, monday.com </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://leantime.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/Leantime/leantime" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.leantime.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/leantime/mywork.png" alt="Leantime screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/Leantime/leantime/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 10,199 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Leantime" data-app-slug="leantime" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/Leantime/leantime" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/leantime" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/leantime/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/leantime/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v3.2.0</h2> <span class="text-sm text-gray-500">2024-08-24</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="changes-in-this-release">Changes in this Release</h2>
+<h2 id="before-upgrading">Before upgrading</h2>
+<ul>
+<li>Before you upgrade please disable all installed plugins. Once the upgrade is complete each plugin must be re-installed to get the latest version.</li>
+<li>When updating manually (copy pasting code) please ensure to remove old unneded classes in the core folder. It is best to do a full replace.</li>
+</ul>
+<h2 id="breaking-changes">Breaking Changes</h2>
+<ul>
+<li>The jsonRPC api was changed in various places. Please ensure to test any api integrations</li>
+<li>All plugins will need to be updated after an upgrade</li>
+</ul>
+<h2 id="highlights">Highlights</h2>
+<ul>
+<li>Session management is now handled via laravel. Solving a lot of our timeout and logout issues</li>
+<li>Improved logging and exception handling</li>
+<li>jsonRPCApi received a lot of new endpoints</li>
+<li>Support for Zapier was created. The Zapier integration is in alpha. You can access the private app here: <a href="https://zapier.com/developer/public-invite/207240/cac6ec7a911bd5fa7924f38230d58d2f/">https://zapier.com/developer/public-invite/207240/cac6ec7a911bd5fa7924f38230d58d2f/</a></li>
+<li>Fixed various issues on CSV importer</li>
+<li>A lot of clean up of our core code</li>
+</ul>
+<h3 id="commits">Commits</h3>
+<ul>
+<li>223cf2e4 [Changelog CI] Add Changelog for Version 3.2.0</li>
+<li>2ad43d2e Fixes to version management for plugins</li>
+<li>53e546fb [Changelog CI] Add Changelog for Version 3.2.0</li>
+<li>7c272f9a Update release.yml</li>
+<li>3be56986 file list</li>
+<li>16ad7129 Timesheet fixes</li>
+<li>7c4e93c3 Update Connector.php</li>
+<li>5aeafc0d Update ApiClientTest.php</li>
+<li>b365dbee fixing csv</li>
+<li>103c79ec Rename eventhelpers trait</li>
+<li>0c418967 fixing menu related bugs</li>
+<li>d8afdd9a Support for head requests</li>
+<li>a83f6457 Update ApiClient.php</li>
+<li>cdf332de more cleanup</li>
+<li>91dde9ee Cleaning core file structure</li>
+<li>15e26f84 version bump</li>
+<li>26531b00 resolving conflicts</li>
+<li>f6015804 Update composer.lock</li>
+<li>679364ac Fixing phpstan issues</li>
+<li>73ad52c8 Misc template enhancements</li>
+<li>d58e1648 Improves update check in case dbs have to be downgraded.</li>
+<li>0538d680 Fixing various dateTime bugs across the system</li>
+<li>c64f09c8 Adding a new default job worker that can execute queue jobs via classes added to subject</li>
+<li>7cb01998 Allow API to use any service and new api endpoints</li>
+<li>9ac27326 Adding Redis Support for cache and sessions</li>
+<li>30b4fff5 fix the canvas dialogue</li>
+<li>9fd512b6 Fix for broken project favorite function</li>
+<li>2bce7b65 Update queue service to include web worker</li>
+<li>b60b8be8 update event cache to include check for debug</li>
+<li>03235197 Update bootstrap.php</li>
+<li>19fd0d36 Update Logging.php</li>
+<li>d3d90080 test improvements</li>
+<li>aa361993 Update dockerfile</li>
+<li>a028f1ea Fix docker permissions for log files</li>
+<li>d3621088 Fix make file</li>
+<li>6358e857 Clean up old excception handling in httpkernel</li>
+<li>199ce6d3 piping environment config through</li>
+<li>1fa1f467 Removed exception service provider since handler is managed in environment</li>
+<li>5e5c0a6a Added Laravel exception handler with whoops</li>
+<li>c12ea2cd Update PULL_REQUEST_TEMPLATE.md</li>
+<li>9397ee73 Fix localization issues for dates with translated day, month names</li>
+<li>83a06bfb Fix for storing language</li>
+<li>b4bfcd3a Move changelogConfig out of the workflow folder</li>
+<li>6cd06493 version bump</li>
+<li>559ab756 version bump</li>
+<li>6764016e Fix for #2606 and saving new items on blueprints</li>
+<li>89bcdd6e Install welcome message update</li>
+<li>4d0f4506 variable name update and feedback review</li>
+<li>6f68fe1c variable name update</li>
+<li>2c9e8f80 done</li>
+<li>a2fd8f8c feedback</li>
+<li>256a23aa remove unnecessary plugins</li>
+<li>213f5a99 fix make build-dev compile issue and add ddev config</li>
+<li>961b8296 1882: move moreinfo into span</li>
+<li>a4e0b11f resolving the feedback</li>
+<li>94224686 blade conversion</li>
+<li>7a37ee20 Update README.md for newer mysql version</li>
+<li>a78ed984 Lossless image filesize reduction</li>
+<li>5c82d328 1882: add translations</li>
+<li>8eaee143 1882: improve danish translation</li>
+<li>966beb5f 1882: add status, start and end date to milestone headline</li>
+<li>3cf5c54c Improve current project setting flow</li>
+<li>c84d0ff4 Making laravel commands available</li>
+<li>b3002192 Fix ambiguous modified field</li>
+<li>375d700c phpstan update</li>
+<li>6cd8c8de Fix csvimport</li>
+<li>4be81039 Update release.yml</li>
+<li>ea70e34c Manifest updates</li>
+<li>6e5ea13a clean up minimal theme</li>
+<li>4f79ea9a fix history push error for modals</li>
+<li>a10bf2b7 Remove project detail step from onboarding</li>
+<li>85a96484 Add modified fileds to db tables</li>
+<li>0fff45e9 ensure default value is used in theme settings</li>
+<li>6c2e9aa9 Ensure cache is set and used file for images</li>
+<li>0fa5db29 update confetti management</li>
+<li>78d62232 chore: remove unneeded comment</li>
+<li>1e1a5532 chore: switch to more specific function naming <code>pollForNewTimesheets</code></li>
+<li>d4a7356c fix: utilize addTicket for new milestone</li>
+<li>85fd91f4 chore: clean up function name to encapsulate for todo and not generic ticket</li>
+<li>1c9dbc9c enhance: utilize <code>updateTicket</code> instead of making a new zapier function for update todo action</li>
+<li>7b6950e7 fix: utilize <code>logTime</code> instead of making new zapier function for action</li>
+<li>9489f4af chore: remove unneeded comment</li>
+<li>0303b90e enhance: make function name for polling new idea clearer</li>
+<li>77acbfdc chore: remove unneccesary todo comment</li>
+<li>5623801e chore: default to previous headline of ticket if headline not sent to update function</li>
+<li>2c6ba5ed fix: remove <code>headline</code> requirement for updating ticket</li>
+<li>e2dac9a8 fix: utilize user session with api key call</li>
+<li>cd9638f0 Updated polish translations</li>
+<li>4278b964 [Changelog CI] Add Changelog for Version 3.2.0-beta-2</li>
+<li>bdc885f2 feat: zapier able to create timesheets via actions</li>
+<li>8b2c7ec2 feat: ability for zapier to poll by new timesheets and updated timesheets</li>
+<li>676461fc feat: zapier actions to 1 - create todo 2 - create milestone 3 - update todo</li>
+<li>63dca561 feat: ability for zapier to poll by new todo’s and updated todo’s</li>
+<li>940175a7 feat: ability for zapier to poll by new milestones and updated milestones</li>
+<li>4329be5e fix: ensure date attribute in tickets table gets updated when updating ticket</li>
+<li>5cddaca8 feat: ability for zapier to poll by updated projects</li>
+<li>bdaf7838 feat: ability for zapier to poll by new ideas and updated ideas</li>
+<li>75218328 feat: ability for zapier to poll by goals and check for updated goals</li>
+<li>167c8a82 feat: ability for zapier to poll by comments</li>
+</ul>
+<h3 id="contributors">Contributors</h3>
+<ul>
+<li>Marcel Folaron (58 commits)</li>
+<li>kylemcshea (22 commits)</li>
+<li>DESKTOP-SVBVC1U\HP (7 commits)</li>
+<li>Sine Jespersen (4 commits)</li>
+<li>Joseph Roberts (2 commits)</li>
+<li>phulstaert (1 commits)</li>
+<li>Peter Hulstaert (1 commits)</li>
+<li>Mateusz Tylec (1 commits)</li>
+</ul>
+<h3 id="files">Files</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span> .ddev/.env                                         |    8 +</span></span>
+<span class="line"><span> .ddev/config.yaml                                  |  280 +++</span></span>
+<span class="line"><span> .dev/.env                                          |    4 +</span></span>
+<span class="line"><span> .dev/dev-apache-site.conf                          |    8 +-</span></span>
+<span class="line"><span> .dev/dev-apache2.conf                              |    2 +-</span></span>
+<span class="line"><span> .dev/docker-compose.yaml                           |   12 +-</span></span>
+<span class="line"><span> .dev/dockerfile                                    |    2 +-</span></span>
+<span class="line"><span> .dev/test.env                                      |    2 +-</span></span>
+<span class="line"><span> .dev/xdebug.ini                                    |    4 +-</span></span>
+<span class="line"><span> .github/PULL_REQUEST_TEMPLATE.md                   |   23 +-</span></span>
+<span class="line"><span> .github/{workflows => }/changelogConfig.yml        |    0</span></span>
+<span class="line"><span> .github/workflows/release.yml                      |   26 +-</span></span>
+<span class="line"><span> .gitignore                                         |    1 -</span></span>
+<span class="line"><span> .idea/blade.xml                                    |  119 +</span></span>
+<span class="line"><span> .idea/codeception.xml                              |    5 +-</span></span>
+<span class="line"><span> .idea/encodings.xml                                |    6 +</span></span>
+<span class="line"><span> .idea/laravel-idea.xml                             |    6 +</span></span>
+<span class="line"><span> .idea/leantime-oss.iml                             |   33 +-</span></span>
+<span class="line"><span> .idea/php.xml                                      |  113 +-</span></span>
+<span class="line"><span> .idea/phpspec.xml                                  |   27 +</span></span>
+<span class="line"><span> CHANGELOG.md                                       |  157 ++</span></span>
+<span class="line"><span> CONTRIBUTING.md                                    |    2 +-</span></span>
+<span class="line"><span> README.md                                          |    2 +-</span></span>
+<span class="line"><span> app/Command/BackupDbCommand.php                    |    5 +-</span></span>
+<span class="line"><span> app/Command/TestEmailCommand.php                   |    6 +-</span></span>
+<span class="line"><span> app/Command/UpdateLeantime.php                     |    8 +-</span></span>
+<span class="line"><span> app/Core/AppSettings.php                           |   51 -</span></span>
+<span class="line"><span> app/Core/{ => Bootstrap}/Application.php           |   69 +-</span></span>
+<span class="line"><span> app/Core/{ => Bootstrap}/Bootloader.php            |   29 +-</span></span>
+<span class="line"><span> app/Core/CliRequest.php                            |    8 -</span></span>
+<span class="line"><span> app/Core/Configuration/AppSettings.php             |   18 +</span></span>
+<span class="line"><span> app/Core/{ => Configuration}/DefaultConfig.php     |   38 +-</span></span>
+<span class="line"><span> app/Core/{ => Configuration}/Environment.php       |    2 +-</span></span>
+<span class="line"><span> app/Core/Console/CliRequest.php                    |   10 +</span></span>
+<span class="line"><span> app/Core/{ => Console}/ConsoleKernel.php           |   18 +-</span></span>
+<span class="line"><span> app/Core/{ => Contracts}/Service.php               |    4 +-</span></span>
+<span class="line"><span> app/Core/{ => Controller}/Composer.php             |    2 +-</span></span>
+<span class="line"><span> app/Core/{ => Controller}/Controller.php           |   19 +-</span></span>
+<span class="line"><span> app/Core/{ => Controller}/Frontcontroller.php      |    7 +-</span></span>
+<span class="line"><span> app/Core/{ => Controller}/HtmxController.php       |    7 +-</span></span>
+<span class="line"><span> app/Core/{ => Db}/Db.php                           |   10 +-</span></span>
+<span class="line"><span> app/Core/{ => Db}/Repository.php                   |   11 +-</span></span>
+<span class="line"><span> .../DispatchesEvents.php}                          |    8 +-</span></span>
+<span class="line"><span> .../{Events.php => Events/EventDispatcher.php}     |  130 +-</span></span>
+<span class="line"><span> app/Core/ExceptionHandler.php                      |   74 -</span></span>
+<span class="line"><span> app/Core/Exceptions/ExceptionHandler.php           |  600 +++++</span></span>
+<span class="line"><span> app/Core/Exceptions/HandleExceptions.php           |  361 +++</span></span>
+<span class="line"><span> app/Core/Exceptions/InvalidArgumentException.php   |   25 +</span></span>
+<span class="line"><span> app/Core/Exceptions/ReportableHandler.php          |   82 +</span></span>
+<span class="line"><span> app/Core/Exceptions/WhoopsHandler.php              |   90 +</span></span>
+<span class="line"><span> app/Core/Fileupload.php                            |   28 +-</span></span>
+<span class="line"><span> app/Core/{ => Http}/ApiRequest.php                 |    2 +-</span></span>
+<span class="line"><span> .../{ApiSession.php => Http/Client/ApiClient.php}  |    4 +-</span></span>
+<span class="line"><span> app/Core/{ => Http}/HtmxRequest.php                |    2 +-</span></span>
+<span class="line"><span> app/Core/{ => Http}/HttpKernel.php                 |   78 +-</span></span>
+<span class="line"><span> app/Core/{ => Http}/IncomingRequest.php            |   50 +-</span></span>
+<span class="line"><span> app/Core/Language.php                              |   45 +-</span></span>
+<span class="line"><span> app/Core/Mailer.php                                |   10 +-</span></span>
+<span class="line"><span> app/Core/Middleware/ApiAuth.php                    |   10 +-</span></span>
+<span class="line"><span> app/Core/Middleware/Auth.php                       |    8 +-</span></span>
+<span class="line"><span> app/Core/Middleware/CurrentProject.php             |   13 +-</span></span>
+<span class="line"><span> app/Core/Middleware/InitialHeaders.php             |    8 +-</span></span>
+<span class="line"><span> app/Core/Middleware/Installed.php                  |    9 +-</span></span>
+<span class="line"><span> app/Core/Middleware/Localization.php               |   10 +-</span></span>
+<span class="line"><span> app/Core/Middleware/RequestRateLimiter.php         |   18 +-</span></span>
+<span class="line"><span> app/Core/Middleware/StartSession.php               |   60 +-</span></span>
+<span class="line"><span> app/Core/Middleware/TrustProxies.php               |   13 +-</span></span>
+<span class="line"><span> app/Core/Middleware/Updated.php                    |   28 +-</span></span>
+<span class="line"><span> app/Core/Plugins.php                               |    8 +-</span></span>
+<span class="line"><span> app/Core/Providers/Auth.php                        |    5 -</span></span>
+<span class="line"><span> app/Core/Providers/Cache.php                       |   40 +-</span></span>
+<span class="line"><span> app/Core/Providers/Db.php                          |    9 +-</span></span>
+<span class="line"><span> app/Core/Providers/Environment.php                 |   62 +-</span></span>
+<span class="line"><span> app/Core/Providers/Events.php                      |    7 +-</span></span>
+<span class="line"><span> app/Core/Providers/Language.php                    |    6 -</span></span>
+<span class="line"><span> app/Core/Providers/Logging.php                     |   47 +</span></span>
+<span class="line"><span> app/Core/Providers/RateLimiter.php                 |    7 -</span></span>
+<span class="line"><span> app/Core/Providers/Redis.php                       |   80 +</span></span>
+<span class="line"><span> app/Core/Providers/Session.php                     |   34 +-</span></span>
+<span class="line"><span> app/Core/Support/CarbonMacros.php                  |    8 +-</span></span>
+<span class="line"><span> app/Core/Support/DateTimeHelper.php                |   27 +-</span></span>
+<span class="line"><span> app/Core/Support/Format.php                        |    2 +-</span></span>
+<span class="line"><span> app/Core/Support/Mix.php                           |    4 +-</span></span>
+<span class="line"><span> app/Core/Template.php                              |   36 +-</span></span>
+<span class="line"><span> app/Core/Theme.php                                 |   32 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/ApiKey.php              |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Calendar.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Canvas.php              |    4 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/DelAPIKey.php           |    6 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Files.php               |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/I18n.php                |    3 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Ideas.php               |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Ideation.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Jsonrpc.php             |   43 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/NewApiKey.php           |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Notifications.php       |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Projects.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Reactions.php           |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Sessions.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Setting.php             |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/StaticAsset.php         |   12 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Submenu.php             |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Tags.php                |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Tickets.php             |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Timer.php               |    2 +-</span></span>
+<span class="line"><span> app/Domain/Api/Controllers/Users.php               |    4 +-</span></span>
+<span class="line"><span> app/Domain/Api/Repositories/Api.php                |    3 +-</span></span>
+<span class="line"><span> app/Domain/Api/Services/Api.php                    |   13 +-</span></span>
+<span class="line"><span> app/Domain/Audit/Repositories/Audit.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Controllers/KeepAlive.php          |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Controllers/Login.php              |    6 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Controllers/Logout.php             |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Controllers/ResetPw.php            |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Controllers/UserInvite.php         |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Models/Roles.php                   |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Repositories/Auth.php              |    4 +-</span></span>
+<span class="line"><span> app/Domain/Auth/Services/Auth.php                  |   35 +-</span></span>
+<span class="line"><span> app/Domain/Auth/register.php                       |   14 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/AddEvent.php       |    4 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/DelEvent.php       |    6 +-</span></span>
+<span class="line"><span> .../Calendar/Controllers/DelExternalCalendar.php   |    6 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/EditEvent.php      |    6 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/EditExternal.php   |    4 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/Export.php         |    6 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/ExternalCal.php    |    6 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/Ical.php           |    5 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/ImportGCal.php     |    4 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/ShowAllGCals.php   |    4 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Controllers/ShowMyCalendar.php |    4 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Repositories/Calendar.php      |    7 +-</span></span>
+<span class="line"><span> app/Domain/Calendar/Services/Calendar.php          |    2 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/BoardDialog.php      |   13 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/DelCanvas.php        |    8 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/DelCanvasItem.php    |    6 +-</span></span>
+<span class="line"><span> .../Canvas/Controllers/EditCanvasComment.php       |   13 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/EditCanvasItem.php   |   13 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/Export.php           |    6 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Controllers/ShowCanvas.php       |   32 +-</span></span>
+<span class="line"><span> app/Domain/Canvas/Repositories/Canvas.php          |    6 +-</span></span>
+<span class="line"><span> .../Canvas/Templates/showCanvasBottom.inc.php      |    4 +</span></span>
+<span class="line"><span> app/Domain/Clients/Controllers/DelClient.php       |    6 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Controllers/EditClient.php      |    4 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Controllers/NewClient.php       |    6 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Controllers/ShowAll.php         |    4 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Controllers/ShowClient.php      |   14 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Repositories/Clients.php        |    4 +-</span></span>
+<span class="line"><span> app/Domain/Clients/Services/Clients.php            |    6 +-</span></span>
+<span class="line"><span> app/Domain/Comments/Controllers/ShowAll.php        |    8 +-</span></span>
+<span class="line"><span> app/Domain/Comments/Repositories/Comments.php      |   59 +-</span></span>
+<span class="line"><span> app/Domain/Comments/Services/Comments.php          |   16 +-</span></span>
+<span class="line"><span> .../Templates/submodules/generalComment.sub.php    |    2 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Controllers/Integration.php   |   25 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Controllers/Providers.php     |    2 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Controllers/Show.php          |    2 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Models/Integration.php        |   12 +</span></span>
+<span class="line"><span> app/Domain/Connector/Repositories/Integrations.php |    3 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Services/Connector.php        |   11 +-</span></span>
+<span class="line"><span> app/Domain/Connector/Services/Integrations.php     |    1 -</span></span>
+<span class="line"><span> app/Domain/Connector/Services/Providers.php        |    4 +-</span></span>
+<span class="line"><span> app/Domain/Cron/Controllers/Run.php                |   20 +-</span></span>
+<span class="line"><span> app/Domain/Cron/Services/Cron.php                  |   12 +-</span></span>
+<span class="line"><span> app/Domain/CsvImport/Controllers/Upload.php        |   11 +-</span></span>
+<span class="line"><span> app/Domain/CsvImport/Services/CsvImport.php        |    4 +-</span></span>
+<span class="line"><span> app/Domain/CsvImport/Templates/upload.tpl.php      |    2 +-</span></span>
+<span class="line"><span> app/Domain/CsvImport/register.php                  |    4 +-</span></span>
+<span class="line"><span> app/Domain/Dashboard/Controllers/Home.php          |   18 +-</span></span>
+<span class="line"><span> app/Domain/Dashboard/Controllers/Show.php          |   20 +-</span></span>
+<span class="line"><span> app/Domain/Dashboard/Repositories/Dashboard.php    |    2 +-</span></span>
+<span class="line"><span> .../Repositories/Entityrelations.php               |    6 +-</span></span>
+<span class="line"><span> app/Domain/Errors/Controllers/Error403.php         |    3 +-</span></span>
+<span class="line"><span> app/Domain/Errors/Controllers/Error404.php         |    3 +-</span></span>
+<span class="line"><span> app/Domain/Errors/Controllers/Error500.php         |    3 +-</span></span>
+<span class="line"><span> app/Domain/Errors/Controllers/Error501.php         |    4 +-</span></span>
+<span class="line"><span> app/Domain/Files/Controllers/Browse.php            |    4 +-</span></span>
+<span class="line"><span> app/Domain/Files/Controllers/Get.php               |    8 +-</span></span>
+<span class="line"><span> app/Domain/Files/Controllers/ShowAll.php           |    4 +-</span></span>
+<span class="line"><span> app/Domain/Files/Repositories/Files.php            |    4 +-</span></span>
+<span class="line"><span> app/Domain/Files/Templates/browse.tpl.php          |    2 +-</span></span>
+<span class="line"><span> .../Files/Templates/submodules/showAll.sub.php     |    2 +-</span></span>
+<span class="line"><span> app/Domain/Gamecenter/Controllers/Launch.php       |    2 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Controllers/BigRock.php      |   10 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Controllers/Dashboard.php    |   31 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Controllers/DelCanvas.php    |   55 +-</span></span>
+<span class="line"><span> .../Goalcanvas/Controllers/DelCanvasItem.php       |   44 +-</span></span>
+<span class="line"><span> .../Goalcanvas/Controllers/EditCanvasComment.php   |  273 ++-</span></span>
+<span class="line"><span> .../Goalcanvas/Controllers/EditCanvasItem.php      |   18 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Controllers/ShowCanvas.php   |   26 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Repositories/Goalcanvas.php  |  204 +-</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Services/Goalcanvas.php      |   67 +-</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/bigRockDialog.blade.php   |   31 +-</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/canvasComment.blade.php   |   66 +</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/canvasComment.tpl.php     |   13 -</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/canvasDialog.blade.php    |  241 ++</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/canvasDialog.tpl.php      |  307 ---</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/dashboard.blade.php       |  368 +++</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Templates/dashboard.tpl.php  |  724 ------</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/delCanvas.blade.php       |   15 +</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Templates/delCanvas.tpl.php  |   13 -</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/delCanvasItem.blade.php   |   12 +</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/delCanvasItem.tpl.php     |   13 -</span></span>
+<span class="line"><span> .../Templates/showBottomCanvas.blade.php           |   66 +</span></span>
+<span class="line"><span> .../Goalcanvas/Templates/showCanvas.blade.php      |  488 ++++</span></span>
+<span class="line"><span> app/Domain/Goalcanvas/Templates/showCanvas.tpl.php |  404 ----</span></span>
+<span class="line"><span> app/Domain/Help/Composers/Helpermodal.php          |    4 +-</span></span>
+<span class="line"><span> app/Domain/Help/Controllers/FirstLogin.php         |    8 +-</span></span>
+<span class="line"><span> .../Help/Controllers/ShowOnboardingDialog.php      |    2 +-</span></span>
+<span class="line"><span> app/Domain/Help/Controllers/Updates.php            |    2 +-</span></span>
+<span class="line"><span> app/Domain/Help/Js/helperController.js             |    1 +</span></span>
+<span class="line"><span> app/Domain/Help/Services/Helper.php                |    8 +-</span></span>
+<span class="line"><span> app/Domain/Help/Services/InviteTeamStep.php        |    5 +-</span></span>
+<span class="line"><span> app/Domain/Help/Services/ProjectDefinitionStep.php |    4 +-</span></span>
+<span class="line"><span> app/Domain/Help/Services/ProjectIntroStep.php      |    4 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/AdvancedBoards.php    |    6 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/BoardDialog.php       |   12 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/DelCanvas.php         |    6 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/DelCanvasItem.php     |    6 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/IdeaDialog.php        |   16 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Controllers/ShowBoards.php        |    8 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Repositories/Ideas.php            |   65 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Services/Ideas.php                |   57 +</span></span>
+<span class="line"><span> app/Domain/Ideas/Templates/ideaDialog.tpl.php      |    2 +-</span></span>
+<span class="line"><span> app/Domain/Ideas/Templates/showBoards.tpl.php      |    5 +-</span></span>
+<span class="line"><span> app/Domain/Install/Controllers/Index.php           |    6 +-</span></span>
+<span class="line"><span> app/Domain/Install/Controllers/Update.php          |    8 +-</span></span>
+<span class="line"><span> app/Domain/Install/Repositories/Install.php        |   63 +-</span></span>
+<span class="line"><span> app/Domain/Install/Templates/new.tpl.php           |    3 -</span></span>
+<span class="line"><span> app/Domain/Install/register.php                    |   23 +</span></span>
+<span class="line"><span> app/Domain/Ldap/Services/Ldap.php                  |   52 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Composers/HeadMenu.php             |    6 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Composers/Menu.php                 |   14 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Composers/ProjectSelector.php      |   11 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Hxcontrollers/ProjectSelector.php  |   10 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Repositories/Menu.php              |    6 +-</span></span>
+<span class="line"><span> app/Domain/Menu/Services/Menu.php                  |    6 +-</span></span>
+<span class="line"><span> .../Menu/Templates/projectSelector.blade.php       |    2 +-</span></span>
+<span class="line"><span> .../Modulemanager/Controllers/Notavailable.php     |    6 +-</span></span>
+<span class="line"><span> .../Modulemanager/Services/Modulemanager.php       |    2 +-</span></span>
+<span class="line"><span> .../Notifications/Controllers/GetLatestGrowl.php   |    2 +-</span></span>
+<span class="line"><span> app/Domain/Notifications/Hxcontrollers/News.php    |    5 +-</span></span>
+<span class="line"><span> .../Notifications/Hxcontrollers/NewsBadge.php      |    5 +-</span></span>
+<span class="line"><span> .../Notifications/Listeners/NotifyProjectUsers.php |    1 -</span></span>
+<span class="line"><span> .../Notifications/Repositories/Notifications.php   |    2 +-</span></span>
+<span class="line"><span> app/Domain/Notifications/Services/Messengers.php   |    8 +-</span></span>
+<span class="line"><span> app/Domain/Notifications/Services/News.php         |    5 +-</span></span>
+<span class="line"><span> .../Notifications/Services/Notifications.php       |    2 +-</span></span>
+<span class="line"><span> app/Domain/Notifications/register.php              |    4 +-</span></span>
+<span class="line"><span> app/Domain/Oidc/Controllers/Callback.php           |    4 +-</span></span>
+<span class="line"><span> app/Domain/Oidc/Controllers/Login.php              |    4 +-</span></span>
+<span class="line"><span> app/Domain/Oidc/Services/Oidc.php                  |    6 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Controllers/CssLoader.php       |    6 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Controllers/Details.php         |    2 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Controllers/Marketplace.php     |    2 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Controllers/Myapps.php          |    8 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Hxcontrollers/Details.php       |    7 +-</span></span>
+<span class="line"><span> .../Plugins/Hxcontrollers/Marketplaceplugins.php   |    2 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Models/MarketplacePlugin.php    |    1 +</span></span>
+<span class="line"><span> app/Domain/Plugins/Repositories/Plugins.php        |    2 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/Services/Plugins.php            |   25 +-</span></span>
+<span class="line"><span> app/Domain/Plugins/register.php                    |    7 +-</span></span>
+<span class="line"><span> .../Projects/Controllers/ChangeCurrentProject.php  |    6 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/Createnew.php      |   13 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/DelProject.php     |    8 +-</span></span>
+<span class="line"><span> .../Projects/Controllers/DuplicateProject.php      |   10 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/NewProject.php     |   15 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/ShowAll.php        |    6 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/ShowMy.php         |    6 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Controllers/ShowProject.php    |   22 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Hxcontrollers/Checklist.php    |    2 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Hxcontrollers/ProjectCard.php  |   20 +-</span></span>
+<span class="line"><span> .../Projects/Hxcontrollers/ProjectCardProgress.php |   17 +-</span></span>
+<span class="line"><span> .../Projects/Hxcontrollers/ProjectHubProjects.php  |   13 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Repositories/Projects.php      |   51 +-</span></span>
+<span class="line"><span> app/Domain/Projects/Services/Projects.php          |  167 +-</span></span>
+<span class="line"><span> .../Templates/partials/projectCard.blade.php       |    4 +-</span></span>
+<span class="line"><span> app/Domain/Queue/Repositories/Queue.php            |    6 +-</span></span>
+<span class="line"><span> app/Domain/Queue/Services/Queue.php                |   23 +-</span></span>
+<span class="line"><span> app/Domain/Queue/Workers/DefaultWorker.php         |   48 +</span></span>
+<span class="line"><span> app/Domain/Queue/Workers/EmailWorker.php           |    1 -</span></span>
+<span class="line"><span> app/Domain/Queue/Workers/HttpRequestWorker.php     |    6 +-</span></span>
+<span class="line"><span> app/Domain/Queue/Workers/Workers.php               |    2 +</span></span>
+<span class="line"><span> app/Domain/Queue/register.php                      |    8 +-</span></span>
+<span class="line"><span> app/Domain/Reactions/Models/Reactions.php          |    4 +-</span></span>
+<span class="line"><span> app/Domain/Reactions/Repositories/Reactions.php    |    2 +-</span></span>
+<span class="line"><span> app/Domain/Read/Repositories/Read.php              |    2 +-</span></span>
+<span class="line"><span> app/Domain/Reports/Controllers/Show.php            |   12 +-</span></span>
+<span class="line"><span> app/Domain/Reports/Repositories/Reports.php        |    2 +-</span></span>
+<span class="line"><span> app/Domain/Reports/Services/Reports.php            |   40 +-</span></span>
+<span class="line"><span> app/Domain/Reports/register.php                    |    6 +-</span></span>
+<span class="line"><span> app/Domain/Setting/Controllers/EditBoxLabel.php    |   10 +-</span></span>
+<span class="line"><span> .../Setting/Controllers/EditCompanySettings.php    |   11 +-</span></span>
+<span class="line"><span> app/Domain/Setting/Repositories/Setting.php        |   15 +-</span></span>
+<span class="line"><span> app/Domain/Sprints/Controllers/DelSprint.php       |    6 +-</span></span>
+<span class="line"><span> app/Domain/Sprints/Controllers/EditSprint.php      |    9 +-</span></span>
+<span class="line"><span> app/Domain/Sprints/Repositories/Sprints.php        |    2 +-</span></span>
+<span class="line"><span> app/Domain/Strategy/Controllers/ShowBoards.php     |    2 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/DelMilestone.php    |    6 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/DelTicket.php       |    6 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/EditMilestone.php   |   16 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/MoveTicket.php      |    8 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/NewTicket.php       |   14 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/Roadmap.php         |    3 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/RoadmapAll.php      |    6 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/ShowAll.php         |    6 +-</span></span>
+<span class="line"><span> .../Tickets/Controllers/ShowAllMilestones.php      |    4 +-</span></span>
+<span class="line"><span> .../Controllers/ShowAllMilestonesOverview.php      |    6 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/ShowKanban.php      |    8 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/ShowList.php        |    8 +-</span></span>
+<span class="line"><span> .../Tickets/Controllers/ShowProjectCalendar.php    |    6 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Controllers/ShowTicket.php      |   10 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Hxcontrollers/Milestones.php    |    5 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Hxcontrollers/Subtasks.php      |    4 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Hxcontrollers/TicketCard.php    |    4 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Hxcontrollers/TimerButton.php   |    3 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Models/Tickets.php              |    1 +</span></span>
+<span class="line"><span> app/Domain/Tickets/Repositories/TicketHistory.php  |    3 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Repositories/Tickets.php        |   15 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Services/Tickets.php            |  241 +-</span></span>
+<span class="line"><span> app/Domain/Tickets/Templates/showAll.tpl.php       |    3 +-</span></span>
+<span class="line"><span> .../Templates/submodules/portfolioHeader.sub.php   |    2 +-</span></span>
+<span class="line"><span> .../Templates/submodules/ticketBoardTabs.sub.php   |    2 +-</span></span>
+<span class="line"><span> .../Templates/submodules/ticketFilter.sub.php      |    2 +-</span></span>
+<span class="line"><span> .../Templates/submodules/ticketHeader.sub.php      |    2 +-</span></span>
+<span class="line"><span> .../Templates/submodules/timelineHeader.sub.php    |    2 +-</span></span>
+<span class="line"><span> .../Templates/submodules/timelineTabs.sub.php      |    2 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/AddTime.php      |    6 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/DelTime.php      |    6 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/EditTime.php     |    6 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/ShowAll.php      |   10 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/ShowMy.php       |   11 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Controllers/ShowMyList.php   |    6 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Hxcontrollers/Stopwatch.php  |    3 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Repositories/Timesheets.php  |  748 +++---</span></span>
+<span class="line"><span> app/Domain/Timesheets/Services/Timesheets.php      |   61 +</span></span>
+<span class="line"><span> app/Domain/Timesheets/Templates/showAll.tpl.php    |    2 +-</span></span>
+<span class="line"><span> app/Domain/Timesheets/Templates/showMy.tpl.php     |    2 +-</span></span>
+<span class="line"><span> app/Domain/TwoFA/Controllers/Edit.php              |    2 +-</span></span>
+<span class="line"><span> app/Domain/TwoFA/Controllers/Verify.php            |    4 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/DelUser.php           |    4 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/EditOwn.php           |   11 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/EditUser.php          |    8 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/Import.php            |    8 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/NewUser.php           |    8 +-</span></span>
+<span class="line"><span> app/Domain/Users/Controllers/ShowAll.php           |    6 +-</span></span>
+<span class="line"><span> app/Domain/Users/Repositories/Users.php            |    6 +-</span></span>
+<span class="line"><span> app/Domain/Users/Services/Users.php                |    4 +-</span></span>
+<span class="line"><span> .../Valuecanvas/Templates/canvasDialog.tpl.php     |    6 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Controllers/WidgetManager.php   |    9 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Hxcontrollers/Calendar.php      |   11 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Hxcontrollers/MyProjects.php    |   11 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Hxcontrollers/MyToDos.php       |   11 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Hxcontrollers/Welcome.php       |   11 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/Services/Widgets.php            |    8 +-</span></span>
+<span class="line"><span> app/Domain/Widgets/register.php                    |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/ArticleDialog.php      |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/DelArticle.php         |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/DelWiki.php            |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/Show.php               |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/Templates.php          |    4 +-</span></span>
+<span class="line"><span> app/Domain/Wiki/Controllers/WikiModal.php          |    4 +-</span></span>
+<span class="line"><span> app/Language/da-DK.ini                             |    5 +-</span></span>
+<span class="line"><span> app/Language/en-US.ini                             |   14 +</span></span>
+<span class="line"><span> app/Language/pl-PL.ini                             | 2412 +++++++++----------</span></span>
+<span class="line"><span> app/Plugins                                        |    2 +-</span></span>
+<span class="line"><span> app/Views/Composers/App.php                        |    8 +-</span></span>
+<span class="line"><span> app/Views/Composers/Entry.php                      |    2 +-</span></span>
+<span class="line"><span> app/Views/Composers/Footer.php                     |    4 +-</span></span>
+<span class="line"><span> app/Views/Composers/Header.php                     |    6 +-</span></span>
+<span class="line"><span> app/Views/Composers/PageBottom.php                 |    6 +-</span></span>
+<span class="line"><span> app/Views/Templates/layouts/error.blade.php        |   13 +-</span></span>
+<span class="line"><span> app/Views/Templates/sections/header.blade.php      |   18 +-</span></span>
+<span class="line"><span> app/helpers.php                                    |   57 +-</span></span>
+<span class="line"><span> bin/leantime                                       |    2 +-</span></span>
+<span class="line"><span> blocklist.json                                     |    4 -</span></span>
+<span class="line"><span> composer.json                                      |   20 +-</span></span>
+<span class="line"><span> composer.lock                                      | 2415 +++++++++++++-------</span></span>
+<span class="line"><span> generateBlocklist.mjs                              |    2 +-</span></span>
+<span class="line"><span> logs/.gitignore                                    |    4 +</span></span>
+<span class="line"><span> makefile                                           |    9 +-</span></span>
+<span class="line"><span> package-lock.json                                  |   26 +-</span></span>
+<span class="line"><span> package.json                                       |    2 +-</span></span>
+<span class="line"><span> phpcs.xml                                          |    3 -</span></span>
+<span class="line"><span> phpstan.neon                                       |    6 +-</span></span>
+<span class="line"><span> public/assets/css/components/structure.css         |    2 +-</span></span>
+<span class="line"><span> public/assets/css/components/style.default.css     |    2 +-</span></span>
+<span class="line"><span> public/assets/css/components/wysiwyg-overrides.css |    6 +</span></span>
+<span class="line"><span> public/assets/images/Screenshots/apps.png          |  Bin 1301600 -> 715919 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/blueprints.png    |  Bin 1275795 -> 701616 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/calendar.png      |  Bin 1107082 -> 568384 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/dark.png          |  Bin 834745 -> 434942 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/docs.png          |  Bin 999655 -> 522833 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/goals.png         |  Bin 1541164 -> 699738 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/kanban.png        |  Bin 1254277 -> 580541 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/mywork.png        |  Bin 1111587 -> 619403 bytes</span></span>
+<span class="line"><span> .../assets/images/Screenshots/projectDashboard.png |  Bin 1367773 -> 745864 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/table.png         |  Bin 1374293 -> 603685 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/timeline.png      |  Bin 1002943 -> 507251 bytes</span></span>
+<span class="line"><span> public/assets/images/Screenshots/timesheet.png     |  Bin 1594929 -> 627596 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg1.png           |  Bin 502632 -> 348892 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg2.png           |  Bin 826680 -> 769041 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg3.png           |  Bin 413265 -> 229419 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg4.png           |  Bin 1028919 -> 623210 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg5.png           |  Bin 297276 -> 150843 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg6.png           |  Bin 133140 -> 110251 bytes</span></span>
+<span class="line"><span> public/assets/images/backgrounds/bg7.png           |  Bin 1710266 -> 1308565 bytes</span></span>
+<span class="line"><span> public/assets/images/doc.png                       |  Bin 29359 -> 26196 bytes</span></span>
+<span class="line"><span> public/assets/images/icon-192.png                  |  Bin 10830 -> 5105 bytes</span></span>
+<span class="line"><span> public/assets/images/icon-512.png                  |  Bin 40016 -> 17191 bytes</span></span>
+<span class="line"><span> public/assets/images/logo-powered-by-leantime.png  |  Bin 9367 -> 7665 bytes</span></span>
+<span class="line"><span> public/assets/images/logo.png                      |  Bin 1353 -> 930 bytes</span></span>
+<span class="line"><span> public/assets/images/logo_blue.png                 |  Bin 17862 -> 9399 bytes</span></span>
+<span class="line"><span> public/assets/images/openid-icon.png               |  Bin 1377 -> 873 bytes</span></span>
+<span class="line"><span> public/assets/images/spotlightBg.png               |  Bin 3453482 -> 2624794 bytes</span></span>
+<span class="line"><span> .../assets/images/undraw_progressive_app_m9ms.png  |  Bin 41866 -> 37107 bytes</span></span>
+<span class="line"><span> public/assets/js/app/core/modals.js                |    9 +-</span></span>
+<span class="line"><span> .../jquery.nyroModal/js/jquery.nyroModal.custom.js |    4 +-</span></span>
+<span class="line"><span> public/dist/mix-manifest.json                      |  133 +-</span></span>
+<span class="line"><span> public/download.php                                |    2 +-</span></span>
+<span class="line"><span> public/images/icon-192.png                         |  Bin 10830 -> 5105 bytes</span></span>
+<span class="line"><span> public/images/icon-512.png                         |  Bin 40016 -> 17191 bytes</span></span>
+<span class="line"><span> public/index.php                                   |    7 +-</span></span>
+<span class="line"><span> public/theme/minimal/css/light.css                 |    6 +-</span></span>
+<span class="line"><span> .../Core/{ApiSessionTest.php => ApiClientTest.php} |   19 +-</span></span>
+<span class="line"><span> tests/Unit/app/Core/EventsTest.php                 |   22 +-</span></span>
+<span class="line"><span> tests/bootstrap.php                                |   16 +-</span></span>
+<span class="line"><span> 424 files changed, 9608 insertions(+), 5725 deletions(-)</span></span></code></pre> </div> <div class="mt-6"> <a href="https://github.com/Leantime/leantime/releases/tag/v3.2.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

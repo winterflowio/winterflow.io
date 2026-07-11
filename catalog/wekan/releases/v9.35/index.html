@@ -1,0 +1,551 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v9.35 release notes | WinterFlow.io</title><meta name="description" content="This release delivers critical security fixes for several authorization vulnerabilities, enhances attachment storage migration and management, and…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v9.35/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v9.35 release notes | WinterFlow.io"><meta property="og:description" content="This release delivers critical security fixes for several authorization vulnerabilities, enhances attachment storage migration and management, and…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v9.35/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v9.35 release notes | WinterFlow.io"><meta name="twitter:description" content="This release delivers critical security fixes for several authorization vulnerabilities, enhances attachment storage migration and management, and…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v9.35","item":"https://winterflow.io/catalog/wekan/releases/v9.35/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 20,984 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v9.35</h2> <span class="text-sm text-gray-500">2026-06-06</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p>TLDR:</p>
+<ul>
+<li>Admin Panel/Attachments/Move Files works: CollectionFS/Meteor-Files/S3/Azure Blob/Google Cloud Storage.</li>
+<li>To have attachments and avatars visible, move them from CollectionFS to any other Storage</li>
+<li>To upgrade, mongodump/mongorestore (older with <a href="https://github.com/wekan/wekan/blob/main/docs/Backup/Backup.md#backup-wekan-snap-to-directory-dump">LD_LIBRARY_PATH</a>)
+to MongoDB 7.x, and copy WRITABLE_PATH files/attachments/avatars if exists,
+at Snap /var/snap/wekan/common/files/, at Docker /data/files etc.</li>
+</ul>
+<p>This release adds the following <a href="https://github.com/wekan/wekan/commit/357de728c03113b787065bac2c5832ad77f1a117">CRITICAL SECURITY FIXES</a>:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/security/advisories/GHSA-qfqv-42qw-vvwh">Fix GHSA-qfqv-42qw-vvwh: <code>cloneBoard</code> Meteor method has no authorization check — any user can clone (read) any private board by ID (CWE-639, CWE-862)</a>.
+The <code>cloneBoard</code> Meteor method in <code>models/import.js</code> copied an entire board —
+including all cards, comments, attachments, member info and activities —
+identified solely by a caller-supplied <code>sourceBoardId</code>, and performed no
+authorization check: it never verified that the calling user was a member of
+(or otherwise permitted to read) the source board. Any authenticated Wekan
+user who knew a board’s ID (board IDs appear in board URLs and remain known to
+removed members) could call <code>Meteor.call('cloneBoard', '&#x3C;targetBoardId>')</code>
+over DDP and obtain a permanent, fully-readable copy of that board’s contents,
+even for private boards they had no access to. The method called
+<code>exporter.build()</code> directly, skipping the <code>canExport()</code> guard
+(<code>models/exporter.js</code>) that the REST export route correctly enforces. Fixed by
+requiring <code>this.userId</code> and running the same <code>exporter.canExport(user)</code> check
+the export route uses before building/cloning the board, so cloning a board
+now requires the same read authorization as exporting it.
+CVSS 6.5 (AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N).
+Thanks to dizconnectz for the coordinated disclosure, xet7 and Claude.</li>
+</ul>
+<p>and, while fixing the above, the following similar authorization issues found by code review were fixed (the <a href="https://wekan.fi/hall-of-fame/clonebleed/">CloneBleed</a> group):</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/blob/main/docs/hall-of-fame/clonebleed/">Fix authorization guards that silently never ran in attachment, list, checklist, migration and webhook server methods (CWE-862, CWE-639)</a>.
+A review for the same class of bug as <code>cloneBoard</code> found several server-side
+methods whose access checks were present in the source but never actually
+enforced, plus a few methods missing a check entirely:
+<ul>
+<li><code>server/models/checklists.js</code> <code>moveChecklist</code>: the membership guard called
+<code>allowIsBoardMemberByCard(...)</code>, but that helper is <code>async</code> and was both
+unimported and un-awaited, so <code>!allowIsBoardMemberByCard(...)</code> evaluated
+<code>!Promise</code> (always <code>false</code>) and the check never ran — any logged-in user
+could move a checklist between cards on boards they cannot access. Now
+imported and awaited, and login is required.</li>
+<li><code>server/models/lists.js</code> <code>updateListSort</code>: the guard read
+<code>typeof allowIsBoardMember === 'function' &#x26;&#x26; !allowIsBoardMember(...)</code>, but
+<code>allowIsBoardMember</code> was never imported, so the <code>typeof</code> was always <code>false</code>
+and the guard never ran — any caller could reorder/re-assign any board’s
+lists by ID. Replaced with a real <code>hasBoardWriteAccess</code> check, plus a check
+that the list actually belongs to the named board, and a login check.</li>
+<li><code>server/attachmentApi.js</code> and <code>server/routes/attachmentApi.js</code>: the
+attachment Meteor methods and REST handlers called <code>board.isBoardMember(...)</code>,
+which is not a method on the board model, so the permission check never
+behaved as intended. Replaced with the real <code>board.hasMember(...)</code>, and the
+upload path now also verifies the target card actually belongs to the named
+board (so <code>boardId</code> cannot be spoofed to a board the caller is a member of).</li>
+<li><code>server/models/users.js</code> <code>applyListWidth</code>: stored per-board list width with
+no authorization. Now requires the caller to be a member of the board and
+requires the list to belong to that board.</li>
+<li><code>server/models/boards.js</code> <code>getBackgroundImageURL</code>: returned any board’s
+background image URL by ID. Now requires the board to be visible to the
+caller.</li>
+<li><code>server/migrations/fixMissingListsMigration.js</code> and
+<code>server/migrations/migrateAttachments.js</code>: the migration status/execute
+methods only checked that the caller was logged in. Reading status now
+requires board visibility, executing a board-rewriting migration now requires
+board admin (or instance admin), and the attachment migration methods now
+require board access (global status reads require instance admin).</li>
+<li><code>server/notifications/outgoing.js</code>: the webhook delivery method trusted the
+caller-supplied <code>integration</code> object and only checked that <em>some</em> integration
+with that URL existed. It now verifies a matching integration exists on its
+own board and that the caller is a member of that board, closing a path where
+any authenticated user could drive webhooks (and, via the two-way response
+path, overwrite comments) on boards they cannot access.</li>
+<li><code>server/models/userPositionHistory.js</code>: the
+<code>userPositionHistory.createCheckpoint</code>, <code>.getRecent</code>, <code>.getCheckpoints</code> and
+<code>.restoreToCheckpoint</code> methods only checked that the caller was logged in,
+even though the sibling <code>positionHistory.track*</code> methods
+(<code>server/methods/positionHistory.js</code>) already require the board to be visible
+to the caller — the same PositionHistoryBleed class fixed in v8.20/v8.21.
+All four now require board visibility (via the shared <code>isVisibleBy</code> guard)
+before reading or restoring position history scoped to a board.
+Thanks to xet7 and Claude.</li>
+</ul>
+</li>
+</ul>
+<p>and, while auditing that client-side permission checks are also enforced server-side, the following gaps where the server did not re-verify a UI-gated permission were fixed:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/blob/main/docs/hall-of-fame/clonebleed/">Fix client-side permission gates not re-verified server-side (CWE-862, CWE-269)</a>.
+The browser UI hides certain actions from read-only members and from
+non-admins, but those are cosmetic — the server-side <code>allow</code> rules and Meteor
+methods must enforce the same role. An audit found four places that did not:
+<ul>
+<li><code>server/permissions/customFields.js</code>: the Custom Field <code>allow</code>
+insert/update/remove rules used <code>allowIsAnyBoardMember</code> (mere membership), so
+read-only/comment-only/worker members could create/modify/delete Custom
+Fields (board-wide schema) via direct DDP collection writes — the same
+read-only-write class as GHSA-6733, which had only fixed the REST path. Now
+uses the new <code>allowIsAnyBoardMemberWithWriteAccess</code> write-access helper.</li>
+<li><code>server/permissions/cardCommentReactions.js</code>: the reaction <code>allow</code> rules used
+<code>allowIsBoardMember</code>, letting read-only members add/remove comment reactions.
+Reacting is a form of commenting, so it now uses <code>allowIsBoardMemberCommentOnly</code>
+(Normal/Comment-only allowed, Read-only/No-comments denied), matching
+<code>CardComments.insert</code>.</li>
+<li><code>server/models/boards.js</code> <code>archiveBoard</code>: only required board membership, so
+any member (including read-only) could archive a board (hiding it for
+everyone) over DDP, although the UI gates archiving behind board admin. Now
+requires board admin (or global admin), matching the <code>Boards.allow</code>
+update/remove rules.</li>
+<li><code>server/models/settings.js</code> <code>sendSMTPTestEmail</code>: only required login, so any
+authenticated user could trigger the server to send an SMTP test (and have
+the server’s SMTP error messages surfaced to them), although the UI gates it
+behind global admin. Now requires global admin.
+Thanks to xet7 and Claude.</li>
+</ul>
+</li>
+</ul>
+<p>and, in the same access-control audit, the attachment write API was tightened:</p>
+<ul>
+<li><strong>Security: attachment write operations in the REST/DDP API now require board
+write access, not just membership (CWE-862, CWE-639).</strong> Both attachment API
+implementations (<code>server/routes/attachmentApi.js</code> HTTP routes and
+<code>server/attachmentApi.js</code> Meteor methods) gated upload / copy / move / delete
+on <code>board.hasMember()</code>, which is true for any active member regardless of role.
+This let read-only, comment-only, no-comments, worker and assigned-only board
+members add, copy, move and delete attachments through the API — actions the UI
+forbids for those roles. They now require board write access (global site
+admins still allowed); read operations (download / list / info) keep
+membership-level access. Added security tests in
+<code>server/lib/tests/attachmentApi.tests.js</code>.
+Thanks to xet7 and Claude.</li>
+</ul>
+<p>and adds the following new features:</p>
+<ul>
+<li><strong><a href="https://github.com/wekan/wekan/commit/a86a087915aac9d204e157b1a698091c079e04e6">Admin Panel / Attachments</a>:
+“Calculate file counts” on every storage backend,
+shown right below the “Read” toggle.</strong> Azure Blob Storage and Google Cloud
+Storage now have a “Calculate file counts” button (new <code>getAzureStorageStats</code> /
+<code>getGcsStorageStats</code> methods) that reports how many attachments and avatars are
+stored on that backend, matching what Filesystem, MongoDB GridFS and S3 already
+offer. The count is read from the stored file metadata (fast, no cloud API
+calls). The S3 button was also moved up to sit directly under its “Read”
+checkbox, so all backends are consistent. Thanks to Claude.</li>
+<li>**<a href="https://github.com/wekan/wekan/commit/dca9427bfb58532778bc705e4c8c8014ba4b01ae">Admin Panel / Attachments: the MongoDB GridFS page notes how to make legacy files visible</a>.
+** A translatable line under the “MongoDB GridFS Storage” title
+reminds admins: “To have attachments and avatars visible, move them from
+CollectionFS to any other Storage.” Thanks to Claude.</li>
+<li><strong>Admin Panel / Attachments: the Google Cloud Storage page now documents the
+required bucket permission.</strong> A note under the “GCS Storage” title explains that
+the service account needs the <strong>Storage Object Admin</strong> role
+(<code>roles/storage.objectAdmin</code>) on the bucket (Cloud Console → Cloud Storage →
+Buckets → your bucket → Permissions → Grant access → add the service account →
+role “Storage Object Admin”), and that the bucket must exist in the same
+project — otherwise “Test connection” fails with <code>storage.objects.list denied</code>.
+Thanks to xet7 and Claude.</li>
+<li><strong>Admin Panel / Attachments: a “Save” button next to the Enabled / Read toggles
+at the top of each cloud storage.</strong> S3, Azure and Google Cloud Storage now have
+a Save button directly below the ”[ ] Enabled  [ ] Read” row, so those toggles
+can be saved without scrolling to the bottom of the (now quite long) storage
+page. It saves the same way as the existing bottom Save button — the server
+merges that provider’s config and preserves secrets left blank — and the bottom
+Save button is kept. (Filesystem and GridFS have only a Read toggle, which
+already saves the instant it is toggled, so they need no button.) Thanks to Claude.</li>
+<li><strong>Admin Panel / Attachments: bilingual, self-documenting cloud-storage fields
+(S3, Azure and Google Cloud Storage).</strong> Each cloud-storage setting now guides
+the admin from top to bottom with both English and translated text, so it is
+easy to follow along while clicking through the provider’s Cloud Console:
+<ul>
+<li>the field <strong>label</strong> uses the provider’s own console wording in English
+(e.g. <em>Access key ID</em>, <em>Secret access key</em>, <em>Storage account key</em>,
+<em>Service account key (JSON)</em>), with the translated label shown below it;</li>
+<li>a literal <strong>example</strong> of what the value should look like
+(e.g. <code>eu-west-1</code>, an example bucket name / endpoint / connection string),
+which is intentionally not translated;</li>
+<li>a short <strong>description</strong> of the value, in English and then translated;</li>
+<li>the <strong>Cloud Console menu path</strong> showing exactly where to find or create the
+value (e.g. <em>AWS Console → IAM → Users → your user → Security credentials →
+Access keys → Create access key</em>; <em>Azure Portal → Storage accounts → your
+account → Access keys → key1</em>; <em>Google Cloud Console → IAM &#x26; Admin →
+Service accounts → … → Keys → Add key → Create new key → JSON</em>), again in
+English and then translated.
+The provider field names, examples and menu paths are kept in English so they
+match what the Cloud Console actually shows, while the descriptions and menu
+paths are also translatable; section titles, the enable/read/force-path-style
+checkboxes and the Test/Save buttons remain fully translated. Thanks to Claude.</li>
+</ul>
+</li>
+<li><strong>Admin Panel / Attachments / Move Attachment: “Repair file locations” button
+and a persistent “last move” message.</strong> The new <strong>Repair file locations</strong> button
+scans all attachments and avatars and finds any whose recorded storage
+(<code>versions.&#x3C;v>.storage</code> / <code>path</code> / <code>meta.gridFsFileId</code>) no longer matches where
+the binary actually is — left inconsistent by an interrupted or failed move —
+and fixes the database to point at the real location: it detects the binary in
+GridFS (by the <code>metadata.fileId</code> stamped on upload, recovering files whose
+GridFS id reference was lost) or on the filesystem (using the storage
+strategy’s own thorough path resolution, so the repair agrees with what a real
+download/move would find even when <code>versions.&#x3C;v>.path</code> is stale), then corrects
+<code>storage</code>, <code>path</code> and <code>meta.gridFsFileId</code> accordingly. Cloud-stored files are
+left untouched, and files found nowhere are reported as “Not found”. The scan is
+streamed (memory-safe) and shows a per-scope searched / repaired / not-found
+summary. Separately, after a move finishes the page now keeps showing
+the last move operation — source → destination (scope) and the date/time as
+<code>YYYY-MM-DD HH:MM:SS</code> — so it is clear what was last done.
+Thanks to xet7 and Claude.</li>
+<li><strong>SVG image uploads are now sanitized instead of rejected.</strong> Uploaded SVGs
+(attachments and avatars) are cleaned in place in <code>onAfterUpload</code> via the new
+<code>models/lib/sanitizeSvg.js</code>, which removes JavaScript (<code>&#x3C;script></code>, inline
+<code>on*=</code> event handlers, <code>javascript:</code>/<code>vbscript:</code> URIs, <code>&#x3C;foreignObject></code> /
+<code>&#x3C;iframe></code> / <code>&#x3C;object></code> / <code>&#x3C;embed></code> and similar active content) and XML loops
+(<code>&#x3C;!DOCTYPE></code> / <code>&#x3C;!ENTITY></code> entity-expansion / XXE constructs and
+<code>&#x3C;?xml-stylesheet?></code>), so SVG images can be uploaded safely. Thanks to Claude.</li>
+<li><strong>Unified attachment/avatar storage migration: move any → any.</strong> Admin Panel /
+Attachments / Move Attachment can now move <strong>Attachments, Avatars, or both</strong>,
+from <strong>any source to any destination</strong> across Filesystem, Meteor-Files GridFS,
+Cloud (S3/Azure/GCS) and legacy CollectionFS GridFS. The default source is
+“All Read-enabled storages” (every backend whose Read flag is enabled and whose
+settings work), so everything can be consolidated into one destination in a
+single run. All metadata is preserved (board / swimlane / list / card / user /
+uploaded date / name / type / size), attachment cover references
+(<code>cards.coverId</code>) are remapped when an id changes, and the legacy source is
+deleted only after the new copy is verified. Thanks to Claude.</li>
+<li><strong>Legacy CollectionFS GridFS is now a first-class storage backend</strong> (read,
+migrate-from, and export-to) for both attachments and avatars, via the new
+<code>models/lib/collectionFsStore.js</code> (binary keyed by <code>copies.&#x3C;coll>.key</code> in the
+<code>cfs_gridfs.&#x3C;coll></code> bucket, metadata in <code>cfs.&#x3C;coll>.filerecord</code>). Thanks to Claude.</li>
+<li><strong>The storage strategy layer is now collection-aware.</strong> <code>moveToStorage</code> and the
+GridFS/Cloud strategies previously hard-coded the <code>Attachments</code> collection, so
+moving avatars to GridFS/cloud would have updated the wrong collection. The
+factory now carries its collection (<code>Attachments</code> or <code>Avatars</code>), so <strong>avatars
+can be stored in Meteor-Files GridFS and cloud</strong>, not only on the filesystem.
+Attachment behavior is unchanged.
+Thanks to xet7 and Claude.</li>
+</ul>
+<p>and adds the following updates:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/commit/beedf2fefa614018ce7ed499465092e814a050d9">Update Windows MongoDB</a>.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/pull/6365">Update DDP transport and reactivity order for multi-tenant deployment</a>.
+Thanks to italojs.</li>
+<li><a href="https://github.com/wekan/wekan/commit/29b3f52e50ea2ee9bfbfb98d3842ce8a9b8e52e3">Updated to Meteor 3.5-rc.1</a>.
+Thanks to Meteor developers.</li>
+<li><strong>Documented the attachment / file REST API in the OpenAPI docs</strong> — file
+upload, download, info, listing a board’s files, copy, move and delete (the
+<code>/api/attachment/*</code> endpoints registered via <code>WebApp.handlers.use()</code>, which the
+generator cannot auto-discover) are now documented in <code>openapi/extra_paths.yml</code>
+and injected into the generated docs, including their authentication and
+permission requirements.
+Thanks to xet7 and Claude.</li>
+</ul>
+<p>and adds the following fixes:</p>
+<ul>
+<li><strong><a href="https://github.com/wekan/wekan/commit/dca9427bfb58532778bc705e4c8c8014ba4b01ae">Admin Panel / Attachments: “Run MongoDB compact” now actually compacts the database</a>.</strong>
+MongoDB refuses <code>compact</code> on an active replica-set primary unless
+<code>force: true</code> is given, so every collection failed with “will not run compact
+on an active replica set primary … use force:true to force” — and because the
+usual Meteor setup is a single-node replica set (only a primary, no
+secondaries), nothing was compacted at all and no disk space was reclaimed. The
+primary is now compacted with <code>force: true</code> (secondaries are still compacted
+without it, so the primary stays available while they run), so the GridFS
+collections are actually rewritten and freed space is returned to the
+filesystem. Thanks to Claude.</li>
+<li><strong>Admin Panel / Attachments: clearer cloud “Test connection” errors, and cloud
+config inputs are trimmed.</strong> Testing an Azure/GCS/S3 connection used to report a
+single generic <code>Incomplete configuration or adapter not installed</code> even when the
+real problem was specific — e.g. Azure rejecting the config with <code>Invalid URL</code>
+(a stray space/newline in the account name, or a bad endpoint / connection
+string). <code>testCloudConnection</code> now reports the actual cause: adapter not
+installed, required fields missing, the adapter’s own configuration error (such
+as <code>Invalid URL</code>), or the real <code>listFiles</code> error (auth failure, container not
+found, …). It also pre-validates the config and gives an actionable message
+before the adapter turns it into a cryptic error — e.g. for Azure it explains
+that the <strong>Storage account name</strong> must be just the account name (3–24 lowercase
+letters/numbers, e.g. <code>wekanstorage</code>, not a full <code>https://…</code> URL and with no
+spaces), or that the <strong>Connection string</strong> is malformed; and when Azure still
+returns <code>Invalid URL</code> the message appends which field to check. In addition, all
+cloud-storage text fields are now trimmed when read from the form, so
+leading/trailing whitespace from copy-paste no longer produces an invalid URL.
+Thanks to xet7 and Claude.</li>
+<li><strong><a href="https://github.com/wekan/wekan/commit/a86a087915aac9d204e157b1a698091c079e04e6">Fixed moving attachments to S3</a>
+(and other cloud storage) failing and crashing the server.</strong>
+Uploading to S3 failed two ways, each of which crashed
+the whole server because the rejection was unhandled and SyncedCron treats
+those as fatal. The <code>@tweedegolf/sab-adapter-amazon-s3</code> adapter uploaded with a
+<code>PutObjectCommand</code> whose <code>Body</code> was a live stream: (1) with no <code>ContentLength</code>
+the AWS SDK fell back to a chunked signed upload that needs a decoded content
+length, which was undefined for a stream of unknown size — <code>Invalid value "undefined" for header "x-amz-decoded-content-length"</code>; and (2) if the socket
+dropped mid-upload (<code>socket hang up</code>), the SDK’s body-stream promise rejected
+unhandled. Fixed by uploading the file as a complete in-memory <strong>buffer</strong>
+(<code>addFileFromBuffer</code>) instead of a live stream: a buffer has a known length (no
+content-length error) and no socket-bound stream to re-reject. The cloud upload
+promise now never rejects — any failure is captured and exposed via
+<code>waitUntilStored()</code>, which <code>moveToStorage</code> checks inside a try/catch so a failed
+upload leaves the source file intact and is logged cleanly. (Files are moved one
+at a time, so peak memory is one file.) Thanks to Claude.</li>
+<li><strong>Fixed <code>TypeError: Cannot read properties of undefined (reading 'on')</code> when
+moving attachments between Meteor-Files/GridFS and Filesystem.</strong> If a file’s
+source binary was missing at its recorded location (e.g. a file left
+half-moved by an earlier interrupted run — storage says “gridfs” but the
+GridFS id reference is gone, or a filesystem path that no longer exists),
+<code>getReadStream()</code>/<code>getWriteStream()</code> returned <code>undefined</code> and <code>moveToStorage</code>
+(and <code>copyFile</code>) called <code>.on()</code> on it, throwing. Both now detect a missing
+read/write stream, log a clear message (which file, version, from→to storage,
+and why), <strong>skip that file and leave the source intact</strong> so no data is lost,
+and continue with the rest. Use the new “Repair file locations” button to fix
+the underlying inconsistent records. Thanks to Claude.</li>
+<li><strong>Fixed moving attachments/avatars from CollectionFS to Meteor-Files crashing
+the server, hanging the Admin Panel move at “File 1 / N”, and leaving broken
+avatars.</strong> Three problems in Admin Panel / Attachments / Move Attachment:
+<ul>
+<li><strong>Server crash on the first file</strong> (<code>uncaughtException: TypeError: Cannot read properties of undefined (reading '_id')</code> at
+<code>AttachmentStoreStrategyGridFs.writeStreamFinished</code>). The current mongodb
+driver’s GridFS <code>GridFSBucketWriteStream</code> <code>'finish'</code> event no longer passes
+the stored file document, so <code>finishedData._id</code> threw and killed the process
+(which is also why the move appeared stuck at “File 1 / 4” — the background
+job died mid-file and its persisted status was frozen). The GridFS strategy
+now reads the uploaded file id from the write stream itself (<code>gridFSFile._id</code>
+/ <code>id</code>), the <code>'finish'</code> handler is wrapped so it can never crash the process,
+and a startup reconciliation clears a stale “running” move status left by a
+crashed run so the UI un-sticks and a new move can be started.</li>
+<li><strong>Broken avatar after migrating avatars.</strong> The bulk move only repointed card
+cover references (<code>cards.coverId</code>); a user’s <code>profile.avatarUrl</code> still pointed
+at the deleted legacy <code>/cfs/files/avatars/&#x3C;oldId></code> URL, so the avatar rendered
+broken. The move now repoints <code>profile.avatarUrl</code> to the migrated avatar
+(<code>remapReferences</code> handles avatars), and migrated files stamp
+<code>meta.migratedFromId</code> so references can be repaired to the <strong>exact</strong> new file.
+The startup repair in <code>server/models/users.js</code> (previously a no-op: it
+string-replaced the URL prefix while keeping the now-deleted id and never
+saved the document) now points each affected user’s avatar at their migrated
+Meteor-Files avatar — matched precisely by <code>meta.migratedFromId</code>, otherwise
+strictly by <code>userId</code> (newest migrated avatar first), so a user can only ever
+be given their own avatar, never another user’s.</li>
+<li><strong><code>ObjectID</code> deprecation warning</strong> from <code>models/lib/grid/createObjectId.js</code>
+(<code>MongoInternals.NpmModule.ObjectID</code> → <code>ObjectId</code>).
+Thanks to xet7 and Claude.</li>
+</ul>
+</li>
+<li><a href="https://github.com/wekan/wekan/commit/e01f99eb52812df5e2754c193860002ec2716ecb">Fix Dropdown list cannot be created with values</a>.
+<ul>
+<li><strong>Fixed Dropdown custom field options not being addable / saving as empty.</strong>
+Creating a “Dropdown” custom field showed the “List Options” box, but pressing
+Enter (or typing and saving) never added any option, and on the card the only
+selectable value was <code>(none)</code>. The custom-fields sidebar component was migrated
+from <code>BlazeComponent</code> to a plain <code>Template</code>, but the template still iterates the
+options with <code>{{#each dropdownItems.get}}</code> — under BlazeComponent that resolved
+to the instance’s <code>dropdownItems</code> ReactiveVar, whereas a plain Template does not
+expose instance variables to the template, so the list rendered nothing. Because
+the options were never rendered as inputs, <code>getDropdownItems()</code> then overwrote
+the ReactiveVar with the empty DOM on save and every entered value was dropped.
+Fixed by re-adding the missing <code>dropdownItems</code> helper (returning the ReactiveVar),
+matching the pattern the other migrated templates already use. Thanks to Claude.</li>
+<li><strong>Fixed <code>Exception in global helper _</code> when opening the Create Custom Field
+popup (and any translation containing a literal <code>%</code>).</strong> i18n is configured with
+a global sprintf post-processor (<code>postProcess: ["sprintf"]</code>), so every
+translation is run through <code>i18next-sprintf-postprocessor</code>. The help text
+<code>custom-field-stringtemplate-format</code> (<code>"Format (use %{value} as placeholder)"</code>)
+contains a literal <code>%{value}</code> that sprintf cannot parse, so <code>vsprintf</code> threw and
+crashed the global Blaze <code>_</code> translation helper — breaking that popup and any
+string (in any language, including user translation overrides) that contains a
+stray <code>%</code>. <code>TAPi18n.__</code> now retries without the sprintf post-processor when it
+throws, returning the raw string (so <code>%{value}</code> is shown literally) instead of
+crashing.
+Thanks to rouceto1, xet7 and Claude.</li>
+</ul>
+</li>
+<li><a href="https://github.com/wekan/wekan/commit/075e86b00e1f0dc0dea519acd37cece4d0a1fad3">Fixed new checklists (and checklist items) on a newly added card not being visible until logout/login</a>.
+The <code>board</code> publication batched checklists,
+checklist items, comments and attachments into board-level cursors filtered by
+<code>cardId: { $in: cardIds }</code>, where <code>cardIds</code> was a one-time snapshot. In
+<code>reywood:publish-composite</code> a child cursor only re-runs when its parent (the
+board) document changes, so the snapshot never refreshed when a card was added
+— a checklist on a card created after subscribing matched no published card and
+only appeared on the next subscribe (logout/login). This was a regression from
+the “Optimized board loading” change, which had replaced the original reactive
+per-card child cursors with these batched snapshots. Fixed by <strong>denormalizing a
+<code>boardId</code> field onto <code>Checklists</code> and <code>ChecklistItems</code></strong> so they can be
+published with a single board-level cursor filtered by <code>boardId</code> — one cursor
+per collection (keeping the load optimization) that still reacts to checklists
+on newly added cards, because a new checklist is created already carrying the
+board’s id. <code>boardId</code> is set on insert (server <code>before.insert</code> hooks, plus
+explicitly in the Trello/WeKan board importers, which use <code>direct.insert</code> and
+bypass hooks), re-derived when a checklist/item or its card moves to another
+card (<code>before.update</code> on <code>cardId</code>) or the card moves to another board
+(<code>Cards.after.update</code> cascade), and backfilled for existing data by an
+idempotent startup migration. New <code>{ boardId: 1 }</code> indexes were added on both
+collections. Comments and attachments instead remain reactive as per-card
+children of the cards cursor. Assigned-only board members still only receive
+checklists for cards assigned to them (the board-level cursor falls back to the
+assigned cards’ ids for those roles).
+Thanks to ahlgrimma, xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/72767ad9a769fee2548f93bbd7174edd69995e97">Fixed SyncedCron crash</a>.
+<strong>Fixed deleting archived lists (or many cards) crashing the server with
+<code>SyncedCron: Fatal error encountered (unhandledRejection): TypeError: Cannot read properties of undefined (reading 'boardId')</code> at
+<code>server/models/checklistItems.js</code>.</strong> Deleting a list cascades into removing its
+cards, and each card’s checklists, checklist items, comments and attachments
+(<code>cardRemover</code> in <code>models/cards.js</code>). <code>Cards.before.remove</code> called <code>cardRemover</code>
+<strong>without <code>await</code></strong> (and was not <code>async</code>), so the card document was deleted
+first and the cascade then ran with the parent card already gone; the
+<code>ChecklistItems.before.remove</code> / <code>Checklists.before.remove</code> hooks dereferenced
+the now-undefined card (<code>card.boardId</code>) and threw, and because the promise was
+unhandled, SyncedCron caught the rejection and tore down all running cron jobs.
+Fixed by making <code>Cards.before.remove</code> <code>async</code> and awaiting <code>cardRemover</code> (so
+sub-items are removed while the card still exists), and the REST card-delete
+handler now runs <code>cardRemover</code> before removing the card. As defense in depth,
+every card-activity hook and helper that looked up a card and used its
+<code>boardId</code> / <code>listId</code> / <code>swimlaneId</code> now skips (with a warning) when the parent
+card — or, for checklist-completion activities, the parent checklist — is
+missing, instead of throwing: <code>before.remove</code> on checklist items and
+checklists, <code>Checklists.after.insert</code>, the <code>Cards.before.update</code> timing
+activity, and the shared <code>itemCreation</code> / <code>publishCheckActivity</code> /
+<code>publishChekListCompleted</code> / <code>publishChekListUncompleted</code> / <code>commentCreation</code>
+helpers (matching the guards already present in
+<code>server/models/cardComments.js</code>).
+Thanks to titver968, xet7 and Claude.</li>
+<li><strong><a href="https://github.com/wekan/wekan/commit/39f3c89b0a11c5671b77d3a0b95200ac7256a4f1">Fixed upgrade crash</a>
+<code>An error occurred when creating an index for collection "users": Topology is closed</code> / <code>MongoServerSelectionError: Server selection timed out after 30000 ms</code>.</strong> When WeKan started before MongoDB was reachable
+and had an elected replica-set primary (common right after an upgrade, while
+MongoDB replays its WiredTiger journal, or when the app container starts at the
+same instant as the database), the first index creation threw and Node exited.
+Now:
+<ul>
+<li><strong>WeKan waits until MongoDB is ready</strong> (reachable, with an elected primary)
+before it starts, in every launch path: <code>start-wekan.sh</code>, <code>start-wekan.bat</code>,
+the Snap (<code>snap-src/bin/wekan-control</code>), and the app itself
+(<code>server/00waitForMongo.js</code> / <code>server/lib/mongoStartup.js</code>, which blocks the
+first <code>Meteor.startup</code> so it also protects the plain Docker image). The Docker
+<code>docker-compose.yml</code> and <code>docker-compose-multitenancy.yml</code> now give <code>wekandb</code>
+a <code>healthcheck</code> (primary elected) and the WeKan/tenant services
+<code>depends_on: condition: service_healthy</code>.</li>
+<li><strong>If MongoDB stays unreachable for too long</strong> (default 120s, configurable via
+<code>WEKAN_DB_WAIT_TIMEOUT</code>), a clear English-only message is printed to the
+Node.js console / <code>docker logs</code> / <code>snap logs</code> explaining that a database
+upgrade with <code>mongodump</code> (old MongoDB) and <code>mongorestore --drop</code> (new
+MongoDB) may be needed, and reminding that attachments and avatars live
+on disk under <code>WRITABLE_PATH</code> (<code>files</code>, <code>attachments</code>, <code>avatars</code>; on Snap
+<code>/var/snap/wekan/common/files</code>, on Docker the <code>wekan-files</code> volume at
+<code>/data</code>) and must be copied too. WeKan keeps retrying after printing it.</li>
+<li><strong>Index creation is now idempotent and crash-safe.</strong> A new <code>ensureIndex</code>
+helper checks the existing indexes and only creates the ones that are
+missing, and never throws — a single index problem is logged in English
+instead of taking the whole server down. All startup index creation across
+the model files was switched to it.
+Thanks to xet7 and Claude.</li>
+</ul>
+</li>
+<li><a href="https://github.com/wekan/wekan/commit/c71a97cba20247ce227a288fa74ef23cb3c4c83e">Fixed OpenAPI REST API documentation generation</a>,
+which had been broken
+since after WeKan v7.93 and only generated docs for the <code>login</code>/<code>register</code>
+endpoints (2 operations) instead of the full API. The Meteor 3 migration moved
+the REST routes from <code>models/*.js</code> (<code>JsonRoutes.add(...)</code>) into
+<code>server/models/*.js</code> (<code>WebApp.handlers.get/post/put/delete(...)</code>) and
+introduced optional chaining (<code>?.</code>) that the <code>esprima</code> Python parser cannot
+read, so <code>openapi/generate_openapi.py</code> silently skipped every route file.
+The generator now understands both routing styles, scans both <code>models/</code> and
+<code>server/models/</code>, downlevels modern JS syntax so files parse, handles the
+<code>type: Array</code> SimpleSchema idiom, and <code>releases/rebuild-docs.sh</code> works directly
+with Python 3.12.x (PEP 668). The generated <code>public/api/wekan.yml</code> /
+<code>wekan.html</code> now cover the full API again (89 operations / 61 paths).
+Thanks to xet7 and Claude.</li>
+<li><strong>The attachment copy API now honours the admin “Admin Panel / Attachments”
+API transfer limits.</strong> Copying an attachment creates a new attachment but
+skipped the <code>apiUploadBlocked</code> / <code>apiUploadMaxBytes</code> checks that upload
+enforces; copy now respects them in both API implementations. Thanks to Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/d30803276d6d06db44f65ee1fb583cc11aac8b7b">Fixed Admin Panel / Attachments / Move Attachment doing nothing / crashing</a>.
+Several issues in the bulk move:
+<ul>
+<li>The GridFS source matcher required <code>meta.gridFsFileId</code> to be <em>absent</em>, but
+Meteor-Files always sets it, so selecting “MongoDB Meteor-Files” matched zero
+files and “nothing happened”. The matcher now recognizes real GridFS files
+(<code>versions.*.storage === 'gridfs'</code> or a <code>meta.gridFsFileId</code> reference), and a
+“nothing to move” message is shown when a source is empty instead of silently
+doing nothing.</li>
+<li>Moving files crashed the whole server with
+<code>FilesCollection#findOne() not available in server</code> — <code>ReactiveCache.getAttachment</code>
+used a synchronous <code>findOne()</code>; it now uses <code>findOneAsync()</code>. The background
+job is also hardened so a single failing file is skipped instead of crashing
+the server via an unhandled rejection.</li>
+<li>The attachment <strong>copy</strong> API now honours the admin API upload limits (it
+previously skipped them).</li>
+</ul>
+</li>
+<li><strong>Fixed the “MongoDB Meteor-Files” file-count statistic</strong> in Admin Panel /
+Attachments, which counted <em>every</em> attachment metadata document (so files on
+the Filesystem were wrongly reported as being in GridFS). It now counts only
+attachments actually stored in GridFS, consistent with the move tool. Also
+renamed the mislabeled “Mongo-Files” column to “Meteor-Files”. Thanks to Claude.</li>
+<li><strong>Read legacy CollectionFS attachments and avatars in place</strong> (without
+migrating). The backward-compatibility layer
+(<code>models/lib/attachmentBackwardCompatibility.js</code>) was broken — it looked up the
+GridFS binary by the filerecord <code>_id</code> and by filename instead of by
+<code>ObjectId(copies.&#x3C;coll>.key)</code>, so legacy files were never found. It is fixed and
+generalized for attachments and avatars. Legacy attachments now appear in the
+card attachment gallery (new <code>legacyBoardAttachments</code> publication) and stream
+from the <code>cfs_gridfs.attachments</code> bucket, and legacy avatars
+(<code>/cfs/files/avatars/&#x3C;id></code> URLs) are served from the <code>cfs_gridfs.avatars</code>
+bucket instead of redirecting to a 404.
+Thanks to xet7 and Claude.</li>
+<li><a href="https://github.com/wekan/wekan/commit/b77b62bfa2e7a63fdd2d2d071693d5aa485a34c5">Ask to install npm dependencies before running tests</a>.
+Thanks to xet7 and Claude.</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v9.35" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

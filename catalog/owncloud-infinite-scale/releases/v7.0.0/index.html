@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ownCloud Infinite Scale v7.0.0 release notes | WinterFlow.io</title><meta name="description" content="This release includes numerous bug fixes for WOPI and OCM, performance enhancements for concurrent processing, updated web and Reva components, and the…"><link rel="canonical" href="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v7.0.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="ownCloud Infinite Scale v7.0.0 release notes | WinterFlow.io"><meta property="og:description" content="This release includes numerous bug fixes for WOPI and OCM, performance enhancements for concurrent processing, updated web and Reva components, and the…"><meta property="og:url" content="https://winterflow.io/catalog/owncloud-infinite-scale/releases/v7.0.0/"><meta property="og:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ownCloud Infinite Scale v7.0.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release includes numerous bug fixes for WOPI and OCM, performance enhancements for concurrent processing, updated web and Reva components, and the…"><meta name="twitter:image" content="https://winterflow.io/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"ownCloud Infinite Scale","item":"https://winterflow.io/catalog/owncloud-infinite-scale/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/"},{"@type":"ListItem","position":5,"name":"v7.0.0","item":"https://winterflow.io/catalog/owncloud-infinite-scale/releases/v7.0.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/owncloud-infinite-scale/owncloud-infinite-scale.png" alt="ownCloud Infinite Scale logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">ownCloud Infinite Scale</h1> <p class="mt-4 text-lg leading-8 text-gray-600">The new cloud-native file sync and share platform from ownCloud</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> dropbox, google drive, box </p> </div> <div class="mt-6 flex flex-wrap gap-4">  <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://doc.owncloud.com/ocis/next/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/owncloud/ocis/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Apache-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 2,042 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="ownCloud Infinite Scale" data-app-slug="owncloud-infinite-scale" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/owncloud/ocis" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/owncloud-infinite-scale/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/owncloud-infinite-scale/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v7.0.0</h2> <span class="text-sm text-gray-500">2024-12-17</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#changelog-for-700-2024-12-17">Changelog for 7.0.0</a></li>
+</ul>
+<h1 id="changes-in-700">Changes in 7.0.0</h1>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Bugfix - Generate short tokens to be used as access tokens for WOPI: <a href="https://github.com/owncloud/ocis/pull/10391">#10391</a></li>
+<li>Bugfix - Fix put relative wopi operation for microsoft: <a href="https://github.com/owncloud/ocis/pull/10403">#10403</a></li>
+<li>Bugfix - Make SSE keepalive interval configurable: <a href="https://github.com/owncloud/ocis/pull/10411">#10411</a></li>
+<li>Bugfix - Removed ‘OCM_OCM_PROVIDER_AUTHORIZER_VERIFY_REQUEST_HOSTNAME’ setting: <a href="https://github.com/owncloud/ocis/pull/10425">#10425</a></li>
+<li>Bugfix - Micro registry cache fixes: <a href="https://github.com/owncloud/ocis/pull/10429">#10429</a></li>
+<li>Bugfix - Fix the memlimit loglevel: <a href="https://github.com/owncloud/ocis/pull/10433">#10433</a></li>
+<li>Bugfix - Log GRPC requests in debug mode: <a href="https://github.com/owncloud/ocis/pull/10438">#10438</a></li>
+<li>Bugfix - Restart Postprocessing properly: <a href="https://github.com/owncloud/ocis/pull/10439">#10439</a></li>
+<li>Bugfix - Allow to configure data server URL for ocm: <a href="https://github.com/owncloud/ocis/pull/10440">#10440</a></li>
+<li>Bugfix - Respect proxy url when validating proofkeys: <a href="https://github.com/owncloud/ocis/pull/10462">#10462</a></li>
+<li>Bugfix - Return wopi lock header in get lock response: <a href="https://github.com/owncloud/ocis/pull/10470">#10470</a></li>
+<li>Bugfix - ‘ocis backup consistency’ fixed for file revisions: <a href="https://github.com/owncloud/ocis/pull/10493">#10493</a></li>
+<li>Bugfix - Wait for services to be ready before registering them: <a href="https://github.com/owncloud/ocis/pull/10498">#10498</a></li>
+<li>Bugfix - Fix 0-byte file uploads: <a href="https://github.com/owncloud/ocis/pull/10500">#10500</a></li>
+<li>Bugfix - Fixed <code>sharedWithMe</code> response for OCM shares: <a href="https://github.com/owncloud/ocis/pull/10501">#10501</a></li>
+<li>Bugfix - Fix gateway nats checks: <a href="https://github.com/owncloud/ocis/pull/10502">#10502</a></li>
+<li>Bugfix - Fix idp guest role default assignment: <a href="https://github.com/owncloud/ocis/pull/10511">#10511</a></li>
+<li>Bugfix - Remove mbreaker: <a href="https://github.com/owncloud/ocis/pull/10524">#10524</a></li>
+<li>Bugfix - Fix impersonated request user mismatch: <a href="https://github.com/owncloud/ocis/pull/10548">#10548</a></li>
+<li>Bugfix - Fix federated sharing when using an external IDP: <a href="https://github.com/owncloud/ocis/pull/10567">#10567</a></li>
+<li>Bugfix - Fix node cache ttl updates: <a href="https://github.com/owncloud/ocis/pull/10575">#10575</a></li>
+<li>Bugfix - We now limit the number of workers of the jsoncs3 share manager: <a href="https://github.com/owncloud/ocis/pull/10578">#10578</a></li>
+<li>Bugfix - Set MaxConcurrency to 1: <a href="https://github.com/owncloud/ocis/pull/10580">#10580</a></li>
+<li>Bugfix - Reuse go-micro service clients: <a href="https://github.com/owncloud/ocis/pull/10582">#10582</a></li>
+<li>Bugfix - Make collaboration service use a gateway selector: <a href="https://github.com/owncloud/ocis/pull/10584">#10584</a></li>
+<li>Bugfix - Return an error if we can’t get the keys and ensure they’re cached: <a href="https://github.com/owncloud/ocis/pull/10590">#10590</a></li>
+<li>Bugfix - Fix status code for thumbnail requests: <a href="https://github.com/owncloud/ocis/pull/10592">#10592</a></li>
+<li>Bugfix - Fix the activity field mapping: <a href="https://github.com/owncloud/ocis/pull/10593">#10593</a></li>
+<li>Bugfix - Fix deny access for graph roles: <a href="https://github.com/owncloud/ocis/pull/10627">#10627</a></li>
+<li>Bugfix - Fix link activity message: <a href="https://github.com/owncloud/ocis/pull/10663">#10663</a></li>
+<li>Bugfix - Fix possible race condition when a thumbnails is stored in the FS: <a href="https://github.com/owncloud/ocis/pull/10693">#10693</a></li>
+<li>Bugfix - Skip fetching members: <a href="https://github.com/owncloud/ocis/pull/10701">#10701</a></li>
+<li>Bugfix - Fix FileInfo BreadcrumbFolderURL: <a href="https://github.com/owncloud/ocis/pull/10718">#10718</a></li>
+<li>Bugfix - Fix graph drives response for federated shares: <a href="https://github.com/owncloud/ocis/pull/10730">#10730</a></li>
+<li>Bugfix - GetLastModified property in the REPORT response will use RFC1123 format: <a href="https://github.com/owncloud/ocis/pull/10738">#10738</a></li>
+<li>Bugfix - Unifi logging: <a href="https://github.com/owncloud/ocis/pull/10743/">#10743</a></li>
+<li>Bugfix - Fix FileInfo BreadcrumbFolderURL upd: <a href="https://github.com/owncloud/ocis/pull/10757">#10757</a></li>
+<li>Bugfix - Bump Reva: <a href="https://github.com/owncloud/ocis/pull/10766">#10766</a></li>
+<li>Enhancement - Create thumbnails for GGP MIME types: <a href="https://github.com/owncloud/ocis/pull/10304">#10304</a></li>
+<li>Enhancement - Include a product name in the collaboration service: <a href="https://github.com/owncloud/ocis/pull/10335">#10335</a></li>
+<li>Enhancement - Add web extensions to the ocis_full example: <a href="https://github.com/owncloud/ocis/pull/10399">#10399</a></li>
+<li>Enhancement - Remove deprecated CLI commands: <a href="https://github.com/owncloud/ocis/pull/10432">#10432</a></li>
+<li>Enhancement - Bump cs3api: <a href="https://github.com/owncloud/ocis/pull/10449">#10449</a></li>
+<li>Enhancement - Bump reva to latest: <a href="https://github.com/owncloud/ocis/pull/10472">#10472</a></li>
+<li>Enhancement - Concurrent userlog processing: <a href="https://github.com/owncloud/ocis/pull/10504">#10504</a></li>
+<li>Enhancement - Concurrent autoaccept for shares: <a href="https://github.com/owncloud/ocis/pull/10507">#10507</a></li>
+<li>Enhancement - Fetch shared resource metadata concurrently in graph: <a href="https://github.com/owncloud/ocis/pull/10683">#10683</a></li>
+<li>Enhancement - Update web to v11.0.6: <a href="https://github.com/owncloud/ocis/pull/10755">#10755</a></li>
+</ul>
+<h2 id="details">Details</h2>
+<ul>
+<li>
+<p>Bugfix - Generate short tokens to be used as access tokens for WOPI: <a href="https://github.com/owncloud/ocis/pull/10391">#10391</a></p>
+<p>Currently, the access tokens being used might be too long. In particular,
+Microsoft Office Online complains about the URL (which contains the access
+token) is too long and refuses to work.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10391">https://github.com/owncloud/ocis/pull/10391</a></p>
+</li>
+<li>
+<p>Bugfix - Fix put relative wopi operation for microsoft: <a href="https://github.com/owncloud/ocis/pull/10403">#10403</a></p>
+<p>We fixed a bug in the put relative wopi operation for microsoft. The response
+now contains the correct properties.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10403">https://github.com/owncloud/ocis/pull/10403</a></p>
+</li>
+<li>
+<p>Bugfix - Make SSE keepalive interval configurable: <a href="https://github.com/owncloud/ocis/pull/10411">#10411</a></p>
+<p>To prevent intermediate proxies from closing the SSE connection admins can now
+configure a <code>SSE_KEEPALIVE_INTERVAL</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10411">https://github.com/owncloud/ocis/pull/10411</a></p>
+</li>
+<li>
+<p>Bugfix - Removed ‘OCM_OCM_PROVIDER_AUTHORIZER_VERIFY_REQUEST_HOSTNAME’ setting: <a href="https://github.com/owncloud/ocis/pull/10425">#10425</a></p>
+<p>The config option ‘OCM_OCM_PROVIDER_AUTHORIZER_VERIFY_REQUEST_HOSTNAME’ was
+removed from the OCM service. The additional security provided by this setting
+is somewhat questionable and only provided in very specific setups.</p>
+<p>We are not going through the normal deprecation process for this setting, as it
+was never really working anyway. If you have this setting in your configuration,
+it will be ignored. You can safely remove it.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10355">https://github.com/owncloud/ocis/issues/10355</a>
+<a href="https://github.com/owncloud/ocis/pull/10425">https://github.com/owncloud/ocis/pull/10425</a></p>
+</li>
+<li>
+<p>Bugfix - Micro registry cache fixes: <a href="https://github.com/owncloud/ocis/pull/10429">#10429</a></p>
+<p>We now invalidate cache entries when any of the nodes was not updated.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10429">https://github.com/owncloud/ocis/pull/10429</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the memlimit loglevel: <a href="https://github.com/owncloud/ocis/pull/10433">#10433</a></p>
+<p>We set the memlimit default loglevel to error.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10427">https://github.com/owncloud/ocis/issues/10427</a>
+<a href="https://github.com/owncloud/ocis/pull/10433">https://github.com/owncloud/ocis/pull/10433</a></p>
+</li>
+<li>
+<p>Bugfix - Log GRPC requests in debug mode: <a href="https://github.com/owncloud/ocis/pull/10438">#10438</a></p>
+<p>When log level is set to debug we will now also log grpc requests.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10438">https://github.com/owncloud/ocis/pull/10438</a></p>
+</li>
+<li>
+<p>Bugfix - Restart Postprocessing properly: <a href="https://github.com/owncloud/ocis/pull/10439">#10439</a></p>
+<p>Properly differentiate between resume and restart postprocessing.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10439">https://github.com/owncloud/ocis/pull/10439</a></p>
+</li>
+<li>
+<p>Bugfix - Allow to configure data server URL for ocm: <a href="https://github.com/owncloud/ocis/pull/10440">#10440</a></p>
+<p>We introduced the <code>OCM_OCM_STORAGE_DATA_SERVER_URL</code> setting to fix a bug when
+downloading files from an OCM share. Before the data server URL defaulted to the
+listen address of the OCM server, which did not work when using 0.0.0.0 as the
+listen address.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10358">https://github.com/owncloud/ocis/issues/10358</a>
+<a href="https://github.com/owncloud/ocis/pull/10440">https://github.com/owncloud/ocis/pull/10440</a></p>
+</li>
+<li>
+<p>Bugfix - Respect proxy url when validating proofkeys: <a href="https://github.com/owncloud/ocis/pull/10462">#10462</a></p>
+<p>We fixed a bug where the proxied wopi URL was not used when validating
+proofkeys. This caused the validation to fail when the proxy was used.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10462">https://github.com/owncloud/ocis/pull/10462</a></p>
+</li>
+<li>
+<p>Bugfix - Return wopi lock header in get lock response: <a href="https://github.com/owncloud/ocis/pull/10470">#10470</a></p>
+<p>We fixed a bug where the wopi lock header was not returned in the get lock
+response. This is now fixed and the wopi validator tests are passing.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10470">https://github.com/owncloud/ocis/pull/10470</a></p>
+</li>
+<li>
+<p>Bugfix - ‘ocis backup consistency’ fixed for file revisions: <a href="https://github.com/owncloud/ocis/pull/10493">#10493</a></p>
+<p>A bug was fixed that caused the ‘ocis backup consistency’ command to incorrectly
+report inconistencies when file revisions with a zero value for the nano-second
+part of the timestamp were present.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/9498">https://github.com/owncloud/ocis/issues/9498</a>
+<a href="https://github.com/owncloud/ocis/pull/10493">https://github.com/owncloud/ocis/pull/10493</a></p>
+</li>
+<li>
+<p>Bugfix - Wait for services to be ready before registering them: <a href="https://github.com/owncloud/ocis/pull/10498">#10498</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/10498">https://github.com/owncloud/ocis/pull/10498</a></p>
+</li>
+<li>
+<p>Bugfix - Fix 0-byte file uploads: <a href="https://github.com/owncloud/ocis/pull/10500">#10500</a></p>
+<p>We fixed an issue where 0-byte files upload did not return the Location header.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10469">https://github.com/owncloud/ocis/issues/10469</a>
+<a href="https://github.com/owncloud/ocis/pull/10500">https://github.com/owncloud/ocis/pull/10500</a></p>
+</li>
+<li>
+<p>Bugfix - Fixed <code>sharedWithMe</code> response for OCM shares: <a href="https://github.com/owncloud/ocis/pull/10501">#10501</a></p>
+<p>OCM shares returned in the <code>sharedWithMe</code> response did not have the <code>mimeType</code>
+property populated correctly.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10495">https://github.com/owncloud/ocis/issues/10495</a>
+<a href="https://github.com/owncloud/ocis/pull/10501">https://github.com/owncloud/ocis/pull/10501</a></p>
+</li>
+<li>
+<p>Bugfix - Fix gateway nats checks: <a href="https://github.com/owncloud/ocis/pull/10502">#10502</a></p>
+<p>We now only check if nats is available when the gateway actually uses it.
+Furthermore, we added a backoff for checking the readys endpoint.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10502">https://github.com/owncloud/ocis/pull/10502</a></p>
+</li>
+<li>
+<p>Bugfix - Fix idp guest role default assignment: <a href="https://github.com/owncloud/ocis/pull/10511">#10511</a></p>
+<p>We fixed an idp guest role default assignment.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10474">https://github.com/owncloud/ocis/issues/10474</a>
+<a href="https://github.com/owncloud/ocis/pull/10511">https://github.com/owncloud/ocis/pull/10511</a></p>
+</li>
+<li>
+<p>Bugfix - Remove mbreaker: <a href="https://github.com/owncloud/ocis/pull/10524">#10524</a></p>
+<p>The circuit breaker is not handle correctly and leads therefore to more issues
+than it solves. We removed it.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10524">https://github.com/owncloud/ocis/pull/10524</a></p>
+</li>
+<li>
+<p>Bugfix - Fix impersonated request user mismatch: <a href="https://github.com/owncloud/ocis/pull/10548">#10548</a></p>
+<p>We fixed a user id and name mismatch in the impersonated auth-app API request</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10292">https://github.com/owncloud/ocis/issues/10292</a>
+<a href="https://github.com/owncloud/ocis/pull/10548">https://github.com/owncloud/ocis/pull/10548</a></p>
+</li>
+<li>
+<p>Bugfix - Fix federated sharing when using an external IDP: <a href="https://github.com/owncloud/ocis/pull/10567">#10567</a></p>
+<p>We fixed a bug that caused federated sharing to fail, when the federated oCIS
+instances where sharing the same external IDP.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10567">https://github.com/owncloud/ocis/pull/10567</a>
+<a href="https://github.com/cs3org/reva/pull/4933">https://github.com/cs3org/reva/pull/4933</a></p>
+</li>
+<li>
+<p>Bugfix - Fix node cache ttl updates: <a href="https://github.com/owncloud/ocis/pull/10575">#10575</a></p>
+<p>We now only udpate the TTL of the node that is created or updated.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10575">https://github.com/owncloud/ocis/pull/10575</a></p>
+</li>
+<li>
+<p>Bugfix - We now limit the number of workers of the jsoncs3 share manager: <a href="https://github.com/owncloud/ocis/pull/10578">#10578</a></p>
+<p>We now restrict the number of workers that look up shares to 5. The number can
+be changed with <code>SHARING_USER_JSONCS3_MAX_CONCURRENCY</code> or
+<code>OCIS_MAX_CONCURRENCY</code>.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10578">https://github.com/owncloud/ocis/pull/10578</a>
+<a href="https://github.com/owncloud/ocis/pull/10552">https://github.com/owncloud/ocis/pull/10552</a></p>
+</li>
+<li>
+<p>Bugfix - Set MaxConcurrency to 1: <a href="https://github.com/owncloud/ocis/pull/10580">#10580</a></p>
+<p>Set MaxConcurrency for frontend and userlog and sharing services to 1. Too many
+workers will negatively impact performance on small machines.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10580">https://github.com/owncloud/ocis/pull/10580</a>
+<a href="https://github.com/owncloud/ocis/pull/10557">https://github.com/owncloud/ocis/pull/10557</a></p>
+</li>
+<li>
+<p>Bugfix - Reuse go-micro service clients: <a href="https://github.com/owncloud/ocis/pull/10582">#10582</a></p>
+<p>Go micro clients must not be reinitialized. The internal selector will spawn a
+new go routine to watch for registry changes.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10582">https://github.com/owncloud/ocis/pull/10582</a></p>
+</li>
+<li>
+<p>Bugfix - Make collaboration service use a gateway selector: <a href="https://github.com/owncloud/ocis/pull/10584">#10584</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/10584">https://github.com/owncloud/ocis/pull/10584</a></p>
+</li>
+<li>
+<p>Bugfix - Return an error if we can’t get the keys and ensure they’re cached: <a href="https://github.com/owncloud/ocis/pull/10590">#10590</a></p>
+<p>Previously, there was an issue where we could get an error while getting the
+public keys from the /hosting/discovery endpoint but we’re returning a wrong
+success value instead. This is fixed now and we’re returning the error.</p>
+<p>In addition, the public keys weren’t being cached, so we hit the
+/hosting/discovery endpoint every time we need to use the public keys. The keys
+are now cached so we don’t need to hit the endpoint more than what we need.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10590">https://github.com/owncloud/ocis/pull/10590</a></p>
+</li>
+<li>
+<p>Bugfix - Fix status code for thumbnail requests: <a href="https://github.com/owncloud/ocis/pull/10592">#10592</a></p>
+<p>We fixed the status code returned by the thumbnails service when the image
+source for a thumbnail exceeds the configured maximum dimensions or file size.
+The service now returns a 403 Forbidden status code instead of a 500 Internal
+Server Error status code.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10589">https://github.com/owncloud/ocis/issues/10589</a>
+<a href="https://github.com/owncloud/ocis/pull/10592">https://github.com/owncloud/ocis/pull/10592</a></p>
+</li>
+<li>
+<p>Bugfix - Fix the activity field mapping: <a href="https://github.com/owncloud/ocis/pull/10593">#10593</a></p>
+<p><a href="https://github.com/owncloud/ocis/issues/10228">https://github.com/owncloud/ocis/issues/10228</a>
+<a href="https://github.com/owncloud/ocis/pull/10593">https://github.com/owncloud/ocis/pull/10593</a>
+Fixed
+the
+activity
+field
+mapping</p>
+</li>
+<li>
+<p>Bugfix - Fix deny access for graph roles: <a href="https://github.com/owncloud/ocis/pull/10627">#10627</a></p>
+<p>We added a unified role “Cannot access” to prevent a regression when switching
+the share implementation to the graph API. This role is now used to deny access
+to a resource.The new role is not enabled by default. The whole deny feature is
+still experimental.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10627">https://github.com/owncloud/ocis/pull/10627</a></p>
+</li>
+<li>
+<p>Bugfix - Fix link activity message: <a href="https://github.com/owncloud/ocis/pull/10663">#10663</a></p>
+<p>We changed the link token to display name in the activity message.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10295">https://github.com/owncloud/ocis/issues/10295</a>
+<a href="https://github.com/owncloud/ocis/pull/10663">https://github.com/owncloud/ocis/pull/10663</a></p>
+</li>
+<li>
+<p>Bugfix - Fix possible race condition when a thumbnails is stored in the FS: <a href="https://github.com/owncloud/ocis/pull/10693">#10693</a></p>
+<p>A race condition could cause the thumbnail service to return a thumbnail with 0
+bytes or with partial content. In order to fix this, the service will create a
+temporary file with the contents and then rename that file to its final
+location.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10693">https://github.com/owncloud/ocis/pull/10693</a></p>
+</li>
+<li>
+<p>Bugfix - Skip fetching members: <a href="https://github.com/owncloud/ocis/pull/10701">#10701</a></p>
+<p>We now skip fetching group members when they are not needed.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10701">https://github.com/owncloud/ocis/pull/10701</a></p>
+</li>
+<li>
+<p>Bugfix - Fix FileInfo BreadcrumbFolderURL: <a href="https://github.com/owncloud/ocis/pull/10718">#10718</a></p>
+<p>We fixed the FileInfo.BreadcrumbFolderURL in a collaboration api”</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10718">https://github.com/owncloud/ocis/pull/10718</a></p>
+</li>
+<li>
+<p>Bugfix - Fix graph drives response for federated shares: <a href="https://github.com/owncloud/ocis/pull/10730">#10730</a></p>
+<p>Federated shares where erroneously showing up in the /me/drives response on the
+graph API.</p>
+<p><a href="https://github.com/owncloud/ocis/issues/10689">https://github.com/owncloud/ocis/issues/10689</a>
+<a href="https://github.com/owncloud/ocis/pull/10730">https://github.com/owncloud/ocis/pull/10730</a></p>
+</li>
+<li>
+<p>Bugfix - GetLastModified property in the REPORT response will use RFC1123 format: <a href="https://github.com/owncloud/ocis/pull/10738">#10738</a></p>
+<p>This will follow the standard and will also match the format of the same
+property in the PROPFIND response</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10738">https://github.com/owncloud/ocis/pull/10738</a></p>
+</li>
+<li>
+<p>Bugfix - Unifi logging: <a href="https://github.com/owncloud/ocis/pull/10743/">#10743</a></p>
+<p>We fixed some cases where we did not use the correct logger.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10743/">https://github.com/owncloud/ocis/pull/10743/</a></p>
+</li>
+<li>
+<p>Bugfix - Fix FileInfo BreadcrumbFolderURL upd: <a href="https://github.com/owncloud/ocis/pull/10757">#10757</a></p>
+<p>Made GetScopeByKeyPrefix function as a private method of the FileConnector</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10757">https://github.com/owncloud/ocis/pull/10757</a></p>
+</li>
+<li>
+<p>Bugfix - Bump Reva: <a href="https://github.com/owncloud/ocis/pull/10766">#10766</a></p>
+<p>Bumps reva version to 2.27.0</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4985">cs3org/reva#4985</a>: Drop unneeded session locks</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/5000">cs3org/reva#5000</a>: Fix ceph build</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4989">cs3org/reva#4989</a>: Deleting OCM share also updates storageprovider</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4998">cs3org/reva#4998</a>: Emit event when an ocm share is received</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4996">cs3org/reva#4996</a>: Get rid of some cases of unstructured logging</li>
+</ul>
+<p>Bumps reva version to 2.26.8</p>
+<ul>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4983">cs3org/reva#4983</a>: Delete stale shares in the jsoncs3 share manager</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4963">cs3org/reva#4963</a>: Fix name and displayName in an ocm</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4968">cs3org/reva#4968</a>: Jsoncs3 cache fixes</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4928">cs3org/reva#4928</a>: Propagate lock in PROPPATCH</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4971">cs3org/reva#4971</a>: Use manager to list shares</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4978">cs3org/reva#4978</a>: We added more trace spans in decomposedfs</li>
+<li>Fix <a href="https://github.com/cs3org/reva/pull/4921">cs3org/reva#4921</a>: Polish propagation related code</li>
+</ul>
+<p>Bugfix: Bump Reva to v2.26.7</p>
+<ul>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4964">cs3org/reva#4964</a>: Fix a wrong error code when approvider creates a new file</li>
+</ul>
+<p>Bump Reva to v2.26.6</p>
+<ul>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4955">cs3org/reva#4955</a>: Allow small clock skew in reva token validation</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4929">cs3org/reva#4929</a>: Fix flaky posixfs integration tests</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4953">cs3org/reva#4953</a>: Avoid gateway panics</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4959">cs3org/reva#4959</a>: Fix missing file touched event</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4933">cs3org/reva#4933</a>: Fix federated sharing when using an external identity provider</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4935">cs3org/reva#4935</a>: Enable datatx log</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4936">cs3org/reva#4936</a>: Do not delete mlock files</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4954">cs3org/reva#4954</a>: Prevent a panic when logging an error</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4956">cs3org/reva#4956</a>: Improve posixfs error handling and logging</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4951">cs3org/reva#4951</a>: Pass the initialized logger down the stack</li>
+</ul>
+<p>Bugfix: Bump Reva to v2.26.5</p>
+<ul>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4926">cs3org/reva#4926</a>: Make etag always match content on downloads</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4920">cs3org/reva#4920</a>: Return correct status codes for simple uploads</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4924">cs3org/reva#4924</a>: Fix sync propagation</li>
+<li>Fix <a href="https://github.com/cs3org/reva/issues/4916">cs3org/reva#4916</a>: Improve posixfs stability and performanc</li>
+</ul>
+<p>Enhancement: Bump reva to 2.26.4</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4917">cs3org/reva#4917</a>: Fix 0-byte file uploads</li>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4918">cs3org/reva#4918</a>: Fix app templates</li>
+</ul>
+<p>Bump reva to 2.26.3</p>
+<ul>
+<li>Bugfix <a href="https://github.com/cs3org/reva/pull/4908">cs3org/reva#4908</a>: Add checksum to OCM storageprovider responses</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4910">cs3org/reva#4910</a>: Bump cs3api</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4909">cs3org/reva#4909</a>: Bump cs3api</li>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4906">cs3org/reva#4906</a>: Bump cs3api</li>
+</ul>
+<p>Bump reva to 2.26.2</p>
+<ul>
+<li>Enhancement <a href="https://github.com/cs3org/reva/pull/4897">cs3org/reva#4897</a>: Fix remaining quota calculation</li>
+<li>Bugfix      <a href="https://github.com/cs3org/reva/pull/4902">cs3org/reva#4902</a>: Fix quota calculation</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/10766">https://github.com/owncloud/ocis/pull/10766</a>
+<a href="https://github.com/owncloud/ocis/pull/10735">https://github.com/owncloud/ocis/pull/10735</a>
+<a href="https://github.com/owncloud/ocis/pull/10612">https://github.com/owncloud/ocis/pull/10612</a>
+<a href="https://github.com/owncloud/ocis/pull/10552">https://github.com/owncloud/ocis/pull/10552</a>
+<a href="https://github.com/owncloud/ocis/pull/10539">https://github.com/owncloud/ocis/pull/10539</a>
+<a href="https://github.com/owncloud/ocis/pull/10419">https://github.com/owncloud/ocis/pull/10419</a></p>
+</li>
+<li>
+<p>Enhancement - Create thumbnails for GGP MIME types: <a href="https://github.com/owncloud/ocis/pull/10304">#10304</a></p>
+<p>Creates thumbnails for newly added ggp files</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10304">https://github.com/owncloud/ocis/pull/10304</a></p>
+</li>
+<li>
+<p>Enhancement - Include a product name in the collaboration service: <a href="https://github.com/owncloud/ocis/pull/10335">#10335</a></p>
+<p>The product name will allow using a different app name. For example, a “CoolBox”
+app name might use a branded Collabora instance by using “Collabora” as product
+name.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10335">https://github.com/owncloud/ocis/pull/10335</a>
+<a href="https://github.com/owncloud/ocis/pull/10490">https://github.com/owncloud/ocis/pull/10490</a></p>
+</li>
+<li>
+<p>Enhancement - Add web extensions to the ocis_full example: <a href="https://github.com/owncloud/ocis/pull/10399">#10399</a></p>
+<p>We added some of the web extensions from ownCloud to the ocis_full docker
+compose example.</p>
+<ul>
+<li>importer - draw-io - external-sites - json-viewer - unzip - progressbars</li>
+</ul>
+<p>These can be enabled in the .env file one by one.</p>
+<p>Read more about ocis extensions in
+<a href="https://github.com/owncloud/web-extensions/blob/main/README.md">https://github.com/owncloud/web-extensions/blob/main/README.md</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/10399">https://github.com/owncloud/ocis/pull/10399</a></p>
+</li>
+<li>
+<p>Enhancement - Remove deprecated CLI commands: <a href="https://github.com/owncloud/ocis/pull/10432">#10432</a></p>
+<p>We removed the following deprecated CLI commands: <code>ocis storage-users uploads  list</code> <code>ocis storage-users uploads clean</code></p>
+<p><a href="https://github.com/owncloud/ocis/issues/10428">https://github.com/owncloud/ocis/issues/10428</a>
+<a href="https://github.com/owncloud/ocis/pull/10432">https://github.com/owncloud/ocis/pull/10432</a></p>
+</li>
+<li>
+<p>Enhancement - Bump cs3api: <a href="https://github.com/owncloud/ocis/pull/10449">#10449</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/10449">https://github.com/owncloud/ocis/pull/10449</a></p>
+</li>
+<li>
+<p>Enhancement - Bump reva to latest: <a href="https://github.com/owncloud/ocis/pull/10472">#10472</a></p>
+<p><a href="https://github.com/owncloud/ocis/pull/10472">https://github.com/owncloud/ocis/pull/10472</a></p>
+</li>
+<li>
+<p>Enhancement - Concurrent userlog processing: <a href="https://github.com/owncloud/ocis/pull/10504">#10504</a></p>
+<p>We now start multiple go routines that process events. The default of 5
+goroutines can be changed with the new <code>USERLOG_MAX_CONCURRENCY</code> environment
+variable.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10504">https://github.com/owncloud/ocis/pull/10504</a></p>
+</li>
+<li>
+<p>Enhancement - Concurrent autoaccept for shares: <a href="https://github.com/owncloud/ocis/pull/10507">#10507</a></p>
+<p>Shares for groups are now concurrently accepted. Tha default of 25 goroutinges
+can be changed with the new <code>FRONTEND_MAX_CONCURRENCY</code> environment variable.</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10507">https://github.com/owncloud/ocis/pull/10507</a>
+<a href="https://github.com/owncloud/ocis/pull/10476">https://github.com/owncloud/ocis/pull/10476</a></p>
+</li>
+<li>
+<p>Enhancement - Fetch shared resource metadata concurrently in graph: <a href="https://github.com/owncloud/ocis/pull/10683">#10683</a></p>
+<p>We now concurrently stat shared resources when listing shares</p>
+<p><a href="https://github.com/owncloud/ocis/pull/10683">https://github.com/owncloud/ocis/pull/10683</a></p>
+</li>
+<li>
+<p>Enhancement - Update web to v11.0.6: <a href="https://github.com/owncloud/ocis/pull/10755">#10755</a></p>
+<ul>
+<li>Bugfix <a href="https://github.com/owncloud/web/pull/11992">owncloud/web#11992</a>: OCM
+invite flow - Bugfix
+<a href="https://github.com/owncloud/web/pull/11997">owncloud/web#11997</a>: Change search
+scope without search term - Bugfix
+<a href="https://github.com/owncloud/web/pull/11998">owncloud/web#11998</a>: Do not load
+version when sidebar is closed - Bugfix
+<a href="https://github.com/owncloud/web/pull/12000">owncloud/web#12000</a>: Use only space
+resource with driveType “project” as space in sidebar - Bugfix
+<a href="https://github.com/owncloud/web/pull/12002">owncloud/web#12002</a>: OCM share
+editing - Bugfix
+<a href="https://github.com/owncloud/web/pull/12002">owncloud/web#12002</a>: OCM share
+recipient issuer - Bugfix
+<a href="https://github.com/owncloud/web/pull/12008">owncloud/web#12008</a>: Missing
+activities on Shared with me page - Bugfix
+<a href="https://github.com/owncloud/web/pull/12010">owncloud/web#12010</a>: Sidebar file
+info for shares - Bugfix
+<a href="https://github.com/owncloud/web/pull/12012">owncloud/web#12012</a>: Show missing
+role name in link share panel - Bugfix
+<a href="https://github.com/owncloud/web/pull/12013">owncloud/web#12013</a>: Missing
+translations for share type filters - Bugfix
+<a href="https://github.com/owncloud/web/pull/12022">owncloud/web#12022</a>: Permanent link
+for shares</li>
+</ul>
+<p>We updated ownCloud Web to v11.0.4. Please refer to the changelog (linked) for
+details on the web release.</p>
+<ul>
+<li>Bugfix <a href="https://github.com/owncloud/web/issues/11870">owncloud/web#11870</a>:
+Preview image retries postprocessing - Bugfix
+<a href="https://github.com/owncloud/web/issues/11883">owncloud/web#11883</a>: Preview app
+Shared with me page - Bugfix
+<a href="https://github.com/owncloud/web/issues/11897">owncloud/web#11897</a>: “Save as” /
+“Open” when embed delegate authentication is enabled - Bugfix
+<a href="https://github.com/owncloud/web/issues/11900">owncloud/web#11900</a>: App top bar
+does not show location when shared file is opened - Bugfix
+<a href="https://github.com/owncloud/web/issues/11900">owncloud/web#11900</a>: Open from
+app and Save As feature broken when opened via shared file - Bugfix
+<a href="https://github.com/owncloud/web/issues/11904">owncloud/web#11904</a>: Public
+folder reload - Bugfix
+<a href="https://github.com/owncloud/web/issues/11916">owncloud/web#11916</a>: Fix order in
+roles drop down - Bugfix
+<a href="https://github.com/owncloud/web/issues/11923">owncloud/web#11923</a>: Allow create
+template with different editors - Bugfix
+<a href="https://github.com/owncloud/web/issues/11924">owncloud/web#11924</a>: Extension
+actions in right sidebar - Bugfix
+<a href="https://github.com/owncloud/web/issues/11929">owncloud/web#11929</a>: Unique
+request ids</li>
+</ul>
+<p>We updated ownCloud Web to v11.0.2. Please refer to the changelog (linked) for
+details on the web release.</p>
+<ul>
+<li>Bugfix <a href="https://github.com/owncloud/web/issues/11803">owncloud/web#11803</a>:
+Files appearing in file list - Bugfix
+<a href="https://github.com/owncloud/web/pull/11804">owncloud/web#11804</a>: Add missing
+translations - Bugfix
+<a href="https://github.com/owncloud/web/issues/11806">owncloud/web#11806</a>: Folder size
+mismatch - Bugfix
+<a href="https://github.com/owncloud/web/pull/11813">owncloud/web#11813</a>: Preview image
+retries - Bugfix
+<a href="https://github.com/owncloud/web/pull/11817">owncloud/web#11817</a>: Respect post
+logout url - Bugfix
+<a href="https://github.com/owncloud/web/issues/11830">owncloud/web#11830</a>: Right side
+bar cut off - Bugfix
+<a href="https://github.com/owncloud/web/pull/11831">owncloud/web#11831</a>: Sidebar
+showing wrong shares - Bugfix
+<a href="https://github.com/owncloud/web/issues/11853">owncloud/web#11853</a>: Context menu
+“Open app in new tab” broken - Bugfix
+<a href="https://github.com/owncloud/web/issues/11008">owncloud/web#11008</a>: Show lock
+information in file details</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/pull/10755">https://github.com/owncloud/ocis/pull/10755</a>
+<a href="https://github.com/owncloud/ocis/pull/10569">https://github.com/owncloud/ocis/pull/10569</a>
+<a href="https://github.com/owncloud/ocis/pull/10604">https://github.com/owncloud/ocis/pull/10604</a>
+<a href="https://github.com/owncloud/ocis/pull/10467">https://github.com/owncloud/ocis/pull/10467</a>
+<a href="https://github.com/owncloud/ocis/pull/10503">https://github.com/owncloud/ocis/pull/10503</a>
+<a href="https://github.com/owncloud/web/releases/tag/v11.0.6">https://github.com/owncloud/web/releases/tag/v11.0.6</a>
+<a href="https://github.com/owncloud/web/releases/tag/v11.0.3">https://github.com/owncloud/web/releases/tag/v11.0.3</a>
+<a href="https://github.com/owncloud/web/releases/tag/v11.0.4">https://github.com/owncloud/web/releases/tag/v11.0.4</a>
+<a href="https://github.com/owncloud/web/releases/tag/v11.0.1">https://github.com/owncloud/web/releases/tag/v11.0.1</a>
+<a href="https://github.com/owncloud/web/releases/tag/v11.0.2">https://github.com/owncloud/web/releases/tag/v11.0.2</a></p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/owncloud/ocis/releases/tag/v7.0.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

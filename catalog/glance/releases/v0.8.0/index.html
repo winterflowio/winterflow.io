@@ -1,0 +1,512 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Glance v0.8.0 release notes | WinterFlow.io</title><meta name="description" content="This update introduces authentication, a theme picker, a to-do widget, head widgets, PWA configuration, and significant enhancements to Docker, Custom…"><link rel="canonical" href="https://winterflow.io/catalog/glance/releases/v0.8.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Glance v0.8.0 release notes | WinterFlow.io"><meta property="og:description" content="This update introduces authentication, a theme picker, a to-do widget, head widgets, PWA configuration, and significant enhancements to Docker, Custom…"><meta property="og:url" content="https://winterflow.io/catalog/glance/releases/v0.8.0/"><meta property="og:image" content="https://winterflow.io/images/apps/glance/glance.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Glance v0.8.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This update introduces authentication, a theme picker, a to-do widget, head widgets, PWA configuration, and significant enhancements to Docker, Custom…"><meta name="twitter:image" content="https://winterflow.io/images/apps/glance/glance.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Glance","item":"https://winterflow.io/catalog/glance/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/glance/releases/"},{"@type":"ListItem","position":5,"name":"v0.8.0","item":"https://winterflow.io/catalog/glance/releases/v0.8.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/glance/glance.png" alt="Glance logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Glance</h1> <p class="mt-4 text-lg leading-8 text-gray-600">A self-hosted dashboard that puts all your feeds in one place</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> netvibes, igoogle, feedly </p> </div> <div class="mt-6 flex flex-wrap gap-4">  <a href="https://github.com/glanceapp/glance" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/glanceapp/glance/blob/main/docs/configuration.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/glance/screenshot.png" alt="Glance screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/glanceapp/glance/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 35,677 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Glance" data-app-slug="glance" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/sponsors/glanceapp" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a><a href="https://github.com/glanceapp/glance" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/glance/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (34)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/glance/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v0.8.0</h2> <span class="text-sm text-gray-500">2025-05-13</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p>Another big update is here! This one includes authentication, a theme picker, new customization options, a to-do widget and lots of improvements to existing widgets. Before we get to details of all that…</p>
+<h2 id="feedback-wanted">Feedback wanted</h2>
+<p>Deciding what features to add to a project like this is no easy task. Most self-hosted services focus on doing one thing and adding features around that thing, but with a personal dashboard/feed aggregator you can practically display <em>anything</em>, so how do you decide what does and doesn’t belong? So far I’ve been prioritizing feature requests with a high number of upvotes and those I believe fit with the vision of the project, although admittedly Glance has deviated quite a bit from its initial purpose.</p>
+<p>As with almost all communities, a minority of people are very vocal about their wants and needs, while the majority are just riding along. Rather than guessing what the community as a whole would benefit from the most moving forward, I thought I could just ask through a short survey.</p>
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdoNDjJYugVm6kb2NpVO5QO1inGbEeuydkta-XEIMRbgYIsXg/viewform">Link to the survey</a></p>
+<p>It’s entirely anonymous, should only take about 1 to 3 minutes to complete, and I’d be happy to share the results once there are enough responses. Thank you to those who take the time to fill it out.</p>
+<h2 id="jump-to-section">Jump to section</h2>
+<ul>
+<li><a href="#g-rh-1">Community widgets</a></li>
+<li><a href="#g-rh-2">New logo</a></li>
+<li><a href="#g-rh-3">New features</a>
+<ul>
+<li><a href="#g-rh-4">Nested config includes and new include syntax</a></li>
+<li><a href="#g-rh-5">Using Docker secrets within the config</a></li>
+<li><a href="#g-rh-6">Theme picker</a></li>
+<li><a href="#g-rh-7">Authentication</a></li>
+<li><a href="#g-rh-8">To-do widget</a></li>
+<li><a href="#g-rh-9">Hiding widget titles</a></li>
+<li><a href="#g-rh-10">Head widgets</a></li>
+<li><a href="#g-rh-11">Separate navigation and page widths</a></li>
+<li><a href="#g-rh-12">PWA configuration</a></li>
+</ul>
+</li>
+<li><a href="#g-rh-13">Widget enhancements</a>
+<ul>
+<li><a href="#g-rh-14">[Docker containers] Container customization in the config, support for proxies, <code>category</code> and <code>format-container-names</code> properties</a></li>
+<li><a href="#g-rh-15">[Custom API] Synchronous API calls and <code>options</code> property</a></li>
+<li><a href="#g-rh-16">[Reddit] Support for application auth</a></li>
+<li><a href="#g-rh-17">[RSS] Conditional requests</a></li>
+<li><a href="#g-rh-18">[Monitor] <code>basic-auth</code> and <code>timeout</code> properties</a></li>
+<li><a href="#g-rh-19">[DNS Stats] Support for Technitium</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="-community-widgets"><a id="g-rh-1"></a> Community widgets</h2>
+<p>If you weren’t aware, there’s now <a href="https://github.com/glanceapp/community-widgets">a repository for widgets made by the community</a> with 40+ widgets available so far. Most are made using the <code>custom-api</code> widget, so adding them is as simple as copying them into your <code>glance.yml</code>. It’s a great place to find new widgets, and if you have a widget that you think others would benefit from, please consider sharing it there. Thank you to everyone who has contributed!</p>
+<h2 id="-new-logo"><a id="g-rh-2"></a> New logo</h2>
+<p>Big thanks to @Tom607 for offering help with the logo and going over dozens of different iterations!</p>
+<p><img src="https://github.com/user-attachments/assets/2a19f0c5-83bc-4ad0-8ccd-b78d4d11ad29" alt="logo"></p>
+<p>I believe it does a great job at conveying the widgety layout of Glance, while also being simple and clean, as is the rest of the design language.</p>
+<h2 id="-new-features"><a id="g-rh-3"></a> New features</h2>
+<h3 id="-nested-config-includes-and-new-include-syntax"><a id="g-rh-4"></a> Nested config includes and new include syntax</h3>
+<p>Up until now, you could only use the <code>!include</code> directive in your <code>glance.yml</code> file, but not within any of the included files. This has been changed so that you can includes files from within included files as many times as you need, meaning you can have a separate file for each page, a separate file for each column, and even a separate file for each widget if you wanted to:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>glance.yml</span></span>
+<span class="line"><span>├── home.yml</span></span>
+<span class="line"><span>│   ├── column1.yml</span></span>
+<span class="line"><span>│   │   ├── widget1.yml</span></span>
+<span class="line"><span>│   │   └── widget2.yml</span></span>
+<span class="line"><span>│   └── column2.yml</span></span>
+<span class="line"><span>│       ├── widget3.yml</span></span>
+<span class="line"><span>│       └── widget4.yml</span></span></code></pre>
+<p>In addition, the <code>!include</code> directive can now instead be written as <code>$include</code>. The reason for this change is that it turns out <code>!include</code>, with the way it was used in Glance, is not actually valid YAML (whoops), meaning it makes YAML validators and syntax highlighters angry. The new <code>$include</code> syntax is valid YAML and will be the preferred syntax moving forward. You can also add a <code>-</code> at the beginning of a line when including array items, since that’s the expected syntax for YAML arrays.</p>
+<p>Before:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">theme</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">  !include:</span><span style="color:#9ECBFF"> theme.yml</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">pages</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">  !include:</span><span style="color:#9ECBFF"> home.yml</span></span>
+<span class="line"><span style="color:#F97583">  !include:</span><span style="color:#9ECBFF"> homelab.yml</span></span>
+<span class="line"><span style="color:#F97583">  !include:</span><span style="color:#9ECBFF"> startpage.yml</span></span></code></pre>
+<p>Now:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">theme</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  $include</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">theme.yml</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">pages</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">$include</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">home.yml</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">$include</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">homelab.yml</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">$include</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">startpage.yml</span></span></code></pre>
+<br>
+<h3 id="-using-docker-secrets-within-the-config"><a id="g-rh-5"></a> Using Docker secrets within the config</h3>
+<p>Along with environment variables, you can now use <a href="https://docs.docker.com/compose/how-tos/use-secrets/">Docker secrets</a> in your config file using the following syntax:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">token</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${secret:github_token}</span><span style="color:#6A737D"> # Reads the contents of /run/secrets/github_token</span></span>
+<span class="line"><span style="color:#85E89D">token</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${GITHUB_TOKEN}</span><span style="color:#6A737D"> # Environment variable</span></span></code></pre>
+<p>(thanks @gomeology)</p>
+<br>
+<h3 id="-theme-picker"><a id="g-rh-6"></a> Theme picker</h3>
+<p>You can now define multiple theme presets and switch between them in the UI, no more config changes needed to change the theme!</p>
+<p><img src="https://github.com/user-attachments/assets/f26760e2-013a-480f-8559-6420e298fe94" alt="theme-switcher-preview"></p>
+<details>
+<summary>View config</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">theme</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  presets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    neon-focus</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      background-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">255 14 6</span></span>
+<span class="line"><span style="color:#85E89D">      primary-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">156 50 65</span></span>
+<span class="line"><span style="color:#85E89D">      negative-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">342 65 65</span></span>
+<span class="line"><span style="color:#85E89D">      contrast-multiplier</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.9</span></span>
+<span class="line"><span style="color:#85E89D">      text-saturation-multiplier</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.8</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    gruvbox-dark</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      background-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">0 0 16</span></span>
+<span class="line"><span style="color:#85E89D">      primary-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">43 59 81</span></span>
+<span class="line"><span style="color:#85E89D">      positive-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">61 66 44</span></span>
+<span class="line"><span style="color:#85E89D">      negative-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">6 96 59</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    catppuccin-macchiato</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      background-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">232 23 18</span></span>
+<span class="line"><span style="color:#85E89D">      contrast-multiplier</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1.2</span></span>
+<span class="line"><span style="color:#85E89D">      primary-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">220 83 75</span></span>
+<span class="line"><span style="color:#85E89D">      positive-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">105 48 72</span></span>
+<span class="line"><span style="color:#85E89D">      negative-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">351 74 73</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    peachy</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      light</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">      background-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">28 40 77</span></span>
+<span class="line"><span style="color:#85E89D">      primary-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">155 100 20</span></span>
+<span class="line"><span style="color:#85E89D">      negative-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">0 100 60</span></span>
+<span class="line"><span style="color:#85E89D">      contrast-multiplier</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1.1</span></span>
+<span class="line"><span style="color:#85E89D">      text-saturation-multiplier</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.5</span></span></code></pre>
+</details>
+<p>Glance will include its own default dark and light themes in the list of presets, which you can override by using the <code>default-dark</code> and <code>default-light</code> keys.</p>
+<p>(thanks @hecht-a)</p>
+<br>
+<h3 id="-authentication"><a id="g-rh-7"></a> Authentication</h3>
+<p>You can now add authentication via username and password:</p>
+<p><img src="https://github.com/user-attachments/assets/06d23faf-e9e4-4ca7-ab06-c965b39a74b1" alt="auth-preview"></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">auth</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  secret-key</span><span style="color:#E1E4E8">: </span><span style="color:#6A737D"># this must be set to a random value generated using the secret:make CLI command</span></span>
+<span class="line"><span style="color:#85E89D">  users</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    admin</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      password</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${ADMIN_PASSWORD}</span></span></code></pre>
+<p>While there is support for multiple users, you cannot customize the dashboard per user at this time, so all users will see the same dashboard.</p>
+<p>To generate the secret key, use the <code>secret:make</code> CLI command:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --rm</span><span style="color:#9ECBFF"> glanceapp/glance</span><span style="color:#9ECBFF"> secret:make</span></span></code></pre>
+<p>Or with the binary:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">/opt/glance/glance</span><span style="color:#9ECBFF"> secret:make</span></span></code></pre>
+<p>If you do not want to store plain passwords in environment variables or in files, you can hash your password and provide it via the <code>password-hash</code> property instead:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">auth</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  secret-key</span><span style="color:#E1E4E8">: </span><span style="color:#6A737D"># this must be set to a random value generated using the secret:make CLI command</span></span>
+<span class="line"><span style="color:#85E89D">  users</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    admin</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      password-hash</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">$2y$10$...</span></span></code></pre>
+<p>To hash your password, use the <code>password:hash &#x3C;password></code> CLI command:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --rm</span><span style="color:#9ECBFF"> glanceapp/glance</span><span style="color:#9ECBFF"> password:hash</span><span style="color:#9ECBFF"> mypasswordishunter2</span></span></code></pre>
+<p>Or with the binary:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">/opt/glance/glance</span><span style="color:#9ECBFF"> password:hash</span><span style="color:#9ECBFF"> mypasswordishunter2</span></span></code></pre>
+<br>
+<h3 id="-to-do-widget"><a id="g-rh-8"></a> To-do widget</h3>
+<p>A fairly simple to-do widget with the ability to add, edit, reorder and delete tasks:</p>
+<p><img src="https://github.com/user-attachments/assets/cf868e6c-b052-4257-87fc-b9f9d2bd039e" alt="todo-preview"></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">to-do</span></span></code></pre>
+<p>There are a number of keyboard shortcuts available that make it easier to use, which you can find over at the <a href="https://github.com/glanceapp/glance/blob/main/docs/configuration.md#todo">config docs</a>.</p>
+<p>The tasks are stored in the browser’s local storage, so they won’t be available on all devices. If you want to add multiple todo widgets, you must specify a unique <code>id</code> for each one:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">to-do</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Work tasks</span></span>
+<span class="line"><span style="color:#85E89D">  id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">work</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">to-do</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Personal tasks</span></span>
+<span class="line"><span style="color:#85E89D">  id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">personal</span></span></code></pre>
+<p>(thanks @AMS003010)</p>
+<br>
+<h3 id="-hiding-widget-headers"><a id="g-rh-9"></a> Hiding widget headers</h3>
+<p>A fairly simple addition, but one that’s been requested quite a few times - you can now hide widget headers by setting the <code>hide-header</code> property to <code>true</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">calendar</span></span>
+<span class="line"><span style="color:#85E89D">    hide-header</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span></code></pre>
+<p>If you do this for all widgets, you get something like this:</p>
+<p><img src="https://github.com/user-attachments/assets/b7159a7c-8799-455f-8ce6-54be392cdd41" alt="no-headers-preview"></p>
+<p>Note that you cannot hide the header of the group widget since it’s used to switch between each widget.</p>
+<br>
+<h3 id="-head-widgets"><a id="g-rh-10"></a> Head widgets</h3>
+<p>You can now define “head widgets” on each page, which are basically widgets that sit above all columns and take up the full width. Combined with the <code>hide-header</code> property, you get something like this:</p>
+<p><img src="https://github.com/user-attachments/assets/da4ac13a-8fbb-48b9-867c-88850ddc9263" alt="head-widgets-preview"></p>
+<details>
+<summary>View config</summary>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">pages</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Home</span></span>
+<span class="line"><span style="color:#85E89D">    head-widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">markets</span></span>
+<span class="line"><span style="color:#85E89D">        hide-header</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">        markets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">symbol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">SPY</span></span>
+<span class="line"><span style="color:#85E89D">            name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">S&#x26;P 500</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">symbol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">BTC-USD</span></span>
+<span class="line"><span style="color:#85E89D">            name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Bitcoin</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">symbol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">NVDA</span></span>
+<span class="line"><span style="color:#85E89D">            name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">NVIDIA</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">symbol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">AAPL</span></span>
+<span class="line"><span style="color:#85E89D">            name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Apple</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">symbol</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">MSFT</span></span>
+<span class="line"><span style="color:#85E89D">            name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Microsoft</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    columns</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">size</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">small</span></span>
+<span class="line"><span style="color:#85E89D">        widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">calendar</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">size</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">full</span></span>
+<span class="line"><span style="color:#85E89D">        widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">hacker-news</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">size</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">small</span></span>
+<span class="line"><span style="color:#85E89D">        widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">weather</span></span>
+<span class="line"><span style="color:#85E89D">            location</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">London, United Kingdom</span></span></code></pre>
+</details>
+<p>This works well for displaying mostly horizontal widgets such as the videos widget, RSS widget with  <code>horizontal-cards</code> style, or widgets which span their items horizontally, such as the markets widget.</p>
+<br>
+<h3 id="-separate-navigation-and-page-widths"><a id="g-rh-11"></a> Separate navigation and page widths</h3>
+<p>You can now have different desktop navigation and content widths:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">pages</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Home</span></span>
+<span class="line"><span style="color:#85E89D">    width</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">slim</span></span>
+<span class="line"><span style="color:#85E89D">    desktop-navigation-width</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">wide</span></span>
+<span class="line"><span style="color:#85E89D">    columns</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">      ...</span></span></code></pre>
+<p>By default <code>desktop-navigation-width</code> will inherit the value of <code>width</code>, but can explicitly be set to a different value (<code>default</code>, <code>slim</code> or <code>wide</code>). Using this property, if one of your pages has a different width than the rest, you can set the navigation to be the same width as the rest of the pages, meaning no more jankiness when switching between pages of different widths!</p>
+<br>
+<h3 id="-pwa-configuration"><a id="g-rh-12"></a> PWA configuration</h3>
+<p>You can now configure PWA things such as the app name, icon and theme color:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">branding</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  app-name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Not Glance</span></span>
+<span class="line"><span style="color:#85E89D">  app-icon</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/assets/path/to/icon.png</span></span>
+<span class="line"><span style="color:#85E89D">  app-background-color</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'#000000'</span><span style="color:#6A737D"> # ideally in hex format, since support for other formats is inconsistent between browsers</span></span></code></pre>
+<p>(thanks @dvdpearson)</p>
+<br>
+<h2 id="-widget-enhancements"><a id="g-rh-13"></a> Widget enhancements</h2>
+<h3 id="-docker-containers-container-customization-in-the-config-support-for-proxies-and-category-property"><a id="g-rh-14"></a> [Docker containers] Container customization in the config, support for proxies and <code>category</code> property</h3>
+<p>Instead of using docker labels to customize the containers, you can now do so within your <code>glance.yml</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">docker-containers</span></span>
+<span class="line"><span style="color:#85E89D">  containers</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    container_name_1</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Container Name</span></span>
+<span class="line"><span style="color:#85E89D">      description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Description of the container</span></span>
+<span class="line"><span style="color:#85E89D">      url</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://container.domain.com</span></span>
+<span class="line"><span style="color:#85E89D">      icon</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">si:container-icon</span></span>
+<span class="line"><span style="color:#85E89D">      hide</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    container_name_2</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Other Container Name</span></span>
+<span class="line"><span style="color:#85E89D">      description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Other description of the container</span></span>
+<span class="line"><span style="color:#85E89D">      url</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://other-container.domain.com</span></span>
+<span class="line"><span style="color:#85E89D">      icon</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">si:container-icon</span></span>
+<span class="line"><span style="color:#85E89D">      hide</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span></code></pre>
+<p>(thanks @mike391)</p>
+<br>
+<p>You can now also specify a <a href="https://github.com/Tecnativa/docker-socket-proxy">proxied docker socket</a> URI instead of a path to a socket file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">docker-containers</span></span>
+<span class="line"><span style="color:#85E89D">  sock-path</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http://docker-socket-proxy:2375</span><span style="color:#6A737D"> # tcp:// also works</span></span></code></pre>
+<p>(thanks @retmas-gh)</p>
+<br>
+<p>The new <code>category</code> property allows you to split up categories of containers into different widgets:</p>
+<p><code>glance.yml</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># This will only list containers which have the glance.category label "tools"</span></span>
+<span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">docker-containers</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Tools</span></span>
+<span class="line"><span style="color:#85E89D">  category</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">tools</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># This will only list containers which have the glance.category label "arr"</span></span>
+<span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">docker-containers</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Arr</span></span>
+<span class="line"><span style="color:#85E89D">  category</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">arr</span></span></code></pre>
+<p><code>docker-compose.yml</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">services</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  my-container</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">my-image</span></span>
+<span class="line"><span style="color:#85E89D">    labels</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      glance.category</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">tools</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  my-other-container</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">my-image</span></span>
+<span class="line"><span style="color:#85E89D">    labels</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      glance.category</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">arr</span></span></code></pre>
+<p>(thanks @shareef945)</p>
+<br>
+<h3 id="-custom-api-synchronous-api-calls-and-options-property"><a id="g-rh-15"></a> [Custom API] Synchronous API calls and <code>options</code> property</h3>
+<p>So far you could only run asynchronous API calls, meaning you couldn’t use the result of one API call in another. There is now support for synchronous API calls within the template itself:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">  url</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://api.example.com/get-id-of-something</span></span>
+<span class="line"><span style="color:#85E89D">  template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{/* The ID is taken from the first API call */}}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $theID := .JSON.String "id" }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">    {{/* Then used in the second API call */}}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{</span></span>
+<span class="line"><span style="color:#9ECBFF">      $something := newRequest (concat "https://api.example.com/something/" $theID)</span></span>
+<span class="line"><span style="color:#9ECBFF">        | withParameter "key" "value"</span></span>
+<span class="line"><span style="color:#9ECBFF">        | withHeader "Accept" "application/json"</span></span>
+<span class="line"><span style="color:#9ECBFF">        | getResponse</span></span>
+<span class="line"><span style="color:#9ECBFF">    }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $something.JSON.String "title" }}</span></span></code></pre>
+<p>You can optionally add query parameters using <code>withParameter</code>, headers with <code>withHeader</code>, and turn the request method into <code>POST</code> with a string body via <code>withStringBody</code>. This also means that you can conditionally execute requests within if statements, unlike with the <code>subrequests</code> property which executes all requests every time the cache expires.</p>
+<p>In addition, the <code>url</code> property is now optional, meaning you can execute requests solely within the template. This is useful if you need to supply dynamic parameters to the endpoint:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Events from the last 24h</span></span>
+<span class="line"><span style="color:#85E89D">  template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{</span></span>
+<span class="line"><span style="color:#9ECBFF">      $events := newRequest "https://api.example.com/events"</span></span>
+<span class="line"><span style="color:#9ECBFF">        | withParameter "after" (offsetNow "-24h" | formatTime "rfc3339")</span></span>
+<span class="line"><span style="color:#9ECBFF">        | getResponse</span></span>
+<span class="line"><span style="color:#9ECBFF">    }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">    {{ if eq $events.Response.StatusCode 200 }}</span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ range $events.JSON.Array "events" }}</span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;div>{{ .String "title" }}&#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;div {{ .String "date" | parseTime "rfc3339" | toRelativeTime }}>&#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ end }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ else }}</span></span>
+<span class="line"><span style="color:#9ECBFF">      &#x3C;p>Failed to fetch data: {{ $events.Response.Status }}&#x3C;/p></span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ end }}</span></span></code></pre>
+<p>There’s a new <code>options</code> property which allows you to specify configurable options within the widget, rather than within the template.</p>
+<details>
+<summary>View example</summary>
+<p>Instead of defining options within the template and having to modify the template itself like such:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">  template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ /* User configurable options */ }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $collapseAfter := 5 }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $showThumbnails := true }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $showFlairs := false }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">     &#x3C;ul class="list list-gap-10 collapsible-container" data-collapse-after="{{ $collapseAfter }}"></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ if $showThumbnails }}</span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;li></span></span>
+<span class="line"><span style="color:#9ECBFF">          &#x3C;img src="{{ .JSON.String "thumbnail" }}" alt="" /></span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;/li></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ end }}</span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ if $showFlairs }}</span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;li></span></span>
+<span class="line"><span style="color:#9ECBFF">          &#x3C;span class="flair">{{ .JSON.String "flair" }}&#x3C;/span></span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;/li></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ end }}</span></span>
+<span class="line"><span style="color:#9ECBFF">     &#x3C;/ul></span></span></code></pre>
+<p>You can use the <code>.Options</code> object to retrieve and define default values for these variables:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">  template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $collapseAfter := .Options.IntOr "collapse-after" 5 }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $showThumbnails := .Options.BoolOr "show-thumbnails" true }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    {{ $showFlairs := .Options.BoolOr "show-flairs" false }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">    &#x3C;ul class="list list-gap-10 collapsible-container" data-collapse-after="{{ $collapseAfter }}"></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ if $showThumbnails }}</span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;li></span></span>
+<span class="line"><span style="color:#9ECBFF">          &#x3C;img src="{{ .JSON.String "thumbnail" }}" alt="" /></span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;/li></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ end }}</span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ if $showFlairs }}</span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;li></span></span>
+<span class="line"><span style="color:#9ECBFF">          &#x3C;span class="flair">{{ .JSON.String "flair" }}&#x3C;/span></span></span>
+<span class="line"><span style="color:#9ECBFF">        &#x3C;/li></span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ end }}</span></span>
+<span class="line"><span style="color:#9ECBFF">    &#x3C;/ul></span></span></code></pre>
+<p>This way, you can optionally specify the <code>collapse-after</code>, <code>show-thumbnails</code> and <code>show-flairs</code> properties in the widget configuration:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">  options</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    collapse-after</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span></span>
+<span class="line"><span style="color:#85E89D">    show-thumbnails</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    show-flairs</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span></code></pre>
+<p>Which allows you to reuse the same template multiple times with different options:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># Note that `custom-widgets` isn't a special property, it's just used to define the reusable "anchor", see https://support.atlassian.com/bitbucket-cloud/docs/yaml-anchors/</span></span>
+<span class="line"><span style="color:#6A737D"># The contents of the widget could also be included from its own file</span></span>
+<span class="line"><span style="color:#85E89D">custom-widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#F97583">&#x26;</span><span style="color:#B392F0">example-widget</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">custom-api</span></span>
+<span class="line"><span style="color:#85E89D">    template</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">      {{ .Options.StringOr "custom-option" "not defined" }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">pages</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Home</span></span>
+<span class="line"><span style="color:#85E89D">    columns</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">size</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">full</span></span>
+<span class="line"><span style="color:#85E89D">        widgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#79B8FF">&#x3C;&#x3C;</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">example-widget</span></span>
+<span class="line"><span style="color:#85E89D">            options</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">              custom-option</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Value 1"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#79B8FF">&#x3C;&#x3C;</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">example-widget</span></span>
+<span class="line"><span style="color:#85E89D">            options</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">              custom-option</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Value 2"</span></span></code></pre>
+<p>Currently, the available methods on the <code>.Options</code> object are: <code>StringOr</code>, <code>IntOr</code>, <code>BoolOr</code> and <code>FloatOr</code>.</p>
+</details>
+<br>
+<h3 id="-reddit-support-for-application-auth"><a id="g-rh-16"></a> [Reddit] Support for application auth</h3>
+<p>Instead of using a proxy to bypass Reddit’s restrictions of VPS IPs, you can now use your own Reddit application credentials to authenticate with Reddit’s API:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">reddit</span></span>
+<span class="line"><span style="color:#85E89D">  subreddit</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">technology</span></span>
+<span class="line"><span style="color:#85E89D">  app-auth</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${REDDIT_APP_NAME}</span></span>
+<span class="line"><span style="color:#85E89D">    id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${REDDIT_APP_CLIENT_ID}</span></span>
+<span class="line"><span style="color:#85E89D">    secret</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${REDDIT_APP_SECRET}</span></span></code></pre>
+<p>To create an app on Reddit, go to <a href="https://ssl.reddit.com/prefs/apps/">this page</a>.</p>
+<p>(thanks @s0ders)</p>
+<br>
+<h3 id="-rss-conditional-requests"><a id="g-rh-17"></a> [RSS] Conditional requests</h3>
+<p>RSS feeds are usually the slowest widgets to load, leading to longer than necessary loading times. To help with this, the RSS widget now supports conditional requests, meaning it will use either the <code>ETag</code> or <code>Last-Modified</code> headers provided by the server, if available, to conditionally request the feed only if it has changed since the last request. This should speed things up in some cases and make sysadmins a little happier.</p>
+<p>(thanks @charlesharries)</p>
+<br>
+<h3 id="-monitor-basic-auth-and-timeout-properties"><a id="g-rh-18"></a> [Monitor] <code>basic-auth</code> and <code>timeout</code> properties</h3>
+<p>The monitor widget now has support for basic authentication and a timeout property:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">monitor</span></span>
+<span class="line"><span style="color:#85E89D">  cache</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">1m</span></span>
+<span class="line"><span style="color:#85E89D">  title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Services</span></span>
+<span class="line"><span style="color:#85E89D">  sites</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Jellyfin</span></span>
+<span class="line"><span style="color:#85E89D">      url</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://jellyfin.yourdomain.com</span></span>
+<span class="line"><span style="color:#85E89D">      icon</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">si:jellyfin</span></span>
+<span class="line"><span style="color:#85E89D">      timeout</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">10s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Gitea</span></span>
+<span class="line"><span style="color:#85E89D">      url</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://gitea.yourdomain.com</span></span>
+<span class="line"><span style="color:#85E89D">      icon</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">si:gitea</span></span>
+<span class="line"><span style="color:#85E89D">      basic-auth</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        username</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${GITEA_USERNAME}</span></span>
+<span class="line"><span style="color:#85E89D">        password</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${GITEA_PASSWORD}</span></span></code></pre>
+<p>(thanks @logoff, @ejsadiarin and @FabianK3)</p>
+<br>
+<h3 id="-dns-stats-support-for-technitium"><a id="g-rh-19"></a> [DNS Stats] Support for Technitium</h3>
+<p>The DNS stats widget now has support for <a href="https://technitium.com/dns/">Technitium DNS</a>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">dns-stats</span></span>
+<span class="line"><span style="color:#85E89D">  service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">technitium</span></span>
+<span class="line"><span style="color:#85E89D">  token</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${TECHNITIUM_TOKEN}</span></span></code></pre>
+<p>(thanks @anarqist and @KevinFumbles)</p>
+<br>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li>Fixed an issue with the weather widget where some locations were not being returned properly (thanks @MooToYou)</li>
+<li>Fixed an issue with some widgets where user-provided URLs were being escaped when they shouldn’t be (thanks @Kamalaja)</li>
+</ul>
+<br>
+<h2 id="thank-you">Thank you</h2>
+<p>Thank you to everyone who has continued to <a href="https://github.com/sponsors/glanceapp">sponsor</a> the project, and to those who have contributed in any way. I really appreciate it!</p>
+<br>
+<h2 id="merged-prs">Merged PRs</h2>
+<ul>
+<li>Added Technitium Service Option to DNS-Stats Widget by @KevinFumbles in <a href="https://github.com/glanceapp/glance/pull/339">https://github.com/glanceapp/glance/pull/339</a></li>
+<li>feat(monitor): add basic-auth feature for protected sites by @ejsadiarin in <a href="https://github.com/glanceapp/glance/pull/367">https://github.com/glanceapp/glance/pull/367</a></li>
+<li>feat: add parameters and array parameters support by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/378">https://github.com/glanceapp/glance/pull/378</a></li>
+<li>fix: full width clickable link for monitor-site by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/405">https://github.com/glanceapp/glance/pull/405</a></li>
+<li>feat: custom-api multiple API queries by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/385">https://github.com/glanceapp/glance/pull/385</a></li>
+<li>make title-url of pihole and pihole-v6 default to /admin by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/466">https://github.com/glanceapp/glance/pull/466</a></li>
+<li>Add bing and perplexity as search engines by @jpinz in <a href="https://github.com/glanceapp/glance/pull/476">https://github.com/glanceapp/glance/pull/476</a></li>
+<li>Add Kagi and Startpage as search engines by @stripedew in <a href="https://github.com/glanceapp/glance/pull/480">https://github.com/glanceapp/glance/pull/480</a></li>
+<li>Add replaceMatches function to custom-api by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/542">https://github.com/glanceapp/glance/pull/542</a></li>
+<li>Add filter on already seen links for RSS feeds by @HtFilia in <a href="https://github.com/glanceapp/glance/pull/494">https://github.com/glanceapp/glance/pull/494</a></li>
+<li>added unique to filter arrays with unique items in custom-api by @ralphocdol in <a href="https://github.com/glanceapp/glance/pull/580">https://github.com/glanceapp/glance/pull/580</a></li>
+<li>[sensors] allow sensor readings when there are warnings by @anxdpanic in <a href="https://github.com/glanceapp/glance/pull/583">https://github.com/glanceapp/glance/pull/583</a></li>
+<li>Support embed icons on bookmarks URLs by @hitalos in <a href="https://github.com/glanceapp/glance/pull/578">https://github.com/glanceapp/glance/pull/578</a></li>
+<li>Dynamize manifest.json with configurable options by @dvdpearson in <a href="https://github.com/glanceapp/glance/pull/602">https://github.com/glanceapp/glance/pull/602</a></li>
+<li>update error reporting for custom-api JSON validation by @anxdpanic in <a href="https://github.com/glanceapp/glance/pull/594">https://github.com/glanceapp/glance/pull/594</a></li>
+<li>Feat: Added support for configuring Docker containers through glance.yaml instead of labels by @mike391 in <a href="https://github.com/glanceapp/glance/pull/453">https://github.com/glanceapp/glance/pull/453</a></li>
+<li>Minor design tweak, polishing up the polyline corners  by @mmshivesh in <a href="https://github.com/glanceapp/glance/pull/623">https://github.com/glanceapp/glance/pull/623</a></li>
+<li>feat: Use conditional requests for RSS feeds by @charlesharries in <a href="https://github.com/glanceapp/glance/pull/462">https://github.com/glanceapp/glance/pull/462</a></li>
+<li>feat: theme switcher by @hecht-a in <a href="https://github.com/glanceapp/glance/pull/299">https://github.com/glanceapp/glance/pull/299</a></li>
+<li>v0.8.0 by @svilenmarkov in <a href="https://github.com/glanceapp/glance/pull/648">https://github.com/glanceapp/glance/pull/648</a></li>
+</ul>
+<h2 id="new-contributors">New Contributors</h2>
+<ul>
+<li>@KevinFumbles made their first contribution in <a href="https://github.com/glanceapp/glance/pull/339">https://github.com/glanceapp/glance/pull/339</a></li>
+<li>@ejsadiarin made their first contribution in <a href="https://github.com/glanceapp/glance/pull/367">https://github.com/glanceapp/glance/pull/367</a></li>
+<li>@jpinz made their first contribution in <a href="https://github.com/glanceapp/glance/pull/476">https://github.com/glanceapp/glance/pull/476</a></li>
+<li>@stripedew made their first contribution in <a href="https://github.com/glanceapp/glance/pull/480">https://github.com/glanceapp/glance/pull/480</a></li>
+<li>@HtFilia made their first contribution in <a href="https://github.com/glanceapp/glance/pull/494">https://github.com/glanceapp/glance/pull/494</a></li>
+<li>@anxdpanic made their first contribution in <a href="https://github.com/glanceapp/glance/pull/583">https://github.com/glanceapp/glance/pull/583</a></li>
+<li>@hitalos made their first contribution in <a href="https://github.com/glanceapp/glance/pull/578">https://github.com/glanceapp/glance/pull/578</a></li>
+<li>@dvdpearson made their first contribution in <a href="https://github.com/glanceapp/glance/pull/602">https://github.com/glanceapp/glance/pull/602</a></li>
+<li>@mike391 made their first contribution in <a href="https://github.com/glanceapp/glance/pull/453">https://github.com/glanceapp/glance/pull/453</a></li>
+<li>@mmshivesh made their first contribution in <a href="https://github.com/glanceapp/glance/pull/623">https://github.com/glanceapp/glance/pull/623</a></li>
+<li>@charlesharries made their first contribution in <a href="https://github.com/glanceapp/glance/pull/462">https://github.com/glanceapp/glance/pull/462</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/glanceapp/glance/compare/v0.7.13...v0.8.0">https://github.com/glanceapp/glance/compare/v0.7.13…v0.8.0</a></p> </div> <div class="mt-6"> <a href="https://github.com/glanceapp/glance/releases/tag/v0.8.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

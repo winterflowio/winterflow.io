@@ -1,0 +1,1181 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PrestaShop 8.0.0-beta.1 release notes | WinterFlow.io</title><meta name="description" content="PrestaShop 8.0.0 introduces significant Back Office migrations to Symfony, expanded multistore compatibility, WebP support, and PHP 8.1 compatibility…"><link rel="canonical" href="https://winterflow.io/catalog/prestashop/releases/8.0.0-beta.1/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="PrestaShop 8.0.0-beta.1 release notes | WinterFlow.io"><meta property="og:description" content="PrestaShop 8.0.0 introduces significant Back Office migrations to Symfony, expanded multistore compatibility, WebP support, and PHP 8.1 compatibility…"><meta property="og:url" content="https://winterflow.io/catalog/prestashop/releases/8.0.0-beta.1/"><meta property="og:image" content="https://winterflow.io/images/apps/prestashop/prestashop.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PrestaShop 8.0.0-beta.1 release notes | WinterFlow.io"><meta name="twitter:description" content="PrestaShop 8.0.0 introduces significant Back Office migrations to Symfony, expanded multistore compatibility, WebP support, and PHP 8.1 compatibility…"><meta name="twitter:image" content="https://winterflow.io/images/apps/prestashop/prestashop.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"PrestaShop","item":"https://winterflow.io/catalog/prestashop/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/prestashop/releases/"},{"@type":"ListItem","position":5,"name":"8.0.0-beta.1","item":"https://winterflow.io/catalog/prestashop/releases/8.0.0-beta.1/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.D8bj15J5.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/prestashop/prestashop.png" alt="PrestaShop logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">PrestaShop</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source e-commerce platform for building an online store</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> shopify, woocommerce, bigcommerce, magento </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://www.prestashop-project.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/PrestaShop/PrestaShop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://docs.prestashop-project.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/PrestaShop/PrestaShop/blob/develop/docs/licenses/LICENSE.txt" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> Multiple </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 9,140 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="PrestaShop" data-app-slug="prestashop" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/PrestaShop/PrestaShop" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/prestashop/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/prestashop/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">8.0.0-beta.1</h2> <span class="text-sm text-gray-500">2022-08-08</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="known-issues">Known Issues</h1>
+<ul>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/29012">An exception might be displayed in Front office when creating an italian address during the checkout process</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/28924">An unclear error is displayed when upgrading using zip if the file is too large</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/28781">The state field is not displayed in the checkout process for country United States</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/29017">Translations packs are not up-to-date for 8.0</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/27599">Multistore - A new product created in all shops is not displayed on the products list</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/29169">Contextual help in the Back office is not fully functional</a></li>
+<li><a href="https://github.com/PrestaShop/PrestaShop/issues/29248">Errors are displayed when upgrading from 1.7.8.6 to 8.0.0</a></li>
+<li>Some modules are not yet updated to work with 8.0 and might break your shop. We recommend disabling the following modules before upgrading to this beta:
+<ul>
+<li>Onboarding (welcome)</li>
+<li>PrestaShop Metrics (ps_metrics)</li>
+<li>PrestaShop Facebook (ps_facebook)</li>
+<li>Prestashop Checkout (ps_checkout)</li>
+<li>Google marketing (psxmarketingwithgoogle)</li>
+<li>Marketplace in your Back office (ps_mbo)</li>
+</ul>
+</li>
+</ul>
+<p>The <a href="https://github.com/PrestaShop/PrestaShop/issues?q=is%3Aopen+is%3Aissue+label%3A8.0.x+label%3ABug">complete list of known bugs</a> is constantly updated on GitHub.</p>
+<h1 id="full-changelog">Full Changelog</h1>
+<details><summary>Click here to see</summary>
+<p>
+</p><ul>
+<li>Back Office:
+<ul>
+<li>New feature:
+<ul>
+<li>#27304: [BC Break] Add packed product type (by @Amoifr)</li>
+<li>#27246: [BC Break] Introducing Horizontal Migration code for listings (by @tegbessou)</li>
+<li>#28482: Handle product ecotax in product v2 (for both standard and combination form) (by @jolelievre)</li>
+<li>#28504: Add hook to allow additional search panels (by @sowbiba)</li>
+<li>#28597: Combination tab out of stock (by @jolelievre)</li>
+<li>#28577: Combination list form inside product form, and combinations available labels (by @jolelievre)</li>
+<li>#28451: New product price display and product summary (by @jolelievre)</li>
+<li>#28407: Combination list edit mode (by @jolelievre)</li>
+<li>#28380: Add module ps_distributionapiclient (by @atomiix)</li>
+<li>#26716: [BC Break] Make Shop Parameters > Traffic &#x26; SEO > SEO &#x26; URLs forms multistore compatible (by @micka-fdz)</li>
+<li>#27469: Add hook to allow adding content after themes list in the BO (by @sowbiba)</li>
+<li>#25872: [BC Break] Make Shop Parameters > Order Settings forms multistore compatible (by @micka-fdz)</li>
+<li>#27233: [BC Break] Integrate new header design for product page (by @jolelievre)</li>
+<li>#27673: Remove ecotax field when the product is virtual (by @Progi1984)</li>
+<li>#27663: Fixed wording on Security page (by @Progi1984)</li>
+<li>#27461: Add hook to allow adding extra buttons in module configure toolbar (by @sowbiba)</li>
+<li>#27442: [BC Break] Multistore - Shipping > Preferences - Add checkboxes (by @okom3pom)</li>
+<li>#25914: [BC Break] Multistore - Advanced Parameters > Webservice - Add checkboxes  (by @okom3pom)</li>
+<li>#25464: [BC Break] Product multishop prices (by @jolelievre)</li>
+<li>#26506: [BC Break] Introduce CQRS query to search combinations for association (by @jolelievre)</li>
+<li>#26086: Create CommandAccessor component which will be used by the command builders services (by @jolelievre)</li>
+<li>#25726: Added API status block in WebService page (by @Progi1984)</li>
+<li>#22731: Migrate product list - part 1 - Base (by @JevgenijVisockij)</li>
+<li>#24398: Partially restore feature search in Back Office (by @eternoendless)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#29230: [BC Break] Add help.prestashop-project.org documentation links &#x26; fix popup opening (by @FabienPapet)</li>
+<li>#29022: Display an error while the file format does not match the allowed formats (by @PrestaEdit)</li>
+<li>#28959: Combination form ux improvement (by @jolelievre)</li>
+<li>#28668: Add recommended length counters to SEO fields in CMS Pages Add/Edit and SEO Add/Edit URLs (by @Progi1984)</li>
+<li>#28594: [BC Break] Feature flags improvements (by @matthieu-rolland)</li>
+<li>#28330: Extra message on module description (by @sowbiba)</li>
+<li>#28277: [BC Break] Fix bugs for RTL languages by SCSS in BO (by @mparvazi)</li>
+<li>#28375: Add reset button to reset category filter in products list (by @marsaldev)</li>
+<li>#28328: Catalog rules: don’t display the shop column if there is only one shop (by @kpodemski)</li>
+<li>#28318: Extra message to display for an empty modules category (by @sowbiba)</li>
+<li>#28066: Add select2 in large select options (by @PululuK)</li>
+<li>#28161: Add shop name in customer search result. (by @lmeyer1)</li>
+<li>#28183: Add default group to customer listing (by @Hlavtox)</li>
+<li>#28143: Migration - Adds commands for Store delete and bulk delete (by @LouisAUTHIE)</li>
+<li>#25156: Add validator method select on admin controller (by @ytilotti)</li>
+<li>#27328: [BC Break] Handle product tags in v2 page (by @jolelievre)</li>
+<li>#28166: Set Tax included as default value for amounts in cart rule form. (by @lmeyer1)</li>
+<li>#27606: Show confirmation modal before deleting order status and order return status (by @Progi1984)</li>
+<li>#28243: Updated wording about the error when upload a module bigger than post_max_size or upload_max_filesize (by @marsaldev)</li>
+<li>#27917: [BC Break] Remove deprecated admin endpoints (by @eternoendless)</li>
+<li>#28177: [BC Break] Remove live exchange rate toggle in Currencies (by @lmeyer1)</li>
+<li>#28146: Update wording of a tooltip in products settings page (by @marsaldev)</li>
+<li>#27440: Update BO architecture in product settings page (by @PierreRambaud)</li>
+<li>#27611: Use Vazir font with a node module instead of CDN (by @NeOMakinG)</li>
+<li>#26377: Allow to print order messages (by @PululuK)</li>
+<li>#27632: [BC Break] New extensible module manager API (by @atomiix)</li>
+<li>#27404: Simplify multistore service call in controllers (by @PululuK)</li>
+<li>#27853: BO Migration Contact > Stores - Add command, command handler and behat tests for bulk status toggle (by @LouisAUTHIE)</li>
+<li>#27969: Add the possibility to load PHP / XML files for modules services (by @intraordinaire)</li>
+<li>#28010: [BC Break] Remove OrderSlip::createOrderSlip deprecated function (by @nenes25)</li>
+<li>#28001: In Stock Movement page, localize date &#x26; time (by @Progi1984)</li>
+<li>#27925: [BC Break] Remove all deprecated templates in /admin-dev/themes/default/template/controllers/modules_positions/ (by @eternoendless)</li>
+<li>#28009: [BC Break] Remove OrderHistory getLastOrderState deprecated function (by @nenes25)</li>
+<li>#27895: Handle seo data for multishop (by @saulaski)</li>
+<li>#27825: Migrate ‘International > Locations > States’ Listing (by @Progi1984)</li>
+<li>#27851: [BC Break] Simply Delivery Slip Form (by @Progi1984)</li>
+<li>#27275: [BC Break] Move condition field from options to specifications tab (by @jolelievre)</li>
+<li>#27373: BO Migration Contact > Stores - Add command, command handler and behat tests for status toggle (by @LouisAUTHIE)</li>
+<li>#27510: Improve wording tooltip Traffic &#x26; SEO > Schema of URLs (by @okom3pom)</li>
+<li>#27719: [BC Break] Product multi shop stock (by @jolelievre)</li>
+<li>#27751: Removed dead code about Aviary in FileManager (by @Progi1984)</li>
+<li>#27525: [BC Break] Multistore - International > Taxes > Taxes - Add checkboxes (by @okom3pom)</li>
+<li>#27481: Product page v2 accessible in menu (by @jolelievre)</li>
+<li>#27443: Minor cleanup and styling (by @Hlavtox)</li>
+<li>#27584: [BC Break] Multishop product basic (by @jolelievre)</li>
+<li>#21120: Create Back-Office page(s) to manage customer and employee sessions SQL tables (by @PierreRambaud)</li>
+<li>#27563: Multistore - Shop parameters > Order settings > Statuses : Add information message (by @Progi1984)</li>
+<li>#27514: Use new url quick access for orders list (by @okom3pom)</li>
+<li>#27408: Hide Merchandise return tab when  Merchandise return is disabled (by @okom3pom)</li>
+<li>#27271: Redesign sidebar menu UI (by @mparvazi)</li>
+<li>#27421: Improve products return controller (by @okom3pom)</li>
+<li>#27346: Redesign SEO preview (by @mparvazi)</li>
+<li>#27268: [BC Break] Add product link in order preview (by @PululuK)</li>
+<li>#27358: Add Value Object and Exceptions to migrate Contact>Store in BO (by @LouisAUTHIE)</li>
+<li>#25080: Display customer groups in order detail (by @Hlavtox)</li>
+<li>#27108: Add the required length to create a webservice key into form (by @PrestaEdit)</li>
+<li>#27106: Update webservice doc URL to reach 8 version (by @PrestaEdit)</li>
+<li>#26024: [BC Break] New add product modal (by @jolelievre)</li>
+<li>#26022: Add some more precises TypeScript interfaces (by @NeOMakinG)</li>
+<li>#24403: [BC Break] When creating category, select all groups by default (by @jf-viguier)</li>
+<li>#25236: Migrate translations page to TypeScript (by @NeOMakinG)</li>
+<li>#26958: Remove dead code. JS is trigger, but DOM elements are already deleted. (by @intraordinaire)</li>
+<li>#26689: Optimize cart list in customer detail (a bit) (by @Hlavtox)</li>
+<li>#25595: Refacto some sensible selectors and add some missing selectors to classic selector map (by @NeOMakinG)</li>
+<li>#26669: Refactor and simplify rendering of KPI row (by @Hlavtox)</li>
+<li>#25917: [BC Break] Update new-theme bootstrap and remove unused dependencies (by @NeOMakinG)</li>
+<li>#26910: [BC Break] Remove hard coded ads (by @okom3pom)</li>
+<li>#26917: Remove the card “Visit the theme catalog” from Theme config page (by @intraordinaire)</li>
+<li>#26909: Remove calls to addons API when searching in BO (by @intraordinaire)</li>
+<li>#26665: Stack min-max inputs to get more space (by @Hlavtox)</li>
+<li>#25207: Remove id_tax_rules_group in carrier table (by @jf-viguier)</li>
+<li>#24357: Add order_reference to PaymentModule::validateOrder (by @viglu)</li>
+<li>#25091: Display customer group when searching for a customer (by @Hlavtox)</li>
+<li>#26063: Clean Back-office templates, part 4 - catalog (by @Hlavtox)</li>
+<li>#26064: Clean Back-office templates, part 5 - orders (by @Hlavtox)</li>
+<li>#26616: [BC Break] In BackOffice, removes unused RTL files and its calls (by @mparvazi)</li>
+<li>#26601: Do not use hook alias - follow-up (by @SharakPL)</li>
+<li>#25920: [BC Break] Handle related products in new product page (by @jolelievre)</li>
+<li>#26239: Move dashboard right column elements into a hook (by @intraordinaire)</li>
+<li>#26062: Clean Back-office templates, part 3 - improve (by @Hlavtox)</li>
+<li>#26061: Clean Back-office templates, part 2 - configure (by @Hlavtox)</li>
+<li>#23889: [BC Break] Display customer company when creating an order in the BO (by @tom-combet)</li>
+<li>#26494: Changed colorPicker width in BackOffice (by @hibatallahAouadni)</li>
+<li>#26464: Use latest npm version on JS routing GA (by @NeOMakinG)</li>
+<li>#26021: Update every package-lock with npm 7 (by @NeOMakinG)</li>
+<li>#26060: Clean Back-office templates, part 1 - common (by @Hlavtox)</li>
+<li>#25869: [BC Break] Product quantity is now handled by delta modification (by @jolelievre)</li>
+<li>#26055: Add placeholders in product settings page (by @okom3pom)</li>
+<li>#26081: Switch new-theme to esbuild-loader from babel-loader and add webpack-dev-server (by @NeOMakinG)</li>
+<li>#25686: Use editable customer and avoid loading unnecessary data (by @Hlavtox)</li>
+<li>#25066: [BC Break] Removed links in employee menu &#x26; Added hook for adding links (by @Progi1984)</li>
+<li>#25976: Update webpack dependencies of classic theme (by @NeOMakinG)</li>
+<li>#25936: Update webpack, babel and others webpack dependencies of new-theme (by @NeOMakinG)</li>
+<li>#25964: Make admin directory folder name longer (by @matks)</li>
+<li>#25935: Search products association query (by @jolelievre)</li>
+<li>#25899: Correct some typescript ignore and external libraries (by @NeOMakinG)</li>
+<li>#25184: [BC Break] Attachment iframe modal (by @jolelievre)</li>
+<li>#25745: Do not use Math.random for cart rule code generation (by @matks)</li>
+<li>#25744: Fix wrong word in docker_run_git.sh (by @nenes25)</li>
+<li>#24401: [BC Break] Remove support for legacy Core translation dictionaries in Back Office (by @eternoendless)</li>
+<li>#24790: Migrate modern admin theme JS components to TypeScript (by @NeOMakinG)</li>
+<li>#25054: Order feature by position then id_feature_value in productForm V2 (by @e-gaulue)</li>
+<li>#25314: Don’t set UPGRADE as a main button in module list (by @Hlavtox)</li>
+<li>#25440: Localized dates on BackOffice pages (by @Progi1984)</li>
+<li>#22401: Allow extending order-create form summary (by @zuk3975)</li>
+<li>#25186: Refacto stock page using TypeScript (by @NeOMakinG)</li>
+<li>#25419: [BC Break] Introduce new product form structure for BO Experimental Product page (by @jolelievre)</li>
+<li>#25169: Cart rule category selection : display categories in a hierarchical way (by @jf-viguier)</li>
+<li>#24932: Fix unexpected condition in country-state-selection-toggler (by @davidglezz)</li>
+<li>#25153: Make color picker global in back office (by @matthieu-rolland)</li>
+<li>#25089: Fixed replaced image in product page (by @NoZTurn)</li>
+<li>#24808: Remove white-space : nowrap to the category tree. (by @Socrapop)</li>
+<li>#23515: Add category products number in BO list (by @PululuK)</li>
+<li>#24803: Add “chosen” to filter available fields on Import page (by @kpodemski)</li>
+<li>#24785: Fix mispelled word in AdminController (by @prestaforum)</li>
+<li>#23221: [BC Break] Add typescript on BO migrated pages and refacto grid system (by @NeOMakinG)</li>
+<li>#23863: Enable to extends module <code>card_list.html.twig</code> and use custom actions (by @PululuK)</li>
+<li>#24345: No alert displayed when we click on “Save then add another value” button (by @okom3pom)</li>
+<li>#24127: Add missing param phpdoc in LayoutExtension::getLegacyLayout (by @matks)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#29024: Fixes BO Dashdoard Button wrong display (by @LouisAUTHIE)</li>
+<li>#29174: Toggle condition availability based on show_condition (by @zuk3975)</li>
+<li>#29199: Fix 29165 BO input unit display (by @FabienPapet)</li>
+<li>#29158: Fix product type error when enabling experimental product page (by @zuk3975)</li>
+<li>#29190: Fix menu display for legacy pages (by @MeKeyCool)</li>
+<li>#29186: Fix supplier / product v1 association (by @MeKeyCool)</li>
+<li>#29073: Remove select2 for categories in product v1 (by @atomiix)</li>
+<li>#29162: [BC Break] Remove smarty caching_type (by @FabienPapet)</li>
+<li>#29054: [BC Break] Fix BO Units on inputs (by @FabienPapet)</li>
+<li>#28416: Do not throw an exception if a module is invalid (by @atomiix)</li>
+<li>#29086: Fix filtering by date in Movements page (stock section) (by @marsaldev)</li>
+<li>#29069: Fix install theme without hooks (by @FabienPapet)</li>
+<li>#29025: Fix module link in adminsearch (by @okom3pom)</li>
+<li>#29067: Fix permissions for read-only user (by @FabienPapet)</li>
+<li>#28660: Fix exception during profil edition if invalid field given with avatar (by @MeKeyCool)</li>
+<li>#29019: BO - Brands &#x26; Suppliers - the red alert “Image format not recognized” is missing the webp (by @okom3pom)</li>
+<li>#29020: Use LegacyModule instance instead of ModuleAdaptater (by @PrestaEdit)</li>
+<li>#28706: Fix orders export limit (by @Seb33300)</li>
+<li>#29003: BO - Trivial display in Geolocation (by @okom3pom)</li>
+<li>#28987: Fix associated categories in product page v1 (by @atomiix)</li>
+<li>#28930: Fix features and attributes list for multishop (by @MeKeyCool)</li>
+<li>#28984: Fix customer edit/add select all group access (by @atomiix)</li>
+<li>#28936: Fix configure warning when module is disabled or uninstalled (by @okom3pom)</li>
+<li>#28898: BO - Customer view page - The status of the voucher is always disabled (by @okom3pom)</li>
+<li>#28973: Do not allow 0 as number of products per page (by @atomiix)</li>
+<li>#28829: Fix performances links spaces and URLs (by @NeOMakinG)</li>
+<li>#28477: Adjust footer on V2 product page (by @Amoifr)</li>
+<li>#28392: Fix back-office translations when multishop and multiple languages (by @MeKeyCool)</li>
+<li>#28821: Handle fallback when currency has empty display names (by @jolelievre)</li>
+<li>#28802: Fix notice admin search controller (by @okom3pom)</li>
+<li>#28817: Fix notices in email translation (by @okom3pom)</li>
+<li>#28788: Fix carrier Exeption with free shipping (by @okom3pom)</li>
+<li>#28592: Remove id from entity search input templates (by @jolelievre)</li>
+<li>#28654: Add default fallback if no customer name (by @atomiix)</li>
+<li>#28535: Removes old images and their hight DPI (by @w-jerome)</li>
+<li>#28266: Add regex constraint to the webservice key (by @marsaldev)</li>
+<li>#28458: HelperList: remove notice if specificConfirmDelete is set to false #27718 (by @jf-viguier)</li>
+<li>#27308: Restore needed removed row in customer view (by @NeOMakinG)</li>
+<li>#28140: Fix the sorting mechanism on the Stock page (by @marsaldev)</li>
+<li>#28447: Use toolbar buttons array index as class when missing (by @sowbiba)</li>
+<li>#28332: Module manager : Restore modules actions order (by @sowbiba)</li>
+<li>#28307: Fixed the position of the selection card (by @Progi1984)</li>
+<li>#28068: [BC Break] Specific Price Form : Changing currency change the symbol (by @Progi1984)</li>
+<li>#28153: Fix cart rule shop association (by @lmeyer1)</li>
+<li>#28226: Fix notifications color contrast on module manager page (by @NeOMakinG)</li>
+<li>#28019: Fixed display of Vouchers id in Customer View (by @Progi1984)</li>
+<li>#28319: BO: Fix overlapping checkoxes on configure buttons (by @hibatallahAouadni)</li>
+<li>#28235: Fix back button style on login page (by @NeOMakinG)</li>
+<li>#28314: Fix the stock supplier filter on the Stock page (by @kpodemski)</li>
+<li>#28281: Fix non closing modal after module install (by @sowbiba)</li>
+<li>#28223: Fix the load of CSS file to be able to load them with version (by @intraordinaire)</li>
+<li>#28094: Fix displayHeader is not available when transplanting modules/hooks (by @Prestaworks)</li>
+<li>#28225: Fix dropdown id on translatable group (by @NeOMakinG)</li>
+<li>#28086: [BC Break] Remove already migrated code in AdminModulesPositionsController (by @eternoendless)</li>
+<li>#28173: Upgrade module when already installed (by @atomiix)</li>
+<li>#28178: Update prestakit to 1.2.5 (by @jolelievre)</li>
+<li>#28172: Remove unwanted pnpm-lock.yml file (by @NeOMakinG)</li>
+<li>#28050: Fix iframe modal scrollbars (by @jolelievre)</li>
+<li>#28118: Fix contextual notification in Product Page v2 Edit Page (by @Progi1984)</li>
+<li>#27839: Wrong error message in logs (by @tlgsoledis)</li>
+<li>#27795: Fixed notice ‘Undefined index: reduction_applies’ (by @Progi1984)</li>
+<li>#28104: Removed duplicate in SpecificPriceRule::getAffectedProducts (by @Progi1984)</li>
+<li>#27439: [BC Break] Don’t use 0 value for carrier name (by @okom3pom)</li>
+<li>#28023: Fixed the wording translation for Enable/Disable Mobile in Modules page (by @Progi1984)</li>
+<li>#26774: Fix missing canonicals (by @Prestaworks)</li>
+<li>#27781: Fixes error which occurred when you try to modify any customer information after the import (by @kgleizes)</li>
+<li>#27667: Multistore - Payment > Payment methods - Do not display content and update message in all shops or in a group context (by @Progi1984)</li>
+<li>#27669: Multistore - Design > Position - Do not display content and update message in all shops or in a group context (by @Progi1984)</li>
+<li>#28003: Fixed wording and color button on exit button for the bulk delete (by @Progi1984)</li>
+<li>#28022: Fixed the exception when we disable the tax in the BO > International > Taxes page (by @Progi1984)</li>
+<li>#27626: [BC Break] Fix stock movement creation from new order (by @saulaski)</li>
+<li>#24797: Force disabled discounts (CartRules) to show if needed (by @kpodemski)</li>
+<li>#27850: Move notifications divs to the vuejs app (by @atomiix)</li>
+<li>#27889: Fixed the display of the dropdown ‘No voucher was found’ (by @Progi1984)</li>
+<li>#27860: Added hooks for blockwishlist in classic theme (by @Progi1984)</li>
+<li>#27793: BO - Customer Page - Allow only positive number for Maximum number of payment days (by @Progi1984)</li>
+<li>#27848: Check href exists before replacing it in multistore header (by @atomiix)</li>
+<li>#27813: Fix css specificity issue in mobile menu (by @amaury-hanser)</li>
+<li>#27394: Improve Cart Rule Form Responsive footer (by @Progi1984)</li>
+<li>#27720: MultiStore - Sell > Customer Service > Merchandise Return - Add Checkbox &#x26; Simplify Form (by @Progi1984)</li>
+<li>#27620: Multistore - Catalog > Stocks > Stocks &#x26; Movements - Update message in all shops or in a group context (by @Progi1984)</li>
+<li>#27815: Display Ecotax select when ecotax is enabled, without saving (by @Progi1984)</li>
+<li>#27808: Fixes Security controller help frame opening CORS Problem (by @LouisAUTHIE)</li>
+<li>#27762: Add help field when integer type is used to a form (by @okom3pom)</li>
+<li>#27767: Add autocomplete=“off” to date picker inputs in helpers (by @jf-viguier)</li>
+<li>#27697: In Import Page, allow all languages (active and inactive) (by @Progi1984)</li>
+<li>#27698: Fixed Help Link in Merchandise Returns page (by @Progi1984)</li>
+<li>#27228: Fix FormSubmitButton selector (by @atomiix)</li>
+<li>#27175: Avoid exception and display appropriate message in database backup (by @Amoifr)</li>
+<li>#27381: Removed double escape for Tree Node template (by @Progi1984)</li>
+<li>#25805: Override : Create directory if not exists (by @Progi1984)</li>
+<li>#27441: Don’t search all word for customer search when we create an order (by @okom3pom)</li>
+<li>#27564: Correct namespace for MaintenanceConfigurationTest (by @okom3pom)</li>
+<li>#27560: Fixes Experimental page combination table row border styling issue (by @Progi1984)</li>
+<li>#26056: [BC Break] No tracking Number for return product tab (by @okom3pom)</li>
+<li>#27457: Remove NotBlank constraint on CreditSlipOptionsType (by @matks)</li>
+<li>#25992: Fix mail templates (by @lmeyer1)</li>
+<li>#27285: Fix bad display of the notifications dropdown in medium screen (by @mparvazi)</li>
+<li>#27012: Removed AdminParent controllers from search in BackOffice (by @Progi1984)</li>
+<li>#26883: Preload fonts in the BO (by @NeOMakinG)</li>
+<li>#27329: Fix filters reset in BO stock movements (by @saulaski)</li>
+<li>#27283: Fix bad display of header toolbar in Product page and Stock page (by @mparvazi)</li>
+<li>#27317: Fix form mapper to handle mapping with only one selector (by @jolelievre)</li>
+<li>#26700: In BackOffice, fixed problems for RTL languages (by @mparvazi)</li>
+<li>#27052: Fix unclosed foreach (by @okom3pom)</li>
+<li>#27250: Fixes edit of cart rule of a country (by @Progi1984)</li>
+<li>#26609: [BC Break] Fix combination supplier changes not taking effect (by @zuk3975)</li>
+<li>#27091: [BC Break] Return integer instead of bool into checkModulesNames() (by @PrestaEdit)</li>
+<li>#27066: Allow null for ip maintenance and maintenance message fields (by @matthieu-rolland)</li>
+<li>#22520: Update HookRepository.php (by @Prestaworks)</li>
+<li>#26994: Multistore: fix configuration value not saved for current context (by @matthieu-rolland)</li>
+<li>#26475: Fix Combination::getIdByReference returns wrong id (by @alexandrebrubeyonds)</li>
+<li>#27006: Update node-sass in order to be compatible with Node 16 (by @NeOMakinG)</li>
+<li>#27014: Remove addons call (by @NeOMakinG)</li>
+<li>#24120: Fix wrong multishop detection in AdminInvoiceController (by @gennaris)</li>
+<li>#26488: Disable ‘Apply new Quantity’ Button before request is sent (by @beattie282)</li>
+<li>#26546: Fix display for invalid characters in tax name (by @okom3pom)</li>
+<li>#26561: Don’t encode quotes in column name filter value (by @yo7hli)</li>
+<li>#26805: Fixed the error “The message body is empty” in AdminCustomerThreadsController.php (by @okom3pom)</li>
+<li>#26522: Fixed display of errors in Carrier Wizard (by @Progi1984)</li>
+<li>#25327: [BC Break] Improve layout of datetime columns when there’s not enough space (by @eternoendless)</li>
+<li>#26430: Fix legacy tinymce layout is too small (by @NeOMakinG)</li>
+<li>#26509: Fix module manager wrong behaviors (by @NeOMakinG)</li>
+<li>#26425: Fix duplication of specific prices that apply to a single combination (by @samaij)</li>
+<li>#26560: In BackOffice, fixed the missing link of CSS bundles for RTL languages (by @mparvazi)</li>
+<li>#26538: Fixed filemanager new folder (by @alexandrebrubeyonds)</li>
+<li>#26220: Repair sorting on block address in customer view (by @tegbessou)</li>
+<li>#24780: Fix to keep the main product category after importing a product update (by @SergioQuinonez)</li>
+<li>#26512: Fixed search on Profile Grid in BackOffice (by @Progi1984)</li>
+<li>#26051: [BC Break] Improve sync between wholesale price and default supplier price in both CQRS and page v2 (by @jolelievre)</li>
+<li>#26188: Add a float parser for the wholesale price of attributes (by @andromaque)</li>
+<li>#25265: Add employee in mobile menu and quickaccess on search bar on mobile migrated pages (by @NeOMakinG)</li>
+<li>#26068: Footer from next invoice shown on invoice when exporting multiple invoices (i.e. invoices by date range) (by @Ashley-Butcher)</li>
+<li>#21420: [BC Break] Filters : Set Placeholder for Yes/NO &#x26; Fix bug when filters are emptied (by @Progi1984)</li>
+<li>#26372: Dashboard - Correct display of the titles with panel-heading when the screen is reduced (by @khouloudbelguith)</li>
+<li>#26215: Checked select all checkboxes if all options are checked (by @tegbessou)</li>
+<li>#26241: Disable sorting on customer discount vouchers (by @tegbessou)</li>
+<li>#26353: Fix display edit country (by @okom3pom)</li>
+<li>#26210: [BC Break] Disable override button in performance page (by @okom3pom)</li>
+<li>#25787: Fix when duplicating product, out of stock ordering behavior is not copied (by @gennaris)</li>
+<li>#25775: Fixed import of macros for infotip use in multistore mode (by @Progi1984)</li>
+<li>#26042: Allow # ° … for credit slip prefix (by @okom3pom)</li>
+<li>#26118: Change material-icons library causing a too long install (by @NeOMakinG)</li>
+<li>#26043: Remove bad deprecated comment (by @okom3pom)</li>
+<li>#25995: Remove duplicate actionCategoryUpdate call on toggling category display status (by @yo7hli)</li>
+<li>#25776: Removed use of service parameter in controller (by @Progi1984)</li>
+<li>#25115: [BC Break] Use AsyncToggleColumnExtension for Customers list (by @matks)</li>
+<li>#25900: Fix broken multistore config forms’s javascript (by @matthieu-rolland)</li>
+<li>#25858: Fix warning on the Customer Threads page (by @kpodemski)</li>
+<li>#25692: In BO > Orders: Fix disabled add voucher button (by @Progi1984)</li>
+<li>#25302: Fixed sort for naming in Admin > Carriers list (by @Progi1984)</li>
+<li>#25559: [BC Break] Removed Addons Connect button in Edit Employee Form in BO (by @Progi1984)</li>
+<li>#24491: BO SpecificPriceRule - Fix Multi Shop filter on conditions (by @Seb33300)</li>
+<li>#25558: Fixed save in Symfony Form Merchandise Return Options (by @Progi1984)</li>
+<li>#25491: Fix actionAdminOrdersTrackingNumberUpdate call location (by @ytilotti)</li>
+<li>#25548: Set template for customization in div (by @Progi1984)</li>
+<li>#25442: Fix module uninstallation from the Module Manager (by @kpodemski)</li>
+<li>#25465: Fix option selection issue in order creation page (by @matthieu-rolland)</li>
+<li>#25056: Fix BO order create responsivity (by @Hlavtox)</li>
+<li>#25157: Improve admin product list header (by @Hlavtox)</li>
+<li>#25439: BO - Customer View page - Added alert when removing a voucher (by @Progi1984)</li>
+<li>#25305: States : Added add button only on listing pages (by @Progi1984)</li>
+<li>#25139: Fix the path of the “form_warehouse_combination” (by @tups)</li>
+<li>#25301: Display validation when Enable/Disable webservice keys by bulk actions (by @Progi1984)</li>
+<li>#25295: Allow enable/disable selection for customers in Customer Groups (by @Progi1984)</li>
+<li>#25152: Fix selectors map not being set in experimental product combinations page (by @zuk3975)</li>
+<li>#24982: Fix getting products count on category list (by @kpodemski)</li>
+<li>#25087: Fix form label alignment, switch precision and alignment (by @Hlavtox)</li>
+<li>#25085: Kick border radius of the middle button of search bar (by @NeOMakinG)</li>
+<li>#25072: BO: Product Form V2 : Show inactive categories in the category tree (by @e-gaulue)</li>
+<li>#25012: Fix color picker bug (by @unlocomqx)</li>
+<li>#25048: Fix mobile boostrap column spacing and forgotten class (by @Hlavtox)</li>
+<li>#24933: Old products.js fixes (by @davidglezz)</li>
+<li>#24895: Fix empty data by &#x3C; in invoice note (by @okom3pom)</li>
+<li>#24952: Limit id min-max width on product list (by @NeOMakinG)</li>
+<li>#24958: Allow HOOK_DISPLAY_PDF to fill the whole page area (by @tswfi)</li>
+<li>#24909: Fix steps height on carrier page on mobile (by @NeOMakinG)</li>
+<li>#24919: Update node sass (by @NeOMakinG)</li>
+<li>#24823: [BC Break] Validate image if needed first when adding new brand (by @kpodemski)</li>
+<li>#24897: Fix translations escaping for BO header (by @kpodemski)</li>
+<li>#24796: Checking for url existence in possible new default shop (by @kpodemski)</li>
+<li>#24595: Wrong mimetype for svg file (by @Shagshag)</li>
+<li>#24835: Fix customers delete bulk selector map  (by @NeOMakinG)</li>
+<li>#24805: Fix customer delete regression and tests (by @NeOMakinG)</li>
+<li>#24688: Correctly displayed precise product weight (by @kpodemski)</li>
+<li>#24555: Fix for product combination quantity change in RTL panel  (by @samberrry)</li>
+<li>#24352: Search Conf Incorrect successful alert message (by @okom3pom)</li>
+<li>#24359: Email Preview - wrong value in {total_products} (by @okom3pom)</li>
+<li>#24328: Email “Fwd: Customer” message ; link is not correct (by @okom3pom)</li>
+<li>#24183: Handle info flash messages in Twig layout (by @matks)</li>
+<li>#24184: Make color required for order state forms (by @matks)</li>
+<li>#21174: Fix color picker template (by @bpato)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#28598: [BC Break] Improve FormFieldDisabler into FormFieldToggler and use it for “show prices” and “delivery times” in product page (by @jolelievre)</li>
+<li>#28553: [BC Break] Autofill empty link_rewrite in product update handlers (by @zuk3975)</li>
+<li>#28751: Combination bulk actions progress modal (by @zuk3975)</li>
+<li>#28352: Light product list (by @zuk3975)</li>
+<li>#28749: Add Pagination for specific price list in product page (by @zuk3975)</li>
+<li>#28438: Migrate Country list to symfony (by @margud)</li>
+<li>#28619: [BC Break] Replace unit type with a form type extension (by @tom-combet)</li>
+<li>#28584: Product list bulk delete and duplicate actions (by @zuk3975)</li>
+<li>#28561: Toggle “show price” and “delivery times” inputs visibility (by @zuk3975)</li>
+<li>#28533: Introduce SetDefaultCombinationCommand (by @zuk3975)</li>
+<li>#28558: Add fixed quantity update to bulk combination edition (by @zuk3975)</li>
+<li>#26004: [BC Break] Migrating product list part 2 (by @JevgenijVisockij)</li>
+<li>#28390: Improve / refactor specific price form on page V2 (by @matthieu-rolland)</li>
+<li>#28526: Fix wording (by @marsaldev)</li>
+<li>#28506: Empty state for combinations list (by @zuk3975)</li>
+<li>#28459: Combination bulk action. Handle new bulk choices: select all | select all in page (by @zuk3975)</li>
+<li>#27353: [BC Break] Refacto combination suppliers (by @jolelievre)</li>
+<li>#27892: [BC Break] Simplify Product Preferences Form (by @Progi1984)</li>
+<li>#28359: Bulk delete combinations (by @zuk3975)</li>
+<li>#28075: Migrate the Customers > Title pages (Only the list) (by @Progi1984)</li>
+<li>#28282: Add images selector to bulk combination form (by @zuk3975)</li>
+<li>#27216: Combination bulk form (by @zuk3975)</li>
+<li>#27670: Handle multishop for product shipping form (by @zuk3975)</li>
+<li>#12428: [BC Break] Migration of Permissions configuration (by @sarjon)</li>
+<li>#27783: Handle multishop for product options tab (by @zuk3975)</li>
+<li>#26938: SpecificPrice priority form (by @zuk3975)</li>
+<li>#27098: [BC Break] Remove the page <code>Referrers</code> (by @Progi1984)</li>
+<li>#27710: [BC Break] Removed dead code relative to Addons (by @Progi1984)</li>
+<li>#27288: [BC Break] Remove AdminAttributeGeneratorController &#x26; Use about (unused) table attribute_impact (by @Progi1984)</li>
+<li>#27700: Refactor gelocation configuration form before it can be migrated as multistore compatible (by @matthieu-rolland)</li>
+<li>#27444: [BC Break] Remove code relative to the (removed) news block on dashboard (by @Progi1984)</li>
+<li>#25879: Refacto improper card markup on migrated pages (by @NeOMakinG)</li>
+<li>#25806: Migrate Product page v2 to TypeScript (by @NeOMakinG)</li>
+<li>#26617: Update combination using delta quantity (by @zuk3975)</li>
+<li>#27273: [BC Break] Clean shortcuts code from product form (by @jolelievre)</li>
+<li>#25742: Add specific price modal in experimental product page (by @zuk3975)</li>
+<li>#26762: [BC Break] Refactor product unit price (by @jolelievre)</li>
+<li>#27015: Remove dead code about Dashboard Push (by @Progi1984)</li>
+<li>#24077: Adding html column (by @JevgenijVisockij)</li>
+<li>#25956: [BC Break] Refactor on AbstractMultistoreConfiguration class + unit tests + integration tests (by @matthieu-rolland)</li>
+<li>#26836: [BC Break] Move StockController into Admin/Sell/Catalog/ (by @eternoendless)</li>
+<li>#25750: Migrate router, store and mixin files of stock page to TypeScript (by @NeOMakinG)</li>
+<li>#25562: [BC Break] Move TranslationsController into Admin/Improve/International (by @eternoendless)</li>
+<li>#26449: [BC Break] Refactor product status command (by @jolelievre)</li>
+<li>#24667: Implement EditProductSpecificPriceCommand (by @zuk3975)</li>
+<li>#25342: Introduce a first v1 for Category modal (new product page) (by @zuk3975)</li>
+<li>#25689: [BC Break] Rename Form to FormTheme in experimental product templates (by @zuk3975)</li>
+<li>#25573: Remove unused-var in AdminImportController (by @nenes25)</li>
+<li>#25175: Introduce BulkDeleteCombinationCommand (by @zuk3975)</li>
+<li>#24786: [BC Break] Remove unused backoffice footer (by @Progi1984)</li>
+<li>#24878: [BC Break] Refactor entity search element to make more generic and reusable (by @jolelievre)</li>
+<li>#24658: Deprecate Domain\SpecificPrice namespace (by @zuk3975)</li>
+<li>#24791: [BC Break] Migrate pages files to typescript (by @NeOMakinG)</li>
+<li>#23441: Migrate “Shop parameters > Traffic &#x26; SEO > Search Engines” and create/edit of search engines (by @ks129)</li>
+<li>#24649: Remove irrelevant “todo” reminder (by @zuk3975)</li>
+<li>#24628: Add router to defined javascript components (by @zuk3975)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Front Office:
+<ul>
+<li>New feature:
+<ul>
+<li>#27292: Add category additional description (by @Hlavtox)</li>
+<li>#27347: Added contextual information messages in multistore context (by @Progi1984)</li>
+<li>#24656: Introduce ability to version Media (by @samberrry)</li>
+<li>#24738: Add a hook ‘actionValidateOrderAfter’, This hook is called after the complete creation of an order (by @olecorre)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#28232: Optimizing queries for checking address existence (by @Progi1984)</li>
+<li>#27755: Move registration logic to new controller (by @Hlavtox)</li>
+<li>#28297: FO: Add page number in meta titles for new-products, best-sales, prices-drop (by @Amazzing)</li>
+<li>#27397: Add the minimum required to the error message, when trying to apply a cart rule with a minimum (by @Prestaplugins)</li>
+<li>#27941: [BC Break] Hook displayOverrideTemplate not executed on checkout page due to naming issue. (by @Amit-Kumar-Tiwari-Webkul)</li>
+<li>#27756: [BC Break] FO:  Remove Front controller deprecated properties (by @nenes25)</li>
+<li>#27467: Support 410 gone http code (by @jf-viguier)</li>
+<li>#27437: Add hook to display custom content before checkout confirmation (by @ShaiMagal)</li>
+<li>#26898: Display fixed index in profiling for easier navigation (by @unlocomqx)</li>
+<li>#27022: Do not autohook ps_featuredproducts on displayCrossSellingShoppingCart (by @Hlavtox)</li>
+<li>#25866: Get unique product ids at specific prices (by @kusflo)</li>
+<li>#26890: Automatic update of rewrite url only on creation (by @jf-viguier)</li>
+<li>#25668: [BC Break] Global smarty $urls variable changes when child theme is being used (by @Oksydan)</li>
+<li>#23959: Support shop logo in svg (by @jf-viguier)</li>
+<li>#25064: Link improvements, mainly for customers not logged in (by @Hlavtox)</li>
+<li>#25204: Fix return for virtual product  (by @okom3pom)</li>
+<li>#26285: Unify reporting of query types (by @Hlavtox)</li>
+<li>#26393: Show breadcrumbs on mobile (by @alexandrebrubeyonds)</li>
+<li>#23803: Fix static vars not using scss vars on new-theme and classic (by @NeOMakinG)</li>
+<li>#25543: Add <code>supplier</code> and <code>manufacturer</code> image link in <code>smarty url helper</code> (by @PululuK)</li>
+<li>#24684: Option to override CMS category template (by @kpodemski)</li>
+<li>#25067: Added clickable phone number on navbar and footer (by @henri9813)</li>
+<li>#24437: Add “recycled packaging” in order_conf and new_order mail and on order summary page and order confirmation page (by @okom3pom)</li>
+<li>#25026: Clean some Classic outdated files (by @matks)</li>
+<li>#24730: Add product page link and move download in order details (by @marekjedrzejewski)</li>
+<li>#24348: Use right link and add redirect (by @okom3pom)</li>
+<li>#13585: Query optimization in CartRule (by @Rolige)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#29055: Fix anchor links in product list (by @jolelievre)</li>
+<li>#28904: Fix responsive for product quick view. (by @MeKeyCool)</li>
+<li>#28524: Fix select2 style in order view (by @MeKeyCool)</li>
+<li>#27841: Multistore - Product on category page display out of stock flag instead of availlable on order (by @Rizzen59)</li>
+<li>#27187: Set country from browser language if option is set in customer address (by @Amoifr)</li>
+<li>#28231: Fix totals excluding tax in confirmation email (by @Seb33300)</li>
+<li>#28426: Fix product images size consistency (by @MeKeyCool)</li>
+<li>#27738: FO : Fix offset for “NEW” products listing (by @idnovate)</li>
+<li>#27803: No more auto created carts on login (by @Prestaworks)</li>
+<li>#26048: Check quantities at any point of checkout process (by @Hlavtox)</li>
+<li>#27830: Fixes php notice because $result maybe false value (by @buggyzap)</li>
+<li>#26854: Prevent customization modal open if qty changed in cart on classic (by @NeOMakinG)</li>
+<li>#27475: Fix: prestashop event functions are overwritten in the “classic” theme (by @tups)</li>
+<li>#27446: Display Line Breaks in Order messages (by @Progi1984)</li>
+<li>#27159: [BC Break] Fix check by delivery price/weight in case of hook usage (by @jf-viguier)</li>
+<li>#26806: [BC Break] Move informational message in my account sections to template (by @Hlavtox)</li>
+<li>#27095: Fix forbidden access page in Front Office (by @eternoendless)</li>
+<li>#26954: Customer is able to see order detail page via link even order share is disabled in multishop (by @Amit-Kumar-Tiwari-Webkul)</li>
+<li>#27079: Fix the checkout button for the longer text (by @kpodemski)</li>
+<li>#26791: Add redirect with notifications (by @Lionel-dev)</li>
+<li>#26663: Fix position of cart crosselling hook (by @Hlavtox)</li>
+<li>#25883: Fix update qty of cart when qty is set to 0 on front-office (by @NeOMakinG)</li>
+<li>#26673: Fix button alignment inside input-group (by @SharakPL)</li>
+<li>#25069: [BC Break] In case multiple payment options are available (by @moncef-essid)</li>
+<li>#24798: Get quantity_wanted for product only when it is needed (by @kpodemski)</li>
+<li>#25818: [BC Break] Change jQuery-ui position before theme.js to avoid overriding bootstrap ones (by @NeOMakinG)</li>
+<li>#26586: Added modules to hook DisplayHome in classic theme (by @Progi1984)</li>
+<li>#25501: Smarty Modifier Classname - compatibility with CSS BEM method (by @tups)</li>
+<li>#26477: Fix error while compiling theme assets (by @templatin)</li>
+<li>#25972: Do not reject cart creation if no cookie, only exclude bots (by @psyray)</li>
+<li>#26347: Fix for issue with customizable products returns (by @Prestaworks)</li>
+<li>#26242: Respect display_taxes_label in ps_shoppingcart classic theme template (by @tswfi)</li>
+<li>#26392: Fix Gift message bug if clicking fast (by @alexandrebrubeyonds)</li>
+<li>#26414: Use proper variable for checking category active (by @Hlavtox)</li>
+<li>#26394: Customization product text fix display (by @marwachelly)</li>
+<li>#26380: Fix Simple anchors do not work (by @alexandrebrubeyonds)</li>
+<li>#26363: Do not display unnecessary li tag ( ps_categorytree ) (by @okom3pom)</li>
+<li>#26201: Order addresses by alias on checkout (by @tegbessou)</li>
+<li>#25882: Respect country setting “Display tax label (e.g. “Tax incl.”)” in cart and order confirmation page (by @tswfi)</li>
+<li>#26194: Fix product brand in microdata (by @Hlavtox)</li>
+<li>#25395: Fix revisiting order confirmation and guest to customer conversion in FO (by @Hlavtox)</li>
+<li>#25834: Fix the StoreController and add missing data (by @kpodemski)</li>
+<li>#25987: Fixed URL encoding when Friendly URL is disabled (by @Progi1984)</li>
+<li>#25835: Add missing brands/manufacturer URL to the $urls (by @kpodemski)</li>
+<li>#22389: Fixed case where the “Place Order” button is disabled when the order is free and “Terms of service” is disabled (by @tswfi)</li>
+<li>#25396: Fixes Search that would return no result if semicolon is used (by @venditdevs)</li>
+<li>#25564: In checkout, shipping method is not displayed if cart is only virtual (by @Progi1984)</li>
+<li>#25460: Fix missing row element and additional padding (by @Hlavtox)</li>
+<li>#25567: Use <em>DB_PREFIX</em> constant instead of ps_ in SQL queries (by @idnovate)</li>
+<li>#25433: Fix <code>ObjectModel::add()</code> force_id usage for multilang model (by @jf-viguier)</li>
+<li>#25210: Add download link when an order have 2 product type virtual and normal (by @okom3pom)</li>
+<li>#23698: Can’t show module on the Left Column (by @nenes25)</li>
+<li>#25151: Remove useless 50x.html pages in classic (by @jf-viguier)</li>
+<li>#24509: Remove old selected_filters route  (by @jf-viguier)</li>
+<li>#24920: Fixed duplicate address in checkout (by @jf-viguier)</li>
+<li>#24792: If the product has no combinations then the <code>specific_references</code> must be filled in (by @levyn)</li>
+<li>#24846: Remove extracted comments from webpack config of core js (by @NeOMakinG)</li>
+<li>#16138: Fixed the bad discount amount for specific prices (by @levyn)</li>
+<li>#24426: Fix error on favicon when maintenance mode is enabled (by @okom3pom)</li>
+<li>#24155: Making the inline tag working for js and css (by @Prestaworks)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#26931: [BC Break] Remove empty methods in FrontController (by @matks)</li>
+<li>#25856: Subcategories template refacto (by @Oksydan)</li>
+<li>#24080: Improve complexity of <code>CategoryController::getCanonicalURL</code> and Add doc to the parent function (by @Sinepel)</li>
+<li>#24940: Refactor cartPresenter to reflect the real business need (by @arouiadib)</li>
+<li>#24019: Improve complexity of assignCase var in CMS Controller (by @Sinepel)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Core:
+<ul>
+<li>New feature:
+<ul>
+<li>#27485: Add hook to allow adding buttons to modules catalogue toolbar (by @sowbiba)</li>
+<li>#27683: Add a warning log when a module registers to a hook but implements no hook listener (by @Progi1984)</li>
+<li>#27223: Add new hook <code>actionFilterDeliveryOptionList</code> (by @PululuK)</li>
+<li>#26183: Console command for config (by @tswfi)</li>
+<li>#26264: Add new cli command for getting and setting debug mode (by @tswfi)</li>
+<li>#24394: Added support for WebP (by @Progi1984)</li>
+<li>#25611: Introduce new Symfony ArrayFinder to replace Shudrum ArrayFinder (by @matks)</li>
+<li>#25714: [BC Break] Remove unused parameters from Tools::addonsRequest() (by @eternoendless)</li>
+<li>#23886: Add composer.json CS normalizer to CI (by @mvorisek)</li>
+<li>#23413: Allow DKIM signing emails (by @Hlavtox)</li>
+<li>#24124: Allow .webp image format in /img/.htaccess. (by @lmeyer1)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#29261: Bump distribution API module to 1.0.1 (by @matks)</li>
+<li>#29239: Update composer deps and lock classic to beta-2.0.0 (by @matks)</li>
+<li>#28658: Bump <code>prestashop/ps_cashondelivery</code> to 2.0.1 (by @Progi1984)</li>
+<li>#28127: [BC Break] Implement a new password policy based on zxcvbn (by @PierreRambaud)</li>
+<li>#28624: Bump phpstan/phpstan from 1.5.4 to 1.7.4 (by @Progi1984)</li>
+<li>#28615: Add Db::ON_DUPLICATE_KEY into available possibilities (by @PrestaEdit)</li>
+<li>#28402: [BC Break] PHP 8.1 compatibility (by @atomiix)</li>
+<li>#28559: Micro performance optimizations in Order class (by @kpodemski)</li>
+<li>#28545: [BC Break] Remove deprecated in Cart model (by @PrestaEdit)</li>
+<li>#28544: [BC Break] Removed deprecated in Carrier class (by @jf-viguier)</li>
+<li>#28072: Be able to skip CSV Header in CSV export (by @Shoprunners)</li>
+<li>#28461: Bump guzzle version to 7.4 (PHP 8.1 compatibility) (by @intraordinaire)</li>
+<li>#28198: [BC Break] Remove deprecated method inside AbstractProvider (by @PrestaEdit)</li>
+<li>#27575: [BC Break] CountryId and CustomerId VO not allow zero (by @Amoifr)</li>
+<li>#28290: Add product property <code>manufacturer_name</code> (by @PululuK)</li>
+<li>#28339: Bump version to 2.1.0 for <code>blockwishlist</code> (by @Progi1984)</li>
+<li>#28274: Update guzzle psr7 to 2.2.1 (by @matks)</li>
+<li>#28273: Update Symfony to 4.4.40 (by @matks)</li>
+<li>#28175: Add module name parameter to displayModuleConfigureExtraButtons hook (by @sowbiba)</li>
+<li>#28197: [BC Break] Remove deprecated method inside SearchProvider (by @PrestaEdit)</li>
+<li>#26587: Use filename property instead of generating a new filename + remove duplicate code for PDF invoice formatting (by @JoryHogeveen)</li>
+<li>#28244: Change internationalization API urls to i18n.prestashop-project.org (by @eternoendless)</li>
+<li>#28194: [BC Break] Remove deprecated method inside OrderPayment class (by @PrestaEdit)</li>
+<li>#28191: [BC Break] Remove deprecated methods inside Cart class (by @PrestaEdit)</li>
+<li>#28193: [BC Break] Remove deprecated OrderDiscount model (by @PrestaEdit)</li>
+<li>#28192: [BC Break] Remove deprecated methods inside Product class (by @PrestaEdit)</li>
+<li>#28195: [BC Break] Remove deprecated HookDispatcher adapter (by @PrestaEdit)</li>
+<li>#28196: [BC Break] Remove deprecated method inside ThemeProvider (by @PrestaEdit)</li>
+<li>#28020: [BC Break] Remove deprecated methods in CacheClearer class (by @PierreRambaud)</li>
+<li>#27957: [BC Break] Remove getSafeModeStatus method (by @PierreRambaud)</li>
+<li>#27960: [BC Break] Remove Adapter\Tools::link_rewrite (by @PierreRambaud)</li>
+<li>#28119: Bump phpstan/phpstan to 1.5.4 (by @Progi1984)</li>
+<li>#26743: Provide modules information about old order status (by @Hlavtox)</li>
+<li>#27983: Fix PHPDoc on Address class (by @comxd)</li>
+<li>#28060: Removed phpstan-ignore with use of <code>dynamicConstantNames</code> (by @Progi1984)</li>
+<li>#27723: [BC Break] Bump PHPStan from 0.12.88 to 1.5 (by @Progi1984)</li>
+<li>#28021: [BC Break] Remove HookExtension::hookCount method (by @PierreRambaud)</li>
+<li>#27958: [BC Break] Remove Tools::display404Error (by @PierreRambaud)</li>
+<li>#27959: [BC Break] Remove AdminController deprecated (by @PierreRambaud)</li>
+<li>#27955: [BC Break] Remove getCldr and array_replace (by @PierreRambaud)</li>
+<li>#27956: [BC Break] Remove useless parameters in displayDate method (by @PierreRambaud)</li>
+<li>#27914: [BC Break] Remove deprecated include “images.inc.php” (by @eternoendless)</li>
+<li>#27913: [BC Break] Remove deprecated date picker functions (by @eternoendless)</li>
+<li>#27527: [BC Break] Remove deprecated enable_mobile|disable_mobile (by @PrestaEdit)</li>
+<li>#27859: Update decimal to make it work without bcmath (by @PierreRambaud)</li>
+<li>#27641: Added CQRS Commands &#x26; Queries for State domain (by @Progi1984)</li>
+<li>#27797: [BC Break] Removed old constants (for removed directories) (by @Progi1984)</li>
+<li>#27754: Removed dead code about <code>vatnumber</code> Module (by @Progi1984)</li>
+<li>#27546: Use CSSO Webpack plugin everywhere (by @NeOMakinG)</li>
+<li>#26913: [BC Break] PHPStan (Level 5) on classes/ (by @Progi1984)</li>
+<li>#27417: PHPStan (Level 5) on controllers/ (by @Progi1984)</li>
+<li>#27425: Add hooks in the form process for dataProvider (by @Progi1984)</li>
+<li>#27562: Use remove instead of delete (by @PrestaEdit)</li>
+<li>#27102: PHPStan (Level 4) on controllers/ (by @Progi1984)</li>
+<li>#27360: Simplify CmpPrice functions (by @davidglezz)</li>
+<li>#27359: Use mbstring functions without checking, in Tools class (by @davidglezz)</li>
+<li>#27337: Upgrade Smarty to 3.4.43 (by @matks)</li>
+<li>#27127: Allow overriding <em>PS_DISPLAY_COMPATIBILITY_WARNING</em> in defines_custom.inc.php (by @PrestaEdit)</li>
+<li>#27166: Updated state.xml MX Aguascalientes ISO 3166 code, and reorderded CMX… (by @rickygzz)</li>
+<li>#27126: Bump modules (by @Progi1984)</li>
+<li>#27107: PHPStan (Level 2) on tests/ (by @Progi1984)</li>
+<li>#27044: Add new Twig namespace PrestaShopCore (by @atomiix)</li>
+<li>#26946: Use github actions for nightly tests (by @boubkerbribri)</li>
+<li>#27070: Improve license headers (by @matks)</li>
+<li>#27092: Deprecate stripslashes (by @kpodemski)</li>
+<li>#27082: Fix wording about footer display in Controller class (by @PrestaEdit)</li>
+<li>#26682: [BC Break] Remove Combination::location and quantity (by @PierreRambaud)</li>
+<li>#27004: [BC Break] PHPStan (Level 3) on controllers/ (by @Progi1984)</li>
+<li>#26952: Remove duplicate call hook actionAdminProductsListingFieldsModifier (by @Amit-Kumar-Tiwari-Webkul)</li>
+<li>#26914: [BC Break] Remove deprecated methods into Helper models  (by @PrestaEdit)</li>
+<li>#26864: [BC Break] PHPStan (Level 2) on controllers/ (by @Progi1984)</li>
+<li>#26923: [BC Break] Remove shudrum/array-finder from composer deps (by @matks)</li>
+<li>#26294: [BC Break] Remove deprecated admin/ajax-tab.php (by @eternoendless)</li>
+<li>#26727: PHPStan (Level 4) on classes/ (by @Progi1984)</li>
+<li>#26746: Improvements to profiling: display order of query execution, (by @lmeyer1)</li>
+<li>#26770: PHPStan (Level 1) on controllers/ (by @Progi1984)</li>
+<li>#26685: [BC Break] Remove Order::$shipping_number (by @PierreRambaud)</li>
+<li>#26681: [BC Break] Remove Tools::jsonEncode and Tools::jsonDecode (by @PierreRambaud)</li>
+<li>#26744: PHPStan (Level 5) on js/ (by @Progi1984)</li>
+<li>#26683: Order::$total_paid_real is not deprecated and used in the new Order page (by @PierreRambaud)</li>
+<li>#26518: PHPStan (Level 0) on controllers/ (by @Progi1984)</li>
+<li>#26478: [BC Break] PHPStan (Level 3) on classes/ (by @Progi1984)</li>
+<li>#26637: Delete ACKNOWLEDGEMENTS.md (by @le-melon)</li>
+<li>#24172: Bump version to 8.0.0 (by @PululuK)</li>
+<li>#26324: [BC Break] Remove deprecated methods into taxes related classes (by @PrestaEdit)</li>
+<li>#26571: [BC Break] Use the ModuleInterface interface instead of class Module (by @PierreRambaud)</li>
+<li>#26479: PHPStan (Level 5) on config/ (by @Progi1984)</li>
+<li>#26164: [BC Break] PHPStan (Level 2) on classes/ (by @Progi1984)</li>
+<li>#26292: Remove deprecated admin/ajax.php and js/admin-categories-tree.js (by @eternoendless)</li>
+<li>#25794: [BC Break] Remove upgrade scripts in favor of autoupgrade process (by @PierreRambaud)</li>
+<li>#26312: [BC Break] Remove _isPresent() in PrestaShopLogger (by @PrestaEdit)</li>
+<li>#26310: [BC Break] Remove getJqueryPath() method (by @PrestaEdit)</li>
+<li>#26259: Add actionPresentPaymentOptions hook (by @PrestaEdit)</li>
+<li>#26311: [BC Break] Remove formatProductAndVoucherForEmail() in PaymentModule (by @PrestaEdit)</li>
+<li>#26314: [BC Break] Remove deprecated methods into Uploader (by @PrestaEdit)</li>
+<li>#26318: [BC Break] Remove getExentedMessage() (by @PrestaEdit)</li>
+<li>#26316: [BC Break] Remove Windows class (by @PrestaEdit)</li>
+<li>#26313: [BC Break] Remove deprecated PS_SEARCH_MAX_WORD_LENGTH define (by @PrestaEdit)</li>
+<li>#26309: [BC Break] Remove deprecated methods in Language (by @PrestaEdit)</li>
+<li>#26304: [BC Break] Remove deprecated in Category and update code related to it (by @PrestaEdit)</li>
+<li>#26300: [BC Break] Remove deprecated in AddressFormat (by @PrestaEdit)</li>
+<li>#26301: [BC Break] Remove deprecated param into Alias constructor (by @PrestaEdit)</li>
+<li>#26303: [BC Break] Remove deprecated into CartRule (by @PrestaEdit)</li>
+<li>#26306: [BC Break] Remove deprecated in Configuration (by @PrestaEdit)</li>
+<li>#26308: [BC Break] Remove deprecated into ImageType (by @PrestaEdit)</li>
+<li>#26315: [BC Break] Remove isPasswd() method (by @PrestaEdit)</li>
+<li>#26317: [BC Break] Remove _getPDO() (by @PrestaEdit)</li>
+<li>#26322: [BC Break] Remove deprecated getTheme() in Shop (by @PrestaEdit)</li>
+<li>#26323: [BC Break] Remove deprecated in Stock (by @PrestaEdit)</li>
+<li>#26305: [BC Break] Remove deprecated code in CmsCategory (by @PrestaEdit)</li>
+<li>#26307: [BC Break] Remove deprecated into GroupReduction (by @PrestaEdit)</li>
+<li>#26189: Remove useless mod php5 check (by @PierreRambaud)</li>
+<li>#25245: [BC Break] Remove Theme &#x26; Modules Catalog and PrestaTrust calls (by @PierreRambaud)</li>
+<li>#25916: PHPStan (Level 1) on classes/ (by @Progi1984)</li>
+<li>#26057: Update 1.8 into 8.0 version (by @PrestaEdit)</li>
+<li>#26041: Introduce Nullable DateTime (by @jolelievre)</li>
+<li>#26049: Update Symfony v4.4.32 (by @matks)</li>
+<li>#25949: Easily override default value for primary user on docker (by @boubkerbribri)</li>
+<li>#26015: Fix wording of prestashop:update:sql-upgrade-file-hooks-listing (by @PrestaEdit)</li>
+<li>#25954: Update modules list in composer.json (by @PierreRambaud)</li>
+<li>#25908: Fix wrong PrestaShopBundle templates directory (by @atomiix)</li>
+<li>#25847: [BC Break] Update cssjanus 1.2 to 2.1, stop relying on PrestaShop fork (by @matks)</li>
+<li>#25844: Deprecate fields.php usage (by @matks)</li>
+<li>#25842: [BC Break] Update egulias/email-validator to latest version (by @PierreRambaud)</li>
+<li>#25839: [BC Break] Removed mcrypt dependencies (by @Progi1984)</li>
+<li>#25781: Upgrade to Symfony 4.4.30 (by @matks)</li>
+<li>#25702: Create “modules” directory inside “var” for data (by @PierreRambaud)</li>
+<li>#25563: Deprecate FrameworkBundleAdminController::overviewAction (by @eternoendless)</li>
+<li>#24581: Assign ID prop to null instead of unset (by @mvorisek)</li>
+<li>#25435: [BC Break] Update twig to v3 (by @atomiix)</li>
+<li>#25391: Fixed PHPDoc (by @Progi1984)</li>
+<li>#25296: Make PrestaShop compatible with PHP 8.0 (by @atomiix)</li>
+<li>#25287: Removed code related to Gamification module (by @Progi1984)</li>
+<li>#25052: [BC Break] Remove Symfony 4.4 deprecations (by @atomiix)</li>
+<li>#24985: In dev mode, hooks must not swallow exceptions (by @lmeyer1)</li>
+<li>#25037: Be able to use subquery when using DbQuery class (by @PierreRambaud)</li>
+<li>#24609: [BC Break] Upgrade to symfony 4.4 (by @atomiix)</li>
+<li>#24799: Improved performance for watermarking on import (by @kpodemski)</li>
+<li>#24927: Add unit tests for javascript (by @PierreRambaud)</li>
+<li>#24854: Fix typo in comments of class Mail (by @comxd)</li>
+<li>#24701: [BC Break] Deprecate Tools::safePostVars method (by @mvorisek)</li>
+<li>#24382: Add alignment option to GridColumn  (by @PululuK)</li>
+<li>#24022: Register feature flag page hooks (by @matks)</li>
+<li>#24113: Improve <code>OrderSlip::create</code> code readability  (by @PululuK)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#29068: Regenerate modern mail theme (by @atomiix)</li>
+<li>#28780: Add cache to AddressFactory::addressExists() (by @eternoendless)</li>
+<li>#29064: Move email alerts module default translations (by @atomiix)</li>
+<li>#28608: Set $registeredHookName as renderWidget when no hook given (by @PrestaEdit)</li>
+<li>#28725: Add new default password for docker image for 8.0.x (by @boubkerbribri)</li>
+<li>#28445: [BC Break] Allow clearing modules cache for all shops (by @sowbiba)</li>
+<li>#26572: Add a button for disabling all non native-in modules in Performance page (by @Progi1984)</li>
+<li>#28315: Fix delivery information for the product (by @kpodemski)</li>
+<li>#28358: Avoid <code> ConnectException</code> check Webservice Endpoint (by @PululuK)</li>
+<li>#28310: Validate by github action if phpunit tests don’t change repos state (by @MeKeyCool)</li>
+<li>#28103: Fixed profiler in PHP8.0 in migrated page (by @Progi1984)</li>
+<li>#28237: Wrap PDOException in PrestaShopException to cast the string error code to an int (by @atomiix)</li>
+<li>#28267: Prevent yaml cache folders creation in wrong filesystem path (by @gennaris)</li>
+<li>#27176: Fix replaceAccentedChars function (by @davidglezz)</li>
+<li>#28132: [BC Break] Remove ModuleZipManager service as class is missing (by @sowbiba)</li>
+<li>#28205: Added module blockreassurance (by @Progi1984)</li>
+<li>#27962: Added module psgdpr (by @Progi1984)</li>
+<li>#27662: Allow X at the end of ISBN (by @okom3pom)</li>
+<li>#27933: Allow longer product names in the order detail (by @kpodemski)</li>
+<li>#28015: Added module ps_googleanalytics (by @Progi1984)</li>
+<li>#27364: Deprecate Tools::redirectLink (by @davidglezz)</li>
+<li>#27923: Added module ps_emailalerts (by @Progi1984)</li>
+<li>#27868: The delivery slip date in the template must be the delivery date and not the invoice creation date (by @thalassa-web)</li>
+<li>#27822: Don’t allow emails without TLD in the Email Validator (by @Progi1984)</li>
+<li>#27646: Added module productcomments (now compatible with PS 8.0) (by @Progi1984)</li>
+<li>#27811: Removed execute bit set on PHP files (by @Progi1984)</li>
+<li>#24584: Database update command - Wrong SQL Query generated (by @RomsC)</li>
+<li>#27276: [BC Break] Remove useless legacyContextLoader (by @atomiix)</li>
+<li>#26246: Fix robots.txt and generate new one when action on languages (by @okom3pom)</li>
+<li>#27240: Fix uploader types validation (by @atomiix)</li>
+<li>#27587: Update Twig to 3.3.8 (by @kpodemski)</li>
+<li>#27355: Do not pad ps_versions_compliancy for PrestaShop >= 8 (by @atomiix)</li>
+<li>#27234: Fix regexp of “id_product_attribute” keyword in product route (by @saulaski)</li>
+<li>#27367: Fix LocalizationWarmer condition (by @davidglezz)</li>
+<li>#27339: Set disabled class for label if the input is disabled (by @Progi1984)</li>
+<li>#26267: [BC Break] Trigger a deprecated when using a hook alias and correctly handle errors (by @PierreRambaud)</li>
+<li>#27057: Add missing smarty variable (by @atomiix)</li>
+<li>#26934: Use getSemVersion instead of getVersion to have the correct version (by @sowbiba)</li>
+<li>#26731: Fix display bugs in profiling (by @lmeyer1)</li>
+<li>#26867: Repair nightly build (by @PierreRambaud)</li>
+<li>#26799: Remove duplicate files and remove line-length for yamllint (by @PierreRambaud)</li>
+<li>#26769: Fix docker setup for shared volumes (by @SharakPL)</li>
+<li>#26075: Do not use virtual cart for saving quantity in stock (by @Hlavtox)</li>
+<li>#26415: Fix old deleted customization fields copied after duplicating a product (by @Matt75)</li>
+<li>#24707: PrestashopLogger should save object type, even if object id is not set. (by @lmeyer1)</li>
+<li>#25913: Fix object model partial update (by @jolelievre)</li>
+<li>#25940: Update to node 14 and correctly use mounted directories in docker-compose (by @PierreRambaud)</li>
+<li>#17101: Fixed in mutishop weight for attributes in cart (by @Progi1984)</li>
+<li>#23969: Fix glob result when path is outside open_basedir (by @mvorisek)</li>
+<li>#25572: Do not upgrade module on module installation process (by @PierreRambaud)</li>
+<li>#25445: Fix wrong service for TranslationExtension (by @kpodemski)</li>
+<li>#25410: Make sure order variable exists and also return the order_list variable in actionValidateOrderAfter hook (by @PierreRambaud)</li>
+<li>#25147: Do not strict type for compatibility reason (by @PierreRambaud)</li>
+<li>#25003: Use defined() with quotes, they’re not optional. (by @lmeyer1)</li>
+<li>#24910: CO allow merchant and customer to add &#x3C; } in a message (by @okom3pom)</li>
+<li>#24634: [BC Break] Remove <em>PS_SMARTY_DIR</em> pointing to no longer existing directory (by @mvorisek)</li>
+<li>#24760: Drop leftover code, /tools/http_build_url/ was removed (by @mvorisek)</li>
+<li>#24782: Check that $session is set before using it (by @tswfi)</li>
+<li>#24757: Make getValue more strict to avoid false negative (by @RomainMazB)</li>
+<li>#23692: A lot of HTML errors are breaking DOM parsing (by @PierreRambaud)</li>
+<li>#24116: Fix thumbnail regeneration for files other than jpg (by @lmeyer1)</li>
+<li>#24119: When saving an image as a square png, add always a transparent border (by @lmeyer1)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#28644: Use <code>is_int</code> instead of <code>is_numeric</code> for ID Value Objects (by @Progi1984)</li>
+<li>#28578: [BC Break] Remove deprecated in Core namespace (by @Progi1984)</li>
+<li>#28547: Remove use of Tools::stripslashes (by @kpodemski)</li>
+<li>#28460: Use config vars in <code>GetOrderForViewingHandler</code> (by @PululuK)</li>
+<li>#27227: Don’t reassign global vars in front controller (by @PululuK)</li>
+<li>#28348: Minor code refato <code>ModuleManager</code> (by @PululuK)</li>
+<li>#28190: [BC Break] Remove deprecated $bo_show_screencast property (by @PrestaEdit)</li>
+<li>#28088: Simplify <code>LoadServicesFromModulesPass::process</code> (by @PululuK)</li>
+<li>#27657: [BC Break] Deprecate cleanNonUnicodeSupport function (by @davidglezz)</li>
+<li>#27961: [BC Break] Remove Adapter\Tools::bcadd (by @PierreRambaud)</li>
+<li>#27644: Remove unused FrontController properties (by @davidglezz)</li>
+<li>#27592: Remove classic theme from project and include it through composer (by @eternoendless)</li>
+<li>#27416: Remove unused variables in Cart::applyProductCalculations() (by @eternoendless)</li>
+<li>#27401: Use mbstring functions without check if exist (by @davidglezz)</li>
+<li>#27566: [BC Break] Removed dead code relative to PrestaShop Addons (by @Progi1984)</li>
+<li>#27354: [BC Break] Removed dead code about Marketplace (by @Progi1984)</li>
+<li>#26773: Get specific prices: let mysql optimize the query. (by @lmeyer1)</li>
+<li>#27361: Deprecate Tools::arrayReplaceRecursive() (by @davidglezz)</li>
+<li>#27111: [BC Break] Remove Tools::addonsRequest(‘module’) calls (by @Progi1984)</li>
+<li>#27242: Remove code about AdminSupplyOrders, AdminStockCover, AdminStockInstantState, AdminStockConfiguration &#x26; AdminStockMvt (by @Progi1984)</li>
+<li>#27291: [BC Break] Removed deprecated in class Cookie (by @Progi1984)</li>
+<li>#27112: [BC Break] Remove Tools::addonsRequest(‘service’) calls (Part 2) (by @Progi1984)</li>
+<li>#27113: [BC Break] Remove Tools::addonsRequest(‘customer_themes’) calls (Part 2) (by @Progi1984)</li>
+<li>#27116: Replace a die() by PrestaShopException (by @clotairer)</li>
+<li>#26947: [BC Break] Removed PrestaShop API Calls (install-modules &#x26; check-customer) (by @Progi1984)</li>
+<li>#26662: Remove code linked to <code>trackingfront</code> &#x26; <code>watermark</code> Modules (by @Progi1984)</li>
+<li>#26874: Simplify huge IF-ELSE blocks in validateOrder (by @pnucci)</li>
+<li>#26981: [BC Break] Remove deprecated constant <code>_PS_HOST_MODE_</code> (by @Progi1984)</li>
+<li>#26664: [BC Break] Removed PrestaShop API Call (check_module &#x26; module_download) (by @Progi1984)</li>
+<li>#25937: Replace Shudrum ArrayFinder by Symfony ArrayFinder in Theme (by @matks)</li>
+<li>#25919: Replace Shudrum ArrayFinder usage by Symfony ArrayFinder in PhpParameters (by @matks)</li>
+<li>#26650: Remove code linked to <code>gapi</code> Module (by @Progi1984)</li>
+<li>#25713: [BC Break] Remove PrestaShop API Calls (native, native_all, customer, must-have) (by @Progi1984)</li>
+<li>#26489: Removing some duplicated code lines (by @beattie282)</li>
+<li>#26268: Deleting extra parameter (by @christophe-rouille)</li>
+<li>#25406: Add doc block + improve readability of HistoryController::getUrlToInvoice &#x26; HistoryController::getUrlToReorder (by @Sinepel)</li>
+<li>#26408: Use <code>_PS_PRODUCT_IMG_DIR_</code>  instead of  <code>_PS_PROD_IMG_DIR_</code> to avoid confusion with <code>prod</code> and <code>dev</code> env. (by @PululuK)</li>
+<li>#26395: PaymentModule: an array is only updated, but never queried (by @Matt75)</li>
+<li>#26382: Changed 1.7.9.0 in 8.0.0 in deprecated messages (by @Progi1984)</li>
+<li>#26251: Fixed call to Order::getCurrentState() method (by @Progi1984)</li>
+<li>#25843: Rework create-test-db command from tests-legacy to tests folder (by @Progi1984)</li>
+<li>#25673: Remove the old <code>deprecated</code> comment to avoid confusion with new hook (by @PululuK)</li>
+<li>#21227: Refacto ObjectModel::existsInDatabase (by @PululuK)</li>
+<li>#25636: Restore Carrier class history (by @eternoendless)</li>
+<li>#25520: Fixed the use of deprecated functions in Uploader.php (by @WebHelpersPau)</li>
+<li>#25212: Fixed typo <code>Country.php</code> (by @Arnaud104)</li>
+<li>#23798: Replace ProductInterface occurences by RedirectType (by @Sinepel)</li>
+<li>#25242: Minor code refacto <code>Order.php</code> (by @PululuK)</li>
+<li>#25268: Fix isCatalogMode condition and Remove the price-drop link from the the best seller display condition (by @Sinepel)</li>
+<li>#25267: Replace getsupplierlink with getSupplierLink (by @Sinepel)</li>
+<li>#25187: Replace getmanufacturerLink with getManufacturerLink (by @Sinepel)</li>
+<li>#24834: Check if regeneration is wanted before checking filesystem (by @RomainMazB)</li>
+<li>#23546: CategoryDataFactory : Avoid code duplicate (by @PululuK)</li>
+<li>#24289: Fix visibility of constants (by @matks)</li>
+<li>#24222: Fix comment (by @arouiadib)</li>
+<li>#24027: Improve <code>Tools::passwdGen</code> method (by @PululuK)</li>
+<li>#24125: Some fixes of English mispells (by @matks)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Installer:
+<ul>
+<li>New feature:
+<ul>
+<li>#25596: Provide full stack trace when install fails (by @eternoendless)</li>
+</ul>
+</li>
+<li>Improvement:
+<ul>
+<li>#27099: Add capability to select modules and theme to install during the installation process (by @PierreRambaud)</li>
+<li>#26819: PHPStan (Level 5) on install-dev/ (by @Progi1984)</li>
+<li>#26166: Update INSTALL.txt for PS 8 (by @matks)</li>
+<li>#26126: Do not use md5 password for fixtures (by @PierreRambaud)</li>
+<li>#25771: Remove marketplace calls and links into the installer (by @PierreRambaud)</li>
+<li>#24676: [BC Break] Remove addons modules on install and add postinstall execution (by @PierreRambaud)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#28845: Update to latest blockwishlist module version 2.1.1 (by @jolelievre)</li>
+<li>#28647: Update min &#x26; max php version of the installer (by @atomiix)</li>
+<li>#28258: Install theme before modules (by @atomiix)</li>
+<li>#27931: Check if the directory name match the module file name (by @kpodemski)</li>
+<li>#26588: Make sure <code>checkSelectPrivilege</code> check privileges for both InnoDB and MyISAM (by @onlime)</li>
+<li>#26893: Fix post install error when fixture installation is disabled (by @unlocomqx)</li>
+<li>#26591: Fix wording in the installer (by @kpodemski)</li>
+<li>#26132: Add missing hooks actionCustomerLogout &#x26; displayCheckoutSummaryTop (by @okom3pom)</li>
+<li>#24970: Remove useless static cache and make sure CI exit in status 1 when installation failed (by @PierreRambaud)</li>
+<li>#24588: Fix fixtures when addons modules are not installed (by @PierreRambaud)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#26848: Installer : Remove dead code in installer (Upload Logo) (by @Progi1984)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Web Services:
+<ul>
+<li>Improvement:
+<ul>
+<li>#27952: Adding the PATCH method to the REST API (webservices) + API cache management FIX (by @nsorosac)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#28280: Fix PHP7.4 bug webservice blank schemas for resources (by @preoteasa)</li>
+<li>#27770: Webservice symfony less for multilang entities and category creation (by @jolelievre)</li>
+<li>#27741: Remove PSWS-Version header as it’s added after and only if we are authenticated (by @PrestaEdit)</li>
+<li>#27554: Fixed JSON Output when fetching a specific resource (by @Progi1984)</li>
+<li>#22969: Fixed API inconsistent return format of JSON (by @Kyaary)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Localization:
+<ul>
+<li>Improvement:
+<ul>
+<li>#27021: Update Mexico unit settings (by @rickygzz)</li>
+<li>#22811: Add VAT for Monaco (by @micka-fdz)</li>
+<li>#24921: Reset Germany tax rates (by @micka-fdz)</li>
+<li>#24936: In PDF, Use “freeserif” for Armenian language (hy) (by @mrAKAR)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tests:
+<ul>
+<li>Improvement:
+<ul>
+<li>#29099: Add docker-compose.override.yml to ignored files (by @FabienPapet)</li>
+<li>#28412: Remove useless PrestaShop install (by @atomiix)</li>
+<li>#27055: Split integration workflows into two, get rid of processIsolation (by @jolelievre)</li>
+<li>#27974: Pin setup-gcloud to v0 instead of master (by @sethvargo)</li>
+<li>#27649: Added survival test for Outstanding page (by @Progi1984)</li>
+<li>#27494: Clean combinations behat step (by @jolelievre)</li>
+<li>#27287: PHPStan (Level 5) on tests/ (by @Progi1984)</li>
+<li>#27247: PHPStan (Level 5) on tests-legacy/ (by @Progi1984)</li>
+<li>#27141: PHPStan (Level 4) on tests/ (by @Progi1984)</li>
+<li>#27125: PHPStan (Level 3) on tests/ (by @Progi1984)</li>
+<li>#26592: PHPStan (Level 1) on tests/ (by @Progi1984)</li>
+<li>#26473: Fix PHPStan because of GDImage (by @jolelievre)</li>
+<li>#26362: Added Behat Tests for Language Domain (by @Progi1984)</li>
+<li>#24162: Added Behat Tests for WebService (by @Progi1984)</li>
+<li>#26185: Add unit test for B2BFeature (by @matks)</li>
+<li>#25846: Add unit test for SwiftMailerValidation (by @PierreRambaud)</li>
+<li>#25411: Use only one file for sanity, remove sanity-80.yml (by @PierreRambaud)</li>
+<li>#25325: Allow GitHub UI tests to run on branch push (by @matks)</li>
+<li>#24629: Test adapter <code>Validate::isUnsignedInt</code>  (by @PululuK)</li>
+<li>#23954: Reduce number of GH jobs, run one PHPUnit job per PHP version (by @mvorisek)</li>
+<li>#22547: [BC Break] PHPStan (Level 5) (by @Progi1984)</li>
+<li>#24212: Add an unit test for refreshCaCertFile (by @jf-viguier)</li>
+<li>#24146: Nightly : Added branch 1.7.8.x (by @Progi1984)</li>
+</ul>
+</li>
+<li>Bug fix:
+<ul>
+<li>#28690: Fix YAML lint on GH workflow files (by @matks)</li>
+<li>#28381: Fix error in title controller test, and fix a warning in module tests (by @jolelievre)</li>
+<li>#28163: [BC Break] Fix PHPstan error (by @jolelievre)</li>
+<li>#28095: Fix phpstan test with different php versions (by @atomiix)</li>
+<li>#27996: Fix indent on state.yml (by @matks)</li>
+<li>#27685: Add 410 gone redirect type test (by @okom3pom)</li>
+<li>#27067: Do not trust the new composer binary mode for CI (by @PierreRambaud)</li>
+<li>#27046: Fix behat configuration (by @matks)</li>
+<li>#26765: Freeze php-cs-fixer version (by @matks)</li>
+<li>#26697: Upgrade pcre2 in Github Actions (by @atomiix)</li>
+<li>#26265: Use nodejs 14 for JS routing update cron GitHub Action (by @PierreRambaud)</li>
+<li>#26209: Fix yamllint warnings and errors (by @PierreRambaud)</li>
+<li>#26138: Properly copy property content instead of the whole directory when copying it into gcloud (by @PierreRambaud)</li>
+<li>#26047: Fix bugs that occur in CI because of non-resilient code (by @jolelievre)</li>
+<li>#25708: Wrong hook path for nightly reports (by @PierreRambaud)</li>
+<li>#25676: Use node_14.x instead of node_10.x (by @PierreRambaud)</li>
+<li>#25403: Fixed Unit Tests (by @Progi1984)</li>
+<li>#24997: Cancel previous build when it’s possible (by @PierreRambaud)</li>
+<li>#25266: Fix develop tests crashing because of outdated translation wordings (by @atomiix)</li>
+</ul>
+</li>
+<li>Refactoring:
+<ul>
+<li>#28922: Functional tests - Refactoring of ‘Check footer links on FO’ test (by @nesrineabdmouleh)</li>
+<li>#28991: Update faker dependency for UI tests (by @boubkerbribri)</li>
+<li>#28948: Functional tests - Add new test ‘Change language in FO’ (by @nesrineabdmouleh)</li>
+<li>#29010: Fix number of groups to check on customer view page (by @boubkerbribri)</li>
+<li>#29032: Fix nightly 11-07-2022 - Fix some random errors (by @nesrineabdmouleh)</li>
+<li>#28975: Functional tests - Add new test ‘View vouchers in FO’ (by @nesrineabdmouleh)</li>
+<li>#28962: Fix nightly 8.0.x - Fix ‘CRUD customer’ test (by @nesrineabdmouleh)</li>
+<li>#28918: Functional tests - Refactoring of ‘Check header links on FO’ test (by @nesrineabdmouleh)</li>
+<li>#28884: Fix errors on nightly 8.0.x  (by @nesrineabdmouleh)</li>
+<li>#28809: Functional tests - Add new test ‘Logout from FO’ (by @nesrineabdmouleh)</li>
+<li>#28866: Fix nightly 8.0.x - Add pre-condition to clear cache in ‘Check footer links FO’ test (by @nesrineabdmouleh)</li>
+<li>#28717: Functional tests - Add new test “Customers > Outstanding page”  Help card - View order - View Invoice (by @khouloudbelguith)</li>
+<li>#28828: Functional tests - Add new test ‘Edit personal information’ in FO (by @nesrineabdmouleh)</li>
+<li>#28815: Functional tests - Add new test ‘Create account on FO’ (by @nesrineabdmouleh)</li>
+<li>#28800: Functional tests - Add some fixes to ‘FO > Password reminder’ test (by @nesrineabdmouleh)</li>
+<li>#28768: Functional tests - Fix ‘Gift option’ test (by @nesrineabdmouleh)</li>
+<li>#28769: Functional test - Add new test to check login in FO (by @nesrineabdmouleh)</li>
+<li>#28756: Fix nightly 15-06-2022 : Fix check help side bar test of features page (by @nesrineabdmouleh)</li>
+<li>#28741: Add node and npm versions for UI tests (by @nesrineabdmouleh)</li>
+<li>#28641: Functional tests - Add new test ‘Preview order’ (by @nesrineabdmouleh)</li>
+<li>#28694: Functional tests - Fix customer faker password (by @nesrineabdmouleh)</li>
+<li>#28691: Functional tests - Add test to Import csv file to Brand pagination test  (by @nesrineabdmouleh)</li>
+<li>#28682: Functional tests - Fix some random errors on nightly 178x (by @nesrineabdmouleh)</li>
+<li>#28356: Functional tests - Add new test “Design > Theme &#x26; Logo > Advanced customization page” (by @khouloudbelguith)</li>
+<li>#28665: Fix nightly 02/06/2022 - Fix random error on ‘Choose address’ test (by @nesrineabdmouleh)</li>
+<li>#28554: UI tests - Fix step double identifer and remove doubles (by @boubkerbribri)</li>
+<li>#28536: Functional tests - Add new test ‘Check summary’ on create order page (by @nesrineabdmouleh)</li>
+<li>#28527: Functional Tests - Add test ‘Choose address’ in create order page (by @nesrineabdmouleh)</li>
+<li>#28575: Fix UI tests by selecting country on FO (by @boubkerbribri)</li>
+<li>#28507: Fix nightly 16/05/2022 - Fix help card test on attributes page (by @nesrineabdmouleh)</li>
+<li>#28493: Fix nightly 13/05/2022 - Fix failed Orders tests (by @nesrineabdmouleh)</li>
+<li>#28456: Functional tests - Add ‘data-role’ attribute to ‘header-desc’ selectors (by @nesrineabdmouleh)</li>
+<li>#28309: Functional tests - Refacto ‘Update order status’ (by @nesrineabdmouleh)</li>
+<li>#28464: Fix nightly 11/05/2022 - Fix tests in ‘Catalog > Stock’ page (by @nesrineabdmouleh)</li>
+<li>#28437: Functional tests - Delete close onboarding method (by @nesrineabdmouleh)</li>
+<li>#28423: Functional tests - Add test to create and import csv file of addresses (by @nesrineabdmouleh)</li>
+<li>#28414: Fix nightly 04/05/2022 (by @nesrineabdmouleh)</li>
+<li>#28370: Functional tests - Add test ‘Pagination of orders table’ (by @nesrineabdmouleh)</li>
+<li>#28399: Fix Nightly 03/05/2022 - Fix export customer test (by @nesrineabdmouleh)</li>
+<li>#28340: Functional tests - Add new test ‘Bulk open in new tab’ (by @nesrineabdmouleh)</li>
+<li>#28298: Functional tests - Fix nightly 20-04-2022 and 19-04-2022 (by @nesrineabdmouleh)</li>
+<li>#28252: Functional tests - Refacto ‘Pagination and sort categories’ (by @nesrineabdmouleh)</li>
+<li>#28262: Functional tests - Refacto ‘Sort orders table’ test (by @nesrineabdmouleh)</li>
+<li>#28268: Fix nightly 15-04-2022 (by @nesrineabdmouleh)</li>
+<li>#28261: Functional tests - Refacto ‘Pagination and sort customers table’ (by @nesrineabdmouleh)</li>
+<li>#28251: Functional tests - Add a post condition for ‘View guest ’ test on Orders page (by @nesrineabdmouleh)</li>
+<li>#28248: Functional tests - Add new test ‘Choose shipping’ from add order page (by @nesrineabdmouleh)</li>
+<li>#28234: Fix nightly 12/04/2022 - Fix sort and pagination employees test (by @nesrineabdmouleh)</li>
+<li>#28219: Fix nightly 11-04-2022 - Fix CRUD employee test (by @nesrineabdmouleh)</li>
+<li>#28159: Functional tests - Add new test ‘Search, add and remove voucher from new order page’ (by @nesrineabdmouleh)</li>
+<li>#28181: Fix nightly 08/04/2022 - Fix default customer and address IDs (by @nesrineabdmouleh)</li>
+<li>#28170: Functional tests - Fix log tests (by @nesrineabdmouleh)</li>
+<li>#28168: Functional tests - Fix product settings tests (by @nesrineabdmouleh)</li>
+<li>#28138: Fix nightly 05/04/2022 and fix some random errors (by @nesrineabdmouleh)</li>
+<li>#27945: Functional tests - Add new test ‘Add product to cart’ in BO (by @nesrineabdmouleh)</li>
+<li>#27454: Functional tests - Add new test “Select previous carts from BO > Add new order page” (by @khouloudbelguith)</li>
+<li>#27828: Functional tests - Fix monitoring tests (by @nesrineabdmouleh)</li>
+<li>#27820: Functional tests - Add new test ‘Select previous order’ (by @nesrineabdmouleh)</li>
+<li>#27826: Functional tests -  Fix import test (by @nesrineabdmouleh)</li>
+<li>#27804: Fix nightly 27-02-2022 and 26-02-2022 (by @nesrineabdmouleh)</li>
+<li>#27792: Functional Tests - Refacto search customer test (by @nesrineabdmouleh)</li>
+<li>#27636: Add more pre-conditions and post-conditions on separatly tests (by @nesrineabdmouleh)</li>
+<li>#27729: Fix nightly 18-02-2022  (by @nesrineabdmouleh)</li>
+<li>#27687: Functional tests - Add some refacto to ‘Search customer’ test from new order page (by @nesrineabdmouleh)</li>
+<li>#27682: Functional tests - Add some refacto to ‘Create customer’ test from new order page (by @nesrineabdmouleh)</li>
+<li>#27668: Functional tests - Fix quick access link test and unskip fixed tests (by @nesrineabdmouleh)</li>
+<li>#27664: Fix nightly 14-02-2022 (by @nesrineabdmouleh)</li>
+<li>#27612: Fix nightly 07-02-2022 (by @nesrineabdmouleh)</li>
+<li>#27583: Functional tests - Separate view order page on blocks (by @nesrineabdmouleh)</li>
+<li>#27544: Fix preview email themes test (by @boubkerbribri)</li>
+<li>#27426: Fix js doc generation for for faker and utils (by @boubkerbribri)</li>
+<li>#27424: Delete unused files for UI tests (by @boubkerbribri)</li>
+<li>#27460: Functional tests - Fix nightly 25/01/2022 (by @nesrineabdmouleh)</li>
+<li>#27059: Functional tests - Add new test ‘Check invoice’ (by @nesrineabdmouleh)</li>
+<li>#27260: Functional tests - Add new test ‘Check multi invoice’ (by @nesrineabdmouleh)</li>
+<li>#27368: Fix nightly - Change credit slip row value on table (by @nesrineabdmouleh)</li>
+<li>#27349: Fix nightly 12/01/2022 - Fix Credit slip options test (by @nesrineabdmouleh)</li>
+<li>#27269: Create basic helper file (by @nesrineabdmouleh)</li>
+<li>#27241: Separate steps and navigation for FO products tests (by @boubkerbribri)</li>
+<li>#27224: Functional tests - Fix multistore test (by @nesrineabdmouleh)</li>
+<li>#27174: Increase navigation timeout on add shop tests (by @nesrineabdmouleh)</li>
+<li>#27076: Functional tests - Move PRE-conditions and POST-conditions tests from test to common tests (by @nesrineabdmouleh)</li>
+<li>#26551: Functional tests - Add new test ‘Check messages block from view order page’ (by @nesrineabdmouleh)</li>
+<li>#26801: Functional tests - Add new test ‘Change order status’ (by @nesrineabdmouleh)</li>
+<li>#27152: Fix Nightly - Add test to delete cart rule from create simple order from BO (by @nesrineabdmouleh)</li>
+<li>#27151: Increase navigation timeout on multistore tests and fix ecotax test (by @boubkerbribri)</li>
+<li>#27138: Support disabling DEV_MODE on Docker (by @boubkerbribri)</li>
+<li>#27105: Fix nightly workflow by adding branch to push job (by @boubkerbribri)</li>
+<li>#27100: Functional test - Fix ‘Add discount’ test (by @nesrineabdmouleh)</li>
+<li>#27053: Fix script to run tests (by @nesrineabdmouleh)</li>
+<li>#27002: Improve exception checking in Behat tests (by @jolelievre)</li>
+<li>#26959: Upgrade nodemailer tests/UI folder (by @boubkerbribri)</li>
+<li>#26815: Functional tests - Separate create date from test to Utils (by @nesrineabdmouleh)</li>
+<li>#26851: POC optimize behat tests DB restoring (by @jolelievre)</li>
+<li>#26894: Functional tests - Add new test  ‘Add discount’ from view order page (by @nesrineabdmouleh)</li>
+<li>#26822: Fix orders payment and status tests (by @boubkerbribri)</li>
+<li>#26790: Fix nightly 25-11-21 - Delete check the footer link ‘Vouchers’ from check links in footer test (by @nesrineabdmouleh)</li>
+<li>#26359: Functional tests - Add new test ‘Check status tab from view order page’ (by @nesrineabdmouleh)</li>
+<li>#26757: Fix nightly 25/11 - Fix footer links test (by @nesrineabdmouleh)</li>
+<li>#26688: Improve some selectors on FO and view suppliers page (by @boubkerbribri)</li>
+<li>#26615: Functional tests - Add new test to check ‘Payment block in view order page’ (by @nesrineabdmouleh)</li>
+<li>#26652: Add config SMTP and reset SMTP to common tests (by @nesrineabdmouleh)</li>
+<li>#26505: Functional tests - Add new test ‘Check merchandise returns tab from view order page’ (by @nesrineabdmouleh)</li>
+<li>#26649: Move (data, commonTests, tools, utils) from campaigns to UI directory  (by @nesrineabdmouleh)</li>
+<li>#26533: Moved ContextMocker from tests-legacy/ to tests/ (by @Progi1984)</li>
+<li>#26520: Fix select hidden checkboxes on customers and localization pages (by @boubkerbribri)</li>
+<li>#26214: Functional tests - Refacto Advanced Parameters tests (by @nesrineabdmouleh)</li>
+<li>#26496: Upgrade playwright to v1.16.2 (by @boubkerbribri)</li>
+<li>#25693: Update test scripts on package.json (by @boubkerbribri)</li>
+<li>#26495: Fix name of screenshot on sanity workflow (by @boubkerbribri)</li>
+<li>#26445: Functional  tests - Add new test to check ‘Carriers tab from view order page’ (by @nesrineabdmouleh)</li>
+<li>#26423: Functional tests - Add new test ‘Check documents tab on view order page’ (by @nesrineabdmouleh)</li>
+<li>#26443: Fix categories and cart rules tests (by @boubkerbribri)</li>
+<li>#26437: Refactor controller tests (by @jolelievre)</li>
+<li>#26416: Not using href as a selector on order history page (by @boubkerbribri)</li>
+<li>#26295: Functional tests - Fix and add some steps to ’ Customer block &#x26; Product block’ on create order page BO (by @nesrineabdmouleh)</li>
+<li>#26367: Fix FO addresses tests (by @boubkerbribri)</li>
+<li>#26217: Sanity Tests - Refacto all sanity tests (by @nesrineabdmouleh)</li>
+<li>#25979: Add script to generate .md files with jsdoc (by @boubkerbribri)</li>
+<li>#26228: Fix message displayed when enabling fuzzy search (by @boubkerbribri)</li>
+<li>#26124: Functional tests - Refacto Shop Parameters > Product Settings tests (by @nesrineabdmouleh)</li>
+<li>#26165: Functional Tests - Refacto Shop Parameters > Contact tests (by @nesrineabdmouleh)</li>
+<li>#26163: Functional Tests - Refacto  Shop Parameters > Customer Settings tests (by @nesrineabdmouleh)</li>
+<li>#26190: Functional tests - Refacto Shop Parameters > Traffic &#x26; SEO - Search tests (by @nesrineabdmouleh)</li>
+<li>#26148: Delete module catalog page, and add test checking its access (by @boubkerbribri)</li>
+<li>#26122: Revert changes on the smtp server to fix nightly tests (by @boubkerbribri)</li>
+<li>#26116: Functional tests - Refacto Shop Parameters > Order Settings tests (by @nesrineabdmouleh)</li>
+<li>#26120: Fix selectors for Sql manager page (by @boubkerbribri)</li>
+<li>#26112: Functional tests - Refacto shop parameters general (by @nesrineabdmouleh)</li>
+<li>#26110: Fix selectors for db backup page (by @boubkerbribri)</li>
+<li>#26079: Fixing titles, steps and comments on FO tests (by @boubkerbribri)</li>
+<li>#25988: Removed phake/phake as dev dependency (by @Progi1984)</li>
+<li>#25953: Use playwright@1.13.1 for UI tests (by @boubkerbribri)</li>
+<li>#25993: Add jsDoc on tests helpers (by @boubkerbribri)</li>
+<li>#25965: Update test to get growl message after quick editing customer (by @boubkerbribri)</li>
+<li>#25830: Install “Products comments” module when its not to fix test (by @boubkerbribri)</li>
+<li>#25767: Fix date to filter with on cutomers and logs tests (by @boubkerbribri)</li>
+<li>#25721: Removed Gamification module in tests (by @Progi1984)</li>
+<li>#25017: Upgrade mochawesome version and fix merge reports (by @boubkerbribri)</li>
+<li>#25580: Add class to identify pagination block on product page (by @boubkerbribri)</li>
+<li>#25285: Add search for newsletter module before going to module configuration on tests (by @boubkerbribri)</li>
+<li>#25238: Migrated some Legacy Tests to Integration/Unit Tests (by @Progi1984)</li>
+<li>#25146: Separate functional tests to BO and FO and Add regression campaign to the actual run (by @boubkerbribri)</li>
+<li>#25196: Removed phpunit-controllers tests (by @Progi1984)</li>
+<li>#25127: Migrated some Legacy Tests to Integration/Unit Tests (by @Progi1984)</li>
+<li>#24188: Migrated some Legacy Tests to Integration/Unit Tests (by @Progi1984)</li>
+<li>#24981: Fix order status test after deleting status added by addons modules (by @boubkerbribri)</li>
+<li>#24879: Update JS documentation for international pages (by @nesrineabdmouleh)</li>
+<li>#24623: Refacto <code>TinyMceMaxLengthValidator</code> (by @PululuK)</li>
+<li>#24618: Improve <code>Tools</code> protocol check (by @PululuK)</li>
+<li>#24592: Add <code>DbQueryCore</code> phpunit test  (by @PululuK)</li>
+<li>#24396: Fix nightly tests on develop for 07-05-2021 (by @boubkerbribri)</li>
+<li>#24121: Migrated some Legacy Tests to Unit Tests (by @Progi1984)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+</details> </div> <div class="mt-6"> <a href="https://github.com/PrestaShop/PrestaShop/releases/tag/8.0.0-beta.1" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
