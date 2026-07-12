@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Scriberr v1.2.0 release notes | WinterFlow.io</title><meta name="description" content="Introduces a new CLI with background service management, real-time chat streaming, OpenAI transcription support, and a comprehensive UI/UX redesign with…"><link rel="canonical" href="https://winterflow.io/catalog/scriberr/releases/v1.2.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Scriberr v1.2.0 release notes | WinterFlow.io"><meta property="og:description" content="Introduces a new CLI with background service management, real-time chat streaming, OpenAI transcription support, and a comprehensive UI/UX redesign with…"><meta property="og:url" content="https://winterflow.io/catalog/scriberr/releases/v1.2.0/"><meta property="og:image" content="https://winterflow.io/images/apps/scriberr/scriberr.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Scriberr v1.2.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Introduces a new CLI with background service management, real-time chat streaming, OpenAI transcription support, and a comprehensive UI/UX redesign with…"><meta name="twitter:image" content="https://winterflow.io/images/apps/scriberr/scriberr.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Scriberr","item":"https://winterflow.io/catalog/scriberr/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/scriberr/releases/"},{"@type":"ListItem","position":5,"name":"v1.2.0","item":"https://winterflow.io/catalog/scriberr/releases/v1.2.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.qamN5724.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/scriberr/scriberr.png" alt="Scriberr logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Scriberr</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Self-hosted AI audio transcription with speaker diarization</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> Otter.ai, Rev, Trint </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://scriberr.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/rishikanthc/scriberr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/rishikanthc/scriberr/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/scriberr/scriberr-hero.png" alt="Scriberr screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/scriberr/scriberr-transcript.png" alt="Scriberr screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/rishikanthc/scriberr/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 2,832 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Scriberr" data-app-slug="scriberr" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/rishikanthc/scriberr" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/scriberr/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (16)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/scriberr/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v1.2.0</h2> <span class="text-sm text-gray-500">2025-12-17</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="scriberr-v120">Scriberr v1.2.0</h2>
+<p>Welcome to this new release of Scriberr!</p>
+<h3 id="installation">Installation</h3>
+<h4 id="homebrew-macoslinux">Homebrew (macOS/Linux)</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> tap</span><span style="color:#9ECBFF"> rishikanthc/scriberr</span></span>
+<span class="line"><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> scriberr</span></span></code></pre>
+<h4 id="manual-installation">Manual Installation</h4>
+<p>Download the appropriate archive for your platform below, extract it, and place the binary in your PATH.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="features">Features</h3>
+<ul>
+<li>5e571f08ac16c8b48d8e9b726ccde4d919837100: feat(backend): add CLI auth handshake endpoints (@rishikanthc)</li>
+<li>5837a997348e7b2be0fc46065c9188bcd146b24e: feat(backend): ensure file upload endpoint supports CLI ingestion (@rishikanthc)</li>
+<li>d8b6f4c023cc5fc7f996927de3c083f4c2b4f38f: feat(chat): real-time streaming, thinking display, and card redesign (@rishikanthc)</li>
+<li>cf002fd560d734c3e8a0adb02f156510a4c56a1b: feat(cli): add auto-install script and binaries serving (@rishikanthc)</li>
+<li>009836dd03b925baf9cd03a3f19536f13d32520b: feat(cli): add auto-install script, settings tab, and fix macos crash (@rishikanthc)</li>
+<li>da5ef5e39053f25a349e4590b67fab30737411af: feat(cli): add service logging, logs command, and fix config inheritance (@rishikanthc)</li>
+<li>79addf2a146494e02ddc1a7e1b9a20d9329edddc: feat(cli): implement background service management (@rishikanthc)</li>
+<li>bef9eb4c607193c61a3631c144e50a76ca28cacc: feat(cli): implement file watcher and upload logic (@rishikanthc)</li>
+<li>56c2ac95da88b8479d49eefade92381c79bad696: feat(cli): implement magic login command (@rishikanthc)</li>
+<li>72ca6f45097592a5de32294ec62569f6008b4bdc: feat(cli): init cobra skeleton and config management (@rishikanthc)</li>
+<li>1df7c4a27d0df61249165d24f6388ff254e0b1a8: feat(mobile): Add swipe-to-reveal actions for audio cards (@rishikanthc)</li>
+<li>b9ccdd53c1c9a514214c81cf2f867e9fd5f85ca0: feat(ui): add CLI authorization confirmation flow (@rishikanthc)</li>
+<li>51f73e90cfd9b7a8a338bfa8abe4a9d83052b275: feat(ui): add CLI download and instructions page (@rishikanthc)</li>
+<li>013ac72c38464d9a238f1c6f5285d809716bf0fd: feat(ui): implement aesthetic gray/true black palette, outfit font, and refined glassmorphism (@rishikanthc)</li>
+<li>cd7cb3eb5385ed91903b6c5a03eb04416e6b4c50: feat(ui): switch interface to Outfit and refine typography (@rishikanthc)</li>
+<li>498f33c19f9c707297871af494baeb53f70f2990: feat(ui): visual polish and layout refinements (@rishikanthc)</li>
+<li>11cc5b5aa4e33d3614f292ba001e9435b70701a7: feat: Add documentation website with layout, features, usage text, and screenshots (@rishikanthc)</li>
+<li>11434b9f1beca07184231e66d352785af8370fb3: feat: Add production security configuration for CORS and cookie handling (@rishikanthc)</li>
+<li>f9616e30029ecd4d148fe0ea686af19ea56714f7: feat: UI polish - chat sidebar theme, true gray palette, info card redesign (@rishikanthc)</li>
+<li>ac3073786d4da2dd03478faa1ff82ac3bdad8fd9: feat: add callback_url to transcription parameters (@rishikanthc)</li>
+<li>38c8b69f3b564c1524a6a87c2f0d246f91925fd4: feat: add elegant sponsor segment to homepage (@rishikanthc)</li>
+<li>d72de18a55443f796e3993726db8d850e5bb77a9: feat: add gpt-4o support, fix response formats, and add ui warnings for timestamp limitations (@rishikanthc)</li>
+<li>94bb19e774374a27877397c2d952ec463940fd38: feat: audio streaming, visualizer, and secure cookie auth (@rishikanthc)</li>
+<li>010eaa3f8722ea75b83c67f78a67f52f3161d1c4: feat: clean up transcript header and center toolbar (@rishikanthc)</li>
+<li>23e400066edc5507136cd40cdd3d9aa07412af9b: feat: compact mobile toolbar layout (@rishikanthc)</li>
+<li>c11f4f522c10cc2c9867115e029f8ef7b4f7bfc7: feat: enable global audio upload from any page and add dialog blur (@rishikanthc)</li>
+<li>82b9a68d7de8545e91fa55d8f454caeba97603d7: feat: enhance OpenAI integration with logging and API key validation (@rishikanthc)</li>
+<li>e67d6cce948802fb74a8ce9beb58c049d0032113: feat: enhance queue status visibility (@rishikanthc)</li>
+<li>ce09eb4453e7903c7e753bf1d0b4901417731372: feat: hide actions column on desktop, add hover toolbar (@rishikanthc)</li>
+<li>9dd95d0435b87195e46e790a72493cd2a06159d0: feat: implement API documentation site with Swagger integration and branding (@rishikanthc)</li>
+<li>17871295bdcde02b963f277e27b41a729b8ca7cf: feat: implement CSS Highlight API for high-performance karaoke playback (@rishikanthc)</li>
+<li>f3266b31e51acf79c2e7d37552493e615d61812f: feat: implement OpenAI transcription support (@rishikanthc)</li>
+<li>8aa7f87f222ce57fcac078f33fbd1a397d8f7331: feat: implement carbon dark mode layering (@rishikanthc)</li>
+<li>4f9cd1958beb38fa6087afa3f77c3cba57af9508: feat: implement click-to-seek and selection menu for compact transcript (@rishikanthc)</li>
+<li>012527565b49340d985f48a98f13cecd9825202a: feat: implement desktop hover actions for audio list (@rishikanthc)</li>
+<li>bb5a73826e6f897595e73467cc5b2f80e651ffd9: feat: implement infinite scroll in audio files table (@rishikanthc)</li>
+<li>b9c94f4508a81540a751fdeccc6671f63a1609e3: feat: implement mobile interaction for audio details view (@rishikanthc)</li>
+<li>3a0f4fb9bcbcf32d58b6345aabd1d5863af28a62: feat: implement per-job SSE for real-time status updates (@rishikanthc)</li>
+<li>d752012a76eddde6a0132c815e541b221d589bf6: feat: implement server-side delta sync with soft deletes and updated_after param (@rishikanthc)</li>
+<li>50307b30a268164e64b8eec3d1d735c3130a2568: feat: implement webhook service with retry logic (@rishikanthc)</li>
+<li>a33bcc63fa3467d90b871ae5ee0f9f5114b9a8a0: feat: improve audio player robustness with loading states and optimized fetch (@rishikanthc)</li>
+<li>51e2253d2f0fe1d0f8955fd68b2577248e8d30d4: feat: improve audio player with drag-to-seek and real-time timestamps (@rishikanthc)</li>
+<li>af54431281f0086751e7a5105349631d8608f56a: feat: initial UI/UX improvements (warm minimalist theme) (@rishikanthc)</li>
+<li>534c7de6f8d79872b693ff4003b32d4ab0718fa2: feat: integrate webhook notifications into transcription pipeline (@rishikanthc)</li>
+<li>3fa193396cf334de74d7ef17f254c5520e41ad3b: feat: maximize transcript width and add collapsible mobile toolbar (@rishikanthc)</li>
+<li>bffa34c5f8f860e9fa45b2a512f589aafe66342d: feat: normalize layout width to 960px, fix scrollbar styling and layout shifts (@rishikanthc)</li>
+<li>ef2d8a1698a080941e3533cc963041b22faf30da: feat: persist audio visualizer state on pause (@rishikanthc)</li>
+<li>c9d12bf80bb7e3a4c40505c7e7e4e0ea84be654b: feat: polish audio detail ui and update play button style (@rishikanthc)</li>
+<li>77ddb295b595cd8568b1a2abc7da6197a70c530d: feat: polish audio detail ui, fix audio player state, and add cli support to cuda dockerfile (@rishikanthc)</li>
+<li>b62a94498869f949e644bd12d3b7ee74bb097dcb: feat: redesign audio toolbar (@rishikanthc)</li>
+<li>56b9eda843736e0aef55b7a2894d5e7eff13357a: feat: redesign icon logo and implement independent dev workflow (@rishikanthc)</li>
+<li>afe36231df569b2c86ac4eec84922bea2bd5bd76: feat: redesign transcript view to match the scriberr design system (@rishikanthc)</li>
+<li>8e09bcbab560578bd969e9ca77e52bc59f4cad44: feat: reduce audio details width and add auto-scroll toggle (@rishikanthc)</li>
+<li>15987539055e8f26d40afd602e09dbfccebf60d0: feat: refactor bulk selection UX (@rishikanthc)</li>
+<li>4f752235f759e84c5985c32c1907d714f1757020: feat: replace advanced transcribe icon with WandAdvancedIcon (@rishikanthc)</li>
+<li>6218fafde01f69b7a5d30ff7ece6336b5e470cc7: feat: revamp settings page (@rishikanthc)</li>
+<li>312716816e098de220e4c9d30a107694545aa8a9: feat: server-side sorting and searching for audio list (@rishikanthc)</li>
+<li>9e7fec288ee75ba3079577c58161e065002b3714: feat: show context length, thinking messages separately, automatic context management (@rishikanthc)</li>
+<li>3fe2300512f8ba89aa64aeaf824efd18dd5552c2: feat: standardize dialogs and polish UI components with design tokens (@rishikanthc)</li>
+<li>503a6d714f1f47a11f0fbb31561c2f90afff9de1: feat: stream audio in chunks - new ember player and visualizer (@rishikanthc)</li>
+<li>789a9be6de567a93f069b208c2a368036f92d3d2: feat: ui refinements and settings reactivity (@rishikanthc)</li>
+<li>5b527fcf2c7411ca02633d6923f2063eacabbac5: feat: update UI fonts and implement karaoke highlight (@rishikanthc)</li>
+<li>9053bc360406685a06104c6bab08dfe4a908adf8: feat: update accent color to brand orange #fe9a00 (@rishikanthc)</li>
+<li>0f0b23b2ee84f8a2922126d7f00bf40d91243279: feat: update pwa icons and favicon (@rishikanthc)</li>
+</ul>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+<li>57232d9c06c595d9ab4b23ecd8df68abdbc14b26: fix(api): return graceful empty responses instead of 400/404 (@rishikanthc)</li>
+<li>0204663f350af476ada88ab096e658414b59f0e6: fix(cli): ensure server_url is saved on login, use SCRIBERR env prefix, and cleanup logs (@rishikanthc)</li>
+<li>aba55626247aebfdf80789b0a0c27af438aeb589: fix(docs): improve auth section UI and fix swagger generation paths (@rishikanthc)</li>
+<li>266d94fc31eec1b114370a215ed45fa8b362bf8c: fix(perf): optimize karaoke highlight search and tune gap filling (@rishikanthc)</li>
+<li>8cb6c394c8d5856e46922c5d658700ebaa7315be: fix(streaming): add proper headers for real-time chunk delivery (@rishikanthc)</li>
+<li>332fd49e1de98a2ff29dc7a2c5886af65b489fcc: fix(transcript): repair active segment detection in Expanded View (@rishikanthc)</li>
+<li>3badd151d486729dea119742053104e0b6c1a63d: fix(ui): Fix selected card translucency and redesign login page (@rishikanthc)</li>
+<li>ec6db51e31358b1fec3735236e3dab0ea7007841: fix(ui): refine selection menu styles and smooth out playback highlighting (@rishikanthc)</li>
+<li>d9a311bc6bacf7e520ba753904e580d30cbfeacb: fix(ui): repair missing highlight styles in expanded view (@rishikanthc)</li>
+<li>14e0c54f21a8bc52a63a4a7490255211945c95b7: fix(ui): resolve dialog sizing and dashboard spacing (@rishikanthc)</li>
+<li>fe2f0fcf586b5e342b95fde7685df437feffbf9d: fix: PWA icon bg color (@rishikanthc)</li>
+<li>f99087b2bd649bd657bffc5c76910deb4001dadc: fix: Resolve mobile audio playback permission issues (@rishikanthc)</li>
+<li>dd050eae1721188aad7fc48b08c0b8662a3e4a8d: fix: add auth header to openai validation and support server-side key fallback (@rishikanthc)</li>
+<li>d728faf2a711743428e90eaeff555686ad1a5638: fix: add backk donation links (@rishikanthc)</li>
+<li>307215b4b957fd0c735874eb3ce4d4a139e9fdc2: fix: adjust header and transcript section in audio details view (@rishikanthc)</li>
+<li>3a8404a1a3ba296b980ffe3380bccfb8cdcf7d22: fix: align transcript timestamps to top of row (@rishikanthc)</li>
+<li>bfab616dca7edcdd55b77c41845d8bb6b9033967: fix: build errors in docs (@rishikanthc)</li>
+<li>7deff5b903ef232a54eb9cba63066d7ada0b6151: fix: change logo.. fix chat (@rishikanthc)</li>
+<li>9146fa075f92bc2ecaff85c0f2f34e87d14b5ac7: fix: configure lefthook for go lint checks (@rishikanthc)</li>
+<li>25b2f610fd246824abf36f38dbfc87c1c67be978: fix: corrections in docs (@rishikanthc)</li>
+<li>80a7808d374cb2e581b993bd28d875e033ff0ef0: fix: dark mode issues in audio-details | scrollbar jitter | scrollbar styles (@rishikanthc)</li>
+<li>83a44c0478174fb786e5001605e48523b7531be5: fix: dialogues causing elements to shift (@rishikanthc)</li>
+<li>c33197752b1abe8ebeacb083e440d91c3a32d8c8: fix: disable click-to-seek handlers on mobile devices (@rishikanthc)</li>
+<li>17902a30dad018e217e813a5dc0a74dda25b8337: fix: downgrade cuda base image and remove conflicting LD_LIBRARY_PATH (@rishikanthc)</li>
+<li>04b018f4d8f9b1ae6fb45cc0b136a9116d585540: fix: elements moving around on popup or interactions (@rishikanthc)</li>
+<li>67648c7c3acc64819ad3a2fd33aaa942ca78177a: fix: enable granular text selection on mobile devices (@rishikanthc)</li>
+<li>ebdd4eced30a05e79ee5fca9fe76203327d0d754: fix: errors on empty (@rishikanthc)</li>
+<li>b9c69f2b85b51a7d3fe40b4766fb883e07261b03: fix: force center play/pause button with inline styles (@rishikanthc)</li>
+<li>e3850c11f9fb6bfcb1902328b705bf5cad1bac17: fix: inconsistent button styles (@rishikanthc)</li>
+<li>658a1a5c49bee9ab97c7f6d854ab5e1f5ee9b8ba: fix: lint errors in go code (@rishikanthc)</li>
+<li>dff0cbd2886fc1292cf70ede73b8507c546bfe31: fix: logo (@rishikanthc)</li>
+<li>b5148643b15265d4dd56a196473a1577a89641b3: fix: make text selecton on mobile devices robust - position floating pill menu (@rishikanthc)</li>
+<li>93bc238bb9e0fe5894e2fb1819ab931d02e55999: fix: mobile playback controls layout and css typos (@rishikanthc)</li>
+<li>69fdcaa604575a9c61842ab4480b6a449c84799e: fix: my tomfoolery (@rishikanthc)</li>
+<li>1120863f0f82cb1e3ff5e39102a1211cc9a1fb7f: fix: normalize layout across all views (@rishikanthc)</li>
+<li>b6e4ac3fdb11cdfe5e8ffe1789b46b2f68376b50: fix: nvidia models incorrect pyproject.toml generation (@rishikanthc)</li>
+<li>2dde22570826ca19a1755207b1c6fadbbb7bdbc2: fix: overlapping text selection pill - notes editor dialogue redesign (@rishikanthc)</li>
+<li>fe773c6c23d1d5df926427935af8c61dabb4b054: fix: path duplication in docs ci/cd (@rishikanthc)</li>
+<li>4269c4f1e4c586cf4158104f732a5d256c608573: fix: pyannote setup - create directory if not present (@rishikanthc)</li>
+<li>d1dd3afa5d994c144050005dba3d2e3aabc6798f: fix: readme for release (@rishikanthc)</li>
+<li>7e7c7de447fadad8a5ee69b947715183c949601b: fix: redesign summary template dialogue (@rishikanthc)</li>
+<li>3e702879c338c75489cbf564ce55bbbe4dc95d56: fix: redesign transcription config dialogue (@rishikanthc)</li>
+<li>0ab1e78ec1ae2836f0d416334edd2375515666a9: fix: relax status check for quick transcription success (@rishikanthc)</li>
+<li>201b3b787c40d6062155e12771d5e3b666d0c669: fix: remove timer-based job scanner that caused duplicate transcriptions (@rishikanthc)</li>
+<li>dca72c5420d802d86bf127701041bc36882d4574: fix: resolve button visibility and tab bar contrast issues (@rishikanthc)</li>
+<li>7df90246d530ee7a081e993d37208987c71aae49: fix: resolve hooks violation and lint errors in TranscriptView (@rishikanthc)</li>
+<li>d0479f937df388b95df861e1b83c9c0da84bdcc5: fix: resolve lexical declaration error in SpeakerRenameDialog (@rishikanthc)</li>
+<li>80276fb257034921749c423d70d43c2f82273d0c: fix: resolve lint errors in Auth feature (@rishikanthc)</li>
+<li>4b66b96e425f2ea5a083acc0a0cc9dd189256a2f: fix: resolve lint errors in ChatInterface, AudioRecorder and ChatSessionsSidebar (@rishikanthc)</li>
+<li>4008007958632c8a7ca2f22648af6c303d83af50: fix: resolve lint errors in Contexts (@rishikanthc)</li>
+<li>ec37d939b0da0b2d47f556d72bbfe36da6502006: fix: resolve lint errors in Settings feature (@rishikanthc)</li>
+<li>4c0ce0f4e215c06c63e505c351c4d98e7820ce2e: fix: resolve lint warnings in audio components (@rishikanthc)</li>
+<li>cc92c02b39552a406dffe361deb7e804c514e823: fix: resolve rebase regressions in tests and update docs (@rishikanthc)</li>
+<li>f3ac62b8d422bd66fa7a10822bbcd508e8edba06: fix: resolve remaining lint errors in Transcription feature (@rishikanthc)</li>
+<li>1b6c62b36f6c3b44ea17e9f9ad6b374c2e87082f: fix: resolve useEffect dependencies in TranscribeDDialog (@rishikanthc)</li>
+<li>3bbcbcfd63dea67e040965b816558fe55a304510: fix: responsive design (@rishikanthc)</li>
+<li>88b60346e39dcc7f1091741c7c777823181fc648: fix: search on homepage - change fonts - fix minor details in dashbaord (@rishikanthc)</li>
+<li>88166cbf6cd5e11df258135dd2e094c402530af4: fix: set correct internal path for whisperx-env (@rishikanthc)</li>
+<li>1e0d0dc98bdb23a7ef64e3d147b0fbc374181db7: fix: site icon for docs (@rishikanthc)</li>
+<li>13a5a0f57ab85558d41753314e21e7a80ec72853: fix: styling inconsistencies and move actins menu to context menu (@rishikanthc)</li>
+<li>91273d851f810975d3327fe0e874b5dba65087b8: fix: swap bulk transcribe actions and refine selection ui (@rishikanthc)</li>
+<li>4f78395091a94018cd4f7a66545d0502e2fe6162: fix: testing fix for long transcript chat sessions (@rishikanthc)</li>
+<li>e5cbd43d6c0c75a5e5457b6716a57d7d0833b0de: fix: testing fix for long transcript chat sessions (@rishikanthc)</li>
+<li>7fc7619ee6e2bd4a7d0bf8ceb7079045bfc45418: fix: tests for upstream changes (@rishikanthc)</li>
+<li>0e35051e78d34e5781b6b61e4606fad8b3c78293: fix: text selection in mobile (@rishikanthc)</li>
+<li>5b2d15426286127347fdfe1b926e6f6bba759dcc: fix: text selection on mobile devices - actions on selection ranges (@rishikanthc)</li>
+<li>13488efbd8d72ad65566dd1606ab62c24e428414: fix: update ci/cd to publish new docs site (@rishikanthc)</li>
+<li>3307349c13973b785320400089413d680346b046: fix: update yt-dlp url to download arch independent binary (@rishikanthc)</li>
+<li>827ef99cde4cf6a65699ae8bb17d15e6d1253abe: fix: waveform scrolling issue for long audio (@rishikanthc)</li>
+</ul>
+<h3 id="others">Others</h3>
+<ul>
+<li>2f6803ddda88477213cd3092b5e5493b7a2b3e07: Add MPS for Apple Silicon (@a-huk)</li>
+<li>fac1008726e67cb088fe37eebd5a2ddaa691b61d: Add custom alignment model parameter to WhisperX (@EdrisT)</li>
+<li>24570ab3f073793a1519c431ff26fac4b2c1aae6: Add feedback collection note to README (@rishikanthc)</li>
+<li>5e7cd8e97abf25780758ecf58365a305b0861a7f: Add text logo (@rishikanthc)</li>
+<li>b78e64c0d69e6dfd5d4b2f2766e4dd16364be7b3: Adds cuda compatibility to Dockerfile.cuda (@dillydogg)</li>
+<li>cf7ce29ce5d7bd67ef1fe458d17aaa8679cfbdb7: Adjust logo height in README.md (@rishikanthc)</li>
+<li>441a226612f1db5f9b8e6805b317631fe74aae9e: Adjust spacing of components in audio details page (@rishikanthc)</li>
+<li>d56a9e9ca71a896bda65adb8b424141d055d04bb: Changing hero image (@rishikanthc)</li>
+<li>91af22bfd8919434a85347ab16e7b44e063997dd: Configurable OpenAI API Base URL (@EdrisT)</li>
+<li>db29937e7f28522ae0ec3954dd1ea3f011ee6f0a: Deploy landing site to docs folder (@actions-user)</li>
+<li>8bf90a410cbdb13a45745c2fc4eff6d683b24fbe: Deploy landing site to docs folder (@actions-user)</li>
+<li>86be14a99ead4ae90533b8733accec40aaf2aa17: Enhance installation section with Docker details (@rishikanthc)</li>
+<li>21d51f0869ca91286240a2eb56bf304777a5a977: Fix CUDA Error 35 on Parakeet for short audio (&#x3C;300s) ( &#x3C;>)</li>
+<li>2aeeb85093c0da31c5c41cc219b09a51a74630f4: Fix MP4 file upload validation in audio upload handler ( &#x3C;>)</li>
+<li>9bc99cbe45bb5e6ab09dbcb3d62ea5d1b4c061d1: Fix Mobile Layout &#x26; Revamp New Chat Dialog (@rishikanthc)</li>
+<li>6f6b9457bbffb11835f6d58e7208b33ef99bdb38: Fix Recall.ai link  (@rishikanthc)</li>
+<li>c2d29fc9c6f757ea62193803715c914df196cf60: Fix YouTube downloads - Add Deno runtime for video cipher decryption ( &#x3C;>)</li>
+<li>ba311dd876b326b78c4bdd0b4974f70be96254e8: Fix button colors (@rishikanthc)</li>
+<li>a9bfb9c771e5ba1f1c0a4c7f698fa0b1f1b5e9c6: Fix model storage location and Parakeet CUDA errors ( &#x3C;>)</li>
+<li>cdf95d2b45acc1703139eadc7d4f5a263e0c1740: Fix unit tests - achieve 7/7 passing test suites ( &#x3C;>)</li>
+<li>3048046b51ead6fd2159d8fc02a63b4005ea50e6: Instead of full raw transcript json we send formated text to LLM (@EdrisT)</li>
+<li>2290dafd8162e5b85ac172fd4f4a2444441b45b0: Polish Chat UI: Refined Styles, Icons &#x26; Interactions (@rishikanthc)</li>
+<li>90dfc9a34b743f65f6cdb60174560b8310516ab6: Refactor Dashboard and AudioFilesTable to use TanStack Query (@rishikanthc)</li>
+<li>cdfcdee91d603b46f55b85c141407de45f0d6204: Refactor frontend: Migrate to react-router-dom and fix auth persistence (@rishikanthc)</li>
+<li>c6d4ce42891132b37443579585fec8b6feb305a2: Refactor: Auth - Migrated to feature-based structure, added Zustand store, integrated TanStack Query, and cleaned up AuthContext (@rishikanthc)</li>
+<li>5de26697f470c9898eee8d7385c4cf2c56c4f330: Refine Audio Player UI and fix transcription execution dialog colors (@rishikanthc)</li>
+<li>ab90ccf591b53c74ef3a2af99e8cd43a4906fd7e: Refine UI: AudioPlayer layout, AudioDetailView padding/popup, TranscriptView typography, strict gray palette (@rishikanthc)</li>
+<li>fbb431e0861f70a725645698cd08a8bed5a19495: Rename (@ThePieMonster)</li>
+<li>24799023ca9f7270355bb93696354ca206af9fe1: Rename scriberr-Ollama:openAI llm providers for chat and summarization.png to scriberr-Ollama openAI llm providers for chat and summarization.png (@ThePieMonster)</li>
+<li>900587b3fb47cd79ce26fbb5eedc10f556c79617: Rename scriberr-Ollama:openAI llm providers for chat and summarization.png to scriberr-Ollama openAI llm providers for chat and summarization.png (@ThePieMonster)</li>
+<li>b7c026909a4507302cab65be6428ea8190554679: Rename scriberr-Ollama:openAI llm providers for chat and summarization.png to scriberr-Ollama openAI llm providers for chat and summarization.png (@ThePieMonster)</li>
+<li>593cbedb4b1ab4a296b5a83558d4b927daf5e061: Rename scriberr-Ollama:openAI llm providers for chat and summarization.png to scriberr-Ollama openAI llm providers for chat and summarization.png (@ThePieMonster)</li>
+<li>938a010416511e7a0a72d8e1740d5d5383c67d96: Revamp Chat Interface: Split-Screen Integration &#x26; UI Refinements (@rishikanthc)</li>
+<li>dcfbb3a0b67e5dfa2e5885037641ab9baa65a152: Revert “frontend HMR dev loop” (@rishikanthc)</li>
+<li>d95d2f3a3a8ac2d0989c94395e352d15891ec950: Revise machine learning models in README (@rishikanthc)</li>
+<li>04e8ebd084bc5d9c9d0933ee528ca6ca24ceceb4: Saving state (@rishikanthc)</li>
+<li>7d302729bd99187789ccaf49938f97c011d9bc80: Setup warm minimalist design system (@rishikanthc)</li>
+<li>b4643324a306c71695e61ba6585f5d7eac426f67: Sidebar Polish: Overlay Actions, Custom Delete Dialog &#x26; Improved Search (@rishikanthc)</li>
+<li>cd410f1aa227bd1ae5ecf242dcc27f7f08c5593b: Standardize Layout: Introduce MainLayout &#x26; Apply to Core Views (@rishikanthc)</li>
+<li>0c4397db1c5a3d8152e6080caf0c732e74ee735d: UI Polish: Apply premium design system to Dashboard and Header (@rishikanthc)</li>
+<li>aefe79031ce5fa6f64e4149e7afc096cd8057241: UI Polish: Improve Split-View Resizer &#x26; consolidate Chat Button (@rishikanthc)</li>
+<li>1c1b7f8c123863ed7c8bc5ac92b2d5f97faac226: UI part of custom alignment model option (@EdrisT)</li>
+<li>4961e9f1ace4b555390ea6ea2ed4373c67829fd3: Update README.md (@Pakkieressabereso)</li>
+<li>4682894ce60ebaa62b69d26c9523cb012de43a17: Update chat model filtering for OpenAI API (@EdrisT)</li>
+<li>bde45ddb6a97be6d2d027d1857e01d2cfd3ed2d8: Use usermappings in chat (@EdrisT)</li>
+<li>90ba898e63e48d68a2c32850d369cfcdb7311074: adding debug statements to understand transcript injection in chats (@rishikanthc)</li>
+<li>d5aa1b7ae8f3a3fe3b7feadac9e357ec71f9d43f: adds ability to upload multi-track audio files (@rishikanthc)</li>
+<li>87c940615c94ad01eda666124adb59a3413a017b: adds configuring context parameters for parakeet model (@rishikanthc)</li>
+<li>9e497f6c72c075ada32ccc64bb6cdeb9de1a5559: adds diarization parameters to info card (@rishikanthc)</li>
+<li>ce6589f26b48ed9e1c0c120e4dbf77ef0c6b12df: adds downloading model file during setup (@rishikanthc)</li>
+<li>4b431640e82d13a1dfd73ee918a74445b4cee809: adds frontend files (@rishikanthc)</li>
+<li>2071a2d36869a63bfc5912b77c73aa54ef58cfcb: adds multi-track audio support for nvidia parakeet and canary (@rishikanthc)</li>
+<li>3459fcff3fd236cbcd73d276be989e232e4bf5b1: adds parakeet python deps to python env setup (@rishikanthc)</li>
+<li>30800b5e78d4931b69d837fdeac1b86d2e082974: adds pre-processing step for parakeet to convert to 16kHz mono WAV (@rishikanthc)</li>
+<li>c3e73a91297d7b9dc5c3d25e04a9d12c360b75f9: adds prototype for parakeet transcription (@rishikanthc)</li>
+<li>5d3e16057953960986d2573a46ae7ab967fece69: adds support for drag and drop (@rishikanthc)</li>
+<li>222aa977061b0daeb3f6abeacab19814ece02459: adds support for nvidia sortformer diarization model (@rishikanthc)</li>
+<li>ce0b85fa23170207c4f620c643ccafaf8a776f6b: adds support for video transcription - formatter run touched all files (@rishikanthc)</li>
+<li>235d5b3fbda4f0bddcad50273f522066f2accb62: adjusting logo (@rishikanthc)</li>
+<li>bd2176fc4625e04bc5a043c19c3d84acfc97ba56: auto-detect multi-track audio (@rishikanthc)</li>
+<li>58602616aeeda3c05774ce777995ee4566a6dc5c: automatic update once transcription finishes in audio details page (@rishikanthc)</li>
+<li>8e2158a1de681743caf07de02d478481c119e8ea: backing up cuda dockerfile (@rishikanthc)</li>
+<li>001154136b58abbd101d277d33cd54bbac0c8cae: basic prototype for canary (@rishikanthc)</li>
+<li>32918ba4243267e98aa0c9ba13de546f56b21620: because I’m stupid :/ (@rishikanthc)</li>
+<li>54865f496fa7985bd701ea9e9074e4f4e1083d40: because i messedup (@rishikanthc)</li>
+<li>61e07c20fbe322c304c06b0d60560c19ef4dc5e3: because i was dumb enough to not look at code (@rishikanthc)</li>
+<li>535b07cde64be88979168e20686b51ab05699a12: because i’m a fkin idiot (@rishikanthc)</li>
+<li>0534304c23d28b3d6889d83815385b2bcb23dbc0: better progres status for multi-track audio transcription (@rishikanthc)</li>
+<li>37dffdffa055224a27ef804bfd7ab6e9c98afca2: bind to 0.0.0.0 instead of localhost (@rishikanthc)</li>
+<li>2dc2d484c3e8920285fb67ff743c359ccb5a86bc: build: add ffmpeg and deno to homebrew dependencies (@rishikanthc)</li>
+<li>423c6934a7dbbd4350c1222a26a8e3aae2a67811: build: add remark-gfm for GFM support (tables) in MDX (@rishikanthc)</li>
+<li>fafa560b8ef8ec5fc39444033b84eb853aa887da: cause i missed a file (@rishikanthc)</li>
+<li>a3614654c68366d14abc9d48dafc032c9657a27f: change nvidia warning message (@rishikanthc)</li>
+<li>5097ca1037d3c2050cd9a44916c9a9fb0e86c43f: chore(lint): enforce strict linting rules and fix violations (@rishikanthc)</li>
+<li>838fe079dd53bfb2b19ec2d9ba521ea684957fb9: cleans up transcription parameter dialogues (@rishikanthc)</li>
+<li>8755035c3956342077020c67fb156fbd4768580b: cleanup (@rishikanthc)</li>
+<li>9c544c5d3531f1313c3c98de1d67c7f1e0352144: closes #204 (@rishikanthc)</li>
+<li>9ad7d32bd68379ae2156a3dc0e516d5893397faf: closes #218 and closes #237 - summary generation timeout. (@rishikanthc)</li>
+<li>a9db82be2f22cbdc08bbb604b0b455fc1b76e8ed: closes #253 (@rishikanthc)</li>
+<li>32e655cf6503dee2253be93422f20f49b01c24ba: closes #253 (@rishikanthc)</li>
+<li>2de6a3ae0cf191508355422b9eb103776898323a: closes #253 (@rishikanthc)</li>
+<li>28dd97cfa6ed0303d797785beea7b2114d99fb80: closes #254 (@rishikanthc)</li>
+<li>1ddab6d6cfbbebbd99d022d2a6f6d13ae5ef7300: closes #270 and closes #231 (@rishikanthc)</li>
+<li>d838d7f1dae3be2a62e24eb6a5cbd5f4603e433f: consolidate code to define design system into reusable building blocks (@rishikanthc)</li>
+<li>37dd8b8b960c8b1b81572d4d9dae4be3f983c754: consolidate code to define design system into reusable building blocks - chat (@rishikanthc)</li>
+<li>a543af1bba9959435d7bc9d099dec9e0e235178f: coz i fuckin failed to notice device parameter in the call (@rishikanthc)</li>
+<li>80e9f97a5084aeff83a86b5d9a6fe21f8e246a58: debugging pyannote cuda failure (@rishikanthc)</li>
+<li>2b5c5c202422f7bd093839761914bd2581d8572b: debugs (@rishikanthc)</li>
+<li>f0e1816698d9133295b1f07cec55a375e2f8eb60: detect and use nvidia gpus - pyannote (@rishikanthc)</li>
+<li>d7170e5cfb3a7de8fa22292408350d441286cac5: fix auth issue for speaker renaming (@rishikanthc)</li>
+<li>99a14801fb022408580e0b5e47a88fba37ed1b63: fix button consistency and reorder card status and actions (@rishikanthc)</li>
+<li>a65f59167bfb75070f216b2000b000e336c7aa27: fix chat context injection (@rishikanthc)</li>
+<li>becfd0ad0f6cc4fdcf373a026653fd7df4a5642f: fix compose (@rishikanthc)</li>
+<li>057c8e58703523fa16197f6a5eb92a5b06572b6f: fix dark mode quirks (@rishikanthc)</li>
+<li>9da6a71ecb5fadac8501ce657ece6758cfdfd44a: fix database mistmatch for word level timestamps for multi-track audio (@rishikanthc)</li>
+<li>9da01f3f1f6a2dec3ac43e8b982eb0baf8a17e27: fix diarization parsing to match pyannote 4 api changes (@rishikanthc)</li>
+<li>a24293b84437620ea31ae991479cf57f463eaaba: fix duplicate entries in whisperx pyproject (@rishikanthc)</li>
+<li>2c3efa88daf49057e6c14ee03f2e92d6e359c796: fix incorrect # speakers and missing upload progress for multi-track audio (@rishikanthc)</li>
+<li>6882cfea8e2b61ae218f78f82c55ad3547b9641a: fix ld library path for whisperx (@rishikanthc)</li>
+<li>f2c7cc88e181c9ec6d2febcb782b76ca22489793: fix multi-track upload bug - duplicate instances for drag and drop (@rishikanthc)</li>
+<li>fc2c23c6e63572ebeecbced43b9456b91b0f7c6c: fix playback control button (@rishikanthc)</li>
+<li>acc4b3f458dbaf6b23a70c42d6d5478d346b1441: fix pyannote diarization - separate pipelines depending on transcription model used (@rishikanthc)</li>
+<li>0312d1d11441b4dd428628783a3df088faba3dfb: fix spacing of transcript segments in timestamp view (@rishikanthc)</li>
+<li>29fbcbda7c3e4a89abce3563e7f5539142d5f4a1: fix summary settings tab not getting latest llm config status (@rishikanthc)</li>
+<li>7633fb20cd2579d92a371c56ad74ac9b9444be40: fix tab/space character issue in pyannote script (@rishikanthc)</li>
+<li>eebdc83906fbefed6f8cfe9bbdfca8f0de2a3171: fix word level timestamps not received by frontend (@rishikanthc)</li>
+<li>bea9232dab5f5d0623684f426acb9cb633eeb414: fix(audio-player): broken state (@rishikanthc)</li>
+<li>9a28630a71d9862b8d32713672c899f8965ded2c: fixes #185 (@rishikanthc)</li>
+<li>73fe0458de4c8c529904cc06fd9aeb983e48aa8c: fixes #216 (@rishikanthc)</li>
+<li>377ac4fd121e29d494be96b6e51f37392c2deb09: fixes #232 (@rishikanthc)</li>
+<li>5d96ef56fe79ae8948df523b73d1434ad3840f76: fixes #252 (@rishikanthc)</li>
+<li>1875e8d53b62f5c9bfebef67219d740c4200fa3a: fixes #252 (@rishikanthc)</li>
+<li>9310c85f2b6806dbc9fb945588b071d34a544227: fixes #257 (@rishikanthc)</li>
+<li>e5a45ca469931c8048dc07c637afd1547c99a8ed: fixes #257 - improve recording quality with automatic gain control (@rishikanthc)</li>
+<li>5f24fa694092e3720db9443c56a74f3fa2b9dec1: fixes click to seek and highlight to take notes (@rishikanthc)</li>
+<li>7f31cf4cb3d661e7b68d37faa325bf999d55a81b: fixes diarization for parakeet (@rishikanthc)</li>
+<li>5e6952df1c01e949a370a26c04dba6388c61c2c6: fixes docker for nvidia models (@rishikanthc)</li>
+<li>747f2c04f61a9da6f32c5d3534a54c1736bc25c2: fixes incompatible dependency from nvidia triton - nemo on macos (@rishikanthc)</li>
+<li>5414a64b6c3a792467488e0964afb3b9bfa22535: fixes info dialogue for canary models (@rishikanthc)</li>
+<li>7b66c580dca5261fe38576a346a62a473eab7e29: fixes mono 16kHz requiremet by converting before processing (@rishikanthc)</li>
+<li>969d8e7f0988a32a1c3c034c8e7e9055bcbb34b6: fixes multi-track transcription (@rishikanthc)</li>
+<li>74d4dc5995e69ce580ddd3480b3bfb5cada0453c: fixes multi-track transcription (@rishikanthc)</li>
+<li>53e2972a5cfa1053666a4ae5d35048032806a1d0: fixes parakeet and canary transcript display (@rishikanthc)</li>
+<li>e24a075f949839f5966b18021354bba82a4f022a: fixes persistence of API keys (@rishikanthc)</li>
+<li>81eb280da43f1dabff2a0d34037b619e2bd7d1b9: fixes pyannote diarization with the new unified arch (@rishikanthc)</li>
+<li>b38e0b3598127e370c9ee931604665be98b0d303: fixes refresh causing stop job dialogue to close - moved components outside of tabl to parent (@rishikanthc)</li>
+<li>0227707be9cc0fef8896a46b13a4b2d29da2dd7e: fixes transcript views and parsing across all 3 family of models (@rishikanthc)</li>
+<li>82f80a17d1bb8495e1b932223bc1c4b306c73034: fixes word level and segment level timestamps for canary transcripts (@rishikanthc)</li>
+<li>96e86b9b4f8e4abdfcdd4c63feb7e82556505574: fixing backward compatibility (@rishikanthc)</li>
+<li>4a0b39184323794630ce19487d69acef65ac4b42: frontend HMR dev loop (@paulirish)</li>
+<li>fd6067c2a36f596675985dd401bd8e847d09acf5: ignore (@rishikanthc)</li>
+<li>f725fdf619f8d1a6e3da812121f9c28748697cb4: implements info cards for multi-track audio files (@rishikanthc)</li>
+<li>af24647e6ec967d1efc2366055794299c4e6f94e: implements mergin multi-track audio files into single file for playback (@rishikanthc)</li>
+<li>0662e631c01f1576debbdcaa4b57fdaf5a771207: improve chat window theme (@rishikanthc)</li>
+<li>4e6a78465e66d1bc4d51beeaab65c76fa2196618: improve darkmode (@rishikanthc)</li>
+<li>978932e3469a48d5ed598e38570a9a1b82e93f4b: improve startup logs (@rishikanthc)</li>
+<li>2b24e0805590683696771c9c6d75ee0646597267: improves logging (@rishikanthc)</li>
+<li>aec52342a19b66166b0e7de953bf4fa394cf65d5: improves startup time (@rishikanthc)</li>
+<li>c66185a769a5f114814c8b05460337d5bf36c4a1: investigating errors with pyannote community-1 diarization (@rishikanthc)</li>
+<li>99031c5054c28d8e636a819c01389766859e92d5: major refactor (@rishikanthc)</li>
+<li>7328d19a734626390f1b3813fb0a100572964ee5: make bulk actions selection more accessible (@rishikanthc)</li>
+<li>c58a386f33ef0a695c278d02d1fbebc632eae769: merge (@rishikanthc)</li>
+<li>0f0a68fabc71c99542cc10995274ef33ca061270: modifying pyannote script to auto detect cuda (@rishikanthc)</li>
+<li>a1e3c2e52b8a55c0eff1e5d71c34f8bda4101282: more cleanup of transcript configuration dialogue (@rishikanthc)</li>
+<li>323e0faea2cf1f58cb2a300e74aff6faae630d83: more debug statements (@rishikanthc)</li>
+<li>0393bfe617b61fc78a0e2b28235d72f0e1790163: more mods (@rishikanthc)</li>
+<li>add911eee40233bf4492d8b8326563bf044d6371: optimize frontend codebase to be performant (@rishikanthc)</li>
+<li>0bb41c41ece8e95eab460359d56c5b5e7f567744: optimizes backend for performance (@rishikanthc)</li>
+<li>833c231598ee67f57237c6872f6e6c0352a4a823: perf: optimize startup time with parallel model initialization and singleflight checks (@rishikanthc)</li>
+<li>6c2d219a105288b2c510aebd5bc56cad3e94cf83: pinning torch to use cu126 (@rishikanthc)</li>
+<li>56802c7e3a7377860baeaec052ffaddf7e046318: project website (@rishikanthc)</li>
+<li>bd209b4b76a21f664aa261bae8decce4d6d94ce0: propagate delete to delete all resources associated with audio file (@rishikanthc)</li>
+<li>67a6bf73b2d4d1a025795d8b461285acafea46ed: pyannote debugging (@rishikanthc)</li>
+<li>c8b3c186a8b8ce7e5aff77020ffc5b3dc818a811: remove bloat from docker containers (@rishikanthc)</li>
+<li>c2524b1fc4a3f7cad279f867d88423dc75c4ce6e: remove debug console logs from the frontend (@rishikanthc)</li>
+<li>a788b2204a6f858f587594e547a5b41dc59522f6: remove diarization settings for multi-track audio (@rishikanthc)</li>
+<li>5564be714f7366949e3c53b9fead79b1dc8b0cb8: remove ugly diarization message from transcription parameters (@rishikanthc)</li>
+<li>1b11d56773d3774e3a1fdb49e8dda88d77fe80d6: removing MPS as device option (@rishikanthc)</li>
+<li>f5866d503cbd4ad7389b03da8e557b8c3d2dbfdf: removing nvidia sortformer diarizatio for whisper models (@rishikanthc)</li>
+<li>1416790c83703ad534a7d129a7dffbc50fa88584: style(ui): implement user’s custom black-to-gray palette for dark mode (@rishikanthc)</li>
+<li>2d60b09dd5ec17fe156ea1409f21f14184711c84: style(ui): refine execution parameters dialog colors for dark mode (@rishikanthc)</li>
+<li>97232579bb403208fd4c48cf586be78510ddc54b: transcript merging prototype (@rishikanthc)</li>
+<li>4888bbb3155a3ffc096a5154359d11b831f814e6: unify dark and light logo (@rishikanthc)</li>
+<li>89e04f8d0e69c6e7fa898ba673d405500610aec5: update logo (@rishikanthc)</li>
+<li>73c26a77dbf4a6c9c0e0cf86b2f307e93bac259a: update pyannote to handle torch security update (@rishikanthc)</li>
+<li>07842d340fcec926a731eb387c009a11d7ec71a7: updates info dialogues to show information specific to model family used (@rishikanthc)</li>
+<li>34ce1c3015d2124c4f18a5f616c2403df31deab9: updates scriberr project website (@rishikanthc)</li>
+<li>e12c9427c6cbca5867900a0a8dccb33cbc1a34ce: wf (@rishikanthc)</li>
+<li>e8fad4e4585284155887550ea45cfcad153a3636: wf (@rishikanthc)</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/rishikanthc/Scriberr/releases/tag/v1.2.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

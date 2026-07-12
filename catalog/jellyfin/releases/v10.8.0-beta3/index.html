@@ -1,0 +1,1036 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jellyfin v10.8.0-beta3 release notes | WinterFlow.io</title><meta name="description" content="Beta 3 of version 10.8.0 introduces numerous bugfixes, Tonemapping HWA improvements requiring jellyfin-ffmpeg 4.4.1, and various enhancements to the web…"><link rel="canonical" href="https://winterflow.io/catalog/jellyfin/releases/v10.8.0-beta3/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Jellyfin v10.8.0-beta3 release notes | WinterFlow.io"><meta property="og:description" content="Beta 3 of version 10.8.0 introduces numerous bugfixes, Tonemapping HWA improvements requiring jellyfin-ffmpeg 4.4.1, and various enhancements to the web…"><meta property="og:url" content="https://winterflow.io/catalog/jellyfin/releases/v10.8.0-beta3/"><meta property="og:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Jellyfin v10.8.0-beta3 release notes | WinterFlow.io"><meta name="twitter:description" content="Beta 3 of version 10.8.0 introduces numerous bugfixes, Tonemapping HWA improvements requiring jellyfin-ffmpeg 4.4.1, and various enhancements to the web…"><meta name="twitter:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Jellyfin","item":"https://winterflow.io/catalog/jellyfin/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/jellyfin/releases/"},{"@type":"ListItem","position":5,"name":"v10.8.0-beta3","item":"https://winterflow.io/catalog/jellyfin/releases/v10.8.0-beta3/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.qamN5724.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/jellyfin/jellyfin.png" alt="Jellyfin logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Jellyfin</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Free software media system for organizing and streaming your movies, TV shows, and music</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> netflix, plex, emby </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://jellyfin.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/jellyfin/jellyfin.org/tree/master/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/jellyfin/jellyfin/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 54,211 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Jellyfin" data-app-slug="jellyfin" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support Jellyfin on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/jellyfin/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/jellyfin/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.8.0-beta3</h2> <span class="text-sm text-gray-500">2022-05-16</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p>We’re pleased to announce the third (and ideally, final) Beta pre-release of our upcoming 10.8.0 version. This release has a dedicated branch in preparation for the final 10.8.0 release. At this time, only bugfixes will be merged.</p>
+<p>Package downloads will be available on the main downloads page, under the “Next Stable Pre-Releases (10.8.0)” link for your respective platform, once builds are completed and validated: <a href="https://repo.jellyfin.org/releases/server/">https://repo.jellyfin.org/releases/server/</a></p>
+<p>Docker images will be up with the tag <code>10.8.0-beta3</code>.</p>
+<p><strong>NOTE:</strong> This release includes Tonemapping HWA improvements. To get the newer improvements, you must be running <code>jellyfin-ffmpeg</code> version 4.4.1 (ideally, the latest subrevision)! It can be downloaded from the various repository locations shown above.</p>
+<p><strong>NOTE:</strong> This in a <strong>beta</strong> release. It should be relatively stable but bugs will exist! Don’t forget to take a full backup of your instances before upgrading, just in case!</p>
+<h2 id="changelogs">Changelogs</h2>
+<p>Note: Dependabot automatic PRs are excluded from these lists.</p>
+<h3 id="since-1080-beta2">Since 10.8.0-beta2</h3>
+<h4 id="jellyfin-20"><a href="https://github.com/jellyfin/jellyfin">jellyfin</a> [20]</h4>
+<ul>
+<li>#7749 [@cvium] fix: disable “Automatically add to collection” by default</li>
+<li>#7741 [@LewkyB] Fix to allow for episode numbering over 999 in certain scenarios</li>
+<li>#7736 [@nyanmisaka] Fix the mismatched resolution in sw PGS burn-in</li>
+<li>#7724 [@jtcasper] Don’t let permission denied kill library scans</li>
+<li>#7723 [@crobibero] Update TMDbLib to 1.9.2</li>
+<li>#7718 [@nyanmisaka] Fix the disordered color in Dolby Vision remuxing on Safari</li>
+<li>#7716 [@Shadowghost] Respect limited opus sampling rates when building trancoding command</li>
+<li>#7712 [@nyanmisaka] Fix the issue that HEVC transcoding can’t be disabled</li>
+<li>#7699 [@Shadowghost] Fix streambuilder reasons for direct playback checks</li>
+<li>#7693 [@crobibero] Don’t migrate auth token if user doesn’t exist</li>
+<li>#7654 [@Shadowghost] Prefer MetadataProvider enum as provider id key over arbitrary strings</li>
+<li>#7648 [@nyanmisaka] Add libssl3 as an alternative dependency for Ubuntu 22.04 LTS</li>
+<li>#7643 [@nyanmisaka] Fix H264 level on safari fmp4</li>
+<li>#7638 [@1337joe] Fix quick connect tests</li>
+<li>#7634 [@neilsb] Correct LocalTrailerCount in API</li>
+<li>#7625 [@crobibero] Only delete xmltv cache file if exist</li>
+<li>#7624 [@nielsvanvelzen] Enable Quick Connect by default</li>
+<li>#7604 [@Jellifi007] Fixes diacritics regression #7484 #7450 #7560</li>
+<li>#7544 [@jaantaponen] Fix DVR error: too long filename</li>
+<li>#7529 [@Shadowghost] Properly handle stream addition and removal for strm use cases</li>
+</ul>
+<h4 id="jellyfin-web-16"><a href="https://github.com/jellyfin/jellyfin-web">jellyfin-web</a> [16]</h4>
+<ul>
+<li>jellyfin/jellyfin-web#3643 [@dmitrylyzo] Resolve worker URLs</li>
+<li>jellyfin/jellyfin-web#3642 [@taku0] Change CSS font-family by language preference</li>
+<li>jellyfin/jellyfin-web#3639 [@rhld16] Add missing languages</li>
+<li>jellyfin/jellyfin-web#3637 [@MinecraftPlaye] Add WebP to the page detection list for comics</li>
+<li>jellyfin/jellyfin-web#3635 [@dmitrylyzo] Fix SSA/ASS missing font</li>
+<li>jellyfin/jellyfin-web#3628 [@thornbill] Fix artists album lists</li>
+<li>jellyfin/jellyfin-web#3622 [@thornbill] Restore external links on mobile</li>
+<li>jellyfin/jellyfin-web#3618 [@thornbill] Fix backdrop being used on large screens in mobile layout</li>
+<li>jellyfin/jellyfin-web#3617 [@thornbill] Fix iPadOS icon</li>
+<li>jellyfin/jellyfin-web#3616 [@thornbill] Revert some poor translations</li>
+<li>jellyfin/jellyfin-web#3614 [@dmitrylyzo] Check undefined streamInfo.url</li>
+<li>jellyfin/jellyfin-web#3604 [@thornbill] Fix custom element creation</li>
+<li>jellyfin/jellyfin-web#3601 [@thornbill] Fix XSS in repositories list</li>
+<li>jellyfin/jellyfin-web#3597 [@nielsvanvelzen] Use text input in Quick Connect page</li>
+<li>jellyfin/jellyfin-web#3577 [@thornbill] Fix SD filter state</li>
+<li>jellyfin/jellyfin-web#3543 [@Shadowghost] Restore sort order and fix strm usecase</li>
+</ul>
+<h3 id="since-1077">Since 10.7.7</h3>
+<h4 id="jellyfin-626"><a href="https://github.com/jellyfin/jellyfin">jellyfin</a> [626]</h4>
+<ul>
+<li>#7605 [@crobibero] Add missing properties to PlaybackStart, PlaybackStop</li>
+<li>#7592 [@1337joe] Fix xmltv caching part 2</li>
+<li>#7591 [@1337joe] Update Jellyfin.XmlTv to 10.8.0</li>
+<li>#7590 [@crobibero] Update to dotnet 6.0.4</li>
+<li>#7580 [@nyanmisaka] Fix the wrong external audio map index if text subtitle exists</li>
+<li>#7578 [@Shadowghost] Remove mp2 from video file extensions</li>
+<li>#7569 [@crobibero] Require elevation to save list of plugin repositories</li>
+<li>#7567 [@cvium] Fix xmltv caching</li>
+<li>#7561 [@DMouse10462] Fix NamedConfiguration API Generation</li>
+<li>#7557 [@nyanmisaka] Fix PGS burn-in on certain iGPU such as Iris Plus 655</li>
+<li>#7551 [@cvium] fix: remove (incorrect) negation of bool expression</li>
+<li>#7549 [@cvium] fix: use IPAddress.IsLoopback instead of custom</li>
+<li>#7548 [@1337joe] Fix album index sorts</li>
+<li>#7543 [@daullmer] Write UTC Date to .nfo files</li>
+<li>#7542 [@1337joe] Make recording stop at scheduled stop time</li>
+<li>#7537 [@dmitrylyzo] Fix StreamBuilder</li>
+<li>#7527 [@Shadowghost] Remove video file from file list before processing external files</li>
+<li>#7525 [@1337joe] Fix media path saving to wrong library when name duplicated</li>
+<li>#7523 [@crobibero] Allow media without streams to playback</li>
+<li>#7521 [@1337joe] Add fallback for image downloads with bad reported MediaType</li>
+<li>#7519 [@nielsvanvelzen] Add new priority level to ResolverPriority for plugins</li>
+<li>#7512 [@crobibero] Catch checksum mismatch when updating plugins</li>
+<li>#7507 [@crobibero] Fix StudioImageProvider</li>
+<li>#7506 [@crobibero] Safely get/set User permission/preference</li>
+<li>#7496 [@crobibero] Fix TranscodeReasons property name</li>
+<li>#7495 [@crobibero] Fix chmod entrypoint</li>
+<li>#7493 [@Shadowghost] Fix DLNA DirectPlay</li>
+<li>#7492 [@crobibero] Don’t allow unknown sort-by</li>
+<li>#7488 [@crobibero] Fix OpenAPI spec generation for TranscodeReason</li>
+<li>#7487 [@InvoxiPlayGames] Change DLNA description requests to obey profiles, format UUID correctly</li>
+<li>#7483 [@nyanmisaka] Improve fps for cuda tonemap in sw decoding</li>
+<li>#7477 [@crobibero] Use requested bitrate for direct play calculations</li>
+<li>#7476 [@crobibero] tmdb - update available series end status</li>
+<li>#7474 [@nielsvanvelzen] Add missing authorization attributes</li>
+<li>#7468 [@jakobkukla] Fix supportsTranscoding not reflecting user permissions sometimes</li>
+<li>#7466 [@nyanmisaka] Prefer Cuvid to Nvdec by default for better performance</li>
+<li>#7449 [@crobibero] Revert using Math.Clamp</li>
+<li>#7448 [@nielsvanvelzen] Restrict item refreshing to administrators</li>
+<li>#7445 [@Bond-009] BaseItem: remove unused functions</li>
+<li>#7444 [@Bond-009] Add tests for BaseUrl normalization</li>
+<li>#7443 [@whiteowl3] allow strm probe to succeed</li>
+<li>#7441 [@1337joe] Add label for external audio/sub tracks</li>
+<li>#7440 [@1337joe] Match external sub/audio stream adding logic</li>
+<li>#7437 [@Nalsai] Add extracting attachments from external subs</li>
+<li>#7435 [@nyanmisaka] Fix the fMP4 HLS audio sync issue on Safari</li>
+<li>#7434 [@crobibero] Update to dotnet 6.0.3</li>
+<li>#7432 [@Bond-009] SocketFactory: Remove redundant code</li>
+<li>#7431 [@Bond-009] UdpServerEntryPoint: Fix typo</li>
+<li>#7425 [@Bond-009] Remove none existing Australian rating</li>
+<li>#7411 [@crobibero] Revert “chore: Add a read only connection for routes like Shows/NextUp”</li>
+<li>#7410 [@MinecraftPlaye] Let the UI show which DTS profile is in use</li>
+<li>#7406 [@crobibero] Fix build</li>
+<li>#7405 [@StollD] Readd .strm as an allowed extension for videos</li>
+<li>#7404 [@nyanmisaka] Remove the deprecated OMX and MMAL HWA</li>
+<li>#7403 [@1337joe] Fix external file check for shorter names</li>
+<li>#7397 [@nyanmisaka] Set the name of intel vaapi driver explicitly</li>
+<li>#7396 [@thornbill] Update artwork repository urls</li>
+<li>#7394 [@1337joe] Strip out external file fuzzy name matching</li>
+<li>#7388 [@GermanCoding] Hide ISO 639-2 special codes in display titles</li>
+<li>#7387 [@nyanmisaka] Lowering the VRAM usage on NVDEC decoder</li>
+<li>#7386 [@nyanmisaka] Fix the path to the extracted fonts on Windows</li>
+<li>#7383 [@thornbill] Include played and unplayed results in the same next up request</li>
+<li>#7382 [@crobibero] Allow KeyframeExtractor to be localized</li>
+<li>#7381 [@crobibero] Fix migration of DateTime to EF</li>
+<li>#7380 [@crobibero] Add JsonConstructor to GeneralCommand</li>
+<li>#7378 [@thornbill] Add resume book as default home section</li>
+<li>#7376 [@GermanCoding] Remove superfluous “SoundHandler” from audio stream names</li>
+<li>#7375 [@nyanmisaka] Update presets for NVENC encoder</li>
+<li>#7374 [@nyanmisaka] Update intel compute runtime to 22.08.22549</li>
+<li>#7370 [@crobibero] Only add internal files if the internal metadata path exists</li>
+<li>#7369 [@Bond-009] Remove obsolete code for premium plugins</li>
+<li>#7366 [@1337joe] Add post filtering for theme song and video</li>
+<li>#7363 [@1337joe] Parse the unused chapter id field from ffmpeg output as a long</li>
+<li>#7349 [@1337joe] Merge MediaInfoResolver subclass tests</li>
+<li>#7346 [@Bond-009] Optimize Guid comparisons</li>
+<li>#7338 [@mueslimak3r] fix HLS transcoding on android tv — dont use -noaccurate_seek for hls transcode</li>
+<li>#7333 [@eyezak] [Bugfix] Provile bitStreamArgs for HLS fMP4</li>
+<li>#7332 [@eyezak] [Bugfix] Report transcoding complete</li>
+<li>#7326 [@Bond-009] Remove some dead code</li>
+<li>#7325 [@eyezak] Rework StreamBuilder to avoid unnecessary transcoding</li>
+<li>#7324 [@Maxr1998] Implement Comparers for (Parent)IndexNumber</li>
+<li>#7322 [@Bond-009] Clean up SqliteItemRepository</li>
+<li>#7321 [@Bond-009] Fix some warnings</li>
+<li>#7300 [@cvium] Change KeepReading to StopReading and use bytes read as an indicator</li>
+<li>#7291 [@aolszowka] Fix h264_v4l2m2m acceleration in Raspberry Pi 4</li>
+<li>#7290 [@crobibero] Update to dotnet 6.0.2</li>
+<li>#7286 [@daullmer] NFO: fix thumb tags without aspect</li>
+<li>#7275 [@Nalsai] Add extracting attachments for ffmpeg to burn subtitles with correct fonts</li>
+<li>#7257 [@Shadowghost] Add some more artists to artist split whitelist</li>
+<li>#7255 [@Shadowghost] Refactor and extend external subtitle and audio handling</li>
+<li>#7245 [@h1dden-da3m0n] add stale issue check workflow</li>
+<li>#7241 [@Bond-009] Flush to disk async where possible</li>
+<li>#7240 [@jaysonsantos] chore: Add a read only connection for routes like Shows/NextUp</li>
+<li>#7239 [@nielsvanvelzen] Use Guid for BaseItemDto parent ids</li>
+<li>#7238 [@1337joe] Make ffprobe metadata merge consistent with MetadataService.MergeData</li>
+<li>#7236 [@Bond-009] Always create TaskCompletionSource<t> with TaskCreationOptions.RunContinuationsAsynchronously</t></li>
+<li>#7235 [@Bond-009] Ban the usage of Task.Result</li>
+<li>#7234 [@nielsvanvelzen] Use Guid for BaseItemPerson.Id</li>
+<li>#7233 [@Bond-009] Fix some warnings</li>
+<li>#7225 [@crobibero] Properly populate QueryResult</li>
+<li>#7221 [@SenorSmartyPants] UserView Thumbnail fixes</li>
+<li>#7219 [@1337joe] Add TMDb logo handling</li>
+<li>#7217 [@SenorSmartyPants] Generate cover image for music video type libraries.</li>
+<li>#7203 [@1337joe] Fix resolving local alternates</li>
+<li>#7202 [@knackebrot] Add option to change unix socket permissions</li>
+<li>#7198 [@dmitrylyzo] Add TranscodingProfile conditions</li>
+<li>#7197 [@dmitrylyzo] Fix maximum video resolution for dynamic HLS controller</li>
+<li>#7186 [@1337joe] Order extra rules so directory takes precedence over naming</li>
+<li>#7185 [@dmitrylyzo] Fix SA1642 warning</li>
+<li>#7176 [@dmitrylyzo] Fix trailers duplication</li>
+<li>#7175 [@dmitrylyzo] Ignore JSON serialization for special features of movie.</li>
+<li>#7172 [@SenorSmartyPants] Config option to import season name from TMDB</li>
+<li>#7141 [@nyanmisaka] Seek the external audio stream</li>
+<li>#7138 [@nyanmisaka] Fix the wrong logic in HEVC VP9 10bit hwdec boxes</li>
+<li>#7137 [@SenorSmartyPants] Remove special HTTP HEAD processing</li>
+<li>#7136 [@1337joe] Fix stuck show library scans</li>
+<li>#7134 [@adavier] Implement Trakt Episode Links</li>
+<li>#7132 [@Bond-009] Update README.md</li>
+<li>#7131 [@Bond-009] Fix warning SA1414 and CA1849</li>
+<li>#7129 [@crobibero] VideoStream null handle</li>
+<li>#7121 [@Bond-009] Error on SA1316</li>
+<li>#7118 [@crobibero] Add null check for audio stream</li>
+<li>#7115 [@joshuaboniface] Remove bump-version junk</li>
+<li>#7112 [@stanionascu] Fix #7100 - when opening invalid UDF images</li>
+<li>#7109 [@crobibero] Use provided SortOrder</li>
+<li>#7107 [@Bond-009] Speed up Jellyfin.Naming.Tests</li>
+<li>#7105 [@1337joe] Respect lock state when updating season 0 name</li>
+<li>#7101 [@Bond-009] Remove incorrect mime type image/jpg</li>
+<li>#7095 [@crobibero] Don’t apply transformations to .gif</li>
+<li>#7093 [@ilaborde] Remove unnecessary ToList in DlnaManager</li>
+<li>#7092 [@crobibero] Reverse all order-by</li>
+<li>#7080 [@crobibero] Allow ApiKey query parameter for authentication</li>
+<li>#7078 [@1337joe] Improve metadata merge for identify</li>
+<li>#7076 [@crobibero] Add ability to search by -</li>
+<li>#7075 [@crobibero] Fix orderby query</li>
+<li>#7070 [@thornbill] Fix Fedora build version</li>
+<li>#7059 [@crobibero] Fix device ordering</li>
+<li>#7058 [@cvium] Use dedicated resolvers for extras</li>
+<li>#7055 [@crobibero] Fix analysis issues</li>
+<li>#7054 [@matthew-jones-uk] Add DisableEmbeddedSubtitles setting</li>
+<li>#7052 [@crobibero] Add image/jpg to extension lookup</li>
+<li>#7049 [@crobibero] Remove warnings</li>
+<li>#7048 [@Bond-009] Update StyleCop</li>
+<li>#7047 [@Bond-009] Fix build</li>
+<li>#7044 [@1337joe] Fix trailers v2</li>
+<li>#7042 [@crobibero] Fix build from PR merging</li>
+<li>#7038 [@Bond-009] Fix option to disable server discovery</li>
+<li>#7035 [@cvium] Force a remux/transcode with external audio files</li>
+<li>#7034 [@cvium] Catch HttpRequestException when saving images from local provider</li>
+<li>#7029 [@cvium] Use our own Contains extension</li>
+<li>#7028 [@cvium] Fix extras folders</li>
+<li>#7021 [@cvium] Use == instead of Object.Equals to avoid closure allocation</li>
+<li>#7020 [@cvium] Use static lambdas</li>
+<li>#7018 [@Bond-009] Remove unreachable branches from JsonConverters</li>
+<li>#7017 [@crobibero] Fix query param spelling</li>
+<li>#7015 [@Bond-009] Use System.IO.Compression instead of SharpCompress for zips</li>
+<li>#7013 [@1337joe] Increment library name number instead of appending</li>
+<li>#7012 [@nnnlog] Remove ProtectClock for hardware encoding</li>
+<li>#7006 [@crobibero] Fix BaseItemKind Querying</li>
+<li>#7005 [@1337joe] Deprecate LibraryOptions.EnableInternetProviders</li>
+<li>#7004 [@Bond-009] General cleanup</li>
+<li>#7002 [@crobibero] Update to dotnet 6.0.1</li>
+<li>#7000 [@brianjmurrell] Fix build on EL7</li>
+<li>#6998 [@1337joe] Fix crash on missing server config file</li>
+<li>#6994 [@Tedyst] Fixed crash in MigrationRunner by checking migration for file existance</li>
+<li>#6985 [@joshuaboniface] Improve and unharden systemd units for LXC and Fedora</li>
+<li>#6980 [@brianjmurrell] Update RPM build for Ci autoversion packages</li>
+<li>#6979 [@crobibero] Use BaseItemKind where possible</li>
+<li>#6978 [@Bond-009] Add tests for ProbeResultNormalizer.GetFrameRate</li>
+<li>#6977 [@Bond-009] Use correct jpeg MIME type</li>
+<li>#6976 [@Bond-009] Don’t check floats for equality</li>
+<li>#6965 [@bendardenne] Add artist to ’/’ split whitelist</li>
+<li>#6956 [@cvium] Refactor extras and movie multi-part parsing</li>
+<li>#6953 [@matthiasdv] Add more hardening to systemd service</li>
+<li>#6941 [@holahmeds] Use MimeTypes package to determine MIME type</li>
+<li>#6936 [@cvium] Reduce allocations</li>
+<li>#6934 [@nyanmisaka] HWA pipeline refactor, AMD/Intel/Nvidia full hardware filtering support, AV1 hwdec</li>
+<li>#6929 [@Bond-009] Use JsonContent where possible</li>
+<li>#6927 [@1337joe] Use SSL for tmdb images</li>
+<li>#6923 [@cvium] Don’t query series twice</li>
+<li>#6920 [@marius-luca-87] Add an option for dropping specific subtitle formats using the DLNA SubtitleProfile</li>
+<li>#6915 [@1337joe] Subtitle filename parsing fix</li>
+<li>#6914 [@marius-luca-87] Take into account the streams dlnaheaders query parameter set by the DidlBuilder NormalizeDlnaMediaUrl function</li>
+<li>#6912 [@crobibero] Add additional provider id parsing to file name</li>
+<li>#6907 [@marius-luca-87] - enable seek function when direct streaming over DLNA</li>
+<li>#6902 [@cvium] Migrate network configuration safely</li>
+<li>#6900 [@ianjazz246] Use local time for RecordingHelperTests</li>
+<li>#6898 [@jonas-resch] Add support for external audio files</li>
+<li>#6890 [@crobibero] Fix creating DLNA profiles</li>
+<li>#6879 [@crobibero] Remove ClientLog endpoints</li>
+<li>#6874 [@1337joe] Expose TMDb image scale options to user</li>
+<li>#6873 [@crobibero] Add ability to exclude active sessions from resumable items</li>
+<li>#6871 [@cvium] Only force scheme and port when HTTPS is disallowed</li>
+<li>#6870 [@cvium] Refactor omdb providers and fix issues</li>
+<li>#6869 [@cvium] Small optimization to child count field</li>
+<li>#6867 [@yresquirol] Related media according to genre</li>
+<li>#6866 [@Bond-009] Remove task cancellation hacks</li>
+<li>#6862 [@1337joe] Query media streams by type instead of filtering</li>
+<li>#6860 [@cvium] Read past empty elements</li>
+<li>#6857 [@Bond-009] Fix some warnings</li>
+<li>#6856 [@cvium] Remove unused dependencies</li>
+<li>#6854 [@1337joe] Add setter for CustomPrefs</li>
+<li>#6852 [@Bond-009] Fix some warnings</li>
+<li>#6851 [@cvium] Remove ILibraryManager as a dependency in resolvers etc.</li>
+<li>#6850 [@PetrusZ] Add Collection Validator, create collection based on nfo</li>
+<li>#6849 [@1337joe] Actually check server disabled metadata providers</li>
+<li>#6848 [@marius-luca-87] Ensure the proper StartTimeTicks variable is forwarded to the AddDlnaHeaders function</li>
+<li>#6845 [@marius-luca-87] Flush the XmlWriter before calling the StringBuilder ToString() method</li>
+<li>#6841 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh</li>
+<li>#6838 [@crobibero] Add nullable dictionary openapi mapping</li>
+<li>#6837 [@crobibero] Don’t throw exception on unauthenticated requests</li>
+<li>#6836 [@cvium] Very light cleanup in applicationhost</li>
+<li>#6831 [@1337joe] Image provider cleanup</li>
+<li>#6830 [@crobibero] Fix filtering images without dimensions</li>
+<li>#6829 [@crobibero] Remove Obsolete attribute on enum</li>
+<li>#6823 [@crobibero] Fix nullability on DisplayPreferencesDto</li>
+<li>#6822 [@NickSica] Fix Ombi auth through Jellyfin</li>
+<li>#6819 [@cvium] Try to use Width and Height from ImageInfo to determine aspect ratio</li>
+<li>#6818 [@Bond-009] Replace PBKDF2-SHA1 with PBKDF2-SHA512</li>
+<li>#6816 [@Bond-009] Fix some warnings</li>
+<li>#6814 [@thornbill] Fix yaml format issue in issue template</li>
+<li>#6813 [@Bond-009] Fix some warnings</li>
+<li>#6808 [@cvium] Simplify and reduce LOC in ControlHandler</li>
+<li>#6806 [@crobibero] Update to full dotnet 6</li>
+<li>#6795 [@LinFor] Fix DLNA on older Samsung TVs</li>
+<li>#6794 [@Bond-009] Remove some dead code</li>
+<li>#6793 [@Bond-009] Add some docs and tests</li>
+<li>#6792 [@Bond-009] Fix UnauthorizedAccessException in GetDrives</li>
+<li>#6791 [@cvium] Load all types when checking plugin DLLs</li>
+<li>#6784 [@nielsvanvelzen] Fix OpenAPI workflow fork cloning</li>
+<li>#6783 [@1337joe] Deprecate ImageType.Screenshot and ItemFields.Screenshot</li>
+<li>#6782 [@nielsvanvelzen] Fix OpenAPI workflow not working with pull requests from forks</li>
+<li>#6781 [@1337joe] Add MaxCastMembers to TMDb Plugin Settings</li>
+<li>#6778 [@jvoisin] Add a bit of hardening to the systemd service</li>
+<li>#6777 [@ThibaultNocchi] Fix WebVTT region to spec</li>
+<li>#6774 [@cvium] Make sure ReadToDescendant was successful before continuing</li>
+<li>#6769 [@Bond-009] Remove unused IHasScreenshots interface</li>
+<li>#6766 [@Bond-009] Minor improvements</li>
+<li>#6765 [@zehnerGIT] Make tags import from TMDB configurable</li>
+<li>#6764 [@zehnerGIT] Prevent log spam in StreamBuilder.cs</li>
+<li>#6763 [@1337joe] Clean up duplicate TmdbImageProvider code</li>
+<li>#6762 [@WWWesten] Add missing localization options</li>
+<li>#6761 [@Bond-009] Streamline startup code</li>
+<li>#6752 [@1337joe] Add Tests, Fix metadata refresh deletes backgrounds</li>
+<li>#6748 [@ptalmeida] Add pt-pt as culture, fix localization typo</li>
+<li>#6745 [@crobibero] Use correct id when finding existing dlna profile</li>
+<li>#6740 [@zirdum] Corrected Unraid template link</li>
+<li>#6737 [@Bond-009] Enable nullable for MediaBrowser.Providers</li>
+<li>#6735 [@Bond-009] Enable nullable for more files</li>
+<li>#6718 [@MBR-0001] Add IsAutomated property to SubtitleSearchRequest</li>
+<li>#6695 [@crobibero] Update to dotnet6.rc2</li>
+<li>#6689 [@1337joe] Expand video attached image extraction to support multiple images/types</li>
+<li>#6681 [@dmitrylyzo] Add more sorting to Latest</li>
+<li>#6680 [@MarcelCoding] Add Docker Healthcheck</li>
+<li>#6678 [@Bond-009] Use new Random.Shared instead of creating new instances</li>
+<li>#6677 [@Bond-009] Remove duplicate Fisher–Yates shuffle impl</li>
+<li>#6676 [@Bond-009] Use static crypto rng</li>
+<li>#6673 [@cvium] Return the path to the pinfile in forgot password</li>
+<li>#6670 [@lyarenei] Update artist split whitelist</li>
+<li>#6667 [@Bond-009] Fix the last few warnings</li>
+<li>#6666 [@Bond-009] Fix issue #6123</li>
+<li>#6665 [@Bond-009] Improve test coverage for QuickConnectManager</li>
+<li>#6664 [@cvium] Queue refresh after subtitle upload and minor fixes</li>
+<li>#6663 [@crobibero] Reference dotnet6-rc1 packages</li>
+<li>#6656 [@daullmer] Change .vscode/launch.json to use .NET 6</li>
+<li>#6651 [@KonH] Fix part of common warnings</li>
+<li>#6649 [@barronpm] Fix Warnings in Emby.Server.Implementations (Part 2)</li>
+<li>#6648 [@barronpm] Fix warnings in Emby.Server.Implementations (Part 1)</li>
+<li>#6646 [@1337joe] Add test data and unit test for mp4 metadata probe</li>
+<li>#6644 [@Bond-009] Enable nullable for ItemDataProvider</li>
+<li>#6641 [@Bond-009] Use ConvertFrom with invariant culture instead of current culture</li>
+<li>#6639 [@1337joe] Add mp4 track title fallback</li>
+<li>#6631 [@GodTamIt] Update README for .NET version</li>
+<li>#6629 [@crobibero] Disable DOTNET_SYSTEM_GLOBALIZATION_INVARIANT in docker images</li>
+<li>#6627 [@Bond-009] Add regression test for #6560</li>
+<li>#6618 [@crobibero] Create output directory when extracting archive files</li>
+<li>#6616 [@crobibero] Remove all instances of en-US culture</li>
+<li>#6614 [@Bond-009] Fix some warnings</li>
+<li>#6613 [@Bond-009] Use RandomAccess instead of a FileStream where it makes sense</li>
+<li>#6612 [@Bond-009] Remove sync FileStream hack</li>
+<li>#6611 [@Bond-009] Fix user DB migration</li>
+<li>#6600 [@cvium] Add first draft of keyframe extraction for Matroska</li>
+<li>#6597 [@Bond-009] Add regression test for  #5323</li>
+<li>#6596 [@crobibero] Add Jellyfin.Extensions to nuget package publish</li>
+<li>#6593 [@Bond-009] ItemImageProvider: improve HTTP error handling</li>
+<li>#6592 [@Bond-009] SsdpHttpClient: Ensure successful status code before reading response</li>
+<li>#6590 [@Bond-009] Target net6.0</li>
+<li>#6589 [@Bond-009] Validate ffmpeg path</li>
+<li>#6588 [@Bond-009] Fix issue #6587</li>
+<li>#6584 [@Bond-009] Specify DateTimeStyles when possible</li>
+<li>#6582 [@Bond-009] Allow shutdown while starting WebHost</li>
+<li>#6580 [@Artiume] Update Docker Image</li>
+<li>#6571 [@Dixin] Fix extra folder name and type mapping.</li>
+<li>#6569 [@crobibero] Update to dotnet 5.0.10</li>
+<li>#6567 [@Bond-009] Reduce allocations</li>
+<li>#6564 [@Bond-009] Fix Azure CI</li>
+<li>#6563 [@Bond-009] Fix SubtitleEncoder and add regression tests</li>
+<li>#6558 [@dmitrylyzo] Respond on request when ffmpeg fails</li>
+<li>#6556 [@nielsvanvelzen] Use standard Authorization header in OpenAPI specification</li>
+<li>#6553 [@ankenyr] Comparing PremiereDate when episode comparison would otherwise be equal.</li>
+<li>#6551 [@MrChip53] Add ListingProviderInfo Id to XMLTV cache file name</li>
+<li>#6546 [@ianjazz246] Use TheoryData instead of IEnumerable</li>
+<li>#6544 [@cvium] Don’t set ffmpeg path from null to its Display value</li>
+<li>#6541 [@cvium] Read file length for symlinks,</li>
+<li>#6538 [@cvium] Kill ProgressiveFileCopier and seek to end for ongoing livetv</li>
+<li>#6535 [@Bond-009] Add tests for DlnaController</li>
+<li>#6534 [@Bond-009] Fix some warnings</li>
+<li>#6531 [@GodTamIt] Fix images “not loading” after manual identification</li>
+<li>#6528 [@oledfish] Add “Production” and “TV” episode orders to the metadata editor.</li>
+<li>#6526 [@Bond-009] Fix log message</li>
+<li>#6523 [@cvium] Fix disposed exception when ffmpeg exits early in GetLiveHlsStream</li>
+<li>#6522 [@ferferga] EFCore improvements and cleanups</li>
+<li>#6521 [@ferferga] Fix Dockerfile typos</li>
+<li>#6515 [@Maeur1] Update Intel Compute Runtime Resources</li>
+<li>#6507 [@Artiume] Convert Issue Template to YAML</li>
+<li>#6506 [@Artiume] Request FFmpeg version</li>
+<li>#6502 [@crobibero] Add Jellyfin.Extensions to package publish</li>
+<li>#6501 [@crobibero] Enable nullable for SchedulesDirect // Add Tests for SchedulesDirect</li>
+<li>#6499 [@Bond-009] Fix some warnings</li>
+<li>#6498 [@Bond-009] Fix InvalidOperationException when serializing MediaPathInfo</li>
+<li>#6497 [@Bond-009] Add SqliteItemRepository.ItemImageInfoFromValueString as a fuzzing target</li>
+<li>#6495 [@qsniyg] Allow zero activity log retention days</li>
+<li>#6494 [@Bond-009] Clean up VideoImageProvider</li>
+<li>#6492 [@Bond-009] Ignore Omnisharp crash logs</li>
+<li>#6491 [@Bond-009] Fix build</li>
+<li>#6486 [@fredriklindberg] Support forwarded headers for api url</li>
+<li>#6485 [@markshark05] Update M3U Channel Name Precedence</li>
+<li>#6475 [@crobibero] Remove more and more warnings</li>
+<li>#6474 [@Bond-009] Add tests for LibraryStructureController</li>
+<li>#6473 [@Bond-009] Enable nullable for more files</li>
+<li>#6457 [@Izumiko] Add ‘includeAdult’ option for TheMovieDb</li>
+<li>#6456 [@GodTamIt] Disambiguate vpx to vp8 or vp9</li>
+<li>#6446 [@Deathspike] Fix embedded subtitles taking priority over external ones</li>
+<li>#6445 [@cvium] Add timeout to ProgressiveFileStream</li>
+<li>#6444 [@cvium] Use ProgressiveFileStream for LiveRecordings endpoint</li>
+<li>#6436 [@daullmer] Add Splashscreen api endpoint</li>
+<li>#6434 [@crobibero] Update Dockerfile to use debian:bullseye-slim</li>
+<li>#6430 [@Bond-009] Minor improvements</li>
+<li>#6429 [@crobibero] Update to dotnet 5.0.9</li>
+<li>#6428 [@Bond-009] Fix PasswordHash tests</li>
+<li>#6427 [@winterqt] Disable UseAppHost in portable deployment</li>
+<li>#6425 [@boolemancer] Fix explicit stream selection in MediaEncoder.ExtractImageInternal</li>
+<li>#6423 [@richlander] Fix warnings in MediaBrowser.Controller</li>
+<li>#6422 [@daullmer] Add support for NFO fanart tag</li>
+<li>#6414 [@richlander] Fix warnings in MediaBrowser.Controller/MediaEncoding directory</li>
+<li>#6412 [@richlander] Fix warnings in MediaBrowser.Controller/Session</li>
+<li>#6404 [@crobibero] Fix redirect logic if request path is exactly the base url</li>
+<li>#6403 [@ankenyr] Adding tests for AiredEpisodeOrderComparer.</li>
+<li>#6402 [@anthonylavado] Add sponsor links</li>
+<li>#6397 [@MrChip53] Properly stream M3U file over http</li>
+<li>#6394 [@h1dden-da3m0n] ci: change OS packaging images to be quiet</li>
+<li>#6392 [@Bond-009] ApiServiceCollectionExtensions.AddProxyAddresses: Add more tests</li>
+<li>#6388 [@Bond-009] Minor improvements</li>
+<li>#6386 [@richlander] Fix warnings in MediaBrowser.Controller/LiveTv</li>
+<li>#6383 [@sushilicious] Made default parser a tiny bit more robust</li>
+<li>#6381 [@Bond-009] Enable nullable for DlnaManager</li>
+<li>#6379 [@getupbuzz] Optimize episode parser</li>
+<li>#6377 [@richlander] Optimize Dockerfiles</li>
+<li>#6358 [@MrTimscampi] Enable people for audio files and add music probing test</li>
+<li>#6355 [@Bond-009] EnsureLibraryFolder: Minor optimization</li>
+<li>#6354 [@Bond-009] Enable nullable in more files</li>
+<li>#6346 [@richlander] Fix warnings in MediaBrowser.Controller/Drawing</li>
+<li>#6344 [@richlander] Update to .NET SDK 5.0.302</li>
+<li>#6342 [@richlander] Fix warnings in MediaBrowser.Controller/Library</li>
+<li>#6339 [@richlander] Fix partial set of MediaBrowser.Controller/Entities warnings</li>
+<li>#6338 [@richlander] Fix warnings for MediaBrowser.Controller/Providers directory</li>
+<li>#6336 [@richlander] Fix warning in MediaBrowser.Controllers/Channels</li>
+<li>#6335 [@richlander] Fix MediaBrowsers.Providers analysis issues</li>
+<li>#6329 [@Bond-009] Add tests for GetResolutionText</li>
+<li>#6328 [@Bond-009] Improve episode parser</li>
+<li>#6327 [@nyanmisaka] Add support for cuda tonemap and overlay</li>
+<li>#6326 [@crobibero] Update to dotnet 5.0.8</li>
+<li>#6308 [@nielsvanvelzen] Add OpenAPI workflow</li>
+<li>#6304 [@Bond-009] Add h265 to CleanStrings</li>
+<li>#6303 [@Artiume] update bug report to ask for hwaccel</li>
+<li>#6300 [@thornbill] Update stalebot configuration</li>
+<li>#6298 [@crobibero] Remove /MusicGenres/{id}/InstantMix endpoint</li>
+<li>#6297 [@Bond-009] Fix episode parser</li>
+<li>#6296 [@Bond-009] Improve platform checks</li>
+<li>#6290 [@Bond-009] Remove old “has update available” code</li>
+<li>#6289 [@Bond-009] Fix some warnings</li>
+<li>#6283 [@natedawg] Fix spelling of artist K/DA in splitting whitelist</li>
+<li>#6281 [@crobibero] Reduce warnings in MediaBrowser.Controller</li>
+<li>#6280 [@MrTimscampi] Add more artist names to the splitting whitelist</li>
+<li>#6279 [@Bond-009] Add tests for Playback/BitrateTest endpoint</li>
+<li>#6276 [@crobibero] BitrateTest: Use ASP validation, increase maximum size.</li>
+<li>#6268 [@Bond-009] Add test for RobotsRedirectionMiddleware</li>
+<li>#6267 [@Bond-009] Minor fixes</li>
+<li>#6262 [@MrTimscampi] Prefer original date when getting premiere date from ffprobe</li>
+<li>#6258 [@gnuyent] Add hardware encoding status to playback data</li>
+<li>#6257 [@MrTimscampi] Use artist backdrop for generated library image</li>
+<li>#6256 [@MrTimscampi] Refactor GetResolutionText</li>
+<li>#6240 [@Bond-009] Add tests for QuickConnectManager</li>
+<li>#6239 [@jvoisin] Add a LGTM.com badge</li>
+<li>#6236 [@Bond-009] Fix QuickConnect</li>
+<li>#6233 [@Bond-009] MediaBrowser.Providers: Remove some warnings</li>
+<li>#6222 [@orryverducci] Fix interlace check for H.264 MBAFF coded MP4 files</li>
+<li>#6210 [@bellegarde-c] debian: Add maxcpucount option to override_dh_auto_build. Fix #5234</li>
+<li>#6208 [@h1dden-da3m0n] disable project automation workflows in forks</li>
+<li>#6204 [@Bond-009] Move non-jellyfin extensions to separate project</li>
+<li>#6201 [@barronpm] Migrate Authentication DB to EF Core</li>
+<li>#6200 [@nielsvanvelzen] Refactor Quick Connect</li>
+<li>#6197 [@MrTimscampi] Document SubtitleDeliveryMethod</li>
+<li>#6191 [@crobibero] Update to dotnet 5.0.7</li>
+<li>#6183 [@stanionascu] Better detection of the ISO DVD/BD types</li>
+<li>#6180 [@crobibero] Ignore Test Controllers</li>
+<li>#6177 [@Bond-009] Use async FileStreams where it makes sense</li>
+<li>#6176 [@nielsvanvelzen] Require userId in getItems and getTrailers endpoints</li>
+<li>#6174 [@Bond-009] Remove our own RemoveDiacritcs string extension in favor of Diacritics.Net</li>
+<li>#6173 [@Bond-009] Add test for ReadOnlySpan.Count extension</li>
+<li>#6172 [@Bond-009] Remove useless nullable directives</li>
+<li>#6165 [@Bond-009] Fix duplicate keys causing an exception</li>
+<li>#6163 [@Bond-009] Fix index out of range and add reg tests</li>
+<li>#6162 [@crobibero] Redirect to default if root is requested</li>
+<li>#6156 [@Bond-009] Minor fixes</li>
+<li>#6150 [@Bond-009] Add property based testing</li>
+<li>#6137 [@ferferga] Refactor Github Actions</li>
+<li>#6133 [@ferferga] Pull request target</li>
+<li>#6121 [@Bond-009] Fix some warnings</li>
+<li>#6117 [@LinFor] Add OriginalTitle to ItemLookupInfo</li>
+<li>#6116 [@Maxr1998] Fix broken link in CONTRIBUTORS and add myself</li>
+<li>#6115 [@Maxr1998] Refactor ProbeResultNormalizer</li>
+<li>#6102 [@LinFor] Don’t prefer OMDB rating over all other providers</li>
+<li>#6096 [@cvium] Remove some unnecessary allocations</li>
+<li>#6094 [@crobibero] Add sorting to /Artists/AlbumArtists</li>
+<li>#6090 [@cvium] Bump SQLitePCL.pretty.netstandard to 3.0.1</li>
+<li>#6089 [@BaronGreenback] Set UserRootFolder.IsRoot to true</li>
+<li>#6086 [@Bond-009] Remove dead code</li>
+<li>#6084 [@Bond-009] Enable nullable reference types for MediaBrowser.MediaEncoding</li>
+<li>#6083 [@Bond-009] Enable nullable reference types for Emby.Server.Implementations</li>
+<li>#6075 [@MrTimscampi] Properly detect Dolby Vision files derived from AV1, AVC and HEVC</li>
+<li>#6074 [@Bond-009] Enable nullable for InternalItemsQuery</li>
+<li>#6072 [@crobibero] Update to Dotnet 5.0.6 (Fixed)</li>
+<li>#6071 [@BaronGreenback] Make DLNA folders to work as expected.</li>
+<li>#6058 [@ferferga] Add FullNowPlayingQueue property to sessions endpoint</li>
+<li>#6054 [@cvium] Reduce some allocations</li>
+<li>#6051 [@Bond-009] Add tests for Recordinghelper</li>
+<li>#6050 [@Bond-009] Fully disable stupid rules</li>
+<li>#6047 [@crobibero] Update to Dotnet 5.0.6</li>
+<li>#6042 [@crobibero] Reduce warnings in MediaBrowser.Controller (Part 2)</li>
+<li>#6037 [@ferferga] Replace GH_TOKEN with JF_BOT_TOKEN</li>
+<li>#6033 [@daullmer] Call TMDb Person API with metadata language</li>
+<li>#6031 [@ferferga] Run SQLite query planner optimization at shutdown/restart</li>
+<li>#6027 [@fredriklindberg] Improve series matching</li>
+<li>#6026 [@daullmer] Use TMDb parental rating building from movies for shows</li>
+<li>#6025 [@daullmer] Test LocalizationManager</li>
+<li>#6013 [@Bond-009] Minor improvements</li>
+<li>#6010 [@crobibero] Mooooove the label commenter config</li>
+<li>#6009 [@nielsvanvelzen] Disable automation CI on issues</li>
+<li>#6005 [@Bond-009] Enable nullable reference types for Emby.Dlna</li>
+<li>#6000 [@Bond-009] Enable nullable reference types for MediaBrowser.Controller</li>
+<li>#5999 [@Bond-009] Add support for legacy HDhomerun DUAl</li>
+<li>#5997 [@JKI12] Fixes for Book Progress</li>
+<li>#5995 [@tuky] Respect configured JELLYFIN_USER in Debian’s postinst</li>
+<li>#5990 [@BaronGreenback] Enable querystring to be encoded</li>
+<li>#5988 [@Bond-009] Add fuzzing infrastructure</li>
+<li>#5985 [@Bond-009] Minor improvements</li>
+<li>#5984 [@Bond-009] Add regression test for ContainerProfile.ContainsContainer</li>
+<li>#5982 [@Bond-009] Enable nullable reference types for MediaBrowser.Common</li>
+<li>#5980 [@Maxr1998] Fix direct play for DirectPlayProfiles without any codecs set</li>
+<li>#5979 [@daullmer] Add support for fanart aspect in thumb tag</li>
+<li>#5975 [@thornbill] Fix web build in dockerfiles</li>
+<li>#5973 [@crobibero] Kill the CI</li>
+<li>#5956 [@BaronGreenback] Minor optimization.</li>
+<li>#5955 [@Bond-009] Don’t run integration tests in parallel</li>
+<li>#5954 [@Bond-009] Add tests for SqliteItemRepository.(De)SerializeProviderIds</li>
+<li>#5952 [@Bond-009] Add tests for SqliteItemRepository.(De)SerializeImages</li>
+<li>#5946 [@Bond-009] TmdbUtils: Use ordinal string compare</li>
+<li>#5945 [@Bond-009] Fix scanning</li>
+<li>#5944 [@shortspider] Add ResumeBook Section</li>
+<li>#5941 [@Maxr1998] Improve documentation for DeviceProfile</li>
+<li>#5938 [@cvium] Reduce some allocations with the magic of spans etc.</li>
+<li>#5934 [@Bond-009] SqliteItemRepository: Parse ChannelId directly from utf-8 data</li>
+<li>#5929 [@crobibero] Add ability to sort on Genre, MusicGenre, Artist</li>
+<li>#5918 [@crobibero] Add endpoint to log client events</li>
+<li>#5905 [@BaronGreenback] Fix for Livetv and DLNA when bind interfaces specified.</li>
+<li>#5894 [@brianjmurrell] Allow to bind to priveleged ports (i.e. 80/443)</li>
+<li>#5893 [@Bond-009] SqliteItemRepository: remove redundant operations</li>
+<li>#5892 [@crobibero] Mark password property as obsolete</li>
+<li>#5891 [@Bond-009] ManagedFileSystem: Rewrite GetValidFilename and more improvements</li>
+<li>#5890 [@Bond-009] Reduce string allocations/fs lookups in resolve code</li>
+<li>#5889 [@Bond-009] Remove unused/duplicate services</li>
+<li>#5887 [@Bond-009] Improve perf of db save and query</li>
+<li>#5886 [@Artiume] Request all the logs</li>
+<li>#5877 [@Bond-009] EncodingHelper: Fix circular dependency</li>
+<li>#5876 [@Bond-009] DeepCopy: Throw ArgumentNullException if one of the args is null</li>
+<li>#5867 [@Bond-009] ProviderManager: fix discard and 2 warnings</li>
+<li>#5866 [@Bond-009] Switch from HttpClientHandler to SocketsHttpHandler</li>
+<li>#5864 [@DeeJayBro] Fix ArgumentOutOfRangeException when getting PostedPlaybackInfo</li>
+<li>#5843 [@BaronGreenback] Code Clean up: Remove unused using directives</li>
+<li>#5842 [@BaronGreenback] Code Clean up: Group Methods</li>
+<li>#5836 [@BaronGreenback] Code Clean up: “value assigned is not used in any execution path”</li>
+<li>#5828 [@jackrvan] Add NextUpCutoffDate to NextUpQuery</li>
+<li>#5807 [@Bond-009] Remove throttle in refresh code</li>
+<li>#5806 [@Bond-009] Fix possible ArgumentNullException</li>
+<li>#5803 [@crobibero] Properly redirect healthcheck endpoint if using BaseUrl</li>
+<li>#5794 [@richlander] Remove coupling to distro</li>
+<li>#5792 [@Bond-009] Fix possible ArgumentNullException</li>
+<li>#5784 [@Bond-009] Fix random failing of tests</li>
+<li>#5779 [@joshuaboniface] Add label commenter workflow</li>
+<li>#5768 [@Bond-009] Add test for handling dangling symlinks</li>
+<li>#5767 [@cvium] Do not touch “old” local artwork unless saving locally</li>
+<li>#5766 [@cvium] Use sync Serialize when writing scheduled tasks to disk</li>
+<li>#5763 [@Bond-009] Minor improvements to IPObjects</li>
+<li>#5762 [@BaronGreenback] Fix network test on dns failure</li>
+<li>#5759 [@Bond-009] Fix LogUnmatchedProfile formatting</li>
+<li>#5755 [@BaronGreenback] Auth: Network Access Policy</li>
+<li>#5744 [@mohd-akram] Add support for TMDB series absolute and DVD order</li>
+<li>#5738 [@cvium] Resolve name from episode folder</li>
+<li>#5731 [@Bond-009] Add tests for UserController</li>
+<li>#5730 [@thornbill] Disable HEVC encoding by default</li>
+<li>#5729 [@crobibero] Update to dotnet 5.0.5</li>
+<li>#5721 [@Bond-009] Add code to test authenticated endpoints</li>
+<li>#5713 [@Bond-009] Add tests for unauthenticated websocket access</li>
+<li>#5708 [@Bond-009] Enable NetAnalyzers for more projects</li>
+<li>#5707 [@ferferga] (jellyfin-web): Switch to npm</li>
+<li>#5699 [@Bond-009] Add test for ProbeResultNormalizer.GetMediaInfo</li>
+<li>#5697 [@Bond-009] Simplify the way we choose our ffmpeg</li>
+<li>#5696 [@Maxr1998] Improve metadata probing to better support music videos</li>
+<li>#5691 [@Bond-009] Fix possible nullref</li>
+<li>#5685 [@Bond-009] Remove useless null check</li>
+<li>#5681 [@BaronGreenback] Various DLNA Optimizations</li>
+<li>#5676 [@Bond-009] Remove useless code</li>
+<li>#5675 [@Bond-009] Add tests for CopyToExtensions</li>
+<li>#5659 [@ssenart] [DLNA] [NextTrack] [Gapless] Fix 5644 and 5294</li>
+<li>#5648 [@OancaAndrei] Fix session references in SyncPlay</li>
+<li>#5637 [@dmitrylyzo] Check appropriate profile type</li>
+<li>#5623 [@barronpm] EF Core Cleanup 2</li>
+<li>#5614 [@Bond-009] Fix possible null ref exception</li>
+<li>#5612 [@Bond-009] Rewrite PasswordHash.Parse to work with ReadOnlySpans</li>
+<li>#5606 [@lmnotran] Delay starting service until after network is online</li>
+<li>#5602 [@daullmer] Don’t convert from IPAddress to string to IPAddress</li>
+<li>#5598 [@cvium] change HLS endpoint defaults to false</li>
+<li>#5586 [@nyanmisaka] Disable auto rotation for some HWA methods</li>
+<li>#5580 [@Bond-009] Add StartupControllerTests</li>
+<li>#5579 [@cocool97] Add ‘group-title’ channel parsing</li>
+<li>#5561 [@barronpm] Fix duplicate permissions</li>
+<li>#5522 [@Bond-009] Fix integration test project</li>
+<li>#5520 [@Bond-009] Rewrite Rewrite HdHomerunManager.ParseReturnMessage and add tests</li>
+<li>#5490 [@thornbill] Remove forum badge</li>
+<li>#5467 [@daullmer] Nfo id parsing fixes</li>
+<li>#5422 [@Bond-009] FxCop -> Net Analyzers (part 2)</li>
+<li>#5417 [@Bond-009] Add code analysis attributes where appropriate</li>
+<li>#5395 [@barronpm] Jellyfin.Data Cleanup Part 1</li>
+<li>#5384 [@Larvitar] Do not apply search results on seasons</li>
+<li>#5382 [@crobibero] Add JsonVersionConverter and tests</li>
+<li>#5380 [@Bond-009] 100% branch coverage for DashboardController</li>
+<li>#5362 [@crobibero] Fix case-sensitive json parsing</li>
+<li>#5359 [@cvium] Do nothing in timer callback when device locator is disposed</li>
+<li>#5354 [@shortspider] Update README to include ffmpeg</li>
+<li>#5338 [@Bond-009] Remove tests that are upstreamed</li>
+<li>#5336 [@Bond-009] Split integration tests from unit tests</li>
+<li>#5321 [@daullmer] Add nfo thumb tag support</li>
+<li>#5317 [@Bond-009] MaybeNullWhen(false) -> NotNullWhen(true)</li>
+<li>#5314 [@barronpm] Remove unused entity</li>
+<li>#5307 [@barronpm] Switch to Using Declarations in MediaBrowser.Providers</li>
+<li>#5299 [@Bond-009] Improve branch coverage</li>
+<li>#5291 [@Bond-009] Add tests for DashboardController</li>
+<li>#5285 [@Bond-009] Update deps Jellyfin.Model.Tests</li>
+<li>#5277 [@Bond-009] Add Jellyfin.Model.Tests project to the solution</li>
+<li>#5276 [@Bond-009] Minor improvements</li>
+<li>#5273 [@Bond-009] Enable TreatWarningsAsErrors for MediaBrowser.Model</li>
+<li>#5253 [@Bond-009] Fix broken test</li>
+<li>#5243 [@crobibero] Bump Swashbuckle.AspNetCore to 6.0.5</li>
+<li>#5242 [@Bond-009] Properly forward cancellationTokens</li>
+<li>#5235 [@daullmer] Add more nfo tests</li>
+<li>#5228 [@lbenini] Fix BaseItemKind conversion for PlaylistsFolder</li>
+<li>#5226 [@Bond-009] 100% branch coverage for Emby.Naming</li>
+<li>#5223 [@Bond-009] Minor improvements</li>
+<li>#5222 [@Bond-009] Don’t enable case-insensitivity for json by default</li>
+<li>#5220 [@Bond-009] Rewrite packet writing code for HdHomerun</li>
+<li>#5218 [@dkanada] rename the solution file</li>
+<li>#5213 [@Bond-009] Add tests for RequestHelpers.GetItemTypeStrings</li>
+<li>#5209 [@crobibero] Create BaseItemKind enum</li>
+<li>#5194 [@daullmer] Add nfo parsing for watched, playcount and lastplayed</li>
+<li>#5193 [@daullmer] Add test for generic nfo provider id parsing</li>
+<li>#5190 [@Bond-009] Add regression test for PluginManager.SaveManifest</li>
+<li>#5189 [@Bond-009] Remove last usage of \d</li>
+<li>#5174 [@barronpm] Clean up UserManager.AuthenticateUser</li>
+<li>#5166 [@netpok] Get episode range end from XBMC compatible nfo</li>
+<li>#5159 [@daullmer] Remove unused files</li>
+<li>#5142 [@M0ssTee] Replaced /d with [0-9], see issue #2923</li>
+<li>#5112 [@Bond-009] Add test for ShuffleExtensions</li>
+<li>#5097 [@Bond-009] Remove useless abstraction and clean up formatting</li>
+<li>#5092 [@OancaAndrei] Clear playlist in SyncPlay group</li>
+<li>#5088 [@daullmer] Fix nfo saving during UserDataSaved event</li>
+<li>#5085 [@daullmer] Process actor type in nfo files</li>
+<li>#5084 [@daullmer] Don’t write tagline in <outline> in nfo files</outline></li>
+<li>#5074 [@Bond-009] 100% branch coverage for Jellyfin.Naming</li>
+<li>#5068 [@daullmer] Add additional tests for nfo parsing</li>
+<li>#5043 [@senritsu] adjust episode path expression to allow digits in series names</li>
+<li>#5012 [@Bond-009] Improve WebSocket Message Deserialization</li>
+<li>#5010 [@BaronGreenback] Removal of IPluginConfigurationPage</li>
+<li>#5009 [@MrTimscampi] Move studios image providers to plugin</li>
+<li>#5007 [@Bond-009] Open FileStream with FileMode.Create instead of FileMode.OpenOrCreate</li>
+<li>#5006 [@Bond-009] Use JsonSerializer.SerializeToUtf8Bytes when doing a round trip</li>
+<li>#5005 [@Bond-009] JsonSerializer deserialize from bytes where possible</li>
+<li>#4994 [@Bond-009] Add tests for artist nfo</li>
+<li>#4992 [@Bond-009] Add tests for series nfo</li>
+<li>#4989 [@Bond-009] Add tests for NFO parsers</li>
+<li>#4988 [@Bond-009] Remove CropWhitespace function</li>
+<li>#4986 [@Bond-009] Use new ReadAllLines extensions</li>
+<li>#4984 [@Bond-009] Use SubtitleEdit to parse subtitles</li>
+<li>#4981 [@daullmer] Add .nfo ratings tag</li>
+<li>#4945 [@obradovichv] Fix string culture specificity</li>
+<li>#4943 [@crobibero] Fix OMDb converter</li>
+<li>#4899 [@Bond-009] Cover all branches in JsonNullableGuidConverter</li>
+<li>#4878 [@Bond-009] Add tests for srt parser</li>
+<li>#4877 [@Bond-009] Add tests for ass parser</li>
+<li>#4857 [@crobibero] Fix dependencies</li>
+<li>#4853 [@daullmer] Use System.Text.Json instead of ServiceStack.Text</li>
+<li>#4849 [@crobibero] Remove unused dependencies</li>
+<li>#4799 [@tommasodotNET] Authorization header parsing</li>
+<li>#4775 [@barronpm] Enable Nullable for Jellyfin.Server.Implementations</li>
+<li>#4766 [@barronpm] Convert DeleteUser to async</li>
+<li>#4754 [@Bond-009] Migrate from FxCop analyzers to .NET analyzers</li>
+<li>#4731 [@Sylk] Modified ReadMe with updated command line command</li>
+<li>#4720 [@MrTimscampi] Add overloaded constructor for ActivityLog levels</li>
+<li>#4665 [@anthonylavado] Fix the NPM publish scope to public</li>
+<li>#4664 [@joshuaboniface] Make me codeowner of the .ci dir</li>
+<li>#4663 [@joshuaboniface] Bump version to 10.8.0 for next release</li>
+<li>#4615 [@strugee] Improve restart.sh</li>
+<li>#4005 [@cromefire] Add additional opts for systemd / upstart</li>
+</ul>
+<h4 id="jellyfin-web-302"><a href="https://github.com/jellyfin/jellyfin-web">jellyfin-web</a> [302]</h4>
+<ul>
+<li>jellyfin/jellyfin-web#3547 [@thornbill] Fix touch events in epub player</li>
+<li>jellyfin/jellyfin-web#3535 [@dmitrylyzo] Fix ‘resume’ when clicking on item details poster</li>
+<li>jellyfin/jellyfin-web#3527 [@thornbill] Fix rewatching next up status</li>
+<li>jellyfin/jellyfin-web#3525 [@whiteowl3] Correct Typo</li>
+<li>jellyfin/jellyfin-web#3519 [@dmitrylyzo] Escape HTML</li>
+<li>jellyfin/jellyfin-web#3505 [@dmitrylyzo] Fix HTML escaping</li>
+<li>jellyfin/jellyfin-web#3503 [@felixoswald] Fix birth location link</li>
+<li>jellyfin/jellyfin-web#3502 [@dmitrylyzo] Fix webOS OPUS support</li>
+<li>jellyfin/jellyfin-web#3501 [@dmitrylyzo] Fix old streamInfo on stream change</li>
+<li>jellyfin/jellyfin-web#3500 [@dmitrylyzo] Some fixes for theme song/video</li>
+<li>jellyfin/jellyfin-web#3498 [@thornbill] Restore missing MessageUnauthorizedUser error message</li>
+<li>jellyfin/jellyfin-web#3496 [@renovate[bot]] Update development dependencies</li>
+<li>jellyfin/jellyfin-web#3495 [@thornbill] Fix any type warning</li>
+<li>jellyfin/jellyfin-web#3493 [@thornbill] Add default-case-last rule and fix issues</li>
+<li>jellyfin/jellyfin-web#3492 [@renovate[bot]] Update dependency @types/react to v17.0.40</li>
+<li>jellyfin/jellyfin-web#3490 [@h1dden-da3m0n] add dev-deps label to renovate dev-deps PRs</li>
+<li>jellyfin/jellyfin-web#3489 [@thornbill] Add headings to display settings screen</li>
+<li>jellyfin/jellyfin-web#3488 [@renovate[bot]] Update dependency cssnano to v5.1.1</li>
+<li>jellyfin/jellyfin-web#3482 [@nyanmisaka] Remove the deprecated OMX HWA</li>
+<li>jellyfin/jellyfin-web#3481 [@Maxr1998] Sort album tracks by (Parent)IndexNumber, then SortName</li>
+<li>jellyfin/jellyfin-web#3480 [@thornbill] Fix more accessibility issues</li>
+<li>jellyfin/jellyfin-web#3478 [@thornbill] Fix click on item details poster playing wrong item</li>
+<li>jellyfin/jellyfin-web#3477 [@renovate[bot]] Update development dependencies</li>
+<li>jellyfin/jellyfin-web#3476 [@renovate[bot]] Update development dependencies</li>
+<li>jellyfin/jellyfin-web#3475 [@renovate[bot]] Update dependency cssnano to v5.1.0</li>
+<li>jellyfin/jellyfin-web#3474 [@renovate[bot]] Update CI dependencies (major)</li>
+<li>jellyfin/jellyfin-web#3473 [@thornbill] Move rewatching in next up to display option and remove home section</li>
+<li>jellyfin/jellyfin-web#3472 [@thornbill] Add google cast unsupported message and update translations</li>
+<li>jellyfin/jellyfin-web#3471 [@thornbill] Fix remaining any type warnings</li>
+<li>jellyfin/jellyfin-web#3467 [@dmitrylyzo] Return Promise from SyncPlay playRequest</li>
+<li>jellyfin/jellyfin-web#3466 [@dmitrylyzo] Fix HTMLMediaElement.play no Promise</li>
+<li>jellyfin/jellyfin-web#3465 [@dmitrylyzo] Show slideshow OSD on click</li>
+<li>jellyfin/jellyfin-web#3464 [@thornbill] Fix minor issues with card padder icons</li>
+<li>jellyfin/jellyfin-web#3463 [@dmitrylyzo] Add more accessibility</li>
+<li>jellyfin/jellyfin-web#3461 [@dmitrylyzo] Fix page reload on return</li>
+<li>jellyfin/jellyfin-web#3460 [@thornbill] Fix remote control translation</li>
+<li>jellyfin/jellyfin-web#3459 [@dmitrylyzo] Add aria-hidden to button icons</li>
+<li>jellyfin/jellyfin-web#3458 [@dmitrylyzo] Alter the title of the state buttons</li>
+<li>jellyfin/jellyfin-web#3457 [@renovate[bot]] Update actions/setup-node action to v3</li>
+<li>jellyfin/jellyfin-web#3456 [@dmitrylyzo] Few refactors of remotecontrol</li>
+<li>jellyfin/jellyfin-web#3453 [@dmitrylyzo] Add copy buttons to Media Info</li>
+<li>jellyfin/jellyfin-web#3452 [@thornbill] Update mixed library label</li>
+<li>jellyfin/jellyfin-web#3451 [@thornbill] Move rewatching to separate home screen section</li>
+<li>jellyfin/jellyfin-web#3449 [@dmitrylyzo] Unhide some options on TVs</li>
+<li>jellyfin/jellyfin-web#3448 [@dmitrylyzo] Add card padder icon for items with an image</li>
+<li>jellyfin/jellyfin-web#3445 [@dmitrylyzo] Fix nowplayingbar not displaying when restoring the view</li>
+<li>jellyfin/jellyfin-web#3444 [@dmitrylyzo] Fix playing theme song when using parent links</li>
+<li>jellyfin/jellyfin-web#3443 [@dmitrylyzo] Fix Play/Resume focus jump</li>
+<li>jellyfin/jellyfin-web#3438 [@thornbill] Update renovate configuration</li>
+<li>jellyfin/jellyfin-web#3435 [@renovate[bot]] Update development dependencies</li>
+<li>jellyfin/jellyfin-web#3434 [@renovate[bot]] Update dependency postcss-preset-env to v7.4.1</li>
+<li>jellyfin/jellyfin-web#3433 [@dmitrylyzo] [TypeScript] Disable implicit any</li>
+<li>jellyfin/jellyfin-web#3432 [@1337joe] Fix show sort by date played</li>
+<li>jellyfin/jellyfin-web#3431 [@dmitrylyzo] Check OPUS support on webOS</li>
+<li>jellyfin/jellyfin-web#3427 [@dmitrylyzo] Reload backdrop on restore</li>
+<li>jellyfin/jellyfin-web#3426 [@thornbill] Fix new lint errors</li>
+<li>jellyfin/jellyfin-web#3424 [@renovate[bot]] Update dependency follow-redirects to 1.14.8 [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3420 [@dmitrylyzo] Display physical dimensions of player</li>
+<li>jellyfin/jellyfin-web#3415 [@dmitrylyzo] Fix focus on Home tab</li>
+<li>jellyfin/jellyfin-web#3412 [@dmitrylyzo] Reduce the size of the icon in the ListView</li>
+<li>jellyfin/jellyfin-web#3411 [@dmitrylyzo] Allow navigation to the parent show/season/album</li>
+<li>jellyfin/jellyfin-web#3409 [@thornbill] Fix pagination on live tv pages</li>
+<li>jellyfin/jellyfin-web#3408 [@renovate[bot]] Update development dependencies</li>
+<li>jellyfin/jellyfin-web#3406 [@renovate[bot]] Update dependency postcss [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3405 [@renovate[bot]] Update development dependencies (major)</li>
+<li>jellyfin/jellyfin-web#3403 [@renovate[bot]] Update actions/checkout action to v2.4.0</li>
+<li>jellyfin/jellyfin-web#3402 [@renovate[bot]] Pin dependencies</li>
+<li>jellyfin/jellyfin-web#3399 [@renovate[bot]] Update dependency nanoid to 3.1.31 [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3398 [@renovate[bot]] Update dependency marked to 4.0.10 [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3395 [@renovate[bot]] Update dependency follow-redirects to 1.14.7 [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3394 [@renovate[bot]] Update dependency browserslist to 4.16.5 [SECURITY]</li>
+<li>jellyfin/jellyfin-web#3385 [@dmitrylyzo] Fix themes</li>
+<li>jellyfin/jellyfin-web#3380 [@dmitrylyzo] Enable AV1 codec on webOS 5+ FHD</li>
+<li>jellyfin/jellyfin-web#3379 [@Shadowghost] Add external, forced and default attributes to subtitle and audio mediainfo</li>
+<li>jellyfin/jellyfin-web#3377 [@thornbill] Fix issue where wrong plugin could be disabled</li>
+<li>jellyfin/jellyfin-web#3376 [@SenorSmartyPants] Add option to season image downloader to pick from series images</li>
+<li>jellyfin/jellyfin-web#3374 [@dmitrylyzo] Handle resolved play promise</li>
+<li>jellyfin/jellyfin-web#3373 [@dmitrylyzo] Fix theme song playback when switching items with different themes</li>
+<li>jellyfin/jellyfin-web#3369 [@dmitrylyzo] Escape HTML</li>
+<li>jellyfin/jellyfin-web#3367 [@SenorSmartyPants] Display rewatching list in Next up section on home page</li>
+<li>jellyfin/jellyfin-web#3364 [@h1dden-da3m0n] add stale issue check workflow</li>
+<li>jellyfin/jellyfin-web#3361 [@MinecraftPlaye] Only use comic pages for internal calculations and ignore metadata files</li>
+<li>jellyfin/jellyfin-web#3360 [@dmitrylyzo] Show AlphaPicker if there is SortName</li>
+<li>jellyfin/jellyfin-web#3359 [@dmitrylyzo] Fix page layouts for webOS</li>
+<li>jellyfin/jellyfin-web#3357 [@SenorSmartyPants] Display MediaSourceCount for all media Types</li>
+<li>jellyfin/jellyfin-web#3356 [@SenorSmartyPants] Special Features: Display extraType as secondaryText on card</li>
+<li>jellyfin/jellyfin-web#3355 [@dmitrylyzo] Add Markdown to Login Disclaimer</li>
+<li>jellyfin/jellyfin-web#3354 [@dmitrylyzo] Fix Light theme text color</li>
+<li>jellyfin/jellyfin-web#3353 [@dmitrylyzo] Cleanup</li>
+<li>jellyfin/jellyfin-web#3351 [@dmitrylyzo] Fix starting of book player with a blank page</li>
+<li>jellyfin/jellyfin-web#3350 [@MinecraftPlaye]  Update the resume button after stopping</li>
+<li>jellyfin/jellyfin-web#3349 [@MinecraftPlaye] Save reading progress for pdfs for each page</li>
+<li>jellyfin/jellyfin-web#3348 [@thornbill] Fix unstyled emby-select field when rendered with React</li>
+<li>jellyfin/jellyfin-web#3347 [@dmitrylyzo] Stack toasts</li>
+<li>jellyfin/jellyfin-web#3344 [@knackebrot] Try to determine the number of speakers before falling back to hardcoded values</li>
+<li>jellyfin/jellyfin-web#3343 [@dmitrylyzo] Limit transcoding profiles with maximum resolution</li>
+<li>jellyfin/jellyfin-web#3342 [@dmitrylyzo] Fix LiveTV Channels paging and autofocus</li>
+<li>jellyfin/jellyfin-web#3341 [@dmitrylyzo] Add paging to listview</li>
+<li>jellyfin/jellyfin-web#3340 [@dmitrylyzo] Fix auto focus on Play/Resume</li>
+<li>jellyfin/jellyfin-web#3336 [@SenorSmartyPants] Display series level extras on tv series page.</li>
+<li>jellyfin/jellyfin-web#3335 [@dmitrylyzo] Fix Blurhash worker on webOS 1.2</li>
+<li>jellyfin/jellyfin-web#3334 [@dmitrylyzo] Fix trailer playback when no local trailers are available</li>
+<li>jellyfin/jellyfin-web#3324 [@thornbill] Add plugin repository help link</li>
+<li>jellyfin/jellyfin-web#3323 [@thornbill] Fix image urls</li>
+<li>jellyfin/jellyfin-web#3322 [@thornbill] Add channels link to home page section</li>
+<li>jellyfin/jellyfin-web#3319 [@SenorSmartyPants] Add episode details to live TV DVR schedule</li>
+<li>jellyfin/jellyfin-web#3318 [@iainsaxonhome] Added Quit App to main menu</li>
+<li>jellyfin/jellyfin-web#3317 [@SenorSmartyPants] Make Live TV Guide scrollbar visible.</li>
+<li>jellyfin/jellyfin-web#3315 [@1337joe] Expose collection generation options for mixed libraries</li>
+<li>jellyfin/jellyfin-web#3313 [@thornbill] Fix eslint polyfills for typescript files</li>
+<li>jellyfin/jellyfin-web#3302 [@marius-luca-87] Avoid requesting mjpeg attachements during ass subtitle playback</li>
+<li>jellyfin/jellyfin-web#3297 [@thornbill] Update babel packages</li>
+<li>jellyfin/jellyfin-web#3296 [@marius-luca-87] Add “Select All” action to multiSelect</li>
+<li>jellyfin/jellyfin-web#3281 [@joshuaboniface] Remove bump-version junk</li>
+<li>jellyfin/jellyfin-web#3271 [@thornbill] Fix number option in alphapicker</li>
+<li>jellyfin/jellyfin-web#3270 [@thornbill] Add Apple device icon</li>
+<li>jellyfin/jellyfin-web#3269 [@thornbill] Bump jellyfin-apiclient to v1.10.0</li>
+<li>jellyfin/jellyfin-web#3251 [@thornbill] Allow for unlimited photos in playbackmanager</li>
+<li>jellyfin/jellyfin-web#3250 [@thornbill] Make movies and shows in genre list random</li>
+<li>jellyfin/jellyfin-web#3247 [@thornbill] Remove network device option from add library dialog</li>
+<li>jellyfin/jellyfin-web#3246 [@thornbill] Fix Fedora and CentOS builds</li>
+<li>jellyfin/jellyfin-web#3244 [@thornbill] Add eslint rule for empty functions</li>
+<li>jellyfin/jellyfin-web#3242 [@crobibero] Add missing strings for TranscodeReason</li>
+<li>jellyfin/jellyfin-web#3241 [@matthew-jones-uk] Add DisableEmbeddedSubtitles support in editor</li>
+<li>jellyfin/jellyfin-web#3237 [@Piccar] Added hovereffect on listItems for all themes</li>
+<li>jellyfin/jellyfin-web#3231 [@emilrowland] fix: Oculus browser is no longer marked as TV</li>
+<li>jellyfin/jellyfin-web#3230 [@SenorSmartyPants] Fix #369 : Episode Details Premiere date</li>
+<li>jellyfin/jellyfin-web#3226 [@brianjmurrell] Run bump_version in make srpm</li>
+<li>jellyfin/jellyfin-web#3209 [@dmitrylyzo] Handle command ‘Back’</li>
+<li>jellyfin/jellyfin-web#3208 [@nyanmisaka] Remove unused server check for cinema mode option</li>
+<li>jellyfin/jellyfin-web#3206 [@nyanmisaka] Update HWA settings to adapt the server code changes</li>
+<li>jellyfin/jellyfin-web#3197 [@ianjazz246] Sort genres by SortName instead of Random</li>
+<li>jellyfin/jellyfin-web#3184 [@WWWesten] Add missing font option for subtitles</li>
+<li>jellyfin/jellyfin-web#3181 [@PetrusZ] Add AutoCollection option to libraryoptionseditor</li>
+<li>jellyfin/jellyfin-web#3180 [@brianjmurrell] Remove chown -R root:root from specfile</li>
+<li>jellyfin/jellyfin-web#3172 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh</li>
+<li>jellyfin/jellyfin-web#3171 [@WWWesten] Update displaySettings.template.html</li>
+<li>jellyfin/jellyfin-web#3161 [@thornbill] Rollback hls.js to 0.14</li>
+<li>jellyfin/jellyfin-web#3160 [@thornbill] Fix list view item encoding</li>
+<li>jellyfin/jellyfin-web#3149 [@grafixeyehero] Fix live tv default tab</li>
+<li>jellyfin/jellyfin-web#3147 [@dmitrylyzo] Fix re-emptying image</li>
+<li>jellyfin/jellyfin-web#3146 [@dmitrylyzo] Fix plugin image URL</li>
+<li>jellyfin/jellyfin-web#3144 [@ferferga] Decode blurhash in a WebWorker</li>
+<li>jellyfin/jellyfin-web#3143 [@WWWesten] Update Library Settings</li>
+<li>jellyfin/jellyfin-web#3142 [@WWWesten] Update en-us.json for subtitlesettings component</li>
+<li>jellyfin/jellyfin-web#3128 [@WWWesten] Add missing localization key for Media Info</li>
+<li>jellyfin/jellyfin-web#3116 [@jomp16] Save playback speed rate, and restore when playing a video again</li>
+<li>jellyfin/jellyfin-web#3115 [@dmitrylyzo] Fix regression after PR #3046</li>
+<li>jellyfin/jellyfin-web#3114 [@dmitrylyzo] Remove language normalization - use original language</li>
+<li>jellyfin/jellyfin-web#3113 [@Jellifi007] Fix H264 52 Level available but not detected Fixes #3090</li>
+<li>jellyfin/jellyfin-web#3092 [@thornbill] Use single color for loading indicator</li>
+<li>jellyfin/jellyfin-web#3091 [@thornbill] Fix dialog style conflict</li>
+<li>jellyfin/jellyfin-web#3073 [@grafixeyehero] Convert userPasswordPage &#x26; UserImagePage to react</li>
+<li>jellyfin/jellyfin-web#3072 [@grafixeyehero] Convert userParentalControlPage to react</li>
+<li>jellyfin/jellyfin-web#3071 [@grafixeyehero] Convert userLibraryAccessPage to react</li>
+<li>jellyfin/jellyfin-web#3070 [@grafixeyehero] Convert edit user page to react</li>
+<li>jellyfin/jellyfin-web#3069 [@dmitrylyzo] Make dialog buttons smaller on TV</li>
+<li>jellyfin/jellyfin-web#3049 [@cvium] Set ‘Scan for new and updated files’ as the default refresh option</li>
+<li>jellyfin/jellyfin-web#3046 [@dmitrylyzo] Fix playback error stop</li>
+<li>jellyfin/jellyfin-web#3044 [@thornbill] Fix repository url link not opening as external</li>
+<li>jellyfin/jellyfin-web#3042 [@cvium] set sane defaults for the hidden SSDP and UDP config values</li>
+<li>jellyfin/jellyfin-web#3034 [@MinecraftPlaye] Save the progress when reading a Comic Book Archive</li>
+<li>jellyfin/jellyfin-web#3033 [@daullmer] Check permission in multiselect for refresh option in menu</li>
+<li>jellyfin/jellyfin-web#3031 [@dmitrylyzo] Use custom modals on webOS and Tizen 2.x</li>
+<li>jellyfin/jellyfin-web#3028 [@dmitrylyzo] Resolve show promise</li>
+<li>jellyfin/jellyfin-web#3027 [@dmitrylyzo] Use “web” target in the serve mode only</li>
+<li>jellyfin/jellyfin-web#3026 [@grafixeyehero] convert NewUserPage to react</li>
+<li>jellyfin/jellyfin-web#3025 [@grafixeyehero] convert UserProfilesPage to react</li>
+<li>jellyfin/jellyfin-web#3024 [@dmitrylyzo] Fix JavascriptSubtitlesOctopus dispose</li>
+<li>jellyfin/jellyfin-web#3022 [@dmitrylyzo] Update JavascriptSubtitlesOctopus</li>
+<li>jellyfin/jellyfin-web#3021 [@thornbill] Move the selected player name next to cast icon</li>
+<li>jellyfin/jellyfin-web#3020 [@thornbill] Fix remote fullscreen event handler</li>
+<li>jellyfin/jellyfin-web#3019 [@thornbill] Enable multiserver in development environments</li>
+<li>jellyfin/jellyfin-web#3018 [@thornbill] Fix audio player overlapping on small screens</li>
+<li>jellyfin/jellyfin-web#3017 [@thornbill] Fix header centering on large mobile devices</li>
+<li>jellyfin/jellyfin-web#3016 [@thornbill] Remove unused sass mixins</li>
+<li>jellyfin/jellyfin-web#3004 [@4censord] build.sh: Allow docker build on non debian systems</li>
+<li>jellyfin/jellyfin-web#3002 [@thornbill] Add theme color support</li>
+<li>jellyfin/jellyfin-web#3001 [@thornbill] Update apiclient</li>
+<li>jellyfin/jellyfin-web#2975 [@dmitrylyzo] Fix server candidates on apps</li>
+<li>jellyfin/jellyfin-web#2971 [@dmitrylyzo] Fix webOS DTS audio support</li>
+<li>jellyfin/jellyfin-web#2952 [@dmitrylyzo] Fix video UI for LiveTV</li>
+<li>jellyfin/jellyfin-web#2950 [@dmitrylyzo] Use the same duration format</li>
+<li>jellyfin/jellyfin-web#2948 [@thornbill] Restore missing placeholder error message</li>
+<li>jellyfin/jellyfin-web#2947 [@SegiH] Move “Remove” option in card menu item in Dashboard->Library to the last item</li>
+<li>jellyfin/jellyfin-web#2946 [@thornbill] Disable sync correction by default on mobile</li>
+<li>jellyfin/jellyfin-web#2945 [@thornbill] Fix media indicator color</li>
+<li>jellyfin/jellyfin-web#2944 [@SegiH] Show playlist item count</li>
+<li>jellyfin/jellyfin-web#2943 [@thornbill] Fix play all and shuffle buttons</li>
+<li>jellyfin/jellyfin-web#2941 [@dmitrylyzo] Slideshow autoplay</li>
+<li>jellyfin/jellyfin-web#2940 [@thornbill] Fix direct play logic when direct stream is disabled</li>
+<li>jellyfin/jellyfin-web#2939 [@thornbill] Log warning instead of error when dictionary has not loaded</li>
+<li>jellyfin/jellyfin-web#2937 [@oledfish] Add “Production” and “TV” episode orders to the metadata editor.</li>
+<li>jellyfin/jellyfin-web#2936 [@OancaAndrei] Update ApiClient instance used by SyncPlay</li>
+<li>jellyfin/jellyfin-web#2934 [@joshuaboniface] Update bump_version to new NPM method</li>
+<li>jellyfin/jellyfin-web#2917 [@dmitrylyzo] Dialog history and actionSheet resolving</li>
+<li>jellyfin/jellyfin-web#2914 [@dmitrylyzo] Show error if player not found</li>
+<li>jellyfin/jellyfin-web#2913 [@thornbill] Reorder item details sections</li>
+<li>jellyfin/jellyfin-web#2912 [@thornbill] Disable warnings in webpack dev server overlay</li>
+<li>jellyfin/jellyfin-web#2910 [@crobibero] Fix QuickConnect for 10.8</li>
+<li>jellyfin/jellyfin-web#2908 [@dmitrylyzo] Fix theme song player</li>
+<li>jellyfin/jellyfin-web#2907 [@ferferga] Add rebase command</li>
+<li>jellyfin/jellyfin-web#2889 [@dmitrylyzo] Fix dialog history</li>
+<li>jellyfin/jellyfin-web#2887 [@dmitrylyzo] Babel blurhash</li>
+<li>jellyfin/jellyfin-web#2872 [@GodTamIt] Send vp8 and vp9 over vpx as transcode profiles</li>
+<li>jellyfin/jellyfin-web#2860 [@Pfuenzle] Removed Tag filter limit of 50</li>
+<li>jellyfin/jellyfin-web#2859 [@thornbill] Redesign item details screen for mobile</li>
+<li>jellyfin/jellyfin-web#2858 [@thornbill] Fix build warnings</li>
+<li>jellyfin/jellyfin-web#2857 [@njsmith] Allow web player to buffer ahead a reasonable amount of data</li>
+<li>jellyfin/jellyfin-web#2853 [@thornbill] Update workbox</li>
+<li>jellyfin/jellyfin-web#2837 [@keegandahm] Made volume slider exponential rather than linear</li>
+<li>jellyfin/jellyfin-web#2835 [@nielsvanvelzen] Add “jellyfin” to output file names</li>
+<li>jellyfin/jellyfin-web#2829 [@thornbill] Fix continue watching card shapes</li>
+<li>jellyfin/jellyfin-web#2821 [@thornbill] Update merge conflict action trigger</li>
+<li>jellyfin/jellyfin-web#2801 [@MrTimscampi] Person types and translations</li>
+<li>jellyfin/jellyfin-web#2799 [@daullmer] Fix TV item details UX</li>
+<li>jellyfin/jellyfin-web#2794 [@nyanmisaka] Add BT.2390 EETF to tonemap algorithms</li>
+<li>jellyfin/jellyfin-web#2790 [@thornbill] Fix webpack config for bundle caching</li>
+<li>jellyfin/jellyfin-web#2789 [@thornbill] Update stalebot configuration</li>
+<li>jellyfin/jellyfin-web#2786 [@MrTimscampi] Improve people pages and metadata editor</li>
+<li>jellyfin/jellyfin-web#2785 [@MrTimscampi] Allow markdown for plugin changelogs</li>
+<li>jellyfin/jellyfin-web#2784 [@thornbill] Fix ATV 0.11 using wrong icon</li>
+<li>jellyfin/jellyfin-web#2781 [@imchasingshadows] bugfix/web0s-fullscreen</li>
+<li>jellyfin/jellyfin-web#2778 [@HazilMohamed] fix endsAt time when playback speed changes</li>
+<li>jellyfin/jellyfin-web#2777 [@MrTimscampi] Translate the transcode reasons</li>
+<li>jellyfin/jellyfin-web#2776 [@gnuyent] Add hardware encoding status to playback data</li>
+<li>jellyfin/jellyfin-web#2758 [@thornbill] Use album artist for listing artist albums</li>
+<li>jellyfin/jellyfin-web#2753 [@jackrvan] Add setting for max days for a show to appear in next up list</li>
+<li>jellyfin/jellyfin-web#2749 [@nielsvanvelzen] Use new Quick Connect enabled endpoint</li>
+<li>jellyfin/jellyfin-web#2748 [@nielsvanvelzen] Remove activate feature from Quick Connect page</li>
+<li>jellyfin/jellyfin-web#2747 [@nielsvanvelzen] Move Quick Connect toggle to General page in dashboard</li>
+<li>jellyfin/jellyfin-web#2743 [@thornbill] Remove html from syncplay toast messages</li>
+<li>jellyfin/jellyfin-web#2742 [@thornbill] Update dependencies</li>
+<li>jellyfin/jellyfin-web#2740 [@MrTimscampi] Replace newlines in plugin changelogs with the proper HTML tag</li>
+<li>jellyfin/jellyfin-web#2736 [@thornbill] Fix invalid import path</li>
+<li>jellyfin/jellyfin-web#2722 [@MrTimscampi] Add TypeScript support for React components</li>
+<li>jellyfin/jellyfin-web#2707 [@grafixeyehero] Access module</li>
+<li>jellyfin/jellyfin-web#2706 [@thornbill] Update icon used for syncplay</li>
+<li>jellyfin/jellyfin-web#2705 [@thornbill] Add support for custom menu links in config.json</li>
+<li>jellyfin/jellyfin-web#2704 [@thornbill] Fix continue reading card shape</li>
+<li>jellyfin/jellyfin-web#2703 [@thornbill] Add error logging for missing translation keys</li>
+<li>jellyfin/jellyfin-web#2698 [@thornbill] Fix live reload</li>
+<li>jellyfin/jellyfin-web#2683 [@thornbill] Add react support</li>
+<li>jellyfin/jellyfin-web#2681 [@thornbill] Cleanup toasts</li>
+<li>jellyfin/jellyfin-web#2680 [@anthonylavado] Update IRC Links to Libera Chat</li>
+<li>jellyfin/jellyfin-web#2670 [@viggy96] Add next/previous chapter buttons to video player</li>
+<li>jellyfin/jellyfin-web#2668 [@dmitrylyzo] Fix back on load [Tizen 2.x]</li>
+<li>jellyfin/jellyfin-web#2664 [@dmitrylyzo] Remove trying app URL as server URL</li>
+<li>jellyfin/jellyfin-web#2663 [@JKI12] Fixes resuming of books</li>
+<li>jellyfin/jellyfin-web#2660 [@grafixeyehero] Fix browser history for dialog</li>
+<li>jellyfin/jellyfin-web#2646 [@shortspider] Prevent Buttons from Sitting Over Text</li>
+<li>jellyfin/jellyfin-web#2630 [@dmitrylyzo] Fix home screen settings</li>
+<li>jellyfin/jellyfin-web#2627 [@BrianCArnold] Added ability to burn in all subtitles, including SRT.</li>
+<li>jellyfin/jellyfin-web#2626 [@shortspider] Add Fullscreen Ability to Books</li>
+<li>jellyfin/jellyfin-web#2625 [@dmitrylyzo] Cleanup: maintabsmanager</li>
+<li>jellyfin/jellyfin-web#2622 [@dmitrylyzo] Fix tabs scrolling in Tizen</li>
+<li>jellyfin/jellyfin-web#2621 [@iwalton3] Add subtitle/audio auto-set feature.</li>
+<li>jellyfin/jellyfin-web#2618 [@iwalton3] Allow client custom css and disabling global server custom css.</li>
+<li>jellyfin/jellyfin-web#2613 [@dmitrylyzo] ScrollManager: fix parent search</li>
+<li>jellyfin/jellyfin-web#2612 [@dmitrylyzo] Fix navigation in paging block</li>
+<li>jellyfin/jellyfin-web#2610 [@shortspider] Add a Continue Reading Section</li>
+<li>jellyfin/jellyfin-web#2599 [@omeryagmurlu] Use episode images in the “Next Up” section</li>
+<li>jellyfin/jellyfin-web#2594 [@ferferga] chore(ci): replace with actions-label-merge-conflict</li>
+<li>jellyfin/jellyfin-web#2583 [@daullmer] Add configuration for slow response logging</li>
+<li>jellyfin/jellyfin-web#2581 [@dmitrylyzo] Add LogIn/LogOut event handlers to NativeShell</li>
+<li>jellyfin/jellyfin-web#2569 [@ferferga] chore(npm): fix CI after switch to npm</li>
+<li>jellyfin/jellyfin-web#2559 [@thornbill] Remove commented code</li>
+<li>jellyfin/jellyfin-web#2557 [@iwalton3] NativeShell enhancements for Jellyfin Media Player</li>
+<li>jellyfin/jellyfin-web#2539 [@BrianCArnold] Changed calculation for media info run time to render hours</li>
+<li>jellyfin/jellyfin-web#2534 [@jackrvan] Improve behaviour of space bar pausing/playing video</li>
+<li>jellyfin/jellyfin-web#2533 [@dmitrylyzo] Make play button bigger</li>
+<li>jellyfin/jellyfin-web#2532 [@dmitrylyzo] Add controls page to the user settings</li>
+<li>jellyfin/jellyfin-web#2523 [@ferferga] Run merge conflict check on PR rebase/commit</li>
+<li>jellyfin/jellyfin-web#2518 [@dkanada] pull fedora changes into master branch</li>
+<li>jellyfin/jellyfin-web#2516 [@tonyfinn] Show current group members in syncplay group dialog</li>
+<li>jellyfin/jellyfin-web#2506 [@thornbill] Remove forum badge</li>
+<li>jellyfin/jellyfin-web#2499 [@thornbill] Fix dialog helper not resolving</li>
+<li>jellyfin/jellyfin-web#2497 [@PrplHaz4] KnownProxies now supports hostnames too</li>
+<li>jellyfin/jellyfin-web#2491 [@dkanada] use better icon for manage library button</li>
+<li>jellyfin/jellyfin-web#2485 [@dmitrylyzo] Fix webpack globbing in hidden folder</li>
+<li>jellyfin/jellyfin-web#2476 [@ferferga] Switch to npm</li>
+<li>jellyfin/jellyfin-web#2472 [@dkanada] add border radius to several card elements</li>
+<li>jellyfin/jellyfin-web#2467 [@albeeeert] Add padding to prevent music controls from clipping</li>
+<li>jellyfin/jellyfin-web#2466 [@eudes] Use absolute path in CopyPlugin config</li>
+<li>jellyfin/jellyfin-web#2464 [@dmitrylyzo] Tune some styles on now playing page</li>
+<li>jellyfin/jellyfin-web#2456 [@dmitrylyzo] Add Webpack publicPath</li>
+<li>jellyfin/jellyfin-web#2445 [@dkanada] reduce dependabot update frequency</li>
+<li>jellyfin/jellyfin-web#2428 [@acvigue] Fix: prevent some backdrops from showing on homepage</li>
+<li>jellyfin/jellyfin-web#2379 [@dkanada] fix some unhandled promises and refactor some code</li>
+<li>jellyfin/jellyfin-web#2355 [@thornbill] Fix warnings</li>
+<li>jellyfin/jellyfin-web#2354 [@thornbill] Move to sass everywhere</li>
+<li>jellyfin/jellyfin-web#2352 [@JKI12] Change to expose keyboard shortcuts for chapter navigation</li>
+<li>jellyfin/jellyfin-web#2342 [@OancaAndrei] Clear playlist in SyncPlay group</li>
+<li>jellyfin/jellyfin-web#2310 [@nielsvanvelzen] Use OpenStreetMap instead of Google Maps</li>
+<li>jellyfin/jellyfin-web#2281 [@Camc314] Update fontsource to 4.0.1</li>
+<li>jellyfin/jellyfin-web#2266 [@dkanada] remove touch controls from video player</li>
+<li>jellyfin/jellyfin-web#2264 [@Artiume] Remove games references</li>
+<li>jellyfin/jellyfin-web#2261 [@Artiume] Dependencies update</li>
+<li>jellyfin/jellyfin-web#2221 [@thornbill] Add lint rule for array callback returns</li>
+<li>jellyfin/jellyfin-web#2212 [@thornbill] Use package version</li>
+<li>jellyfin/jellyfin-web#2204 [@OancaAndrei] Add basic SyncPlay settings</li>
+<li>jellyfin/jellyfin-web#2176 [@joshuaboniface] Bump version to 10.8.0 for next release</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/jellyfin/jellyfin/releases/tag/v10.8.0-beta3" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

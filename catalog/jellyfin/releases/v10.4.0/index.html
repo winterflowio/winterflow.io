@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jellyfin v10.4.0 release notes | WinterFlow.io</title><meta name="description" content="Jellyfin 10.4.0 introduces significant WebUI performance improvements, a new Windows installer, expanded hardware acceleration support, and several new…"><link rel="canonical" href="https://winterflow.io/catalog/jellyfin/releases/v10.4.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Jellyfin v10.4.0 release notes | WinterFlow.io"><meta property="og:description" content="Jellyfin 10.4.0 introduces significant WebUI performance improvements, a new Windows installer, expanded hardware acceleration support, and several new…"><meta property="og:url" content="https://winterflow.io/catalog/jellyfin/releases/v10.4.0/"><meta property="og:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Jellyfin v10.4.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Jellyfin 10.4.0 introduces significant WebUI performance improvements, a new Windows installer, expanded hardware acceleration support, and several new…"><meta name="twitter:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Jellyfin","item":"https://winterflow.io/catalog/jellyfin/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/jellyfin/releases/"},{"@type":"ListItem","position":5,"name":"v10.4.0","item":"https://winterflow.io/catalog/jellyfin/releases/v10.4.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.qamN5724.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/jellyfin/jellyfin.png" alt="Jellyfin logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Jellyfin</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Free software media system for organizing and streaming your movies, TV shows, and music</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> netflix, plex, emby </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://jellyfin.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/jellyfin/jellyfin.org/tree/master/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/jellyfin/jellyfin/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 54,211 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Jellyfin" data-app-slug="jellyfin" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support Jellyfin on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/jellyfin/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/jellyfin/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.4.0</h2> <span class="text-sm text-gray-500">2019-10-07</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="jellyfin-1040">Jellyfin 10.4.0</h1>
+<p>After a lot of work over several months, we’re pleased to offer Jellyfin 10.4.0.</p>
+<h2 id="new-features-and-major-improvements">New Features and Major Improvements</h2>
+<ul>
+<li>Speed! WebUI responsiveness has been greatly improved, resulting in a much snappier experience with the WebUI.</li>
+<li>Tons and tons of backend improvements to help stability and increase speed.</li>
+<li>General improvements to various areas of the WebUI, including hover animations, icon improvements, scroller fixes, and other general fixes.</li>
+<li>Configurable base URL functionality [Feature Request <a href="https://features.jellyfin.org/posts/37">#37</a>].</li>
+<li>New web layout option to help future webOS clients, including keyboard navigation support.</li>
+<li>Removal of most bundled libraries from the WebUI to streamline performance.</li>
+<li>Keyboard shortcut support in the video player.</li>
+<li>Unhid the Activity page in the Dashboard for eventual improvement.</li>
+<li>Reorganization of the Dashboard menus, including separating out most of the former “Advanced” menu.</li>
+<li>Manual subtitle synchronization support [Feature Request <a href="https://features.jellyfin.org/posts/178">#178</a>].</li>
+<li>FFmpeg >4.0 support; jellyfin-ffmpeg upgraded to 4.2.1; warnings for unsupported versions in the logs [Feature Request <a href="https://features.jellyfin.org/posts/203">#203</a>].</li>
+<li>Proper installer for Windows users [Feature Request <a href="https://features.jellyfin.org/posts/83">#83</a>].</li>
+<li>Full hardware acceleration support for VAAPI, NVEnv/NVDec, and OMX [Feature Request <a href="https://features.jellyfin.org/posts/75">#75</a>].</li>
+<li>“Purple Haze” theme added as an in-built option.</li>
+<li>New plugin: Bookshelf, for managing eBooks [Feature Request <a href="https://features.jellyfin.org/posts/43">#43</a>].</li>
+<li>New plugin: FanArt, removed from core server.</li>
+</ul>
+<h2 id="important-release-notes">Important Release Notes</h2>
+<ul>
+<li>[All] As always, ensure you back up your Jellyfin data and configuration directories, with Jellyfin stopped, before upgrading. This is very important in case you want to roll back to a previous stable release.</li>
+<li>[All] Some plugins have updated versions to work with 10.4.0; if any installed plugins are missing after upgrading, re-install them from the catalog.</li>
+<li>[All] FanArt support has been moved to a plugin.</li>
+<li>[Kodi Integration] Due to recent updates, if syncing fails, you may need to kick off a manual full sync, after which normal syncs will work again.</li>
+<li>[Windows] For 10.4.0, the default Windows data directory has moved from <code>%AppDataLocal%\Jellyfin</code> to <code>%ProgramData%\Jellyfin\Server</code>. Move/copy your data to this new location before upgrading.</li>
+<li>[Windows] Ensure you remove any previously-installed <code>zip</code>-based installs, or you may get duplicate Windows Service entries.</li>
+<li>[Windows] Startup shortcuts are not present for non-service installs and must be created manually.</li>
+<li>[Windows] Service installs require correct permissions; keep this in mind if you get permission errors accessing media or configurations.</li>
+<li>[Windows] Service installs won’t have access to network shares unless your computer is in an Active Directory domain by default; you must change the service login to a named account manually and provide credentials to any network shares for this to work, or do not install Jellyfin as a service.</li>
+<li>[Windows] The installer also does not take care of any firewall rules for you, make sure to add the appropiate Windows Firewall rules.</li>
+</ul>
+<h2 id="ffmpeg">FFmpeg</h2>
+<p>Jellyfin 10.4.0 is complemented by <code>jellyfin-ffmpeg</code> 4.2.1 on the following platfoms:</p>
+<ul>
+<li>Debian (stretch, buster; amd64, arm64, armhf)</li>
+<li>Ubuntu (xenial, bionic, cosmic, dapper; amd64, arm64, armhf)</li>
+<li>Docker</li>
+</ul>
+<p>And by a build based on the current master (N-95234-g35a63a9127, <a href="https://github.com/FFmpeg/FFmpeg/commit/a1e5c35a6e43ef8722017b070c124e72d628c0cd">https://github.com/FFmpeg/FFmpeg/commit/a1e5c35a6e43ef8722017b070c124e72d628c0cd</a>) for Windows.</p>
+<p>On these platforms, our FFmpeg includes a patch to help aleviate premature skips near the end of videos (#1694). We hope this is a stopgap until our patch is accepted upstream, or a fix found within Jellyfin.</p>
+<p>For now, other platforms may still experience this bug as their FFmpeg is not patched.</p>
+<p>Please ensure you upgrade <code>jellyfin-ffmpeg</code> as well as <code>jellyfin</code> for 10.4.0 for optimal performance. Older versions will however still work fine.</p>
+<h2 id="changelog">Changelog</h2>
+<p>GitHub Project: <a href="https://github.com/orgs/jellyfin/projects/8">https://github.com/orgs/jellyfin/projects/8</a></p>
+<h3 id="jellyfin"><a href="https://github.com/jellyfin/jellyfin">Jellyfin</a></h3>
+<ul>
+<li>#1846  Switch to custom patched build for ffmpeg for the Windows installer</li>
+<li>#1845  Correct missing mesa-va-drivers package</li>
+<li>#1844  Fix missing image on seasons without posters</li>
+<li>#1841  Update Docs to docs.jellyfin.org URL</li>
+<li>#1829  Fix SchedulesDirect authentication</li>
+<li>#1825  Revert “Fix premature stop when streaming”</li>
+<li>#1822  Update README for new docs location</li>
+<li>#1820  Properly build DLL for porable</li>
+<li>#1819  Ignore exception when attempting to kill ffmpeg that has exited</li>
+<li>#1818  Fix SourceBranch -> SourceBranchName in git clone for Web UI</li>
+<li>#1817  Change PRAGMA mode from WAL to TRUNCATE</li>
+<li>#1815  Fix tests</li>
+<li>#1814  Fix ffmpeg version check for unknown versions</li>
+<li>#1812  Avoid editing preferences without user interaction</li>
+<li>#1811  Configure Kestrel listener to use configured IPs</li>
+<li>#1809  Recursively zip Windows packages</li>
+<li>#1808  Change Win32 AMF flag to d3d11va</li>
+<li>#1805  Fix plugin installation</li>
+<li>#1804  Add tests for EncoderValidator and add support for ffmpeg 4.2</li>
+<li>#1803  Don’t log revision number</li>
+<li>#1802  Fix premature stop when streaming</li>
+<li>#1801  Do explicit dotnet publish in Dockerfiles</li>
+<li>#1798  Fix SetImage to avoid out of range exception</li>
+<li>#1793  Clean up and update builds to use new jellyfin-web</li>
+<li>#1791  Remove submodule and add clone and build to CI for web UI</li>
+<li>#1788  Include libssl-dev dep in Ubuntu build containers</li>
+<li>#1785  Add mediabrowser route back for now</li>
+<li>#1777  Add escapes for path quotes in the NSIS Installer</li>
+<li>#1775  Fix multiple mistakes and warnings</li>
+<li>#1773  Remove WAN DDNS</li>
+<li>#1772  Hide new users from public API by default</li>
+<li>#1770  Remove WAN IP Detection</li>
+<li>#1768  Set log level to debug for HTTP range requests</li>
+<li>#1765  Add submodule update to CI build.</li>
+<li>#1764  Fix publish CI YAML parse error</li>
+<li>#1763  Add two manually triggered pipelines for publishing artifacts.</li>
+<li>#1752  Improve Skia error handling</li>
+<li>#1751  Reset invalid login counter on successfull login</li>
+<li>#1746  Docker - Build jellyfin-web</li>
+<li>#1744  Rewrite <code>ItemDataProvider</code> to be more robust</li>
+<li>#1735  Update deps</li>
+<li>#1731  Fix culture problem on Windows for segment_time_delta argument.</li>
+<li>#1727  Add mesa-va-drivers to main Dockerfile for AMD VAAPI transcoding</li>
+<li>#1723  Possible fix for MrMC</li>
+<li>#1709  Fix crash due to missing userRootFolder data</li>
+<li>#1708  Fix translate link</li>
+<li>#1707  Fix default build arg</li>
+<li>#1704  Fix replace multiple spaces</li>
+<li>#1702  Fix more warnings</li>
+<li>#1700  Restore flac mime type</li>
+<li>#1699  Bump version to 10.4.0</li>
+<li>#1696  Add VSTest support to CI</li>
+<li>#1695  Make Docker ffmpeg version configurable</li>
+<li>#1693  Update Debian build to Buster and LibSSL 1.1</li>
+<li>#1692  NSIS improvements</li>
+<li>#1691  Enable VAAPI decoding without hardware encoding</li>
+<li>#1687  Move IsoMounter to plugin</li>
+<li>#1686  More warning fixes</li>
+<li>#1685  Fix invalid arg for</li>
+<li>#1683  Move the transcode path and other small fixes</li>
+<li>#1680  Fix q6fn dlna seek for direct play</li>
+<li>#1678  Fix ArgumentOutOfRangeException in ParseTimeSeekHeader</li>
+<li>#1677  Remove legacy auth code</li>
+<li>#1676  Fix login</li>
+<li>#1665  Fix warnings, improve performance</li>
+<li>#1659  Fix segment_time_delta value for ffmpeg 4.1</li>
+<li>#1656  Fix firewall-cmd: Error: INVALID_SERVICE: ‘jellyfin’ not among existing services</li>
+<li>#1651  Fix local trailers playback</li>
+<li>#1650  Upgrade SQLitePCL to v2</li>
+<li>#1646  Return DB lock immediately</li>
+<li>#1645  Fix UserNotFoundError</li>
+<li>#1644  Fix possible hidden exceptions</li>
+<li>#1643  Fix some documentation warnings for MediaBrowser.XbmcMetadata</li>
+<li>#1642  Speed up BaseItem deserialization</li>
+<li>#1641  Tmdb cleanup and re-add Writer and Producer</li>
+<li>#1636  Add analysers to Emby.IsoMounting and enable TreatWarningsAsErrors</li>
+<li>#1634  Fix build on .Net Core 2.x</li>
+<li>#1633  Attempt to fix #1391</li>
+<li>#1632  Improve LocalizationManager</li>
+<li>#1631  Fix build for .Net Core 2.x</li>
+<li>#1629  Fix tvdb guest stars with multiple roles</li>
+<li>#1628  Always fetch episode id as EpisodeInfo does not contain it</li>
+<li>#1625  Fix instant crash.</li>
+<li>#1624  Fix possible Nullref</li>
+<li>#1622  Add a task to clean up transcode cache</li>
+<li>#1614  Document all public/internal members of Emby.Drawing</li>
+<li>#1613  Update deps + document startup project</li>
+<li>#1612  Fix warnings</li>
+<li>#1608  Add link to feature request hub to readme</li>
+<li>#1605  Fix Docker build</li>
+<li>#1602  Update the Stale-bot config</li>
+<li>#1597  Set log level to debug for HTTP range requests</li>
+<li>#1593  Docker - make web version more configurable</li>
+<li>#1590  Adds null check on studio/network name</li>
+<li>#1588  Add base url option to server configuration</li>
+<li>#1584  Check checksum for plugin downloads</li>
+<li>#1583  Add Fider to README</li>
+<li>#1582  Include library via NuGet instead of via source</li>
+<li>#1581  Use System.Net abstractions instead of raw socket</li>
+<li>#1580  Ignore Ipv6 link-local addresses</li>
+<li>#1579  Fix #1388 and #1472</li>
+<li>#1578  Replace custom code with Asp.Net Core code</li>
+<li>#1574  Add the —azure-pipelines switch to the compat checker</li>
+<li>#1573  Use a dictionary to look up mimetypes</li>
+<li>#1572  Remove the issue template for feature requests.</li>
+<li>#1568  Add DLNA headers if requested by the client</li>
+<li>#1562  Don’t copy the complete response stream</li>
+<li>#1555  Add Stale app configuration starting point</li>
+<li>#1541  Override the Debian installinit name</li>
+<li>#1540  Fixed SMI Encoding Bug</li>
+<li>#1536  Fix broken symlinks in deployment</li>
+<li>#1534  Use dash or underscore on mv command</li>
+<li>#1524  Remove IpAddressInfo and IpEndPointInfo classes</li>
+<li>#1521  Clean up livestreaming code</li>
+<li>#1519  Fix merge errors</li>
+<li>#1518  Update the GitHub token to a Grant Auth token</li>
+<li>#1517  Update the GitHub connection name to use the GitHub App token</li>
+<li>#1516  Move VACUUM command to fix merge error</li>
+<li>#1513  Fix style issues</li>
+<li>#1511  Add NSIS installer build support</li>
+<li>#1505  Qualified Namespace of pscredential</li>
+<li>#1500  Add optional password field on user creation</li>
+<li>#1499  Log IP address on failed login attempt</li>
+<li>#1484  Update TVDB provider to search based on series display order</li>
+<li>#1463  Update deps</li>
+<li>#1462  Improvements to InstallationManager</li>
+<li>#1457  Stop path substitution in SubtitleEncoder - Fix #1446</li>
+<li>#1454  Simplify file serving code</li>
+<li>#1453  Improve main code flow</li>
+<li>#1452  Improvements to UserManager</li>
+<li>#1451  Create Media Playback issue template</li>
+<li>#1448  Use the username for the user config path</li>
+<li>#1440  Change UsCulture to InvariantCulture</li>
+<li>#1433  Add support for encoding with libx265 and hevc_nvenc</li>
+<li>#1427  Move fanart image provider to plugin</li>
+<li>#1397  Streamline authentication proccess</li>
+<li>#1369  Enable Exynos MFC encoder and fix transcoding bitrate control</li>
+<li>#1368  Only return useful drives</li>
+<li>#1367  Ignore casing photo extensions</li>
+<li>#1366  Fix more warnings</li>
+<li>#1363  Update getting-help link in README</li>
+<li>#1293  Fix query time logging</li>
+<li>#1274  Prevent null reference when request content type is x-www-form-urlencoded</li>
+<li>#1247  Adjust detection of ‘sample’ in filenames to use regex boundaries</li>
+<li>#1245  Remove unused event</li>
+<li>#1229  Cleaning WebSocketSharp continued</li>
+<li>#1225  Fix help message to indicate the right output folder</li>
+<li>#1224  Fix missing Unraid cache mount and name capitalization</li>
+<li>#1218  Disable dotnet_compat part of pipeline</li>
+<li>#1212  Clean <code>WebSocketSharpRequest.PathInfo</code></li>
+<li>#1211  Update Unraid Docker icon</li>
+<li>#1210  Fix README documentation link</li>
+<li>#1182  Speed up DeepCopy</li>
+<li>#1176  Remove unused dependency for Emby.Naming</li>
+</ul>
+<h3 id="jellyfin-web"><a href="https://github.com/jellyfin/jellyfin-web">Jellyfin Web</a></h3>
+<ul>
+<li>jellyfin/jellyfin-web#503  Fix some minor issues with the dashboard page</li>
+<li>jellyfin/jellyfin-web#502  Update Docs to docs.jellyfin.org URL</li>
+<li>jellyfin/jellyfin-web#501  Resolves missing policy error on user creation</li>
+<li>jellyfin/jellyfin-web#500  Restore prepare script</li>
+<li>jellyfin/jellyfin-web#498  Fix issues with scrollbutton visibility</li>
+<li>jellyfin/jellyfin-web#497  Update documentation links</li>
+<li>jellyfin/jellyfin-web#492  Add webpack-dev-server</li>
+<li>jellyfin/jellyfin-web#490  Add jQuery to global scope</li>
+<li>jellyfin/jellyfin-web#484  Revert “Allow card text to continue through line breaks”</li>
+<li>jellyfin/jellyfin-web#481  Fix missing jQuery in medialibraryeditor</li>
+<li>jellyfin/jellyfin-web#479  Improve the user settings interface</li>
+<li>jellyfin/jellyfin-web#478  Fix video osd header styles</li>
+<li>jellyfin/jellyfin-web#477  Fix mediainfo display on tv mode</li>
+<li>jellyfin/jellyfin-web#474  add 700ms timer for ‘mousemove’ and ‘touchmove’ volume listeners</li>
+<li>jellyfin/jellyfin-web#472  Remove WAN domain name options</li>
+<li>jellyfin/jellyfin-web#470  Azure pipelines</li>
+<li>jellyfin/jellyfin-web#468  Fix Duplicate loading animation</li>
+<li>jellyfin/jellyfin-web#466  Fix toggle on tv layout mode</li>
+<li>jellyfin/jellyfin-web#464  update apphost appVersion to 10.4.0</li>
+<li>jellyfin/jellyfin-web#463  Changed to non-blocking subtitles</li>
+<li>jellyfin/jellyfin-web#462  Add style for metadata sidebar Icon folder</li>
+<li>jellyfin/jellyfin-web#461  Fix: Not all players support xxxSubtitleOffset</li>
+<li>jellyfin/jellyfin-web#460  Added toast notification when copy-stream is executed</li>
+<li>jellyfin/jellyfin-web#459  Added more details to itemdetails page</li>
+<li>jellyfin/jellyfin-web#458  Refactor several files and methods</li>
+<li>jellyfin/jellyfin-web#456  Require hls.js from npm</li>
+<li>jellyfin/jellyfin-web#455  Allow fldSelectLoginProvider for admins</li>
+<li>jellyfin/jellyfin-web#451  Improve button style when focused</li>
+<li>jellyfin/jellyfin-web#450  Disable animations in editor sidebar</li>
+<li>jellyfin/jellyfin-web#449  Don’t hide play all and shuffle buttons on mobile</li>
+<li>jellyfin/jellyfin-web#448  fix AutoRunWebApp checkbox on dashboardgeneral</li>
+<li>jellyfin/jellyfin-web#446  Dashboard layout improvements</li>
+<li>jellyfin/jellyfin-web#444  Minor update for media info</li>
+<li>jellyfin/jellyfin-web#443  Fixed blurred My Media images</li>
+<li>jellyfin/jellyfin-web#441  Improve image quality on detail page</li>
+<li>jellyfin/jellyfin-web#439  Add media file size to Playback Data</li>
+<li>jellyfin/jellyfin-web#436  Always have last sort of movies be by production year</li>
+<li>jellyfin/jellyfin-web#435  Change primary highlight for delete confirmation dialog</li>
+<li>jellyfin/jellyfin-web#434  Add string for LabelFolder</li>
+<li>jellyfin/jellyfin-web#433  Quick fix Now playing bar controls</li>
+<li>jellyfin/jellyfin-web#432  Add icon to metadata editor side bar</li>
+<li>jellyfin/jellyfin-web#430  Fix layout issues for device cards on dashboard</li>
+<li>jellyfin/jellyfin-web#429  Add prepare script for git installs</li>
+<li>jellyfin/jellyfin-web#428  Fix preload background color</li>
+<li>jellyfin/jellyfin-web#427  Add sorting for music albums in an artist’s details page</li>
+<li>jellyfin/jellyfin-web#425  Bump eslint-utils from 1.4.0 to 1.4.2</li>
+<li>jellyfin/jellyfin-web#424  Add a “Copy Stream URL” button in the dropdown menu, for easy Direct Play in VLC</li>
+<li>jellyfin/jellyfin-web#422  Use same css rules for section tabs</li>
+<li>jellyfin/jellyfin-web#418  if collection has no playable items hide play and shuffle btns</li>
+<li>jellyfin/jellyfin-web#417  add favorite books section to favorite tab</li>
+<li>jellyfin/jellyfin-web#415  Fix redirect on wizardfinishpage</li>
+<li>jellyfin/jellyfin-web#414  Resolve deviceId promise properly during apphost init</li>
+<li>jellyfin/jellyfin-web#413  Fix card layout on home for books</li>
+<li>jellyfin/jellyfin-web#412  Move transcoding page to playback settings and improve strings</li>
+<li>jellyfin/jellyfin-web#411  Clean up unused filter audio language</li>
+<li>jellyfin/jellyfin-web#410  Disable Group versions for non admin</li>
+<li>jellyfin/jellyfin-web#408  Reflect changes made to main repo’s stale bot config.</li>
+<li>jellyfin/jellyfin-web#406  Enable blurred footer in chrome</li>
+<li>jellyfin/jellyfin-web#405  Upgrade dependencies</li>
+<li>jellyfin/jellyfin-web#403  Fix text overlap on now playing bar</li>
+<li>jellyfin/jellyfin-web#402  Selectively hide manual login button</li>
+<li>jellyfin/jellyfin-web#400  Add base url option to web client</li>
+<li>jellyfin/jellyfin-web#399  Delete enhancement-request.md and feature-request.md</li>
+<li>jellyfin/jellyfin-web#398  Add stale app config.</li>
+<li>jellyfin/jellyfin-web#397  Allow card text to continue through line breaks</li>
+<li>jellyfin/jellyfin-web#396  Move download action to major button for books (itemdetailspage)</li>
+<li>jellyfin/jellyfin-web#388  Enable display mode setting</li>
+<li>jellyfin/jellyfin-web#386  Change media info display</li>
+<li>jellyfin/jellyfin-web#382  Fix homesection ‘On now’ display elements</li>
+<li>jellyfin/jellyfin-web#381  Fix homesection programs button to go to correct page</li>
+<li>jellyfin/jellyfin-web#380  Fix to enable tuner edit again</li>
+<li>jellyfin/jellyfin-web#379  Add an ImageHelper class to consolidate frequently used icons</li>
+<li>jellyfin/jellyfin-web#378  Add optional password field on user creation</li>
+<li>jellyfin/jellyfin-web#377  Fix log issue from jellyfin/jellyfin-web#365</li>
+<li>jellyfin/jellyfin-web#376  Fix adminDrawerLogo</li>
+<li>jellyfin/jellyfin-web#375  Fix querySelector for Save metadata and images as hidden files</li>
+<li>jellyfin/jellyfin-web#372  Add ‘Series’ button to Live TV menu off homesection</li>
+<li>jellyfin/jellyfin-web#366  Minor fixes for section headers</li>
+<li>jellyfin/jellyfin-web#365  Fix repeated automatic attempts to cast to a device</li>
+<li>jellyfin/jellyfin-web#360  Small tweaks to the server settings</li>
+<li>jellyfin/jellyfin-web#356  Fix certain elements getting incorrectly centered on firefox</li>
+<li>jellyfin/jellyfin-web#353  Add proper styling to DlnaProfile and ScheduledTask pages</li>
+<li>jellyfin/jellyfin-web#350  Move fanart provider to plugin</li>
+<li>jellyfin/jellyfin-web#348  Fix firefox dropdown</li>
+<li>jellyfin/jellyfin-web#343  Bundle npm dependencies using webpack</li>
+<li>jellyfin/jellyfin-web#342  Add span class to fix a margin issue with some icons</li>
+<li>jellyfin/jellyfin-web#339  Add editorconfig</li>
+<li>jellyfin/jellyfin-web#337  Correction and translation of texts or words in spanish</li>
+<li>jellyfin/jellyfin-web#336  Update purple haze theme and fix some unstyled elements</li>
+<li>jellyfin/jellyfin-web#335  Always show options menu next to mouse</li>
+<li>jellyfin/jellyfin-web#330  Merge current translations</li>
+<li>jellyfin/jellyfin-web#327  Changes checkboxes focus appearance</li>
+<li>jellyfin/jellyfin-web#326  Fix icon</li>
+<li>jellyfin/jellyfin-web#325  Add some missing strings and remove gradients from themes</li>
+<li>jellyfin/jellyfin-web#324  Change warning icons on dashboard to a bell instead of “pvr”</li>
+<li>jellyfin/jellyfin-web#322  Fix secondery title position and show year on tv show ui</li>
+<li>jellyfin/jellyfin-web#318  Add a response on icon hover and other style fixes</li>
+<li>jellyfin/jellyfin-web#315  Move buttons to top right for custom scroll element</li>
+<li>jellyfin/jellyfin-web#314  Initial support for keyboard navigation (for webOS remote etc.)</li>
+<li>jellyfin/jellyfin-web#313  Improve the library page and dialog UX</li>
+<li>jellyfin/jellyfin-web#312  Always show the start task button except on errors</li>
+<li>jellyfin/jellyfin-web#307  Redirect when loading video player fails</li>
+<li>jellyfin/jellyfin-web#300  Fix dashboard column &#x26; update purple haze</li>
+<li>jellyfin/jellyfin-web#299  remove networking information from the dashboard</li>
+<li>jellyfin/jellyfin-web#295  Add a round progress bar to purple haze theme</li>
+<li>jellyfin/jellyfin-web#294  change cast &#x26; crew view to horizontal scroller</li>
+<li>jellyfin/jellyfin-web#292  Fix some issues with the user preference page</li>
+<li>jellyfin/jellyfin-web#278  New keyboard shortcuts</li>
+<li>jellyfin/jellyfin-web#276  Fix text overflow not displaying ellipsis in cards</li>
+<li>jellyfin/jellyfin-web#275  Add double click to fullscreen</li>
+<li>jellyfin/jellyfin-web#272  Remove option to enable debug logging</li>
+<li>jellyfin/jellyfin-web#271  Remove similar themes with accent changes</li>
+<li>jellyfin/jellyfin-web#266  fix rounded progress bars</li>
+<li>jellyfin/jellyfin-web#265  Update links for most of the old documentation</li>
+<li>jellyfin/jellyfin-web#264  Fix Thumb rendering without thumbnails</li>
+<li>jellyfin/jellyfin-web#251  Adding new Purple haze themes with rounded layout</li>
+<li>jellyfin/jellyfin-web#241  Fix logout session storage</li>
+<li>jellyfin/jellyfin-web#238  Remove unusable assets and update a string reference to connect</li>
+<li>jellyfin/jellyfin-web#232  Replace more web archive buttons with new documentation</li>
+<li>jellyfin/jellyfin-web#230  Remove unnecessary overflowY changes</li>
+<li>jellyfin/jellyfin-web#229  Fix “Password Reset by PIN” page</li>
+<li>jellyfin/jellyfin-web#224  Conversion to webpack - part5 - module resolution, data-require cleaned</li>
+<li>jellyfin/jellyfin-web#220  Add subtitle synchronization on HTML video player</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/jellyfin/jellyfin/releases/tag/v10.4.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
