@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v9.88 release notes | WinterFlow.io</title><meta name="description" content="This release focuses on extensive fixes and feature enhancements for Sandstorm and Snap builds, including improved migration paths from MongoDB 3 to…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v9.88/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v9.88 release notes | WinterFlow.io"><meta property="og:description" content="This release focuses on extensive fixes and feature enhancements for Sandstorm and Snap builds, including improved migration paths from MongoDB 3 to…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v9.88/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v9.88 release notes | WinterFlow.io"><meta name="twitter:description" content="This release focuses on extensive fixes and feature enhancements for Sandstorm and Snap builds, including improved migration paths from MongoDB 3 to…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v9.88","item":"https://winterflow.io/catalog/wekan/releases/v9.88/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BtFGJfHq.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 20,995 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (109)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v9.88</h2> <span class="text-sm text-gray-500">2026-07-13</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="v988-2026-07-13-wekan--release">v9.88 2026-07-13 WeKan ® release</h1>
+<p>This release adds the following new features:</p>
+<ul>
+<li><a href="https://github.com/wekan/wekan/commit/9f23e6384bdfa5ca81be18e4f0426c347e9894eb">Added docs about new Sandstorm WeKan</a>.
+Thanks to xet7.</li>
+</ul>
+<p>and fixes the following bugs:</p>
+<ul>
+<li><strong>Sandstorm build: fixed “not writing through dangling symlink” that failed the
+<code>sandstorm.yml</code> workflow at <code>sandstorm-src/build-deps.sh</code> step [3/7]</strong>. The
+meteor-spk 0.6.0 base ships some runtime libs in <code>meteor-spk.deps/lib</code> as
+DANGLING symlinks (e.g. <code>libstdc++.so.6</code> → a library that no longer exists), so
+refreshing them with the host’s newer libs failed: <code>cp -fL</code> refuses to write
+through a dangling destination symlink. Added <code>--remove-destination</code> so <code>cp</code>
+deletes the existing destination (dangling symlink included) before copying the
+host’s real library. Thanks to xet7.</li>
+<li><strong>Sandstorm build: write the signing keyring to the path <code>meteor-spk pack</code>
+actually reads</strong>. The <code>sandstorm.yml</code> “Restore the Sandstorm signing keyring”
+step wrote the decoded <code>SANDSTORM_KEYRING</code> secret to <code>~/.sandstorm/sandstorm-keyring</code>,
+but <code>meteor-spk</code> / <code>spk</code> read the app private key from <code>~/.sandstorm-keyring</code> (a
+file directly in <code>$HOME</code>), so packing aborted with
+<code>open(~/.sandstorm-keyring): No such file or directory</code> even when the secret was
+set. Now it writes <code>~/.sandstorm-keyring</code>, and — since the <code>.spk</code> cannot be signed
+without it — fails early with an actionable message when the secret is missing,
+instead of the cryptic later crash. Thanks to xet7.</li>
+<li><strong>Sandstorm .spk: trim it back toward Cloudflare’s 100 MB upload limit</strong>. The
+Sandstorm build no longer bundles the ~300 MB of modern MongoDB Database Tools
+(wekan/mongo-tools) — they are unused in Sandstorm (grains back up/restore
+themselves; the MongoDB 3 → FerretDB migration uses the legacy migratemongo CLIs
+<ul>
+<li>the <code>.mjs</code> importer). Also set <code>PUPPETEER_SKIP_DOWNLOAD=1</code> for the Meteor build
+(puppeteer is a test-only devDependency, so its ~150 MB Chromium never belongs in
+the <code>.spk</code>), and the pack step now prints the <code>.spk</code> size and warns if it exceeds
+100 MB. (The Database Tools remain in the WeKan <code>.zip</code> bundle / Docker / Snap,
+which do use them.) Thanks to xet7.</li>
+</ul>
+</li>
+<li><a href="https://github.com/wekan/wekan/commit/143607ef22ae91803cb611053fd4ce00754e7096">Sandstorm .spk: bundle the matching glibc dynamic loader so grains start</a>:
+the <code>.spk</code> bundled the host’s new glibc <code>libc.so.6</code> (Ubuntu 24.04, glibc 2.39)
+but kept the old glibc 2.31 <code>ld-linux</code> from the meteor-spk 0.6.0 base, so <code>node</code>
+failed at startup with <code>libc.so.6: undefined symbol: _dl_audit_symbind_alt, version GLIBC_PRIVATE</code> (HTTP-BRIDGE exit 127) and the grain crash-looped.
+<code>sandstorm-src/build-deps.sh</code> now also copies the host’s <code>ld-linux-x86-64.so.2</code>
+so the loader and libc are the same glibc, and adds a <code>[verify]</code> gate that fails
+the build if they differ or the bundled <code>node</code> cannot run under them — turning a
+silent grain crash-loop into a loud build failure. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/66d8706c4d2afab4d127f8c63e05d43407efaf30">Sandstorm build workflow: enable unprivileged user namespaces and build the dispatched branch</a>:
+Ubuntu 24.04 defaults <code>kernel.apparmor_restrict_unprivileged_userns=1</code>, which
+blocks the unprivileged user namespaces the Sandstorm install and the <code>spk</code>
+supervisor rely on, so <code>sandstorm.yml</code> now relaxes it on the runner. A new <code>ref</code>
+<code>workflow_dispatch</code> input also lets the workflow build a fix branch before it is
+merged, instead of a hardcoded <code>main</code>. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/60116bc72f68c7bc0aa56a7d5700e33b98e870af">Meteor unit tests: fix server-boot crash from <code>__dirname</code> in an ESM test file</a>:
+<code>server/lib/tests/dependencies.openapi.tests.js</code> is an ES module that referenced
+the bare <code>__dirname</code> global; under Node 24 / Meteor 3.5 the compiler injects
+<code>const __dirname = fileURLToPath(import.meta.url)</code>, colliding with the <code>__dirname</code>
+the CommonJS module wrapper already provides, so the server bundle failed to boot
+with <code>Identifier '__dirname' has already been declared</code> and the “Meteor unit
+tests” CI job died before any test ran. Drop the <code>__dirname</code> seed
+(<code>process.env.PWD</code> already reaches the repo root under <code>meteor test</code>). Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/1c28b40fd41acd9b9e21671548411f25e55464b8">Sandstorm .spk: point FerretDB state dir to writable /var so the grain starts</a>:
+FerretDB persists a <code>state.json</code> (version/UUID) via its state provider even with
+telemetry disabled, and its <code>--state-dir</code> defaults to <code>.</code> — which in a Sandstorm
+grain is <code>/</code>, read-only. So FerretDB failed with <code>Failed to create state provider: failed to persist state: open /state.json: read-only file system</code>,
+exited (code 1), and the grain crash-looped. <code>sandstorm-src/start.js</code> now creates
+<code>/var/ferretdb</code> and passes <code>--state-dir=/var/ferretdb</code> (plus <code>FERRETDB_STATE_DIR</code>)
+in <code>startFerret()</code>, covering both the migration and steady-state FerretDB launches.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/f4f22bbe24e10659cc80cd1efeb6b4890b58ea49">Sandstorm .spk: don’t crash the grain when capnp.node can’t load on Node 24</a>:
+WeKan on Sandstorm bundles Node 24, but <code>capnp.node</code> (node-capnp) is built for an
+older Node ABI (NODE_MODULE_VERSION 83 = Node 14), so <code>Npm.require('capnp')</code> in
+<code>sandstorm.js</code> failed with <code>ERR_DLOPEN_FAILED</code> and crash-looped the whole grain on
+boot. Cap’n Proto is now loaded lazily in a <code>try/catch</code> and degrades gracefully:
+the grain boots and core WeKan works, because login and user identity come from
+the sandstorm-http-bridge <code>X-Sandstorm-*</code> HTTP headers (<code>wekan-accounts-sandstorm</code>)
+and need no Cap’n Proto. Only the two capnp-only features are skipped when the
+addon cannot load — the Powerbox identity-claim method and Sandstorm activity
+notifications — with a clear warning. They can be restored by rebuilding node-capnp
+for Node 24, or reimplemented over the bridge’s HTTP/JSON API. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/8549a62c85f43ad48e8f049eead64691c3f1dbf0">Snap release: build amd64+arm64 natively on GitHub, exotic arches non-blocking on Launchpad</a>:
+the single snap job ran <code>snapcraft remote-build</code> for all 5 platforms on Launchpad
+and blocked until the slowest resolved, so the release hung ~3.5h on riscv64’s
+Launchpad queue even though amd64+arm64 finished in minutes. It is now split in
+two: <code>snap-native</code> builds amd64 (<code>ubuntu-24.04</code>) and arm64 (<code>ubuntu-24.04-arm</code>)
+natively on GitHub runners via <code>snapcore/action-build</code>; <code>snap-launchpad</code> builds
+s390x/ppc64el/riscv64 on Launchpad in a non-blocking (<code>continue-on-error</code>),
+per-arch matrix (<code>remote-build --build-for &#x3C;arch></code>) so a slow or failed exotic
+arch never delays the release or the other arches. Each arch publishes to the
+Snap Store (candidate,beta,edge) and attaches to the GitHub Release the moment it
+finishes — all 5 arches still ship. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/60e40199c965460b95528ef9ea07281172c2d9b6">Sandstorm .spk: fix server-boot crashes from stale globals (Users, HTTP) in sandstorm.js</a>:
+once the capnp load was made non-fatal, the grain reached the rest of
+<code>sandstorm.js</code> and hit two latent Meteor-2.x-isms the Meteor 3.x migration missed
+(this file only runs on Sandstorm, so it was not exercised): it referenced the
+<code>Users</code>/<code>Boards</code>/<code>Swimlanes</code>/<code>Activities</code> collections as implicit globals, but
+those are now ES module default exports, so <code>Users.after.insert</code> threw
+<code>Users is not defined</code> at boot; and it monkey-patched <code>HTTP.methods</code> from the
+removed <code>meteor/http</code> package, so <code>HTTP</code> was undefined. The collections (and
+<code>Accounts</code>) are now imported explicitly, and the obsolete <code>HTTP.methods</code> patch is
+removed. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/975316f5cd6e81b6ea8ae6ede588d26055f9f649">Sandstorm .spk: use boolean index options so FerretDB accepts the users index</a>:
+<code>wekan-accounts-sandstorm</code> created the unique index on <code>services.sandstorm.id</code>
+with <code>{unique: 1, sparse: 1}</code>. Real MongoDB accepts the truthy <code>1</code>, but FerretDB
+(used by the Sandstorm <code>.spk</code>) is strict and rejects it with <code>The field 'unique' has value unique: 1, which is not convertible to bool</code>, crashing the grain at boot
+during index creation. Now uses real booleans (<code>unique: true, sparse: true</code>).
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/013b6b5266be34326e36762b1a50e212237b109d">Sandstorm .spk: strip Accept-Encoding so the grain doesn’t serve corrupted (gzip) content</a>:
+the grain boots, but the page failed to load with a browser “Corrupted Content
+Error” (<code>NS_ERROR_NET_CORRUPTED_CONTENT</code>). <code>sandstorm-http-bridge</code> advertises
+<code>Accept-Encoding: gzip</code> to the app regardless of what the browser actually sent,
+so Meteor served gzip/brotli-encoded responses the browser could not decode. A
+<code>WebApp.rawHandlers</code> middleware now strips <code>Accept-Encoding</code> (it runs before
+Meteor’s static/boilerplate serving) so responses go out uncompressed; bandwidth
+is a non-issue behind the local bridge. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/7f0706e45f26aa0937a15a2a8f7336df63830511">Sandstorm .spk: bundle a modern sandstorm-http-bridge to fix “Corrupted Content”</a>:
+the grain boots, but the page failed with a browser “Corrupted Content Error”
+(<code>NS_ERROR_NET_CORRUPTED_CONTENT</code>) on WeKan’s <code>/</code> redirect. The meteor-spk 0.6.0
+base bundles an ancient (~2016) <code>sandstorm-http-bridge</code> that mangles responses
+(it always advertises <code>Accept-Encoding: gzip</code> to the app and mishandles
+redirect/encoding). <code>build-deps.sh</code> now overwrites the bundled
+<code>/sandstorm-http-bridge</code> with the modern one from a Sandstorm install
+(<code>/opt/sandstorm/latest/bin/sandstorm-http-bridge</code>; override with
+<code>SANDSTORM_HTTP_BRIDGE</code>), and <code>sandstorm.yml</code> installs Sandstorm before assembling
+the deps so the bridge is available on the CI runner. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/ccdd1a0846ffed64546265c38263c7e1b8530480">Sandstorm .spk: fix the ”/” redirect (malformed Location + Content-Length mismatch)</a>:
+the grain’s <code>/</code> served a broken <code>301</code>: the <code>Location</code> was <code>.../:6080board</code> because
+<code>FlowRouter.path()</code> does not resolve on the server in Meteor 3.x (it returned the
+bare route name <code>board</code>), and the response advertised <code>Content-Length: 90</code> while
+sending an empty body — which the browser rejected as a “Corrupted Content Error”
+(<code>NS_ERROR_NET_CORRUPTED_CONTENT</code>). The handler now builds the board path directly
+(<code>/b/:id/:slug</code>) and sends a real HTML body (meta refresh + link) with a matching
+<code>Content-Length</code>, so the redirect to the hard-coded Sandstorm board works. Thanks
+to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/b5945cf596be546b9440854ee9c39520c3c715c0">Sandstorm .spk: open the grain on the All Boards page, not a hard-coded board</a>:
+WeKan on Sandstorm originally opened a single hard-coded board
+(<code>/b/sandstorm/libreboard</code>) and redirected <code>/</code> to it. It now supports many boards
+and that board is no longer the right destination, so the <code>WebApp.handlers.get("/")</code>
+redirect is removed entirely — <code>/</code> now falls through to WeKan’s normal serving,
+whose client <code>home</code> route renders the <strong>All Boards</strong> list, the right landing page
+for a multi-board grain. This also removes the last server-side redirect the
+browser was rejecting as a Corrupted Content Error. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/8f11e8ac66d7348f62e8cf9278f4196b44c719b0">Sandstorm .spk: don’t auto-create a board; map grain permissions to global role</a>:
+a new grain/user no longer gets a hard-coded <code>sandstorm</code>/libreboard board
+auto-created — WeKan on Sandstorm is multi-board now, so the user creates their own
+boards from the All Boards page. <code>updateUserPermissions</code> previously added the user
+as a member of that single board (which would now crash since the board no longer
+exists); it now maps the grain’s Sandstorm permissions to the user’s <strong>global</strong>
+WeKan role — <code>configure</code> (grain owner) becomes a WeKan admin, everyone else is a
+regular user who can create and manage their own boards. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/b0712e6656ce33bfe7c360547185fea04660c9f7">Sandstorm .spk: set SANDSTORM=1 so the header-based auto-login runs</a>:
+WeKan loaded in the grain but every page showed “Must be logged in”. The
+<code>wekan-accounts-sandstorm</code> client only starts the automatic <code>X-Sandstorm-*</code> header
+login when <code>__meteor_runtime_config__.SANDSTORM</code> is set, and the package only sets
+that when <code>process.env.SANDSTORM</code> is present — which nothing did. The launcher now
+sets <code>process.env.SANDSTORM = '1'</code> before loading the WeKan bundle, so the client
+auto-logs-in the Sandstorm user from the headers. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/d5f707fd37b63ff038f61d7aa1316d5800859b35">Sandstorm .spk: rewrite ROOT_URL per request to the grain URL (fixes login + CORS)</a>:
+WeKan loaded but stayed on “Must be logged in”, and the console showed
+<code>Cross-Origin Request Blocked … http://127.0.0.1:4000/__meteor__/dynamic-import/fetch</code>.
+The launcher sets a fixed <code>ROOT_URL</code> (<code>http://127.0.0.1:4000</code>, the internal bridge
+target), but Sandstorm serves each grain at a per-session host
+(<code>ui-&#x3C;hash>.&#x3C;host></code>), so the client sent its DDP connection and dynamic-import
+fetches to <code>127.0.0.1:4000</code> — cross-origin and unreachable — and the header-based
+login handshake (a DDP method call) never completed. A <code>WebApp.addRuntimeConfigHook</code>
+now rewrites <code>ROOT_URL</code> to the grain’s real base URL (<code>X-Sandstorm-Base-Path</code>) per
+request, so DDP, dynamic imports and the Sandstorm auto-login work. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/6f3174b23d7072a383703a5fe03711090fe9f844">Sandstorm .spk: bounce from sign-in to the boards list once auto-login lands</a>:
+the Sandstorm login was actually succeeding (<code>Meteor.userId()</code> gets set), but the
+grain stayed on the sign-in page. WeKan’s home route checks <code>Meteor.userId()</code> once
+and, because the Sandstorm header login is asynchronous and uses
+<code>connection.setUserId()</code> (bypassing accounts-base, so <code>Accounts.onLogin</code> never
+fires), finds it still null on first render and redirects to <code>atSignIn</code> — where the
+user is stranded even after login completes. A Sandstorm-only reactive autorun now
+sends the user from <code>atSignIn</code> back to <code>home</code> as soon as <code>Meteor.userId()</code> is set,
+so the grain lands on the All Boards page. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/68e59ab66f68d1c60bc10c954c50999809e5381b">Sandstorm .spk: keep the grain URL in sync with the in-app route</a>:
+navigating between boards worked but the Sandstorm shell’s grain URL never updated
+(it stayed on the grain root), unlike standalone WeKan. The path was synced via a
+global <code>FlowRouter.triggers.enter</code> callback, which does not fire reliably on client
+navigation in this flow-router-extra / Meteor 3 setup; it is now synced from a
+reactive <code>Tracker.autorun</code> on <code>FlowRouter.watchPathChange()</code> (the same mechanism
+the title sync uses), so every route change updates the grain URL to
+<code>/grain/&#x3C;id>&#x3C;path></code>. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/dc8ff6e6ca3093298d5e07f2c8726f597d672449">Sandstorm .spk: upload attachments over DDP (bridge strips Meteor-Files’ HTTP headers)</a>:
+adding a file to a card in the grain failed with HTTP 400 <code>Can't continue upload, session expired [408]</code> and the file silently disappeared. Meteor-Files’ HTTP
+upload signals the first chunk with an <code>x-start</code> header and tracks the session
+with <code>x-mtok</code>/<code>x-chunkid</code>/<code>x-fileid</code>/<code>x-eof</code>, but Sandstorm’s request-header
+whitelist does not include them, so the <code>sandstorm-http-bridge</code> strips them — the
+server never sees <code>x-start</code>, treats every request as a chunk continuation, cannot
+find the session and returns 408. Attachment uploads now use <code>transport: 'ddp'</code> on
+Sandstorm (DDP method calls, no custom HTTP headers); HTTP transport is kept
+everywhere else. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/1ca7bd3bb6016f560aaa3f748bbb23cec514acf0">Sandstorm .spk: authorize attachment/avatar downloads via X-Sandstorm-User-Id</a>:
+once uploads worked, the uploaded image still showed as a broken thumbnail,
+minicard cover and slideshow in the grain — the file was on disk but the download
+returned HTTP 403. The download route (<code>server/routes/universalFileServer.js</code>)
+authorizes files on private boards with a Meteor login token (Authorization /
+X-Auth-Token / <code>authToken</code> query / <code>meteor_login_token</code> cookie), but Sandstorm has
+none of these: authentication is via <code>connection.setUserId()</code> and the
+<code>sandstorm-http-bridge</code> <code>X-Sandstorm-*</code> request headers, so <code>extractLoginToken()</code>
+returned null and <code>isAuthorizedForBoard()</code> denied every request. Sandstorm already
+gates grain access at the platform level, so any request that reaches WeKan is an
+authenticated grain user — both <code>isAuthorizedForBoard()</code> and
+<code>isAuthorizedForAvatar()</code> now allow when <code>Meteor.settings.public.sandstorm</code> is set
+and the request carries the bridge-injected <code>X-Sandstorm-User-Id</code> header. Gating on
+the setting means a spoofed header cannot bypass auth on non-Sandstorm deployments.
+Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/3ab2b9dccbf3b32dd510d4634af88a1b9eb8513c">Sandstorm .spk: open All Boards (not sign-in) and keep the grain URL in sync</a>:
+two grain-navigation regressions against the last working Sandstorm build (v6.15).
+(1) Opening a grain showed <em>“Must be logged in”</em> instead of the All Boards page: on
+Sandstorm the platform authenticates the user asynchronously over DDP via
+<code>connection.setUserId()</code>, which (unlike a password login) does not set
+<code>Meteor.loggingIn()</code>, so <code>Meteor.userId()</code> is null for the first moments after the
+grain opens — and useraccounts’ <code>ensureSignedIn</code> trigger plus <code>renderBoardList()</code>
+both bounced that brief null window to the <code>atSignIn</code> route, a sign-in page that
+does not exist inside a grain. <code>config/router.js</code> now uses a Sandstorm-aware
+<code>ensureSignedInUnlessSandstorm</code> wrapper (a no-op on Sandstorm) and
+<code>renderBoardList()</code> no longer redirects on Sandstorm; the list renders and fills in
+reactively once the login lands. (2) The Sandstorm shell’s outer grain URL did not
+update when switching boards — the shell rewrites <code>/grain/&#x3C;id>&#x3C;path></code> when the app
+posts a <code>{ setPath }</code> message, but the sync was a bare top-level <code>Tracker.autorun</code>
+that could run before flow-router-extra’s reactive path tracking was ready and then
+never re-run. Restored v6.15’s event-driven <code>FlowRouter.triggers.enter</code> (fresh
+entering path, order-independent) and kept a <code>watchPathChange()</code> autorun wrapped in
+<code>Meteor.startup</code> as a backup. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/3f5c70e6435c5305cb165eeb866fc1ac88f58dd0">Sandstorm .spk: fix the MongoDB 3 → FerretDB migration of an existing grain</a>:
+importing an old WeKan grain crash-looped in the one-time migration — mongod 3.0
+forked and its child aborted with exit code 14. Two bugs. (1) <em>WiredTiger
+cache_size=0G</em>: mongod 3.0 sizes its WiredTiger cache from detected RAM
+(<code>RAM/2 − 1GB</code>), but inside a Sandstorm grain sandbox RAM detection returns 0, so it
+computed <code>cache_size=0G</code> and WiredTiger refused to open (minimum is 1MB), logging
+<em>“Value too small for key ‘cache_size’”</em> / <em>“Fatal Assertion 28561”</em> to
+<code>/var/migration-mongod.log</code> before aborting. Both mongod invocations (the niscu →
+3.0 stage and the 3.0 → FerretDB stage) now pass an explicit
+<code>--wiredTigerCacheSizeGB 1</code> so the cache size never depends on RAM detection
+(mongod 3.0.7 parses this option as an integer number of GB — a decimal like <code>0.25</code>
+fails with <code>Bad digit "."</code>, <a href="https://github.com/wekan/wekan/commit/0804cd19e">fixed to <code>1</code></a> —
+and it is a cache cap, not a preallocation). The data
+itself is intact (the <em>“unclean shutdown”</em> notice is harmless —
+WiredTiger recovers from the last checkpoint). (2) <em>Wrong source database</em>:
+Sandstorm WeKan grains store their data in the Meteor-default database <code>meteor</code>, but
+the importer was told <code>SRC_DB=wekan</code>, so even once mongod started it would have
+exported zero collections; only the FerretDB <em>target</em> database is <code>wekan</code>. Thanks to
+xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/a5bcb2e27c070643f17c9ed62ca6284564da1c51">Sandstorm/Snap migration: import mongodb and bson as default (CommonJS) exports under Node 24</a>:
+with the WiredTiger cache fixed mongod 3.0 started and the migration importer ran,
+but crashed immediately on its named imports — <code>import { EJSON } from 'bson'</code> and
+<code>import { MongoClient } from 'mongodb'</code> each threw <em>“Named export ’…’ not found. The
+requested module is a CommonJS module”</em>. Both packages, as bundled in WeKan’s server
+<code>node_modules</code>, are CommonJS, so Node 24’s ESM loader exposes no named exports on
+them. Import the default and destructure, as Node’s own error message advises (bson in
+the commit linked above; <a href="https://github.com/wekan/wekan/commit/50abd8f95">mongodb in the same way</a>).
+Shared by the Snap MongoDB 3 → FerretDB migration too (same Node 24). Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/6142396ae9f95872f5b2ff0e3ee889e519fd56e8">Sandstorm/Snap migration: connect mongoexport over IPv4 so it can read the old data</a>:
+with the importer finally running, every <code>mongoexport</code> of a source collection failed
+— at first silently (its own <a href="https://github.com/wekan/wekan/commit/3076f2317"><code>--quiet</code> flag suppressed the reason</a>),
+and once that was
+dropped the real error showed: <em>“error connecting to db server: no reachable
+servers”</em>. <code>mongoexport</code> is a Go tool whose <code>--host</code> defaults to <code>localhost</code>, which
+resolves to <code>::1</code> (IPv6) first, but the migration <code>mongod</code> listens only on
+<code>--bind_ip 127.0.0.1</code> (IPv4); the mongo shell defaults its host to <code>127.0.0.1</code> and so
+connected fine (it listed all 42 collections), which is why only the shell worked.
+Pass <code>--host 127.0.0.1</code> explicitly. The one-time progress dashboard also now shows a
+live Activity panel (mongoexport-ready line, per-collection export/insert counts, GridFS
+extraction counts) with a <a href="https://github.com/wekan/wekan/commit/62df99153">spinner and an auto-updating timestamp</a>,
+so it is
+clear what the migration is doing rather than sitting on <em>“(waiting…)”</em>. Thanks to
+xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/beefe441d">Sandstorm/Snap migration: resolve bson/mongodb from the modern server bundle so EJSON exists</a>:
+once mongoexport connected, every collection failed with <em>“Cannot read properties of
+undefined (reading ‘parse’)”</em> — <code>EJSON</code> was undefined. The importer script sits at the
+deps root right next to the OLD meteor-spk 0.6.0 base <code>node_modules</code> (kept only for the
+niscu → 3.0 stage): its <code>bson</code> is 1.x with no <code>EJSON</code> at all, and its <code>mongodb</code> is
+ancient — it has <code>MongoClient</code> (so the connection worked) but no <code>EJSON</code> re-export. A
+bare <code>import</code>/<code>require</code> from the script resolved those adjacent old copies, so every
+way of reaching <code>EJSON</code> (bare <code>bson</code>, <code>mongodb.EJSON</code>) came back undefined. WeKan’s
+current <code>bson</code> 7.3 and mongodb driver (with <code>EJSON</code>) live under
+<code>programs/server/npm/node_modules</code>; <a href="https://github.com/wekan/wekan/commit/0e0a8bbb3">anchor <code>createRequire</code></a>
+inside that modern bundle
+first (falling back to the deps root) and load both <code>mongodb</code> and <code>bson</code> through it —
+which also moves the importer to the same modern mongodb driver the WeKan app uses
+against FerretDB. An upfront guard fails loudly with a diagnostic list if <code>EJSON.parse</code>
+is still unreachable. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/cab231ee3">Sandstorm/Snap migration: insert into FerretDB with the modern mongodb driver (OP_MSG)</a>:
+text collections exported and <em>“inserted N/N”</em> was logged, but every document actually
+failed with <em>“Unsupported OP_QUERY command: update”</em> — nothing reached FerretDB.
+<code>requireAny('mongodb')</code> had resolved the ancient meteor-spk base driver (v2.x, at the
+deps root) because the modern driver is not directly under
+<code>programs/server/npm/node_modules</code> — Meteor nests it at
+<code>…/meteor/npm-mongo/node_modules/mongodb</code> (v6.16). The 2.x driver speaks legacy
+OP_QUERY, which FerretDB rejects; the 6.x driver speaks OP_MSG (the same driver the
+WeKan app uses against FerretDB). Add the npm-mongo path as the first resolver anchor,
+and log the resolved driver version. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/3476cd17c">Sandstorm/Snap migration: extract Meteor-Files GridFS attachments + parse legacy v1 binary</a>:
+with text migrating, attachments still produced 0 files and <em>“parse attachments.chunks:
+Unexpected Binary Extended JSON format”</em>. Two causes. (1) mongo 3.x <code>mongoexport</code> writes
+binary as legacy Extended JSON v1 <code>{"$binary":"&#x3C;b64>","$type":"00"}</code>, but modern bson
+<code>EJSON.parse</code> only accepts v2 <code>{"$binary":{"base64":…,"subType":…}}</code> — rewrite v1→v2 per
+line before parsing. (2) The grain stores attachments in Meteor-Files’ own GridFS buckets
+(<code>attachments.files</code> + <code>attachments.chunks</code>, with the FilesCollection record in the
+<code>attachments</code> collection), not CollectionFS’s <code>cfs_gridfs.*</code>. Reassemble those buckets to
+disk, link each GridFS file to its record via <code>metadata.fileId</code>/<code>versionName</code>, then repoint
+the record’s <code>versions.&#x3C;v></code> at the file and drop <code>versions.&#x3C;v>.meta.gridFsFileId</code> —
+otherwise WeKan’s <code>getFileStrategy</code> keeps choosing the now-empty GridFS backend and the
+image 404s. Verified end to end on a real grain: boards/cards/lists/swimlanes migrate and
+all 3 attachments extract and display. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/b8bdbcd2d">Sandstorm/Snap migration: auto-open All Boards after migrating, WeKan-themed dashboard</a>:
+the one-time progress dashboard used to sit on the grain URL for 60s after completion,
+forcing a manual reload to reach WeKan. On success the importer now hands off quickly and
+the done page polls <code>/</code> until WeKan’s app shell answers (riding out the brief
+importer→WeKan port hand-off) and then opens All Boards, with the spinner still spinning so
+it is clear the grain is still working. The dashboard is also recoloured to WeKan’s
+blue/white/grey. Thanks to xet7.</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v9.88" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

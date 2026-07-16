@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>rotki v1.28.0 release notes | WinterFlow.io</title><meta name="description" content="Rotki v1.28.0 introduces ETH staking support, a unified history view, Cowswap integration, and improved balance detection for Convex and Curve pools…"><link rel="canonical" href="https://winterflow.io/catalog/rotki/releases/v1.28.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="rotki v1.28.0 release notes | WinterFlow.io"><meta property="og:description" content="Rotki v1.28.0 introduces ETH staking support, a unified history view, Cowswap integration, and improved balance detection for Convex and Curve pools…"><meta property="og:url" content="https://winterflow.io/catalog/rotki/releases/v1.28.0/"><meta property="og:image" content="https://winterflow.io/images/apps/rotki/rotki.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="rotki v1.28.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Rotki v1.28.0 introduces ETH staking support, a unified history view, Cowswap integration, and improved balance detection for Convex and Curve pools…"><meta name="twitter:image" content="https://winterflow.io/images/apps/rotki/rotki.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"rotki","item":"https://winterflow.io/catalog/rotki/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/rotki/releases/"},{"@type":"ListItem","position":5,"name":"v1.28.0","item":"https://winterflow.io/catalog/rotki/releases/v1.28.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BtFGJfHq.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/rotki/rotki.png" alt="rotki logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">rotki</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Privacy-focused, self-hosted crypto and financial portfolio tracker with accounting and tax reports</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> cointracker, koinly, coinstats, delta investment tracker </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://rotki.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/rotki/rotki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/rotki/rotki#readme" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/rotki/rotki/blob/develop/LICENSE.md" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 3,946 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="rotki" data-app-slug="rotki" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/rotki/rotki" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/rotki" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/rotki/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (100)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/rotki/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v1.28.0</h2> <span class="text-sm text-gray-500">2023-05-17</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="description">Description</h1>
+<p align="center">
+<img src="https://github.com/rotki/rotki/assets/1658405/5ed774f9-401e-4b4a-960f-f0c8e2351001">
+</p>
+<p>Rotki v1.28.0 is a huge release. It contains a lots of new features, improvements and bug fixes we made in the past 3 months! The biggest feature coming here is proper <strong>eth staking</strong> support for block proposals, MEV rewards and withdrawals. Along with it the start of the <strong>unification of all history events</strong> under a common section and a lot more!</p>
+<p>It contains a mind-boggling 580 commits by 11 different contributors!</p>
+<p>A lot of new features are added but those we would like to highlight are:</p>
+<ul>
+<li>Convex and curve pool balance detection and other improvements</li>
+<li>Unified history view</li>
+<li>Ens avatars</li>
+<li>Liquity statistics and improvements on decoders</li>
+<li>Eth staking</li>
+<li>Cowswap integration</li>
+</ul>
+<p>For more information check the detailed changelog below :point_down:</p>
+<h1 id="downloads">Downloads</h1>
+<p>Upgrade is highly recommended. Download the binary for your OS from below:</p>
+<ul>
+<li><strong>Linux</strong>
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_x86_64-v1.28.0.AppImage">AppImage</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_x64-v1.28.0.tar.xz">Tar with executable</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_amd64-v1.28.0.deb">deb package</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-1.28.0-linux">Standalone Backend</a></li>
+</ul>
+</li>
+<li><strong>OSX</strong>
+<ul>
+<li>arm64
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_arm64-v1.28.0.dmg">DMG</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_arm64-v1.28.0.zip">ZIP</a></li>
+</ul>
+</li>
+<li>x86_64
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_x64-v1.28.0.dmg">DMG</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_x64-v1.28.0.zip">ZIP</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-1.28.0-macos.zip">Standalone Backend</a></li>
+</ul>
+</li>
+<li><strong>Windows</strong>
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-win32_x64-v1.28.0.exe">Windows executable</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-1.28.0-windows.exe">Standalone Backend</a></li>
+</ul>
+</li>
+</ul>
+<p>Optionally, you can also <a href="https://rotki.readthedocs.io/en/latest/installation_guide.html#verifying-integrity">verify the integrity</a> of the aforementioned binaries using the following checksums:</p>
+<ul>
+<li><strong>Linux</strong>
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_x86_64-v1.28.0.AppImage.sha512">AppImage checksum</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_x64-v1.28.0.tar.xz.sha512">Tar with executable checksum</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-linux_amd64-v1.28.0.deb.sha512">deb package</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-1.28.0-linux.sha512">Standalone Backend</a></li>
+</ul>
+</li>
+<li><strong>OSX</strong>
+<ul>
+<li>arm64
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_arm64-v1.28.0.dmg.sha512">DMG checksum</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_arm64-v1.28.0.zip.sha512">ZIP checksum</a></li>
+</ul>
+</li>
+<li>x86_64
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_x64-v1.28.0.dmg.sha512">DMG checksum</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-darwin_x64-v1.28.0.zip.sha512">ZIP checksum</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-backend-1.28.0-macos.zip.sha512">Standalone Backend</a></li>
+</ul>
+</li>
+<li><strong>Windows</strong>
+<ul>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-win32_x64-v1.28.0.exe.sha512">Windows executable checksum</a></li>
+<li><a href="https://github.com/rotki/rotki/releases/download/v1.28.0/rotki-core-1.28.0-windows.exe.sha512">Standalone Backend</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="things-to-note">Things to Note</h1>
+<h2 id="nft-image-rendering">NFT image rendering</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/9179f882-66da-400c-9002-86c6e3165816" alt="nfts_filters"></p>
+<p>Due to privacy concerns we have added a setting that is off by default which allows you to whitelist specific domains from which to allow rendering of images. For more details on the reasoning behind this check: <a href="https://medium.com/@alxlpsc/critical-privacy-vulnerability-getting-exposed-by-metamask-693c63c2ce94">https://medium.com/@alxlpsc/critical-privacy-vulnerability-getting-exposed-by-metamask-693c63c2ce94</a></p>
+<h2 id="detection-of-evm-address-in-other-chains">Detection of EVM address in other chains</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/94b818c3-0720-4199-b6be-94057153bd2b" alt="detect_3"></p>
+<p>You may see a notification that your address was detected to have activity in optimism and was added there. We have now added a periodic check mechanism to detect activity for addresses across other EVM chains. If activity is detected then the address is also tracked there.</p>
+<h2 id="ftx">FTX</h2>
+<p>FTX and FTX US have been removed as exchanges you can add api keys for and track. But don’t worry if you have used the api in rotki while FTX was still online the data is kept inside your database.</p>
+<h2 id="take-care-when-upgrading">Take care when upgrading</h2>
+<p>This is a very big release so as always <strong>take backups of the rotki directory</strong> before upgrading.</p>
+<p>What’s more there is a known issue which will be fixed in 1.28.1. <strong>Do not</strong> double click on the relogin button once the assets have been upgraded and you are prompted to login to your account: <a href="https://github.com/rotki/rotki/issues/6114">https://github.com/rotki/rotki/issues/6114</a></p>
+<p>The app will crash if you do. If this happens to you read the issue to see how to fix it.</p>
+<h2 id="automatic-detection-of-more-pools">Automatic detection of more pools</h2>
+<p>Some users were adding manual balances for curve pools, gauges or convex gauges that were not auto-detected before. This release automatically detects balances for these pools so make sure that once they have been detected you delete the manual balance entries to not double count them.</p>
+<h1 id="release-highlights">Release Highlights</h1>
+<h2 id="convex-and-curve-finance-balance-detection">Convex and Curve Finance balance detection</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/765fd826-3ab4-4254-bd16-d74839d50e58" alt="convex"></p>
+<p>rotki can now detect balances in curve and convex pool or gauges and all curve trades should be properly decoded.</p>
+<h2 id="unified-history-view">Unified History view</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/251e17c7-2982-45a1-b66e-b6e89c07e462" alt="unified_view"></p>
+<p>rotki now has a unified history view. In the History view you can see all history events from your evm transactions, ethereum block productions, ethereum staking withdrawals, custom imports, exchanges and more!</p>
+<p>All history (except for some trades and deposits/withdrawals of some CEXes) should now be there. You can also filter history (if you have a premium subscription) by almost every event field. Such as time range, transaction hash, asset, validator index and more!</p>
+<h2 id="ens-avatars">ENS Avatars</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/3495b320-24a5-4021-ab07-dc47df2cb3fe" alt="2023-05-17_19-45"></p>
+<p>rotki will now display ENS avatars instead of the address blockie next to each address that has an avar set. It can either be a normal image or an NFT. In both cases the image will be displayed.</p>
+<h2 id="liquity-statistics">Liquity statistics</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/61ce0397-41e0-46e2-8ef8-27f5b2b9d690" alt="liquity_stats"></p>
+<p>The liquity statistics section has been greatly improved giving you an overview of all of your liquity related events. What’s more you can now see an overview of both the claimed and unclaimed gains from either liquity staking or from the LUSD stability pool.</p>
+<h2 id="eth-staking">Eth staking</h2>
+<p>This release’s biggest features are related to ETH staking.</p>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/8fffd58c-6e03-423c-8d11-386e1b1aeeb6" alt="2023-05-17_21-09"></p>
+<p>We now process and show all of your ETH withdrawals, block production events and MEV rewards as part of the combined history events view.</p>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/592e5452-6531-4dfd-b956-3ce5550df2c4" alt="eth_staking"></p>
+<p>What’s more the ETH staking view has been revamped to show you the rewards across all validators separated in consensus and execution layer and withdrawn rewards. It can now also be filtered by validator or time range to get rewards in a specific period or validator.</p>
+<h2 id="cowswap-integration">Cowswap integration</h2>
+<p><img src="https://github.com/rotki/rotki/assets/1658405/0ffd829d-1bd0-452b-b6cc-1a56b60aa1c5" alt="cowswap"></p>
+<p>Cowswap trades in ethereum mainnet are now properly decoded and should appear in the history events for your accounts that have used cowswap.</p>
+<p>These were the highlights. Check below for the full changelog :point_down:</p>
+<h1 id="new-features">New Features</h1>
+<ul>
+<li>#2469 History events have now been unified under a common history events section. At the moment it features all kraken exchange events, evm events, custom imported events, block productions, staking withdrawals. Missing events retain their own sections and will be merged into the unified history in subsequent releases.</li>
+<li>#3973 Users will now be able to track their profit in Liquity staking and stability pool.</li>
+<li>#5473 Block production rewards for your validators will now be properly detected, displayed and accounted for in the PnL report.</li>
+<li>#4886 Staking MEV rewards for your validators will now be properly detected, displayed and accounted for in the PnL report.</li>
+<li>#5933 FTX and FTX US support is removed since the exchanges no longer exist</li>
+<li>#5824 Improved support for ENS, allowing to decode the version of their contracts that added the name wrapper.</li>
+<li>Refunds in ENS renewal transactions will now be properly processed.</li>
+<li>#5816 The NFT images will not be automatically rendered now. It is made so to prevent a known security issue, that may result in leakage of your privacy (read <a href="https://medium.com/@alxlpsc/critical-privacy-vulnerability-getting-exposed-by-metamask-693c63c2ce94">https://medium.com/@alxlpsc/critical-privacy-vulnerability-getting-exposed-by-metamask-693c63c2ce94</a> ). You can add domains you trust to the whitelisted domain in the NFT setting.</li>
+<li>#5696 Transactions interacting with Curve Zap Deposit contracts are now decoded properly.</li>
+<li>#5761 Liquity transactions that were made via DSProxies will now be properly decoded.</li>
+<li>#5798 Users will now be able to see ENS avatars for addresses.</li>
+<li>#5676 Curve gauge deposit, withdrawal and claim rewards actions will now be correctly decoded.</li>
+<li>#5677 Swaps made on Curve in ethereum mainnet will now be properly decoded as trades.</li>
+<li>#1505 Users will now be able to see breakdown of Binance/Binance US exchange balances, which are in account balances, and which are in savings/lending. The interest history also will be taken into account in the PnL report.</li>
+<li>#5639 Cowswap transactions are now decoded properly.</li>
+<li>#5582 Users will now be able to add their own tx hash, if somehow rotki failed to detects it.</li>
+<li>#5588 Users will now be able to save and restore used filters in the history section.</li>
+<li>#5587 Forward/Backward navigation for filters/pagination (using mouse buttons) will now be possible in the history section.</li>
+<li>#5569 It is now possible to detect when an evm address is used in other chains and start tracking it. Also a background task runs periodically that performs this check.</li>
+<li>#3004 Users will now be able to automatically track balances in convex gauges and their locked and staked CVX.</li>
+<li>#5611 Users will now see an improved notification if their API keys for Etherscan are missing and it will be easier to take action on it.</li>
+<li>#5592 Either include fees in the bought assets price or treat them as standalone events depending on the accounting settings.</li>
+<li>For known protocols like yearn, curve, uniswap etc, if the on-chain price query fails, external oracles will still be queried in case something is found there.</li>
+</ul>
+<h1 id="bug-fixes">Bug Fixes</h1>
+<ul>
+<li>#5491 Show original manual latest price asset in manual balance form.</li>
+<li>#5572 Fix a detection error that caused some uniswap v2 trade edge cases not to be accounted for properly in pnl report.</li>
+<li>#5825 Eth staking view overview numbers will no longer be limited to the past year.</li>
+<li>Yearn vault price queries will now work more robustly. If the underlying token is not in rotki’s DB it will be queried from the chain.</li>
+<li>Fixed a bug where balancer icon is not showed as transaction event counterparty.</li>
+<li>#5672 Exported csv files after using ACB as the cost basis calculation algorithm will now reflect the same numbers as shown in the app.</li>
+<li>Fixed an issue importing events from BlockFi when the assets’ symbol use lowercase instead of uppercase.</li>
+<li>Ethereum transactions claiming COMP after comptroller’s COMP ran out and has been refilled will now be decoded correctly as COMP rewards.</li>
+<li>Fixed an edge case where removing an EVM account multiple times in a row, while a transactions querying task ran, would result in an error.</li>
+<li>Ignoring forked assets ETC, BCH and BSV for accounting should now also remove any pre-fork references of them and completely omit them from the PnL report.</li>
+<li>Users with kraken accounts with old data that were never purged and repulled will no longer have missing events.</li>
+<li>Fixed a bug that didn’t allow adding a new Bitpanda account.</li>
+<li>Handled ETH2 staking rewards conversions in Kraken after the activation of withdrawals.</li>
+<li>PnL report will now correctly show progress bar percentage if user has connected but non-syncing exchanges.</li>
+<li>#5697 Tokens returned to the user when decoding Balancer V1 deposits won’t be detected as received wrapped tokens.</li>
+<li>#5749 Phishing zero token transfer transactions will now be hidden and ignored.</li>
+<li>#5717 Swaps will now be processed in accounting correctly even if set manually.</li>
+<li>#5847 Dev users: Querying the all balances api endpoint multiple times within 15 mins under certain conditions will no longer double some asset balances.</li>
+<li>If a premium user changes their rotki password they will now be able to pull remote data without restarting the app.</li>
+<li>Now there won’t be errors querying balances when an address owning a Makerdao vault is deleted.</li>
+<li>Fixed an issue where reports couldn’t be exported if there was special characters in notes or assets and the user locale was not compatible.</li>
+<li>When users edit exchange credentials, if new credentials are invalid, the old passphrase will now be kept.</li>
+<li>#5934 When an exchange account is deleted from rotki and there are still more tracked accounts on the same exchange, events will no longer be re-queried for those remaining accounts.</li>
+<li>Users will now see the correct set of NFTs if they customized the list of addresses queried for the NFT module.</li>
+<li>Withdrawals from curve pools with aave wrapped tokens will now be decoded correctly.</li>
+</ul>
+<h1 id="newly-supported-assets">Newly supported assets</h1>
+<p>Added support for the following assets:</p>
+<ul>
+<li><a href="https://www.coingecko.com/en/coins/arbitrum">Arbitrum (ARB)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/arbitrum">Arbitrum (ARB)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/wrapped-steth">Wrapped liquid staked Ether 2.0 (wstETH)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/wrapped-steth">Wrapped liquid staked Ether 2.0 (wstETH)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/frax-ether">Frax Ether (frxETH)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/frax-ether">Frax Ether (frxETH)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/frax-ether">Frax Ether (frxETH)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/frax-ether">Frax Ether (frxETH)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/frax-ether">Frax Ether (frxETH)</a> on fantom</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/staked-frax-ether">Staked Frax Ether (sfrxETH)</a> on fantom</li>
+<li><a href="https://www.coingecko.com/en/coins/liquity-usd">LUSD Stablecoin (LUSD)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/liquity-usd">LUSD Stablecoin (LUSD)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/sui">Sui (SUI)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/velodrome-finance">Velodrome (VELO)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/pepe">Pepe (PEPE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/echelon-prime">Prime (PRIME)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/liquid-staked-ethereum">Liquid Staked ETH (LsETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/liquid-staked-eth-index">Liquid Staked ETH (LSETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/dimo">Dimo (DIMO)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/dimo">Dimo (DIMO)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/bone-shibaswap">BONE SHIBASWAP (BONE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/space-id">SPACE ID (ID)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/cryptogpt-token">CryptoGPT Token (GPT)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/wrapped-minima">Wrapped Minima (WMINIMA)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/prema">PREMA (PRMX)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/bitget-token">BitgetToken (BGB)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/arbdoge-ai">AIDOGE (AIDOGE)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/aped">Aped (APED)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/babypepe">BabyPepe (BABYPEPE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/rekt-04bbe51a-e290-450a-afb5-b2b43b80b20e">REKT (REKT)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/wifi">WiFi Map (WIFI)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/wassie">WASSIE (WASSIE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/wojak">Wojak Coin (WOJAK)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/sponge-f08b2fe4-9d9c-47c3-b5a0-84c2ac3bbbff">SpongeBob (SPONGE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/turbo">Turbo (TURBO)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/dejitaru-tsuka">Dejitaru Tsuka (TSUKA)</a> on ethereum</li>
+<li>ZenPandaCoin (ZPC) on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/y2k">Y2K (Y2K)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/ribbit-meme">Ribbit (RIBBIT)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/pendle">Pendle (PENDLE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/pendle">Pendle (PENDLE)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/pendle">Pendle (PENDLE)</a> on avalanche</li>
+<li><a href="https://www.coingecko.com/en/coins/vela-token">VelaToken (VELA)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/smart-valor">ValorToken (VALOR)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/cetus-protocol">Cetus Protocol (CETUS)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/rocket-pool-eth">Rocket Pool ETH (rETH)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/rocket-pool-eth">Rocket Pool ETH (rETH)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/rocket-pool-eth">Rocket Pool ETH (rETH)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/myria">Myria (MYRIA)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/capybara">Capybara (CAPY)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/optimus-opt">Optimus (OPT)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/ben-2">Ben (BEN)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/bibi">BIBI (BIBI)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/billy-token">Billy Token (BILLY)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/bite">Bite (BITE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/bobo">Bobo (BOBO)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/ilcapo">ILCAPO (CAPO)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/chaingpt">ChainGPT (CGPT)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/unsheth">unshETHing_Token (USH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/nitro-cartel">Arbitrove Governance Token (TROVE)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/swaperry">Swaperry (PERRY)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/jeff">JEFF (JEFF)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/defactor">Defactor (FACTR)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/floki-ceo">FLOKI CEO (FLOKICEO)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/chad-coin">Chad Coin (CHAD)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/ordinal-doge">Ordinal Doge (oDoge)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/shikoku">SHIKOKU INU (SHIK)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/mememe">Mememe (MEMEME)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/mongcoin">MongCoin ($MONG)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on avalanche</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on matic</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on optimism</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on fantom</li>
+<li><a href="https://www.coingecko.com/en/coins/onomy-protocol">Onomy Protocol (NOM)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/humanode">Humanode (HMND)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/octo-gaming">Octokn (OTK)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/zoid-pay">ZoidPay (ZPAY)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/suipad">SuiPad (SUIP)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/coreum">Coreum (CORE)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/hibeanz">hiBEANZ (hiBEANZ)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/wrapped-beacon-eth">Wrapped Binance Beacon ETH (wBETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/wrapped-beacon-eth">Wrapped Binance Beacon ETH (wBETH)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/halonft-art">HALO Token (HALO)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/playzap">PLAYZAP (PZP)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/gdx-token">Gridex (GDX)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/mute">Mute.io (MUTE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/pawswap">PAWSWAP (PAW)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/pogai">poor guy (pogai)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/pooh">POOH (POOH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/poolz-finance-2">Poolz Finance (POOLX)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/ramses-exchange">Ramses (RAM)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/reality-metaverse">RealityToken (RLTM)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/singularitydao">Singularity Dao (SDAO)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/singularitydao">Singularity Dao (SDAO)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/klayswap-protocol">KlaySwap Protocol (KSP)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/king-2">KING (KING)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/core-id">CORE ID (CID)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/good-gensler">Good Gensler (GENSLR)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/iykyk">IYKYK (IYKYK)</a> on ethereum</li>
+<li>Karate (KARATE) on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/dopex">Dopex Governance Token (DPX)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/dopex">Dopex Governance Token (DPX)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/topgoal">TopGoal Token (Goal)</a> on binance</li>
+<li>LimeWire (LMWR) on binance</li>
+<li>Turbos Finance (TURBOS) on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/aipad">AIPAD.tech (AIPAD)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/aipad">AIPAD.tech (AIPAD)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/milady-meme-coin">Milady (LADYS)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/milady-meme-coin">Milady (LADYS)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/kaspa">Kaspa (KAS)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/genesysgo-shadow">Shadow Token (SHDW)</a></li>
+<li><a href="https://www.coingecko.com/en/coins/izumi-finance">izumi Token (iZi)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/perlin">Perlin (PERL)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/kyber-network-crystal">Kyber Network Crystal v2 (KNC)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/limewire-token">LimeWire Token (LMWR)</a> on ethereum</li>
+</ul>
+<p>Updated the information of the following assets:</p>
+<ul>
+<li>Autodetected spam token (0xE1b3f4849C8959F53eDd3AB932E0F145Daf865C1) on ethereum</li>
+<li>Autodetected spam token (0x0D3716e3e411aF431a6E87E715D4B05BbCD67000) on ethereum</li>
+<li>Autodetected spam token (Invitation token. Please Visit <a href="https://pums.info">https://pums.info</a> a) on ethereum</li>
+<li>aater.site (Invitation token. Please Visit <a href="https://aater.site">https://aater.site</a>) on ethereum</li>
+<li>Autodetected spam token (0x768ee58B2e288D3f09D4A42479d9F45CCE40B0c4) on ethereum</li>
+<li>Autodetected spam token (0x69D732F50e248D4B825d524fEDEB0D7Ce3d76352) on ethereum</li>
+<li>Autodetected spam token (0x120aA018634F555484c088c8da80F75Aa07E004F) on ethereum</li>
+<li>Autodetected spam token (0xb3c4E9e07ed39708231FF357e8D54096406c2788) on ethereum</li>
+<li>Autodetected spam token (avrc.xyz) on ethereum</li>
+<li>Autodetected spam token (0xd707B59f8b9C5267C579fdf615cDB09353eaCA20) on ethereum</li>
+<li>Autodetected spam token (0x2d262c7FaA8E03A86D6634BDc6178B3e06cd690b) on ethereum</li>
+<li>Autodetected spam token (0x208A9C9D8E1d33a4f5b371Bf1864AA125379Ba1B) on ethereum</li>
+<li>Autodetected spam token (0xaD9F583F255Ea7fBa4321f84cBa57c3bBD2F0687) on ethereum</li>
+<li>Autodetected spam token (0x71FdF1Bbb9F166FBCC4fDc73d696999FA4D8e4a2) on ethereum</li>
+<li>Autodetected spam token (0x66F176BB173DE87fcE3d1e828baDEA5081B7Fb5e) on ethereum</li>
+<li>Autodetected spam token (0x643695D282f6BA237afe27FFE0Acd89a86b50d3e) on ethereum</li>
+<li>Autodetected spam token (0x6171136E82a2f1bAA2494c69528f599467EfeA20) on ethereum</li>
+<li>Autodetected spam token ([sodefi.tech] Visit and claim rewards) on ethereum</li>
+<li>Autodetected spam token (0x3A518415448d5b254B4d1CC1CF37Cce6FC175E5f) on ethereum</li>
+<li>Autodetected spam token (0xa51a8578052EdEB4Ced5333A5e058860d9E7a35b) on ethereum</li>
+<li>Autodetected spam token (0xE23366CcCF6c5318b47621cEAC3296d480b5Ebc8) on ethereum</li>
+<li>Abroshib.org (Visit website abroshib.org to swap tokens.) on ethereum</li>
+<li>Autodetected spam token (0xC13647659Fb3c11ee9cfE1CbE7CAf3ff3eBCd317) on ethereum</li>
+<li>Autodetected spam token (0x7a6b87D7a874Fce4c2d923b09C0E09e4936bcF57) on ethereum</li>
+<li>Autodetected spam token (0x3Ebd76B25A453252CA6B61334ED6f156Bf5dD928) on ethereum</li>
+<li>Autodetected spam token (0x34278F6f40079eae344cbaC61a764Bcf85AfC949) on ethereum</li>
+<li>Autodetected spam token (0x2d262c7FaA8E03A86D6634BDc6178B3e06cd690b) on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/rocket-pool-eth">Rocket Pool ETH (rETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/vnx-gold">VNX Gold (VNXAU)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/freth">frETH (frETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/redacted">BTRFLY (BTRFLY)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/defi-franc">Defi Franc (DCHF)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/new-world-order">New World Order (STATE)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/stake-link-staked-link">Staked LINK (stLINK)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/reserve-rights-token">Reserve Rights (RSR)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/clever-token">CLever Token (CLEV)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/bittorrent">BitTorrent (BTT)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/lyra-finance">Lyra Token (LYRA)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/aladdin-dao">Aladdin Token (ALD)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/stargate-finance">StargateToken (STG)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/convex-fpis">Convex FPIS (cvxFPIS)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/electronic-usd">Electronic Dollar (eUSD)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/ankreth">Ankr Staked ETH (ankrETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/rocket-pool-eth">Rocket Pool ETH (rETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/olympus">Olympus (OHM)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/mausdt">Morpho-Aave Tether USD Supply Vault (maUSDT)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/multibtc">Multichain BTC (multiBTC)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/camelot-token">Camelot token (GRAIL)</a> on arbitrum</li>
+<li><a href="https://www.coingecko.com/en/coins/iguverse-igu">IGU Token (IGU)</a> on binance</li>
+<li><a href="https://www.coingecko.com/en/coins/sudoswap">SUDO (SUDO)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/reth">StaFi (rETH)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/unbnk">Unbanked (UNBNK)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/dola-borrowing-right">Dola Borrowing Right (DBR)</a> on ethereum</li>
+<li><a href="https://www.coingecko.com/en/coins/arth">ARTH Valuecoin (ARTH)</a> on ethereum</li>
+<li>pepelp.com (PEPELP) on ethereum</li>
+<li>$ LidoLP.com (LidoLP.com) on ethereum</li>
+<li>SFAr.io (SFA) on ethereum</li>
+<li>LooksDrop.com (LOOKSDROP.COM) on ethereum</li>
+<li>BlurReward.org (BlurReward.org) on ethereum</li>
+<li>Kishib.com (Kishib.com) on ethereum</li>
+<li>Kishui.net (Kishui.net) on ethereum</li>
+<li>AbroShib.Org (Swap to ETH here - <a href="https://Abroshib.org">https://Abroshib.org</a> ) on ethereum</li>
+<li>mbird.fun (mbird.fun) on ethereum</li>
+<li>ApeDao.site (apedao.site) on ethereum</li>
+<li>opclaim.com (Visit opclaim.com to claim rewards) on optimism</li>
+<li>AbroShib.org (Visit <a href="https://abroshib.org">https://abroshib.org</a> in order to Swap to ETH.) on ethereum</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/rotki/rotki/releases/tag/v1.28.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
