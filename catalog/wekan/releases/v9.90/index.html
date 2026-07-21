@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v9.90 release notes | WinterFlow.io</title><meta name="description" content="This release fixes a critical XSS vulnerability related to file-upload MIME-type validation and introduces new admin privacy controls for imports…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v9.90/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v9.90 release notes | WinterFlow.io"><meta property="og:description" content="This release fixes a critical XSS vulnerability related to file-upload MIME-type validation and introduces new admin privacy controls for imports…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v9.90/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v9.90 release notes | WinterFlow.io"><meta name="twitter:description" content="This release fixes a critical XSS vulnerability related to file-upload MIME-type validation and introduces new admin privacy controls for imports…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v9.90","item":"https://winterflow.io/catalog/wekan/releases/v9.90/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BOmMmtZA.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,000 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (131)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v9.90</h2> <span class="text-sm text-gray-500">2026-07-14</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="v990-2026-07-15-wekan--release">v9.90 2026-07-15 WeKan ® release</h1>
+<p>This release fixes the following CRITICAL SECURITY ISSUE of <a href="https://wekan.fi/hall-of-fame/mimebleed/">MimeBleed</a>:</p>
+<ul>
+<li><strong><a href="https://github.com/wekan/wekan/security/advisories/GHSA-jhph-whx8-wq6p">MimeBleed</a>:
+file-upload MIME-type validation bypass → stored XSS on deployments without the
+<code>file</code> binary</strong>
+(<a href="https://github.com/wekan/wekan/security/advisories/GHSA-jhph-whx8-wq6p">GHSA-jhph-whx8-wq6p</a>,
+CWE-434 Unrestricted Upload of File with Dangerous Type). WeKan’s upload validation
+(<code>models/fileValidation.js</code>) detects a file’s real MIME type by running the Unix
+<code>file</code> command. On minimal Docker/Alpine images where <code>file</code> is not installed,
+<code>detectMimeFromFile()</code> silently returned <code>undefined</code> and the code fell back to the
+<strong>client-supplied</strong> <code>fileObj.type</code>. An authenticated board member (with <code>WITH_API=true</code>)
+could therefore upload an HTML file containing JavaScript while setting
+<code>fileType: "image/png"</code>: the spoofed type is not on the dangerous-MIME deny-list, so
+the dangerous-content scan was skipped and the file was stored, yielding stored XSS
+served under the WeKan origin (session theft / actions as the victim, including admin).
+<ul>
+<li><strong>Fixed</strong> so the client-supplied type can never gate the safety scan: when
+content-based detection via <code>file</code> is unavailable, WeKan now falls back to a
+<strong>dependency-free JS content sniff</strong> (<code>looksLikeDangerousMarkup()</code>) that inspects the
+real bytes for HTML/SVG/XML/<code>&#x3C;script></code> signatures and forces the dangerous-content
+scan regardless of the claimed MIME — so a spoofed <code>image/png</code> that is actually
+HTML+JS is caught and rejected. The sniff only matches definitive markup signatures,
+so genuine binary uploads (real PNG/JPEG/PDF, including large ones) are unaffected.
+WeKan also now logs a one-time warning when the <code>file</code> command is missing (previously
+the failure was silent). A regression test
+(<code>server/lib/tests/fileValidationBypass.security.tests.js</code>) covers both the spoofed
+dangerous uploads and safe binaries. CVSS:3.1 8.3 High
+(AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:N).</li>
+<li>Affected container deployments without the <code>file</code> binary and <code>WITH_API=true</code>;
+fixed at the upcoming WeKan release. Reported by <strong>HNUfwj</strong>. Also install the <code>file</code>
+package for full content-based MIME detection (WeKan’s official images already do).
+Thanks to HNUfwj and xet7.</li>
+</ul>
+</li>
+</ul>
+<p>and adds the following new features:</p>
+<ul>
+<li>
+<p><strong>Admin Panel / Features / Security: import/export privacy controls</strong>. Six new
+optional toggles govern how boards and user data cross the WeKan boundary:</p>
+<ul>
+<li><strong>Disable all import</strong> / <strong>Disable all export</strong> — master switches that turn off
+every import / export feature (WeKan JSON, Trello, CSV/Excel, Jira, Kanboard,
+NextCloud Deck, OpenProject, GitHub/GitLab/Gitea/Forgejo, board clone, and the
+single-attachment export). The server rejects any such request, and the import /
+export menu options are hidden in the UI.</li>
+<li><strong>Disable import avatars</strong> / <strong>Disable export avatars</strong> — never carry avatars
+(profile pictures) into / out of WeKan. Import covers WeKan JSON import, Trello
+import and external identity-provider avatar sync on login (LDAP, OIDC/OAuth2),
+gated at the single <code>localizeAvatarFromBuffer</code> choke point; export covers WeKan
+JSON and CSV export.</li>
+<li><strong>Anonymize import users</strong> / <strong>Anonymize export users</strong> — replace every user’s
+username, full name and initials with counter placeholders (user1, user2, …),
+drop their avatar, and rewrite <code>@username</code> mentions plus the requested-by /
+assigned-by fields inside card and comment content, so the imported board /
+exported file carries no real user identity. The placeholder word “user” follows
+the language of the person importing/exporting (e.g. “käyttäjä1” in Finnish). Both
+export paths are covered — the in-memory <code>build()</code> and the streaming
+<code>buildStream()</code> (which does a lightweight id-only pre-scan so mentions streamed
+before the users array still resolve to matching labels).</li>
+</ul>
+<p>All six default to off (current behaviour). Enforcement lives server-side in the
+Exporter, the WekanCreator import path and the avatar localizer, so it cannot be
+bypassed from the client. Thanks to xet7.</p>
+</li>
+<li>
+<p><strong>Admin Panel / Features / Security: new optional “Always show all code as plain
+text” toggle</strong>. When enabled, rich text is never rendered as markdown or HTML —
+the entire source is shown as escaped plain text in every rich text field (board
+and card titles, descriptions, comments, checklists, etc.), so hidden content is
+always revealed: HTML comments (<code>&#x3C;!-- --></code>), the target URL inside a markdown
+link, JavaScript and any other code. All code is always visible, not clickable,
+and not running. This extends the existing invisiblebleed protection (which
+already showed raw source for description-less markdown links) to all content.
+The <code>wekan-markdown</code> package cannot import app code, so the setting is bridged to
+the markdown renderer through a reactive flag on the exported <code>Markdown</code> object,
+kept in sync by the rich text viewer. Stored as the global <code>alwaysShowCodeAsText</code>
+setting; default off, so markdown renders normally. Thanks to xet7.</p>
+</li>
+<li>
+<p><strong>Admin Panel / Features: new optional “Render links as plain text” security
+toggle</strong>. When enabled, all links — both markdown links like <code>[label](url)</code> and
+raw HTML <code>&#x3C;a href></code> tags — are always shown as plain, non-clickable text in every
+rich text field (board and card titles, descriptions, comments, checklists,
+etc.), so a link can never be clicked and cannot present misleading anchor text.
+This is a hardening option on top of the existing XSS sanitization (which already
+strips <code>javascript:</code>/<code>data:</code> schemes, event-handler attributes and dangerous
+tags): it addresses <a href="https://github.com/wekan/wekan/issues/6453">#6453</a>, where a
+board title could render as a clickable link. The toggle lives under Admin Panel /
+Features / Security, is stored as the global <code>renderLinksAsPlainText</code> setting, and
+defaults to off (links stay clickable). Implemented by forbidding the <code>&#x3C;a></code> tag
+(while keeping its visible text) in the shared DOMPurify sanitizer used by the
+rich text viewer, gated on the setting so toggling it re-renders reactively.
+Thanks to bcook-konza and xet7.</p>
+</li>
+</ul>
+<p>and adds the following updates:</p>
+<ul>
+<li><strong>Outgoing webhooks / notifications: include the card description</strong>
+(<a href="https://github.com/wekan/wekan/issues/5143">#5143</a>). A card’s description was
+saved to the activity log (a <code>a-changedDescription</code> activity, #5482) but was never
+put into the outgoing-webhook / notification payload, so integrations received an
+event with no description text. The payload now carries <code>description</code> (the card’s
+current description, added only when non-empty) for every card event, and — for a
+description <em>change</em> — the before/after text as <code>oldValue</code> / <code>value</code> (previously
+only <code>timeValue</code>/<code>timeOldValue</code> were forwarded). New fields are additive, so
+existing webhook consumers are unaffected. Thanks to xet7.</li>
+<li><a href="https://github.com/wekan/wekan/commit/422daa6a0c33a578ebd84a77e7a537caf73f2510">Update Sandstorm Docs about how to install newest test version</a>.
+Thanks to xet7.</li>
+</ul>
+<p>and fixes the following tests:</p>
+<ul>
+<li>
+<p><strong>Test infrastructure: fix <code>meteor test</code> (Mocha, server-side) crashing at boot
+with 0 tests run</strong> (<code>scripts/patch-yargs-dirname.cjs</code>). The whole <code>yargs</code> package
+is dragged into the Meteor <strong>test</strong> server bundle as a transitive devDependency,
+and Meteor 3 wraps every module in a CommonJS function
+<code>function(require, exports, module, __filename, __dirname){…}</code>. yargs (and its ESM
+dependencies) ship native-ESM constructs that are illegal inside that wrapper and
+crash the bundle before a single test runs:</p>
+<ul>
+<li><code>import.meta.url</code> / <code>import.meta.resolve(…)</code> → “Cannot use ‘import.meta’ outside a module”</li>
+<li><code>const __dirname = …</code> → “Identifier ‘__dirname’ has already been declared”</li>
+<li><code>const require = createRequire(import.meta.url)</code> (and the guarded bundler variant
+<code>const require = createRequire ? createRequire(import.meta.url) : undefined</code>) →
+“Identifier ‘require’ has already been declared”</li>
+</ul>
+<p>A <code>postinstall</code> patch (<code>patch-yargs-dirname.cjs</code>) rewrites those constructs to the
+wrapper’s own <code>__filename</code> / <code>__dirname</code> / <code>require</code> (yargs is never executed here —
+it only needs to <em>parse</em> as CommonJS). Getting the patch right took several iterations,
+each of which failed in a way that looked like an unrelated source-level syntax error:</p>
+<ol>
+<li>The patch expanded <code>import.meta.url</code> <strong>before</strong> stripping
+<code>const require = createRequire(…)</code>. The expansion injected a <code>require('url')…</code>
+call whose <code>)</code> then terminated the paren-naive <code>createRequire\([^)]*\)</code> match early,
+leaving a dangling <code>.pathToFileURL(__filename).href))</code> — reify then died with
+<code>SyntaxError: Unexpected token (19:33)</code> on the <strong>generated</strong> yargs <code>esm.mjs</code>, not on
+any repo file. Diagnosing it required instrumenting reify’s Babel parser in the
+Meteor <strong>dev_bundle</strong> copy to dump the exact source string it was choking on, because
+every scan of the repo’s own <code>*.js</code> came back clean (the broken file was in
+<code>node_modules</code>, was <code>.mjs</code>, and was <em>produced by the patch itself</em>). Fixed by
+removing the <code>createRequire</code> line <strong>before</strong> expanding <code>import.meta.url</code>, plus a
+repair rule that collapses any already-corrupted <code>…href))</code> leftover back to a marker.</li>
+<li>With parsing fixed, a <strong>second</strong> ESM shim surfaced at boot — this time in a yargs
+<em>dependency</em>, <code>node_modules/yargs-parser/build/lib/index.js</code> (not under
+<code>node_modules/yargs</code>, so <code>import.meta.url</code> there was still unexpanded, a tell that
+the old yargs-only scan had never touched it). Its line 30 used the guarded ternary
+<code>const require = createRequire ? createRequire(import.meta.url) : undefined;</code>, whose
+<code>createRequire ?</code> (space, not <code>(</code>) slipped past the direct <code>createRequire\(</code> matcher
+→ the leftover <code>const require</code> collided with the wrapper parameter and the server
+bundle crashed at <strong>boot</strong> with “Identifier ‘require’ has already been declared”.
+Two changes fixed it: (a) generalize the removal (and its trigger) from
+<code>const require = createRequire\(…\)</code> to a line-wise <code>const require = …createRequire…;</code>
+so it matches both the direct call and the guarded-ternary form, running it <em>before</em>
+the <code>import.meta.url</code> expansion so the injected <code>require('url')…</code> parens can never
+confuse it; and (b) broaden the scan from just <code>node_modules/yargs</code> to yargs <strong>and
+its ESM dependency packages</strong> (<code>yargs-parser</code> is the actual offender; cliui, escalade,
+string-width, y18n, get-caller-file, require-directory are scanned too and are
+harmless to include).</li>
+</ol>
+<p>The patch is idempotent, best-effort (never fails an install), and re-runnable by hand
+(<code>node scripts/patch-yargs-dirname.cjs</code>) to repair a <code>node_modules</code> tree left broken by
+an older version. This is a pre-existing test-only build breakage (the yargs bundling
+predates these fixes); production runtime bundles were never affected. Separately, three
+server test files were present on disk but missing from the curated loader
+<code>server/lib/tests/index.js</code> (which the <code>meteor test</code> entry imports explicitly rather than
+by <code>*.tests.js</code> convention), so they had silently never run — the MimeBleed file-validation
+bypass regression, the import/export privacy settings, and the impersonation report query
+are now registered. With all of the above, the server suite boots and runs clean:
+<strong>450 passing, 0 failing</strong> (411 before the three files were wired in). Thanks to xet7.</p>
+</li>
+<li>
+<p><strong>Test infrastructure: <code>rebuild-wekan.sh</code> and <code>rebuild-wekan.bat</code> now show live
+progress in every test path</strong>. Several places used to sit silent for minutes, which
+looked like a hang. Audited both scripts and closed every gap:</p>
+<ul>
+<li><strong>Server-start wait</strong> (both “Run ALL tests” modes). While the <code>:3000</code> server came
+up, the readiness wait printed only dots. <code>.sh</code> now shows live progress (see the
+<code>.build/bundle</code> item below, where it streams the boot log scrolling); <code>.bat</code> prints a
+check counter now and then and points at the live server log to <code>type</code> in another
+window (on cmd, echoing arbitrary log lines is unsafe as they can contain <code>> &#x3C; | &#x26;</code>).</li>
+<li><strong>Fixed the readiness poll hanging so nothing showed for minutes</strong> (the progress
+line froze at <code>[0s]</code>). The wait polled <code>curl http://127.0.0.1:3000/sign-in</code> with no
+timeout; Meteor binds the :3000 proxy early and accepts the TCP connection while the
+app is still building but sends no HTTP response until it finishes, so <code>curl</code> blocked
+on that first connection for the whole build and the loop never advanced. Added
+<code>--connect-timeout 2 --max-time 4</code> so each poll returns quickly, and the wait is now
+bounded by wall-clock time (<code>.sh</code> 1200s / <code>.bat</code> ~240 polls) rather than a fixed count
+(also applied to the Playwright-ALL precheck).</li>
+<li><strong>Sequential per-job</strong> (menu option 2). Each job used to block/redirect to a log
+with nothing on screen while it built and ran. Because only one suite runs at a
+time in this mode, <code>.sh</code> now streams each suite’s reporter output <strong>straight to the
+console</strong> via <code>tee</code> (also saving the log), so you see every test tick by one-by-one
+as Mocha / Playwright / the E2E harness prints it, then a final PASS/FAIL + count
+line; <code>.bat</code> runs each job in its own minimized window (reusing the proven parallel
+start-commands + <code>.done-&#x3C;key></code> flags) and polls a live pass counter, one at a time.</li>
+<li><strong>Playwright “ALL browsers” single menu item</strong> (<code>.sh</code> option 10 /
+<code>run_playwright_parallel</code>). It redirected each browser to a log and only dumped the
+output after all finished. It now streams each browser’s Playwright <code>list</code> reporter
+live via <code>tee</code> (progress visible per test) while still saving the log;
+<code>PIPESTATUS[0]</code> keeps the per-browser pass/fail accurate through the pipe.</li>
+<li>The single-suite menu items (Mocha, import regression, Node E2E, single Playwright
+browser) already stream straight to the terminal, and the parallel-mode combined
+progress table is unchanged. Thanks to xet7.</li>
+</ul>
+</li>
+<li>
+<p><strong>Test infrastructure: “Run ALL tests” reuses the precompiled <code>.build/bundle</code> for the
+:3000 server instead of recompiling with <code>meteor run</code></strong> (both <code>rebuild-wekan.sh</code> and
+<code>rebuild-wekan.bat</code>). Node E2E
+and Playwright drive a live WeKan over HTTP; that server is now started from the
+production bundle you already built with <code>meteor build .build --directory</code> — <code>node main.js</code> boots in seconds with no recompile, using Meteor’s bundled <code>node</code> and <code>mongod</code>
+(mongod on :3001, or an already-running MongoDB there is reused). Its one-time
+<code>programs/server</code> npm install and its boot log now stream live (scrolling) so you can
+see exactly what is happening. Two caveats that are inherent to Meteor and are called
+out in the script: (1) the bundle is run <strong>as-is</strong>, so after changing source you must
+rebuild it or the tests run old code; (2) the server-side <strong>Mocha</strong> suite still uses
+<code>meteor test</code> (its own <code>.meteor/local-test</code> build) — the in-process unit/security tests
+cannot run from a production bundle, so copying the bundle would not help them. In
+<strong>sequential</strong> mode the suites run strictly one at a time, each streaming its own output,
+and the parallel-only combined table is skipped (only the live WeKan server + MongoDB run
+alongside — they are the system under test, not parallel test jobs). Before starting, the
+run checks for the <strong><code>.build/bundle</code></strong> directory specifically (not just <code>.build</code>) and
+builds it once with <code>meteor build .build --directory</code> if it is missing or incomplete, so
+a first run with no bundle still works. The bundle server talks to the <strong><code>meteor</code></strong>
+database on :3001 — the DB name Meteor’s built-in mongo used under <code>meteor run</code> and the
+one the Playwright / Node E2E tests seed into (<code>tests/playwright/helpers/db.js</code>,
+<code>tests/e2e/list-regressions.js</code>); an earlier <code>/wekan</code> name made the app read an empty
+database while the tests seeded a different one, so every seeded test failed until the
+names were aligned. Both the Bash and the Windows batch runners now use this
+bundle-based :3000 server (the <code>.bat</code> resolves Meteor’s bundled <code>node</code> / <code>mongod</code> from
+the dev_bundle, starts mongod in a minimized window, and stops it on exit only when it
+started it). Thanks to xet7.</p>
+</li>
+</ul>
+<p>and fixes the following bugs:</p>
+<ul>
+<li><strong>Sandstorm: the WeKan Admin Panel is now always available in a migrated grain,
+not just a freshly created one</strong>. On Sandstorm the grain owner (Sandstorm
+<code>configure</code> permission) is mapped to a WeKan admin, which gates the Admin Panel
+(and Admin Panel / Attachments / Sandstorm, used to delete leftover files after
+a migration). A brand-new grain worked because <code>Users.after.insert</code> derives the
+role for the new user, but a grain migrated from an older WeKan already contains
+the user, so that insert hook never runs. Sandstorm auto-login uses
+<code>connection.setUserId()</code> (bypassing accounts-base, so <code>Accounts.onLogin</code> never
+fires), and the only remaining hook — an <code>observeChanges</code> on <code>services.sandstorm</code>
+— fires solely when that field actually changes on login. When the migrated
+user’s stored permissions already equal the grain’s current permissions, the
+login <code>$set</code> is a no-op with no oplog entry, so the role was never derived and
+the owner had no Admin Panel. WeKan now reconciles this at grain startup (a
+migrated grain reboots once migration completes): every Sandstorm user whose
+stored permissions include <code>configure</code> is granted WeKan admin. It only promotes,
+never revokes, so a stale/empty stored permission set can never lock the owner
+out. Thanks to xet7.</li>
+<li><strong>Admin Panel / Version: show the MongoDB storage engine even with
+per-database credentials (no more “unknown”)</strong>. The storage engine was read
+only from the <code>serverStatus</code> command, which requires the cluster-level
+<code>clusterMonitor</code> role. A per-database WeKan user (<code>readWrite</code> on the <code>wekan</code>
+database only, as in the <code>docs/Platforms/FOSS/Docker/Meteor3/</code> setup) is not
+authorized to run it, so the command was rejected and the field stayed
+<code>unknown</code>. WeKan now falls back to a <code>$collStats</code> aggregation (which needs only
+the <code>collStats</code> action that <code>read</code>/<code>readWrite</code> already grant) and reads the
+real engine — <code>wiredTiger</code> (or <code>inMemory</code>) — from <code>storageStats</code>. The MongoDB
+compatible version and Database commit were already correct: they come from
+<code>buildInfo</code>, which needs no special privileges. Thanks to xet7.</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v9.90" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

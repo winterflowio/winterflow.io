@@ -1,0 +1,627 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v9.97 release notes | WinterFlow.io</title><meta name="description" content="This release introduces self-healing attachment repairs, a non-blocking startup schema upgrade system, improved migration speeds, and numerous bug fixes…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v9.97/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v9.97 release notes | WinterFlow.io"><meta property="og:description" content="This release introduces self-healing attachment repairs, a non-blocking startup schema upgrade system, improved migration speeds, and numerous bug fixes…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v9.97/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v9.97 release notes | WinterFlow.io"><meta name="twitter:description" content="This release introduces self-healing attachment repairs, a non-blocking startup schema upgrade system, improved migration speeds, and numerous bug fixes…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v9.97","item":"https://winterflow.io/catalog/wekan/releases/v9.97/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BOmMmtZA.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,000 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (131)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v9.97</h2> <span class="text-sm text-gray-500">2026-07-17</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="v997-2026-07-17-wekan--release">v9.97 2026-07-17 WeKan ® release</h1>
+<p>This release adds the following new features:</p>
+<ul>
+<li>
+<p><strong>Snap: SELF-HEALING attachments — the fixes below apply themselves automatically on
+upgrade, no commands needed</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>,
+<code>snap-src/bin/attachment-repair</code> (new), <code>snap-src/bin/wekan-control</code>,
+<code>snap-src/bin/migration-control</code>, <code>snap-src/bin/wekan-force-migrate</code>,
+<code>releases/migrate-mongodb-to-ferretdb.mjs</code>, <code>snap-src/bin/migrate-mongo3-to-ferretdb.mjs</code>,
+<code>snapcraft.yaml</code>, <code>snapcraft-core26.yaml</code>). The snap auto-refreshes on ~15k servers, so a fix
+that needs <code>snap run wekan.migrate</code> typed by hand does not reach most of them — and a full
+re-migration would be WRONG anyway, because it rebuilds FerretDB from the frozen MongoDB
+source and would lose boards/cards users created on FerretDB since migrating. Instead, on
+every start on FerretDB, <code>wekan-control</code> now launches <code>attachment-repair</code> in the
+<strong>background</strong>: it starts a temporary source mongod (7.x or the bundled 3.2 reader — the
+MongoDB data was never modified, so everything is recoverable) and runs the migration
+importer in a new <strong>incremental FILES_ONLY mode</strong> that <strong>checks what is already migrated
+and migrates only what is missing</strong>: text collections are never touched, every attachment/
+avatar whose target record is on <code>fs</code> with the file actually on disk is verified and
+skipped, records deleted by users since the migration are never resurrected, and only the
+missing binaries/records are extracted — so on healthy servers the repair is a fast no-op
+and on #6473-affected servers the attachments simply appear, live, while WeKan runs. It
+runs <strong>once</strong> (marker <code>$SNAP_COMMON/.attachments-files-v2-done</code>; a fresh successful
+migration pre-writes it, <code>snap run wekan.migrate</code> clears it, failures retry on the next
+start without ever blocking WeKan from starting), and a manual
+<code>snap run wekan.repair-attachments</code> command is registered too. The importer itself now
+stamps the migration marker with <code>filesVersion</code> (currently 2) and, when it finds a marker
+with an older <code>filesVersion</code> — or <code>FILES_ONLY=true</code> in the environment — automatically
+switches to this incremental repair, so <strong>Docker/source installs get the same self-healing</strong>
+by simply re-running the same importer command they migrated with. Verified end-to-end
+against two live FerretDB instances with the real importer: a broken-migration target
+(missing CollectionFS record, gridFsFileId-only record, marker without filesVersion) was
+repaired — record re-created with its card linkage, binary extracted, record repointed —
+while a board renamed on FerretDB after the migration stayed untouched, and the second run
+exited immediately as already-migrated. Behavioral tests (positive + negative) drive the
+real bash script with stubbed snap tooling: <code>tests/attachmentRepair.test.cjs</code>. Thanks to
+mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>All platforms: startup schema upgrade — WeKan now CHECKS on start that data from EVERY old
+WeKan version has been migrated to the newest database structure, and migrates only what is
+missing</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a> follow-up,
+<a href="https://github.com/wekan/wekan/issues/1959">#1959</a>, <a href="https://github.com/wekan/wekan/issues/1971">#1971</a>,
+<code>server/lib/schemaUpgradeSteps.js</code> (new), <code>server/startupSchemaUpgrade.js</code> (new),
+<code>server/migrations/ensureValidSwimlaneIds.js</code>, <code>server/imports.js</code>). WeKan v0.9–v8.00 ran
+startup migrations; v8.01 disabled them (large databases meant long downtime) in favour of
+read-time compatibility — which covers the swimlane era but not everything, so text data
+from old versions could sit invisible in the database. The new startup upgrade reinstates
+the safety net without the downtime: <strong>version-gated</strong> (the <code>_wekan_migration</code> marker stores
+the WeKan version and datetime of the previous successful re-check, so while the version is
+unchanged a boot costs ONE <code>findOne</code> — a full re-check is mandatory only after a new WeKan
+release, or <code>WEKAN_FORCE_SCHEMA_UPGRADE=true</code>; opt out with <code>WEKAN_SKIP_SCHEMA_UPGRADE=true</code>),
+<strong>non-blocking</strong> (runs in the background, WeKan serves immediately), with a <strong>live migration
+dashboard at <code>/schema-upgrade-status</code></strong> on every platform that shows the Admin Panel product
+name when one is set (not “WeKan”) plus per-step progress, and <strong>fast on big databases</strong>
+(bounded existence probes, <code>distinct()</code> set-joins instead of card scans, and server-side
+<code>updateMany</code> batches instead of per-document round trips — thousands of cards never mean
+thousands of queries). Steps, each verified against <code>git show v8.00:server/migrations.js</code>
+and each idempotent: <code>archived-flag-backfill</code> (docs missing <code>archived</code> never match the
+<code>archived: false</code> view queries — whole boards/lists/cards were invisible in the Swimlanes
+and Lists views), <code>swimlane-structure</code> (every board gets a visible swimlane, every list/card
+a <code>swimlaneId</code>, cards with a dangling <code>listId</code> are rescued to a visible list — and, fixing
+#1959 and #1971, unarchived cards whose swimlane was DELETED, ARCHIVED or belongs to another
+board are reassigned to the board’s first visible swimlane, so everything is visible in both
+the Swimlanes view and the Lists view; the card-insert hook now also validates
+client-supplied swimlaneIds so new cards can never land under a deleted/archived swimlane
+again), <code>checklist-items-embedded</code> (pre-v0.79 embedded <code>checklist.items[]</code> extracted to the
+<code>ChecklistItems</code> collection — the text was in the database but never shown),
+<code>customfields-boardIds</code> (pre-v2.49 scalar <code>boardId</code> → <code>boardIds</code> array — old custom field
+definitions and their card values were orphaned), <code>board-allows-defaults</code> (the ~33
+defaultValue-true <code>allows*</code> flags backfilled — a missing flag rendered as false and HID
+existing descriptions/checklists/comments/attachments), <code>board-members-isactive</code> (members
+without <code>isActive</code> were denied board access), <code>board-permission-lowercase</code> (‘PUBLIC’ boards
+had silently become member-only), and <code>fs-path-heal</code> (filesystem attachments/avatars whose
+recorded path predates the current WRITABLE_PATH layout — v6.10-18 <code>uploads/&#x3C;coll></code>,
+v6.19-v8.4x <code>WRITABLE_PATH/&#x3C;coll></code>, CFS→ostrio temp files — are located and repointed/copied
+into the current layout). A step that fails or leaves unresolved work never blocks WeKan
+from starting and keeps the version un-stamped so the next boot re-checks. 36+ unit tests
+with negative cases (<code>tests/schemaUpgradeSteps.test.cjs</code>), plus verified end-to-end against
+a live FerretDB (SQLite) with old-shape seed data: all 8 steps migrate correctly and the
+second boot is gated to a no-op. Thanks to mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>Migration speed: batched writes and preloaded lookups instead of per-document round trips</strong>
+(5-hour migrations reported; <code>releases/migrate-mongodb-to-ferretdb.mjs</code>). The text phase now
+copies each batch with ONE unordered <code>insertMany</code> round trip (falling back to per-document
+<code>replaceOne</code> upserts only for batches that hit duplicates on resumed/re-run migrations), and
+the attachment/avatar phases preload the target’s metadata records once per bucket instead
+of one <code>findOne</code> per file (bounded: collections over 100k records fall back to per-file
+lookups). The startup schema upgrade uses the same philosophy (<code>distinct()</code>/<code>updateMany</code>).
+Thanks to mueschel and xet7.</p>
+</li>
+</ul>
+<p>and fixes the following bugs:</p>
+<ul>
+<li>
+<p><strong>OAuth2/OIDC: <code>OAUTH2_LOGIN_STYLE=redirect</code> was ignored — a popup always opened</strong>
+(<a href="https://github.com/wekan/wekan/issues/5695">#5695</a>, <code>packages/wekan-oidc/oidc_client.js</code>,
+<code>server/authentication.js</code>, <code>server/models/settings.js</code>, <code>client/components/main/layouts.js</code>).
+The setting was stored correctly in the OIDC service configuration, but the login button
+always passed <code>loginStyle: 'popup'</code>, and Meteor’s <code>OAuth._loginStyle</code> gives the caller’s
+option precedence — so the admin’s redirect setting silently lost on every login (and the
+Meteor-internal <code>loginStyle</code> option even leaked into the provider’s authorization URL). The
+client now honors a configured <code>loginStyle: 'redirect'</code> over the button’s generic popup
+default (explicit caller choices still win; Safari-private-mode popup fallback kept) and no
+longer leaks the option to the provider. Also repaired the existing
+<code>OIDC_REDIRECTION_ENABLED=true</code> “go straight to the provider” feature, which was doubly
+broken since the Meteor 3 port: <code>isOidcRedirectionEnabled</code> inspected a Promise (always
+false), and the client handler assigned an undeclared variable (strict-mode ReferenceError).
+Behavioral tests drive the real client code in a VM against Meteor’s loginStyle precedence:
+<code>tests/oauth2LoginStyle.test.cjs</code> (12 tests, positive + negative). Thanks to ArturRuta and
+xet7.</p>
+</li>
+<li>
+<p><strong>Deleting a user left “ghost users” on boards and cards</strong>
+(<a href="https://github.com/wekan/wekan/issues/1289">#1289</a>, <code>models/users.js</code>, new
+<code>models/lib/userDeletionCleanup.js</code>): every deletion path (admin method, self-service
+delete, <code>DELETE /api/users/:userId</code>) removed only the user document, leaving dangling
+references — empty-avatar board members that could not be removed, stale card
+members/assignees/watchers, orphaned avatar files — reproducible for 8 years. A server-side
+<code>Users.after.remove</code> hook now prunes <code>boards.members/watchers</code>,
+<code>cards.members/assignees/watchers</code>, <code>lists.watchers</code> and the user’s avatar files on every
+deletion path; activities and comments are deliberately kept for history (their rendering
+is already null-guarded). Tests: <code>tests/userDeletionCleanup.test.cjs</code> (6). Thanks to
+chotaire and xet7.</p>
+</li>
+<li>
+<p><strong>Swimlanes jumped up and down when starting/ending a card drag</strong>
+(<a href="https://github.com/wekan/wekan/issues/2877">#2877</a>, <code>client/components/boards/boardBody.css</code>):
+drag start hid every list’s ”+ Add Card” composer link with <code>display: none</code>, collapsing its
+row — lists shrank, auto-height swimlanes shrank, and every swimlane below jumped up ~23px
+(and back down on drop), shifting the drop target under the cursor mid-drag (root cause
+proven by frame-diffing the issue’s own GIF). The composer now hides with
+<code>visibility: hidden</code>, keeping its layout box, so nothing moves; collapsed multi-selection
+cards stay collapsed intentionally (they preview the post-drop list). Tests:
+<code>tests/swimlaneDragJump.test.cjs</code> (8). Thanks to xet7.</p>
+</li>
+<li>
+<p><strong>Dragging a card toward an off-screen list never auto-scrolled the board</strong>
+(<a href="https://github.com/wekan/wekan/issues/443">#443</a>, <code>client/components/lists/list.js</code>, new
+<code>imports/lib/boardAutoScroll.js</code>): the horizontal auto-scroll targeted <code>.board-canvas</code>,
+which only overflows vertically since the swimlane layout — its scrollLeftMax was always 0,
+so the guard never fired and users had to drop on an intermediate list and scroll by hand.
+Edge-proximity auto-scroll now drives the <code>.js-lists</code> lane actually under the pointer
+(clamped, overshoot-safe), with vertical scrolling kept on the canvas. Tests:
+<code>tests/boardAutoScroll.test.cjs</code> (15, incl. a proof the old no-overflow target could never
+scroll). Thanks to anhenghuang, AlexanderS and xet7.</p>
+</li>
+<li>
+<p><strong>Board Rules: the Card Title Filter did nothing on several triggers — and rules created
+via the REST API never fired at all</strong> (<a href="https://github.com/wekan/wekan/issues/2345">#2345</a>,
+<a href="https://github.com/wekan/wekan/issues/2674">#2674</a>,
+<code>client/components/rules/triggers/boardTriggers.js</code>, <code>.jade</code>, <code>server/rulesHelper.js</code>,
+<code>server/models/rules.js</code>, new <code>models/lib/ruleCardTitleFilter.js</code>, <code>docs/API/Rules.md</code>,
+<code>docs/API/REST-API.md</code>, <code>api.py</code>): the generic moved/archive trigger builders never saved
+the filter (and a trigger doc MISSING the field can never satisfy the matcher’s <code>$in</code>, so
+those rules fired for nothing); a set filter never showed in the rule details; archive
+activities carry no card title so their filters compared against undefined; and REST-created
+rules skipped the wildcard defaulting entirely — the exact “remove user when moved away”
+rule from #2674 silently never ran. Filters are now stored (empty → <code>*</code>), shown in the rule
+description, matched with the title resolved from the card when the activity lacks it,
+legacy field-less triggers keep matching, the API normalizes missing matching fields to
+wildcards and validates types, and the rule actions no longer crash on unresolvable
+usernames or member-less cards. The Rules REST API is now documented (<code>docs/API/Rules.md</code>)
+and listed in api.py’s help with the #2674 two-rule example. Tests:
+<code>tests/rulesCardTitleFilter.test.cjs</code> (12) and <code>tests/rulesApiTriggerNormalize.test.cjs</code>
+(19). Thanks to InfoSec812, sfahrenholz and xet7.</p>
+</li>
+<li>
+<p><strong>Sandstorm: username uniqueness probe was case-sensitive and raced concurrent logins</strong>
+(<a href="https://github.com/wekan/wekan/issues/574">#574</a>, <code>sandstorm.js</code>, new
+<code>models/lib/sandstormUsername.js</code>): deriving <code>max</code>, <code>max1</code>, … from the preferred handle
+matched exact case only (an existing <code>Max</code> did not stop a new <code>max</code>) and the check-then-set
+window let a concurrent insert claim the name first, aborting the hook with E11000. The
+probe is now an anchored, escaped, case-insensitive regex and the claim retries the next
+number on a duplicate-key loss. Tests: <code>tests/sandstormUsername.test.cjs</code> (11). Thanks to
+mitar and xet7.</p>
+</li>
+<li>
+<p><strong>Inviting a second user whose email shares a local part failed with a bare “403”</strong>
+(<a href="https://github.com/wekan/wekan/issues/619">#619</a>, <code>server/models/users.js</code>, new
+<code>models/lib/inviteeUsername.js</code>): inviting <code>cats@foo.com</code> creates user “cats”; inviting
+<code>cats@facebook.com</code> then crashed into Meteor’s raw <code>403 Username already exists</code>. The
+invitee’s username now probes <code>cats</code>, <code>cats1</code>, <code>cats2</code>, … to the first free variant, and
+exhaustion raises the translated <code>error-username-taken</code> instead of a number. Tests:
+<code>tests/inviteeUsername.test.cjs</code> (11, incl. the literal reported scenario). Thanks to
+lemoer and xet7.</p>
+</li>
+<li>
+<p><strong>Date pickers ignored the configured default time and stored 12:00</strong>
+(<a href="https://github.com/wekan/wekan/issues/1502">#1502</a>, <code>client/lib/datepicker.js</code>, new
+<code>imports/lib/datePickerTime.js</code>): the due-date picker configures a 17:00 default (and
+now() for received/start/end), but an inverted guard applied it only when the card ALREADY
+had a date — exactly when it is unnecessary — so empty time fields fell back to a
+hard-coded 12:00 on save. The default now pre-fills empty pickers and backs the submit
+fallback; existing dates keep their own time. The issue’s original AM/PM parse mismatch was
+already resolved by the native date/time inputs (79b94824e). Tests:
+<code>tests/datePickerDefaultTime.test.cjs</code> (10). Thanks to Vlasterx, saschafoerster,
+suncobran and xet7.</p>
+</li>
+<li>
+<p><strong>Dragging a card while someone added a card to the target list dropped it into the WRONG
+swimlane</strong> (<a href="https://github.com/wekan/wekan/issues/2769">#2769</a>, new
+<code>client/lib/cardDragGeometry.js</code>, <code>client/components/lists/listBody.js</code>): jQuery UI sortable
+snapshots container geometry at drag start; a mid-drag DOM insertion (another user’s new
+card, or the drag’s own composer auto-close) shifted every swimlane below while the cached
+rectangles stayed put — the drop landed in the neighbouring swimlane with no visible
+placeholder. A MutationObserver now refreshes the active drag’s geometry on real mid-drag
+layout changes (sortable’s own churn filtered out). Tests:
+<code>tests/cardDragGeometry.test.cjs</code> (13). Thanks to hever and xet7.</p>
+</li>
+<li>
+<p><strong>Board import lost card dates</strong> (<a href="https://github.com/wekan/wekan/issues/1992">#1992</a>,
+<code>models/wekanCreator.js</code>, new <code>models/lib/importedCardDates.js</code>): the importer derived
+<code>createdAt</code> only from a <code>createCard</code> activity (absent in Sandstorm/pruned exports — dates
+silently reset to import time) and never imported <code>receivedAt</code>/<code>endAt</code> at all. All five date
+fields now restore with sane fallbacks (activity → the card’s own exported date → import
+time), and the card creator falls back to the exported userId. The missing-cards half of the
+report was already fixed by 68e0032c6. Tests: <code>tests/importedCardDates.test.cjs</code> (13).
+Thanks to xet7.</p>
+</li>
+<li>
+<p><strong>Archiving a swimlane made its cards disappear — and restore brought back an empty
+swimlane</strong> (<a href="https://github.com/wekan/wekan/issues/2292">#2292</a>, <code>models/swimlanes.js</code>, new
+<code>models/lib/swimlaneArchive.js</code>): only the swimlane document was flagged; its unarchived
+cards became invisible everywhere (board views render unarchived swimlanes, Archive lists
+archived docs). Archiving a swimlane now archives its cards (mirroring lists), and restore
+brings back exactly the cards archived WITH it — individually archived cards stay archived.
+Tests: <code>tests/archiveSwimlaneCards.test.cjs</code> (11). Thanks to Cactusbone and xet7.</p>
+</li>
+<li>
+<p><strong>“Move/Copy selection to board” wrote <code>sort: NaN</code> to every card</strong>
+(<a href="https://github.com/wekan/wekan/issues/2494">#2494</a>, <code>imports/reactiveCache.js</code>): the
+client-side <code>noCache</code> card lookup returned a PROMISE since the Meteor 3 port, so the max-sort
+read was <code>undefined</code> and every moved card got NaN — cards appeared and disappeared and could
+not be reordered. The uncached client path is synchronous minimongo again. Tests:
+<code>tests/reactiveCacheNoCacheCard.test.cjs</code> (8, incl. a proof the pre-fix routing yields NaN).
+Thanks to Vermeille and xet7.</p>
+</li>
+<li>
+<p><strong>Subtask “View it” did nothing when the subtask lives on another board</strong>
+(<a href="https://github.com/wekan/wekan/issues/1853">#1853</a>,
+<code>client/components/cards/subtaskViewHelpers.js</code>, <code>subtasks.js</code>): the original crash
+(<code>board._id</code> of undefined) had become a silent no-op guard — when the deposit board is not
+in minimongo the button just did nothing. Navigation now falls back to the subtask’s own
+boardId (the route loads the board), and truly broken subtasks warn instead of dying.
+Tests: <code>tests/subtaskViewNavigation.test.cjs</code> (11). Thanks to Vanclief and xet7.</p>
+</li>
+<li>
+<p><strong>Labels/members could not be dragged onto cards added after the board rendered</strong>
+(<a href="https://github.com/wekan/wekan/issues/1554">#1554</a>, <code>client/components/lists/list.js</code>):
+the droppable-initializing autorun lost its reactive dependency in 7673c77c5 (2023), so it
+ran once per list render and later-added minicards silently rejected sidebar drags until the
+board was re-entered (“works after search-and-back”). Dependency restored via the
+ReactiveCache. Tests: <code>tests/labelDragDroppable.test.cjs</code> (3). Thanks to Miffe and xet7.</p>
+</li>
+<li>
+<p><strong>“Add filtered cards to selection” swept cards from OTHER boards into bulk actions</strong>
+(<a href="https://github.com/wekan/wekan/issues/2306">#2306</a>, <code>client/lib/filter.js</code>,
+<code>client/lib/multiSelection.js</code>, new <code>models/lib/boardScopedSelection.js</code>): the filter
+selector carried no boardId, and minimongo legitimately holds foreign-board cards (linked
+boards, dialogs, notifications) — a bulk archive could silently mutate other boards. The
+selection and its bulk-action selector are now board-scoped, and foreign ids are rejected at
+insertion. Tests: <code>tests/boardScopedSelection.test.cjs</code> (17, incl. the exact reported
+repro). Thanks to IcedQuinn and xet7.</p>
+</li>
+<li>
+<p><strong>REST API: login tokens could never be revoked</strong> (<a href="https://github.com/wekan/wekan/issues/1437">#1437</a>,
+<code>server/apiAuthRoutes.js</code>, new <code>models/lib/apiLogout.js</code>): every <code>POST /users/login</code> minted
+another ~90-day resume token with no way to invalidate any of them. New <code>POST /users/logout</code>
+revokes the presented token (or all of the user’s tokens with <code>{"all": true}</code>), always scoped
+to the authenticated user. Tests: <code>tests/apiLogout.test.cjs</code> (12). Thanks to
+ppouliot and xet7.</p>
+</li>
+<li>
+<p><strong>Editing one checklist item and clicking another left BOTH edit forms open — and
+submitting overwrote the new item’s title with the previous item’s text</strong>
+(<a href="https://github.com/wekan/wekan/issues/2418">#2418</a>, <code>client/lib/inlinedform.js</code>, new
+<code>client/lib/inlinedFormManager.js</code>): since a 2021 change, the “close the previously opened
+inline form” call was a silent no-op (the escape action is disabled for click execution),
+and the submit handlers grab the template’s FIRST textarea — with two forms open the wrong
+form’s text was saved. Subtasks reproduced the full bug; checklists’ workaround corrupted
+the open-form tracker so Escape closed the whole card pane. A small state manager restores
+the single-open-form invariant (opening a form closes the previous one, without closing
+popups — preserving the 2021 intent). Tests: <code>tests/inlinedFormSingleOpen.test.cjs</code>
+(9, incl. the exact reported repro chain). Thanks to Beebo89 and xet7.</p>
+</li>
+<li>
+<p><strong>Advanced Filter never matched date custom fields</strong> (<a href="https://github.com/wekan/wekan/issues/2989">#2989</a>,
+<code>client/lib/filter.js</code>, new <code>imports/lib/advancedFilter.js</code>): the tokenizer treated every <code>/</code>
+as a regex delimiter even inside quotes, so <code>'Date de fin' == '06/04/2020'</code> broke tokenizing
+and the filter silently did nothing; and date custom fields store Date OBJECTS while the
+selectors compared strings/parseInt — <code>==</code>/<code>&#x3C;</code>/<code>></code> could never match and <code>!=</code> matched
+everything. Dates typed in the user’s date format (day-first respected) now build half-open
+Date-range selectors (<code>==</code> means “that day”), with the legacy behavior untouched for
+non-date fields. Tests: <code>tests/advancedFilterDate.test.cjs</code> (14, incl. a proof the old
+selector shape never matched a stored Date). Thanks to k1ng440 and xet7.</p>
+</li>
+<li>
+<p><strong>Cards could not be reordered by drag in lists full of subtask cards — with silent
+data loss on multi-selection drops</strong> (<a href="https://github.com/wekan/wekan/issues/3826">#3826</a>,
+<code>server/models/cards.js</code>, <code>client/components/lists/list.js</code>, new
+<code>models/lib/cardSortRepair.js</code>): <code>addSubtaskCard</code> inserted EVERY subtask card with the
+constant <code>sort: -1</code>, so such lists contained only tied sorts; dropping between two equal
+sorts computes a zero increment, the move modifier came out empty and the card snapped
+back — and a multi-selection drop wrote the SAME sort to every selected card, permanently
+destroying their order. Subtask cards now append with a unique sort, and the drop handler
+detects degenerate (tied/inverted) gaps and repairs the siblings’ sorts to a strict order
+before recomputing the drop index. Tests: <code>tests/subtaskCardReorder.test.cjs</code> (14).
+Thanks to jayki and xet7.</p>
+</li>
+<li>
+<p><strong>Cross-board subtask full path disappeared after refresh</strong>
+(<a href="https://github.com/wekan/wekan/issues/3453">#3453</a>, <code>server/publications/boards.js</code>, new
+<code>server/lib/subtaskAncestors.js</code>): the board publication shipped only the DIRECT parent
+cards, while the full-path label walks the whole ancestor chain client-side — after F5 the
+grandparents were missing from minimongo and the path truncated/vanished. The publication
+now walks and publishes the full ancestor chain (batched per level, cycle-safe, tolerant of
+deleted ancestors). Tests: <code>tests/subtaskAncestors.test.cjs</code> (11). Thanks to
+MPeti1 and xet7.</p>
+</li>
+<li>
+<p><strong>Linked cards: phantom empty custom-field rows and a template TypeError on every render</strong>
+(from <a href="https://github.com/wekan/wekan/issues/3748">#3748</a>, <code>models/cards.js</code>, new
+<code>models/lib/customFieldsWD.js</code>): a linked card keeps the ORIGINAL board’s custom-field
+snapshot; unresolvable definitions rendered as empty <code>{}</code> placeholders — a phantom row per
+entry and <code>Cannot read properties of undefined (reading 'type')</code> from the card details
+template (also reachable on normal cards with deleted definitions). Unmatched entries are
+now skipped. The rest of #3748 is by design: linked cards are pointers that mirror the
+original; label/custom-field ids are board-scoped, and name-based inheritance is the COPY
+feature. Tests: <code>tests/customFieldsWD.test.cjs</code> (9). Thanks to peterbecich and xet7.</p>
+</li>
+<li>
+<p><strong>Archive sidebar: Restore/Delete links floated ambiguously between two archived cards</strong>
+(<a href="https://github.com/wekan/wekan/issues/3199">#3199</a>,
+<code>client/components/sidebar/sidebarArchives.jade</code>, <code>sidebar.css</code>): each card and its links
+were loose siblings with near-equal spacing above and below, so the links seemed to belong
+to the card underneath. Each archived card is now grouped with its own links in one
+container with a clear separator gap below (RTL-safe logical properties, theme-neutral).
+Tests: <code>tests/archiveLinkGrouping.test.cjs</code> (9). Thanks to fxkr and xet7.</p>
+</li>
+<li>
+<p><strong>Attachments uploaded inside card comments: listing in the card’s Attachments section is
+now guaranteed and regression-locked</strong> (<a href="https://github.com/wekan/wekan/issues/3843">#3843</a>,
+new <code>models/lib/attachmentMeta.js</code>, <code>client/lib/utils.js</code>): the rich comment editor already
+uploads into the same Attachments collection with the same card meta as the Attachments
+popup, so they DO list — but nothing pinned that invariant and the meta was built in two
+places. One shared, null-safe builder now feeds both paths, with tests pinning that gallery
+queries key on <code>meta.cardId</code> with no source filter (and that board backgrounds stay
+excluded). Tests: <code>tests/commentAttachmentsList.test.cjs</code> (12). Thanks to
+jghaanstra and xet7.</p>
+</li>
+<li>
+<p><strong>Maximized card rendered at the wrong place after scrolling in Swimlanes view</strong>
+(<a href="https://github.com/wekan/wekan/issues/4822">#4822</a>, <code>client/components/cards/cardDetails.css</code>):
+the legacy maximized-pane CSS had no <code>position</code> of its own, so the pane stayed an in-flow
+item inside the scrolled board canvas (off-screen after scrolling down); the desktop-mode
+floating-window rules also out-specified every maximize geometry rule, and inline drag
+offsets survived maximizing. The maximized pane is now viewport-<code>fixed</code> with explicit insets
+that beat both the floating-window rules and stale drag offsets (drag position is restored
+on minimize), RTL-safe via logical properties. A cascade-resolver regression test pins the
+behavior against the real stylesheet and fails on the pre-fix CSS:
+<code>tests/maximizedCardPosition.test.cjs</code> (11 tests). Thanks to pravdomil and xet7.</p>
+</li>
+<li>
+<p><strong>LDAP group filter locked out admins and rejected multiple groups</strong>
+(<a href="https://github.com/wekan/wekan/issues/4036">#4036</a>, <code>packages/wekan-ldap/server/ldap.js</code>):
+with <code>LDAP_GROUP_FILTER_ENABLE=true</code>, only members of the single
+<code>LDAP_GROUP_FILTER_GROUP_NAME</code> group could log in — an admin who was only in
+<code>LDAP_SYNC_ADMIN_GROUPS</code> could not log in at all, and a comma-separated group list produced
+the literal filter <code>(cn=A,B)</code> that matches nothing. The filter now ORs across every
+comma-separated group name and, when admin sync is enabled, also admits the admin-sync
+groups. Thanks to zeisss-mercedes and xet7.</p>
+</li>
+<li>
+<p><strong>Board invitation emails could carry a dead invitation code — and signup then failed with
+“The invitation code doesn’t exist”</strong> (<a href="https://github.com/wekan/wekan/issues/4043">#4043</a>,
+<code>server/models/settings.js</code>, <code>server/models/users.js</code>, new <code>models/lib/invitationCodeEmail.js</code>):
+re-inviting an unregistered user re-sent the SAME stale code (invalidated by an earlier
+OAuth2 signup or deleted account) instead of regenerating it; a failed SMTP send deleted a
+previously delivered, still-valid code; codes were mailed without checking they exist and
+are valid; the invitee address was only lowercased client-side; and the signup hook deleted
+the code BEFORE the account insert was committed, so a failed insert burned the code for
+every retry. Re-invites now regenerate stale codes (still-valid ones are kept so earlier
+emails keep working), sends fail loudly on unusable codes, rollback only removes codes the
+failed send itself created, and consumption happens only after a successful signup. Tests:
+<code>tests/invitationCodeEmail.test.cjs</code> (14). Thanks to jkoenig134 and xet7.</p>
+</li>
+<li>
+<p><strong>Japanese/Chinese UI: the add-card button and footer links wrapped mid-word</strong>
+(<a href="https://github.com/wekan/wekan/issues/4023">#4023</a>, <code>client/components/forms/forms.css</code>):
+CJK text has no spaces, so the narrow add-card composer footer broke 追加 / リンク / 検索 /
+テンプレート between any two characters. The composer/edit footers now use
+<code>word-break: keep-all</code> with <code>flex-wrap: wrap</code> (wrapping between links, never inside a word)
+and <code>white-space: nowrap</code> on the button and each link group; Latin wrapping is unchanged and
+the negative tests pin that no global word-break was introduced. Tests:
+<code>tests/cjkLabelWrap.test.cjs</code> (9). Thanks to yuki-snow1823, Sylvain2703 and xet7.</p>
+</li>
+<li>
+<p><strong>Users added to a team AFTER the team was assigned to a board never became board members —
+and the Admin Panel bulk team add/remove silently did nothing</strong>
+(<a href="https://github.com/wekan/wekan/issues/4593">#4593</a>, <code>server/models/users.js</code>,
+<code>client/components/settings/peopleBody.js</code>, new <code>models/lib/teamBoardMemberSync.js</code>):
+assigning a team to a board snapshotted its then-current members, so later joiners could see
+the board via publications but every authority gate (<code>hasMember</code>, card/list mutations,
+attachment downloads, export) denied them; and the Admin Panel “Add/Remove team to selected
+users” used a direct client-side <code>Users.update</code> that server permissions silently deny.
+<code>editUser</code>/<code>createUser</code> now add new team members to all boards their teams are assigned to
+(never touching existing member entries, skipping template boards), and the bulk actions go
+through the admin <code>editUser</code> method. Tests: <code>tests/teamBoardMemberSync.test.cjs</code> (13).
+Thanks to szymonsztuka and xet7.</p>
+</li>
+<li>
+<p><strong>LDAP background sync only worked once per user</strong> (<a href="https://github.com/wekan/wekan/issues/4654">#4654</a>,
+<code>packages/wekan-ldap/server/ldap.js</code>, <code>sync.js</code>, new <code>userIdFilter.js</code>): <code>getUserById</code> crashed or built the
+invalid filter <code>(|(=user))</code> when <code>LDAP_UNIQUE_IDENTIFIER_FIELD</code> was unset/empty (it never consulted
+<code>LDAP_USER_SEARCH_FIELD</code>, where the stored id actually comes from), and the username sync passed <code>$set</code> as
+query OPTIONS to <code>findOneAsync</code> — logging “Syncing user username” while writing nothing. New shared
+<code>buildUserIdFilter()</code> ORs across both configured fields, <code>idAttribute</code> is persisted on new LDAP users, and
+the username sync actually updates. Tests: <code>tests/ldapUserIdFilter.test.cjs</code> (11). Thanks to fabianrbz and xet7.</p>
+</li>
+<li>
+<p><strong>All Boards page: per-list card counts and member avatars never showed</strong> (<a href="https://github.com/wekan/wekan/issues/5174">#5174</a>,
+<a href="https://github.com/wekan/wekan/issues/4825">#4825</a>, new <code>models/lib/boardTileData.js</code>,
+<code>server/publications/boards.js</code>, <code>client/components/boards/boardsList.js</code>, <code>.jade</code>): the helpers were stubbed
+to <code>[]</code> to stop the #4214 reactive “icons dance”, and the gating flags were never published. New non-reactive
+<code>getAllBoardsTileData</code> method (one boards query, one lists query, one grouped card count) fetched once per
+page visit; per-board “Show card count per list”/“Show Board members avatars” settings enforced strictly both
+ways. Tests: <code>tests/boardTileData.test.cjs</code> (17). Thanks to mueschel, Miuler and xet7.</p>
+</li>
+<li>
+<p><strong>Lists rendered with different widths by default</strong> (<a href="https://github.com/wekan/wekan/issues/5659">#5659</a>,
+new <code>models/lib/listWidth.js</code>, <code>client/components/lists/list.js</code>, <code>listHeader.js</code>, <code>models/users.js</code>): the
+default width was duplicated in four resolution paths that disagreed (270 vs 272), so lists on the same
+(public) board could differ with no customization. Single source of truth (272), all paths normalize
+out-of-range values the same way; customized widths still win. Tests: <code>tests/listWidthDefaults.test.cjs</code> (12).
+Thanks to butteredCat-2021 and xet7.</p>
+</li>
+<li>
+<p><strong>Declining a board invitation kept the board active in the member’s overview</strong> (<a href="https://github.com/wekan/wekan/issues/4730">#4730</a>,
+<code>server/models/boards.js</code>, new <code>models/lib/boardInvites.js</code>): the decline flow called <code>quitBoard</code> (deactivate)
+then <code>acceptInvite</code>, which unconditionally REACTIVATED membership — it also let any removed member re-add
+themselves. <code>quitBoard</code> now clears the pending invitation (and works for stale-invite-only users);
+<code>acceptInvite</code> only activates when an invitation actually exists. Tests: <code>tests/boardInvites.test.cjs</code> (11).
+Thanks to Griiimm and xet7.</p>
+</li>
+<li>
+<p><strong>After migrating a user from password to LDAP, the old local password still logged in</strong>
+(<a href="https://github.com/wekan/wekan/issues/4419">#4419</a>, new <code>server/lib/ldapPasswordLoginGuard.js</code>,
+<code>server/authentication.js</code>): a <code>validateLoginAttempt</code> hook now rejects password-service logins for
+<code>authenticationMethod: 'ldap'</code> users while LDAP is enabled — respecting the <code>LDAP_LOGIN_FALLBACK=true</code>
+feature, never touching other services or session resumes, and opt-out-able with
+<code>LDAP_MIGRATION_ALLOW_PASSWORD_LOGIN=true</code> so no deployment is hard-locked. Tests:
+<code>tests/ldapPasswordLoginGuard.test.cjs</code> (12). Thanks to preciousamorc and xet7.</p>
+</li>
+<li>
+<p><strong><code>LDAP_ENCRYPTION=true</code> (the documented value) silently connected WITHOUT encryption</strong>
+(<a href="https://github.com/wekan/wekan/issues/4158">#4158</a>, new <code>packages/wekan-ldap/server/encryptionSetting.js</code>,
+<code>ldap.js</code>, <code>docs/Login/LDAP.md</code>): only the undocumented <code>ssl</code>/<code>tls</code> values did anything, and any other value
+(including <code>true</code>, which JSON-parses to a boolean) meant silent plaintext. Now <code>true</code>→LDAPS,
+<code>starttls</code>→STARTTLS, legacy <code>ssl</code>/<code>tls</code> keep their historical meanings with a deprecation notice, and unknown
+values log a clear warning listing the accepted ones. Tests: <code>tests/ldapEncryptionSetting.test.cjs</code> (22).
+Thanks to farwayer and xet7.</p>
+</li>
+<li>
+<p><strong>OIDC login onto an existing account wiped the profile — avatars and templates disappeared</strong>
+(<a href="https://github.com/wekan/wekan/issues/4560">#4560</a>, <code>server/models/users.js</code>): the
+<code>OAUTH2_MERGE_EXISTING_USERS</code> merge path replaced the whole <code>profile</code> with the OIDC-derived one, losing
+<code>avatarUrl</code>, <code>templatesBoardId</code> (+ template swimlanes), language and preferences. The merge now preserves the
+stored profile and only fills gaps/updates the asserted fullname; the fail-closed linking rules
+(GHSA-mp7g-hj5q-gxhq) are untouched. Tests: <code>tests/oidcProfileMerge.test.cjs</code> (7, fails on pre-fix code).
+Thanks to LeoLu-eng and xet7.</p>
+</li>
+<li>
+<p><strong>OAuth2/OIDC: concurrent logins could contaminate each other’s user data — users saw stale
+or missing emails/username/teams, and the database could disagree with the UI</strong>
+(<a href="https://github.com/wekan/wekan/issues/4897">#4897</a>, <code>packages/wekan-oidc/oidc_server.js</code>,
+<code>packages/wekan-oidc/loginHandler.js</code>). The OIDC server flow kept <code>profile</code>, <code>serviceData</code>
+and <code>userinfo</code> as MODULE-SCOPE variables shared by every login of every user: fields the
+current login did not overwrite leaked from the previous user’s login (refreshToken,
+whitelisted id-token claims, branch-dependent email), and because the handler awaits the
+token/userinfo requests, two interleaved logins wrote into the SAME objects — a login could
+complete carrying another user’s id/email/username, updating the wrong user document. The
+<code>PROPAGATE_OIDC_DATA</code> group/attribute path additionally ran on implicit GLOBALS
+(<code>teamArray</code>, <code>isAdmin</code>, <code>user_email</code>, …) with awaits between assignment and use, so
+concurrent logins could write one user’s email/teams/admin flag onto another user’s document
+— real database corruption, matching the “web interface shows different data vs mongodb”
+report. All login state is now per-login locals, the login handler compares actual values
+(the old username/fullname comparisons compared a string to an object, always true), and a
+regression test proves isolation under concurrent logins and fails against the pre-fix code:
+<code>tests/oidcLoginStateIsolation.test.cjs</code> (11 tests, positive + negative). Thanks to
+gerardo-junior and xet7.</p>
+</li>
+<li>
+<p><strong>Snap/Docker: after the MongoDB → FerretDB migration ALL CollectionFS-era attachments were
+missing</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>,
+<code>releases/migrate-mongodb-to-ferretdb.mjs</code>, <code>snap-src/bin/migrate-mongo3-to-ferretdb.mjs</code>,
+<code>snap-src/bin/migrate-gridfs-to-fs.mjs</code>). Real CollectionFS (old WeKan’s
+<code>FS.Store.GridFS('attachments')</code>) stores each file’s GridFS id at <strong><code>copies.&#x3C;bucket>.key</code></strong>
+(<code>copies.attachments.key</code> / <code>copies.avatars.key</code>) — but the importers only looked at
+<code>original.gridFsFileId</code>, <code>gridFsFileId</code> and <code>copies.gridfs.key</code>, none of which exist in that
+layout. So the modern importer “skipped” every file <strong>silently</strong> and the MongoDB 3.x importer
+extracted the binaries but never created an attachment record (and the records it did create
+lost their <code>meta.cardId</code>/<code>boardId</code>, which CollectionFS keeps at the record’s TOP level — an
+attachment without <code>meta.cardId</code> shows on no card). Either way the migration reported success
+with zero attachments visible. A new shared <code>resolveCfsGridFsId()</code> resolves the id from all
+four layouts (<code>original.gridFsFileId</code>, <code>gridFsFileId</code>, <code>copies.&#x3C;bucket>.key</code>,
+<code>copies.gridfs.key</code>, then any <code>copies.*.key</code>), the modern importer now <strong>drives extraction
+from <code>cfs_gridfs.&#x3C;bucket>.files</code> itself</strong> (so a missing/empty <code>cfs.&#x3C;bucket>.filerecord</code>
+collection no longer skips everything — binaries without a filerecord are still extracted to
+disk), the mongo3 importer copies the top-level <code>boardId</code>/<code>cardId</code>/<code>listId</code>/<code>swimlaneId</code>/
+<code>userId</code> into <code>meta</code>, and filerecords whose binary cannot be located are <strong>reported as
+errors</strong> on the migration dashboard instead of being silently dropped. If you already
+migrated and attachments are missing, run the migration again: <code>snap run wekan.migrate</code>
+(the source MongoDB data was never modified). Behavioral positive/negative tests:
+<code>tests/migrationAttachmentExtraction.test.cjs</code>. Thanks to mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>Snap/Docker: Meteor-Files attachments stored in GridFS without a <code>storage: 'gridfs'</code> flag
+were left pointing at a GridFS that no longer exists after migration</strong>
+(<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>, <code>releases/migrate-mongodb-to-ferretdb.mjs</code>,
+<code>snap-src/bin/migrate-gridfs-to-fs.mjs</code>). WeKan’s own <code>getFileStrategy</code> serves a version from
+GridFS when its storage flag says <code>'gridfs'</code> <strong>or</strong> it carries a
+<code>versions.*.meta.gridFsFileId</code> reference — those reference-only records worked fine on
+MongoDB, but the migration’s file phase only matched <code>versions.original.storage: 'gridfs'</code>,
+so their binaries were never extracted and the record kept pointing into the void (404 after
+the switch). The record scan now matches both forms (and every version, not just
+<code>original</code>), and a <strong>second, bucket-driven sweep</strong> walks <code>&#x3C;bucket>.files</code> by its
+<code>metadata.fileId</code> back-reference (the way WeKan writes GridFS uploads), recovering binaries
+even when the record’s flags say nothing about GridFS. Any GridFS-flagged version whose
+binary genuinely cannot be located is reported on the dashboard. Thanks to mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>Admin Panel > Attachments showed “/data” as the Filesystem Storage path on every
+platform</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>,
+<code>client/components/settings/attachments.js</code>, <code>client/components/settings/settingBody.js</code>,
+<code>server/models/attachmentStorageSettings.js</code>, <code>models/lib/attachmentStoragePath.js</code>). The
+Blaze helpers computed the path from <code>process.env.WRITABLE_PATH</code> <strong>in the browser</strong>, where
+<code>process.env</code> never has it, so the page always fell back to “/data” — a path that does not
+exist on a Snap install (the real path is <code>/var/snap/wekan/common/files/attachments</code>),
+sending admins hunting for a directory that was never there. The client now asks the server
+via a new admin-only <code>getAttachmentStoragePaths</code> method, whose Snap-aware computation
+(shared, dependency-free <code>models/lib/attachmentStoragePath.js</code> — WRITABLE_PATH already ends
+in <code>/files</code> on Snap, <code>/files</code> is appended elsewhere) is also used for the settings document’s
+default filesystem path, which pointed at <code>/data/attachments</code> instead of
+<code>/data/files/attachments</code> on Docker. Unit tests with negative cases:
+<code>tests/attachmentStoragePath.test.cjs</code>. Thanks to mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>Snap: <code>snap run wekan.database ferretdb</code> looked like it re-ran the migration — it only
+switches databases</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>,
+<code>snap-src/bin/wekan-database</code>). Running it while already on FerretDB printed “WeKan now uses
+FerretDB (SQLite).” and users reasonably read that as “migration done” while their
+attachments stayed missing. It now says when nothing was switched, states that the command
+does NOT migrate data, and names the command that does: <code>snap run wekan.migrate</code>. Thanks to
+mueschel and xet7.</p>
+</li>
+<li>
+<p><strong>FerretDB (SQLite) rejected documents with literal dotted field names, silently dropping
+them during migration</strong> (<a href="https://github.com/wekan/wekan/issues/6473">#6473</a>,
+<a href="https://github.com/wekan/FerretDB">wekan/FerretDB</a> <code>internal/types/document_validation.go</code>).
+MongoDB has accepted documents with literal <code>.</code> in field names since 3.6, and data migrated
+from a real MongoDB can legitimately contain them — but FerretDB v1’s document validation
+rejected every such document (<em>“invalid key: … (key must not contain ’.’ sign)”</em>), and since
+per-item migration errors are deliberately non-fatal (#6466), those documents simply went
+missing. Fixed in the bundled wekan/FerretDB fork: dotted keys are stored and round-tripped
+literally with MongoDB’s own semantics (query/update paths still treat <code>.</code> as a path
+separator), while the other key rules (<code>$</code> prefix, duplicates, UTF-8) still reject. Verified
+end-to-end against a live FerretDB (SQLite): insert, nested <code>$set</code>, round-trip, and the
+negative cases. Thanks to mueschel and xet7.</p>
+</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v9.97" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
