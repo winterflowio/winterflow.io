@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LibreBooking v4.1.0 release notes | WinterFlow.io</title><meta name="description" content="This release includes numerous bug fixes, a new tablet view reservation config, improved error handling, and a transition from moment.js to native dates."><link rel="canonical" href="https://winterflow.io/catalog/librebooking/releases/v4.1.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="LibreBooking v4.1.0 release notes | WinterFlow.io"><meta property="og:description" content="This release includes numerous bug fixes, a new tablet view reservation config, improved error handling, and a transition from moment.js to native dates."><meta property="og:url" content="https://winterflow.io/catalog/librebooking/releases/v4.1.0/"><meta property="og:image" content="https://winterflow.io/images/apps/librebooking/librebooking.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="LibreBooking v4.1.0 release notes | WinterFlow.io"><meta name="twitter:description" content="This release includes numerous bug fixes, a new tablet view reservation config, improved error handling, and a transition from moment.js to native dates."><meta name="twitter:image" content="https://winterflow.io/images/apps/librebooking/librebooking.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"LibreBooking","item":"https://winterflow.io/catalog/librebooking/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/librebooking/releases/"},{"@type":"ListItem","position":5,"name":"v4.1.0","item":"https://winterflow.io/catalog/librebooking/releases/v4.1.0/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BOmMmtZA.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/librebooking/librebooking.png" alt="LibreBooking logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">LibreBooking</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open-source resource scheduling solution</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> skedda, robin, deskbird, yarooms, resource central </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://librebooking.readthedocs.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/LibreBooking/librebooking" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://librebooking.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/librebooking/screenshot-schedule.png" alt="LibreBooking screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/librebooking/screenshot-dashboard.png" alt="LibreBooking screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/LibreBooking/librebooking/blob/develop/LICENSE.md" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 769 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="LibreBooking" data-app-slug="librebooking" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/LibreBooking/librebooking" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://discord.gg/4TGThPtmX8" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Join the Discord community →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/librebooking/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (30)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/librebooking/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.1.0</h2> <span class="text-sm text-gray-500">2026-02-05</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="v410-2026-02-05">v4.1.0 (2026-02-05)</h2>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+<li>
+<p>Add command-line usage instructions for CombineDbFilesTask and UpgradeDbTask causing phpstan issue (<a href="https://github.com/LibreBooking/app/commit/bea840dd2ff194ad4316b7677b1d5bc3306cc708"><code>bea840d</code></a>)</p>
+</li>
+<li>
+<p>Add default value handling in ConfigurationFile::GetKey method (<a href="https://github.com/LibreBooking/app/commit/0f785cb08f37486879dd79626bb7e8ccbe1fd2b0"><code>0f785cb</code></a>)</p>
+</li>
+<li>
+<p>Add null check in EnsureNull method (<a href="https://github.com/LibreBooking/app/commit/1bda603569bc903eb097405eabff13f4cf75cb52"><code>1bda603</code></a>)</p>
+</li>
+<li>
+<p>Api group update will create a new group rather than updating the group (<a href="https://github.com/LibreBooking/app/commit/b9393897362f25b1ac1933c5ea0a3d4c7dcb2fa1"><code>b939389</code></a>)</p>
+</li>
+<li>
+<p>Availability edit button disappears after editing schedule (<a href="https://github.com/LibreBooking/app/commit/f12d65f5190fcc2f6daaefea67ef796f06c031b0"><code>f12d65f</code></a>)</p>
+</li>
+<li>
+<p>Cannot access offset type on ShibbolethConfigKeys (<a href="https://github.com/LibreBooking/app/commit/a853e0945f027369a83e1e0deac75685559bf73a"><code>a853e09</code></a>)</p>
+</li>
+<li>
+<p>Changed wrong auth details response code to 401 (<a href="https://github.com/LibreBooking/app/commit/da4d633be39e614addb450cd620bd77aff8b96a6"><code>da4d633</code></a>)</p>
+</li>
+<li>
+<p>Database migration for 4.0 (<a href="https://github.com/LibreBooking/app/commit/0b6c844824e1ca70afc8b21145ead1c2e575dacc"><code>0b6c844</code></a>)</p>
+</li>
+<li>
+<p>Display current reservation on tablet view and refine layout (<a href="https://github.com/LibreBooking/app/pull/803">#803</a>, <a href="https://github.com/LibreBooking/app/commit/570b889ac2799d9c3314cb6e0ab0d73ec42fde98"><code>570b889</code></a>)</p>
+</li>
+<li>
+<p>Edited plugin config example to use nested layout (<a href="https://github.com/LibreBooking/app/commit/1b14b35504da7c0548a87cb2da0cf0cb73ce33c9"><code>1b14b35</code></a>)</p>
+</li>
+<li>
+<p>Error in keycloak/oauth url generation (<a href="https://github.com/LibreBooking/app/commit/eb548ff7319e0ec2c2d291face166087829e4871"><code>eb548ff</code></a>)</p>
+</li>
+<li>
+<p>Error in reservation.start.time.constraint (<a href="https://github.com/LibreBooking/app/commit/98b72b4c4546045f947c1da957a4a22c67a76951"><code>98b72b4</code></a>)</p>
+</li>
+<li>
+<p>Exporter page broken after config validation (<a href="https://github.com/LibreBooking/app/commit/f7c6c3db240030122a0377cedf3a1aeab3ee1e8d"><code>f7c6c3d</code></a>)</p>
+</li>
+<li>
+<p>Flatpickr week start day ignored for Starts Today schedules (<a href="https://github.com/LibreBooking/app/commit/a46c31a991942dcf69b357512b479edbfa965a4d"><code>a46c31a</code></a>)</p>
+</li>
+<li>
+<p>GetConfigGroup and ConfiKeys in API (<a href="https://github.com/LibreBooking/app/commit/12fc5dc360b4da7a5f7e5ab95e6e18a3cf5030a1"><code>12fc5dc</code></a>)</p>
+</li>
+<li>
+<p>Ignore invalid configs in ManageConfiguration (<a href="https://github.com/LibreBooking/app/commit/711e01e8319843cd7d8b3266e5dc9bd33e08bdf0"><code>711e01e</code></a>)</p>
+</li>
+<li>
+<p>Include conditionally displaying title and description (<a href="https://github.com/LibreBooking/app/pull/941">#941</a>, <a href="https://github.com/LibreBooking/app/commit/46d3069cf6184c4eb6596d6d8be60ebfaa0f958d"><code>46d3069</code></a>)</p>
+</li>
+<li>
+<p>Informational log message changed to more appropriate level (DEBUG instead of ERROR) (<a href="https://github.com/LibreBooking/app/commit/dadca6b11259e976e2868a2910d1576b87806e34"><code>dadca6b</code></a>)</p>
+</li>
+<li>
+<p>Null error on unknown key (<a href="https://github.com/LibreBooking/app/commit/a8363f15835b988026268093b1b53be9f1d362a5"><code>a8363f1</code></a>)</p>
+</li>
+<li>
+<p>Reorder PSR12 rule (<a href="https://github.com/LibreBooking/app/commit/7c3473a2404ce1b40f77b485c01899a9b4f2ba14"><code>7c3473a</code></a>)</p>
+</li>
+<li>
+<p>Show option key rather than values on config wrong choice (<a href="https://github.com/LibreBooking/app/commit/e35a0301a30b41fa9c4d95b65f59c9ee32881770"><code>e35a030</code></a>)</p>
+</li>
+<li>
+<p>Standardize log messages and improve error handling in configuration tests (<a href="https://github.com/LibreBooking/app/commit/0214c6da38a3db8bc82e833797a95ed637b3897f"><code>0214c6d</code></a>)</p>
+</li>
+<li>
+<p>Trumbowyg fails to load when use.local.js.libs is set to true (<a href="https://github.com/LibreBooking/app/commit/ccaba0b1cb03eaf8f3dc2cb6a374115831c5f79b"><code>ccaba0b</code></a>)</p>
+</li>
+<li>
+<p>Update environment variable keys and add resource options in config files (<a href="https://github.com/LibreBooking/app/commit/5cbd1a191ca457b5ffb8e1a565e78666dae1db44"><code>5cbd1a1</code></a>)</p>
+</li>
+<li>
+<p>Update manual database setup documentation (<a href="https://github.com/LibreBooking/app/commit/9c175bf985b06934675e98454f913e2cf169ccb4"><code>9c175bf</code></a>)</p>
+</li>
+<li>
+<p>Use BooleanConverter for TABLET_VIEW_ALLOW_RESERVATIONS (<a href="https://github.com/LibreBooking/app/commit/d941886d7bc32d96aefeea3105f5b5a8413a3edc"><code>d941886</code></a>)</p>
+</li>
+<li>
+<p>Use ConfigKey instead of hard-coded name (<a href="https://github.com/LibreBooking/app/commit/62a1e9b0a4903c93813f2bafaa5edc091d7189a5"><code>62a1e9b</code></a>)</p>
+</li>
+<li>
+<p>Use default logging level of ‘error’ (<a href="https://github.com/LibreBooking/app/commit/0e850d3e20769bb9d1b62f7c9ca7f9f07e96f272"><code>0e850d3</code></a>)</p>
+</li>
+<li>
+<p>Use lower-case log_level (<a href="https://github.com/LibreBooking/app/commit/44ca668cb4b4cb2a1a4cbbcf057deb2c8e5ca6fb"><code>44ca668</code></a>)</p>
+</li>
+<li>
+<p>Wrong section for slack token (<a href="https://github.com/LibreBooking/app/commit/f407878ae7fdf16c63d1a7de33fa8b1895209f77"><code>f407878</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Prevent auto-registration when self-registration is disabled (<a href="https://github.com/LibreBooking/app/commit/9f24a5adf7a9b4817718960ebfa3bfcd5c16a8b6"><code>9f24a5a</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Updated plugin configuration keys into nested structures (<a href="https://github.com/LibreBooking/app/commit/1cfe196eeea3ca3dc9624a315df6a86a4f0d22d8"><code>1cfe196</code></a>)</p>
+</li>
+<li>
+<p><strong>AutocompleteUser</strong>: Handle potential null values (<a href="https://github.com/LibreBooking/app/commit/d90b7ab6d37241c74d048c8e5c224cd3b334189c"><code>d90b7ab</code></a>)</p>
+</li>
+<li>
+<p><strong>chore</strong>: Resolve many html escape issues (<a href="https://github.com/LibreBooking/app/commit/c8a6396831ebcc8d4bf9dadd9bf26da79a92b79f"><code>c8a6396</code></a>)</p>
+</li>
+<li>
+<p><strong>config</strong>: Preserve unknown subkeys in original structure for validation and improve error logging for invalid config values (<a href="https://github.com/LibreBooking/app/commit/723f238289f4bac69883b5763e5ee7f7f92592c1"><code>723f238</code></a>)</p>
+</li>
+<li>
+<p><strong>config</strong>: Update configurator to new plugin config (<a href="https://github.com/LibreBooking/app/commit/3fe962b020787e3239e4451805fd05c88b2c0244"><code>3fe962b</code></a>)</p>
+</li>
+<li>
+<p><strong>htaccess</strong>: Prevent redirect loop for /Web path without trailing slash (<a href="https://github.com/LibreBooking/app/commit/ad8bde2acbfbe5f678f12b67c76cbeec5d4a5bca"><code>ad8bde2</code></a>)</p>
+</li>
+<li>
+<p><strong>image-upload</strong>: Use correct directory for uploading image (<a href="https://github.com/LibreBooking/app/commit/88cb94a07ec03f679cec1e0f94f68f332bdc68e6"><code>88cb94a</code></a>)</p>
+</li>
+<li>
+<p><strong>ldap</strong>: Rename debug configuration key for consistency (<a href="https://github.com/LibreBooking/app/commit/f8efae3fc87b510040bfc987a1a43171ee3a1c79"><code>f8efae3</code></a>)</p>
+</li>
+<li>
+<p><strong>ldap</strong>: Update default search filter to be optional with improved description (<a href="https://github.com/LibreBooking/app/commit/7c17c7c6f39bc693298e220ca8c0022740305308"><code>7c17c7c</code></a>)</p>
+</li>
+<li>
+<p><strong>pdf</strong>: Enhance PDF generation error handling and improve table formatting (<a href="https://github.com/LibreBooking/app/commit/b16500067725385863bdb20ebed2c93897a8c931"><code>b165000</code></a>)</p>
+</li>
+<li>
+<p><strong>pdf</strong>: Handle default values for repeat options and reservation details in PDF generation (<a href="https://github.com/LibreBooking/app/commit/fda8a76967f090bd25896d220cf47455fba782ca"><code>fda8a76</code></a>)</p>
+</li>
+<li>
+<p><strong>profile</strong>: Resolve loading the profile page when multiple attributes (<a href="https://github.com/LibreBooking/app/commit/e5e423f6b122c0e8c20c80137ba5eb29fbedb306"><code>e5e423f</code></a>)</p>
+</li>
+<li>
+<p><strong>profile</strong>: Resolve saving of unchecked checkbox in the profile (<a href="https://github.com/LibreBooking/app/commit/26725844ff9eec2f9bf921f0859c432a1b7c7aa5"><code>2672584</code></a>)</p>
+</li>
+<li>
+<p><strong>reservation</strong>: Resolve html rendering in announcement emails (<a href="https://github.com/LibreBooking/app/commit/1fad3bee7afbb5ad8c9d9b24843d3e6b5703b0ac"><code>1fad3be</code></a>)</p>
+</li>
+<li>
+<p><strong>reservation</strong>: Resolve weekly series checkbox status on load (<a href="https://github.com/LibreBooking/app/commit/d7a62b4f00fba49068a23bd03f46d0e9d70da173"><code>d7a62b4</code></a>)</p>
+</li>
+<li>
+<p><strong>Resources</strong>: Improve string retrieval logic (<a href="https://github.com/LibreBooking/app/commit/7e27ac552e2d583c238f18d98edfb0abdc557458"><code>7e27ac5</code></a>)</p>
+</li>
+<li>
+<p><strong>schedule</strong>: Correct date display and layout issues (<a href="https://github.com/LibreBooking/app/commit/d684695996e5f509c9a095974a7f624370e1fc04"><code>d684695</code></a>)</p>
+</li>
+<li>
+<p><strong>templates</strong>: Replace regex check with empty check in Italian email templates (<a href="https://github.com/LibreBooking/app/commit/1e71f81dc77ddb1477252c2d07f7113fb090af7b"><code>1e71f81</code></a>)</p>
+</li>
+<li>
+<p><strong>test</strong>: Update configuration key test (<a href="https://github.com/LibreBooking/app/commit/3444e6c8449bd7f33f7e8ca7634ff76da1997071"><code>3444e6c</code></a>)</p>
+</li>
+<li>
+<p><strong>tests</strong>: Update symbolic link creation and improve PHPUnit error handling (<a href="https://github.com/LibreBooking/app/commit/ae628bcce7f4fe82dcf77c5b42b27d51c1d0cf23"><code>ae628bc</code></a>)</p>
+</li>
+</ul>
+<h3 id="chores">Chores</h3>
+<ul>
+<li>
+<p>Update phpstan-baseline.neon (<a href="https://github.com/LibreBooking/app/commit/200517a5fe8c6f7451559c980579bdf9378d6a59"><code>200517a</code></a>)</p>
+</li>
+<li>
+<p><strong>git</strong>: Enforce LF line endings (<a href="https://github.com/LibreBooking/app/commit/85a929f93753111d36bf1f45a1ce54b210ccc024"><code>85a929f</code></a>)</p>
+</li>
+<li>
+<p><strong>git</strong>: Normalize all line endings to LF (<a href="https://github.com/LibreBooking/app/commit/b211a9a5f9b6cf10c28a27fbc55d2a56d675490a"><code>b211a9a</code></a>)</p>
+</li>
+<li>
+<p><strong>phpstan</strong>: Update for 2.1.25 release (<a href="https://github.com/LibreBooking/app/commit/86594c140cf09b96585ae7907ce7f82b46b804d8"><code>86594c1</code></a>)</p>
+</li>
+<li>
+<p><strong>phpstan</strong>: Update phpstan-baseline.neon (<a href="https://github.com/LibreBooking/app/commit/79ac1027a52cc52d603f5428831564762f16fc3e"><code>79ac102</code></a>)</p>
+</li>
+<li>
+<p><strong>scripts</strong>: Remove jQuery Timepicker plugin files (<a href="https://github.com/LibreBooking/app/commit/16326535d894ea6948e75f335595a3873af55993"><code>1632653</code></a>)</p>
+</li>
+<li>
+<p><strong>templates</strong>: Remove unused Timepicker includes (<a href="https://github.com/LibreBooking/app/commit/9d25543cb568a33077f82a6bbc88778dab18918d"><code>9d25543</code></a>)</p>
+</li>
+</ul>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li>
+<p>Enhance PHP-CS-Fixer rules with Symfony standards (<a href="https://github.com/LibreBooking/app/commit/a42d5f8be34ba7fc0496b55301aa7688d030c190"><code>a42d5f8</code></a>)</p>
+</li>
+<li>
+<p>Redesign API help page with Bootstrap and improved UI (<a href="https://github.com/LibreBooking/app/commit/3f13add6f5b2c98d92a23b2933025685237f8a20"><code>3f13add</code></a>)</p>
+</li>
+<li>
+<p><strong>vscode</strong>: Add initial <code>.vscode/settings.json</code> (<a href="https://github.com/LibreBooking/app/commit/afae98455c2e7f6f572703e1085d7176761f0556"><code>afae984</code></a>)</p>
+</li>
+</ul>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<ul>
+<li>
+<p>Mark the ‘develop’ branch as a release branch (<a href="https://github.com/LibreBooking/app/commit/02c4e20673fabe7e7d2889c506006b3aec6cbbb6"><code>02c4e20</code></a>)</p>
+</li>
+<li>
+<p>Prevent merge-commits in a PR (<a href="https://github.com/LibreBooking/app/commit/ebe5589ae5f33749f205060f6c484f8d9b60219d"><code>ebe5589</code></a>)</p>
+</li>
+<li>
+<p><strong>cz-lint</strong>: Give a more helpful message when ‘cz’ fails (<a href="https://github.com/LibreBooking/app/commit/4a3a1050d9f1d7d3dbdbf8b760640f5c50b6a906"><code>4a3a105</code></a>)</p>
+</li>
+<li>
+<p><strong>release</strong>: Add the ‘id-token’ permissions (<a href="https://github.com/LibreBooking/app/commit/9b6b28a14d8a013b3032c3003a7d6337f537858e"><code>9b6b28a</code></a>)</p>
+</li>
+<li>
+<p><strong>release</strong>: Setup an automated release system (<a href="https://github.com/LibreBooking/app/commit/464e117967ee33917f7147fed1d79a394cdf814d"><code>464e117</code></a>)</p>
+</li>
+<li>
+<p><strong>release</strong>: Use the ‘release’ environment (<a href="https://github.com/LibreBooking/app/commit/397e1bf9edc60a8ed591ea1c9a4cd7f72d7470e9"><code>397e1bf</code></a>)</p>
+</li>
+<li>
+<p><strong>release</strong>: Use the release token for the git checkout action (<a href="https://github.com/LibreBooking/app/commit/bd1e8815023a41c354da2cd9ca3de4d63ee3c3f1"><code>bd1e881</code></a>)</p>
+</li>
+<li>
+<p><strong>release</strong>: Use the RELEASE_GITHUB_TOKEN (<a href="https://github.com/LibreBooking/app/commit/1bdd93d5c4638d62609694348aa0c1a54391740a"><code>1bdd93d</code></a>)</p>
+</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>
+<p>Add info on privacy.view.schedules config option (<a href="https://github.com/LibreBooking/app/commit/9fed6b2c4d436f1349a9ea14f0b97aa58a9f6b73"><code>9fed6b2</code></a>)</p>
+</li>
+<li>
+<p>Update comment for privacy->view.schedules (<a href="https://github.com/LibreBooking/app/commit/8ae0a5f23f5ec8696ac8c9e9a3c13e5c09041b0c"><code>8ae0a5f</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Add detailed configuration instructions for LDAP and Active Directory authentication (<a href="https://github.com/LibreBooking/app/commit/40b00f6d7ced8b2166265538fbda9a66e82de34d"><code>40b00f6</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Enhance description for Admin Username in Active Directory configuration (<a href="https://github.com/LibreBooking/app/commit/c150e2fa4442be385019d416a858d1d1aa94fd70"><code>c150e2f</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Enhance description for properties in plugins (<a href="https://github.com/LibreBooking/app/commit/12dfeeaff9c9bbbdd45af05ae3c2ce4b587131ea"><code>12dfeea</code></a>)</p>
+</li>
+</ul>
+<h3 id="features">Features</h3>
+<ul>
+<li>
+<p>Improved error handling for missing configkey and api (<a href="https://github.com/LibreBooking/app/commit/adc463791ed0e3c0eb8bf7cb3476840b04184fc7"><code>adc4637</code></a>)</p>
+</li>
+<li>
+<p><strong>reservation</strong>: Highlight negative durations (<a href="https://github.com/LibreBooking/app/commit/6c5a229be23ca68319f0321fbbeedff9e77f7086"><code>6c5a229</code></a>)</p>
+</li>
+<li>
+<p><strong>resource-display.php</strong>: Add allow-reservations config for tablet view (<a href="https://github.com/LibreBooking/app/commit/ba2207434dcd18936bdc18871f7a11d46e3d180b"><code>ba22074</code></a>)</p>
+</li>
+</ul>
+<h3 id="refactoring">Refactoring</h3>
+<ul>
+<li>
+<p>Pageload in Login presenter (<a href="https://github.com/LibreBooking/app/commit/2a554b1b94d29b226e0ae9b3c888decc5abc10a0"><code>2a554b1</code></a>)</p>
+</li>
+<li>
+<p>Replaced die for proper server response (<a href="https://github.com/LibreBooking/app/commit/4c75a918eb523620ba0d68af9bd944c9fca46d11"><code>4c75a91</code></a>)</p>
+</li>
+<li>
+<p>Unify time formats using period_time (<a href="https://github.com/LibreBooking/app/commit/35f629520bc503cc0646d516dd4eacd3cec1e10e"><code>35f6295</code></a>)</p>
+</li>
+<li>
+<p>Url generation for external login (<a href="https://github.com/LibreBooking/app/commit/26511e3f245230454bbee4804df3d6cecc55cff2"><code>26511e3</code></a>)</p>
+</li>
+<li>
+<p><strong>date-helper</strong>: Drop moment.js for native dates (<a href="https://github.com/LibreBooking/app/commit/053357954a8b06294c0f558c8eaa8ff91451c870"><code>0533579</code></a>)</p>
+</li>
+<li>
+<p><strong>date-helper.js</strong>: Centralize midnight handling in time-range validation (<a href="https://github.com/LibreBooking/app/commit/c85fb34e8ef29d5dcd9676d2c093b27160a74560"><code>c85fb34</code></a>)</p>
+</li>
+<li>
+<p><strong>manage_blackouts</strong>: Use dateHelper for timepickers (<a href="https://github.com/LibreBooking/app/commit/3fe1f8a3bda3247396e139cc09b9dc3d00d42b24"><code>3fe1f8a</code></a>)</p>
+</li>
+<li>
+<p><strong>manage_peak_times</strong>: Use raw times and centralize formatting (<a href="https://github.com/LibreBooking/app/commit/f099d00c9938b99bdf66326d6d91fc0688af4de7"><code>f099d00</code></a>)</p>
+</li>
+<li>
+<p><strong>manage_quotas</strong>: Integrate dateHelper &#x26; collapse in UI (<a href="https://github.com/LibreBooking/app/commit/63b178277830ddc8a159770e083d051a2d89ad12"><code>63b1782</code></a>)</p>
+</li>
+<li>
+<p><strong>manage_schedules</strong>: DateHelper for peak pickers &#x26; validation (<a href="https://github.com/LibreBooking/app/commit/348329bab3e83aaccf6cc6944044b3d0ea7895ce"><code>348329b</code></a>)</p>
+</li>
+<li>
+<p><strong>search-availability</strong>: Use select pickers for time inputs (<a href="https://github.com/LibreBooking/app/commit/a87100aa1bd103ffb249f630dd0b35e1aae3997b"><code>a87100a</code></a>)</p>
+</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<ul>
+<li>
+<p>Allow unit tests to be run without setup (<a href="https://github.com/LibreBooking/app/commit/d1221ff4f0251ee3d3a3a90cb0100e04e4979e3a"><code>d1221ff</code></a>)</p>
+</li>
+<li>
+<p>Prevent flaky tests caused by midnight boundary issues (<a href="https://github.com/LibreBooking/app/commit/c004670124e8d947efb02143825de4457460c202"><code>c004670</code></a>)</p>
+</li>
+<li>
+<p>Update AuthenticationWebServiceTest to expect response codes (<a href="https://github.com/LibreBooking/app/commit/9c690f65d33b42ceda739136d6bb366b5c5c0ca4"><code>9c690f6</code></a>)</p>
+</li>
+<li>
+<p><strong>auth</strong>: Add comprehensive tests for authentication plugin configuration loading and validation (<a href="https://github.com/LibreBooking/app/commit/55227647df5e936f88f5baf7f81e398a1c45dfdb"><code>5522764</code></a>)</p>
+</li>
+<li>
+<p><strong>config</strong>: Changed expected test values to reflect intended behavior of expecting a default value (<a href="https://github.com/LibreBooking/app/commit/9f253ef596940f87034ae449a50ad2016c3b046b"><code>9f253ef</code></a>)</p>
+</li>
+<li>
+<p><strong>timezone</strong>: Replace deprecated US/* timezones with IANA equivalents (<a href="https://github.com/LibreBooking/app/commit/8e7645b8bac818a82d2e32b604becf70a6ff8fab"><code>8e7645b</code></a>)</p>
+</li>
+</ul>
+<hr>
+<p><strong>Detailed Changes</strong>: <a href="https://github.com/LibreBooking/app/compare/v4.0.0...v4.1.0">v4.0.0…v4.1.0</a></p> </div> <div class="mt-6"> <a href="https://github.com/LibreBooking/librebooking/releases/tag/v4.1.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
