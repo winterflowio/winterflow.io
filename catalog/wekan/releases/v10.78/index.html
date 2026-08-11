@@ -1,0 +1,645 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v10.78 release notes | WinterFlow.io</title><meta name="description" content="This release improves AppImage and Flatpak workflows, adds full SLSA provenance to Docker images, fixes snap build failures, and ensures bundled binaries…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v10.78/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v10.78 release notes | WinterFlow.io"><meta property="og:description" content="This release improves AppImage and Flatpak workflows, adds full SLSA provenance to Docker images, fixes snap build failures, and ensures bundled binaries…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v10.78/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v10.78 release notes | WinterFlow.io"><meta name="twitter:description" content="This release improves AppImage and Flatpak workflows, adds full SLSA provenance to Docker images, fixes snap build failures, and ensures bundled binaries…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v10.78","item":"https://winterflow.io/catalog/wekan/releases/v10.78/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.BOmMmtZA.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,027 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (191)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.78</h2> <span class="text-sm text-gray-500">2026-08-09</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>2737687fd29a8a76…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>14b342e71204f811…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>5ae705dd49515a4e…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>01443c1e1a29e531…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>2232872afa468a83…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>b55350f3071b765a…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>2232872afa468a83…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>8dbe0a9aa8550ad5…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>63d7a9e5e2754cbf…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>3b0b3bbfe27daf58…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>9b15f4c10e473cd0…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>3f1cf157479c1480…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>0400cd6dfc3d10d9…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>c510c6ce12f07010…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>d37c35af988670b9…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>cd1f14af28121480…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>6c7d61fbb8c79b2e…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>a4792e65962ffa0a…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.48.0</td><td>verified</td><td><code>ea57e1bcd153b51d…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>57f71ab3652e797d…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1078-2026-08-09-wekan--release">v10.78 2026-08-09 WeKan ® release</h1>
+<p><strong>In short:</strong> the <strong>AppImage</strong> workflow. It built both AppImages, started them,
+waited for WeKan to answer on port 8080, uploaded them as artifacts - and then
+attached nothing to the release, because the job that does the attaching never
+checks the repository out and its two <code>gh</code> calls were the only ones in the file
+without <code>--repo</code>. Fixed, and the matrix grows from two architectures to
+<strong>four</strong>: <code>i686</code> and <code>armhf</code> are the other two an AppImage runtime exists for.
+The <strong>Flatpak</strong> workflow had the same one-line bug and a second beside it - it
+was attaching the ostree repository along with the bundles - and it stays at two
+architectures, because a flatpak needs a published runtime and only x86_64 and
+aarch64 have one. Beside that, the <strong>Docker</strong> images now carry full SLSA
+<strong>provenance</strong> at every one of the four sites that pushes one, and a test pins
+that every <strong>bundled binary</strong> - FerretDB, the MongoDB Database Tools, Node.js -
+is still fetched as the NEWEST one everywhere it is fetched, which is what makes
+those projects’ security fixes arrive without a commit here - and the table
+below is that working: <strong>FerretDB v1.48.0</strong> replaces v10.77’s v1.45.0 on every
+platform, with no change in this repository, because <code>latest</code> now resolves to
+it. That is the release carrying <code>go1.25.11</code> and <code>x/sys v0.46.0</code>, which answers
+the Go advisories a Quay scan reported against the v10.77 image. Node.js stays
+v24.19.0, the newest 24.x. The rest of this release is the same theme - what a
+build REPORTS versus what it did. The <strong>armhf snap</strong> failed three times on a
+package name that has not existed since Ubuntu 24.04 renamed it, while the
+message blamed a transient build-farm reset; three snaps that BUILT were
+reported FAILED by the step that saves their logs; and the provenance table
+printed every row twice, left <strong>amd64</strong> out entirely, and gave six platforms the
+version “latest”.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>2737687fd29a8a761cd960e45f300b68cf7b4a87d50c4cc5280bcbd42b6aa163</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>5ae705dd49515a4ecd4e295c3b9aa4f3b454fad78613ec60fb99316bd7c34e3f</code></td></tr><tr><td>loong64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-loong64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td><code>c24f224726f2d785bd18a1fd09f5e6d1fecf0269928451a60c5da9eac8e92e68</code></td></tr><tr><td>loong64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-loong64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>06ec86263455a7b598d22a87df0e044ea73ab5a3b72e96ad12ebed03c1374ac2</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>9b15f4c10e473cd0a2c4feb4cb43e18042bd60c7035ec66cab3cfbe13edaabab</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>4e188246dfa33bccef4cdd86701bc498b037cb3e91f579ff0dccb93aa0ef03ad</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>c510c6ce12f07010f771e6edb22a3fe23f4f2e6f40b1ffd4941aed0646a0d8b3</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>0400cd6dfc3d10d987a0fe80d75baa86c03c19170770fa2e602c92d558c3cfa6</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td><code>cd1f14af2812148002f58b58a5f9af512a50e3b8e8c148e0db44019dcb68edfd</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>d37c35af988670b9ed182b8c5966c06a06362f6c6ace6aebd93ccdfa32c9a26b</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>a4792e65962ffa0af42627aacf1122a60c3c88dbf4e4184f06820d66f9da8ba4</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>6c7d61fbb8c79b2e8733be8f71910f710e8c5cd25208c451bdc513c8313b0340</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td><code>57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.48.0/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.48.0</td><td><code>ea57e1bcd153b51d2065ab01515b21ec05d8f615444c15603ab8158b8a661dd2</code></td></tr></tbody></table>
+<p>This release adds the following new features:</p>
+<p><strong>AppImage</strong> - which CPUs get one.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/97e57e531">Build the other two architectures an AppImage runtime exists for</a>. Thanks to xet7.</summary>
+<p>x86_64 and aarch64 become four, with <strong>i686</strong> and <strong>armhf</strong>. That is the whole
+set: an AppImage BEGINS with a runtime binary the kernel executes, and runtimes
+exist for exactly those four. <code>ppc64le</code>, <code>s390x</code>, <code>riscv64</code> and <code>loong64</code> have
+none, so they cannot have an AppImage however the job is written - they are
+served by the bundle zip and the .deb, and the matrix now says so where somebody
+would otherwise try.</p>
+<p>The two are not equally safe and are not treated as though they were. <strong>i686</strong>
+builds on the x86_64 runner, which runs 32-bit x86 natively: no emulation, no
+multiarch, <code>appimagetool-i686</code> runs as-is. <strong>armhf</strong> builds on the aarch64
+runner, which runs 32-bit ARM only if the kernel has <code>CONFIG_COMPAT</code> and the
+32-bit loader is installed - GitHub promises neither - so it is
+<code>continue-on-error</code>, the same treatment TSC gives its emulated armhf job. It
+cannot decide whether the other three reach the release.</p>
+<p>The smoke test needed the distinction too. It starts the AppImage and waits for
+port 8080, which a 64-bit runner cannot do for a 32-bit build it cannot execute.
+A check that cannot RUN is not a failed check: when the binary will not execute
+at all AND it is not this machine’s architecture, it warns, says the AppImage is
+uploaded unchecked, and moves on. A build that DOES start and then does not
+answer still fails - that is the bug the step exists for.</p>
+</details>
+<p><strong>Docker images</strong> - what an image records about how it was built.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5b3169534">Attach full build provenance at every site that pushes an image</a>. Thanks to xet7.</summary>
+<p>BuildKit attaches MINIMAL provenance on its own, which is where the
+<code>unknown on unknown</code> rows beside each real platform on quay.io come from - that
+is the OCI marker for “not a runnable image”, so <code>docker pull</code> never selects
+one. Minimal is a build id and a timestamp, which answers nothing anybody asks
+of a supply chain. <code>mode=max</code> records what does: which commit, which base
+image, which build arguments, which frontend.</p>
+<p>The hazard is not getting it wrong once, it is that WeKan pushes images from
+FOUR places - <code>docker-publish.yml</code>, two sites in <code>release-all.yml</code>, and
+<code>releases/docker-build.sh</code> - and a fifth added later would silently fall back to
+the default. So the test finds the call sites by searching the repository
+instead of from a list, and fails when a pushing one lacks the flag.</p>
+<p>SBOM stays off, deliberately: it enumerates every OS package and npm
+dependency, so the attestation grows from tens of kilobytes to megabytes per
+platform. Turning it on is a decision rather than a default to drift into.</p>
+<p>The <code>--load</code> build in <code>docker-build.sh</code> must NOT ask for it - the docker
+exporter cannot carry an attestation at all - and that is a test of its own, so
+the flag is not added there by symmetry one day.</p>
+<p>One more thing the test pins, because it was written the wrong way twice while
+this was being done: a <code>#</code> comment sitting among a continued command’s
+arguments. <code>docker buildx build \</code> followed by a comment line comments out the
+REST OF THE JOINED LINE, so the command becomes a bare <code>docker buildx build</code>
+with every platform, tag and flag swallowed. <code>bash -n</code> accepts it - it is valid
+syntax, just a different command - and a YAML <code>run:</code> block is a shell script,
+which is where it happened the first time.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>The snap builds</strong> - what the Launchpad jobs build, and what they report.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/a820b056b">libcurl4 does not exist on armhf, so name the package noble ships</a>. Thanks to xet7.</summary>
+<p>The armhf snap failed all three attempts in v10.77 while s390x, ppc64el and
+riscv64 each built on attempt 1. The Launchpad build log says why, one line into
+the mongodb part:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Stage package not found in part 'mongodb': libcurl4.</span></span>
+<span class="line"><span>Build failed</span></span></code></pre>
+<p>Ubuntu 24.04’s 64-bit <code>time_t</code> transition renamed the library, and <code>libcurl4</code> is
+not a real package on <strong>any</strong> architecture in noble - the binary is
+<code>libcurl4t64</code> everywhere. On the 64-bit architectures the renamed package keeps
+the old name alive, <code>Provides: libcurl4 (= 8.5.0-2ubuntu10)</code>, and the armhf
+<code>libcurl4t64</code> has no <code>Provides</code> line at all, because there the ABI really
+changed. That is what makes this class of bug reach exactly one architecture -
+which is also what makes it look like flakiness on that architecture.</p>
+<p>It had already happened, to <code>libssl3</code> and <code>libgoogle-perftools4</code> in v10.71, and
+the comment above this list describes it exactly; <code>libcurl4</code> was the same
+transition and was left behind. All fourteen stage-packages were checked against
+the noble armhf main+universe indices this time, and it was the only one that
+did not resolve.</p>
+<p>The workflow’s own guidance made it worse. snapcraft ends a missing
+stage-package as a <em>Stopped</em> build with no artifact, which from the outside is
+indistinguishable from Launchpad cancelling a build, so the message offered “an
+OOM in the Meteor npm install, or a transient build-farm reset - re-run” for a
+failure that will never succeed on a re-run. The step now looks for that line
+first, names the missing package, says it is not transient, explains the
+<code>Provides</code> asymmetry, and gives the one-line archive query that checks a name.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6dce9dda7">Three good snaps were reported as FAILED by the step that saves their logs</a>. Thanks to xet7.</summary>
+<p>s390x, ppc64el and riscv64 each printed <em>“Remote build &#x3C;arch> succeeded on
+attempt 1”</em> and downloaded their <code>.snap</code> - and each job then ended FAILED,
+because the step that saves the build log could not upload it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>The path for one of the files in artifact is not valid:</span></span>
+<span class="line"><span>/snapcraft-wekan-f82a93c2…_s390x_2026-08-09T11:39:05.txt.</span></span>
+<span class="line"><span>Contains the following character:  Colon :</span></span></code></pre>
+<p>snapcraft names a remote-build log after the recipe and an ISO timestamp, and
+<code>upload-artifact</code> refuses a colon because NTFS cannot hold one. The colons
+become dashes now, so the timestamp is kept rather than the name thrown away -
+and the upload is <code>continue-on-error</code>, because a <strong>diagnostic</strong> upload must
+never be able to fail the build it is diagnosing. The snap is the deliverable,
+and the renaming is not the last thing that could ever make a log unuploadable.</p>
+</details>
+<p><strong>The release notes</strong> - what the provenance table says each bundle carries.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6dce9dda7">Every row appeared twice, amd64 appeared not at all, and six platforms said "latest"</a>. Thanks to xet7.</summary>
+<p>Three things wrong at once in the v10.77 table, and every one of them silent -
+nothing errored, the table was simply not what it claimed to be.</p>
+<p><strong>Every row appeared twice.</strong> <code>provenance-table.sh</code> globbed
+<code>provenance/**/*.tsv provenance/*.tsv</code>, and with <code>globstar</code> a <code>**/</code> matches
+<strong>zero</strong> or more directories, so the first pattern already covered the second
+and every file was read twice. It is one pattern now, and rows are also
+deduplicated on the WHOLE line - a retried step records an identical line and
+nothing tells the copies apart. Deliberately not <code>sort -u -k1,1 -k2,2</code>: two rows
+sharing a bundle and a binary but differing elsewhere are not a duplicate, they
+are a real disagreement about which Node.js went into a bundle, and hiding one
+at random is worse than showing both.</p>
+<p><strong>amd64 was missing</strong> - the platform most people download. Its step runs
+<code>cd .build</code> before <code>mkdir -p provenance</code>, so the rows went to
+<code>.build/provenance</code> while the upload looked at <code>provenance/</code> from the workspace
+root and found nothing. Every other build job records from the workspace root,
+which is why only this one was affected. That turned out to be half the story;
+the entry below is the other half.</p>
+<p><strong>Six platforms said Version <code>latest</code>.</strong> amd64, arm64, win64, win32, mac-arm64
+and mac-x64 passed the literal string; only the extra-architecture job asked
+what <code>latest</code> actually was, with its own inline <code>curl</code>. “Which FerretDB did
+v10.77 ship” is the one question that column exists to answer. All seven sites
+now call <code>releases/ferretdb-latest-tag.sh</code>, which asks once per job and caches,
+authenticates when there is a token so a shared 60/hour limit is not what makes
+it fail, checks the answer is shaped like a tag before printing it into a
+markdown cell, and prints nothing and exits 0 when it cannot find out - a
+release note must never fail a build that produced a good bundle.</p>
+<p>The table’s prose also linked <code>wekan/node</code>; the binaries come from
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a>, which is what the
+rows themselves already linked.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e59680519">The amd64 provenance scripts were never found, only never complained</a>. Thanks to xet7.</summary>
+<p>The amd64 build failed with exit 127, after the bundle had been zipped and
+checksummed:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>a95d331b…  wekan-10.78-amd64.zip</span></span>
+<span class="line"><span>bash: releases/record-provenance.sh: No such file or directory</span></span>
+<span class="line"><span>bash: releases/ferretdb-latest-tag.sh: No such file or directory</span></span></code></pre>
+<p>The step runs <code>cd .build</code> first, so nothing relative in it means what it looks
+like it means - and that is <strong>two</strong> bugs, of which only the second had ever been
+visible. <code>bash releases/record-provenance.sh</code> resolves against <code>.build/</code>, which
+has no <code>releases/</code>, so it had printed <em>“No such file or directory”</em> on every run
+since it was written and the <code>|| true</code> on the end swallowed it. amd64 had
+therefore never recorded any provenance at all, and the only symptom was its
+absence from the table - so the missing-directory fix above repaired the half
+that showed and left the half that did not.</p>
+<p>What made it loud is that the FerretDB tag lookup added alongside it is an
+<strong>assignment</strong>. Under <code>set -e</code>, and every GitHub <code>run:</code> is <code>bash -e</code>,
+<code>VAR="$(cmd)"</code> ends the step when the command fails - so a line that had been
+quietly doing nothing for months became a hard failure of the whole amd64 build.</p>
+<p>Every path in that step is absolute now, and every <code>FERRET_TAG</code> assignment
+across all seven sites ends <code>|| true</code>: the bundle is the deliverable, and which
+version string reaches a markdown cell is not worth failing a good build for.
+Only amd64’s step <code>cd</code>s - the other six run from the workspace root, which is
+exactly what the v10.77 run showed, since all six uploaded provenance and amd64
+did not.</p>
+<p>The guard added with it is the general form rather than this one line: it walks
+back from every provenance call to its step header and requires an absolute path
+whenever a <code>cd</code> runs inside that step.</p>
+</details>
+<p><strong>The release upload</strong> - what reaches the release page.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/fa296d0c8">Attach the built AppImages to the release again</a>. Thanks to xet7.</summary>
+<p>Both AppImages built. Both passed the smoke test that starts them and waits for
+WeKan to answer. Both uploaded as artifacts, and both were downloaded by the
+attaching job with matching SHA256 digests. Then:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>gh release upload 'v10.77' assets/* --clobber</span></span>
+<span class="line"><span>failed to run git: fatal: not a git repository</span></span></code></pre>
+<p>That job does not check the repository out - it has no reason to, it only
+downloads artifacts - so <code>gh</code> had no git remote to infer the repository from.
+Every other <code>gh</code> call in the workflow already passed <code>--repo</code>; those two did
+not.</p>
+<p>Every call passes it now, including the ones in jobs that DO check out: a call
+relying on an inferred remote breaks the day somebody removes the checkout, and
+the error it gives names neither <code>gh</code> nor the workflow.</p>
+<p>Worth recording for whoever reads that failed run, because the log looks far
+worse than the bug: <code>::error::</code> lines appear in the build jobs for the
+bundle-file check and the port check, and in the attaching job for “no
+architecture produced an AppImage - every build job failed”. None of them fired.
+They carry the escape codes of the <code>##[group]</code> header - they are the SCRIPT
+being echoed, not output - and a few lines below them <code>ls -lh assets</code> shows both
+AppImages sitting there at 225M and 227M. One line in the whole run was a real
+error.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/04fb6e338">Flatpak: attach the bundles to the release, and only the bundles</a>. Thanks to xet7.</summary>
+<p>The same one-line bug as the AppImage workflow above, from the same cause: the
+job that attaches the bundles does not check the repository out - it only
+downloads artifacts - so <code>gh</code> had no git remote to infer the repository from and
+<code>gh release upload</code> failed with <em>“fatal: not a git repository”</em>. Both flatpaks
+had built and uploaded as artifacts; nothing reached the release. Every <code>gh</code>
+call in that workflow passes <code>--repo</code> now too.</p>
+<p>And a second one beside it: <code>assets/*</code> was not the bundles. The artifacts also
+carry the <strong>ostree repository</strong> the flatpak was exported through - <code>config</code>,
+<code>objects/</code>, <code>refs/</code>, <code>summaries/</code>, <code>summary</code>, <code>summary.idx</code> - which is build
+scaffolding, and attaching it would have put a few hundred directories on the
+release beside the two files anyone wants. The upload names the bundles and
+their checksums instead.</p>
+<p>No architectures could be added here, and the workflow header now says why
+rather than leaving it to be rediscovered. A flatpak runs against a RUNTIME, not
+the host’s libraries, so an architecture exists only if freedesktop.org
+publishes <code>org.freedesktop.Platform</code> for it: x86_64 and aarch64, the i386 and
+arm runtimes having been discontinued. That is the difference from the AppImage
+work above, which could grow from two architectures to four - an AppImage
+carries its own runtime binary, and those exist for i686 and armhf as well.</p>
+</details>
+<p>and has the following developer-facing change:</p>
+<p><strong>Bundled binaries</strong> - keeping “newest” true everywhere it is claimed.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ce69db8c5">Pin that every bundled binary is fetched as the newest one</a>. Thanks to xet7.</summary>
+<p>WeKan ships binaries other projects publish - FerretDB, the MongoDB Database
+Tools, Node.js - and fetches each from a release URL. There are many such URLs,
+across workflows, release scripts and compose files, and they must all agree:
+one that names a fixed version stops receiving that project’s security fixes
+silently, and nothing about the build fails when it does.</p>
+<p>That is not hypothetical. A Quay scan of the v10.77 image reported Go
+advisories in the FerretDB binary baked into the bundle - <code>stdlib 1.25.9</code>
+wanting 1.25.11, <code>golang.org/x/sys v0.38.0</code> wanting 0.44.0. The source was
+already fixed and v1.48.0 was already published carrying <code>go1.25.11</code> and
+<code>x/sys v0.46.0</code>; the image had simply captured an older <code>latest</code> at build time.
+Had any of these URLs been pinned instead, the rebuild would not have fixed it
+either.</p>
+<p>The URLs are found by searching the repository rather than from a list, so a
+build site added later is checked too, and three shapes are accepted:
+<code>latest/download/&#x3C;asset></code>, the bare <code>latest</code> API endpoint that <code>release-all.yml</code>
+asks which version <code>latest</code> resolved to so the provenance table can record it,
+and <code>${VAR}</code> whose default is separately asserted to be <code>latest</code> - that is
+<code>FERRETDB_RELEASE</code> in the compose files, which an operator may pin for their own
+reasons but which must not freeze everybody who does not.</p>
+<p>Node.js is a different mechanism with the same effect, so it is pinned too:
+<code>NODE_VERSION</code> is the bare major <code>24</code>, and <code>releases/resolve-node-source.sh</code>
+answers with that CPU’s newest 24.x from whichever of nodejs.org,
+unofficial-builds or <a href="https://github.com/wekan/node-patches">wekan/node-patches</a>
+has one.</p>
+<p>What makes <code>latest</code> safe rather than merely convenient is the provenance table
+above: rebuilding an old release would embed a different FerretDB than it
+shipped with, and the only reason that is a trade rather than a hole is that
+every release RECORDS the versions and SHA256s it actually shipped. So that is
+asserted here as well - <code>releases/record-provenance.sh</code> exists, and the
+CHANGELOG still carries the table it produces.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions and translators for their
+translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v10.78" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
