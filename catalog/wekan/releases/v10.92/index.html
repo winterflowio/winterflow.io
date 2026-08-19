@@ -1,0 +1,1987 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v10.92 release notes | WinterFlow.io</title><meta name="description" content="This release fixes critical REST API security vulnerabilities, improves board export/import functionality, introduces in-place card title editing, and…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v10.92/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v10.92 release notes | WinterFlow.io"><meta property="og:description" content="This release fixes critical REST API security vulnerabilities, improves board export/import functionality, introduces in-place card title editing, and…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v10.92/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v10.92 release notes | WinterFlow.io"><meta name="twitter:description" content="This release fixes critical REST API security vulnerabilities, improves board export/import functionality, introduces in-place card title editing, and…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v10.92","item":"https://winterflow.io/catalog/wekan/releases/v10.92/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.ub2yUpbM.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,046 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (208)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.92</h2> <span class="text-sm text-gray-500">2026-08-15</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>eae1f0a8f73bfc97…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>14b342e71204f811…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>bdc50caee3ac2849…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>01443c1e1a29e531…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1092-2026-08-15-wekan--release">v10.92 2026-08-15 WeKan ® release</h1>
+<p><strong>In short:</strong> this was tagged <strong>v10.92</strong> and never published: its release job
+died before running a line of its own script, with <em>Argument list too long</em>,
+because the release notes had outgrown the size a single environment variable
+may hold — so the release, and every job that needs it, never happened. The
+amd64 and arm64 bundles built and verified; only the publishing failed. The
+notes now travel from file to file and never become a shell value, which is the
+one shape that neither runs a backtick as a command nor has a size limit at all.
+Everything below was written for v10.92 and ships here instead. It begins with
+what the published Docker image SHIPS, cleaned up against a container scan of
+<code>ghcr.io/wekan/wekan:v10.91</code>. That scan reported 80 findings against “Node.js”,
+three of them CRITICAL, and not one of them was in code WeKan runs: <strong>npm</strong> and
+<strong>node-gyp</strong> are build tools that were left in the finished image, and their
+trees are where <code>tar</code> 6.2.1, <code>sigstore</code>, <code>ip-address</code> and the rest came from.
+Both go now, after the install that needs them - 83 of the 120 packages in
+<code>programs/server</code>, and npm itself. The rest of that list is the npm packages
+<strong>Meteor’s own packages bundle</strong>, which no <code>package.json</code> here can reach:
+<strong>nodemailer</strong>, <strong>openpgp</strong>, <strong>svgo</strong>, <strong>postcss</strong>, <strong>nanoid</strong>, <strong>lodash</strong>,
+<strong>qs</strong>, <strong>body-parser</strong>, <strong>cookie</strong>, <strong>on-headers</strong>, <strong>tmp</strong>, <strong>diff</strong>,
+<strong>@babel/runtime</strong> and <strong>underscore</strong> are raised inside the built bundle, to
+fixed versions in the same major, by a manifest the release jobs and the
+<code>Dockerfile</code> share. Below that: the guard suites that keep both from coming
+back, and what could NOT be fixed and why. Then <strong>card export</strong>: the PDF and
+Excel exports of a card were two different answers to “what is on this card”,
+and are now one - the same fields under the same translated labels, dates in the
+reader’s own <strong>time zone</strong> and in the <strong>date format the opened card shows</strong>, and
+a description’s markdown drawn as <strong>bold</strong> and <em>italic</em> rather than stripped. On
+top of that, <strong>#1173</strong> after eight years: a <strong>board</strong>, a <strong>swimlane</strong> or a
+<strong>list</strong> exports to PDF and Excel in that same card layout, from one selection
+popup that says what to include. And <strong>titles are edited where they are
+written</strong>: a card’s title on the <strong>board</strong> (#4990, asked in 2022), a board’s by
+clicking its <strong>name</strong> in the header bar instead of a pencil beside it. Above all
+of it, though: five <strong>CRITICAL</strong> REST API fixes reported by ybsun0215, the worst
+of which let any user with write access to one board destroy the comments,
+checklists and history of every card on every board in the instance. Below that:
+twelve bug fixes - among them <strong>Custom Fields</strong>, which the browser tests caught
+being unreachable on a card that had none, which is exactly where it is needed,
+and a field made from a card that was silently never created - a test that pins
+that a browser downloads <strong>one</strong> language file and not all 246 of them, and <strong>81
+languages</strong> taken past the words on the board into the menus and the login page,
+beside the <strong>Export</strong> row that read as the lowercase key <code>export</code> in every one
+of them because that key had never existed. And then the translations turned out
+to have a much older problem than any missing string: <strong>8,716 values were
+written in the wrong language entirely</strong>, which no count had ever reported
+because nothing was looking. <strong>Korean</strong> held Japanese, <strong>Georgian</strong> Russian,
+<strong>Hindi</strong> Gujarati, <strong>Tamil</strong> Telugu — and, once a second check asked about the
+Latin alphabet inside a language that is not written in it, <strong>Greek</strong> held
+Italian, <strong>Thai</strong> Vietnamese and <strong>Algerian Arabic</strong> French. All of it is
+translated now, and the scan that found it stays as the guard, reporting zero
+for both of its checks across all 246 files. Below that: the search operators a
+user TYPES, in the language they read; the one-letter shorthands beside them,
+each derived from that language’s own word; and the panels a file never had
+because they were added after it was last touched. Then dependency updates,
+thirty-odd bug fixes, the developer-facing changes, and the rest of the
+translation work.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>eae1f0a8f73bfc979738bfff7284d40fd1bc55de2cc56514721fc155c3624f7d</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>bdc50caee3ac28495b42d2130b94a042a9dd6d3a38f732cac02b648f36c891da</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td><code>b55350f3071b765a98ed66fdc410657ff168a937935057077fd7ab33cb30b9aa</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>144404fb9793dc8e039874812f4e2cb3e6d8b1df0ffdbe50254e7790a342a2f4</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv6">wekan/node-patches</a></td><td>v24.19.0</td><td><code>128ded0cda638c1f144eadb23ad249889515df017d298fd49c8faf3db110f0f1</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>7c27b2c15448709a24eace9b3c951c62fbe33413f7d20d56cb5520f4436efe2d</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td><code>8dbe0a9aa8550ad5275c5538ebf868eb2037f0c4d9cccbe319f63b7e5854cd45</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>144404fb9793dc8e039874812f4e2cb3e6d8b1df0ffdbe50254e7790a342a2f4</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td><code>3b0b3bbfe27daf583b3a0f432efacc508407a012cdd9e8847250e7c015565bac</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-i386">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>1f70cb1687411b2a0fa9ac3b5bfc8c4ed9ce25ec2ddfa17e6fd3efb38136a39c</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>576364db59dfce3ba564b9a3e484496eb57f95d76d2007b9f83241acdbd2f4fa</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>37d70cd90aad6d3867b6686507ff1888f1edf6791818c31d014d130e8f39fc14</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>c510c6ce12f07010f771e6edb22a3fe23f4f2e6f40b1ffd4941aed0646a0d8b3</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>7c61d4853d5163ad8761449d693fd458ebbb8611a2351c718014876242c5b1fb</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td><code>cd1f14af2812148002f58b58a5f9af512a50e3b8e8c148e0db44019dcb68edfd</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>bd4912da70f5e6c1475ab989668c76b4ab7db4ee06c44357693df64f5e1d0e0b</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>a4792e65962ffa0af42627aacf1122a60c3c88dbf4e4184f06820d66f9da8ba4</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.49.0</td><td><em>no checksum published</em></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-arm64.zip">nodejs.org</a></td><td>v24.19.0</td><td><code>8502f4a50b458d4cc38ed8f2001556c2cd239d464920f74017926ccb1e1c157f</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>792166623e774b0af2aced31ed3ae39f545ca5268dc4c2b8d1a329228ff52cbc</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td><code>57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>f42c50aa84095a9616b00f27a584c66b7bf79e3b109450c62a5f146ba3c85478</code></td></tr></tbody></table>
+<p>This release fixes the following CRITICAL SECURITY ISSUES:</p>
+<p><strong>The REST API</strong> - what an endpoint authorises, and what it then acts on.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cc4139699ef8d6b6e51efb45b9a06f66e4340b4">PurgeBleed: the single-card DELETE destroyed the contents of any card in the instance</a>. Thanks to ybsun0215 and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/purgebleed/">PurgeBleed</a> is the severe one of the
+five. <code>DELETE /api/boards/{boardId}/lists/{listId}/cards/{cardId}</code> authorised
+the caller on the board in the URL, and then fetched the card by its id ALONE.</p>
+<p>The order is what makes it destructive. <code>cardRemover</code> runs BEFORE the card is
+removed - it has to, so the children’s <code>before.remove</code> hooks still find their
+parent - and it removes strictly by card id: checklists, checklist items,
+comments, the activity history and the whole subcard tree. So it erased those
+for whatever card the bare lookup returned, which was any card in the instance,
+on boards the caller cannot read, irreversibly.</p>
+<p>The removal that follows uses a triple key, <code>{_id, listId, boardId}</code>, which a
+foreign card never matches. The card SHELL therefore survived and the endpoint
+answered 200 with the card id - so nothing in the response said that the
+contents of somebody else’s card had just been destroyed, and the attack is
+repeatable for every card id an attacker learns.</p>
+<p>Any authenticated user with write access to ONE board - their own is enough -
+could reach every board on the instance. All deployments with <code>WITH_API=true</code>
+are affected.</p>
+<p>The bulk endpoint had always constrained its lookup with <code>{_id, boardId}</code>; the
+single-card path is the sibling that was missed, the same shape as
+<a href="https://wekan.fi/hall-of-fame/passbleed/">PassBleed</a>. It uses the constrained
+lookup now, so a card outside the authorised board does not resolve, and
+<code>cardRemover</code> is never reached.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cc4139699ef8d6b6e51efb45b9a06f66e4340b4">HashBleed: the admin user endpoints answered with password and session-token hashes</a>. Thanks to ybsun0215 and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/hashbleed/">HashBleed</a>: <code>GET /api/users/{userId}</code>
+and <code>PUT /api/users/{userId}</code> serialised the whole Meteor user document with no
+projection, so every answer carried <code>services.password.bcrypt</code> - an
+offline-crackable password hash - and <code>services.resume.loginTokens</code>, the hash of
+every live session with the time it began.</p>
+<p>The authorisation was never the problem: both endpoints are admin-only and stay
+that way. The payload was. Walking the ids that <code>GET /api/users</code> returns
+harvested the credential material of the whole instance, and a password hash is
+an attack that continues offline long after the export.</p>
+<p>The two sibling endpoints in the same file show what was intended: the list
+projects down to <code>_id</code> and <code>username</code>, and the self view runs <code>delete data.services</code> before answering. Nothing in the code, the CHANGELOG or the
+documentation ever said the subtree was meant to be exposed. One helper strips
+<code>services</code> and <code>sessionData</code> now, and both endpoints answer through it - the PUT
+as well, which returned the same unprojected document after every action.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cc4139699ef8d6b6e51efb45b9a06f66e4340b4">GuestBleed: an outsider named on a card could read a private board's cards</a>. Thanks to ybsun0215 and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/guestbleed/">GuestBleed</a> is two paths that are
+each defensible alone. The <code>members</code> and <code>assignees</code> ARRAYS on card create and
+card update were stored exactly as given, with nothing checking that those ids
+belong to the card’s board. And <code>GET /api/user/cards</code> answered by CARD
+membership, without re-checking the caller’s access to the card’s BOARD.</p>
+<p>Together they are a channel: a member of a private board writes an outsider’s id
+onto a card, and the outsider’s own <em>my cards</em> feed then returns that card’s
+title, its board, list and swimlane ids, its dates and its co-members - for as
+long as the id stays on the card. Their direct read of the board stayed
+Forbidden the whole time, which is what made it quiet.</p>
+<p>The invariant already existed, documented on the merge endpoint <code>POST .../cards/{cardId}/members/{memberId}</code>, which has refused a non-member with 400
+since <a href="https://github.com/wekan/wekan/issues/5998">#5998</a>. It covers the array
+shapes now - single create, bulk create and update - and an id that may not be
+assigned is dropped rather than the request refused, so a bulk edit does not
+fail over one stale id. The listing is filtered by board visibility as well,
+because fixing only the write path would leave every card placed before this
+release still answering.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cc4139699ef8d6b6e51efb45b9a06f66e4340b4">StaleBleed: a removed board member kept seeing the board's id and title</a>. Thanks to ybsun0215 and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/stalebleed/">StaleBleed</a>: <code>GET /api/users/{userId}/boards</code> selected boards with a dotted <code>'members.userId'</code>
+match, which ignores the membership’s <code>isActive</code> flag. Removing a board member
+does not delete their entry - it sets <code>isActive: false</code> and <code>isAdmin: false</code> and
+keeps it - so a removed member’s own board listing went on showing that board’s
+id and title, indefinitely.</p>
+<p>Reading the board itself was already refused, which bounds this to the id and
+the title. The id is the part that matters, because it is what every other
+endpoint in the API is addressed by, and a private board’s title is often the
+thing it is private about.</p>
+<p>A dotted path cannot express this: in Mongo, <code>'members.userId'</code> and
+<code>'members.isActive'</code> may be satisfied by DIFFERENT entries of the array.
+<code>$elemMatch</code> is what ties them to the same entry, and it is what the rest of
+WeKan uses - the single builder introduced by the fix for
+<a href="https://github.com/wekan/wekan/security/advisories/GHSA-gwc4-fw7p-gw58">GHSA-gwc4-fw7p-gw58</a>,
+whose header note reads <em>“A share entry counts only while it is active,
+everywhere”</em>. This listing predates that consolidation and was never converted.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cc4139699ef8d6b6e51efb45b9a06f66e4340b4">AuthorBleed: six paths let the caller choose whose name went into the board's history</a>. Thanks to ybsun0215 and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/authorbleed/">AuthorBleed</a>: six server paths took
+the actor’s identity from the request body’s <code>authorId</code> field, checking only
+that such a user exists. An existence check is not an authentication check - it
+confirms that the name in the envelope belongs to somebody, and says nothing
+about who wrote the letter.</p>
+<p>So a board member could record <em>“victim created this card”</em> and <em>“victim deleted
+this card”</em> on any board they may write to, and the card document itself
+recorded the forged <code>userId</code> as its creator. The six are single card create,
+bulk card create, the linked-card form, single card delete, bulk card delete and
+custom-field create.</p>
+<p>WeKan had already accepted this exact class as a vulnerability and fixed it for
+card comments in 8.19, and again for the card PUT handler - whose inline note
+still reads <em>“use req.userId consistently (it previously read req.body.authorId
+here)”</em>. These six were missed, which makes it an incomplete fix rather than a
+decision. All six read <code>req.userId</code> now, the session the request authenticated
+as, which is the only identity the server can vouch for.</p>
+</details>
+<p>and fixes the following SECURITY ISSUES found by container scanning:</p>
+<p><strong>The published image</strong> - what it carries that it never runs.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6157094ab8e633e65427c7cd046537af77956bff">npm and node-gyp's tree are not shipped any more, after the install that needed them</a>. Thanks to xet7.</summary>
+<p>Three CRITICAL findings and most of the HIGH ones were three copies of one
+package - <code>tar</code> 6.2.1 twice and <code>tar</code> 7.5.11 once - and none of them is
+reachable from <code>boot.js</code>:</p>
+<ul>
+<li><code>node-gyp</code> and <code>@mapbox/node-pre-gyp</code> are dependencies of Meteor’s
+<code>meteor-dev-bundle</code>, there to COMPILE native modules during the <code>npm install</code>
+in <code>programs/server</code>. WeKan compiles nothing at run time: uWebSockets.js,
+bcrypt and argon2 all ship prebuilt <code>.node</code> files that <code>node-gyp-build</code> picks
+at require time. Their tree is 83 of the 120 packages that install leaves
+behind, and it brought <code>tar</code> 6.2.1 (via <code>node-gyp</code> and <code>cacache</code>),
+<code>brace-expansion</code>, <code>minimatch</code> and npm’s networking stack with it.</li>
+<li><code>npm</code> itself runs exactly once in the image, for that install. The container
+starts <code>bash /build/wekan-entrypoint.sh</code>, which never calls it. Shipping it
+shipped its own bundled <code>tar</code> 7.5.11, <code>sigstore</code> 4.1.0, <code>@sigstore/verify</code>,
+<code>@sigstore/core</code>, <code>ip-address</code> 10.1.0 and <code>brace-expansion</code> 5.0.4 as image
+content no code path can reach.</li>
+</ul>
+<p><code>releases/prune-build-only-modules.mjs</code> removes the first, and it is a
+REACHABILITY walk rather than a list of 83 names - start from every dependency
+of <code>programs/server/package.json</code> except those two, follow each package’s own
+dependencies, keep the closure - so it cannot go stale the next time Meteor
+changes its dev-bundle. The <code>Dockerfile</code> deletes npm and npx in its cleanup
+step; <code>node</code> stays, because that is what runs WeKan.</p>
+<p>It runs in every place a bundle is made, not only in the image: the amd64 build,
+the arm64 container, the three Windows legs, both macOS legs, and
+<code>install-node-for-arch.sh</code> for the emulated arches - each one reinstalls
+<code>programs/server</code>, so each one has the tree to remove. The pruned bundle was
+booted before and after to prove nothing needs what it takes:
+identical failure at the database, no missing module.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6157094ab8e633e65427c7cd046537af77956bff">The npm packages Meteor's own packages bundle are raised inside the built bundle</a>. Thanks to xet7.</summary>
+<p>The rest of that scan was <code>nodemailer</code> 8.0.3 and <code>openpgp</code> 5.11.1
+(meteor/email),
+<code>svgo</code> 2.8.2, <code>postcss</code> 8.5.1 and <code>nanoid</code> 3.3.15 (meteor/minifier-css), <code>qs</code>
+6.13.0, <code>cookie</code> 0.4.1, <code>on-headers</code> 1.0.2 and <code>tmp</code> 0.2.3 (meteor/webapp),
+<code>lodash</code> 4.17.21 and <code>diff</code> 3.5.0 (ostrio:files), <code>body-parser</code> 1.20.3
+(meteor/oauth), <code>@babel/runtime</code> 7.20.7 and <code>underscore</code> 1.13.7.</p>
+<p><code>Npm.depends</code> names an EXACT version, and <code>meteor build</code> copies that version
+into
+<code>programs/server/npm/node_modules/meteor/&#x3C;package>/node_modules</code>. Nothing in
+this
+repository’s <code>package.json</code> is consulted for it - not a dependency, not an
+<code>overrides</code> entry - so the only place those versions can be raised is the
+bundle,
+after it has been built. <code>releases/bump-bundle-npm-deps.mjs</code> does that from the
+minimums in <code>releases/bundle-npm-security-bumps.json</code>, installing with
+<code>--ignore-scripts</code> so no prebuilt native module is rebuilt by a version bump,
+and
+replacing only copies BELOW the minimum.</p>
+<p>A minimum stays inside the major the Meteor package was built against, and that
+rule was learned rather than assumed: <code>uuid</code> 8.3.2 and 9.0.1 are both affected
+and the lowest fixed release is 11.1.1, which moved its entry point to
+<code>dist/cjs/index.js</code> - the bundle records <code>dist/index.js</code> at build time, and the
+server died on boot with <code>Cannot find module .../uuid/dist/index.js</code>. It is in
+the manifest’s <code>notFixable</code> list with that error, beside <code>lodash.template</code>,
+which has no fixed release at all.</p>
+<p>One pass on the amd64 bundle reaches every architecture, because every other
+bundle is that bundle with <code>programs/server</code> reinstalled. That reinstall is also
+why every leg runs it again: <code>meteor-dev-bundle</code> pins <code>underscore</code> 1.13.7
+(CVE-2026-27601) and puts it back over the bumped copy - including in the
+<code>Dockerfile</code>, which reinstalls from the .zip.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6157094ab8e633e65427c7cd046537af77956bff">Guard suites for both, and the Debian findings that no upgrade can fix</a>. Thanks to xet7.</summary>
+<p><code>tests/imageBuildOnlyModules.test.cjs</code> pins that the pruner is
+reachability-driven
+and never touches <code>npm/node_modules</code>, that the image prunes AFTER the install
+and
+before the bundle is moved, that npm and npx are removed and <code>node</code> is not, and
+that every leg which installs <code>programs/server</code> prunes afterwards.
+<code>tests/bundleNpmSecurityBumps.test.cjs</code> pins the manifest’s versions, the
+<code>--ignore-scripts</code> install, the below-the-minimum-only replacement, and that
+<code>uuid</code> is NOT in <code>minimums</code> and says why.</p>
+<p>Not everything in that report can be fixed here, and it is worth saying which:</p>
+<ul>
+<li>The <code>debian 13.6</code> target’s 176 findings are ALL <code>Fixed in: -</code> - unfixed
+upstream, in <code>perl-base</code>, <code>util-linux</code>, <code>ncurses</code>, <code>glibc</code> and the rest of a
+base system. No upgrade closes them; only carrying fewer packages helps, which
+is what the build-dependency purge and the <code>pebble</code> removal already do.</li>
+<li><code>lodash.template</code> 4.5.0 has no fixed release; it reaches the bundle through
+aldeed:simple-schema.</li>
+<li><code>nodemailer</code>’s fifth advisory needs 9.0.1, a major the Meteor email package is
+not written against; 8.0.11 fixes the other four.</li>
+<li>The nine <code>build/&#x3C;tool></code> binaries and <code>build/ferretdb</code> are other repositories’
+builds - wekan/mongo-tools-patches and wekan/FerretDB - and are fixed there.</li>
+</ul>
+</details>
+<p>and adds the following new features:</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d11f5ffdb768f5ebcb6bc447c385d77147e0c59a">Import into a swimlane, a list or a card, beside the one whose menu was used</a>. Thanks to xet7.</summary>
+<p>The other direction of the same popup. Importing used to mean one thing: a whole
+new board, from the full-width page at All Boards. A swimlane’s menu now imports
+a swimlane BELOW that swimlane, a list’s menu imports a list after it - which is
+to its RIGHT in English and to its LEFT in Arabic - and a card’s menu imports a
+card below it, into the board that is already open.</p>
+<p>The RTL side of that is ONE rule and not two, which is worth saying because it
+looks like a missing branch: the page carries <code>dir</code>, so the board’s row of lists
+mirrors itself and “after in sort order” is already “the other side”. A
+direction
+branch in the placement would mirror it twice and put the list back where it
+started.</p>
+<p>Placement is a FRACTION between the target’s sort and the next one’s, not a
+renumbering of every sibling - renumbering is what a board with ten thousand
+cards cannot afford, and what two clients doing it at once get wrong. Several
+imported items spread evenly through that gap, so importing a swimlane of ten
+lists does not put nine of them in the same position.</p>
+<p>The file is what the export writes, at any scope, and the SAME checkboxes decide
+what comes in: a document full of comments imported with <strong>Comments</strong> unticked
+brings the cards and leaves the comments. A <code>.zip</code> is unpacked in the browser
+and
+its <code>wekan.json</code> handed to the same method, so there is one import path rather
+than two. Nothing is merged - everything created is new, because an import that
+half-updated a board would be an edit nobody could undo - and a custom field is
+matched by NAME, since an id from another board matches nothing here.</p>
+<p>Importing WRITES, so unlike the exports beside it, it asks whether you may
+change
+the board rather than whether you may see it, and a read-only member is not
+offered it at all.</p>
+</details>
+<p><strong>All Boards</strong> - the overview and the tiles in it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6c591968024d8889accdd9a1c342d05db7d6738e">A starred page and a Template Container are the same height as a board and as "+ Add Board"</a>. Thanks to xet7.</summary>
+<p>In All Boards / Starred, a bookmark tile stood 8px taller than the board tile
+beside it and than the grey ”+ Add Board” box, and pulled its whole row up with
+it.</p>
+<p>Two of the four tiles in that grid carry <code>border: 4px solid #fff</code> - a bookmark
+and the Template Container - to say they are not an ordinary board. The tile’s
+height was a 72px floor with 42px of padding added outside it, which comes to
+the same 114px for a plain tile and to 122px for a bordered one, because on a
+content-box element a border is added to the height rather than taken out of it.
+The heights all said 72px, so nothing in the stylesheet looked wrong.</p>
+<p>The tile now states the height it actually renders at - 114px, with the padding
+and the border folded into it (<code>box-sizing: border-box</code>), which is what the
+mobile rules in the same file already do for the same reason. Nothing moves
+except the two bordered tiles, which lose the 8px they were never meant to have.
+The guard compares RENDERED heights now, borders included, instead of comparing
+the declared <code>min-height</code> of two tiles that were both content-box - which is how
+this went unnoticed while a test watched it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f0745dec4aec88703e0d19ddea0f6b8d59c747e9">One import page, for every source, with the same checkboxes the exports use</a>. Thanks to xet7.</summary>
+<p>The last piece of <a href="https://github.com/wekan/wekan/issues/1173">#1173</a>: “combine
+all import options to same template”. They were fourteen - a link per source in
+a pop-over, each going to its own address - and the page each one landed on
+never said which other sources existed, so “where do I import a Jira export”
+was answered by a menu somewhere else, if you knew it was there.</p>
+<p><strong>All Boards / + Add Board / Import</strong> is now one full-width page that lists
+every source it can read - Trello, Jira, CSV/TSV, Excel, Kanboard, NextCloud
+Deck, OpenProject, GitHub, GitLab, Gitea, Forgejo, Asana, Zenkit, and a previous
+export of this WeKan, named with the <strong>Product name</strong> this instance is branded
+with rather than with a product the reader has never seen.</p>
+<p>Under the source picker are the same <strong>what to include</strong> checkboxes every export
+offers, from the same list, and on this side they say what comes IN. That works
+for every source without teaching five different creators a selection each: the
+parts that were not ticked are taken OUT of the parsed document before any
+creator sees it, and a creator that never sees a comment cannot import one. A
+section that was not ticked is EMPTIED rather than removed, because the creators
+read <code>board.comments</code> directly and an undefined array is a crash where an empty
+one is “there were none”. A source’s own name for a part is pruned with it -
+Trello calls its comments <code>actions</code> - and a key this list does not know about is
+left alone rather than silently dropped.</p>
+<p><code>/import/:source</code> still works, under its own route name, so every existing link,
+bookmark and back button lands exactly where it did.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bada25de4d95b0e5b473ec3176dccffcc5a999a7">Imported cards bring their attachments, from a .json and from a .zip</a>. Thanks to xet7.</summary>
+<p>The round trip was half a round trip: a card imported from a swimlane, list or
+card menu arrived with its checklists and comments and without its files.</p>
+<p>A <code>.json</code> export carries each attachment’s bytes as base64, and the importer now
+writes them the way the board import always has - the server-side Meteor-Files
+<code>writeAsync</code>, one attachment at a time. A <code>.zip</code> carries them as the files they
+are, named <code>attachments/&#x3C;id>-&#x3C;name></code>; the archive is unpacked in the browser and
+each file is put back on the metadata row its id names, so the server sees the
+same document either way and there is one import path rather than one per
+container.</p>
+<p>An attachment lands where its CARD landed - the list and swimlane it is in now,
+not the ones it was exported from - and one unreadable file is warned about and
+skipped rather than losing the rest of the import. A <code>url</code> attachment from an
+older export is still fetched through the downloader that validates and pins
+every hop, so <a href="https://wekan.fi/hall-of-fame/followbleed/">FollowBleed</a> stays
+fixed on this path too.</p>
+<p>The <strong>whole-board</strong> import on the new import page takes a <code>.json</code> or a <code>.zip</code>
+the same way, through the same reader, which is the case the <code>.zip</code> exists for:
+a board whose attachments are too large to sit inside one JSON string.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/fe77b7461e6737a528e953b1080e91f206812b45">A large .zip is uploaded and streamed instead of unpacked in the browser</a>. Thanks to xet7.</summary>
+<p>Reading an archive in the browser and sending its attachments as base64 over DDP
+is fine for a card and wrong for a board: 2 GB of attachments become 2.7 GB in
+one message, in the browser’s memory and then in the server’s.</p>
+<p>A <code>.zip</code> now goes to <code>POST /api/import/zip</code> as the file itself, and nothing is
+ever whole in memory on the way in. The request body is streamed to a temp file
+as it arrives; <code>unzipper.Open.file</code> reads the archive’s central directory, so
+entries are opened on demand rather than inflated together - the same approach
+the backup restore already takes; and each attachment is piped from the archive
+into the attachments collection by <code>addAttachmentFromStream</code>, which writes it to
+a temp file and hands Meteor-Files the PATH rather than a Buffer. That helper is
+lifted out of the attachment-copy code that already did exactly this, so there
+is one way to add an attachment from a stream rather than two.</p>
+<p>Where the files END UP is not decided by the import: <code>addFile</code> fires the
+collection’s <code>onAfterUpload</code>, which validates the file and moves it to the
+<strong>default storage configured in the Admin Panel</strong>, exactly as an ordinary upload
+does.</p>
+<p>The upload is capped as it ARRIVES rather than after
+(<code>WEKAN_IMPORT_ZIP_MAX_BYTES</code>,
+5 GB by default), so an oversized archive never lands, and the temp file is
+removed whatever happens. An entry’s name is data and never a path: only the
+attachment id before the first dash is read from it, the temp file is named by
+WeKan, and the path is built through the same <code>safeEntryPath</code> containment check
+the backup restore uses - so an entry called <code>../../etc/cron.d/x</code> can only ever
+be an attachment with a strange name (<a href="https://wekan.fi/hall-of-fame/zipbleed/">ZipBleed</a>).</p>
+<p>A <code>.json</code> still travels as a document over DDP, which is what it is.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5d68d94bb7d3d765215f4d3725dd05800d55bf2d">The import page asks with the app's own checkboxes, in two columns</a>. Thanks to xet7.</summary>
+<p>Three things about the page that lists the sources. The pop-over that opens it
+said “Import board (Trello, Jira, WeKan export, CSV, Excel, …)” - a list of
+five of the fourteen sources, in a menu whose only job is to get to the page
+that lists all of them - and now says <strong>Import board</strong> and nothing else.</p>
+<p><strong>Import from:</strong> and <strong>Select what to include:</strong> were rows of grey ticks that
+were never anything else: a <code>fa-check</code> drawn once per row, the same shape
+whether that row was chosen or not, so the answer to “which one did I pick” was
+a shade of grey. Both are the app’s own animated checkbox now
+(<code>.materialCheckBox</code>, the one Admin Panel / Announcement uses), which grows its
+green tick out of the empty square over 0.2s, so a click is visible as it
+happens. The box and its label are spaced apart by the same amount ticked or
+unticked - the checked box is a narrower shape shifted left, so the two margins
+differ by exactly that shift - and the row itself declares no alignment of its
+own, because the tick’s rotation is written for the plain flow and an
+<code>align-items: center</code> on top of it lands the tick on the first word.</p>
+<p>The two questions sit <strong>side by side</strong> when the window has room for two 280px
+columns and stack when it does not, so the second one is not below the fold on
+a page whose first list is fourteen rows long. No source is chosen to begin
+with, and choosing one un-chooses the last, because an import reads one file in
+one format; every part is ticked to begin with, because an import that silently
+left things out would be worse than one that asks.</p>
+<p>And <strong>Import without mapping members (map later)</strong> is a primary button like the
+<strong>Import</strong> it sits beside. It was the one unstyled button on the page, which
+reads as disabled - and it is not a cancel, it is the same import with one
+question skipped.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/05ddc83cb786f7ca3baede3e80bf925a72e0e696">A board tile in All Boards is the board's whole theme, and light themes are readable on it</a>. Thanks to xet7.</summary>
+<p>A board on the <strong>clearpink</strong> theme was a pink rectangle floating inside a grey
+tile, while the flat-coloured board beside it filled its tile edge to edge.</p>
+<p>Two lists decided what a tile is coloured with. <code>boardColors.css</code> painted
+<code>.board-list .board-color-&#x3C;name> a</code> - the LINK inside the tile, which sits
+inside the tile’s own 24px/18px padding and so can never reach its edges - and
+<code>boardsList.css</code> carried a hand-copied list of seventeen flat background
+colours on the tile itself, which is what made the flat themes look right. The
+five colour SLIDE themes added later were never copied into that list, so their
+tiles kept the default grey and only the inset link showed the slide.
+<strong>clearblue</strong> was in the list, flattened to one hex, so it did not show its
+slide either, and <strong>Clean Dark</strong> and <strong>Clean Light</strong> were in neither list.</p>
+<p>There is one list now. Each theme paints <code>.board-list li.board-color-&#x3C;name></code>
+where it paints its header bar and its Public Boards row, the copy in
+<code>boardsList.css</code> is gone, and a tile is the whole tile at every theme.</p>
+<p>The other half of a theme is the text on it. A tile writes its title in
+<code>#f6f6f6</code>, which is right on the fifteen dark themes and invisible on a light
+one: <strong>Apple Glass Pastel</strong>’s tile is a pastel wash from <code>#f6f7fb</code>, so its name
+and description were white on near-white and only the tile’s shape said a board
+was there. Both light themes now write their title, description and archive
+line in their own dark ink, and darken the card-count pill and the unstarred
+star that sit on the same tile - in ONE block, named as the place a third light
+theme goes, because a per-theme copy is what caused the first half of this.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/05ddc83cb786f7ca3baede3e80bf925a72e0e696">Clean Light's top bar is one shade of dark, icons included</a>. Thanks to xet7.</summary>
+<p>The <strong>Clean Light</strong> theme’s top bar is <code>#F1F1F3</code>, and <code>header.css</code> paints every
+icon in that bar white by id (<code>#header-quick-access i.fa</code>). The buttons inside a
+<code>ul li</code> escaped that through a more specific <code>color: inherit</code> and took the
+theme’s own text colour; the <strong>house</strong> and the <strong>notification bell</strong> are in no
+<code>ul li</code>, so they stayed white on near-white - the bell’s LABEL was readable
+beside a bell that was not there, which is how it was noticed.</p>
+<p>Both are dark now, and so is everything beside them: the bar’s labels were
+<code>rgba(10, 10, 20, 0.5)</code> and its board title full black, so fixing the two icons
+alone would have left the bar at three darknesses. There is ONE shade in it now.
+The <strong>current</strong> entry used to be the dark one among pale ones - a difference
+that no longer exists - so it is the full-black, heavier one instead. A bell
+with something to report keeps its white glyph, because it is on the red circle
+then and not on the bar.</p>
+<p>The <strong>dividers</strong> between the bar’s groups - the seam that separates the page’s
+own controls from your account - are white too, a background in the first bar
+and a border in the second, so on this theme they were not there at all. They
+are in ink now, at the divider’s own weight rather than the text’s: a hairline
+as dark as the label beside it stops reading as a seam and becomes a stroke.
+The <strong>starred group</strong>’s outline - the box around the caret, the count and the
+star - was white for the same reason, so the three sat loose on this theme; it
+is the same 0.7 in ink now, which is the dark outline the phone/desktop toggle
+beside it already draws for itself and why that one looked right and this one
+did not.</p>
+<p><strong>Hovering</strong> an icon lightens it - <code>#header-quick-access i.fa:hover</code> goes to
+<code>#ccc</code> - which on a dark bar reads as “brighter, so you know you are on it” and
+on this one made the house fade towards the bar it sits on. On this theme it
+goes the other way, to full black, which is the same message read the right way
+round for a light bar.</p>
+<p>And with <strong>Member Settings / Change color / All Boards</strong> on, a tile is the
+theme’s own fill rather than the accent under a flat white veil. The veil made
+every tile one shade lighter than the selected row in the left menu beside it,
+which reads as two colours rather than as one page. It reads
+<code>--theme-accent-fill</code> now, not <code>--theme-accent</code>: the accent is ONE colour - the
+solid end of a colour-slide theme - so on <strong>clearorange</strong> the tiles came out
+flat beside a menu row that slid. The fill is the theme’s slide where it has
+one and its accent where it does not, which is what every other themed control
+already reads. The popup’s own <strong>All Boards</strong> button is filled from the same
+variable, because the button and the tiles it turns on are one decision and
+were two looks.</p>
+<p>On the <strong>Modern</strong> theme the popup that asks all this was a single narrow column
+of swatches. That theme set <code>width: 260px</code> on every popup’s content, so any
+popup that asks for width by name - Change Color, Export board, Show on Card,
+Show on Minicard - was pinned to 260px whatever it had asked for. A theme
+decides what a popup looks like; how wide it is belongs to the popup, and the
+declaration is gone.</p>
+<p>And on the <strong>Dark</strong> theme that popup had no title bar at all. That theme hid
+every popup’s header outright, and the header is not decoration: it carries the
+popup’s title, the back arrow into the popup it came from, and the X - so
+“Change Color” was an untitled panel that could only be left with Escape or a
+click outside. No other theme does that, and Dark no longer does either.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d5b69137cc3090e5b0ca503d1a516b6518d401c7">Member Settings / Font / Size moves all of the text, not the part written in rem</a>. Thanks to xet7.</summary>
+<p>Picking <strong>Largest</strong> grew the page heading and the minicards and left the header
+bar, the left menu, the lists, the swimlane header and every popup exactly as
+they were - a setting that half-works, which is harder to use than one that does
+nothing.</p>
+<p>The preset was a <strong>percentage on the root element</strong>, and a root percentage only
+reaches text whose size is written in a RELATIVE unit: <code>rem</code> is measured against
+the root, <code>em</code> against its parent. WeKan writes most of its sizes in <strong>px</strong>, and
+px is absolute - no root percentage moves it. So exactly the rem-sized parts
+scaled. The base rule made it worse: <code>html, body, input, select, textarea, button</code> re-stated <code>font: 14px …</code>, so the body took the stock size straight back
+off the scaled root, and everything inheriting from the body with it.</p>
+<p>The preset is now published as a NUMBER as well
+(<code>--wekan-ui-font-scale</code>), and every px <code>font-size</code> and <code>line-height</code> in the
+client stylesheets - 433 declarations across 37 files - is written
+<code>calc(14px * var(--wekan-ui-font-scale, 1))</code>. One preset moves the whole
+interface. <code>line-height</code> scales with the size on purpose: 21px of type in an
+18px line box is the same setting half-applied.</p>
+<p>Nothing renders differently until a preset is chosen: the fallback in every one
+of those declarations is <code>1</code>, and the variable is REMOVED for <strong>Default</strong>, so an
+instance where nobody touched the setting computes exactly the sizes it always
+did. The base font rule is split into <code>font-family</code> and <code>font-size</code> because the
+shorthand’s size was the one thing the setting had to be able to move. A guard
+fails on any bare px <code>font-size</code> or <code>line-height</code> added later, so a new one
+cannot quietly opt out of the setting.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c56b556538045e0ead870ad09ede2de334a167db">The text colour under Member Settings / Font reaches all of the text</a>. Thanks to xet7.</summary>
+<p>Colour is inherited, and it was set on <code>&#x3C;body></code> and the form controls, so it
+only ever reached text that had no colour of its own - and WeKan gives most of
+its text one: the header bar’s buttons, the left menu’s rows, a minicard’s
+title, a list header. Choosing green recoloured the page heading and the menu
+and left the rest exactly as it was. It is set on every element now.</p>
+<p><code>.fa</code> is left out, because those are Font Awesome GLYPHS rather than text - a
+red alert and a green tick mean something by being that colour - and the icons
+that are meant to follow their label already say <code>color: inherit</code>, so they
+follow this anyway.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b77a1663d80cb3ee5d876c491da8508ca5f403bc">Member Settings / Font / Text background color is removed</a>. Thanks to xet7.</summary>
+<p>A colour painted behind the text needs elements to sit on, and neither choice of
+them looks good. On the boxes - which is what it did, from <code>&#x3C;body></code> - it painted
+the whole window: the board canvas and the empty space under the lists, which is
+a page background and not a text background. On the elements that actually carry
+text it striped every heading, menu row and paragraph with a full-width band. A
+setting nobody can make look good is worse than no setting, so it is removed
+rather than tuned a third time.</p>
+<p>The wheel and its Unset button are gone from the popup, nothing reads
+<code>profile.uiTextBgColor</code>, and no stylesheet rule paints it. A profile that
+already HAS a colour is cleaned rather than left dormant: <code>setUiColors</code> unsets
+the field on every call, whatever it is passed - and it still accepts the
+argument, so an older client cannot fail against a newer server. The schema key
+stays declared for exactly one reason: a modifier touching a key SimpleSchema
+does not know is rejected, which would leave those profiles the only ones that
+could not be cleaned.</p>
+<p>The <strong>text colour</strong> beside it stays.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/024036f4ee4b976f51bf6a032aa9b5d8c3916138">A custom colour can be chosen in Member Settings and the Admin Panel, not only on a board</a>. Thanks to xet7.</summary>
+<p>All three places render the same picker, so the <strong>Custom color</strong> wheel was
+already written for all three - it was just never reachable in two of them. It
+appeared only once a named theme had been SELECTED, and a board always has a
+colour whose first entry is flat, so <strong>Board Settings / Change Color</strong> always
+showed it; <strong>Member Settings / Change Color</strong> and <strong>Admin Panel / Settings /
+Visibility</strong> open on <em>Default (no override)</em> with nothing selected, so both
+looked as though they had no custom colour at all.</p>
+<p>The wheel is offered from that state too, as the <strong>flat</strong> category’s single
+colour - which is what a custom colour means with no theme under it - and
+choosing one applies it over the first flat theme. That fallback was already in
+the code that saves; it is now written into the picker’s own selection as well,
+because otherwise the wheel would store a theme the page did not show as chosen
+and the next click would read the selection back as <em>none</em>.</p>
+<p>Picking a <strong>clear</strong> theme first still gives the two wheels its colour slide
+needs. One helper answers “which category’s custom colours is this picker
+offering”, so the wheel, the preview and what gets saved cannot disagree.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/df2913744e382eaeaa36b3cdc407998895124c27">Every export popup is one popup with one scope, and looks like it</a>. Thanks to xet7.</summary>
+<p>There were two export menus. The <strong>board</strong> popup wrote nineteen formats of its
+own under four subheadings, in two panes across the width of the window; the
+<strong>swimlane</strong>, <strong>list</strong>, <strong>card</strong> and <strong>checklist</strong> popups wrote five in one
+narrow column with no panes. So “the export popup” looked like two different
+features depending on which menu opened it, and a format added to one was
+missing from the other.</p>
+<p>They are one template now, drawing one TABLE of formats. Each entry says what it
+is - an icon, a label, and either a path to download or a class to click - and
+which scopes it belongs to: <code>BOARD_ONLY</code> for the ones that only make sense for a
+whole board (the HTML archive, the dependency graph, the CSV columns and the
+exports written for Trello, Jira, Kanboard and the rest), and nothing at all for
+the ones that work anywhere, because <code>exportUrl</code> already carries the scope - a
+swimlane, a list and a card differ from a board by a query parameter, not by a
+route. The board popup is now the same one-line include the other four are, with
+no markup and no URL builders of its own; the nineteen helpers that built those
+URLs are gone with the list that called them.</p>
+<p>All five get the board’s <strong>panel</strong>: what to include in one pane and what to
+export it to in the other, side by side when the window has room and stacked
+when it does not, pinned to the viewport so the header and its X are always
+reachable. The layout is written against the panes’ own class rather than
+against one popup’s name, so it cannot be true of one menu and not another.</p>
+<p>Which scope a popup is, is asked in ONE place - and every scope is named there,
+because a scope left out would be read as “a whole board” and offered a board’s
+formats.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e948acfdd31e48d2544b81268a8309352581d1f0">Every menu on a board has an Export row and an Import row</a>. Thanks to xet7.</summary>
+<p>The card, list, swimlane and board menus each had ONE row, and each named itself
+differently: <em>Export card</em>, <em>Export list / Import</em>, <em>Export swimlane / Import</em>,
+<em>Export board</em>. Two of them mentioned an import that was a section inside the
+popup rather than a thing you could go to, and the card and board menus did not
+mention it at all - so importing into a list was discoverable and importing into
+a card was not.</p>
+<p>Each of the four now has <strong>Export</strong> and <strong>Import</strong>, in that order. The rows are
+named for what they do and not for what they act on: the menu already says
+whether it is a card, a list, a swimlane or the board, so <em>Export card</em> inside
+the card menu said “card” twice.</p>
+<p>Both rows open the same popup - the same panes, the same table of formats, the
+same <em>what to include</em> selection - with one difference: the second pane offers
+the formats to write out, or the file to read in. The selection means the same
+thing in both directions, which is why it is the pane they share.</p>
+<p><strong>Import</strong> writes, so it is offered only to somebody who may change the board.
+That question is asked once, in one function, registered as a helper the four
+menus use - and asked AGAIN inside the popup, because a row that is merely
+hidden is not a permission check.</p>
+</details>
+<p><strong>Search</strong> - finding a card by what people call it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/530ef32c16c41dfa52f408e31da21a2d32cbb93e">Cards can be searched by their card number</a>. Thanks to mfilser and xet7.</summary>
+<p><a href="https://github.com/wekan/wekan/issues/5006">#5006</a>, open since 2023: “A
+customer has just hinted us that we are not able to search cards by its number
+(#)”. A card carries a number, the board shows it, people quote it to each other
+in meetings and in tickets - and the one thing that could not be done with it
+was
+find the card again.</p>
+<p><code>number:12</code> now does, in the global search and everywhere else that parses the
+same query. It is an EQUALITY match on a number rather than a regular expression
+on text, which is the whole difference between finding card 12 and finding cards
+12, 120 and 312. <code>number:abc</code> is refused with the same “expected a number” error
+<code>limit:</code> already gives, because a string never equals a numeric field and a
+search that quietly finds nothing teaches nobody anything.</p>
+<p>The issue’s title says “number/#”, and both of those forms work too: <code>#12</code> and a
+bare <code>12</code> search for a label called 12 AND the card numbered 12. A board calls a
+card “#12” and a label can be called anything, so which of the two somebody
+means cannot be read off the text - answering with both is the only reading that
+never hides what they were looking for.</p>
+<p>The two halves are joined with <strong>OR</strong>, which is what makes that safe rather than
+destructive: a search that used to find a label called <em>2024</em> still finds it,
+and the card numbered 2024 is ADDED to the answer instead of replacing it. An
+AND would have found nothing at all in almost every case and looked like the
+feature working. Only a term that is entirely digits gets the second half, so
+<code>#red</code> is the label red exactly as before. And <code>#12</code> on a board with no label
+called 12 no longer reports “label not found” - the card-number half is a real
+answer, and a not-found message beside the card it just found contradicts the
+screen.</p>
+</details>
+<p><strong>Board, swimlane and list export</strong> - printing a board, and what goes in it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bb6f18c469810c787ce1ac6b2872cc39b5dc1ae5">The export selection reaches every format, and the menu opens wide enough to read at once</a>. Thanks to xet7.</summary>
+<p>Two halves of the same menu.</p>
+<p><strong>The selection now reaches all of it.</strong> PDF, Excel, JSON and .zip took the
+parts checkboxes; CSV, TSV, Kanboard and the eleven JSON dialects built their
+own
+addresses and could not carry them, so ticking “no comments” changed four
+downloads out of nineteen. Every board export link is built by the one url
+helper now, so <code>?fields=</code> rides along with all of them.</p>
+<p>What a format can DROP depends on what it has, and that is the honest part. A
+<strong>CSV</strong> has no comments to leave out - what it has is columns, so the selection
+lands there: unticking People removes five of them, Dates removes eight, Custom
+Fields removes the trailing block. One mask filters the header and every row, so
+the two cannot drift apart. A <strong>Trello, Jira or GitHub</strong> export carries a title,
+a description, a due date and labels; those three parts are gated and nothing
+pretends to gate what is not there.</p>
+<p><strong>It is a full-width panel, and its X is always reachable.</strong> It was anchored to
+the button that opens it and clamped into the window using an assumed width -
+and the assumption and the stylesheet disagreed by a few percent, so on a narrow
+window the panel’s trailing edge, with the pop-over’s own X on it, ended up past
+the edge of the screen: Escape or a click away were the only ways to shut it. It
+is pinned to the top of the viewport now, at the 10px gutter every popup keeps,
+and is <code>calc(100vw - 20px)</code> wide - the whole window, less that gutter on each
+side - so the header, the X and both panes are always on screen.</p>
+<p><strong>And the menu is a menu again.</strong> Twenty-odd entries under three subheadings
+were a single column you scrolled past. On a window with room it is now TWO
+PANES - what to include on the left, what to export to on the right - each
+filling its own width with as many columns as fit, so the whole menu is visible
+at once. The panes are grid COLUMNS, which is what makes the right-to-left case
+free: a mirrored page puts the first column on the right, so the selection lands
+on the right and the formats on the left with no second rule to write or forget,
+and the divider between them is a <code>border-inline-start</code> for the same reason.
+Below 800px they stack, because popup.css already lays every popup out as a
+full-screen sheet there, which is what a phone should get. The 1100px width is
+mirrored in <code>client/lib/popupOffset.js</code>, which places a popup using its width:
+left at the default 380 a wide menu opened near the right edge lands most of the
+way off the screen.</p>
+<p>A rule sits above each subheading, so a group’s name says where the group before
+it ended - one rule per heading and no stray separators, which a test counts.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b77299c8063859f11855467bbfd59e0a6097c7bc">A component that others import loads its own template, so the client bundle cannot die at startup</a>. Thanks to xet7.</summary>
+<p><code>Template.exportScopeBody.helpers(...)</code> runs at module scope, and it throws when
+that template is not defined YET. That does not break one popup - it stops the
+module evaluating, so every template registered after it never registers either.
+The visible symptom was the SIGN-IN page: a blank form and</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Uncaught TypeError: can't access property "helpers", Template.exportScopeBody is</span></span>
+<span class="line"><span>undefined</span></span>
+<span class="line"><span>[UserAccounts] Warning no template passwordInput found!</span></span></code></pre>
+<p>The central lists in <code>client/features/*.js</code> import a component’s <code>.jade</code> before
+its <code>.js</code>, which is enough for a component nobody else imports. The export popup
+body is imported by the sidebar, by the card details and by the import page, and
+whichever of those is reached first evaluates it - long before the feature list
+gets to the template. It imports its own <code>.jade</code> now, so the order is a fact
+rather than a hope.</p>
+<p>A guard in <code>tests/clientBundleImports.test.cjs</code> checks the whole rule, and found
+a second component with the same fragility that had not fired yet -
+<code>migrationProgress.js</code>, imported by <code>boardBody.js</code>. Fixed the same way.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8d716de7ccbae184cc3cdda4a54c82e8e90461ab">The board Export menu is grouped under subheadings instead of one flat list</a>. Thanks to xet7.</summary>
+<p>It was nineteen entries in one list, each spelling out its whole family:
+“Export / CSV (,)”, “Export / CSV (;)”, “Export / TSV”, then eleven lines
+beginning “Export / JSON /”. The part that differed - the only part worth
+reading - started two thirds of the way along every line.</p>
+<p>A subheading names the family once and the entries under it say only what they
+are: <strong>PDF</strong>, <strong>Excel</strong> and <strong>HTML</strong>, then <strong>Dependencies</strong> (JSON, SVG), <strong>CSV</strong>
+((,), (;), TSV) and <strong>JSON</strong> (JSON, JSON without attachments, .zip, Kanboard,
+Trello, Jira, NextCloud Deck, OpenProject, GitHub, GitLab, Gitea, Forgejo,
+Asana, Zenkit). The <code>.zip</code> sits with the JSON it is a container for.</p>
+<p>The parts checkboxes stay at the top, from the shared popup body: the board
+passes <code>hideFormats</code> because it lays the formats out itself, and borrows the
+selection rather than growing a second copy of it. Its links are built by the
+same url helper every other menu uses, so a menu cannot send a different
+selection than the one on the screen. Nothing was dropped in the regrouping, and
+a test walks the whole list in order to say so.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b0ca22609905c45c35090d097f46d339fb4a748a">JSON and .zip export at every menu, streamed, with the attachments as files</a>. Thanks to xet7.</summary>
+<p>The board’s Export menu had JSON; nothing else did, and there was no .zip at
+all.
+Both are now offered wherever an export is - the board, a swimlane, a list, a
+card and a checklist - from the same popup, with the same checkboxes deciding
+what goes in.</p>
+<p>They are the same export in two shapes, not two exports. The document is written
+by <code>models/exporter.js</code>’s streaming writer either way, so a <code>.zip</code>’s
+<code>wekan.json</code>
+and a <code>.json</code> download of the same scope are the same bytes. What differs is
+where the attachments are: base64 INSIDE the document for JSON - or omitted,
+with
+the existing “without attachments” option now offered at every menu - and beside
+it under <code>attachments/</code> as the files they are for the <code>.zip</code>.</p>
+<p>Both halves stream. The JSON writer already wrote a document at a time from raw
+cursors with backpressure; the <code>.zip</code> gives it a <code>PassThrough</code> that archiver
+compresses as it fills, and pipes every attachment from the file store rather
+than reading it into a Buffer. A board with a gigabyte of attachments costs a
+gigabyte of disk reads and not a gigabyte of RAM - which is what makes the
+<code>.zip</code>
+the shape to use when the JSON is too large to hold as one string.</p>
+<p>A SCOPED export is the same <code>wekan-board-1.0.0</code> document with fewer rows in it,
+plus the lists and swimlanes its cards refer to, so what comes out can be
+imported back into somewhere. A section the popup did not tick is an EMPTY array
+rather than a missing key, for the same reason. A checklist scope exports the
+card that holds it, because a checklist alone has nowhere to land.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bd009cf601b81072308f7e1f56e73c88a89aa7cd">A board, a swimlane and a list export to PDF and Excel in the card export's own layout</a>. Thanks to xet7.</summary>
+<p><a href="https://github.com/wekan/wekan/issues/1173">#1173</a> “Add Feature: Print Board
+with Params” has been open since 2017, and two things were missing. There was no
+CHOICE of what to print: the board’s Excel and PDF exports took everything they
+knew how to render and nothing else, while the card export already had a popup
+with a checkbox per section. And they did not LOOK like the card export - the
+board’s Excel export was a spreadsheet table, one row per card and eighteen
+columns, which is a data dump rather than a printed board.</p>
+<p>Both now render a board as the board’s own header followed by every card as the
+CARD export’s block, drawn by the card export’s own code - <code>cardBlockLines()</code>
+for the PDF, <code>ExporterExcelCard.renderCardBlock()</code> for the Excel one - so a card
+looks the same whether it was exported alone or as part of its board, and the
+two cannot drift into two layouts again. Each card starts on its own page in the
+Excel export, because a printed board is read a card at a time.</p>
+<p>The <strong>swimlane and list menus</strong> offer the same export, which is the board export
+with one more parameter saying which cards are in scope. They sit beside “Copy
+link” rather than below the permission checks, because exporting is reading. The
+file is named for what was exported - a PDF titled with the board that holds one
+list is a file nobody can place afterwards.</p>
+<p>Rendering a card block needs the whole board in memory, and
+<code>models/server/ExporterExcel.js</code> STREAMS on purpose - it was rewritten that way
+after the in-memory version ate gigabytes on boards with thousands of cards. So
+that exporter is still there and still reachable: unticking <strong>Card details</strong>
+asks for it. That is a checkbox in the popup, not a silent fallback nobody can
+see.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bd009cf601b81072308f7e1f56e73c88a89aa7cd">One selection popup, and one list of what an export can contain</a>. Thanks to xet7.</summary>
+<p>The card export’s popup had a list of sections, and the server had another one,
+under a comment reading “Must match ALL_FIELDS in
+models/server/ExporterExcelCard.js” - which is a comment, not a mechanism. A
+section added on one side and forgotten on the other is either a checkbox that
+does nothing or a section nobody can turn off.</p>
+<p>Both now import <a href="models/lib/exportFields.js"><code>models/lib/exportFields.js</code></a>, and
+so do the board, swimlane and list popups, which are ONE shared body -
+<code>exportScopeBody</code> - included with a different scope each. The selection is
+remembered for the session, because somebody printing a board rarely wants a
+different shape for each list of it.</p>
+<p>The same <code>?fields=</code> gates the same sections in both formats: the card export’s
+checkboxes used to be labelled “fields to include in Excel export” and did
+nothing to the PDF, so one popup meant two things. A section a request does not
+name is not rendered and, where the export is the only reason to read it, not
+even fetched.</p>
+</details>
+<p><strong>Titles</strong> - renaming a thing where its name is written.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c6ad79562955d1993d703e9d57885ae5db20088f">Clicking a card's title on the board edits it there</a>. Thanks to bonnebulle and xet7.</summary>
+<p>A list’s title has always been edited in place: click the heading, type, save.
+A card’s title could only be changed by opening the card, so correcting a typo
+on a board of forty cards was open, edit, close, forty times - which is what
+<a href="https://github.com/wekan/wekan/issues/4990">#4990</a> asked about, in 2022.</p>
+<p>The minicard’s title text is now an <code>inlinedForm</code>, the same component the list
+heading uses, with the same textarea, Save button and X. Only the TEXT opens it,
+and only for somebody who may write: the complete checkbox, the linked-card
+icons and the card number beside it keep doing what they did, and everything
+else on the card still opens the card. A title nobody may edit still opens it
+too.</p>
+<p>The minicard sits inside the link to the card, so a click in the open editor
+would have navigated away mid-rename. That default is cancelled - except on the
+Save button, whose own default IS the submit, and which the browser picks over
+the link around it because the innermost element with an activation behaviour is
+the one that runs. An empty save is a no-op rather than a way to end up with a
+card that has nothing to click.</p>
+<p><strong>Half of the title edits; the other half drags.</strong> With drag handles OFF a card
+is dragged by its own body, so a title that is entirely an edit target leaves
+nowhere on that line to take hold of - a grab that moves a few pixels is a
+click, and the editor opens instead of the card moving. The edit target is the
+LEADING half (left in English, right in Arabic, from one logical edge) and the
+trailing half is there to drag from. With handles ON the handle is the only drag
+source, so nothing has to be reserved and the whole title edits.</p>
+<p>The opened card’s title splits the same way, and its drag handle now appears
+only when drag handles are on - with them off, the title bar is what moves the
+window. The drag surface there is the header ROW rather than the heading: a
+heading is only as wide as its own text, so on a short title “the trailing half”
+was a few pixels and the empty space beside it - the obvious place to take hold
+of - belonged to nothing. The heading fills the row now, and the handler steps
+aside for the buttons in it, for the drag handle when there is one, and for the
+half that edits.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c6ad79562955d1993d703e9d57885ae5db20088f">A board is renamed by clicking its name, and the pencil beside it is gone</a>. Thanks to xet7.</summary>
+<p>The board’s name in the first header bar had a pencil next to it. Two targets
+for one job, and the smaller of the two was the one that did it.</p>
+<p>The name itself now opens the rename popup - the SAME <code>boardChangeTitlePopup</code>
+that the pencil opened, with the title and the description in it, so only what
+you click to get there changed. It is opened with the board as its data context,
+because that bar’s context is the page rather than the board. Board admins only;
+everybody else sees a plain title, as before.</p>
+<p>A board whose title is EMPTY renders no text at all, and an element with no
+content is zero pixels wide - so there would be nothing to aim at, and an empty
+title could never be given one. The clickable title carries a minimum width and
+height for exactly that.</p>
+</details>
+<p><strong>Card and minicard menus</strong> - the settings about a thing, in that thing’s menu.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ec8ba5875357860ab65d00efc350b713c490c747">Subtasks Settings is in the menu of the subtask it is about</a>. Thanks to xet7.</summary>
+<p>What subtasks DO on a board - whether they are shown at all, which board and
+list a new one is deposited in, and how a parent is named on a minicard - was
+in Board Settings only: open the sidebar, open the board menu, find Subtasks
+Settings. Somebody who wants to change it is usually looking at a subtask on an
+opened card at that moment.</p>
+<p>It is behind a hamburger at the end of the <strong>Subtasks heading</strong> on an opened
+card - where the card and the minicard already keep theirs - and clicking it
+opens the same popup Board Settings did. <strong>Board Settings no longer has the
+entry</strong>: the settings are where subtasks are.</p>
+<p>The heading IS the control that folds the section, so the hamburger’s click has
+to stop there. Without that, opening the menu would close the thing it was
+opened from.</p>
+<p>It is the SAME template in both places, with its own state, helpers and
+handlers, so neither place needs code of its own and the two lists cannot
+drift. That is what the move needed: a template included in two places cannot
+reach its parent’s helpers, because a helper is looked up on the template it is
+written in.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/02025aa6c6dd504869595dc0ff7065579b24fa23">Show on Card and Show on Minicard do not print their own title again</a>. Thanks to xet7.</summary>
+<p>The heading row named the columns of a ROW - <em>Show on Card</em> over the checkbox
+and <em>Description</em> over the setting’s name - which is what they labelled, but not
+what they looked like. The rows flow into as many columns as the window fits, so
+the two headings sat above the FIRST of three or four columns and read as if
+they named those: <em>Show on Card</em> over one column of settings and <em>Description</em>
+over another, when both columns hold the same kind of row.</p>
+<p>The first heading also said what the popup’s own title says. Show on Card opened
+a popup titled <em>Show on Card</em> and repeated it a line below, and the same for
+Show on Minicard.</p>
+<p>Both are gone, and the two-pixel rule under them with them - one more line
+across a popup that is a list of lines. A row is a checkbox and the name of a
+setting, which needs no heading over it. One template serves both popups, so
+both lose it together, and the sticky positioning that existed only to keep
+those headings in view while the rows scrolled goes with it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f0204ae014d1b312355be89bba09717ffeb28d47">Show on Card and Show on Minicard lead the card's and the minicard's menus</a>. Thanks to xet7.</summary>
+<p>Board Settings / Card Settings is a table of twenty-four settings with two
+columns - what a card shows, and what a MINICARD shows - and it lived in one
+place only: the right sidebar, four clicks from the card whose fields it
+decides.</p>
+<p>It is now also the first entry of the two menus it is about. The hamburger on an
+opened card offers <strong>Show on Card</strong>, the hamburger on a card on the board offers
+<strong>Show on Minicard</strong>, each followed by a rule like every other group in those
+menus. Both open the SAME popup with the other column hidden by a class, so
+there is still one list of settings and one set of handlers: a setting added to
+the table appears in all three places by itself, and none of them can drift from
+the others.</p>
+<p><strong>Both are wide, and lay their rows out in columns.</strong> Two dozen settings in one
+column is a list nobody sees the end of - “is Description on?” was somewhere
+below the fold. With one of the two checkbox columns hidden each row is half as
+wide as it was, so the popup is <code>min(90vw, 900px)</code> and the rows flow into as
+many columns as fit: one on a narrow window, three or four on a wide one, with
+the headings still spanning the width because they name the columns of a ROW
+rather than of the grid.</p>
+<p>The permission is the one Board Settings already used - a board admin - asked
+in the menu and again where it acts. The one menu is opened from two places and
+its data context is the card either way, so the opener says which hamburger it
+was in <a href="client/lib/cardMenuSource.js"><code>client/lib/cardMenuSource.js</code></a>: a
+module-level reactive value, not a field on the card document, which is gone the
+next time Blaze re-renders the popup with a fresh copy of it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f0204ae014d1b312355be89bba09717ffeb28d47">Hide minicard label text became the Labels text row, and now works when logged in</a>. Thanks to xet7.</summary>
+<p>It was in the right sidebar under the People and Organizations tabs, which is
+not where anything else about a minicard is. It is a row of the same table now,
+directly under <strong>Labels</strong>, named “Labels text” with the Labels icon and the
+Description Text icon in front of it - because it is about what those labels
+look like on a minicard: coloured words, or coloured bars with the words left
+out.</p>
+<p>It is ticked when the text is SHOWN, which is what a board does out of the box.
+The stored flag is a “hidden” one, so reading it straight through would have
+left the box unticked for the default behaviour, which reads as a broken
+checkbox.</p>
+<p>It is the one PERSONAL row of a board-wide table - the user’s own profile, or
+this browser when nobody is logged in - so it appears in the minicard’s view
+and nowhere else, and it is offered to EVERYBODY. A reader who is not a board
+admin gets that row alone rather than a table of checkboxes the server would
+refuse.</p>
+<p>The move found a bug. The setting was written out three times, and the
+minicard’s own copy only ever wrote <code>localStorage</code>: a logged-in user toggling it
+set something nothing reads, because for a user the value is read from the
+profile. One module reads and writes it now
+(<a href="client/lib/minicardLabelText.js"><code>client/lib/minicardLabelText.js</code></a>), so the
+two halves cannot disagree again.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8d0a457e6893756c4cddf58ec776e728005e01c8">Custom Fields and Edit custom fields are one group in the card's menu</a>. Thanks to xet7.</summary>
+<p>The board’s LIST of custom fields - where a field is created, renamed or
+deleted - was in Board Settings only, and the picker for which of those fields
+are on THIS card was down among Voting, Planning Poker and Spent time. Two
+halves of one subject, three groups apart.</p>
+<p>They are one group now, under Watch and its rule: <strong>Custom Fields</strong> first,
+because a field has to exist before a card can be given it, then <strong>Edit custom
+fields</strong>, then a rule like every other group in that menu. A board admin’s, the
+same as in Board Settings.</p>
+<p><strong>Card Settings is gone from Board Settings.</strong> Every setting in that table is
+in the menu of the thing it is about now, so a board-wide entry as well would
+be a third way to one list - and the way that is furthest from what it changes.
+The table itself is unchanged; the two menus include it.</p>
+<p><strong>Everything about custom fields is on the section that shows them.</strong> It was
+spread over three places: Board Settings had the board’s LIST of fields behind a
+right-sidebar view, the card menu had an entry for that list and another for the
+picker of which fields are on this card, and the picker had a cog that jumped
+back to the sidebar - closing the menu and the card pane on the way.</p>
+<p>One place now: the <strong>hamburger at the end of the card’s own Custom Fields
+heading</strong>. It opens every field the board has, ticked when it is on THIS card,
+with a pencil each and, under a rule, <strong>Add custom field</strong>. Edit and Add open in
+the same pop-over on top of that list, so the back arrow returns to it and the
+card stays open behind; they are the board’s own forms, not second copies of
+them. The card menu’s entry and the Board Settings row are both gone, and so is
+the wrapper popup that nothing opened any more.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9d9b8ae93b3876845510d28c8905e1ae63c6c03f">Show list on minicard became the List title row of Show on Minicard</a>. Thanks to xet7.</summary>
+<p>It was a line in the card’s menu that read “Show list on minicard”, or “Hide
+list on minicard” once it was on - a menu entry that changes its own name is
+the shape a checkbox has, drawn as a sentence. It is a checkbox now, the FIRST
+row of Show on Minicard, above Received, named <strong>List title</strong> and unchecked by
+default, which is what the field itself has always been.</p>
+<p>It shows the name of the LIST the card is in on its minicard, which is worth
+having where a card is read away from the column it lives in: a swimlane,
+search results, My Cards. The board-wide “Show lists” row further down the same
+table turns that on for EVERY card; this one is for a single card that needs it,
+and either is enough for the name to show.</p>
+<p>It belongs to the card rather than to the board, so it is drawn only in the
+minicard’s own view - Board Settings has no card to act on - and only for
+somebody who may change that card, which is the permission the menu entry had.
+The card is passed into the popup and re-read from the collection when it is
+toggled: a minicard’s menu is opened from the board, where there is no “current
+card” to fall back on.</p>
+<p>On the minicard itself the name sits on its own line under the badges. It was
+landing BESIDE them: the badge row is <code>float: inline-start</code>, so the line after
+it shared its row and read as one more badge rather than as the line it is.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6a6fc252929cb98b8bd6116dcd45d1cf68837d35">Change Background Image holds both ways of setting one, and Unset sits beside Save</a>. Thanks to xet7.</summary>
+<p>Two popups of the same menu answered one question. <strong>Change Background Image</strong>
+asked for a URL; <strong>Board backgrounds</strong> listed the images uploaded to this board
+and carried the upload button. So the popup that reads as the place to set a
+background had half of the ways to set one, and the other half was behind a
+different entry.</p>
+<p>The upload is under the URL field now - a picture from the web and a picture
+from this machine, read together. Board backgrounds keeps what it is named for:
+the images already there, to set active, download or delete. The uploader moved
+as its own template, once, rather than being copied.</p>
+<p>In the same popup, <strong>Unset</strong> was five blank lines and a rule below the <strong>Save</strong>
+it belongs beside. They are one row, Save first, sharing the width. Unset is
+<code>type="button"</code>: inside that form a button with no type is a SUBMIT button, so
+beside Save it would have saved the URL it is meant to clear.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/48cf269870c087f36137f1b4960712c0df1b6f39">Members and Labels fold in the board sidebar, by their headings</a>. Thanks to xet7.</summary>
+<p>The two sections at the top of the right sidebar could not be folded at all.
+The People / Organizations / Teams / Domains tabs with their avatars, and every
+label of the board, were always open and pushed everything under them down the
+panel.</p>
+<p>Both have a caret in front of their heading now, and the heading is the button</p>
+<ul>
+<li>the same control an opened card’s sections use, and the same one Activities
+got below them. Folding <strong>Members</strong> hides the tabs and the avatars in them;
+folding <strong>Labels</strong> hides the labels and the + that creates one. Enter and Space
+do what a click does.</li>
+</ul>
+<p>The choice is the reader’s and lasts the session, not the board’s: neither
+decides anything on the server, so folding them for yourself must not fold them
+for everybody. Activities is the exception and stays as it is - its caret
+writes <code>board.showActivities</code>, which also decides what the publication sends.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7d0396ebec899e0ade36d78cf6a19ad8f6fba4ff">The board's controls in the header bar fold into one caret</a>. Thanks to xet7.</summary>
+<p>A caret leads the group, at its leading edge - left of the lock in a
+left-to-right page, right of it in Arabic, because its direction comes from the
+same rule every other caret uses. Folded, the seven controls after it are gone</p>
+<ul>
+<li><strong>Private</strong>, <strong>Muted</strong>, <strong>Sort Cards</strong>, <strong>Filter</strong>, <strong>Search</strong>, <strong>Show
+dependencies</strong> and <strong>Multi-Selection</strong> - and the bar is the logo, the board’s
+name and the caret.</li>
+</ul>
+<p>The buttons a board’s own Rules put in that bar are NOT folded with them:
+somebody added those to this board on purpose, so the standard controls fold
+around them. It is named by the words the app already has - Collapse and
+Uncollapse - so no key was added to 147 language files to say them again, and
+it answers Enter and Space like the button it says it is.</p>
+<p>All three folds share one store, one helper and one class
+(<a href="client/lib/foldState.js"><code>client/lib/foldState.js</code></a>): a caret in the header
+and a caret in the sidebar pointing different ways in one language is the bug
+that avoids.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f0204ae014d1b312355be89bba09717ffeb28d47">The board sidebar's Activities has a caret instead of an eye</a>. Thanks to xet7.</summary>
+<p>The heading read “Activities” and beside it sat an eye and the words “Show
+activities” - one setting with two controls and its own name said twice. It is a
+caret in front of the heading now, and the heading is the button: click it and
+the activities appear under it, click it again and they are gone. That is the
+same control every collapsible section of an opened card has, from the same
+function (<a href="client/lib/sectionCaret.js"><code>client/lib/sectionCaret.js</code></a>), so the
+caret cannot point one way on a card and another in the sidebar of the same
+language - it points down when open, and toward the text when closed, which is
+right in English and left in Arabic. It carries <code>role="button"</code> and a tabindex,
+so Enter and Space do what a click does.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>The release workflow</strong> - what reaches the Release page.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/38c6ee29fd7487630ed18afe001e59ae5b8440f2">Three snaps built, published, and then fell off the Release: one file listed twice</a>. Thanks to xet7.</summary>
+<p>v10.91’s release run failed in four jobs, and three of them - <strong>s390x</strong>,
+<strong>ppc64el</strong> and <strong>riscv64</strong> - had done all the work: each snap BUILT on
+Launchpad and each was published to the Snap Store. What failed was attaching it
+to the GitHub Release:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP 404: Not Found (https://uploads.github.com/repos/wekan/wekan/releases/370103352/assets?label=&#x26;name=wekan_10.91_s390x.snap)</span></span></code></pre>
+<p>The step collected the file with two patterns - <code>wekan_${VERSION}_&#x3C;arch>*.snap</code>
+and <code>*_&#x3C;arch>.snap</code> - and a snap called <code>wekan_10.91_s390x.snap</code> matches BOTH,
+so the same path was passed to <code>gh release upload --clobber</code> twice. Asked to
+attach one name twice, it deletes the asset it has just uploaded and then 404s
+on it. The two other places in the same job that build this list were already
+deduplicated; this one was missed.</p>
+<p>It is deduplicated now, and the attach is confirmed from the other side the way
+the native snap job already did it: read the release’s assets back and fail if
+this snap is not among them. An upload that reports success and leaves nothing
+behind is the failure nobody notices until somebody’s download 404s - and here
+every job that lost an architecture had already said the snap was built and
+published.</p>
+<p>The fourth failure, <strong>armhf</strong>, is not this: <code>snapcraft</code> died with
+<code>SSLEOFError</code> while downloading the build log from Launchpad, on all three
+attempts, and produced no snap. That one is Launchpad’s side of the wire.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ac02941663a1a9917896f790a6ab83b8ba9cd15a">v10.92 could not start bash: the release notes outgrew an environment variable</a>. Thanks to xet7.</summary>
+<p>v10.92’s release job failed before running a line of its script, and with it
+every job that needs the release - snap, docker, AppImage, the Windows and
+macOS bundles - so <strong>nothing published at all</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  ##[error]An error occurred trying to start process '/usr/bin/bash' with</span></span>
+<span class="line"><span>  working directory '/home/runner/work/wekan/wekan'. Argument list too long</span></span></code></pre>
+<p>Nothing in the step was wrong. The notes are the whole newest CHANGELOG
+section - <code>prepare</code> measured them at <strong>172,458 characters</strong> - and they reached
+the step as <code>env: CHANGELOG:</code>. Linux caps a SINGLE argv/envp string at
+<code>MAX_ARG_STRLEN</code>, <strong>128 KiB</strong>, so <code>execve</code> refused to start the shell. The amd64
+and arm64 bundles had already built and verified; only the publishing died.</p>
+<p>The environment was itself the fix for the PREVIOUS failure. Interpolated
+inline as <code>${{ }}</code>, the notes become part of the shell SOURCE, so a backtick in
+any <code>code</code> span runs as a command: that is how v10.59 published nothing and
+printed <em>Incorrect: command not found</em>. One shape is unsafe and the other does
+not scale, and this release was the first big enough to find the second wall.</p>
+<p>So the notes stop being a shell value at all. <code>releases/release-notes.sh</code> prints
+the CHANGELOG section for a version, reading the file itself and taking its
+arguments from the environment inside a QUOTED heredoc, and each job appends its
+stdout to <code>release-notes.md</code>. Only file PATHS are passed around, which has no
+size limit and leaves the text as data that no shell ever parses.</p>
+<p><code>prepare</code> keeps the validation - a missing section is still cheap to fix there -
+but no longer publishes the text as a job output, because an output nobody can
+safely consume is a trap for the next person to find. The release job and the
+notes-rewrite job check out <code>ref: main</code>, the same ref <code>prepare</code> read.</p>
+<p>The guard test is rewritten around the new shape: no changelog job output, no
+CHANGELOG in an <code>env:</code>, no interpolation into a script, and the extraction
+script is what all three consumers run. It passed throughout this failure,
+because it only knew about the injection.</p>
+</details>
+<p><strong>Starting up</strong> - what a browser sees while WeKan cannot yet serve.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b4499b0ddc5d8059b8feac1802e1417d3ee1c8ef">A container waiting for its database says so, instead of timing out</a>. Thanks to Alishara and xet7.</summary>
+<p><em>“We upgraded to 10.91 … Gateway timeout appears”</em> -
+<a href="https://github.com/wekan/wekan/issues/6595">#6595</a>, from the same reporter as
+<a href="https://github.com/wekan/wekan/issues/6592">#6592</a>, whose fix shipped in 10.91.
+It could not reach them: that fix is the SNAP’s, and this is a container.</p>
+<p>WeKan does not open its web port until the database answers, and in a container
+nothing else was listening while it waited - so a reverse proxy in front
+returned a gateway timeout, and that is the same symptom for two completely
+different faults: WeKan is broken, or the database has not come up yet.</p>
+<p>The entrypoint now asks whether the database answers (one <code>ping</code>, with the
+driver already in the bundle), and while it does not it serves the same bridge
+page the recovery case uses, saying <strong>WeKan is waiting for its database</strong> and
+where to look. What is bounded is the PAGE, not the wait: a database can take
+minutes to come up after an update, and giving up on it would be worse than
+waiting - so when the window ends the page stops, WeKan starts, and WeKan keeps
+waiting exactly as it did before. <code>WEKAN_DB_WAIT_PAGE=false</code> turns it off.</p>
+</details>
+<p><strong>Performance</strong> - what the database is asked, and what it has to walk.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/569dd4af541b797c8df763aef38cf0db820bf9ea">Cards, activities, comments and checklists are indexed at last</a>. Thanks to xet7.</summary>
+<p>Reported by email against 10.91: <em>“Still slow on loading cards. Test server with
+me as only user.”</em> One user is the part that says what it is NOT - with nobody
+else on the server there is no contention, no queue and no lock, so the time is
+going into the queries themselves.</p>
+<p>It was. <strong><code>cards</code>, <code>activities</code>, <code>cardComments</code>, <code>checklists</code> and
+<code>checklistItems</code> had no index at all</strong> - everything a board draws and everything
+an opened card pulls in. “The cards of this list”, “the comments of this card”,
+“the newest activities of this board” each walked the whole collection. That is
+invisible on a demo board and expensive on a real one, and worse on FerretDB,
+whose SQLite backend has to walk the same documents.</p>
+<p>The activities publication even explains that it keeps its selector flat <em>“so
+both push down to FerretDB v1 (SQLite)‘s index instead of forcing a
+full-collection scan”</em> - and there was no index for it to push down to.</p>
+<p>Each new index matches a selector the app really makes WITH the sort it really
+uses, so it serves both the filter and the order: a filter-only index still
+leaves an in-memory sort of everything it matched, which on a board with a year
+of history is the slow half. They are created through the same idempotent
+<code>ensureIndex</code> every other index here uses, so a restart does not rebuild them
+and a backend that refuses one logs it instead of stopping the server.</p>
+</details>
+<p><strong>Attachments and the snap’s databases</strong> - what can be read, and what cannot.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/146a5184d90028b3ccf917069b3007ef520fcb59">Moving attachments out of CollectionFS no longer deletes a binary two records share</a>. Thanks to sbruckmueller and xet7.</summary>
+<p>Moving from MongoDB CollectionFS to File-System stopped on some attachments
+with <code>FileNotFound: file 66336fc372e64200010f4832 was not found</code>, and the
+reporter had it exactly: it is the identical files.</p>
+<p>A CollectionFS filerecord points at its binary by <code>copies.&#x3C;coll>.key</code>, the id of
+a file in the <code>cfs_gridfs.&#x3C;coll></code> bucket, and TWO filerecords can carry the SAME
+key - the same file attached twice, or a board copied with its attachments. The
+migration deleted the binary as soon as it had moved the FIRST of them, so the
+second read a file that was no longer there. The binary now goes only when no
+other filerecord still names it, and when the question cannot be asked the
+binary stays: a file left behind can be removed later, an attachment deleted out
+from under another record cannot be brought back.</p>
+<p>A binary that really is missing - metadata restored without the chunks - is no
+longer a MongoDB stack trace naming a GridFS id. It names the attachment, says
+where it was looked for, and counts as SKIPPED rather than failed, because there
+was nothing to move. The Admin Panel’s summary line shows how many were skipped
+and how many failed, so a run that leaves attachments behind cannot look like a
+run that moved everything.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/2ff21ac962c671bb9cf18a3c07db9ccf7877d30c">A snap whose MongoDB files no reader can open stops comparing them with FerretDB</a>. Thanks to mueschel and xet7.</summary>
+<p>An instance whose MongoDB data was written by a MongoDB older than any <code>mongod</code>
+the snap carries printed this at every start, before the site came up:
+<code>BOTH databases have been written to since the migration</code> and then <code>[autopick] reading both databases to see which one holds the work ...</code>.</p>
+<p><code>mongodb_has_data</code> answers “are the files there”, not “can anything here open
+them”, and on that instance those are different answers - <code>mongod</code> 7, 5.0 and
+4.2 each refused the files in turn. So the comparison ran on a copy that cannot
+be served, and it is not a cheap question: it starts a mongod that cannot open
+the data, and then a SECOND FerretDB against the SQLite directory the running
+one already holds.</p>
+<p><code>migration-control</code> has already tried every reader in the snap and left
+<code>.mongodb-data-too-old</code> behind when none could open the files. With that marker
+present the MongoDB copy is no longer a candidate, and WeKan serves the FerretDB
+that has the data. Nothing is deleted and the marker stays: it is true, and it
+is right again on a snap that can read those files.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/804004e9e88cf4d21c4f34e7201f532a7ae59cc8">Comparing the two databases reads the one that is already running</a>. Thanks to waltermhl and xet7.</summary>
+<p><code>snap run wekan.database-compare</code> answered <code>MongoDB: &#x3C;unreadable></code> and
+<code>FerretDB: &#x3C;unreadable></code> on a live instance whose <code>wekan.sqlite</code> was 85 MB and
+whose site was up.</p>
+<p>FerretDB was unreadable BECAUSE it was up: SQLite has one writer, so the second
+FerretDB the comparison started against the same directory did not get the data.
+The tool then reported the database it had been talking to all along as
+unreadable, and refused to choose.</p>
+<p>The live one is asked first now - <code>evidence</code> only counts and sorts - and a
+second copy is started only for a database that is not running. Both speak the
+MongoDB wire protocol on the same port, so which one is answering is asked
+rather than assumed: FerretDB names itself in <code>buildInfo</code> and a <code>mongod</code> does
+not. Reading one as the other would be a wrong answer given with confidence,
+which is worse than “unreadable”.</p>
+</details>
+<p><strong>The page sidebar</strong> - the controls of a page that has no sidebar of its own.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9ef05970d3cb20f9babbcb03dd31cc58f598fe11">The controls in the page sidebar are rows, not three links run together</a>. Thanks to xet7.</summary>
+<p>Rules, My Cards, Due Cards and Global Search each keep their controls in the
+shared page sidebar, and each draws them as <code>.board-header-btn</code> - which is what
+they were when they lived in that page’s own second header bar.</p>
+<p>Every rule for that class is scoped to <code>#header-quick-access</code>, so inside the
+sidebar they had NO styling at all. On the Rules page that is three bare links
+jammed onto one line - <em>”← Board 🔀 Workflow view ⇄ Import / export”</em> - with the
+icons run into the words and nothing to click but the text itself.</p>
+<p>They are rows now: one per line, the width of the panel, with the icon in a
+fixed column so every label starts at the same x, and a hover to click against -
+the shape the board sidebar’s own rows have. Both sidebars built on that shell
+get it, All Boards’ as well as the page one.</p>
+</details>
+<p><strong>Minicards</strong> - what a click on one does.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f525b391a649e7b9cb2c683a3d3f622ec9a385be">The stickers popup is wide enough to see the stickers</a>. Thanks to xet7.</summary>
+<p>A hundred and fifty icons, eight to a row, in a popup 380 pixels wide: a column
+taller than the screen, so choosing a sticker meant scrolling past most of them.</p>
+<p>It is as wide as the colour pickers now - <code>min(90vw, 720px)</code> - and the picker
+is a grid that fits as many columns as the width allows instead of stopping at
+eight. The clamp that places a popup knows the new width too, or a popup opened
+near the right edge would have landed half off screen.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f525b391a649e7b9cb2c683a3d3f622ec9a385be">A label on a minicard opens the labels, and not the card as well</a>. Thanks to xet7.</summary>
+<p>Clicking a label opened the card’s labels popup AND the card details behind it:
+the click reached the minicard too, so one click did two things and the one
+nobody asked for was underneath the one they did.</p>
+<p>It stops at the label now. A click in the labels AREA that is not on a label is
+still the card’s, as before - and which label was clicked is read from the
+EVENT rather than from <code>:hover</code>, which answers about the pointer and on a touch
+screen can still be true for whatever was tapped last.</p>
+</details>
+<p><strong>Card details</strong> - the card as it is opened and edited.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/aba09a087935423d8ec209cb67ff5d956b3e336d">Custom Fields is reachable on a card that has none, which is where it is needed</a>. Thanks to xet7.</summary>
+<p>Everything about custom fields moved to the hamburger at the end of the card’s
+own Custom Fields heading - the picker of which fields are on this card, a
+pencil each, and <em>Add custom field</em> - and the card menu’s entry, the Board
+Settings row and the wrapper popup went with it. But the heading itself was
+drawn only when the card already HAD a custom field on it.</p>
+<p>So the one way in existed only once you were already through it. A card with no
+custom field had no heading and therefore no hamburger; a board that had never
+used them had no way in anywhere, because the sidebar view that still holds the
+create and edit forms is opened by nothing. It is invisible on any board that
+already has a field - which is every board a developer tests on - and the
+browser tests found it on a seeded board that had none.</p>
+<p>The heading is drawn for every card its reader may write to now, the same
+condition the rest of the editable card uses. The FIELDS below it still come
+from the card’s own values, so a card with none shows an empty section rather
+than a phantom row per board definition, and a reader who may not write sees no
+heading at all.</p>
+<p>The anchor that used to open the old popup went too: the move took away its
+label text and left the tag, so it rendered nothing, could not be clicked, and
+still had two handlers bound to it. <code>tests/customFieldsSectionMenu.test.cjs</code>
+gains the two checks that would have caught this - the heading is gated on who
+may write rather than on what the card already has, and no empty anchor or
+orphaned handler is left behind.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/67b91c850433ed04569734ff749c759ac557ac81">A custom field made from a card is actually created, and its pencil is beside its name</a>. Thanks to xet7.</summary>
+<p>Two things wrong with the popup the Custom Fields heading opens.</p>
+<p>A new field made from it never appeared. <em>Add custom field</em> sits OUTSIDE the
+list of fields, so its data context is the popup’s own - which is the CARD - and
+the create and edit forms are one form that decided which it was doing by
+whether its context had an <code>_id</code>. A card has one, so creating a field from a
+card ran the UPDATE branch against a custom field whose id was a card’s: no such
+document, nothing written, and nothing said so. The same form works from the
+board sidebar, where the context has no <code>_id</code>, which is why this only ever
+happened from a card.</p>
+<p>Both halves are fixed. The popup hands the form an empty context, because a new
+field is made from nothing. And the form no longer trusts a bare <code>_id</code>: it asks
+whether that id NAMES a custom field, so a context arriving from anywhere cannot
+make it update one that is not there.</p>
+<p>The pencil that edits a field sat on a line of its own under the field’s name.
+Every other pop-over list has ONE anchor per row, so the row is a block and the
+anchor fills it - and two anchors in a block stack. This list has two by design,
+the name with the checkbox that puts the field on this card and the pencil that
+edits the field itself, so the row is the flex container now and the name takes
+the space the pencil does not. Scoped to this popup, so no other list moves.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/47099b8baadc0bdfcefe5006bf16ed8e7e7ca565">Ten popups had no header, and so no close button</a>. Thanks to xet7.</summary>
+<p>A pop-over draws its header from its title, and with no title it renders as
+<code>no-title</code>: no header, no X, no back arrow - Escape or a click away are the only
+ways out. Noticed on the question “Are you sure you want to delete this
+background image?”, which is the worst place for it.</p>
+<p>Ten of them were in that state, and each is titled the way the other 151
+already were: a <code>&#x3C;name>Popup-title</code> key. Delete Background Image, Delete
+Duplicate Lists, Delete Account, Add Domain, Remove Domain, Map to existing
+user, Export swimlane, Export list, Export checklist, and the member popup.</p>
+<p>They were added to EVERY language file at the same position, as the English
+placeholder a pull would produce - the files are one key order, and a key
+inserted in some and appended in others makes every later diff unreadable.</p>
+<p>The other mechanism, <code>Popup.open(name, { titleKey })</code>, is not a second way but
+the same one pointed at a phrase the app HAS - “Custom Fields”, “Sort Boards”,
+“Show on Card” - so a word already translated 147 times is not copied into a
+new key that would start as English in all of them.
+<a href="tests/popupTitles.test.cjs"><code>tests/popupTitles.test.cjs</code></a> walks every popup
+template and fails if one resolves no title at all, so the next one cannot ship
+without a header.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ac201d4b5988bf314b4efcb0619ccdc36ab64595">Upload background image did nothing, and every attachment upload now shares one config</a>. Thanks to xet7.</summary>
+<p>“Upload background image” picked a file and then nothing arrived. Two fields of
+an upload’s config are not optional in the way they look, and the board
+background’s config - written by hand - had neither:</p>
+<ul>
+<li><strong><code>fileId</code>, and the same id copied into <code>meta.fileId</code>.</strong> Attachments’
+<code>namingFunction</code> is what decides the name a file is STORED under, and on the
+client it reads that id out of <code>meta</code> and deletes it. Without it the name is
+<code>undefined</code>.</li>
+<li><strong><code>transport</code>.</strong> HTTP everywhere, because Meteor-Files’ default DDP floods
+the WebSocket and makes Safari reconnect at ~95%; DDP on Sandstorm, whose
+http-bridge strips the <code>x-*</code> upload headers so every chunk comes back “Can’t
+continue upload, session expired” [408].</li>
+</ul>
+<p>Both come from one builder now, in
+<a href="client/lib/attachmentUploadConfig.js"><code>attachmentUploadConfig.js</code></a>, used by the
+card’s file picker, the card’s pasted image and the board background alike - so
+the next uploader gets them by asking for a config rather than by knowing two
+things nothing would have told it.</p>
+<p>One popup answers the whole question now - the URL, the upload, and the
+pictures uploaded to this board - and <strong>Board Settings / Board backgrounds is
+gone</strong> with the popup it opened: a second entry to a list that is already on
+screen is a second place to look for one thing. Clicking a PICTURE, or its
+name, puts that one behind the board; it used to be a 14px check icon in the
+row under an 80px picture of the thing it applies, so the obvious click did
+nothing. Download and delete stay in that row, being the two things a picture
+cannot say.</p>
+<p>Three things around the upload made the failure impossible to read, and are
+fixed with it. <code>insertAsync</code> can reject BEFORE there is an uploader to listen
+to, and that rejection went nowhere: the spinner stopped, no message appeared,
+and the picture simply never turned up. It is caught and shown now. Each
+picture is listed with its NAME, because two photos are the same picture at 80
+pixels and nothing said which one had arrived. And a finished upload puts
+itself behind the board: “add background image” is asked for by somebody who
+wants that picture there, and an upload that only lands in a list, with the
+board unchanged, reads as one that did not work.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ac201d4b5988bf314b4efcb0619ccdc36ab64595">An avatar with no name to draw broke the render around it</a>. Thanks to xet7.</summary>
+<p><code>getInitials()</code> ended with <code>this.username[0]</code>, so a user document that arrived
+without a username threw a TypeError - from a Blaze helper, mid-render. Two
+helpers call it, so each avatar threw twice, and the second throw left the SVG’s
+<code>viewBox</code> half-written (<code>0 0  15</code>), which Firefox refuses outright: the avatar
+drew nothing and took the rest of that render pass with it.</p>
+<p>It is total now: initials, then a fullname, then the first letter of a username
+if there is one, then an empty string - a blank circle rather than a broken
+page. A fullname of only spaces used to spell the literal word “undefined” in
+the circle, because an empty word still contributed its missing first letter;
+empty words are skipped.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/443e65b6d0eb2f6b5131d56f4659a4510d1a3039">The Date Format menu is back: two collapse mechanisms were folding one field</a>. Thanks to xet7.</summary>
+<p>The dropdown that chooses a card’s date format disappeared, and nothing brought
+it back - the Received, Start, Due and End dates under the same heading were
+there, but the selector above them was gone.</p>
+<p>Two things were folding it. <a href="https://github.com/wekan/wekan/issues/1591">#1591</a>
+gave every FIELD of an opened card a caret on its own title and hid everything
+after that title when it was clicked, storing the fold per card in the user’s
+profile. The section carets that replaced it put ONE handle on each section’s
+heading - and that heading is drawn on the first field of the section, so a
+click on it was also a click on a field title. The old handler ran too, folded
+that field, and stored it. Reopening the section brought the dates back but not
+the field the heading sits on, and the per-field caret had been suppressed
+inside a group, so there was nothing left to open it: the Date Format select
+was hidden for good.</p>
+<p>The #1591 half is gone - the handler, the caret it drew, the rule that hid the
+siblings, and the per-card state it re-applied on render. Every field lives in
+a section now, and the section’s heading is the only handle. The same per-user
+store still belongs to the CHECKLISTS, which key their own entries by checklist
+id and are untouched; that is why the store itself stays.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7a75779b2cba58de149b99f308360b9944a50dd3">What the card restructuring nearly took with it, and a Copy card link button that can be read</a>. Thanks to xet7.</summary>
+<p>Moving eleven sections with a script is how markup disappears without anything
+failing: the file still compiles, the tests still pass, and a card is quietly
+missing a row. Comparing the card against its state before the section work
+turned up four things, three of them lost:</p>
+<ul>
+<li>the <strong>card button row</strong> (<code>+cardButtons</code>) - a slice used it as a boundary and
+swallowed it;</li>
+<li>a custom field’s <strong>name</strong>: <code>+cardCustomField</code> renders the value and nothing
+else, so a card with three custom fields showed three values with nothing to
+say what they were;</li>
+<li>the <strong>attachment count</strong> beside the Attachments heading, which the board
+setting for it still governs;</li>
+<li>and one thing GAINED that should not have been: a second, bare <strong>+</strong> beside
+the End date’s add button.</li>
+</ul>
+<p>All four now have a test of their own, because each was invisible to everything
+else.</p>
+<p>The <strong>Copy card link to clipboard</strong> button carried only <code>.btn</code>, so it fell back
+to the plain grey button whose dark label is nearly unreadable on a dark theme.
+It is a <code>.primary</code> now - the board’s accent with white text - named in the same
+rules as the other themed buttons rather than given a copy of them.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c747d51bafd7f7ac09c618be8ea9e00aa37b9762">A group's caret is on its first field's title, so the titles read as one row</a>. Thanks to xet7.</summary>
+<p>Grouping the fields gave each group a header LINE of its own, and for a group
+named after its first field that line said the same word twice, one above the
+other: “Labels” and then “Labels, Stickers, Location”.</p>
+<p>There is one row of titles now, with the caret at the start of it: <strong>Labels
+Stickers Location</strong>, <strong>Members Assignee Creator</strong>, and their <strong>+</strong> buttons on
+the row below. The caret belongs to the first field’s title rather than to a
+header above it, and everything it folds - that field’s own content and every
+field beside it - is behind the same switch, so a collapsed group is exactly one
+line.</p>
+<p>The rule moved with it, from inside a field to the group, where it spans the
+card. The <strong>Checklists</strong> icon is a plain check again rather than a check in a
+box, which is what it was before it became a section.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/050df89f06ab07a17899a4b032beeae04676c270">Requested By and Assigned By are set with a + like Members, and survive an import</a>. Thanks to xet7.</summary>
+<p><strong>Requested By</strong> and <strong>Assigned By</strong> were set by clicking the word “Add”. They
+have the round <strong>+</strong> the two fields beside them use now, opening the same editor
+the text does.</p>
+<p>Checking where else those two live turned up a round trip that lost them, which
+is the worst shape this kind of bug takes - the export file looks complete and
+the import reports success. They were exported by the card PDF, the card Excel
+and the board CSV, and imported by NOTHING: a card exported and imported back
+came home having forgotten who asked for it and who assigned it. Both importers
+put them back now, our own JSON and .zip and the per-menu one.</p>
+<p>The board’s Excel TABLE did not export them at all, so that one gained two
+columns - header and value together, since a header without its value shifts
+every column after it.</p>
+<p>And from other trackers, where the same idea has another name: <strong>Jira’s
+Reporter</strong> is who asked for the work, and an issue’s <strong>author</strong> on GitHub,
+Gitea, Forgejo and GitLab is the same thing. Both arrive as Requested By, as
+free text, so they survive an import from a tracker nobody on this board has an
+account on. A source with no such field - Trello, CSV - gains nothing, which a
+negative test pins.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/050df89f06ab07a17899a4b032beeae04676c270">Assignee and Creator sit beside Members, with their + buttons on one line</a>. Thanks to xet7.</summary>
+<p>Grouping the fields left two things crooked. Members, Assignee and Creator were
+each a full-width row, so Assignee and Creator fell to the line below Members -
+the class that made a FIELD full width was from before the groups, and the group
+is the full-width row now. And a field whose title had been taken over by the
+group header had its <strong>+</strong> on the first line, level with its neighbours’
+titles, instead of on the second line with theirs.</p>
+<p>Every field in a group keeps its own title again. The group’s header names the
+family and folds it; the field’s title names the field, and its content - the +,
+the avatars - starts on the line under it, level all the way across.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/83147dcc3e357ccfce9a1702568484f2d70bcb3d">A card's fields fold in GROUPS, from one caret each, and Members reads Members, Assignee, Creator</a>. Thanks to xet7.</summary>
+<p>The caret beside <strong>Labels</strong> folded the Labels field and left Stickers and
+Location sitting under it, and every field had a caret of its own on the right -
+<a href="https://github.com/wekan/wekan/issues/1591">#1591</a> draws one on each
+<code>.card-details-item</code> - so a row could have two handles saying the same thing in
+two sizes.</p>
+<p>The fields belong to FAMILIES, and the families are what fold now:</p>
+<ul>
+<li><strong>Labels</strong> - Labels, Stickers, Location</li>
+<li><strong>Date Format</strong> - the format, Received, Start, Due, End</li>
+<li><strong>Members</strong> - Members, Assignee, Creator, Requested By, Assigned By</li>
+<li><strong>Dependencies</strong></li>
+<li><strong>Sort</strong> - Sort, List, Spent time</li>
+</ul>
+<p>One caret per group, on its title, at the reading direction’s start. The fields
+inside a group have none: #1591’s per-item caret is turned off there, and its
+title is no longer a handle. Outside a group it is untouched, so nothing that
+folded before stopped folding. A collapsed group is one line - the caret, the
+icon and the name - because everything else is inside the fold.</p>
+<p><strong>Members</strong> reads Members, Assignee, Creator, which is the order it was asked
+for. The loose rule the layout drew above the users block is gone with it: the
+group’s own rule is above the whole group, so there is one line there instead of
+two.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/365cfdc4df5187e9cbfc8f83acab39df755a19c7">The rules between card sections are the page's own line, and there is one where there should be</a>. Thanks to xet7.</summary>
+<p>Four small things about those separators, all of them visible at a glance and
+none of them visible in the source.</p>
+<p>The rule drew a <strong>border of its own</strong>, darker than the line the card already had
+above Creator. It is that same lighter <code>hr</code> now - the section rule sets only its
+spacing, so there is one line style on the card rather than two.</p>
+<p><strong>Labels</strong> had a rule above it. It is the first section: there is nothing above
+it to be separated from. <strong>Members</strong> had one too, immediately under the rule the
+layout already draws above Creator - two lines with a heading between them.
+Neither draws one now, and every other section still does.</p>
+<p>And the rule above <strong>Activities</strong> was to the LEFT of the heading rather than
+above it, because <code>.activity-title</code> is <code>display: flex</code> and a rule inside it is a
+flex item. The heading sits outside that row now.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c4d1801022c1c2ce021c2bb759208b820d128c9d">A section is one full-width row with one rule, and is named once</a>. Thanks to xet7.</summary>
+<p>Two things the collapsible sections got wrong the first time, both visible the
+moment a card was opened.</p>
+<p><strong>Short rules everywhere.</strong> <code>.card-details-items</code> is a wrapping flex row, and
+the
+rule was drawn INSIDE a section - so it was as wide as that box, which is a stub
+of a line beside a heading rather than a separator across the card. The six
+sections that live in that row are now rows of their own, so the rule in them
+spans the card, and the items that were laid out side by side on purpose -
+Stickers, Location, the four dates, Creator, Assignees - still share rows as
+they
+did.</p>
+<p><strong>Two headings for one section.</strong> The Checklists and Subtasks templates draw
+their own title, and the new section header drew it again, so a card showed each
+of those names twice, one above the other. The templates keep what belongs to
+the LIST - add a checklist, add a subtask - and the section header is the only
+thing that names the section.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/384f03b359a47592e08a16060675e330319ec36c">Every section of an opened card collapses from its own caret, with one rule between sections</a>. Thanks to xet7.</summary>
+<p>A card had ONE caret, in its header, which collapsed the whole card - and
+<strong>Activities</strong> had an eye beside its heading. Every other section was a heading
+with no control at all, and the rules between them were written by hand wherever
+somebody remembered one.</p>
+<p><strong>Labels</strong>, <strong>Date Format</strong>, <strong>Members</strong>, <strong>Dependencies</strong>, <strong>Sort</strong>, <strong>Custom
+Fields</strong>, <strong>Description</strong>, <strong>Checklists</strong>, <strong>Subtasks</strong>, <strong>Attachments</strong>,
+<strong>Comments</strong> and <strong>Activities</strong> each carry a caret that collapses that section,
+and one rule above it. Both come from ONE template, so eleven sections cannot
+end
+up with ten separators and nine carets. The heading is a real button - it
+announces itself as one and Enter or Space works it - rather than a click target
+only a mouse can find. The caret points DOWN when a section is open and toward
+the way the reader reads when it is closed: right in English, left in Arabic,
+Hebrew and Persian.</p>
+<p><strong>Activities starts collapsed</strong> and everything else open, because a card is
+opened to read the card and its history is the thing you go looking for.</p>
+<p>The eye is gone, and that needed one piece of care: it was NOT the same control
+as the caret. <code>showActivities: false</code> - its default - subscribed to
+<code>activityType: 'addComment'</code> only, so the eye chose between “comments” and “the
+whole history” as much as it showed and hid. Removing it without more would have
+quietly turned an opened Activities section into a comments-only list. So a card
+section that is OPEN now asks for the whole history, and one that is closed
+subscribes to nothing at all - which is the cheaper half of what the flag was
+for, without a second control to keep in step. A card that had the flag
+explicitly set to false keeps it.</p>
+<p>Custom Fields is one section with one caret however many fields a card has: its
+header was briefly inside the loop that draws them, which would have been six
+sections sharing a caret on a card with six fields.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0c7b3e8df36d185d97a7cbe442f0eba76ecd897e">A dependency's card title wraps instead of being cut off at the pane edge</a>. Thanks to xet7.</summary>
+<p>In an opened card’s <strong>Dependencies</strong> section each row is an icon, the linked
+card’s title and its controls, and the title was held on one line with an
+ellipsis. The card details pane is narrow and a card title is a sentence, so
+most of a real title - everything to the right of the coloured icon - could not
+be read at all.</p>
+<p>It wraps now, and the row grows as tall as it needs to. Two properties, and the
+second is the one that is easy to miss: <code>white-space: normal</code> alone would have
+changed nothing, because a flex item’s default <code>min-width: auto</code> refuses to
+shrink below its content, so the text overflowed the row instead of wrapping
+inside it. <code>min-width: 0</code> is what lets it. A title that is one long token - a
+URL, an id - breaks inside itself rather than pushing the type, colour and
+remove controls off the row, and the icon and those controls now sit beside the
+FIRST line instead of floating halfway down a three-line block.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bada25de4d95b0e5b473ec3176dccffcc5a999a7">Editing a card title keeps the X that closes it</a>. Thanks to xet7.</summary>
+<p>Clicking a card’s title opens the title editor in place of the card header - and
+the header is where the card’s own close X lives, so the X disappeared the
+moment you started editing and <strong>Save</strong> became the only visible way out. Escape
+still worked; nothing on the screen said so.</p>
+<p>The editor draws the X itself now, reusing the header button’s own class, so it
+is the same size in the same place and does not jump as the editor opens and
+closes. That class floats to <code>inline-end</code>, which is the right in English and the
+left in Arabic, Hebrew and Persian without a second rule - so the mirroring
+needs no direction branch and must not grow one.</p>
+<p>The same one-line omission was in the <strong>Requested by</strong> and <strong>Assigned by</strong>
+editors right below it: the close anchor was there, its icon was not, so the
+click target existed and was invisible. They have their X now too.</p>
+</details>
+<p><strong>Card export</strong> - what it says, and in whose language, format and time zone.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/698e980e27522b53f60ad6fce347727cb11eb017">A card's PDF and Excel exports carry the same fields, under the same translated labels</a>. Thanks to Heart1010 and xet7.</summary>
+<p><a href="https://github.com/wekan/wekan/issues/6586">#6586</a> was reopened for what the
+first fix left: the PDF export of a card had grown separately from the Excel
+export of the same card, and every point the reporter came back with was a
+symptom of that. The labels were hard-coded English - “Assignee, Labels, due,…
+these titels should be in the user set language”. They were not even consistent
+with each other: the card export wrote <code>Due: </code>, the board export wrote <code>due </code>
+with no colon and a lowercase letter. And a card carries more than either export
+printed - “I think all those other things we set in a card should be also
+present
+in the pdf? Location, Voting, Checklists, Subtasks, Custom Fields, Attachments,
+Comments…”.</p>
+<p>Two exports of one card that disagree about what is on it are one bug reported
+twice, so the fix is to stop them being two things. Both now carry the same
+fields, in the same order, under the same i18n keys, in the language the request
+carries: title, labels, creator, assignees, members, board, swimlane, list, card
+number, requested by, assigned by, the six dates, spent time, description,
+custom
+fields, checklists, subtasks, comments, attachments, voting and Planning Poker.
+The three sections neither export had - <strong>custom fields</strong>, <strong>voting</strong> and
+<strong>poker</strong> - are new on both sides, selectable like the others in the Excel
+export’s field checkboxes, and appended to that list rather than inserted, so a
+saved <code>?fields=</code> link still asks for what it always asked for.</p>
+<p>Inside the PDF exporters one <code>field()</code> helper writes every <code>Label: value</code>, which
+is what makes the board export’s “due” and the card export’s “Due:” impossible
+to
+have at once again. Every label carries its English text as the fallback, so a
+language that has not translated a key shows the word rather than the key.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/698e980e27522b53f60ad6fce347727cb11eb017">Exported dates are in the reader's own time zone and date format, not the server's</a>. Thanks to Heart1010 and xet7.</summary>
+<p>“The marked due date - here the time is not in the user set timezone (-2h wrong
+for Europe/Berlin).” It was worse than -2h: the PDF export printed UTC and the
+Excel export printed whatever zone the server process was started in, so the
+same
+card could come out with two different times on it and neither was the reader’s.</p>
+<p>Dates are stored in UTC, and a WeKan profile carries no time zone at all, so the
+only place the reader’s zone exists is the browser. Every export link now sends
+it - <code>Intl.DateTimeFormat().resolvedOptions().timeZone</code>, the IANA name the
+server’s own <code>Intl</code> wants back - together with the <strong>date format the opened card
+is showing</strong>, which for a reader who is not logged in lives in <code>localStorage</code>
+where no server-side lookup can reach it. An export that printed <code>2026-08-14</code>
+for
+a card showing <code>14-08-2026</code> was the same card in two formats.</p>
+<p>Both exports format through one helper, <code>formatDateByUserPreference</code>, which
+gained an optional zone; without one it still renders in the process’s own zone,
+which is what every client-side caller - the card view itself - wants. A
+server-built export that is given no zone renders UTC and SAYS UTC, rather than
+printing the server’s and looking like the reader’s. The route accepts only the
+three formats that helper understands, and a zone name is length-bounded: they
+are request parameters, not free text. <code>12:00Z</code> now prints as <code>14:00</code> for
+Europe/Berlin, as <code>00:00</code> on the 15th for Pacific/Auckland, and a zone the
+runtime does not know falls back instead of failing the download.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/698e980e27522b53f60ad6fce347727cb11eb017">A description's markdown is drawn as bold and italic instead of being stripped</a>. Thanks to Heart1010 and xet7.</summary>
+<p>“Would it make sense to support markdown formated text in description? (so it
+gets transformed correct in the pdf output with bold, underline,…)” The first
+fix removed the syntax and kept the words, because <code>**bold**</code> in a PDF is four
+stray asterisks; this is the other half.</p>
+<p>A description is now cut into RUNS - <code>**bold**</code> into a bold run, <code>*italic*</code> into
+an italic one, <code>***both***</code> into both, nested emphasis keeping both - and each
+is
+drawn in the matching Courier face: Courier, Courier-Bold, Courier-Oblique,
+Courier-BoldOblique, all base-14, so no font binary is embedded. Nothing is
+measured to place them: consecutive <code>Tj</code> operators continue at the current text
+position, so a font switch between two of them lands the next run exactly where
+the last ended, whatever the glyph widths are. Wrapping counts characters across
+the whole line, indent included, so an emphasised word does not push a line past
+the page.</p>
+<p>What has no face is not invented: <code>~~strikethrough~~</code> and <code>`code`</code> keep
+their
+words and lose their markers, because a base-14 Type1 font has no strike and
+there is no fifth Courier to give code. Block markdown is still flattened either
+way - a heading loses its <code>#</code> and is drawn in the bold font, a bullet keeps one
+shape, a fence keeps its code. An underscore inside a word stays an underscore:
+<code>file_name_here</code> is an identifier, not three-quarters of an italic.</p>
+</details>
+<p>and has the following developer-facing changes:</p>
+<p><strong>Language loading</strong> - which of the 246 language files a visitor is sent.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/59c742e6c95b42529b53ec33d2f2d075108e78d9">The browser downloads one language, and a test says so</a>. Thanks to xet7.</summary>
+<p><code>imports/i18n/data/</code> is 37 MB across 246 files, every one of them reachable from
+the client. The only thing keeping them out of the initial bundle is that each
+entry in <code>imports/i18n/languages.js</code> loads its file through
+<code>() => import('./data/&#x3C;tag>.i18n.json')</code> - a call Meteor’s <code>dynamic-import</code>
+package code-splits into a module fetched on demand - and that <code>tap.js</code> imports
+exactly ONE of them statically, English, so the interface stays readable when
+dynamic import is broken (<a href="https://github.com/wekan/wekan/issues/6503">#6503</a>).</p>
+<p>That was true when checked and nothing pinned it. A single
+<code>import data from './data/xx.i18n.json'</code> added anywhere on the client would
+quietly ship that language to every visitor, and nothing about the app would
+look wrong - it would just be a heavier download, which no other test measures.</p>
+<p><code>tests/i18nLazyLoading.test.cjs</code> checks the six things that have to hold
+together: every registered language has a dynamic loader, <code>languages.js</code> pulls
+in no data itself, <code>tap.js</code> statically imports English and nothing else, the
+loader is called once for the single resolved tag rather than mapped over the
+registry, no client file bundles a language file, and <code>dynamic-import</code> is still
+in <code>.meteor/packages</code>. A negative test proves the detector really sees a static
+import, so the other checks cannot pass by failing to look.</p>
+</details>
+<p><strong>Browser tests</strong> - the guards that drive a real browser, and what they say.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/acaaa3c03fa67e1130f694ac2dbbba3802daad3d">Three page objects still described the markup as it was before it moved</a>. Thanks to xet7.</summary>
+<p>A run failed the same four tests in Chromium and in Firefox, and three of the
+four were the guard describing the OLD markup rather than the app being wrong.</p>
+<p><code>editTitle</code> waited for both <code>js-card-title</code> and <code>js-open-inlined-form</code> on ONE
+element. The title splits now - the leading half opens the editor and the rest
+of the heading drags the window - so the class is a DESCENDANT of the title, and
+the old selector matched nothing and waited out its timeout.</p>
+<p>The Activities heading in the board sidebar carries TWO icons since the caret
+became shared with the card sections: the caret that says whether the section is
+open, and the section’s own comment icon. A bare <code>i.fa</code> matches both, which
+Playwright fails as a strict-mode violation rather than picking one. The spec
+asks for the caret specifically now - the three directions <code>caretClassFor</code> can
+produce - which is also a stronger assertion, since the caret is the part that
+indicates state.</p>
+<p>The fourth</p></details> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v10.92" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

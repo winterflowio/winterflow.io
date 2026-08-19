@@ -1,0 +1,700 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v10.89 release notes | WinterFlow.io</title><meta name="description" content="WeKan v10.89 transitions the snap to run exclusively on FerretDB, removes the database setting, and improves migration reliability and Docker release…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v10.89/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v10.89 release notes | WinterFlow.io"><meta property="og:description" content="WeKan v10.89 transitions the snap to run exclusively on FerretDB, removes the database setting, and improves migration reliability and Docker release…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v10.89/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v10.89 release notes | WinterFlow.io"><meta name="twitter:description" content="WeKan v10.89 transitions the snap to run exclusively on FerretDB, removes the database setting, and improves migration reliability and Docker release…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v10.89","item":"https://winterflow.io/catalog/wekan/releases/v10.89/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.ub2yUpbM.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,046 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (208)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.89</h2> <span class="text-sm text-gray-500">2026-08-12</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>9e001227107f244b…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>14b342e71204f811…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>4e63385a721f1c04…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>01443c1e1a29e531…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>e8c9f64f14433749…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>b55350f3071b765a…</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>11cf98ff5e2f0ed4…</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv6">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>128ded0cda638c1f…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>e8c9f64f14433749…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>8dbe0a9aa8550ad5…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>fc8a8d0e01748a20…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>3b0b3bbfe27daf58…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>0864e1d8c74a0cd4…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>3f1cf157479c1480…</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>83d6fde4b70088a8…</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>d35e95230f46f6f0…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>9a3aec0a01e50f54…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>c510c6ce12f07010…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>71c33d684350893e…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>cd1f14af28121480…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>dc8dfb6f11f5188f…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>a4792e65962ffa0a…</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>e210ec18a59a24c2…</code></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-arm64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>8502f4a50b458d4c…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.50.0</td><td>verified</td><td><code>d232f53684f84bea…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>57f71ab3652e797d…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1089-2026-08-12-wekan--release">v10.89 2026-08-12 WeKan ® release</h1>
+<p><strong>In short:</strong> the <strong>snap stops asking which database it runs on</strong>. It runs on
+<strong>FerretDB</strong> — every platform — and MongoDB is in the amd64/arm64 snaps to be
+<strong>read</strong> while a migration is owed, so <code>snap set wekan database=…</code> and
+<code>snap run wekan.database</code> are <strong>gone</strong>: the data decides, and it cannot
+contradict itself the way a setting could. With them go the three ways a snap
+could stay on MongoDB for good — a <strong>5.0 database no reader could open</strong>, a
+migrated copy that had fallen behind being answered by <strong>switching back to
+MongoDB</strong> (“WeKan changed to old MongoDB data”) instead of merging, and a failed
+migration that <strong>never tried again</strong>. Below that, the release workflow: a repo
+script the job could not see, and an hour of emulated build thrown away on a
+push that was never going to be authorized.</p>
+<p>The binaries below are carried over from v10.88 and have NOT been checked
+against a newer build; <code>releases/provenance-table.sh</code> prints the real table
+from the provenance each build job records.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>7c74941ff043f26aa4411ef5065d6b2d0766e369fc2a4458364c2f5571c12762</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>092132531555a39eac12566240a5f1ed02f62148b2dca0540a74c68e5957f6b5</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td><code>b55350f3071b765a98ed66fdc410657ff168a937935057077fd7ab33cb30b9aa</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>144404fb9793dc8e039874812f4e2cb3e6d8b1df0ffdbe50254e7790a342a2f4</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv6">wekan/node-patches</a></td><td>v24.19.0</td><td><code>128ded0cda638c1f144eadb23ad249889515df017d298fd49c8faf3db110f0f1</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>7c27b2c15448709a24eace9b3c951c62fbe33413f7d20d56cb5520f4436efe2d</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td><code>8dbe0a9aa8550ad5275c5538ebf868eb2037f0c4d9cccbe319f63b7e5854cd45</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>144404fb9793dc8e039874812f4e2cb3e6d8b1df0ffdbe50254e7790a342a2f4</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td><code>3b0b3bbfe27daf583b3a0f432efacc508407a012cdd9e8847250e7c015565bac</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-i386">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>1f70cb1687411b2a0fa9ac3b5bfc8c4ed9ce25ec2ddfa17e6fd3efb38136a39c</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>576364db59dfce3ba564b9a3e484496eb57f95d76d2007b9f83241acdbd2f4fa</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>37d70cd90aad6d3867b6686507ff1888f1edf6791818c31d014d130e8f39fc14</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>c510c6ce12f07010f771e6edb22a3fe23f4f2e6f40b1ffd4941aed0646a0d8b3</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>7c61d4853d5163ad8761449d693fd458ebbb8611a2351c718014876242c5b1fb</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td><code>cd1f14af2812148002f58b58a5f9af512a50e3b8e8c148e0db44019dcb68edfd</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>bd4912da70f5e6c1475ab989668c76b4ab7db4ee06c44357693df64f5e1d0e0b</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>a4792e65962ffa0af42627aacf1122a60c3c88dbf4e4184f06820d66f9da8ba4</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.49.0</td><td><em>no checksum published</em></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-arm64.zip">nodejs.org</a></td><td>v24.19.0</td><td><code>8502f4a50b458d4cc38ed8f2001556c2cd239d464920f74017926ccb1e1c157f</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>792166623e774b0af2aced31ed3ae39f545ca5268dc4c2b8d1a329228ff52cbc</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td><code>57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.49.0/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.49.0</td><td><code>f42c50aa84095a9616b00f27a584c66b7bf79e3b109450c62a5f146ba3c85478</code></td></tr></tbody></table>
+<p>This release fixes the following bugs:</p>
+<p><strong>The snap</strong> - which database it runs on, and how everything gets into it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e63ac0e77">A migration never runs over the database it already produced</a>. Thanks to lukechao and xet7.</summary>
+<p>From <a href="https://github.com/wekan/wekan/issues/6583">#6583</a>: <em>“the migration
+re-ran yesterday (even though it had already run successfully a few weeks ago).
+The <code>.migration-to-ferretdb-done</code> file is time stamped yesterday … That explains
+why I’m seeing old data.”</em></p>
+<p>That is the worst version of this bug. The instance had been migrated and had
+been serving from FerretDB for weeks; the marker went missing, the old staleness
+guard put it back on <code>database=mongodb</code>, and the migration ran again — importing
+the MongoDB copy it had been made from, over the database holding the work
+since. <code>discard_partial_ferretdb</code> could delete that database outright, because
+“partial” was assumed rather than checked.</p>
+<p>Two locks on that door now, and the same fact opens both: the importer writes
+<code>migration-progress.json</code> as it goes and resumes from it, so a <strong>FerretDB with
+data and no checkpoint beside it is a finished database, in use</strong> — never a
+migration to continue.</p>
+<ul>
+<li><code>migration-control</code> checks that before it probes, reads or deletes anything.
+If it finds one it marks the migration done, starts FerretDB, stops MongoDB
+and exits. Nothing is imported.</li>
+<li><code>discard_partial_ferretdb</code> checks it again before removing a SQLite, and says
+so when it declines. The MongoDB data is never touched either way.</li>
+</ul>
+<p><code>bin/migration-pending</code> already answered the same question through
+<code>bin/database-role</code>, so neither branch should be reachable — which is why they
+are there. The cost of being wrong in this direction is somebody’s data.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/60b4ceda3">A snap ends up on FerretDB, whatever it was running before</a>. Thanks to xet7.</summary>
+<p>Three ways a snap could stay on MongoDB for good, all of them reported. The
+snap runs on <strong>FerretDB</strong> on every platform — MongoDB is bundled to be READ
+during a migration, and is not what WeKan runs on — so each of these is a bug.</p>
+<p><strong>A database nothing could open.</strong> A MongoDB server starts only on data whose
+<code>featureCompatibilityVersion</code> is at most one major behind it, so the readers
+covered FCV 6.0/7.0 (mongod 7), 4.0/4.2 (mongod 4.2) and 3.x (the 3.2 tools) —
+and <strong>nothing</strong> covered 4.4 or 5.0. That is not a hypothetical rung: the WeKan
+snap shipped MongoDB 5 in February 2023 and 6.0.6 only in May, so a site that
+stayed on it has 5.0 files, and every reader refused them. Those instances got
+<code>.mongodb-data-too-old</code> and an explanatory page while their boards sat in a
+database nobody could read. <code>mongod 5.0</code> is bundled now, as a fourth read-only
+reader, tried between 7 and 4.2 — and through <code>cpu-exec</code>, because MongoDB 5.0
+requires AVX on x86_64 and a CPU without it should read the database under
+emulation rather than die on a SIGILL.</p>
+<p><strong>“WeKan changed to old MongoDB data.”</strong> When the migrated FerretDB copy had
+fallen behind the MongoDB beside it, the snap answered by switching itself to
+<code>database=mongodb</code>. That is the mail this came from: the site is put back on
+the database the snap is migrating away from — and when the detector guessed
+wrong (<a href="https://github.com/wekan/wekan/issues/6583">#6583</a>), onto a copy that
+was weeks behind. The repair is the <strong>merge</strong>, not the switch: the documents
+MongoDB has and FerretDB does not are copied into FerretDB — inserting what is
+missing, overwriting nothing — and WeKan carries on there. WeKan’s history is
+append-only, so the work done on MongoDB after the migration lands in the card
+History instead of a database nobody opens. Switching to MongoDB is now only
+the fallback for when the merge cannot run, because serving a copy that is
+behind is exactly the complaint.</p>
+<p><strong>A failed migration that never tried again.</strong> A failure set <code>migrate=off</code> so
+it would not loop, and nothing ever set it back on. The snap stayed on MongoDB
+until an admin read <code>snap logs</code> and typed a command, and most never do. A
+failure is recorded now — how many attempts, when, and which snap revision —
+and retried by itself: <strong>immediately after the next snap refresh</strong>, since the
+next release is the most likely thing to have fixed it, and otherwise after a
+wait that doubles from an hour up to a day. The same record replaces
+<code>migrate=off</code> on the unreadable-database path, which is what makes this
+release’s 5.0 reader reach the instances that were already given up on.
+<code>snap set wekan migrate=off</code> still stops it completely — an admin saying “not
+now” is a decision, not a failure.</p>
+<p>None of this deletes anything: the MongoDB data stays in <code>$SNAP_COMMON</code> and a
+<code>snap set wekan database=mongodb</code> is still the way back.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bb76e7bf1">There is no database setting on the snap any more, and nothing to type</a>. Thanks to xet7.</summary>
+<p><code>snap set wekan database=mongodb|ferretdb</code> is <strong>removed</strong>, and so is
+<code>snap run wekan.database</code>. WeKan runs on <strong>FerretDB</strong> — every platform, every
+install — and MongoDB is in the amd64/arm64 snaps to be <strong>read</strong> while a
+migration is owed, not to be run on.</p>
+<p>A setting could say something the data did not support, and each way it could
+was a report:</p>
+<ul>
+<li>set to <code>mongodb</code>, it kept a site on the database the snap migrates away from,
+for good, because nothing ever set it back — including the instances a failed
+migration or a wrong staleness guess had put there;</li>
+<li>set to <code>ferretdb</code> with no FerretDB present, it would have served an empty
+site, so the guard against that had to exist anyway;</li>
+<li>and every script had its own copy of “which database is this, then”.</li>
+</ul>
+<p><code>snap-src/bin/database-role</code> replaced it: one helper, asked by <code>wekan-control</code>,
+<code>mongodb-control</code>, <code>ferretdb-control</code>, <code>migration-pending</code>, <code>attachment-repair</code>
+and the configure hook, that answers from the data — is there a FerretDB with
+something in it, and has the migration that fills it finished? An interrupted
+migration is told from a finished one by the importer’s own checkpoint, so a
+partial FerretDB resumes and a finished one whose marker went missing is not
+migrated over again (<a href="https://github.com/wekan/wekan/issues/6585">#6585</a>). A
+snap that still carries the old setting is told once that it is ignored, and it
+is unset.</p>
+<p>The <strong>explanatory page</strong> stopped being a dead end too. When the MongoDB files
+cannot be read by this snap but a FerretDB copy is there, that copy is now
+<strong>served</strong> instead of the page — older beats unreadable — and the page’s first
+instruction, which used to be a command to type, says so. The rest of it now
+opens with the fact that the snap keeps trying by itself.</p>
+<p><a href="https://github.com/wekan/wekan/blob/main/docs/Platforms/FOSS/Container/Snap/Migration-to-FerretDB.md">Migration-to-FerretDB.md</a>
+is the whole design in one page: what moves (all text data to SQLite,
+CollectionFS <strong>and</strong> Meteor-Files attachments to the filesystem, the card
+History with it), which MongoDB versions can be read, when it runs, what happens
+when it fails, and how two copies are reconciled. The Admin Panel, Snap and
+CPU-platform docs point at it instead of describing a setting that is gone.</p>
+</details>
+<p><strong>The release workflow</strong> - what it needs to be there before it runs.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e533829f5">Only the wekan Docker image is published; the two variant names are commented out</a>. Thanks to xet7.</summary>
+<p><code>wekan-ondra</code> and <code>wekan-gantt-gpl</code> are <strong>snap</strong> names — they exist because a
+snap name cannot be changed once people have it installed — and as Docker images
+they were only ever a second name for the same image. The release tagged them on
+all three registries for two versions; it does not any more, and
+<code>docker pull wekanteam/wekan</code> (or <code>quay.io/wekan/wekan</code>, or
+<code>ghcr.io/wekan/wekan</code>) is the image, as it always was.</p>
+<p>Six extra repositories across three registries, each with its own visibility and
+its own push permission, is six new ways for a release to fail in order to
+publish a copy of something already published — and v10.88 failed exactly that
+way, an hour into an emulated build:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ERROR: failed to push quay.io/wekan/wekan-ondra:v10.88:</span></span>
+<span class="line"><span>  unauthorized: access to the requested resource is not authorized</span></span></code></pre>
+<p>Quay grants push per repository and that repository had just been created by the
+release itself.</p>
+<p>The <code>-t</code> lines are <strong>commented out, not deleted</strong>, with what it would cost to
+uncomment them written beside them — a line that vanishes is a line somebody
+re-adds next year — and the same for the names in the two verification loops and
+the push preflight. The manual
+<a href="https://github.com/wekan/wekan/blob/main/.github/workflows/docker-variant.yml"><code>docker-variant.yml</code></a>
+stays for publishing one out of band; it is <code>workflow_dispatch</code> only and no
+release calls it.</p>
+<p>Nothing is deleted from any registry: <code>ghcr.io/wekan/wekan-ondra</code> up to v6.99.2,
+<code>quay.io/wekan/wekan-gantt-gpl</code> to v4.41 and <code>wekanteam/wekan-gantt-gpl</code> to
+v5.62 keep working for whoever pinned them. They stop gaining versions. The
+<strong>snaps</strong> keep both names and are still built and published, which is the point
+of having them.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/18b881262">A path that stops resolving when the step changes directory, and the last bare downloads</a>. Thanks to xet7.</summary>
+<p>The v10.89 run failed four more jobs, all of them the same two mistakes one step
+further along.</p>
+<p><strong>The Windows jobs.</strong> They check this repository out to <code>path: src</code>, so the
+scripts were addressed as <code>src/releases/…</code> — correct until the bcrypt step does
+<code>pushd "$TMP"</code>, after which a relative path resolves against a temp directory:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>bash: src/releases/npm-retry.sh: No such file or directory</span></span></code></pre>
+<p>The location is fixed now BEFORE anything moves — <code>SRC="$PWD/src"</code> at the top of
+the step, then <code>"$SRC/releases/…"</code> — in all eighteen blocks that need it, and
+the same for the UCS job’s <code>univention/</code>.</p>
+<p><strong>The downloads that are not in a workflow.</strong> <code>snapcraft.yaml</code> builds the snap
+in its own container, and <code>sandstorm-src/build-deps.sh</code> runs on the runner; both
+still used a bare <code>curl</code>, and github.com’s 503s took them out:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>:: curl: (56) Connection died, tried 5 times before giving up</span></span>
+<span class="line"><span>:: caddy: no linux/arm64 archive in Caddy 2.11.4 - nothing left to try.</span></span>
+<span class="line"><span>==> [4/7] FerretDB v1 (amd64) at deps root</span></span>
+<span class="line"><span>curl: (56) Connection died, tried 5 times before giving up</span></span></code></pre>
+<p>Both go through <code>releases/fetch.sh</code> now — the snap parts reach it through
+<code>CRAFT_PROJECT_DIR</code>, since snapcraft mounts the project into the build — so the
+caddy, MongoDB, mongod 4.2/5.0 and OpenSSL downloads, the meteor-spk and Node.js
+tarballs and the FerretDB binary all wait an outage out. The Caddy version
+lookup stays a plain <code>curl</code>: when it fails the pinned version is used, which
+is what it is for. <code>curl https://install.sandstorm.io | sudo bash</code> became a download and a
+run, because a pipe cannot be retried.</p>
+<p><code>tests/workflowRepoScripts.test.cjs</code> grew the two checks that would have caught
+these: a repo-script path that is relative in a step which changes directory,
+and a bare download in the snap build or the Sandstorm deps.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bdacff80e">A release script the job cannot see, and an hour of build thrown away at the push</a>. Thanks to xet7.</summary>
+<p>The v10.88 run lost seven jobs to two mistakes of the same kind: a step that
+needs something and does not check whether it is there.</p>
+<p><strong>The scripts were not on disk yet.</strong> Moving the downloads and the package
+installs behind <code>releases/fetch.sh</code> and <code>releases/apt-install.sh</code> turned steps
+that needed nothing into steps that need this repository:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>bash: /home/runner/work/wekan/wekan/releases/apt-install.sh:</span></span>
+<span class="line"><span>        No such file or directory</span></span>
+<span class="line"><span>bash: D:\a\wekan\wekan/releases/npm-retry.sh: No such file or directory</span></span></code></pre>
+<p>The first is <code>build-extra-arches</code>, where “Install dependencies” was the FIRST
+step of the job, before <code>actions/checkout</code> — fine while it was a plain
+<code>apt-get</code>. The second is the Windows jobs, which check this repository out to
+<code>path: src</code>, so <code>$GITHUB_WORKSPACE/releases</code> is a directory that does not exist
+there; they already called the other scripts as <code>src/releases/…</code>. The same two
+shapes were in the Flatpak job (no checkout at all), Release All Missing’s
+extra-arches and its charts job (<code>path: wekan</code>), and the UCS job
+(<code>path: univention</code>).</p>
+<p><code>tests/workflowRepoScripts.test.cjs</code> now reads every workflow and reports a step
+that runs <code>releases/…</code> before its job checks out, or through a prefix that does
+not match where that job put the repository. It also checks that every script a
+workflow names exists here.</p>
+<p><strong>And the push that was never going to work.</strong> The docker job built every
+architecture, emulated, for the best part of an hour, and threw it all away on
+the last line:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ERROR: failed to push quay.io/wekan/wekan-ondra:v10.88:</span></span>
+<span class="line"><span>  unauthorized: access to the requested resource is not authorized</span></span></code></pre>
+<p>The credentials were fine — the login check passed. Quay grants push <strong>per
+repository</strong>, and <code>wekan-ondra</code> had just been created, so the account that
+pushes <code>wekan</code> and <code>wekan-gantt-gpl</code> had no rights on it. A registry will say
+whether it would grant a push token in one request, so the job now asks — for
+all nine images, before building anything — and fails in seconds with what to
+change, naming the per-repository setting. A registry that does not answer is a
+warning: that is the network, not the rights.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v10.89" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>

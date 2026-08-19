@@ -1,0 +1,943 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v10.98 release notes | WinterFlow.io</title><meta name="description" content="v10.98 fixes a critical account lockout security flaw (JamBleed), reworks login security with per-address tracking, improves Admin Panel problem…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v10.98/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v10.98 release notes | WinterFlow.io"><meta property="og:description" content="v10.98 fixes a critical account lockout security flaw (JamBleed), reworks login security with per-address tracking, improves Admin Panel problem…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v10.98/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v10.98 release notes | WinterFlow.io"><meta name="twitter:description" content="v10.98 fixes a critical account lockout security flaw (JamBleed), reworks login security with per-address tracking, improves Admin Panel problem…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v10.98","item":"https://winterflow.io/catalog/wekan/releases/v10.98/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.ub2yUpbM.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,046 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (208)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v10.98</h2> <span class="text-sm text-gray-500">2026-08-16</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>eae1f0a8f73bfc97…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>14b342e71204f811…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>bdc50caee3ac2849…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>01443c1e1a29e531…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>f7f050207e656d65…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>b55350f3071b765a…</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>34f5f553dcd2bff3…</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv6">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>128ded0cda638c1f…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>f7f050207e656d65…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>8dbe0a9aa8550ad5…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>515b1189b4c7d58f…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>3b0b3bbfe27daf58…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>cb14ffe93e285903…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>3f1cf157479c1480…</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>d97dfa9afa60aa05…</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>d35e95230f46f6f0…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>481d36a80ec73673…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>c510c6ce12f07010…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>4b43f86eb0f3fa0b…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>cd1f14af28121480…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>fe74e03894b84897…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>a4792e65962ffa0a…</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>f1186c310a4dd144…</code></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-arm64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>8502f4a50b458d4c…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.53.0</td><td>verified</td><td><code>c6dad7bc8ad56f47…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>57f71ab3652e797d…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1098-2026-08-16-wekan--release">v10.98 2026-08-16 WeKan ® release</h1>
+<p><strong>In short:</strong> one <strong>CRITICAL</strong> fix, and the whole of <strong>logging in</strong> reworked
+around it. WeKan’s brute-force lockout counted an attacker’s failed logins
+against the <strong>victim’s account</strong> rather than against the address they came from,
+so anyone who knew a username could lock its owner out from every address,
+repeatably — and a <strong>correct password was refused</strong> while the lock held, and
+counted as another failure. Usernames are public, so any account was a target
+and an administrator was as easy to lock out as anyone else. Reported by daniais
+as <strong>JamBleed</strong>. Two GitHub CodeQL alerts on one line of release tooling go with
+it. Around that fix: <strong>increasing delays</strong> after a wrong password, per source
+address rather than per account; a record of <strong>who logs in from where</strong>, both
+directions, which is what the new <strong>Problems / Offices</strong> pane groups into the
+offices an admin recognises — “London”, with the flag, rather than
+<code>100.100.100.100</code>; and the reason it exists, which is that blocking an ADDRESS
+would take a whole office off WeKan at once, so WeKan blocks the account.
+<strong>Admin Panel / Problems</strong> now keeps ONE summary row per problem — a count, a
+window, and who tried it how often — instead of a document per event that grew
+with the attack it was recording, and gains an <strong>API</strong> pane answering the
+opposite question: not what went wrong, but who called which REST endpoint and
+how often. Then: v10.97 shipped a bundle that could not
+start, the third release in a row stopped by the same habit. Trimming what a
+bundle carries is measured by a graph of what the server can reach, and that
+graph read <code>require()</code> only. Meteor compiles an ESM import to <code>module.link()</code>,
+so <strong>every ESM import in every Meteor package was invisible to it</strong>: it called
+live code dead, and the bundle shipped without <code>nodemailer-openpgp</code>, which
+<code>packages/email.js</code> links on its first tick. The reachable count goes from 211
+to 450 with the fix — the measurement was wrong rather than merely optimistic —
+and the category it justified is withdrawn: <strong>61.3 MiB becomes 40.0 MiB</strong>. What
+changes beyond that one fault is the check: a release now has to <strong>start the
+bundle it built</strong> and see it reach its database before it may carry it.
+That fix had a cost nobody saw for a day: its package loaded on the CLIENT
+too, so <code>require('crypto')</code> reached the browser bundle and <strong>every page died
+on load</strong> with <code>Cannot find module 'stream'</code> — fixed here, and the whole class
+is now guarded. <strong>CHANGELOG.md</strong> is 2.5 MB lighter of history, keeping the
+current MONTH while older months and years move to <code>old-CHANGELOG/</code>. And
+<strong>Build WeKan release bundle</strong> is a menu entry now, building what a release
+would publish rather than
+a plain <code>meteor build</code> — so “does it start at all” no longer takes a release to
+answer. Below that: the Sandstorm pack that was throwing its own trim away,
+Admin Panel / People showing who is locked again, a location in an admin table
+opening a map through the card’s own chooser, the Problems route and template
+finally called what the menu calls them, and the documentation refiled to match
+the menu — including <code>Directory-Structure.md</code>, which had been describing the
+tree as it was in 2017.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>eae1f0a8f73bfc979738bfff7284d40fd1bc55de2cc56514721fc155c3624f7d</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>bdc50caee3ac28495b42d2130b94a042a9dd6d3a38f732cac02b648f36c891da</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>cb14ffe93e285903e5a8a9c1821687ddb5b8a979a11c584bf4af534b272c6d3e</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-x64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>d97dfa9afa60aa05f25384327de82efe7b71d958ed24c1f66618284294a65cd3</code></td></tr></tbody></table>
+<p>This release fixes the following CRITICAL SECURITY ISSUE of <a href="https://wekan.fi/hall-of-fame/jambleed/">JamBleed</a>:</p>
+<p><strong>Logging in</strong> - who the brute-force lockout is protecting, and from whom.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/78478c39d">JamBleed: the account lockout counted an attacker's failures against the victim</a>. Thanks to daniais and xet7.</summary>
+<p><code>wekan-accounts-lockout</code> kept ONE counter per user —
+<code>services.accounts-lockout.failedAttempts</code> — with no notion of where the
+attempts came from. Any unauthenticated attacker who knew a username could spend
+three wrong passwords and lock that account out <strong>from every address</strong>,
+repeatably, for as long as they cared to keep going. Usernames are public in
+normal WeKan use — board and card members are listed — so choosing a target was
+trivial, and an administrator was as easy to lock out as anyone else. Reproduced
+on v10.91:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  attacker, address A : Incorrect / Incorrect / Too many attempts</span></span>
+<span class="line"><span>  victim,   address B : (correct password) Too many attempts</span></span></code></pre>
+<p>Affected from <strong>v10.59</strong>, and not before, for a reason worth keeping in view.
+The flat counter is much older, but until the LockoutBleed fix
+(<a href="https://github.com/wekan/wekan/security/advisories/GHSA-2g94-9x3m-hv37">GHSA-2g94-9x3m-hv37</a>)
+the hooks gated on English error strings that Meteor’s <code>ambiguousErrorMessages</code>
+had already rewritten, so the counter never moved and no account ever locked.
+Making the lockout WORK is what made this reachable — a fix that turns on a
+mechanism inherits whatever that mechanism gets wrong.</p>
+<p><strong>Two faults, and the second is the one that hurts:</strong></p>
+<ul>
+<li>the counter was global, so an attacker’s failures were charged to the victim’s
+account rather than to the attacker’s address;</li>
+<li>a <strong>correct password was refused</strong> while the lock held, and counted as a
+further failure on the way. The old code allowed an attempt only when there was
+no error AND no lock, so the owner typing the right password fell through to
+the same throw as the attacker.</li>
+</ul>
+<p>Both are fixed in the decision itself, now a pure module. The counter is per
+(user, source address): the address comes from <code>X-Forwarded-For</code> under
+<code>HTTP_FORWARDED_COUNT</code>, the same rule <code>server/lib/loginAttemptThrottle.js</code> uses
+so a lockout and a throttle cannot disagree about who somebody is, and only the
+position <code>hops</code> from the right is read, so a forged header cannot pick its own
+bucket. The key is a SHA-256 prefix — an IPv4 address is all dots and cannot be
+a Mongo field name, and a locked account should not carry a list of the
+addresses that attacked it.</p>
+<p>A correct password is allowed FIRST, before anything reads the lock, and clears
+the state behind it — including the pre-fix flat fields, so an account left
+locked by the old counter is freed by its owner’s next correct login rather than
+by a wait with no visible end. Hammering during a lock no longer extends it
+either, or the denial of service returns inside the mechanism meant to stop it.</p>
+<p>The three methods that wrote the flat counter are removed rather than left
+unreachable. A lockout firing is now recorded and shows in <strong>Admin Panel →
+Problems</strong> — on the lock only, not on every refused attempt during one, or an
+attacker could fill that page by holding down a key.
+<code>tests/lockoutPerSourceAddress.test.cjs</code> is 19 tests, driving the decision as
+arithmetic rather than through a server: the reported attack, the correct
+password during a lock, that the lock still fires and still expires, the
+forwarded-header rules, that malformed state reads as <em>nothing yet</em> rather than
+throwing — a lockout that threw on an unexpected document would lock everybody
+out of a database that had one — and that <strong>every</strong> construction of
+<code>AccountsLockout</code> passes the reporter, since there are two and a reload that
+dropped it would stop recording attempts while the guard kept working.</p>
+</details>
+<p>and fixes the following SECURITY ISSUES found by GitHub CodeQL code scanning:</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/78478c39d">The release version is no longer built into a regular expression</a>. Thanks to xet7.</summary>
+<p>Two alerts on one line of <code>releases/changelog-open-next.mjs</code>, and both were
+right:</p>
+<ul>
+<li><strong>#433, <code>js/incomplete-sanitization</code></strong> — <code>version.replace(/\./g, '\\.')</code>
+escapes dots and not backslashes, which is the classic half-escape: a version
+containing a backslash would have escaped the backslash and left the next
+character bare.</li>
+<li><strong>#432, <code>js/regex-injection</code></strong> — the version is an argv value, so it reached
+<code>new RegExp</code> as a pattern.</li>
+</ul>
+<p>Neither is exploitable with a version <code>release-all.sh</code> computed from the
+CHANGELOG, and the script is release tooling rather than anything a user
+reaches. But the fix worth making is the one that removes the question instead
+of answering it, which is CodeQL’s own first recommendation: design so that
+sanitization is not needed. The heading is found with <code>startsWith</code> on the exact
+text now, so there is no pattern to escape and nothing to inject into, and a
+guard fails if a <code>RegExp</code> is built there again.</p>
+<p>Shipped in the same commit as the JamBleed fix above.</p>
+</details>
+<p>and adds the following new features:</p>
+<p><strong>Logging in</strong> - what happens between a wrong password and the next attempt.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9476cdc0f">Increasing delays after a wrong password, per source address</a>. Thanks to xet7.</summary>
+<p>Checked before any of it was written, because a second mechanism beside an
+existing one is worse than no mechanism: the DDP login already has
+<code>wekan-accounts-lockout</code>, the REST login has
+<code>server/lib/loginAttemptThrottle.js</code> per address, and
+<code>server/lib/loginTimingDefense.js</code> equalises timing so a missing user cannot be
+told from a wrong password. Nothing anywhere did increasing delays. So this
+extends the lockout decision rather than adding a rival to it.</p>
+<p>The lockout on its own is a STEP FUNCTION: two failures cost nothing, the third
+costs sixty seconds. A guesser spends the free attempts of every window and
+waits, and somebody who mistyped their password gets no sign they are one
+attempt from being locked out. A delay that GROWS - 1s, 2s, 4s, 8s, capped -
+costs a guesser far more than it costs a person, and it degrades instead of
+slamming shut: the account is never unavailable, only slower to try again.</p>
+<p>It is per (user, source address), like the counter it sits beside and for the
+same reason - an attacker must not be able to slow down the account’s owner -
+and a <strong>correct password is still allowed immediately</strong>, delay or no delay.
+Somebody who did not have to guess has proved they are not who this is for. An
+attempt refused as too early is not counted, either: letting it count would let
+an attacker lock an address out FASTER by trying faster.</p>
+</details>
+<p><strong>Admin Panel / Problems</strong> - what the page records, and what it shows.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/3d08c65bb">One summary row per problem, with who tried it and how often</a>. Thanks to xet7.</summary>
+<p>A guard on a path an attacker controls fires as fast as they can send. One
+document per event meant the database grew WITH the attack, the Problems page
+became a scroll of near-identical lines, and the one event that mattered was
+buried under ten thousand that did not. The admin’s question is never “list
+every attempt” - it is what is happening, how much, since when, and who.</p>
+<p>So each problem is ONE row that accumulates: a <code>count</code>, the <code>firstAt … at</code>
+window it covers, and the actors, each with a count of their own — <code>username1 25, 100.100.100.100 30</code>. The actor list is capped with an overflow count, so an
+attacker rotating addresses cannot turn the summary back into the log it
+replaced.</p>
+<p>Existing per-event rows are folded into their summary on read, so an instance
+upgrading does not lose what it recorded, and does not keep paying for it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d8d1863db">Who logs in from where, with each account as its initials or avatar</a>. Thanks to xet7.</summary>
+<p>Checked first, and reused rather than rewritten: the REST throttle and the
+lockout each already resolve a client address, <code>models/users.js</code> has
+<code>getInitials()</code> and <code>profile.avatarUrl</code>, the board sidebar and cards show
+members through <code>+userAvatar</code> / <code>+userAvatarInitials</code>, <code>cardDetails.js</code> builds
+“open in map” links for a dozen providers, and the Admin Panel tables already
+had an edit-user handler and a <code>userId</code> column. Only reading a location from CDN
+headers is new.</p>
+<p>One successful login writes a tally in BOTH directions - which addresses this
+account uses, and which accounts use this address - because the second is what
+says an address is an office, a VPN or a carrier’s NAT rather than one person.
+Both are capped with an overflow count.</p>
+<p>The location comes from a header something in front of WeKan already set
+(Cloudflare, Fastly, CloudFront, Vercel, Google Cloud, or a hand-configured
+proxy). WeKan geolocates nothing itself: no database to ship, no lookup of a
+user’s address against a third party. And because anything a client can send it
+can forge, a location is <strong>display only</strong> - a name beside an address and a map
+link, never a decision. Nothing blocks, allows or rate-limits on the strength of
+one.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/961ff6cb4">Problems / Offices groups those logins into the places they come from</a>. Thanks to xet7.</summary>
+<p>A pane at <code>/admin/problems/office</code>, through the shared table page every other
+report here uses (<a href="docs/Features/Page/Table.md">Table.md</a>) - same layout, same
+search, same paginator - so it needed no design of its own.</p>
+<p>The columns are what an admin actually asks. <strong>Location</strong>: the country flag and
+the city, “London” rather than <code>100.100.100.100</code>, so somebody recognises their
+own offices at a glance and the flag says WHICH London; empty when nothing
+resolved it. <strong>Address</strong>: the IPv4 or IPv6 it really is. <strong>People</strong>: each
+account as its initials, or its avatar where it has one, with its own login
+count beside it - the same way the board sidebar shows members, and clicking one
+opens the same edit-user popup as everywhere else. <strong>Logins</strong> and the window
+they fall in.</p>
+<p>WHY IT EXISTS AT ALL: an address that many accounts log in from is an office,
+and anything that reacted to a security event by blocking the ADDRESS would take
+all of them off WeKan at once - the admin would see “one address blocked” rather
+than “eighty people locked out”. WeKan blocks the ACCOUNT that caused the event.
+This pane is what lets an admin see the shape of their own users, and what would
+make an address-level action visibly reckless if one were ever proposed.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6dc2651b4">Problems / API: who called which endpoint, and how often</a>. Thanks to xet7.</summary>
+<p>Every other pane under Problems answers what went WRONG. This one answers what
+is being DONE: <code>POST /api/boards</code> called 34 times by alice last month, 812 times
+yesterday by nobody with an account. Without it the only record of REST API use
+is whatever the reverse proxy happens to keep, and most instances keep none. The
+table is username, endpoint, calls, the window they fall in and the addresses,
+sorted by calls - a usage report’s question is <em>what is used most</em>, where a
+problem report’s is <em>what happened last</em>.</p>
+<p><strong>The name is the route pattern, not the path.</strong> <code>/api/boards/:boardId/lists</code> is
+one endpoint; <code>/api/boards/abc123/lists</code> and ten thousand of its siblings are
+that one endpoint being used. Naming rows after paths would put a row per board
+in the collection - the one-row-per-event cost this page exists to remove - and
+a request that matched NO route is counted under a single <code>(no route)</code> name
+rather than under the path it invented, because a 404 sweep is an attacker
+walking a wordlist and a row per guess would let them fill the database.</p>
+<p><strong>One row per account and endpoint</strong>, which makes the account part of a row’s
+identity - the one deliberate exception to the rule every other stream follows.
+There the question is “what is happening” and the caller would multiply the
+rows; here “who called what” IS the report, and the cardinality is bounded by
+real accounts times real endpoints. The account is stored by ID, so a rename
+does not split its history in two.</p>
+<p><strong>Nothing per request.</strong> Ordinary API traffic is not rare the way a guard firing
+is rare, so calls are counted in memory and folded on a timer - a thousand
+requests become one write. Counting hooks the middleware chain rather than the
+routes, so a route cannot be added without being counted. The pane is the shared
+event-stream report with a different column list, not a second table page, and
+the api stream is deliberately not one of the “problem” streams: an instance
+serving its API would otherwise report thousands of new problems.</p>
+<p>Also fixed while there: the summary rows have had <code>ipv4</code> and <code>ipv6</code> fields since
+the summaries were written, and <strong>not one of the four loggers ever filled
+them</strong>, so the two columns the design asked for could not have
+worked. The fold splits
+the address now, once, for every stream, and both reports use one shared pair of
+columns that falls back to classifying the stored <code>ip</code> - so rows written before
+today display correctly instead of showing two empty columns for all of history.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ebe985d45">A location in an Admin Panel table opens a map, through the card's own chooser</a>. Thanks to xet7.</summary>
+<p>Offices names the places accounts log in from - “London”, with the country’s
+flag - and a name is only useful if it leads somewhere. Clicking one now asks
+which map to open it at, from the same eleven providers a card’s location
+offers.</p>
+<p><strong>The same chooser, not a second one.</strong> The provider list was eleven options
+inside <code>cardDetails.jade</code>; it is one template both callers include now, with its
+helper and its styles, because two lists would be eleven places to add a
+provider to instead of one and they would disagree the first time only one was
+edited. What the two do NOT share is the rest: a card’s popup EDITS a location,
+and an office’s arrived in a CDN header - WeKan did not ask for it and cannot
+correct it.</p>
+<p>A cell is a link only when the row HAS coordinates: a city name is not a
+position, and a map URL built from one would either search for the word or
+invent a place. The link follows the selection before it is saved, because
+choosing a provider and finding the link still pointing at the old one reads as
+broken.</p>
+<p>The handler lives on the shared table page rather than on the report - which is
+also where “clicking a user opens the Edit user popup” went, from the three
+identical copies each report had written for itself.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>Logging in</strong> - and what the lockout was costing everybody else.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5ce9f181c">The lockout package is server-only: it was breaking every page in the browser</a>. Thanks to xet7.</summary>
+<p>The JamBleed fix above hashes the source address of a login attempt with
+<code>require('crypto')</code>, and its package declared
+<code>api.mainModule('accounts-lockout.js')</code> with <strong>no architecture</strong> — which loads
+it into the CLIENT as well as the server.
+So the browser bundle pulled in crypto-browserify, which pulls in cipher-base,
+which does <code>require('stream')</code>, and the page died on load:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  Uncaught Error: Cannot find module 'stream'</span></span></code></pre>
+<p>before WeKan drew anything at all. The server started perfectly and answered
+HTTP 200 with a page that could not run.</p>
+<p>It is server-only now, which it always should have been: nothing in <code>client/</code>
+imports it, and shipping a brute-force lockout’s decision to the browser would
+hand an attacker the rules even if it cost nothing. A rebuilt client bundle is
+<strong>758 KB smaller</strong> and contains neither crypto-browserify nor cipher-base.</p>
+<p><strong>Why nothing caught it.</strong> <code>bundle-smoke-boot.sh</code> starts the bundle and waits
+for it to reach its database, which proves the SERVER image loads — every
+package linked, every map read. This was the client, and no check looked there.
+Both crashes that check was written for were server-side, so it answered the
+question it was asked and the question next door went unasked.</p>
+<p><code>tests/packagesLoadOnTheRightArch.test.cjs</code> pins the class rather than the one
+package: it reads each <code>package.js</code> for the entry files NOT restricted to the
+server, follows their imports, and fails when any requires a Node builtin — and
+does the same for every file under <code>client/</code>. Verified to fail on the real
+fault. Meteor’s default being <em>both</em> architectures is what makes this silent:
+the code works, the tests pass, and the cost lands in a browser bundle nobody
+reads.</p>
+</details>
+<p><strong>Bundles and images</strong> - what a build carries, and what it can start without.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/71ff74c6d">The reachability graph must read Meteor's module.link, not only require()</a>. Thanks to Heart1010 and xet7.</summary>
+<p>Reported as <a href="https://github.com/wekan/wekan/issues/6602">#6602</a>: a Docker
+instance upgraded from v10.91 to v10.97 would not come up at all. The entry
+above shipped in a bundle that crash-looped:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  Error: Cannot find module ".../nodemailer-openpgp/lib/nodemailer-openpgp.js"</span></span>
+<span class="line"><span>    at packages/email.js:347</span></span></code></pre>
+<p><code>packages/email.js</code> does not <code>require()</code> that package. Meteor compiles an ESM
+import to its own linker call:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  module.link('nodemailer-openpgp',{openpgpEncrypt(v){openpgpEncrypt=v}},6);</span></span></code></pre>
+<p>and the scanner only ever looked for <code>require()</code>. So it missed every ESM import
+in every Meteor package — which is most of them — and reported live code as
+dead. The reachable count goes from 211 to 450 with the fix: the measurement was
+badly wrong, not marginally. Four forms count now: <code>require()</code>, <code>module.link()</code>,
+<code>module.watch(require())</code> and <code>module.dynamicImport()</code>.</p>
+<p><strong>The safety worked, which is the one good part.</strong> With the corrected graph the
+policy still named <code>openpgp</code>, the graph VETOED it, and the tool refused and said
+so rather than deleting it. That entry is removed outright now rather than left
+to be vetoed every run — the reason is what grants the permission, and this
+reason was never true.</p>
+<p><strong>And the check that was missing both times.</strong> v10.96 died on a source map
+deleted but not un-named; this died on a linked module. Both were reasoned about
+by reading the code, and reading the code is how both mistakes were made. So
+<code>releases/bundle-smoke-boot.sh</code> starts the bundle with a database address that
+cannot answer and requires it to get as far as trying to reach it — which proves
+the whole server image loaded, because the database is the first thing WeKan
+needs that the check does not provide. The amd64 build runs it after the trim
+and the prunes, and every other architecture’s bundle derives from that one.</p>
+<p>It is verified against both real failures — a bundle with <code>nodemailer-openpgp</code>
+removed, and a manifest naming maps that are not there — and each fails with its
+own diagnosis, because the fix for each is a different one. A bundle that exits
+quietly or hangs is not a pass either: a smoke test whose failure mode is
+passing when it learned nothing is worth less than none.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/efa25f78d">Sandstorm packs the trimmed trees, instead of rebuilding them first</a>. Thanks to xet7.</summary>
+<p>v10.98’s log shows the trim doing exactly what it was meant to, and then being
+thrown away:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  --- .meteor-spk/bundle: 856M total        (first pack, fails)</span></span>
+<span class="line"><span>  bundle-trim: removed 5236 files, 355 MiB</span></span>
+<span class="line"><span>  prune-unreachable-npm: removed 28 package(s), 49.9 MiB</span></span>
+<span class="line"><span>  --- .meteor-spk/bundle: 424M total        (424M + 336M deps = 760M, under 1 GiB)</span></span>
+<span class="line"><span>  Building Meteor app...                    &#x3C;- pack rebuilds it</span></span>
+<span class="line"><span>  App exceeds uncompressed size limit of 1 GiB</span></span></code></pre>
+<p><code>meteor-spk pack</code> runs the Meteor build first, so the retry regenerated the
+bundle and packed the untrimmed one - 405 MiB of trimming discarded between the
+measurement and the pack. Sandstorm’s own <code>spk pack</code> only packs what is there,
+so the retry prefers it and falls back to <code>meteor-spk</code> when it is not installed.</p>
+<p>A comment in the retry claimed pack REUSED the bundle. It did not, and the log
+above is what disproved it.</p>
+</details>
+<p><strong>The CHANGELOG and its tooling</strong> - a file that grew faster than it was read.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/43341fc75">Releases are frequent, so the CHANGELOG tooling stops assuming they are rare</a>. Thanks to xet7.</summary>
+<p>The maintenance loop here is <code>build.sh</code> option 1 (git pull + git push) and
+<code>releases/release-all.sh</code> with no arguments, several times a day when a fault is
+being chased. A release landing in the middle of a piece of work is the normal
+case, not a special one — and <code>release-all.sh</code> renamed
+<code># Upcoming WeKan ® release</code> to <code># v&#x3C;NEW> …</code> and left nothing behind, so the
+next entry written had nowhere correct to go. It landed above the closing
+<code>Thanks to above GitHub users …</code> line, which is now INSIDE the release just
+published.</p>
+<p>v10.96 and v10.97 both ended up that way. The second was worse than misplaced:
+an entry already published was EDITED afterwards, so the notes described a
+smaller, tidier change than the one that shipped — and the one that shipped was
+the one that stopped the bundle starting.</p>
+<p><code>releases/changelog-open-next.mjs</code> opens the next section as soon as a release
+is named, carrying the <code>**In short:**</code> placeholder and the binaries table the
+format guard requires, so the file is valid the moment <code>release-all.sh</code>
+finishes. Re-running it is a no-op, since <code>release-all.sh</code> can be run again
+after a failure. The format guard now allows an Upcoming that is empty AND still
+carries the placeholder — and fails one that has entries and still carries it,
+because that is a summary nobody replaced.</p>
+<p><code>tests/changelogEntriesBelongToTheirRelease.test.cjs</code> is the check that the home
+was used: git knows which commits a release contains, so an entry linking a
+commit that is not an ancestor of its release is in the wrong section. Scoped to
+the newest three releases on purpose — over the whole file it flags 83 entries
+back to v2.99, from old release practices and history rewrites, and a guard
+reporting 83 things nobody will act on is a guard people learn to skip.</p>
+<p><code>CLAUDE.md</code> says all of this where the release instructions are, including the
+rule the second mistake broke: a released section is a record, not a draft.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7fa8ba12e">CHANGELOG.md keeps the current year, and older years move to old-CHANGELOG/</a>. Thanks to mimZD and xet7.</summary>
+<p>Reported as <a href="https://github.com/wekan/wekan/issues/6580">#6580</a>: the file had
+reached <strong>2.6 MB and 51,365 lines across 1,070 releases</strong> going back to 2015,
+which is slow to open and slower to read on the web.</p>
+<p>The current year stays in <code>CHANGELOG.md</code>; every older year moves out whole to
+<code>old-CHANGELOG/&#x3C;year>.md</code>, with a bullet in <code># Platforms</code> linking each one.
+<strong>798 releases move, 272 stay</strong>, and the file goes from 2.6 MB to 1.9 MB —
+2026 is a big year on its own, because releases here are frequent.</p>
+<p>Nothing is deleted and no entry is rewritten. An archived section reads exactly
+as it did before, for the same reason a released section is never edited in
+place: it is a record. That <code>git blame</code> is less useful on the split file is
+accepted rather than worked around — the history is still in git for anyone who
+wants it, through <code>gitk</code>, <code>git-gui</code> or <code>git log --follow</code>, and being small
+enough to open is worth more.</p>
+<p>Each archive opens with a <strong>count of releases per month</strong>: a
+<code>| 2025 | Releases |</code> table over rows of <code>01</code>, <code>02</code> and so on. <em>How busy was
+2019</em> is the first thing a year file is asked and the last thing 159 collapsed
+sections answer.
+Only months that had releases get a row: a fixed twelve rows would put ten
+zeroes in 2015’s table. The table is regenerated from each file’s own headings
+on every run, so it cannot drift from the sections beneath it, and
+<code>tests/changelogArchive.test.cjs</code> checks the two against each other.</p>
+<p><code>releases/changelog-archive-years.mjs</code> does it, and it is a <strong>January job</strong>: run
+it once when a year turns over. It is idempotent, so a stray run does nothing.
+Cutting by YEAR rather than by a count of releases is what makes a link into the
+archive stable — once a year is over, nothing in it moves again.</p>
+<p>One thing the script had to learn: eleven years of headings do not agree on
+their own wording. Of 1,070, 539 say <em>Wekan release</em>, 524 say <em>WeKan ® release</em>,
+and the rest are one-offs — <em>Sandstorm-only Wekan release</em>, <em>Wekan relase</em>, and
+one that explains it was NOT released. Matching the strict modern form found
+only half of them and silently absorbed the others into the section above, so
+the version and the DATE are what is matched and whatever follows is left alone.
+Verified by counting headings before and after: 1,070 both times, none lost and
+none duplicated.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/cc3201292">And then the current MONTH, because a year of these releases is still 1.9 MB</a>. Thanks to mimZD and xet7.</summary>
+<p>Moving whole years out left 1.9 MB, which was still too large, because releases
+here are FREQUENT: 2026 alone is 272 releases over eight months, and July was 80
+on its own. A year is not a small enough unit when a year is that busy.</p>
+<p>So the cut is by month. <code>CHANGELOG.md</code> holds the current month plus the
+Platforms, TODO Later and Upcoming sections; earlier months of the current year
+go to <code>old-CHANGELOG/&#x3C;year>/&#x3C;MM>.md</code>; years that are over stay one file each,
+because at 30 to 107 KB they are already small and splitting them further would
+trade a size problem for a “which of thirty files is it in” problem.</p>
+<p><strong>2.5 MB becomes 822 KB.</strong> Each archive opens with a table of how many releases
+it holds, per month, so the file says what is in it before a reader scrolls.</p>
+</details>
+<p><strong>Admin Panel / People</strong> - who is locked out, and who can undo it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6e208c615">People shows who is locked again, and why</a>. Thanks to xet7.</summary>
+<p>Moving the lockout counter to one per (user, source address) - the JamBleed fix
+above - broke three readers still looking at the flat field it replaced: the
+People table’s lock icon, its unlock click handler, and the <code>lockedUsers</code>
+methods behind them. Every account would have shown as unlocked, and no admin
+could have unlocked one.</p>
+<p>That is the “and nowhere else” half of the rule this release adds to CLAUDE.md,
+missed on the very next fix. <code>models/lib/accountLockout.js</code> is now the one place
+that knows the shape - locked or not, since when, how many addresses and how
+many failures between them - so the client helper, the click handler and the
+server methods cannot drift apart again, and the negative test fails if anything
+reads the flat field.</p>
+<p>The People row says which ADDRESSES are locked and until when, rather than a
+bare padlock, because “locked” now means something narrower than it used to and
+an admin should not have to guess how much narrower.</p>
+</details>
+<p>and has the following developer-facing changes:</p>
+<p><strong>Admin Panel / Problems</strong> - how a pane knows it is the open one.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/760bd0904">One active pane, instead of eleven booleans saying the same thing</a>. Thanks to xet7.</summary>
+<p>Every pane on the Problems page had a <code>ReactiveVar</code> of its own -
+<code>showSummary</code>, <code>showSecurity</code>, <code>showIntegrity</code> and eight more - on top of
+<code>activeReport</code>, which already held the id of the open pane. Each one could only
+ever mean “activeReport equals my id”, so they were forty-four lines restating
+one value, kept in step by hand: opening a pane reset all eleven and set one.</p>
+<p>That made a pane four wiring points instead of one, and missing any of them
+failed SILENTLY. Filesystem integrity got three of the four - menu entry, setter
+and template branch - and no helper, and in Blaze an undefined helper is not an
+error but a falsy value, so <a href="https://github.com/wekan/wekan/commit/01c36852d">the pane drew a blank
+page</a> while Summary went on
+counting the problems it could not show. The Offices pane added in this release
+had the same hole somewhere else: it set no <code>loading.set(false)</code>, so opening it
+would have spun for ever.</p>
+<p>The template asks <code>else if isPane 'report-integrity'</code> now, against one helper.
+Panes that fetch through a method rather than a subscription are a list, and
+that list is also what fixes Offices. Adding a pane is a menu entry, a branch,
+and one line saying how it loads.</p>
+<p>The guards moved with it. <code>tests/adminPaneHelpers.test.cjs</code>, written when the
+integrity pane was blank, pins both halves of the new mechanism: the helper must
+exist, and every id the template branches on must be an id the menu sets - a
+typo either way is dead template or a blank pane, and neither says anything at
+runtime. <code>tests/problemsMenuOrder.test.cjs</code> now checks EVERY pane rather than
+three named ones: each menu entry must be rendered, and must either load itself
+or have a report config, so a pane that spins for ever cannot ship again. A
+negative test fails if a per-pane <code>ReactiveVar</code> comes back.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/fa289e4a4">The route and the template say what the menu says</a>. Thanks to xet7.</summary>
+<p>The pane is called Problems in the menu, its address is <code>/admin/problems</code>, and
+<code>docs/Features/Admin-Panel/Problems</code> is where it is documented. Two things still
+called it Reports, from before it was renamed: the route NAME was
+<code>admin-reports</code>, where its three siblings are the bare page key <code>setting</code>,
+<code>people</code> and <code>attachments</code> - so the one route whose name did not match its own
+address - and the template and its three files were <code>adminReports</code>. Both are
+<code>problems</code> / <code>adminProblems</code> now, across 41 files.</p>
+<p>What did NOT change is <code>legacyBase: '/admin-reports'</code>. That is an address people
+have in bookmarks, and it still redirects.</p>
+</details>
+<p><strong>Security fixes</strong> - what one is required to come with.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c3299c490">A test, a negative test, and the attempt visible in Problems</a>. Thanks to xet7.</summary>
+<p>Two rules added to <a href="CLAUDE.md">CLAUDE.md</a>, both learned from fixes in this
+repository rather than proposed in the abstract.</p>
+<p><strong>A test AND a negative test</strong>, written so the fault cannot exist ANYWHERE in
+the codebase rather than only where it was reported. A test that pins one call
+site leaves the same mistake free to live in the other five, and that is how
+most of these arrive: SignupBleed’s guard read an option nothing sets and the
+same shape sat in a second endpoint; the source-map trim was safe on the client
+and fatal on the server. So the test proves the fix does what it claims -
+driving the decision itself, as arithmetic, where it can - and the negative test
+proves the fault is GONE rather than moved, by searching the tree for the shape
+of it.</p>
+<p><strong>And the attempt is visible in Admin Panel / Problems</strong>, whenever the fix is
+one that DENIES an operation. A vulnerability that is fixed silently tells an
+admin nothing about being attacked through it, and “nobody is trying” and
+“somebody tries every four seconds” are not the same instance to run. Recorded
+as a summary, never per event.</p>
+</details>
+<p><strong>The local build</strong> - what <code>build.sh</code> produces, and what a release produces.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ccb2d818a">build.sh and build.bat option 2 build the RELEASE bundle, minus the .zip</a>. Thanks to xet7.</summary>
+<p>“Build WeKan” ran <code>meteor build .build --directory</code> and stopped there, and that
+bundle is not the one a release publishes. A release adds the server’s npm
+modules, three prunes, the sockjs / legacy-client / source-map trim, a verified
+Node.js, FerretDB, the eight MongoDB Database Tools and a launcher — and three
+releases running broke in exactly that difference: v10.96 on a source map the
+trim deleted and left named, v10.97 on a package the prune’s graph could not
+see, v10.98 on a Sandstorm pack that rebuilt the bundle and threw the trim away.
+None of it was reproducible locally, because locally there was only <code>meteor build</code>, so “does the bundle a release would publish start at all” took a
+release, a workflow run and a download.</p>
+<p><code>releases/build-release-bundle.sh</code> runs the workflow’s OWN steps, in its order,
+with its arguments, for whichever platform it is run on. Not a second
+implementation of the release — the same scripts, so a fix to one is a fix to
+both. It makes no zip, no checksum and no provenance row, because those describe
+a published artifact and this one is a directory to start:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>  cd .build/bundle &#x26;&#x26; ./start-wekan.sh</span></span></code></pre>
+<p>Verified by running it on Linux arm64: an 850M bundle, trim −349 MiB, prune
+−40.0 MiB, the boot check passed, Node.js v24.19.0 verified against nodejs.org’s
+<code>SHASUMS256.txt</code>, FerretDB and the eight tools fetched per-arch, 686M with all
+of it embedded — then started, with FerretDB on SQLite and WeKan answering
+HTTP 200 fifteen seconds later.</p>
+<p>The Setup menu offers it as <strong>Build WeKan release bundle</strong>, beside <strong>Build WeKan
+development bundle</strong> — the plain <code>meteor build</code> that entry used to be, kept
+because the two answer different questions at very different cost, and the
+development one now says what it is NOT when it finishes.</p>
+<p>Downloads are cached under <code>.tools/bundle-binaries/</code>, and a cache HIT re-checks
+the published SHA256 rather than trusting a file for having been there before.
+The test path is deliberately unchanged: it runs the bundle under its own node
+and mongod, so a hundred megabytes of binaries it will not use is the wrong
+trade. <code>tests/releaseBundleMatchesWorkflow.test.cjs</code> FINDS the release scripts
+the workflow runs rather than listing them, so a step added there and not here
+fails the suite instead of quietly putting the difference back.</p>
+</details>
+<p>and improves the documentation:</p>
+<p><strong>docs/</strong> - where a page lives, and how a reader finds it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/daaf56391">Implemented designs move to docs/Features, filed the way the menu is</a>. Thanks to xet7.</summary>
+<p>A design that describes what WeKan already DOES belongs with the feature it
+describes, not in the folder for things being proposed. Fifteen docs move -
+<code>Accessibility</code>, <code>Original-Positions</code>, the thirteen <code>Page/*</code> designs that exist,
+and the Admin Panel Problems design.</p>
+<p>What stays in <code>docs/Design</code> is what the folder is for: the principles
+(Design-Principles, Monkey-Proof-Software), the comparisons, the roadmap, and
+the proposals not yet built.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e9963e8b8">Directory-Structure.md describes the tree WeKan has now</a>. Thanks to TNick and xet7.</summary>
+<p>It described the tree at commit <code>e2f768c</code> and had gone on describing it for
+years. <strong>Fourteen links pointed at nothing</strong> - five files that had moved, seven
+that no longer exist anywhere - and every one of the fourteen was written as a
+full <code>https://github.com/wekan/wekan/tree/main/…</code> URL rather than a relative
+path, which is exactly why none was noticed: a broken relative link is visibly
+broken in an editor and on GitHub, while an absolute one looks like a link and
+404s only for the reader who follows it. All 144 relative links were fine.</p>
+<p><strong>And two thirds of the repository was not mentioned at all</strong> — <code>imports/</code>,
+<code>packages/</code>, <code>releases/</code>, <code>tests/</code>, <code>docs/</code>, <code>migrations/</code>, <code>server/lib</code>,
+<code>server/methods</code>, <code>server/routes</code>, <code>models/lib</code>, <code>client/features</code>. The page
+walked through four directories out of twenty and did not say so, which left a
+reader unable to tell “not here” from “does not exist”. It opens with a table of
+the whole tree now, and gains the sections those directories should have had.</p>
+<p><code>tests/docsLinksResolve.test.cjs</code> checks both link forms against the tree, and
+fails when the page stops mentioning a top-level source directory - the silence
+being the failure that lasted longest.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9fbfb26d2">Admin Panel docs are filed the way the Admin Panel menu is</a>. Thanks to xet7.</summary>
+<p>The menu is the structure a reader already has in their head, so the docs match
+it: one directory per tab, one page per pane, and a README in each listing the
+panes IN MENU ORDER with the URL slug beside them - so somebody with
+<code>/admin/problems/integrity</code> in the address bar can search for <code>integrity</code> and
+find the page.</p>
+<p>Settings (7 panes) and People (9) already had a page each and were already in
+order; they gain the slug column. Problems (17) and Attachments (10) listed
+almost none of theirs, so their READMEs now index every pane.</p>
+<p>WHAT IS NOT DONE is now visible instead of invisible: 15 of the 17 Problems
+panes and all 10 Attachments panes have no page of their own. They are dashes in
+the table, and <code>tests/adminPanelDocsMatchMenu.test.cjs</code> counts the dashes
+against the sentence that states how many there are - so the gap cannot grow
+quietly, and a pane added to the menu and not to the docs fails the suite.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions and translators for their
+translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v10.98" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
