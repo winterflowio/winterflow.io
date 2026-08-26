@@ -1,0 +1,1032 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v11.13 release notes | WinterFlow.io</title><meta name="description" content="WeKan v11.13 introduces a responsive Board Table view, resolves multiple FerretDB security findings, and improves LDAP/OIDC authentication…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v11.13/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v11.13 release notes | WinterFlow.io"><meta property="og:description" content="WeKan v11.13 introduces a responsive Board Table view, resolves multiple FerretDB security findings, and improves LDAP/OIDC authentication…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v11.13/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v11.13 release notes | WinterFlow.io"><meta name="twitter:description" content="WeKan v11.13 introduces a responsive Board Table view, resolves multiple FerretDB security findings, and improves LDAP/OIDC authentication…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v11.13","item":"https://winterflow.io/catalog/wekan/releases/v11.13/"}]}</script><script defer data-domain="winterflow.io" src="https://analytics.flowmitry.com/js/script.hash.outbound-links.tagged-events.js"></script><script type="module">window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script><link rel="stylesheet" href="/_astro/index.ByR4KQNP.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,068 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (218)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v11.13</h2> <span class="text-sm text-gray-500">2026-08-26</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>42b6031e48a6a44c…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>14b342e71204f811…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>930b33cbc83b35cb…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>01443c1e1a29e531…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>2963fdfc690f0cca…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armhf">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>46509e82e4f08d0d…</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>58f2f6ddff05b951…</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv6">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>1a76291e8edfd5c0…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>2963fdfc690f0cca…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-armv7">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>1303fbc89fb187c1…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>96919f54f4dabb29…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.19.0/node-i386">wekan/node-patches</a></td><td>v24.19.0</td><td>verified</td><td><code>c94bc7fc2713b22c…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>af5707904580f34f…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>3f1cf157479c1480…</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>57dc580ad9b7a8bf…</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>d35e95230f46f6f0…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>c93d394f1ce56534…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>c510c6ce12f07010…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>404bee52f8bb86fa…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.19.0/node-v24.19.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>cd1f14af28121480…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>7edbadece06a4921…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>a4792e65962ffa0a…</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>9318c87775c42b41…</code></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-arm64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>8502f4a50b458d4c…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.62.0</td><td>verified</td><td><code>25fec66a71c9fe50…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip">nodejs.org</a></td><td>v24.19.0</td><td>verified</td><td><code>57f71ab3652e797d…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1113-2026-08-26-wekan--release">v11.13 2026-08-26 WeKan ® release</h1>
+<p><strong>In short:</strong> <strong>FerretDB closes its CodeQL findings</strong> while preserving required
+legacy compatibility. The <strong>Board Table view</strong> is responsive, sortable and can
+group cards by swimlane. <strong>Rules</strong> save date and member actions again, <strong>card
+details</strong> close when their card disappears, <strong>legacy minicards</strong> retain their
+creator choice, <strong>email notifications</strong> use recipient languages, and <strong>mobile Search</strong>
+returns directly to the board. <strong>Speech scrolling</strong> targets lists and cards.
+<strong>Private linked cards</strong> remain usable without exposing their source boards.
+<strong>LDAP/OIDC account linking, login boundaries,
+provider endpoints and group restrictions</strong> now preserve account data, resolve provider
+URLs consistently, use directory authentication consistently and fail closed
+when required.
+<strong>Sandstorm member cleanup</strong> distinguishes WeKan visibility from grain access,
+and <strong>Snap database settings</strong> preserve external URLs and restore safely.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>eae1f0a8f73bfc979738bfff7284d40fd1bc55de2cc56514721fc155c3624f7d</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>bdc50caee3ac28495b42d2130b94a042a9dd6d3a38f732cac02b648f36c891da</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>cb14ffe93e285903e5a8a9c1821687ddb5b8a979a11c584bf4af534b272c6d3e</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-x64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>d97dfa9afa60aa05f25384327de82efe7b71d958ed24c1f66618284294a65cd3</code></td></tr></tbody></table>
+<p>This release fixes the following SECURITY ISSUES found by GitHub CodeQL code scanning:</p>
+<p><strong>FerretDB</strong> - query values remain fixed-width until their bounds are proven.</p>
+<details>
+<summary><a href="https://github.com/wekan/FerretDB/commit/298216d7">Remaining CodeQL alerts are closed</a>. Thanks to xet7.</summary>
+<p>Readiness probes redact MongoDB credentials before any URI reaches a log.
+Aggregation array, string, date and conversion operators keep client-provided
+BSON numbers fixed-width until their bounds are validated, including on 32-bit
+builds. Developer-tool URL expressions match the complete <code>github.com</code> hostname
+literally. The MongoDB-mandated MD5 preparation inside legacy SCRAM-SHA-1 is
+narrowly documented and suppressed rather than changed incompatibly; new
+deployments retain SCRAM-SHA-256 as the stronger option. Native unit tests,
+extreme-value regressions, 32-bit cross-compilation, the FerretDB build, vet and
+the affected tools-module tests pass.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/FerretDB/commit/4fa9e3b8">Newly reported integer-conversion paths are closed</a>. Thanks to xet7.</summary>
+<p>Numeric aggregation type codes are compared without narrowing, every <code>$range</code>
+result is checked at its int32 conversion boundary, and array and code-point
+indexes retain int64 results when they exceed BSON’s int32 range. The legacy
+SCRAM-SHA-1 compatibility path now performs its MongoDB-mandated MD5 preparation
+as one direct digest, placing its narrow CodeQL exception on the reported
+operation. Native boundary tests, vet and 32-bit cross-compilation pass for
+alerts 6, 11 and 38 through 42.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/FerretDB/commit/89a34e2a">Follow-up CodeQL conversion and compatibility alerts are resolved</a>. Thanks to xet7.</summary>
+<p>Aggregation indexes are parsed directly at the requested BSON width instead of
+narrowing an architecture-dependent native integer. MongoDB’s mandatory legacy
+SCRAM-SHA-1 password preparation carries both current and legacy query-specific
+CodeQL annotations at the exact MD5 digest operation, documenting why replacing
+it would reject protocol-compatible credentials rather than improve security.
+Native boundary tests, vet and 32-bit cross-compilation pass for alerts 43 and
+44; the MongoDB-generated authentication vectors remain unchanged.</p>
+</details>
+<p>and adds the following new features:</p>
+<p><strong>Board Table view</strong> - a responsive overview adapts to each reader’s workflow.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ad6a7b7c8">It uses the browser width and offers compact or wrapped card titles</a>. Thanks to rmb82 and xet7.</summary>
+<p>Card, List and Swimlane cells no longer stop growing at a hardcoded 250 pixels.
+The table consumes its available container width, and card titles default to a
+single ellipsized line whose native tooltip retains the complete text. A toolbar
+control opts into wrapping, with the choice stored separately for each user.
+Unit coverage checks defaults, persistence and user isolation; a browser test
+checks width, tooltip, both modes and persistence across reload.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/828cb5e53">Its column headers sort rows in either direction</a>. Thanks to rmb82 and xet7.</summary>
+<p>Card, List, Swimlane, people, label and date headers now toggle ascending and
+descending client-side sorting. Empty date values remain last in both
+directions, and card title provides deterministic ordering when selected values
+match. Comparator tests cover text, numeric titles, dates, nulls and state
+transitions; a browser regression checks header toggling and indicators.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0847af8ec">It optionally groups cards under swimlane sections</a>. Thanks to rmb82 and xet7.</summary>
+<p>Flat rows remain the default. A per-user toolbar toggle groups cards in board
+swimlane order while retaining the selected column sort inside each lane.
+Section headers are inserted after pagination, so they never consume any of the
+25 card slots; a page beginning partway through a lane still names that lane.
+Unit coverage checks defaults, isolation and boundaries, and a browser scenario
+checks lane order, card count and persistence across reload.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>Rules</strong> - actions save reliably and moved-from-list triggers match the correct
+direction.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ea9002328">Date and add-member Rules save without schema errors</a>. Thanks to rmb82 and xet7.</summary>
+<p>The three affected card-action handlers copied their generated description into
+both the Action and its schema-bound Rule, although <code>desc</code> belongs only to the
+Action. SimpleSchema rejected the unknown Rule key and returned the user to the
+add-rule screen. Current-date, remove-date-value and add-member actions now
+match every working handler by storing <code>desc</code> solely on the Action. Positive and
+negative source coverage protects all three branches, and a Playwright flow
+checks that the UI saves a date Rule without <code>desc</code> while its Action retains the
+description.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/baa780331">The remaining IFTTT moved-from-list report gains exact regression coverage</a>. Thanks to TiibCD and xet7.</summary>
+<p>The reported checklist, email, member-removal and date-action failures were
+already corrected by earlier changes. The remaining moved-from-list case is
+also fixed: its trigger resolves the activity’s old list and matches a move
+away, while rejecting a move into that list. The existing rule-engine suite now
+names issue 1972 on both the positive and negative cases so that the historical
+report cannot silently regress.</p>
+</details>
+<p><strong>Lists and swimlanes</strong> - color choices persist behind prefixed reverse proxies.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/4c5332419">Their color forms stay on the board while saving under a URL path</a>. Thanks to RowhamD, cautiouscoyote and xet7.</summary>
+<p>Firefox treated the popup’s Save buttons as implicit form submissions and
+navigated before the list or swimlane mutation completed, which was most
+visible when <code>ROOT_URL</code> included a path prefix. The existing handlers now
+prevent that navigation on both the click and submit paths. Four focused
+positive and negative checks pass. A production-mode Meteor server under
+<code>/path</code> compiled and started, and live Chromium changed both stored colors
+without leaving the prefixed board URL. The Firefox browser regression is
+registered but could not run locally because its Playwright binary is absent.
+FerretDB and the service-worker 404 are unrelated to these client mutations.</p>
+</details>
+<p><strong>Minicards</strong> - upgrades preserve whether creator avatars are displayed.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6af6db72d">Legacy boards keep minicard creators hidden until explicitly enabled</a>. Thanks to tamasberesoebb and xet7.</summary>
+<p>Boards created before the dedicated minicard creator setting existed no longer
+inherit the separate opened-card creator setting in the Card Settings popup.
+Their checkbox and rendered cards now both remain off by default, while an
+explicit click persists the opt-in and shows the creator. Five focused
+positive, negative and wiring checks pass. A live Meteor development stack
+compiled and started, and Chromium reproduced the legacy missing field, checked
+the initial UI state, enabled it and observed the avatar appear. FerretDB only
+stores the board setting and is not involved in its interpretation.</p>
+</details>
+<p><strong>Filters and bulk selection</strong> - cached cards remain confined to the board being
+edited.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ec9410a3a">The cross-board filter-selection report is closed with its existing regressions</a>. Thanks to Gobliins and xet7.</summary>
+<p>The earlier board-scoping fix constrains both the filter-to-selection query and
+every subsequent bulk action to the current board. Its positive, negative and
+end-to-end selector tests reproduce two boards whose cards share the filtered
+member, then prove that the cached card from the other board is neither selected
+nor mutated. This closing commit records that verified fix against issue 2306.</p>
+</details>
+<p><strong>All Boards</strong> - tiles stay stable and every board-creation path sees templates.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/4f702d535">The legacy-board card-counter report is closed with its existing regressions</a>. Thanks to Meeques, helioguardabaxo and xet7.</summary>
+<p>The earlier startup-schema and tile-data fix restored card counters and member
+avatars without reactive cursor loops. The current suite verifies enabled and
+disabled counters independently, treats a missing legacy flag consistently as
+disabled, keeps boards and their lists isolated, and confirms that the template
+uses the resolved per-board settings. This closing commit records that verified
+fix against issue 4825.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/02a3630e2">Per-list board details are confirmed restored without reactive tile movement</a>. Thanks to SmartPhoneLover, helioguardabaxo and xet7.</summary>
+<p>The non-reactive tile-data implementation already restored the optional list
+names and card counts that were removed to stop board icons moving beneath the
+pointer. The positive regression now names issue 4959 and confirms that an
+enabled board receives every list in board order. Disabled, legacy and
+cross-board negative cases remain covered by the same suite.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/3cdc64d14">The top-bar plus creates boards from only the current templates</a>. Thanks to Jimmi61 and xet7.</summary>
+<p>The top-bar Create Board control is restored and now classifies its nested
+picker as a board-template search, just like Add Board on the overview. The
+picker remains open while its template-container subscription becomes ready,
+instead of returning early with stale or empty data. Focused coverage protects
+both entry points, archived filtering and custom-field remapping. Live Chromium
+shows only the active <code>Std</code> template, excludes an archived old template and an
+ordinary card, creates the board and verifies its custom-field definition.</p>
+</details>
+<p><strong>The Admin Panel</strong> - People paging stays consistent with stored account data.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/68e370226">The inconsistent People-list report gains exact paging and field regressions</a>. Thanks to jas01, dvschuetz and xet7.</summary>
+<p>The current server-side People paging explicitly names every page and the table
+renders only those users in the server’s stable creation-time order. Each row
+also receives its email, creation time and authentication method. Positive and
+negative coverage now names issue 4897 so unrelated cached user documents
+cannot make rows disappear, duplicate or display different account data while
+an administrator scrolls or pages.</p>
+</details>
+<p><strong>LDAP accounts</strong> - directory data, access filters and transport settings stay
+explicit and valid.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7f12b0a59">Multi-valued email attributes are decoded before account creation</a>. Thanks to mlang38 and xet7.</summary>
+<p>LDAP servers can return one email as a Buffer or several aliases as an array of
+Buffers. Expanding a Buffer produced numeric byte values, while preserving an
+array passed binary objects into Meteor’s string-only email schema and rejected
+the first login. WeKan now decodes every shape to UTF-8 text, keeps all aliases,
+uses the first as the account email, ignores empty values and removes duplicate
+aliases case-insensitively. Nine focused positive, negative and wiring tests
+pass, all LDAP tests pass, the package compiles in the live Meteor stack, and
+the related live Chromium suites pass 19 tests with one opt-in scenario skipped.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/433348c66">Incomplete group filters name their missing settings and fail closed</a>. Thanks to fgoe and xet7.</summary>
+<p>Enabling LDAP group filtering without its member attribute could omit the only
+clause tying a group search to the current user. The directory then returned
+every group, and the logs did not explain which setting was absent. Every group
+consumer now requires the identifier, member attribute and member-value format;
+the login restriction additionally requires an allowed group. Missing values
+are named in the error and produce no groups or a refused login before an LDAP
+search begins. Six focused configuration and wiring tests pass, the full LDAP
+suite remains green, and the package compiles and starts in the live Meteor
+stack. FerretDB is not involved in the pre-login directory searches.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/139bf4341">Admin-only and multiple LDAP groups retain exact login filtering</a>. Thanks to Hellnino18 and xet7.</summary>
+<p>The existing fix already ORed ordinary login groups with admin-sync groups, so
+an administrator no longer had to be duplicated into the ordinary-user group.
+The closing audit now parses that combined list once, removes blank and
+case-insensitive duplicate names, escapes every LDAP assertion value and
+refuses a blank-only list before it can become a broad directory query. Nine
+positive, negative and wiring cases cover admin-only users, multiple groups,
+disabled admin sync and malformed lists; the full LDAP suite passes and the
+package compiles and starts in Meteor. A live bind still needs an external LDAP
+directory; FerretDB is not involved.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/88d37ae98">REST email login rejects stale local passwords on LDAP accounts</a>. Thanks to akitzing and xet7.</summary>
+<p>The existing Meteor login-attempt guard already rejected a migrated LDAP
+account’s retained local password in browser logins. The REST email form did
+not use Meteor’s login hooks and could still compare that stale bcrypt hash
+directly. It now applies the same guard first, performs dummy bcrypt work and
+returns the route’s uniform failure. Fourteen guard, eight REST LDAP, seven
+timing and ten throttle tests pass. In the live Meteor stack, the same valid
+password receives HTTP 401 for an LDAP account and HTTP 200 for a local
+account. FerretDB is not involved in authentication.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7145d7047">LDAP to OIDC linking retains the complete existing account profile</a>. Thanks to funakura and xet7.</summary>
+<p>The earlier merge fix updates an LDAP account with verified OIDC identity data
+instead of replacing its profile, so avatars, template board and swimlane
+references, language and preferences remain present. The behavioral regression
+executes the real account-creation hook and now also proves that existing login
+sessions, LDAP service data and organization membership survive. Seven profile
+merge, eleven concurrent-login, twelve login-style and three CAS boundary tests
+pass, and the full app compiles and starts in Meteor. A real provider handshake
+still requires external LDAP and OIDC services; FerretDB is not involved.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/433455e0e">Background sync updates LDAP profiles and disables only confirmed removals</a>. Thanks to RowhamD, q16marvin and xet7.</summary>
+<p>Existing LDAP accounts are re-found by their stored identifier attribute, with
+the configured search field as a fallback, so later username, full-name and
+email changes are written instead of stopping after the first import. The
+opt-in authoritative mode disables a user only when a successful directory
+search returns zero entries and re-enables that user on reappearance. Missing
+identifier configuration and ambiguous matches now abort safely rather than
+masquerading as deletion. Eight new background-sync and eleven identifier
+filter tests pass, every LDAP plain-Node suite remains green, and Meteor
+compiles and starts. A live directory sync still requires an external LDAP
+server; FerretDB only stores the resulting user document.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/148525195">LDAP groups returned by broad searches are not imported as users</a>. Thanks to MiteNy and xet7.</summary>
+<p>A base DN containing both people and groups could return Active Directory,
+OpenLDAP or POSIX group objects when <code>LDAP_USER_SEARCH_FILTER</code> was empty. Their
+name plus the configured default email domain was enough to create spurious
+WeKan accounts. Bulk import now skips known group object classes and account
+creation independently rejects them, case-insensitively and with string,
+Buffer or array attributes. Standard and custom user schemas remain accepted.
+Six focused positive, negative and wiring tests and every LDAP plain-Node suite
+pass, and Meteor compiles and starts. The guide also shows appropriate user
+filters. FerretDB only stores accounts after this validation.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7fb9ad1d7">LDAP encryption settings distinguish LDAPS, STARTTLS and unencrypted transport</a>. Thanks to robertdahlem and xet7.</summary>
+<p>The maintained LDAP guide now recommends <code>true</code> for immediate TLS (LDAPS),
+<code>starttls</code> for an upgraded connection and <code>false</code> only for an unencrypted
+connection. It removes the obsolete claim that STARTTLS is inherently more
+secure than LDAPS and updates the FreeIPA example. Legacy <code>ssl</code> and <code>tls</code>
+values remain compatible with explicit deprecation warnings. Twenty-five
+positive, negative, wiring and documentation tests pass, and the package
+compiles and starts with Meteor’s development MongoDB. A real TLS handshake
+still needs an external LDAP directory; FerretDB is not involved.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b294ecfb0">REST login authenticates LDAP credentials through their registered handler</a>. Thanks to mariogalan, ViViDboarder, mgiacomoli, HaKePlan and xet7.</summary>
+<p>The REST route called Meteor’s private bcrypt checker directly, so every LDAP
+account without a duplicated local password failed before WeKan’s LDAP handler
+could run. Existing and first-time LDAP username logins now use Meteor’s
+server-side login-handler API, then receive the same REST token as local users.
+Local-password accounts, uniform failure messages, throttling and two-factor
+checks retain their existing paths. Seven focused positive, negative and wiring
+tests and 28 related authentication tests pass; the full app compiles and all
+25 live REST API browser tests pass. A real LDAP bind still requires an external
+directory fixture and was not available locally. FerretDB is not involved in
+credential validation.</p>
+</details>
+<p><strong>OIDC login</strong> - provider endpoint settings work as either relative paths or
+complete URLs.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/aee94c263">Spring and complete HTTP provider endpoints resolve correctly</a>. Thanks to Esther125 and xet7.</summary>
+<p>Authorization, token, Oracle token and UserInfo requests now share one endpoint
+resolver. Complete HTTP and HTTPS URLs remain intact, while relative paths are
+joined to the provider URL without duplicate slashes. The maintained guide
+documents Spring Authorization Server’s <code>/oauth2/authorize</code>, <code>/oauth2/token</code>
+and <code>/userinfo</code> defaults and the exact WeKan callback. Six endpoint and 30
+related OIDC/CAS tests pass, and the live Meteor app compiles and starts. A
+complete Spring handshake still requires an external authorization server;
+FerretDB is not involved in provider communication.</p>
+</details>
+<p><strong>Language and fonts</strong> - CJK text follows the reader’s selected locale.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6aa455fb6">Chinese text retains a neutral fallback instead of Japanese glyphs</a>. Thanks to ZhouMoHan-work and xet7.</summary>
+<p>The Japanese-specific <code>Yu Gothic</code> and <code>Meiryo</code> defaults were removed in 2017,
+and the current client also synchronizes the document language with the selected
+locale while retaining a validated per-user font override. Positive and
+negative source coverage protects all three boundaries. A live Chromium
+regression selects Chinese, requires <code>html[lang="zh-CN"]</code> and rejects both
+Japanese fonts from the computed default stack.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e10fc10c5">Japanese add-card labels are confirmed to remain on one line</a>. Thanks to arifer612, skye0402 and xet7.</summary>
+<p>The earlier scoped CJK wrapping fix keeps Japanese words such as <code>追加</code> (Add)
+and <code>リンク</code> (Link) intact while allowing the footer to wrap between controls.
+Nine positive, negative and scope checks prevent either mid-word CJK breaks or
+a global rule that would damage Latin and long-URL wrapping. A live Meteor
+development stack compiled and started, and Chromium selected Japanese, opened
+the real add-card composer and measured every translated control as one line.
+FerretDB is not involved in client layout.</p>
+</details>
+<p><strong>Accessibility</strong> - independently scrolling board regions can be targeted
+without a mouse.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/fb10b6160">Lists and opened cards are named, focusable scroll regions</a>. Thanks to ProdLead and xet7.</summary>
+<p>Each list body and card-details window now exposes the standard <code>region</code> role,
+a translated accessible name and keyboard focus. Speech-recognition software
+can therefore target the intended scrollbar instead of guessing among the
+several independent regions on a board, and keyboard users gain the same
+control. Four focused positive, negative and wiring checks pass. A live Meteor
+development stack compiled and started, and Chromium focused overflowing list
+and card regions and scrolled each with Page Down. A Dragon installation was
+not available for its proprietary voice-command layer. FerretDB is not involved
+in client focus or scrolling.</p>
+</details>
+<p><strong>Container logging</strong> - startup remains independent of obsolete transports.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/cae55dae4">The removed Winston logger can no longer be mistaken for a Docker option</a>. Thanks to zagoa, huneau and xet7.</summary>
+<p>The Winston/Zulip database observer that replaced Meteor’s default console
+transport was removed in 2017, restoring normal database startup. Docker
+guidance no longer advertises that obsolete integration. Focused regressions
+protect the removed startup files and dependencies while requiring the active
+container database URL; live Meteor runs also started logging and MongoDB
+together.</p>
+</details>
+<p><strong>REST authentication</strong> - clients can invalidate bearer tokens explicitly.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6e4e1a5db">REST logout proves that a revoked token immediately loses access</a>. Thanks to Gobliins, MonkeyNinja, AbdullahAlAsad and xet7.</summary>
+<p>The existing logout endpoint revokes either the presented token or every
+session with authenticated-user scoping. All 12 positive and negative planning
+cases pass. A new end-to-end API regression logs out with a real bearer token,
+verifies its removal from the user’s resume tokens and requires that same token
+to receive HTTP 401 on its next request.</p>
+</details>
+<p><strong>The board archive</strong> - card actions stay visually attached to their card.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/41d6a8a28">The grouped Restore and Delete action report is explicitly closed</a>. Thanks to fxkr and xet7.</summary>
+<p>The earlier fix wraps every archived card together with its own Restore and
+Delete links and separates that complete group from the next card. Structural,
+spacing, hover, narrow-sidebar, RTL and theme-neutral regressions all pass, and
+the browser restore flow remains registered. The negative case prevents the
+old equal spacing above and below the actions from returning.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d6cf4016d">Swimlane archive and restore are confirmed to preserve their cards</a>. Thanks to Maevabus, chirrut2 and xet7.</summary>
+<p>The existing cascade archives a swimlane’s active cards with the lane and
+restores exactly those cards later. Eleven positive, negative, legacy-data and
+repeated-round-trip cases pass: cards archived independently remain archived,
+other lanes remain untouched and no active card can be stranded beneath an
+archived swimlane.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/97e7b3158">Its item collection stays separate from All Boards</a>. Thanks to ocdtrekkie and xet7.</summary>
+<p>The current board menu opens its card, list and swimlane archive in the board
+sidebar, while archived boards remain a distinct section of All Boards. The
+strengthened 12-case navigation suite now names issue 1280 and prevents those
+destinations from being conflated again. The archived-card browser restore flow
+also remains registered.</p>
+</details>
+<p><strong>Board members</strong> - invitation decisions and team grants stay consistent.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f861c92de">The removal, decline and team-access report is explicitly closed</a>. Thanks to UCS, rainbowjaw, DVNBLMHC and xet7.</summary>
+<p>The earlier invitation fix deactivates removed or declining members, clears the
+pending invitation and refuses to reactivate anyone who no longer has a real
+invite, while preserving the valid acceptance path. All 11 lifecycle cases and
+16 team-to-board propagation cases pass. Browser coverage also registers both
+administrator removal and the negative non-admin permission path.</p>
+</details>
+<p><strong>Subtasks</strong> - their own stored board remains a usable navigation target.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d6eaaa737">The missing subtask board-ID navigation report is explicitly closed</a>. Thanks to xet7 and TNick.</summary>
+<p>The existing navigation helper derives the card and board route from the
+subtask itself and falls back to its stored board ID when a cross-board deposit
+board is not loaded in the browser. Eleven loaded, unloaded, plain-document and
+malformed-data cases pass; truly broken references warn instead of throwing or
+routing to an undefined card.</p>
+</details>
+<p><strong>Linked cards</strong> - safe snapshots remain usable across board boundaries.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9cdbe1a53">The private-source visibility report gains an authorization regression</a>. Thanks to TiibCD, t0mcat1337 and xet7.</summary>
+<p>A member of the linking board must not inherit access to the private source
+board. Current source already filters the real card and all children by board
+visibility while falling back to the linked card’s stored snapshot, avoiding
+the historical blank and frozen view. Unit coverage pins both sides of that
+boundary, and a browser scenario proves an unauthorized viewer can open and
+close the snapshot normally without weakening source-board authorization.</p>
+</details>
+<p><strong>Board imports</strong> - old Sandstorm exports retain their cards and dates.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bb925445b">The missing Sandstorm card and date report is explicitly closed</a>. Thanks to xet7.</summary>
+<p>The existing importer restores created, received, start, due and end dates and
+falls back to the exported card when an old or pruned board has no creation
+activity. Thirteen focused cases prove valid dates, missing fields and corrupt
+values; invalid optional dates become <code>null</code> rather than aborting insertion and
+hiding the entire card. Both WeKan import browser flows remain registered.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b552af160">Legacy board imports default safely to private visibility</a>. Thanks to xet7.</summary>
+<p>Old Sandstorm exports can omit the board permission. The importer now preserves
+an exact explicit <code>public</code> or <code>private</code> value while missing, malformed and
+lookalike values fail closed to <code>private</code>. Five focused positive and negative
+cases pass, and a browser regression imports a permission-less Sandstorm-style
+board and verifies its stored visibility.</p>
+</details>
+<p><strong>Sandstorm grains</strong> - preserved iframes recover and board sharing works across
+the grain.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9bc1896ff">Hidden grains remeasure the viewport when their iframe resumes</a>. Thanks to neynah, dwrensha and xet7.</summary>
+<p>A grain that finished rendering while its iframe was hidden could retain the
+hidden frame’s narrow dimensions because returning did not reliably emit a
+resize. Visibility, page-show and focus restoration now coalesce into the
+ordinary resize path after the iframe has rendered, refreshing the sidebar,
+header, popups and responsive layout. Hidden-frame, timing, wiring and
+hot-reload regressions pass, and a live Chromium test confirms that restoring a
+preserved page publishes a fresh viewport measurement.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/3c57cb876">Existing grain users can be added independently to every board</a>. Thanks to Mini-pen, drseussofporn, jpretori, ocdtrekkie, wellgoodthen, stoltenhoff and xet7.</summary>
+<p>The member button no longer depends exclusively on the Powerbox native module,
+which is unavailable in the Node 24 bundle and never attached its claimed
+identity to the selected board. It now opens WeKan’s maintained,
+permission-checked search for identities that have visited the grain. Local
+email-account creation stays hidden because those accounts cannot authenticate
+through Sandstorm. Focused coverage protects the Sandstorm branch and admin
+mapping; live Chromium adds a user to the second of two boards, leaves the first
+unchanged and opens the second board as that user.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b9cfc1d8d">Local member removal warns that Sandstorm grain access remains</a>. Thanks to soerenk, ocdtrekkie, rautamiekka, kentonv, ertanalytics, sjoki, lslamp and xet7.</summary>
+<p>Revoking a user’s Sandstorm share prevents access but cannot notify the app, so
+the old WeKan member avatar can remain. Board administrators can remove that
+stale local member and all of their card roles, while a Sandstorm-only warning
+now states that this action does not revoke grain access and points them to the
+platform’s Share access dialog. Four positive, negative and wiring regressions
+pass, the complete client compiles, and both live member-removal permission
+scenarios pass in Chromium. A real revoke callback cannot be tested because
+Sandstorm exposes none; FerretDB is not involved in grain authorization.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/eca1095f2">Username collisions are confirmed safe across case and concurrent claims</a>. Thanks to mitar and xet7.</summary>
+<p>The earlier Sandstorm account fix probes candidate usernames with an anchored,
+escaped, case-insensitive match and retries the next numeric suffix if a
+concurrent insert wins the unique-index race. Eleven positive, negative, race
+and integration-wiring regressions pass. This closing commit records the
+verified implementation against issue 574.</p>
+</details>
+<p><strong>Labels</strong> - sidebar drag-and-drop follows cards added after initial render.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/712ce25d0">Late-rendered cards remain valid sidebar label drop targets</a>. Thanks to marco-aa, ocdtrekkie and xet7.</summary>
+<p>The existing reactive dependency reinitializes droppable behavior whenever a
+card enters the board after its lists first render. Three focused wiring cases
+pass. A new browser regression inserts a late card, performs a real pointer
+drag from the sidebar label and verifies the resulting label assignment in the
+database, reproducing the navigation-dependent failure from issue 1554.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6f6fe229a">Authorized source-member avatars remain visible after linked-card reloads</a>. Thanks to theonafor and xet7.</summary>
+<p>The linked-source publication already sends the minimal username, name,
+initials and avatar fields only after source-board visibility filtering. Three
+field-parity and authorization checks pass. The cross-board browser regression
+now assigns a custom avatar to a second source member, leaves the picker
+subscription, reloads through the linking board and requires that image to
+remain rendered in card details.</p>
+</details>
+<p><strong>Card copying</strong> - duplicated conversations remain recognizable as history.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8dff96d7b">Copied comments preserve their original author and time</a>. Thanks to ocdtrekkie, 2martens, frmwrk123 and xet7.</summary>
+<p>Comment authorship was already retained, and the copy dialog already prefilled
+the source title, but schema auto-values still replaced every copied comment’s
+date with the copy time. Copies now re-home immutable comment data without
+mutating the cached source or emitting false new-comment activity. Unit tests
+cover preserved history and invalid input; the REST browser regression checks
+the original author, timestamp and destination board together.</p>
+</details>
+<p><strong>Email notifications</strong> - translated messages follow their recipient’s profile.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/46609d3e8">French notification delivery is confirmed against the recipient-language fix</a>. Thanks to Sophalso and xet7.</summary>
+<p>The earlier server-language loading fix ensures the recipient’s translation
+bundle is present before notification subjects and activity descriptions are
+rendered, then carries that same language into buffered delivery. Six focused
+checks cover exact French prose, placeholder preservation, load order, the
+send-language handoff, supported-language fallback and rejection of the server
+default in this path; seven invitation-language tests also pass. The live
+Meteor development stack compiles and starts. An SMTP server was not required
+to verify content generation before transport, and FerretDB is not involved in
+localization.</p>
+</details>
+<p><strong>User invitations</strong> - email-derived accounts remain distinct and login-safe.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d3f227586">The duplicate invitee collision report gains exact regression coverage</a>. Thanks to ghost, rvalle and xet7.</summary>
+<p>The production correction landed earlier in commit <code>0f2179988</code> for duplicate
+issue #619: email addresses are normalized to lowercase, and a repeated local
+part receives the first free numeric suffix before account creation. New tests
+pin #825’s exact <code>john.doe</code> addresses at two domains and its mixed-case account
+scenario, proving they produce distinct, lowercase-login-safe usernames rather
+than the old raw 403 response.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bb267fddf">Anonymous verification links consume their token and verify the address</a>. Thanks to Sunildevb, jgrocha and xet7.</summary>
+<p>Verification emails were enabled, but the accounts package’s token route was
+never configured, so links fell through to WeKan’s signed-in guard without
+changing the account. <code>/verify-email/:token</code> and the companion resend route are
+now installed explicitly. Routing and mail regressions pass; live Chromium
+coverage proves a valid token verifies the address, is consumed and signs the
+user in, while an invalid token leaves both account and session unchanged.</p>
+</details>
+<p><strong>CAS login</strong> - first-time identities follow their own validated account shape.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ca59a68fc">A first CAS login no longer requires nonexistent OAuth service data</a>. Thanks to faelys, Meeques, jgribonvald and xet7.</summary>
+<p>The shared account-creation hook assumed every login handler supplied an OIDC
+<code>services</code> object. CAS instead supplies its validated username, verified email,
+profile and authentication method as top-level fields, so a first login crashed
+before insertion. OIDC normalization now runs only when that service data
+exists. Focused coverage proves the missing-services path and complete CAS
+identity wiring while retaining the negative conflict check that prevents a CAS
+identity from silently taking over a non-CAS username. Provider validation
+still requires a deployment’s external CAS server.</p>
+</details>
+<p><strong>User profiles</strong> - accounts without email metadata can add their first address.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ac0d9a3cd">An account with no email field can save its own first address</a>. Thanks to jpfleury and xet7.</summary>
+<p>Sandstorm and other SSO accounts may have no <code>emails</code> array. Profile submission
+now treats that state as an empty address instead of dereferencing a missing
+element, and the server honors the configured Allow Email Change setting for
+the authenticated user’s own account. Global administrators retain their
+existing authority; cross-user and disabled-setting writes are rejected, and
+new addresses begin unverified. Focused regressions and live Chromium cover all
+three authorization paths and the complete missing-field save.</p>
+</details>
+<p><strong>Mobile navigation</strong> - full-screen panels return readers to their board.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7d67f80df">Search Back returns directly to the card wall</a>. Thanks to 1ubuntuuser and xet7.</summary>
+<p>On a mini screen, Search occupies the board area, but its Back arrow used to
+replace Search with the sidebar Home/settings content. It now resets Search for
+the next opening and closes the sidebar, uncovering the board immediately.
+Desktop Search and every other sidebar view retain their existing transitions.
+Positive and negative unit coverage protects that boundary, and a mobile
+browser regression checks the full Search-to-board interaction.</p>
+</details>
+<p><strong>Card details</strong> - open views follow remote card lifecycle changes.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/951b072b5">They close when another client removes or relocates the card</a>. Thanks to rptl and xet7.</summary>
+<p>A deleted, archived or cross-board-moved card no longer leaves an empty details
+shell open on mobile. Each details instance observes the card that created it
+and clears desktop windows, mobile routes and popup state when that card
+disappears or changes boards. Positive and negative unit coverage pins the
+presence decision and cleanup wiring; a mobile browser regression removes an
+open card directly from the database and expects the board canvas to return.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/1ad5d2ba3">Opening Activities is confirmed to show persisted card history</a>. Thanks to franksiler and xet7.</summary>
+<p>Activities starts collapsed to keep card opening light, but its caret now asks
+for the complete card history regardless of obsolete per-card visibility flags.
+All 26 section-state, keyboard, subscription and negative regressions pass. A
+new browser scenario seeds a non-comment activity, opens the card’s Activities
+section and requires that exact persisted entry to render.</p>
+</details>
+<p><strong>Card movement</strong> - drag-and-drop remains visually stable during reactive work.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b687f3727">Dropped cards stay visible while large boards reconcile the move</a>. Thanks to mimZD and xet7.</summary>
+<p>The required jQuery UI cancellation used to draw a card back in its source list
+until Blaze finished rendering the database move, producing the intermittent
+one-second flicker reported on large boards. A presentation-only copy now holds
+the target slot until the real reactive card arrives; it cannot receive pointer
+events and is removed immediately on arrival or failure, with a safety timeout.
+A Chromium drag regression deliberately delays the model move and verifies the
+target remains occupied throughout before the real card replaces the preview.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6c9ba4745">Fast touch drags move cards without opening them</a>. Thanks to xator91 and xet7.</summary>
+<p>The touch bridge synthesized a click for every gesture shorter than 500 ms,
+even after jQuery UI had completed a sortable drag. That click followed the
+minicard link, making the board appear to reload with the moved card open. The
+adapter now suppresses only the synchronous post-drag click; normal taps and
+later independent clicks remain unchanged. Positive and negative unit coverage
+pins that boundary, and a Chromium regression performs a raw fast touch drag,
+checks the database move and verifies that card details stay closed.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/500452f78">Cross-board moves keep unique finite positions and every destination card visible</a>. Thanks to rlach and xet7.</summary>
+<p>The synchronous client no-cache lookup already prevents destination sort
+values from becoming <code>NaN</code>, overlapping existing cards and making them appear
+or disappear during later reordering. Eight focused positive and negative
+cases pass. A new browser regression moves a card into a populated list on
+another board, requires three distinct finite positions and verifies that all
+destination cards remain visible.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5f16d1cbb">Long lists scroll at the bottom edge and accept the dropped card</a>. Thanks to lenxeon and xet7.</summary>
+<p>The current drag handler scrolls the list body under the pointer, refreshes
+sortable geometry after scrolling, and keeps the board still until the list
+reaches its end. Focused source regressions cover list selection, both scroll
+directions, the end boundary and geometry refresh. A Chromium regression drags
+through a long list, observes vertical scrolling and requires the persisted
+card position to change.</p>
+</details>
+<p><strong>Snap database restore</strong> - backup archives replace existing data predictably.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d7a225eb0">It drops existing collections and validates the supplied archive</a>. Thanks to ram19890 and xet7.</summary>
+<p>The restore command retains its existing <code>--drop</code> behavior, preventing the
+duplicate-key collisions caused by merging a backup into populated collections.
+It now also requires exactly one existing file and preserves an archive path
+containing spaces as one argument. Three command-level positive and negative
+regressions execute the real script around a mocked Snap environment and
+<code>mongorestore</code>; the related 13 old-database recovery checks and shell syntax
+validation pass. Building and installing a complete Snap was not required to
+exercise this command boundary. FerretDB is not used by this MongoDB archive
+restore path.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f8c7815b2">External MongoDB URLs are confirmed to survive Snap startup unchanged</a>. Thanks to cc4in and xet7.</summary>
+<p>The earlier startup fix gives an explicitly configured <code>mongo-url</code> priority
+over the internally constructed address, including its database name, while an
+empty setting still receives the local port and oplog defaults. Four executable
+positive and negative regressions run the real setting reader with a mocked
+<code>snapctl</code> and evaluate the startup selection block. They prove that both the
+external database and its explicit oplog URL survive unchanged; shell syntax
+validation also passes. A complete Snap install and external MongoDB were not
+needed to exercise the configuration boundary. FerretDB is bypassed when this
+external URL is selected.</p>
+</details>
+<p><strong>Outgoing webhooks</strong> - activity notifications retain their translated values.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6c2b7c4e8">The stale raw-placeholder report is closed against its completed canonical fix</a>. Thanks to sfahrenholz, chotaire and xet7.</summary>
+<p>The canonical report, #2226, is closed and the current activity builder resolves
+members, checklist items, cards, lists, swimlanes, boards and labels before the
+complete parameter object reaches <code>TAPi18n</code>. Focused regression coverage now
+protects that wiring and verifies that representative German activity strings
+remain translated while preserving the exact replaceable-token inventory.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0c08ea8a1">A receiver holding its response cannot delay the originating database change</a>. Thanks to n8ores, RyanHecht and xet7.</summary>
+<p>The current activity hook starts each outgoing delivery without awaiting it,
+and its guard resolves both synchronous and asynchronous failures instead of
+propagating them into the database operation. New regressions hold a receiver
+promise open and prove the caller continues immediately, verify rejected
+delivery is isolated, and pin the non-awaited Meteor callback wiring. This
+closes the older custom-field report against the completed non-blocking path.</p>
+</details>
+<p><strong>Apache deployments</strong> - reverse-proxy examples cannot inherit open forwarding.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/577ccb9f8">Both documented virtual hosts explicitly disable forward proxying</a>. Thanks to bastos77 and xet7.</summary>
+<p>The abusive third-party traffic came from Apache’s <code>ProxyRequests On</code>, not from
+WeKan or its database. Both reverse-proxy examples now set <code>ProxyRequests Off</code>
+inside the virtual host and no longer grant wildcard proxy access, preventing
+an unsafe global setting from leaking into the WeKan host. The guide also
+explains why <code>ProxyMaxForwards</code> does not close an open proxy. Three positive and
+negative configuration regressions protect those boundaries.</p>
+</details>
+<p>and improves the following translation:</p>
+<p><strong>Fulah</strong> - direct whole-file translation using established Pulaar vocabulary.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/3d02d1d87">Activity history gains its first 50 Fulah values</a>. Thanks to xet7.</summary>
+<p>Board membership, comments, dates, attachments, checklists, custom fields and
+imports now use Fulah. Named and percent placeholders and HTML tags remain
+exact, and whole-locale invariant coverage leaves 2,116 values.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0efb942af">Activity summaries and workspaces gain 50 Fulah values</a>. Thanks to xet7.</summary>
+<p>Card movement, activity summaries, checklist events and workspace controls now
+use Fulah. Named and percent placeholders, HTML tags and Markdown remain exact,
+leaving 2,066 values.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v11.13" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
