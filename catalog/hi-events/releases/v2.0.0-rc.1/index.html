@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hi.Events v2.0.0-rc.1 release notes | WinterFlow.io</title><meta name="description" content="v2.0.0-rc.1 introduces recurring and multi-date events, embedded checkout, product add-ons, a rebuilt check-in app, and a documented REST API, alongside…"><link rel="canonical" href="https://winterflow.io/catalog/hi-events/releases/v2.0.0-rc.1/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Hi.Events v2.0.0-rc.1 release notes | WinterFlow.io"><meta property="og:description" content="v2.0.0-rc.1 introduces recurring and multi-date events, embedded checkout, product add-ons, a rebuilt check-in app, and a documented REST API, alongside…"><meta property="og:url" content="https://winterflow.io/catalog/hi-events/releases/v2.0.0-rc.1/"><meta property="og:image" content="https://winterflow.io/images/apps/hi-events/hi-events.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Hi.Events v2.0.0-rc.1 release notes | WinterFlow.io"><meta name="twitter:description" content="v2.0.0-rc.1 introduces recurring and multi-date events, embedded checkout, product add-ons, a rebuilt check-in app, and a documented REST API, alongside…"><meta name="twitter:image" content="https://winterflow.io/images/apps/hi-events/hi-events.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Hi.Events","item":"https://winterflow.io/catalog/hi-events/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/hi-events/releases/"},{"@type":"ListItem","position":5,"name":"v2.0.0-rc.1","item":"https://winterflow.io/catalog/hi-events/releases/v2.0.0-rc.1/"}]}</script><script defer src="https://t.kuznetsov.dev/js/script.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the new tracker; must load after it. --><script defer src="/scripts/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/hi-events/hi-events.png" alt="Hi.Events logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Hi.Events</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open-source event management and ticket selling platform</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> eventbrite, tickettailor, dice.fm, tito </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://hi.events" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/HiEventsDev/hi.events" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://hi.events/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/hi-events/screenshot.png" alt="Hi.Events screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/HiEventsDev/hi.events/blob/main/LICENCE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 4,002 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Hi.Events" data-app-slug="hi-events" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://opencollective.com/hievents" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support via Open Collective →
+</a><a href="https://buymeacoffee.com/hi.events" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy Me a Coffee →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/hi-events/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (88)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/hi-events/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v2.0.0-rc.1</h2> <span class="text-sm text-gray-500">2026-08-27</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="hievents-v200-rc1">Hi.Events v2.0.0-rc.1</h1>
+<p>The biggest release since the project started. v2 adds recurring and multi-date events, embedded
+checkout, product add-ons, a rebuilt check-in app, a documented REST API, and a redesigned organizer
+dashboard, along with a set of platform upgrades that require action before you upgrade.</p>
+<p><strong>Read the <a href="#upgrading">Upgrading</a> section before running this on an existing installation.</strong> There
+are new minimum requirements and several one-way migrations.</p>
+<hr>
+<h2 id="recurring-and-multi-date-events">Recurring and multi-date events</h2>
+<p>An event is no longer a single date. Every event now has one or more <strong>occurrences</strong>, and you can
+generate them from a recurrence rule.</p>
+<ul>
+<li>Daily, weekly, monthly and yearly schedules, with intervals, multiple times per day, and
+per-slot labels and durations. Monthly supports both “the 15th of the month” and “the last
+Friday of the month”. The recurrence API additionally accepts excluded dates and one-off extra
+dates.</li>
+<li>Set a schedule to end after a number of dates or on a specific date. Up to 1,200 occurrences per
+event.</li>
+<li>Per-date capacity, per-date pricing overrides, per-date product visibility, and per-date venues.</li>
+<li>Cancel a single date, refund its orders in one action, and notify the attendees. Orders that
+span several dates are left for manual refund. Cancelling writes the date back into the schedule
+as an exclusion so it does not reappear.</li>
+<li>Bulk edit across dates: shift times, change duration, update capacity, relabel, or change venue,
+with options to only affect future dates and to skip dates you have edited by hand.</li>
+<li>Attendees, orders, waitlist entries, reports and exports can all be filtered by date.</li>
+<li>A new Occurrence Summary report breaks down sales, attendance and check-ins per date.</li>
+</ul>
+<p>Buyers get a calendar and time-slot picker on the event page and in the embedded widget, with
+remaining-capacity hints, sold-out states, and deep links straight to a specific date via
+<code>?occurrence_id=</code>.</p>
+<p>Single-date events keep working exactly as before. They get one occurrence created automatically and
+the buyer never sees a date picker.</p>
+<h2 id="embedded-checkout">Embedded checkout</h2>
+<p>The embeddable widget now runs the entire checkout in a modal over your own page, from ticket
+selection through payment to confirmation.</p>
+<ul>
+<li>Rendered in a shadow DOM, so your site’s CSS cannot break it and it cannot leak styles into your
+page. Full screen on mobile, a centred dialog on desktop.</li>
+<li>Apple Pay and Google Pay work inside it. Payments that redirect away for authentication (3DS,
+wallets) come back straight into the modal rather than dumping the buyer on a bare page, and the
+redirect parameters are cleaned off your URL afterwards.</li>
+<li>Closing the modal mid-checkout asks for confirmation and cancels the order. An accidental page
+reload or navigation is safe though: when the buyer returns in the same tab, the checkout reopens
+at the step they left off, as long as the reservation has not expired.</li>
+<li>Set <code>data-hievents-checkout="new-tab"</code> if you would rather keep the old behaviour of opening
+checkout in a new tab.</li>
+</ul>
+<p><strong>The embed snippet has not changed.</strong> Existing embeds pick all of this up with no edits to your
+site.</p>
+<p>There is also a widget playground at <code>/widget-test</code> on dev builds (or in production with
+<code>WIDGET_TEST_PAGE_ENABLED=true</code>) for trying colours, locales and checkout modes against a real
+event, with a live log of the messages the widget sends to the host page.</p>
+<h2 id="product-add-ons">Product add-ons</h2>
+<p>Attach add-ons to a ticket: merch, parking, a workshop upgrade. Add-ons appear nested under their
+parent in the widget and stay inert until the parent is in the cart. Mark a product “add-on only”
+and it will not appear as a standalone item.</p>
+<h2 id="reusable-locations-and-address-autocomplete">Reusable locations and address autocomplete</h2>
+<p>Addresses were previously free text stored on each event. They are now a proper location library
+per organizer, with a saved-venue picker and Google Places autocomplete.</p>
+<p>Autocomplete is optional. Set <code>GOOGLE_MAPS_API_KEY</code> to turn it on. Without a key everything still
+works, you just type the address in by hand.</p>
+<p>Events can be in-person or online, and recurring events can have a different venue per date. The
+public payload now returns a structured <code>event_location</code> object instead of the old
+<code>location_details</code> blob.</p>
+<h2 id="rebuilt-check-in-app">Rebuilt check-in app</h2>
+<p>The scanner was reorganised into three tabs: Scan, Search and Stats.</p>
+<ul>
+<li>Camera scanning is now inline rather than a separate screen, and USB scanner mode shows a live
+listening indicator and a visible input buffer.</li>
+<li>A stats tab with totals, progress, and a live throughput figure over a rolling five-minute window.</li>
+<li>An attendee detail sheet with check-in history.</li>
+<li>A date filter for recurring events, so door staff only see the session they are working.</li>
+<li>Haptic feedback, an offline indicator, and undo on accidental check-ins.</li>
+<li>Check-in lists moved to a table view, and you can now control what an unauthenticated check-in
+link exposes: attendee notes, question answers, and order details are each off by default.</li>
+</ul>
+<h2 id="payments-moved-to-the-organizer">Payments moved to the organizer</h2>
+<p>Stripe Connect, VAT settings and fee configuration used to live on the account. They now live on the
+organizer, so one account can run multiple organizers with separate payout destinations.</p>
+<ul>
+<li>Reuse an existing Stripe connection across organizers in the same account (SaaS mode only), or
+connect each one separately.</li>
+<li>Disconnect Stripe from an organizer without touching the Stripe account itself.</li>
+<li>Existing connections are migrated automatically. Nobody has to reconnect.</li>
+</ul>
+<p>You can also change an event’s currency yourself now, as long as the event has no orders with a
+monetary value.</p>
+<h2 id="account-deletion">Account deletion</h2>
+<p>Account owners can request deletion from Account settings, under Danger Zone.</p>
+<ul>
+<li>30 day grace period with a reminder email 7 days before the deletion runs, cancellable at any
+point.</li>
+<li>Accounts that have never taken a completed order are deleted outright. Accounts that have are
+anonymised instead, so financial records stay intact.</li>
+<li>Blocked while upcoming events still have completed orders, with the blocking events named.</li>
+<li>Live events are moved to draft as soon as the request is made.</li>
+</ul>
+<p>Deletions are executed by an hourly scheduled job, so <code>schedule:run</code> needs to be active.</p>
+<h2 id="rest-api-documentation">REST API documentation</h2>
+<p>The API now ships an OpenAPI spec generated from the code itself.</p>
+<p>Set <code>API_DOCS_ENABLED=true</code> and browse interactive docs at <code>/docs/api</code> on your own instance, or
+export the spec with <code>php artisan scramble:export</code>. Off by default.</p>
+<h2 id="announcements">Announcements</h2>
+<p>Superadmins can post in-app banners or modals to users on their instance, targeted at everyone, at
+specific accounts, or at specific users, with seen and dismissed counts. This is entirely local to
+your installation. There is no remote feed and nothing is pushed into your install from outside.</p>
+<h2 id="redesigned-dashboards">Redesigned dashboards</h2>
+<ul>
+<li>Stat cards replaced with sparklines and period-over-period comparisons.</li>
+<li>A new period selector covering both recent activity (last 7, 30, 90 days) and event lifetime
+(first 7, 30, 90 days, full event).</li>
+<li>A rebuilt setup checklist with a progress bar, which disappears once you are done.</li>
+<li>A publish flow that checks for missing pieces before you go live: it warns about missing tickets
+or dates, and blocks publishing when payments are not set up.</li>
+<li>For recurring events, a hero panel for the next date with a live countdown that turns into a
+check-in shortcut once the date starts.</li>
+</ul>
+<h2 id="checkout">Checkout</h2>
+<ul>
+<li>The checkout header was rebuilt: a step counter, the event title, and a compact reservation timer
+that turns red as it runs down.</li>
+<li>Ticket selection was redesigned. One-price tickets show inline without expanding, descriptions
+moved behind a Details toggle, fees and tax have a collapsible breakdown, and low stock shows a
+remaining-quantity hint.</li>
+<li>The floating “Get tickets” button turns into a checkout button showing your cart total once you
+scroll past the ticket list, and its label is configurable per event.</li>
+</ul>
+<h2 id="everything-else">Everything else</h2>
+<ul>
+<li>Nine new event categories (Family, Hobbies, Wellness, Spirituality, Outdoors, Tours, Film, Dance,
+Seasonal), and the category now sets the default wording. A wellness event says “Classes” and
+“Book Now” rather than “Tickets” and “Continue”.</li>
+<li>Fixed-amount promo codes can now discount the order total rather than each product.</li>
+<li>Offline payment orders can be refunded, in full or in part. This records the refund and can
+optionally email the buyer, it does not move money.</li>
+<li>Attendee tickets were redesigned, and cancelled or unpaid tickets now clearly show as void instead
+of displaying a scannable code.</li>
+<li>Waitlists are date-aware. One person can hold a place on several dates, offers name the date, and
+cancelling a date releases its waitlist.</li>
+<li>Product create and edit moved into a wide drawer with a live preview of the real widget that
+updates as you type.</li>
+<li>The frontend loads less up front. Every date-formatting locale used to be bundled whether you used
+it or not and now loads on demand, the rich text editor is loaded only when a page needs it, and
+theme colours are computed on the server rather than in the browser. Event management pages also
+make fewer duplicate API calls.</li>
+<li>k6 load test scripts (<code>misc/k6/</code>) and a split backend test suite, with the unit suite kept fast
+and database-free.</li>
+</ul>
+<h2 id="a-comprehensive-end-to-end-test-suite">A comprehensive end-to-end test suite</h2>
+<p>This release was built alongside a new Playwright E2E suite: over 160 tests across 66 spec files,
+driving the real application — Laravel backend, SSR frontend, Postgres, Redis and a mail catcher —
+in a real browser. Registration, event creation, free and Stripe checkout, recurring schedules,
+promo codes, questions, messaging, check-in, webhooks and more. Test data is arranged through the
+REST API and every spec asserts on real page content, not just URL changes.</p>
+<p>CI runs a tagged smoke subset on every pull request and the full suite, sharded, on every push. If
+you contribute to Hi.Events, <code>e2e/README.md</code> shows how to run it with one command.</p>
+<hr>
+<h1 id="breaking-changes">Breaking changes</h1>
+<h2 id="requirements">Requirements</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>v1.11</th><th>v2.0</th></tr></thead><tbody><tr><td>PHP</td><td>8.2</td><td><strong>8.3</strong></td></tr><tr><td>Laravel</td><td>12</td><td>13</td></tr><tr><td>PHP extensions</td><td>intl</td><td>intl, <strong>gd</strong></td></tr><tr><td>Docker base image</td><td>PHP 8.3</td><td>PHP 8.5</td></tr><tr><td>Node (SSR image)</td><td>floating</td><td>22</td></tr></tbody></table>
+<p>The Docker images handle all of this. Manual installs need to upgrade PHP and install <code>gd</code> first.</p>
+<h2 id="removed-api-endpoints">Removed API endpoints</h2>
+<p>Stripe and VAT moved from account level to organizer level:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Removed</th><th>Replacement</th></tr></thead><tbody><tr><td><code>GET /accounts/{id}/stripe/connect_accounts</code></td><td><code>GET /organizers/{id}/stripe/connect_accounts</code></td></tr><tr><td><code>POST /accounts/{id}/stripe/connect</code></td><td><code>POST /organizers/{id}/stripe/connect</code></td></tr><tr><td><code>GET /accounts/{id}/vat-settings</code></td><td><code>GET /organizers/{id}/vat-settings</code></td></tr><tr><td><code>POST /accounts/{id}/vat-settings</code></td><td><code>POST /organizers/{id}/vat-settings</code></td></tr><tr><td><code>PUT /admin/accounts/{id}/vat-settings</code></td><td><code>PUT /admin/organizers/{id}/vat-settings</code></td></tr><tr><td><code>PUT /admin/accounts/{id}/configuration</code></td><td><code>PUT /admin/organizers/{id}/configuration</code></td></tr></tbody></table>
+<p><code>POST /events/{id}/questions/export</code> was removed. It was wired to the orders exporter by mistake.
+Use <code>POST /events/{id}/orders/export</code> or <code>/events/{id}/questions/answers/export</code>.</p>
+<h2 id="changed-api-payloads">Changed API payloads</h2>
+<ul>
+<li><strong><code>location_details</code> is gone</strong> from event and event-settings payloads, replaced by
+<code>event_location</code>. <code>is_online_event</code> and <code>online_event_connection_details</code> moved inside it.
+<code>OrganizerSettingsResource</code> lost <code>location_details</code> too.</li>
+<li><strong>Creating or updating an event no longer accepts an inline address.</strong> Create a location first
+with <code>POST /organizers/{id}/locations</code>, then pass <code>event_location.location_id</code>.</li>
+<li><strong><code>start_date</code> and <code>end_date</code> are still returned but are now derived</strong> from an event’s
+occurrences. For a recurring event they mean first start and last end within the returned window.
+Sorting and filtering events by these fields is no longer supported, and the default event sort
+changed from <code>start_date asc</code> to <code>created_at desc</code>.</li>
+<li><strong><code>events.start_date</code> and <code>events.end_date</code> are no longer read or written.</strong> The columns still
+exist but they freeze at the moment you upgrade. If you have reports, dashboards or cron jobs
+querying them directly, point them at <code>event_occurrences.start_date</code>.</li>
+<li><strong>Checkout accepts <code>event_occurrence_id</code> per product line.</strong> Single-date events fill it in
+automatically, so existing integrations keep working. Recurring events require it.</li>
+<li><strong>Add-on-only products appear in the public products list.</strong> Filter on <code>is_addon_only</code> if you
+render products yourself.</li>
+<li><strong>A fixed-amount promo code scoped to the order can split one order line into two order items</strong>
+with the same <code>product_price_id</code>, so the discount divides exactly. Totals are correct to the
+minor unit, but code that keys order items by <code>product_price_id</code> will need adjusting.</li>
+<li><code>event_settings.hide_getting_started_page</code> was removed along with the Getting Started page.</li>
+<li>Image uploads are capped at 5MB, down from 8MB.</li>
+<li><code>POST /public/ticket-lookup</code> is now rate limited to 10 requests per minute.</li>
+</ul>
+<h2 id="new-webhook-event">New webhook event</h2>
+<p><code>occurrence.cancelled</code> fires when a date is cancelled. No existing events changed.</p>
+<h2 id="behaviour-changes">Behaviour changes</h2>
+<ul>
+<li><strong>A “Default check-in” list is created for every existing event</strong> on migration and cannot be
+deleted. It has a public check-in URL (containing an unguessable id) with no activation or expiry
+window, so it is live from the moment you upgrade. It exposes nothing beyond attendee names and
+check-in status unless you turn on the new visibility settings, which all default to off.</li>
+<li><strong>Existing check-in lists are unbound from any specific date</strong> and become all-dates lists.
+Re-scope them if you need to.</li>
+<li><strong>Duplicate check-in records are collapsed.</strong> A unique constraint is added on
+(attendee, check-in list), and duplicates are soft-deleted first. Check-in counts may drop
+slightly if you had duplicates. Nothing is permanently removed.</li>
+<li><strong>Products with <code>waitlist_enabled</code> unset now block waitlist joins.</strong> Previously only an explicit
+<code>false</code> did.</li>
+<li><strong>Regenerating a schedule deletes dates that no longer match the rule.</strong> Dates with orders or
+attendees are preserved and flagged as manually edited, but empty ones are removed.</li>
+<li>SaaS mode only: the default for passing platform fees to the buyer flipped from off to on. Set
+<code>APP_SAAS_DEFAULT_PASS_PLATFORM_FEE_TO_BUYER=false</code> to keep the old behaviour. Existing
+organizers keep their current setting; the new default applies to organizers created after the
+upgrade.</li>
+<li>SaaS mode only: <code>stripe_connect_return_url</code> and <code>stripe_connect_refresh_url</code> now take an organizer
+id. If you overrode them, add the <code>%d</code>.</li>
+</ul>
+<hr>
+<h1 id="upgrading">Upgrading</h1>
+<p>This section covers upgrading a self-hosted installation from v1.11.x to v2.0. If you run Hi.Events
+Cloud, there is nothing for you to do — your instance is upgraded for you.</p>
+<p>The order matters. Taking the site offline <strong>before</strong> the backup is what makes the backup a real
+rollback point: restore it and you are back exactly where you were, with nothing lost.</p>
+<ol>
+<li><a href="#1-check-the-requirements">Check the requirements</a></li>
+<li><a href="#2-take-the-site-offline">Take the site offline</a></li>
+<li><a href="#3-drain-and-stop-the-queue-workers">Drain and stop the queue workers</a></li>
+<li><a href="#4-back-up-the-database">Back up the database</a></li>
+<li><a href="#5-upgrade-and-migrate">Upgrade and migrate</a></li>
+<li><a href="#after-upgrading">Check everything worked</a></li>
+</ol>
+<h2 id="1-check-the-requirements">1. Check the requirements</h2>
+<p>v2 requires <strong>PHP 8.3 or higher</strong>, up from 8.2. It also needs the <strong>gd</strong> extension in addition to
+<code>intl</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">php</span><span style="color:#79B8FF"> -v</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">php</span><span style="color:#79B8FF"> -m</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> grep</span><span style="color:#79B8FF"> -E</span><span style="color:#9ECBFF"> "^(intl|gd)$"</span></span></code></pre>
+<p>If you use the official Docker images you can skip this. The images ship PHP 8.5 with both
+extensions.</p>
+<h2 id="2-take-the-site-offline">2. Take the site offline</h2>
+<p>Two reasons, and both matter:</p>
+<ul>
+<li><strong>It makes your backup a real rollback point.</strong> A backup taken while the site is still accepting
+orders is stale the moment it finishes — restoring it later would lose every order, attendee and
+check-in written after it. Taken with the site offline, it restores you to exactly the state you
+upgraded from.</li>
+<li><strong>It removes the one way the migration can fail.</strong> Two migrations create unique indexes after
+removing duplicate rows. If traffic writes a conflicting row in the gap, the migration fails and
+you have to retry.</li>
+</ul>
+<p>Stop the application but <strong>leave the database running</strong> — you need it up for the backup and the
+migration:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> stop</span><span style="color:#9ECBFF"> all-in-one</span></span></code></pre>
+<p>For separate-service setups, stop the web-facing services and leave postgres up — and leave your
+queue workers running for now, they are handled in the next step. On a manual install, stop your
+app server processes or hold traffic at your reverse proxy.</p>
+<p>How long will you be down? On a small installation the whole migration run takes seconds. On a
+database with hundreds of thousands of attendees, budget for minutes. Two migrations dominate that
+time:</p>
+<ul>
+<li><code>2026_02_22_000006_backfill_occurrences_and_drop_event_dates</code> creates one occurrence per existing
+event, then updates every row in <code>order_items</code> and <code>attendees</code>, then adds a NOT NULL constraint to
+<code>attendees</code>. It runs as a single transaction and holds locks throughout.</li>
+<li><code>2026_07_10_000001_backfill_occurrence_used_capacity</code> counts attendees per occurrence across the
+whole table.</li>
+</ul>
+<h2 id="3-drain-and-stop-the-queue-workers">3. Drain and stop the queue workers</h2>
+<p>Skip this if <code>QUEUE_CONNECTION=sync</code>, or if you use the all-in-one image — stopping the container
+in the previous step already stopped its worker.</p>
+<p>Jobs queued by v1 do not carry the new occurrence data, so v2 falls back to event-level behaviour
+when processing them — emails from a v1 backlog won’t show a specific date on a recurring event.
+With the site offline, let the workers finish the remaining backlog, then stop them. A restart on
+the new code is required regardless: workers cache code in memory and keep running v1 until
+restarted.</p>
+<h2 id="4-back-up-the-database">4. Back up the database</h2>
+<p>v2 rewrites how event dates are stored, collapses duplicate rows in two tables, and drops one
+settings column. Several migrations have <code>down()</code> methods that restore the schema but not the data.
+This backup is your only real rollback path.</p>
+<p>If postgres runs in Docker (adjust the user and database name if you changed the defaults):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> exec</span><span style="color:#79B8FF"> -T</span><span style="color:#9ECBFF"> postgres</span><span style="color:#9ECBFF"> pg_dump</span><span style="color:#79B8FF"> -U</span><span style="color:#9ECBFF"> postgres</span><span style="color:#79B8FF"> -F</span><span style="color:#9ECBFF"> c</span><span style="color:#9ECBFF"> hi-events</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> hievents-pre-v2-backup.dump</span></span></code></pre>
+<p>If postgres runs on the host:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pg_dump</span><span style="color:#79B8FF"> -U</span><span style="color:#9ECBFF"> your_user</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> your_database</span><span style="color:#79B8FF"> -F</span><span style="color:#9ECBFF"> c</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> hievents-pre-v2-backup.dump</span></span></code></pre>
+<h2 id="5-upgrade-and-migrate">5. Upgrade and migrate</h2>
+<h3 id="all-in-one-docker-image">All-in-one Docker image</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> pull</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> up</span><span style="color:#79B8FF"> -d</span></span></code></pre>
+<p>Migrations run automatically on container start, and the site comes back online once they finish.</p>
+<p><strong>One important change:</strong> if a migration fails, the container now exits instead of starting a
+half-migrated application. Because the compose file uses <code>restart: unless-stopped</code>, a failing
+migration looks like a restart loop. Check the logs before assuming the image is broken.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> logs</span><span style="color:#79B8FF"> -f</span><span style="color:#79B8FF"> --tail=200</span></span></code></pre>
+<h3 id="docker-compose-separate-services">Docker Compose (separate services)</h3>
+<p>Pull the new images, then run migrations once before bringing the app back up.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> pull</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --rm</span><span style="color:#9ECBFF"> backend</span><span style="color:#9ECBFF"> php</span><span style="color:#9ECBFF"> artisan</span><span style="color:#9ECBFF"> migrate</span><span style="color:#79B8FF"> --force</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> compose</span><span style="color:#9ECBFF"> up</span><span style="color:#79B8FF"> -d</span></span></code></pre>
+<h3 id="manual-install">Manual install</h3>
+<ol>
+<li>Upgrade PHP to 8.3 or higher and install the <code>gd</code> extension.</li>
+<li>Pull the new code.</li>
+<li>Install dependencies:</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> backend</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">composer</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --no-dev</span><span style="color:#79B8FF"> --optimize-autoloader</span></span></code></pre>
+<ol start="4">
+<li>Run migrations:</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> backend</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">php</span><span style="color:#9ECBFF"> artisan</span><span style="color:#9ECBFF"> migrate</span><span style="color:#79B8FF"> --force</span></span></code></pre>
+<ol start="5">
+<li>Build the frontend. Node 22 is what the official images use.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> frontend</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">yarn</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --frozen-lockfile</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">yarn</span><span style="color:#9ECBFF"> build</span></span></code></pre>
+<p>Build the frontend with <strong>yarn, not npm</strong>. <code>package.json</code> uses a <code>resolutions</code> block to pin two
+prosemirror packages, and npm ignores that field.</p>
+<ol start="6">
+<li>Start your app server processes (and queue workers) again on the new code.</li>
+</ol>
+<h2 id="after-upgrading">After upgrading</h2>
+<h3 id="check-the-scheduler-is-running">Check the scheduler is running</h3>
+<p>Account deletion is executed by an hourly scheduled job, so <code>schedule:run</code> has to be active for
+deletion requests to ever complete. The same applies to waitlist offer expiry and scheduled
+messages, both of which predate v2.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">*</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> cd /path/to/backend &#x26;&#x26; </span><span style="color:#B392F0">php</span><span style="color:#9ECBFF"> artisan</span><span style="color:#9ECBFF"> schedule:run</span><span style="color:#F97583"> >></span><span style="color:#9ECBFF"> /dev/null</span><span style="color:#F97583"> 2>&#x26;1</span></span></code></pre>
+<p>The all-in-one image already runs the scheduler and a queue worker under supervisor. You do not need
+to change anything there.</p>
+<p>If you run a queue driver other than <code>sync</code>, note that occurrence generation and bulk date
+cancellation are queued jobs. They need a worker consuming the queue they are dispatched to.</p>
+<h3 id="verify-your-data">Verify your data</h3>
+<ul>
+<li>Open an existing event. It should show its original date, now stored as a single occurrence.</li>
+<li>Check the dashboard on an event with historical sales. If the sales figures are zero but the
+orders are still there, the statistics backfill did not cover that event. Open an issue with the
+event id.</li>
+<li>Check an event’s Location settings. Existing addresses are migrated into the new location library.</li>
+<li>Check-in lists: every event now has a “Default check-in” list, and any list that was previously
+tied to a specific date is now an all-dates list. Re-scope them if you need to.</li>
+</ul>
+<p>Note that the account settings “Payment &#x26; Plan” tab no longer exists. Payout settings are now under
+Organizer settings, and account settings has a Danger Zone tab in its place.</p>
+<h3 id="optional-enable-address-autocomplete">Optional: enable address autocomplete</h3>
+<p>v2 can look up addresses through Google Places. This is optional and off unless you provide a key.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GOOGLE_MAPS_API_KEY=your_key_here</span></span></code></pre>
+<p>Without a key, the address search box only searches your own saved locations and you enter new
+addresses manually. Everything else works normally. You do not need a Google Cloud account to run
+Hi.Events.</p>
+<h3 id="optional-enable-api-documentation">Optional: enable API documentation</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>API_DOCS_ENABLED=true</span></span></code></pre>
+<p>Interactive OpenAPI docs are then served at <code>/docs/api</code>. You can also export the spec:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">php</span><span style="color:#9ECBFF"> artisan</span><span style="color:#9ECBFF"> scramble:export</span></span></code></pre>
+<p><strong>Known limitation:</strong> the all-in-one <code>docker-compose.yml</code> does not currently pass
+<code>API_DOCS_ENABLED</code> through to the container, so setting it in <code>.env</code> has no effect there. Add it to
+the <code>environment:</code> list manually if you need it.</p>
+<h2 id="new-environment-variables">New environment variables</h2>
+<p>All are optional and all have safe defaults. Nothing breaks if you add none of them.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Variable</th><th>Default</th><th>What it does</th></tr></thead><tbody><tr><td><code>GOOGLE_MAPS_API_KEY</code></td><td>unset</td><td>Turns on Google Places address autocomplete.</td></tr><tr><td><code>GEO_PROVIDER</code></td><td><code>google</code></td><td>Geo provider. Only <code>google</code> is implemented.</td></tr><tr><td><code>API_DOCS_ENABLED</code></td><td><code>false</code></td><td>Serves interactive API docs at <code>/docs/api</code>.</td></tr><tr><td><code>OCCURRENCES_QUEUE_NAME</code></td><td>unset</td><td>Sends occurrence jobs to a dedicated queue.</td></tr></tbody></table>
+<p>If you set <code>OCCURRENCES_QUEUE_NAME</code>, add that queue name to your worker’s <code>--queue=</code> list too.</p>
+<h2 id="rolling-back">Rolling back</h2>
+<p><strong>Treat v2 as forward-only.</strong> Restore your database backup if you need to go back — because it was
+taken with the site offline, restoring it puts you back exactly where you were before the upgrade.</p>
+<p>The migrations do define <code>down()</code> methods, but several cannot restore what they changed:</p>
+<ul>
+<li>The two deduplicating migrations remove duplicate rows and only drop the index on rollback.</li>
+<li>Rolling back the event category change rewrites any event using one of the nine new categories to
+<code>OTHER</code>.</li>
+<li><code>hide_getting_started_page</code> is recreated with a default value, not its previous values.</li>
+<li>Events created under v2 never write <code>events.start_date</code>, so on a v1 rollback those events would
+appear with no date.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>The container keeps restarting after upgrade.</strong>
+A migration failed. v2 stops the container rather than serving a half-migrated app. Read the logs
+for the actual error.</p>
+<p><strong>Creating a recurring schedule never finishes.</strong>
+You are on a non-<code>sync</code> queue driver with nothing consuming the queue the occurrence jobs were
+dispatched to. Check your worker, and check <code>OCCURRENCES_QUEUE_NAME</code> if you set it.</p>
+<p><strong>A unique index migration failed.</strong>
+Traffic wrote a conflicting row between the cleanup and the index build. Stop the application and
+re-run <code>php artisan migrate --force</code>.</p>
+<p><strong><code>composer install</code> fails on the PHP version.</strong>
+You are on PHP 8.2 or lower. v2 requires 8.3 or higher.</p>
+<p><strong>Address search shows no suggestions.</strong>
+Expected without <code>GOOGLE_MAPS_API_KEY</code>. Use “Enter address manually”.</p>
+<hr>
+<p>Thanks to everyone who tested the alpha and filed issues, and to the contributors whose work is
+part of this release: @mrjbj, @officialJCReyes, @dalsoop, @Viburnum, @albanobattistella and
+@manaskumar3003.</p>
+<p><strong>Full changelog:</strong> <a href="https://github.com/HiEventsDev/hi.events/compare/v1.11.1-beta...v2.0.0-rc.1">https://github.com/HiEventsDev/hi.events/compare/v1.11.1-beta…v2.0.0-rc.1</a></p> </div> <div class="mt-6"> <a href="https://github.com/HiEventsDev/Hi.Events/releases/tag/v2.0.0-rc.1" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
