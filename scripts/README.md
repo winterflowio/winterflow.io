@@ -15,7 +15,7 @@ Load it **after** the tracking snippet — the snippet is what defines
 `analytics.track`:
 
 ```html
-<script defer src="https://t.kuznetsov.dev/js/script.js" data-key="ak_…" data-identity="anonymous"></script>
+<script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_…" data-identity="anonymous"></script>
 <script defer src="/scripts/plausible-shim.js"></script>
 ```
 
