@@ -1,0 +1,860 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jellyfin v12.0 release notes | WinterFlow.io</title><meta name="description" content="Release 12.0 introduces a new Modern web layout, significant book support improvements, database performance optimizations, and multiple version support…"><link rel="canonical" href="https://winterflow.io/catalog/jellyfin/releases/v12.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Jellyfin v12.0 release notes | WinterFlow.io"><meta property="og:description" content="Release 12.0 introduces a new Modern web layout, significant book support improvements, database performance optimizations, and multiple version support…"><meta property="og:url" content="https://winterflow.io/catalog/jellyfin/releases/v12.0/"><meta property="og:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Jellyfin v12.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Release 12.0 introduces a new Modern web layout, significant book support improvements, database performance optimizations, and multiple version support…"><meta name="twitter:image" content="https://winterflow.io/images/apps/jellyfin/jellyfin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Jellyfin","item":"https://winterflow.io/catalog/jellyfin/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/jellyfin/releases/"},{"@type":"ListItem","position":5,"name":"v12.0","item":"https://winterflow.io/catalog/jellyfin/releases/v12.0/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/jellyfin/jellyfin.png" alt="Jellyfin logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Jellyfin</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Free software media system for organizing and streaming your movies, TV shows, and music</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> netflix, plex, emby </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://jellyfin.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/jellyfin/jellyfin.org/tree/master/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/jellyfin/jellyfin/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> GPL-2.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 56,721 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Jellyfin" data-app-slug="jellyfin" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/jellyfin" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support Jellyfin on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/jellyfin/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (106)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/jellyfin/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v12.0</h2> <span class="text-sm text-gray-500">2026-09-08</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h1 id="rocket-release-notes-for-120">:rocket: Release notes for 12.0</h1>
+<h2 id="notes-on-updating">Notes on Updating</h2>
+<p>Before upgrading from an earlier version, a full backup of the data directory is strongly recommended, as this release includes database changes that prevent rolling back without a full restore.</p>
+<p>Direct upgrades from 10.10.7 and 10.11.x to 12.0 are supported; intermediate upgrades are not required. Users running releases older than 10.10.7 are strongly encouraged to upgrade to 10.10.7 before migrating to 12.0.</p>
+<p>Installed repository plugins (anything not built-in) should also be removed before migrating. Plugins will likely need time to adapt to the new database changes, so re-adding them afterward is the safest approach for testing.</p>
+<p>Official plugins compatible with Jellyfin are available through the stable plugin repository. If you have changed to the unstable plugin repository please change it back.</p>
+<ul>
+<li>Go to Dashboard -> Plugins -> Manage Repositories</li>
+<li>Update the Plugin Repository URL to: <a href="https://repo.jellyfin.org/files/plugin/manifest.json">https://repo.jellyfin.org/files/plugin/manifest.json</a></li>
+</ul>
+<p>After migrating please perform the following steps.</p>
+<ul>
+<li>Perform a full library scan to restore alternative versions</li>
+</ul>
+<p>If you run into issues, please prefix bug reports with “[12.0]”.</p>
+<h2 id="packaging">Packaging</h2>
+<ul>
+<li>Debian Bullseye and Ubuntu Focal packages are no longer built</li>
+</ul>
+<h2 id="server">Server</h2>
+<ul>
+<li>Performance PR implications <a href="https://github.com/jellyfin/jellyfin/pull/16062">https://github.com/jellyfin/jellyfin/pull/16062</a>
+<ul>
+<li>We’re running a full path-based check on all library items to clean up left overs. Depending on size this can take some time</li>
+<li>Alternative versions of media that were auto resolved (not manually merged) will be removed due to data type issues -> A full library scan will fix this again and is therefore REQUIRED AFTER UPGRADE</li>
+<li>First scan will take significantly longer than normal and some movies might appear as newly added due to type issues that got fixed on-scan</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Multiple versions for episodes</li>
+<li>Similarity &#x26; recommendation providers</li>
+<li>Search providers, letting plugins extend or replace how search results are produced</li>
+<li>SchedulesDirect and EPG refresh fixes</li>
+<li>Fixes to the parental rating system</li>
+<li>Proper data pruning on file replacement/deletion</li>
+<li>Support triple+ digit episode numbers</li>
+<li>Add library-specific BoxSet and Playlist filtering, allowing per-library collection and playlist views</li>
+<li><code>CACHEDIR.tag</code> support</li>
+<li><code>Accept-Language</code> header support</li>
+<li>Add VideoRotation profile condition for Android TVs that do not support rotation metadata</li>
+<li>Parse provider IDs from season and episode folder/file names</li>
+<li>Allow tmdb, tvdb, and imdb as aliases for the tmdbid, tvdbid, and imdbid provider IDs</li>
+<li>Add curly brace and parentheses support for parsing attribute values</li>
+<li>Add NameStartsWith and NameLessThan filters to Person search</li>
+<li>Add new filters for audio and subtitle languages</li>
+<li>Add OriginalLanguage as option to PreferredAudioLanguage</li>
+<li>Add a collection API for Included In feature</li>
+<li>Add support for VobSub subtitle streams</li>
+<li>Add Tmdb missing episode provider</li>
+</ul>
+<h3 id="breaking-and-behavior-changes">Breaking and behavior changes</h3>
+<ul>
+<li>Legacy route prefixes removed (<code>/emby/*</code> and <code>/mediabrowser/*</code>). Old third-party clients that rely on them will stop working</li>
+<li>Legacy authorization is now disabled by default, and a migration disables it on existing installs as well</li>
+<li>Removed obsolete API routes: <code>POST /Users/{userId}/EasyPassword</code> (the EasyPassword feature is gone), <code>GET /Items/{itemId}/CriticReviews</code>, <code>GET /Environment/NetworkShares</code>, <code>POST /System/MediaEncoder/Path</code>, <code>GET /LiveTv/Recordings/Groups/{groupId}</code>, and <code>GET /QuickConnect/Initiate</code></li>
+<li>The global subtitle configuration has been removed, subtitle settings are configured per library</li>
+<li><code>.ogg</code> is no longer treated as a video extension and is audio only, <code>.aifc</code> is now recognized as audio, and <code>.aiff</code> is no longer treated as an image</li>
+<li>Symlinks are only resolved at playback time</li>
+<li>Sorting by name now uses <code>SortName</code> and <code>CleanName</code>, and the same cleaning logic is applied to <code>ForcedSortName</code>. Library ordering may change compared to 10.11</li>
+<li>Image endpoints no longer upscale beyond the source resolution, so low resolution artwork renders at its real size instead of being enlarged</li>
+<li>Username capitalization can now be changed. Usernames are stored in a normalized column with a unique index, so installs with usernames that differ only by case need to be corrected before upgrading</li>
+</ul>
+<h3 id="database-and-performance">Database and performance</h3>
+<ul>
+<li>Playlists and collections are now properly relational, using a new <code>LinkedChildren</code> table instead of serialized child lists. <code>OwnerId</code> and <code>PrimaryVersionId</code> are real GUID foreign keys, and <code>ExtraIds</code> has been dropped</li>
+<li>Many tuning migrations covering item counts, item names, type and clean name, latest items, image info, and primary version id</li>
+<li>Migration routines clean up existing data on first boot: duplicate music artists and people are merged, orphaned extras and external data are removed, incorrect owner relationships are repaired, and clean names, forced sort names, and series presentation keys are recomputed</li>
+<li>Heavy database tasks no longer run while a library scan is in progress</li>
+<li>Faster queries for Resume, Next Up, rewatching, Latest Items for music, playlists and collections, artist lookup, and item counts</li>
+<li>Item deletion is batched, which fixes “too many SQL variables” failures when deleting large numbers of items</li>
+<li><code>jellyfin.db</code> can now be stored at a custom path</li>
+</ul>
+<h3 id="operations">Operations</h3>
+<ul>
+<li>New <code>--mode</code> startup flag with <code>MediaServer</code>, <code>MigrateSystem</code>, and <code>SeedSystem</code>, allowing migrations or database seeding to be run without starting the server. This is useful for containerized and orchestrated deployments and for controlled upgrades</li>
+<li>The startup interface has been restyled and now shows version and activity information</li>
+<li>Disabled plugins are no longer re-enabled on restart</li>
+<li>Full system backups skip corrupt keyframe rows instead of failing</li>
+</ul>
+<h3 id="media-and-subtitles">Media and subtitles</h3>
+<ul>
+<li>Subtitle writing now goes through SubtitleEdit, which is what avoids the SSA to ASS conversion and loss of styles</li>
+<li>External subtitles can be embedded into MKV when transcoding</li>
+<li>The subtitle extraction timeout is now configurable</li>
+<li>Client-rendered graphical subtitles are allowed during remux</li>
+<li>Fixes for races in concurrent subtitle conversion, cache invalidation when a subtitle is replaced, and ffmpeg hangs during extraction</li>
+<li>New <code>HlsAudioSeekStrategy</code> configuration option</li>
+<li>Trickplay: existing files are discovered during a scan, duplicates from interlaced video are fixed, invalid PTS values from containers are normalized, and the cache is cleaned up after a failure</li>
+</ul>
+<h3 id="live-tv">Live TV</h3>
+<ul>
+<li>Live TV no longer returns unreachable “server-local” streaming URLs to clients</li>
+<li>XMLTV background images and episode thumbnails are now imported</li>
+<li>XMLTV guide imports skip programs whose data has not changed, using an ETag computed from the fields the server actually consumes, which makes repeat guide refreshes considerably cheaper. Other listings providers stay on the existing field-by-field update path</li>
+</ul>
+<h3 id="metadata-and-providers">Metadata and providers</h3>
+<ul>
+<li>ListenBrainz is now bundled with the server and provides similar artist data with a selectable similarity algorithm</li>
+<li>TVDB provider IDs are supported for movies</li>
+<li>AudioDb artist search</li>
+<li>ReplayGain album gain is parsed</li>
+<li>MusicBrainz lookups are more resilient</li>
+<li>WEB-DL release tags are recognized in file names</li>
+<li>Hyphenated numbers in episode titles are no longer parsed as multi-episode files</li>
+<li>3D format detection works when the tag is the last token of the path</li>
+<li>Person metadata refreshes are queued instead of blocking the request</li>
+</ul>
+<h2 id="transcoder">Transcoder</h2>
+<ul>
+<li>New upstream version of FFmpeg 8.1</li>
+<li>Optimized CUDA transposing filter performance</li>
+<li>Optimized OCL scaling filter performance</li>
+<li>Optimized OCL tonemapping filter performance on Mali GPU</li>
+<li>Use EOTF from BT 2446 Method B for HLG tonemapping</li>
+<li>Fix potential A/V desync in HLS when transcoding video while remuxing audio</li>
+<li>Avoid SSA to ASS conversion and loss of styles</li>
+<li>Add spec-compliant dvh1 HLS variant for DoVi P5 for compatibility</li>
+</ul>
+<h2 id="web">Web</h2>
+<ul>
+<li>The Modern layout is now the default, the previous layout is now called Legacy</li>
+<li>Updated Music Videos view</li>
+<li>Updated Mixed Media view</li>
+<li>Updated Collections &#x26; Playlists view</li>
+<li>Updated Books view</li>
+<li>Add still watching prompt</li>
+<li>Add delay setting for photo slideshow</li>
+<li>Add caching of queries to indexed db for the tanstack query client for improved loading performance</li>
+<li>Add watch feature to log viewer</li>
+<li>Add <code>,</code> and <code>.</code> as controls to scrub frame-by-frame</li>
+<li>Add filters for audio and subtitle languages (modern layout only)</li>
+<li>Add Collections and playlist tab to all libraries</li>
+<li>Add collections to item details page</li>
+<li>Replace libpgs with libbitsub and adds support for vobsub rendering</li>
+<li>Merge cards for crew with multiple roles</li>
+</ul>
+<h3 id="layout-and-themes">Layout and themes</h3>
+<ul>
+<li>All themes now derive from a shared base theme built on CSS variables, including Dark, Light, WMC, Blue Radiance, Apple TV, and Purple Haze. Custom themes may need to be adjusted</li>
+<li>The library toolbar has been merged into the app bar, with a sticky library header and design polish throughout the library</li>
+<li>Custom links can be added to the Modern layout</li>
+<li>The screensaver time setting is now available in the Modern layout</li>
+</ul>
+<h3 id="libraries-and-browsing">Libraries and browsing</h3>
+<ul>
+<li>Collections and folders tabs for book libraries, and a folder view in the Modern home videos layout</li>
+<li>Default tab options for Home Videos and Photos libraries</li>
+<li>Studio search, and an extended Studios tab</li>
+<li>Play All and Shuffle buttons on the series library. Both are disabled rather than hidden when no items are available</li>
+<li>Improved Upcoming view</li>
+<li>Sorting and filtering on the Activity page</li>
+<li>A Reset Filters button in the filter dropdown</li>
+<li>Folders can be marked as played</li>
+<li>TV show creators are shown on item details</li>
+<li>Similarity providers can be configured per library</li>
+<li>Pagination controls are hidden when paging is disabled</li>
+</ul>
+<h3 id="playback">Playback</h3>
+<ul>
+<li>The playback info overlay is more compact and shows more detail</li>
+<li>Chapter names are shown in the OSD slider bubble</li>
+<li>Bitrate detection now runs in web</li>
+<li>Dolby Vision in MKV on webOS 25 and newer</li>
+<li>AV1 fMP4 stream copy on TV clients</li>
+<li>Direct play of anamorphic video on Tizen, and loosened anamorphic restrictions for browser device profiles</li>
+<li>On iOS, background playback continues when the screen is turned off, and audio normalization is disabled to fix pitch and speed issues</li>
+<li>libbitsub updated to v1.11.0 with an HLS offset fix</li>
+<li>The screensaver is suppressed while viewing photos or reading</li>
+</ul>
+<h3 id="tv-and-remote">TV and remote</h3>
+<ul>
+<li>Game controller navigation fixes, and the gamepad repeat rate is no longer tied to framerate</li>
+<li>Keyboard controls work on non-Latin keyboard layouts, with additional fixes for older browsers</li>
+<li>Rewind and FastForward play state commands are handled</li>
+<li>SyncPlay menu update, and the SyncPlay ping is now reported to the server</li>
+<li>Focused and checked checkbox styling in the TV layout</li>
+</ul>
+<h3 id="under-the-hood">Under the hood</h3>
+<ul>
+<li>WebSockets have been migrated to SDK subscriptions</li>
+<li>The React and TypeScript migration continues with the libraries, Live TV, and networking pages, and the dashboard user pages now use the TS SDK</li>
+<li>TanStack Query now backs user settings and home screen sections, and the query cache is cleared when the server restarts</li>
+</ul>
+<h3 id="notable-fixes">Notable fixes</h3>
+<ul>
+<li>Blurry card images on high DPI displays, and card image sizes are rounded up</li>
+<li>Duplicate <code>/socket</code> connections</li>
+<li>Login loop, connecting to the wrong server when several are configured, and native shell server selection when signing out</li>
+<li>An invalid request for all items on page load</li>
+<li>The Live TV default landing tab</li>
+<li>Holding and dragging on media no longer activates multi-select</li>
+<li>A warning is shown before restoring a version, a warning is shown when starting a backup while a scan is running, and a library scan starts automatically when folders are added to a library</li>
+</ul>
+<h2 id="security">Security</h2>
+<p>Server:</p>
+<ul>
+<li>Path validation has been added to the legacy HLS segment endpoints and to the plugin image endpoint, so a requested file must resolve inside the transcode directory</li>
+<li>Path traversal hardening has been extended to the image and plugin endpoints and to username path handling, building on the fixes released in 10.11.x</li>
+<li>The startup wizard can no longer be re-run without authentication on a misconfigured server</li>
+<li>Unsafe plugin package names are rejected by the plugin installer</li>
+<li>Parental filtering is enforced on additional endpoints, playlist visibility has been corrected, non-admin access to additional parts has been fixed, and people are exempt from the allowed tags visibility check</li>
+</ul>
+<p>Web:</p>
+<ul>
+<li>Cross-site scripting via person roles</li>
+<li>Auth parameters are encoded when creating API clients</li>
+<li>The login disclaimer only allows common link protocol schemes</li>
+</ul>
+<h2 id="books">Books</h2>
+<p>Books have often taken a backseat in favor of video playback in Jellyfin, but this should no longer be the case.
+We have started a concerted effort to improve book support across the API and our official clients.
+eBook and comic support is still maturing, but the ODPS plugin allows for direct access from a wide range of popular self-hosted programs.
+Correspondingly, contributions in any repository are extremely welcome from the wider community.
+That includes server improvements, documentation changes, and third-party clients for book playback.
+A combination of eBook, comic, and audiobook support is available on the following clients.</p>
+<p>Official: Web, iOS, Android, Desktop, Roku, Kodi, JMP
+Community: JellyBook, Symfonium, Jellium, Plappa</p>
+<p>One notable omission from the server is book series as unique entities, which didn’t make the cut for this release.
+If you would like to bridge the gap until they are added, feel free to use the <a href="https://github.com/dkanada/jellyfin-plugin-folio">Folio</a> plugin to display them as collections.
+It functions very similar to the <a href="https://github.com/jellyfin/jellyfin-plugin-tmdbboxsets">TMDb Box Sets</a> plugin but only applies to eBooks.</p>
+<p>Another in-flight feature is audiobook chapters, which are only available from the API at present.
+Luckily, this means client support is now possible, so you should see them appear in your favorite audiobook client before our next server release.</p>
+<blockquote>
+<p>NOTE: The Bookshelf plugin has been deprecated and its features have been merged into server or extracted into the ComicVine and GoogleBooks providers.</p>
+</blockquote>
+<h3 id="server-changes">Server Changes</h3>
+<ul>
+<li>Bookshelf has been split into separate GoogleBooks and ComicVine providers</li>
+<li>Local book parsing has been improved and is available without plugins
+<ul>
+<li>Book metadata is extracted directly from OPF and ComicInfo files or ComicBookInfo comments</li>
+<li>External covers are now supported for audiobook files</li>
+<li>Posters are generated for EPUBs and all supported comic archives</li>
+<li>Name, index, year, and series are parsed from book filenames</li>
+<li>Both volume and chapter will be available in the API when present in comic filenames</li>
+<li>Page counts are extracted from comic archives and PDFs</li>
+<li>Creator names from OPF data are normalized to a common format</li>
+</ul>
+</li>
+<li>A new OpenLibrary plugin has been created for metadata and images</li>
+<li>ISBN external IDs and links are supported</li>
+<li>Chapters are now extracted from audiobooks</li>
+</ul>
+<h3 id="web-changes">Web Changes</h3>
+<ul>
+<li>Modern book library layout has been added with view types and paging</li>
+<li>Books display information about their authors and vice versa</li>
+<li>Playback interface has been redesigned and standardized across all book types</li>
+<li>Progress indicator is enabled again for supported eBooks</li>
+<li>Sorting books by index number, release date, etc is now available</li>
+<li>Font size selection has been improved for EPUB files</li>
+<li>Background audiobook playback is working on iOS devices</li>
+<li>Authors, collections, and folders tabs have been added to book libraries, and audiobooks appear under authors</li>
+<li>Fullscreen behavior is unified across all book players, and PDFs support swipe navigation</li>
+</ul>
+<h2 id="developers">Developers</h2>
+<h3 id="api-changes">API Changes</h3>
+<p>The API no longer allows the use of deprecated authorization mechanisms by default.
+Clients and tooling need to migrate if they haven’t done so already. See <a href="https://github.com/jellyfin/jellyfin/pull/15559">https://github.com/jellyfin/jellyfin/pull/15559</a> for details.</p>
+<p>There have been a number of other changes to the SDK libraries and API as part of an ongoing effort to better document the API for client use.
+Please note the following with regards to API support.
+A full explanation of our policy for API changes will be added to the developer documentation in the coming months.</p>
+<ul>
+<li>If an endpoint isn’t listed in the OpenAPI specification it should not be used by clients.
+<ul>
+<li>There are certain endpoints that are still exposed for legacy reasons despite being excluded from the OpenAPI spec.</li>
+<li>These can be removed in any major release without warning</li>
+</ul>
+</li>
+<li>If an endpoint or parameter is marked as obsolete in the OpenAPI specification it should not be used by clients.
+<ul>
+<li>Same explanation as above.</li>
+</ul>
+</li>
+<li>As a general rule, any deprecations will be marked as such for an entire (major) release cycle before the deprecated endpoint or parameter is liable for removal.</li>
+</ul>
+<p>Behavior changes clients should be aware of:</p>
+<ul>
+<li><code>GetItems</code> is now asynchronous and applies <code>recursive</code> when filters are requested, limited to requests that include <code>includeItemTypes</code>. The same query can return a different result set than it did on 10.11</li>
+<li><code>ItemByName</code> responses are restricted and people are deduplicated</li>
+<li>Newly obsolete but still functional, with replacements:
+<ul>
+<li><code>GetTrailers</code> -> use <code>GetItems</code> with <code>includeItemTypes=Trailer</code></li>
+<li><code>GetArtists</code> and <code>GetAlbumArtists</code> -> use <code>GetPersons</code></li>
+<li><code>GetArtistByName</code> -> use <code>GetPerson</code></li>
+<li><code>GetMusicGenre</code> -> use <code>GetGenre</code></li>
+<li><code>GetInstantMixFromMusicGenreById</code> and <code>GetInstantMixFromMusicGenreByName</code> -> use <code>GetInstantMixFromItem</code></li>
+<li><code>GetStartupConfiguration</code>, <code>UpdateInitialConfiguration</code>, and <code>SetRemoteAccess</code> -> use the configuration endpoints</li>
+<li><code>GetRecordingsSeries</code></li>
+<li><code>UserDto.HasPassword</code> is marked obsolete and no longer provides useful information</li>
+</ul>
+</li>
+<li>The HLS controllers are hidden from the specification</li>
+</ul>
+<h3 id="platform">Platform</h3>
+<ul>
+<li>The server now targets .NET 10. Plugins have to be retargeted and rebuilt</li>
+<li>Swashbuckle has been updated to v10, which changes the generated OpenAPI document, so SDKs need to be regenerated</li>
+<li>jellyfin-web now builds with Node 24 LTS and npm 11</li>
+</ul>
+<h3 id="plugin-changes">Plugin changes</h3>
+<ul>
+<li><code>ISearchEngine</code> has been replaced by <code>ISearchManager</code>, and <code>SearchEngine</code> has been replaced by <code>SearchManager</code> together with <code>SqlSearchProvider</code></li>
+<li>Removed: <code>NowPlayingQueueFullItems</code>, <code>DtoExtensions.AddClientFields</code>, <code>Jellyfin.Extensions.AlphanumericComparator</code>, the <code>ISubtitleWriter</code> family of subtitle writers, and <code>SubtitleOptions</code> with <code>SubtitleConfigurationFactory</code></li>
+<li><code>ServerConfiguration.EncoderPreset</code> is no longer nullable</li>
+<li><code>IAuthenticationProvider.HasPassword</code> has been removed</li>
+<li><code>IPasswordResetProvider.StartForgotPasswordProcess</code> takes the entered username and a nullable user</li>
+<li><code>IUserManager</code>: the <code>Users</code> and <code>UsersIds</code> properties are now the <code>GetUsers</code> and <code>GetUsersIds</code> methods, and <code>RenameUser</code>, <code>ResetPassword</code>, and <code>ChangePassword</code> take a user id instead of a <code>User</code>. <code>GetFirstUser</code> has been added</li>
+<li>Several <code>IItemRepository</code> members moved to the new services: item saving and deletion and <code>UpdateInheritedValues</code> to <code>IItemPersistenceService</code>, counts to <code>IItemCountService</code>, and Next Up series keys to <code>INextUpService</code></li>
+<li><code>IPeopleRepository.GetPeople</code> and <code>ILibraryManager.GetPeopleItems</code> return a <code>QueryResult</code>, and <code>IDtoService.GetBaseItemDtos</code> and <code>ILibraryManager.DeleteItemsUnsafeFast</code> have new signatures</li>
+<li><code>IDirectoryService.GetFilePaths</code> no longer takes a <code>sort</code> argument, and the <code>IPathManager</code> subtitle and attachment path getters are now nullable</li>
+</ul>
+<h3 id="new-plugin-apis">New plugin APIs</h3>
+<p>This release adds several extension points that plugins could not hook into before.</p>
+<ul>
+<li><strong>Search providers.</strong> Plugins can now take part in search itself rather than only in metadata lookup. <code>ISearchProvider</code> exposes <code>Name</code>, <code>Type</code>, <code>Priority</code>, and <code>CanSearch(SearchProviderQuery)</code>, with <code>IInternalSearchProvider</code> for providers that search the local library and <code>IExternalSearchProvider</code> for providers that stream <code>SearchResult</code> items from a remote service. Providers are registered through <code>ISearchManager.AddParts</code> and are consulted in priority order, so a plugin can extend or take over from the built-in <code>SqlSearchProvider</code></li>
+<li><strong>Similarity and recommendation providers.</strong> <code>ISimilarItemsProvider</code> is split inherited by <code>ILocalSimilarItemsProvider</code>, <code>IRemoteSimilarItemsProvider</code>, and <code>IBatchLocalSimilarItemsProvider</code>, each with a generic variant so a provider can declare the item type it handles. Providers are selected and ordered per library through <code>LibraryOptions.SimilarItemProviders</code> and <code>SimilarItemProviderOrder</code>, and <code>ISimilarItemsManager</code> also pulls movie recommendations. The bundled ListenBrainz provider is built on this</li>
+<li><strong>Comic metadata providers.</strong> <code>IComicProvider</code> (<code>ReadMetadata</code> and <code>HasItemChanged</code>) lets a plugin supply comic metadata alongside the built-in ComicInfo and ComicBookInfo readers</li>
+<li><strong>Chapters for any item type.</strong> <code>IChapterManager.SaveChapters</code> now takes a <code>BaseItem</code> rather than a <code>Video</code>, and gained a <code>Supports(BaseItem)</code> check. This is what makes audiobook chapters possible, and it lets plugins save chapters for non-video items</li>
+<li><strong>Password resets for unknown users.</strong> <code>IPasswordResetProvider.StartForgotPasswordProcess</code> now receives the entered username along with a nullable user, so a provider can handle a request for a username the server does not know or hand the reset off to an external provider</li>
+<li><strong>Media segment cleanup.</strong> <code>IMediaSegmentProvider.CleanupExtractedData</code> is called when an item’s data is pruned, so segment providers can remove their own extracted files</li>
+<li><strong>Schedules Direct.</strong> <code>ISchedulesDirectService</code> exposes available countries, service availability, and the image daily limit state, so Live TV plugins no longer need to reimplement them. <code>ITunerHostManager.DeleteTunerHost</code> allows removing a tuner</li>
+<li><strong>Alternate versions and linked children.</strong> Now that linked children are relational, <code>ILibraryManager</code> exposes <code>ResolveAlternateVersion</code>, <code>GetLocalAlternateVersionIds</code>, <code>GetLinkedAlternateVersions</code>, <code>GetItemIdsWithAlternateVersions</code>, and <code>UpsertLinkedChild</code>. Plugins that manipulated version links through serialized item data need to move to these</li>
+<li><strong>Batch APIs for bulk work.</strong> <code>IUserDataManager</code> gained <code>GetUserDataBatch</code>, <code>GetResumeUserData</code>, <code>GetResumeUserDataBatch</code>, and <code>ResetPlaybackStreamSelections</code>. <code>ILibraryManager</code> gained <code>GetPeopleByItems</code>, <code>GetPeopleNamesByItems</code>, and <code>GetNextUpEpisodesBatch</code>. <code>IItemCountService</code> offers batched child and played/total counts</li>
+<li><strong>Localization.</strong> <code>ILocalizationManager.GetServerLocalizedString</code> and <code>GetLanguageDisplayName</code> let plugins localize against the server locale</li>
+<li><code>ICollectionManager.GetCollectionsContainingItem</code> backs the Included In feature, and <code>IPlaylistManager.AddItemToPlaylistAsync</code> takes a position so items can be inserted at the top of a playlist</li>
+</ul>
+<p><code>IHasEmbeddedImage</code> is also new, but it is only for plugins compiled into the server; external plugins should keep declaring their image with <code>imagePath</code> in <code>meta.json</code>.</p>
+<h3 id="tls-configuration">TLS Configuration</h3>
+<p>In the previous release notes 10.11.0 we announced the deprecation of the built-in TLS certificate handling for this version. This change has been postponed to a future version.</p>
+<hr>
+<p>Discuss this release further <a href="https://forum.jellyfin.org/t-new-jellyfin-server-web-release-12-0">on our forums</a>.</p>
+<h2 id="changelog-460">Changelog (460)</h2>
+<h3 id="-security">🔒 Security</h3>
+<ul>
+<li>Potential FFmpeg argument injection via unescaped subtitle file path [<a href="https://github.com/jellyfin/jellyfin/security/advisories/GHSA-wwwm-px48-fpvq">GHSA-wwwm-px48-fpvq</a>]</li>
+</ul>
+<h3 id="-highlights">🌟 Highlights</h3>
+<ul>
+<li>Implement multiple versions for episodes. [PR #16828], by @Shadowghost</li>
+<li>Disable legacy authorization methods by default [PR #15559], by @nielsvanvelzen</li>
+</ul>
+<h3 id="️--enhancements">🏗️  Enhancements</h3>
+<ul>
+<li>Fix movie recommendations [PR #16856], by @Shadowghost</li>
+<li>Have device deletion take list of ids [PR #12834], by @LePips</li>
+<li>Allow tmdb as an alias for tmdbid provider id [PR #16433], by @theguymadmax</li>
+<li>Fix EPG issues [PR #16220], by @Shadowghost</li>
+<li>Add CACHEDIR.tag support [PR #16478], by @Shadowghost</li>
+<li>Remove global subtitle configuration [PR #14957], by @KGT1</li>
+<li>Fix: normalize punctuation when computing CleanName so searches without punctuation match (closes #1674) [PR #14879], by @audrey-inglish</li>
+<li>refactor(StreamInfo): reorganize subtitle URL logic and conditions [PR #13977], by @sususu98</li>
+</ul>
+<h3 id="-general-changes">📈 General Changes</h3>
+<ul>
+<li>Fix Blu-ray multi-angle concat generation [PR #17824], by @Raspberry-Monster</li>
+<li>Expose optimized ItemCounts for byName items [PR #17821], by @Shadowghost</li>
+<li>Only download missing plugin images [PR #17820], by @Shadowghost</li>
+<li>Apply the resize sharpening kernel directly instead of via SKImageFilter [PR #17775], by @slevin-7</li>
+<li>Share played state across alternate versions [PR #17816], by @Shadowghost</li>
+<li>Fix TMDb search result ranking [PR #17819], by @Shadowghost</li>
+<li>Fix TMDb recommendations [PR #17810], by @Shadowghost</li>
+<li>Better handle timeouts on plugin operations [PR #17794], by @Shadowghost</li>
+<li>Don’t dispose application singletons after running a code migration [PR #17791], by @Shadowghost</li>
+<li>Enforce dolby vision transfer check [PR #17806], by @gnattu</li>
+<li>Fix items being lost from the refresh queue and bound the directory service caches [PR #17763], by @Shadowghost</li>
+<li>Fix handling of unordered multi-episode NFOs [PR #17805], by @Shadowghost</li>
+<li>Optimize database after migrations [PR #17786], by @Shadowghost</li>
+<li>Bound change batches during a scan; keep ffprobe and image saves from failing [PR #17762], by @Shadowghost</li>
+<li>Fix PGS subtitles for BDMV with TrueHD [PR #17674], by @Oggeb1</li>
+<li>Probe .idx instead of .sub for external VobSub subtitle language detection [PR #17746], by @kfarnung</li>
+<li>Drop SyncPlay requests from sessions that left the group [PR #17799], by @fmarcac</li>
+<li>Fix Live TV HLS playback: bogus audio encoder and unplayable direct played manifests [PR #17768], by @Shadowghost</li>
+<li>Fix crash when SyncPlay shuffle mode is set to sorted twice [PR #17796], by @fmarcac</li>
+<li>Fix SyncPlay active session counter leaking on rejoin [PR #17800], by @fmarcac</li>
+<li>Fix unit mismatch in the SyncPlay resume delay floor [PR #17798], by @fmarcac</li>
+<li>Add comprehensive logging for post scan tasks [PR #17767], by @Shadowghost</li>
+<li>Fix UI stalls caused by large tag and genre sets [PR #17757], by @felixfoertsch</li>
+<li>Bound the TMDb response cache so a library scan cannot fill it without limit [PR #17764], by @Shadowghost</li>
+<li>fix: return fallback gracefully when requested fallback font is missing [PR #17761], by @zerafachris</li>
+<li>Fix people and artist validator creation and deletion handling [PR #17756], by @Shadowghost</li>
+<li>Add progress logging to data migrations [PR #17743], by @Shadowghost</li>
+<li>Enforce reliable processing order in PeopleValidationTask [PR #17750], by @Shadowghost</li>
+<li>Fix recursive handling for LinkedChildren [PR #17752], by @Shadowghost</li>
+<li>Fix ListenBrainz settings and similar item defaults [PR #17748], by @Shadowghost</li>
+<li>Fix item counts on the by-name endpoints [PR #17724], by @Shadowghost</li>
+<li>Enforce permissions on similar items [PR #17729], by @Shadowghost</li>
+<li>Fix formatting and test [PR #17744], by @Shadowghost</li>
+<li>Filter search candidates by user access in a single query [PR #17739], by @Shadowghost</li>
+<li>Support anime provider ids on season folders [PR #17731], by @Shadowghost</li>
+<li>Count a season’s episodes by the season they belong to [PR #17735], by @Shadowghost</li>
+<li>Fix ParentId for episodes in virtual seasons [PR #17719], by @theguymadmax</li>
+<li>Persist the refresh stamp so the people task stops redoing its work [PR #17709], by @Shadowghost</li>
+<li>Fix children count on virtual items [PR #17718], by @Shadowghost</li>
+<li>Delete credits nothing maps to and bound item-by-name folder names [PR #17715], by @Shadowghost</li>
+<li>Build a TMDb series cast from the aggregated credits [PR #17716], by @Shadowghost</li>
+<li>Stop deriving user view ids from their localized name [PR #17714], by @Shadowghost</li>
+<li>Fix IsPlayed and IsUnplayed sorting for shows and collections [PR #17713], by @LTe</li>
+<li>Say which image and item failed instead of logging a blank path [PR #17711], by @Shadowghost</li>
+<li>Fix OMDB People handling [PR #17710], by @Shadowghost</li>
+<li>Fix person metadata not being fetched on demand or by the people task [PR #17702], by @Shadowghost</li>
+<li>Fix series merging leaking across libraries and under-counting merged children [PR #17693], by @Shadowghost</li>
+<li>Fix English metadata blocking localized providers ranked below it [PR #17619], by @Shadowghost</li>
+<li>Look up people by item via the credit map instead of a full scan [PR #17700], by @Shadowghost</li>
+<li>Mark breakOnNonKeyFrames as XMLIgnore [PR #17698], by @Shadowghost</li>
+<li>Fall back to the ancestor filter when a view has no top parents [PR #17691], by @Shadowghost</li>
+<li>Safeguard against invalid provider ids [PR #17584], by @Shadowghost</li>
+<li>Optimize query helper memory [PR #17607], by @Shadowghost</li>
+<li>Allow direct play for HDHomeRun Live TV tuners [PR #17682], by @theguymadmax</li>
+<li>Fix latest items for mixed libraries [PR #17678], by @theguymadmax</li>
+<li>Stop user updates from orphaning permission and preference rows [PR #17645], by @Shadowghost</li>
+<li>More resilient MusicBrainz lookup [PR #17670], by @Shadowghost</li>
+<li>Use client-reported position for idle playback cleanup [PR #17631], by @itsb</li>
+<li>Fix GitHub URL typo in CONTRIBUTORS [PR #17659], by @FirmaSpring</li>
+<li>Fix SQLite variable limit in child count batches [PR #17658], by @martin-77</li>
+<li>Prevent orphaned user permissions and preferences [PR #17643], by @m0g3r</li>
+<li>Fix large playlist persistence with WhereOneOrMany [PR #17655], by @martin-77</li>
+<li>Fix other two unit test for localization of Artists in DE [PR #17637], by @IDisposable</li>
+<li>Recognize WEB-DL release tags in video names [PR #17636], by @st7105</li>
+<li>Fix unit test for localization of Artists in DE [PR #17633], by @IDisposable</li>
+<li>Fix FindArtists [PR #17604], by @theguymadmax</li>
+<li>Fix EF core designer drifts [PR #17570], by @Shadowghost</li>
+<li>Fix missing ItemRemoved events and search fallback after access filtering [PR #17579], by @Shadowghost</li>
+<li>Fix PersonTypes not applied when filtering by person [PR #17597], by @theguymadmax</li>
+<li>Fix master build [PR #17599], by @Shadowghost</li>
+<li>Fix assemblies [PR #17582], by @Shadowghost</li>
+<li>Bugfix: #17547 | Batching MediaSourceCount into one call [PR #17576], by @obiwantoby</li>
+<li>fix: bound remote provider pagination [PR #17590], by @TOomaAh</li>
+<li>fix: correct IsAiring negation to exclude airing items [PR #17588], by @TOomaAh</li>
+<li>Stop image endpoints from upscaling beyond the source resolution [PR #17569], by @vavallee</li>
+<li>Cleanup and simplify query helpers [PR #17563], by @Shadowghost</li>
+<li>Add warning that PessimisticLockBehavior is unsafe [PR #17560], by @IDisposable</li>
+<li>Batch people lookups when building item DTOs [PR #17571], by @obiwantoby</li>
+<li>fix(images): disambiguate progress overlay cache keys [PR #17492], by @GOvEy1nw</li>
+<li>Fix by-name endpoints reporting TotalRecordCount=0 next to a populated Items array [PR #17541], by @vdatanet</li>
+<li>Clear metadata provider cache when provider parts are registered [PR #17525], by @rlauuzo</li>
+<li>Delete old related info in bulk as late as possible in UpdateOrInsertItems [PR #17555], by @IDisposable</li>
+<li>Fix disabled plugins being re-enabled on restart [PR #17521], by @Shadowghost</li>
+<li>Fix captured (and discarded) Execute exceptions [PR #17559], by @IDisposable</li>
+<li>Speed up UpdateOrInsertItems for related information [PR #17554], by @IDisposable</li>
+<li>Switch SQLite connection Cache to Private [PR #17558], by @IDisposable</li>
+<li>Fix concurrent ffmpeg segment racing [PR #17536], by @gnattu</li>
+<li>Parse ReplayGain album gain field [PR #17315], by @Florin-Popescu</li>
+<li>Improve People deduplication, fix search and restrict ItemByName responses [PR #17466], by @Shadowghost</li>
+<li>Fix PCM audio transcoding to wav returning HTTP 500 and headerless output [PR #17537], by @vdatanet</li>
+<li>Revert “Refresh Live TV channel icons on every guide update.” [PR #17549], by @theguymadmax</li>
+<li>Keep folder extras with the item that owns the folder [PR #17524], by @Shadowghost</li>
+<li>Only treat series and seasons as resumable folders [PR #17523], by @Shadowghost</li>
+<li>Degrade ForceKeepAlive logs to debug [PR #17528], by @Shadowghost</li>
+<li>Fix extras naming and version assignment [PR #17456], by @Shadowghost</li>
+<li>Allow client-rendered graphical subtitles during remux [PR #17512], by @altqx</li>
+<li>Use CleanName when sorting by name [PR #17503], by @theguymadmax</li>
+<li>Fix AdjacentTo being ignored on non-recursive item queries [PR #17486], by @Shadowghost</li>
+<li>Fix video version links being read from stale serialised item data instead of the LinkedChildren table [PR #17482], by @Shadowghost</li>
+<li>Fix Live TV returning unreachable “server-local” streaming URLs to clients. [PR #17298], by @WizardOfYendor1</li>
+<li>Add Tmdb missing episode provider [PR #17147], by @Shadowghost</li>
+<li>Fix storage info lookup for Windows [PR #17500], by @theguymadmax</li>
+<li>Skip SIDX in fMP4 HLS segments [PR #17501], by @alchemyyy</li>
+<li>Fix (Un)Played filter correctness and performance [PR #17463], by @Shadowghost</li>
+<li>Queue person metadata refresh instead of blocking the item request and fix ItemCounts [PR #17460], by @Shadowghost</li>
+<li>Reevaluate pending migrations after each one instead of per stage [PR #17455], by @Shadowghost</li>
+<li>Allow duplicate LinkedChildren for Playlists [PR #17416], by @Shadowghost</li>
+<li>Implement AudioDb artist search [PR #17424], by @Shadowghost</li>
+<li>Fix 3D format detection when the tag is the last token of the path [PR #17310], by @TowyTowy</li>
+<li>Fix missing collection folder posters after initial scans. [PR #16409], by @elio42</li>
+<li>Fix series merging [PR #17417], by @Shadowghost</li>
+<li>Reduce correlated subqueries to improve query performance [PR #17422], by @Shadowghost</li>
+<li>Fix hyphenated numbers in episode titles parsed as multi-episodes [PR #17442], by @Shadowghost</li>
+<li>Fix incorrect year on local trailers [PR #17399], by @Shadowghost</li>
+<li>remove ogg from video extensions since it should only be used for audio [PR #17437], by @dkanada</li>
+<li>Avoid NRE when sorting by user-dependent keys without a user [PR #17395], by @paoloantinori</li>
+<li>Skip ComicInfo parsing if none exists [PR #17423], by @Shadowghost</li>
+<li>Fix play queue index handling in SyncPlay [PR #17234], by @Eneo-org</li>
+<li>Apply cleaning logic on ForcedSortName [PR #17402], by @Shadowghost</li>
+<li>Check the “name” tag for audio/subtitle probe to fix MP4 not showing correctly - Fixes issue #17418 [PR #17419], by @rwebster85</li>
+<li>Drain stderr and stdout concurrently for encoder validation [PR #17430], by @gnattu</li>
+<li>perf: avoid unnecessary list allocation in CheckForIdlePlayback [PR #17411], by @mbastian77</li>
+<li>Match VobSub MKS subtitle profiles by container [PR #17227], by @altqx</li>
+<li>Improve language filters to only fetch language codes that match the requested items/libraries (follow up to #9787) [PR #16980], by @TheMelmacian</li>
+<li>fix: don’t throw ArgumentNullException on partial UpdateItem payloads (#17366) [PR #17370], by @zerafachris</li>
+<li>Prevent unauthenticated re-run of the startup wizard on misconfiguration [PR #17369], by @Shadowghost</li>
+<li>Truncate ISO-639-2 language display names at first delimiter [PR #17160], by @854562</li>
+<li>Fix subtitle encoding for local files [PR #17281], by @Shadowghost</li>
+<li>Backport and extend path traversal fixes [PR #17368], by @Shadowghost</li>
+<li>fix: skip corrupt KeyframeData rows during full system backup [PR #17367], by @zerafachris</li>
+<li>Add XML docs to small model enums and remove CS1591 suppressions [PR #17376], by @mbastian77</li>
+<li>Exempt people from the allowed tags visibility check [PR #17377], by @mbastian77</li>
+<li>extract page count from archives and PDFs [PR #17311], by @dkanada</li>
+<li>Feat (fix) - Skip reprocessing program information when importing XMLTV EPG data [PR #16933], by @WizardOfYendor1</li>
+<li>Fix profile image being impossible to clear when its in-memory key is temporary [PR #17282], by @TowyTowy</li>
+<li>Fix: Fetch the correct row matching the most up to date file [PR #17320], by @jordanmichaelrushing</li>
+<li>Fix race condition in concurrent subtitle conversion [PR #17342], by @LTe</li>
+<li>Make RequestHelpers.GetOrderBy generic and reuse it in ActivityLogController [PR #17324], by @damienmeur</li>
+<li>Add additional attribute aliases and improve attribute detection [PR #17254], by @sjakub</li>
+<li>Fix SchedulesDirect image limit recognition [PR #17347], by @Shadowghost</li>
+<li>Sort trailers for TV Shows [PR #17204], by @theguymadmax</li>
+<li>Add TVDB provider ID support for movies [PR #17255], by @theguymadmax</li>
+<li>Fix artists being displayed with albums [PR #17252], by @theguymadmax</li>
+<li>Remove libpostproc check for ffmpeg version validation [PR #17384], by @gnattu</li>
+<li>Fix linked whitespace after image badges in <code>README.md</code> [PR #17382], by @kaunkrishna</li>
+<li>normalize common formats for creator names in OPF data [PR #17291], by @dkanada</li>
+<li>Keep authenticated user entity in sync with persisted login timestamps [PR #17302], by @ElianCodes</li>
+<li>Normalize invalid PTS from containers for Trickplay generation [PR #17304], by @nyanmisaka</li>
+<li>Fix Resume query performance [PR #17365], by @Shadowghost</li>
+<li>Add XML docs to small entity interfaces and remove CS1591 suppressions [PR #17375], by @mbastian77</li>
+<li>Fix Swagger UI auth docs (#12990) [PR #16910], by @cha5u5</li>
+<li>Prevent ffmpeg from hanging extracting subtitles [PR #17297], by @IDisposable</li>
+<li>Show production companies under TV Shows’ Studios [PR #17246], by @Rant423</li>
+<li>Fix potential garbled text in FFmpeg logs on Windows [PR #17288], by @nyanmisaka</li>
+<li>Remove PlaybackPositionTicks from MediaSourceInfo [PR #17327], by @Shadowghost</li>
+<li>Fix format negotiation in hybrid SW decode and CUDA tonemap pipeline [PR #17334], by @nyanmisaka</li>
+<li>Fix Identify returning wrong images [PR #17151], by @theguymadmax</li>
+<li>Update season and episode SeriesName when renaming a series [PR #17326], by @theguymadmax</li>
+<li>Remove episode image override hack [PR #17280], by @Shadowghost</li>
+<li>Fix path transversal exposure in Plugins [PR #17191], by @IDisposable</li>
+<li>Revert setting default BaseItemKind for CollectionType [PR #17348], by @theguymadmax</li>
+<li>Add XML docs to small channel types and remove CS1591 suppressions [PR #17343], by @mbastian77</li>
+<li>Add XML docs to small session model types and remove CS1591 suppressions [PR #17344], by @mbastian77</li>
+<li>Add XML docs to small DLNA model types and remove CS1591 suppressions [PR #17340], by @mbastian77</li>
+<li>Add XML docs to provider lookup info types and remove CS1591 suppressions [PR #17339], by @mbastian77</li>
+<li>Add XML docs to DeviceId and remove CS1591 suppression [PR #17338], by @mbastian77</li>
+<li>Limit similar items to user accessible libraries [PR #17337], by @Shadowghost</li>
+<li>Fix max login attempts [PR #17274], by @theguymadmax</li>
+<li>Add Novel job mapping to the Writing department [PR #17248], by @theguymadmax</li>
+<li>Allow SeriesName to be editable from Item Metadata (books) [PR #17250], by @jordanmichaelrushing</li>
+<li>Fix additional parts for non-admins [PR #17266], by @Shadowghost</li>
+<li>Fix incorrect protocol used for subtitle charset detection [PR #17306], by @theguymadmax</li>
+<li>Check numeric rating value after splitting country code [PR #17273], by @theguymadmax</li>
+<li>support external images for audiobooks [PR #17287], by @dkanada</li>
+<li>Fix Greece parental ratings [PR #17268], by @theguymadmax</li>
+<li>Fix actor images not displayed until clicked [PR #16668], by @johnpc</li>
+<li>Don’t throw on logout if session does not exist [PR #17228], by @Shadowghost</li>
+<li>Use InvariantCulture when parsing machine-generated dates [PR #17238], by @iderex</li>
+<li>Fixes for multi version handling [PR #17044], by @Shadowghost</li>
+<li>Fix parental rating lookup for multi-rating entries [PR #17239], by @theguymadmax</li>
+<li>Fix ghost entries when deleting library paths [PR #17231], by @theguymadmax</li>
+<li>Allow changing capitalization of usernames [PR #17229], by @Bond-009</li>
+<li>Fix folder view [PR #17222], by @theguymadmax</li>
+<li>Close sessions for lost WebSockets to prevent zombie SyncPlay groups [PR #17079], by @Eneo-org</li>
+<li>Fix Swedish rating [PR #17209], by @theguymadmax</li>
+<li>Fix NullReferenceException in GetStreamingState for closed live streams [PR #17206], by @zachhide</li>
+<li>Use Enumerable.LeftJoin for activity log user query [PR #17175], by @obrenoalvim</li>
+<li>Rework bitrate reporting [PR #17170], by @Shadowghost</li>
+<li>Fix Book collections speed issues [PR #15954], by @IDisposable</li>
+<li>Batch duplicate-cleanup deletes in merge migrations [PR #17162], by @Shadowghost</li>
+<li>Remove orphaned people [PR #17140], by @theguymadmax</li>
+<li>Reject unsafe plugin package names in installer [PR #17013], by @dfederm</li>
+<li>Use Convert.ToHexStringLower for Schedules Direct password hash [PR #17174], by @obrenoalvim</li>
+<li>Live TV: re-fetch channel icons on guide refresh [PR #16914], by @danieltutuianu</li>
+<li>Revamp startup UI for visual style and usability [PR #17154], by @joshuaboniface</li>
+<li>Fix localization lookup [PR #17187], by @Shadowghost</li>
+<li>Fix embedded lyrics not updating on replace all refresh [PR #17134], by @theguymadmax</li>
+<li>Fix Live TV tuner not releasing [PR #17178], by @theguymadmax</li>
+<li>Don’t run heavy DB tasks while scan is running [PR #17182], by @Shadowghost</li>
+<li>Fix local Comic book plugin registration [PR #17188], by @Shadowghost</li>
+<li>Fix too many SQL variables in DeleteItem for large batch deletes [PR #17153], by @joshuaboniface</li>
+<li>Fix Identify returning wrong results [PR #17146], by @theguymadmax</li>
+<li>Fix audio sample rate forced to 48 kHz for non-Opus codecs [PR #17090], by @moontwister</li>
+<li>Deprecate the redundant /Trailers endpoint [PR #17094], by @moontwister</li>
+<li>Skip parsing root-level folders in SeriesResolver [PR #17116], by @theguymadmax</li>
+<li>Fixed “Deleting media that is still being watched in SyncPlay results in errors” [PR #14935], by @pokreman06</li>
+<li>Fix series year lost during name parsing [PR #17112], by @theguymadmax</li>
+<li>Fix episode air date offset after initial scan [PR #17121], by @theguymadmax</li>
+<li>Follow native interoperability best practices [PR #17099], by @Bond-009</li>
+<li>improve book resolution from filename [PR #17087], by @dkanada</li>
+<li>Extend TranscodingReason reporting [PR #17106], by @Shadowghost</li>
+<li>Always apply recursive when filters are requested [PR #17088], by @Shadowghost</li>
+<li>Fetch TV Shows creators from TMDB [PR #17107], by @Rant423</li>
+<li>Replace usage of SharpCompress [PR #17089], by @Bond-009</li>
+<li>Fix AlbumIds filtering by Name instead of by Id [PR #17085], by @matt-teahan</li>
+<li>Add support for background images and episode thumbnails from XMLTV [PR #17077], by @SheaSmith</li>
+<li>Fix AudioDb album description not displayed for English (mirror of #16606) [PR #17081], by @Gadnief</li>
+<li>Fix duplicate key collision [PR #17083], by @theguymadmax</li>
+<li>Assign correct season info to new episodes [PR #17051], by @ivanjx</li>
+<li>Fix CleanName and CleanValue refresh [PR #17064], by @Shadowghost</li>
+<li>Fix duplicate trickplay images for interlaced videos [PR #17058], by @nyanmisaka</li>
+<li>migrate local comic providers to server codebase [PR #16444], by @dkanada</li>
+<li>Add code assistance section to PR template [PR #17054], by @nielsvanvelzen</li>
+<li>Prefer local alternate versions when deduplicating linked children [PR #17042], by @Shadowghost</li>
+<li>Media source handling fixes [PR #17041], by @Shadowghost</li>
+<li>Refresh live TV channel image when remapped (alt #7843) (fixes #7834) [PR #10841], by @Bond-009</li>
+<li>Implement search providers [PR #16121], by @Shadowghost</li>
+<li>fix(dto): prefer PlaylistsFolder primary image for playlists tiles [PR #16520], by @beateixeira04</li>
+<li>Fix xUnit1051 in UserManagerLockHelperTests [PR #17043], by @Shadowghost</li>
+<li>Update issue template version to 10.11.11 [PR #17035], by @theguymadmax</li>
+<li>Discover existing trickplay files on scan [PR #16945], by @Shadowghost</li>
+<li>Fix external data pruning on item deletion [PR #16941], by @Shadowghost</li>
+<li>Fix subtitle replacement not invalidating cache [PR #17028], by @Shadowghost</li>
+<li>Fix playlist visibility [PR #17025], by @Shadowghost</li>
+<li>Enforce parental filtering on additional endpoints [PR #17019], by @Shadowghost</li>
+<li>Prefer subtitle extension over codec [PR #16998], by @Bond-009</li>
+<li>Improve Merge Conflict Labeler [PR #17018], by @Bond-009</li>
+<li>Fix season unknown for flat TV structures [PR #16995], by @theguymadmax</li>
+<li>Make EncoderPreset non nullable [PR #17007], by @nyanmisaka</li>
+<li>Only default recursive to true if we have includeItemTypes [PR #16999], by @Shadowghost</li>
+<li>Extract attachments in one ffmpeg command when dumping [PR #16915], by @Shadowghost</li>
+<li>Fix incorrect list capacity [PR #16996], by @theguymadmax</li>
+<li>Trim tags [PR #16994], by @theguymadmax</li>
+<li>Fix recently added episode links and posters [PR #16967], by @Shadowghost</li>
+<li>Write subtitles using SubtitleEdit [PR #16805], by @Bond-009</li>
+<li>Re-disable legacy authorization methods by default [PR #16992], by @theguymadmax</li>
+<li>Only resolve symlinks on playback [PR #16965], by @Shadowghost</li>
+<li>Fix folders being identified as seasons in mixed libraries [PR #16259], by @theguymadmax</li>
+<li>Fix Schedules Direct API Error Codes [PR #16920], by @arazilsongweaver</li>
+<li>Fix similarity [PR #16942], by @Shadowghost</li>
+<li>Fix inaccessible artist when they exist in multiple libraries [PR #16977], by @theguymadmax</li>
+<li>Add support for VobSub subtitle streams [PR #16552], by @altqx</li>
+<li>Compare old file byte-by-byte to new stream [PR #16936], by @IDisposable</li>
+<li>Remove NowPlayingQueueFullItems from session DTOs [PR #16976], by @PCEWLKR</li>
+<li>Use ConfigureAwait(false) in CollectionController [PR #16953], by @PCEWLKR</li>
+<li>Fix CA2007 warnings in InstallationManager [PR #16946], by @jonesy827</li>
+<li>Add a collection API for <code>Included In</code> feature [PR #15516], by @XSAM</li>
+<li>Add new viewtypes options [PR #16177], by @theguymadmax</li>
+<li>Fix Merge Conflict Labeler #2 [PR #16963], by @Bond-009</li>
+<li>Fix A/V desync when resuming HLS with video transcode + audio copy [PR #16580], by @LTe</li>
+<li>Improve OriginalLanguage normalization and inheritance [PR #16829], by @Lampan-git</li>
+<li>Update issue template version to 10.11.10 [PR #16927], by @theguymadmax</li>
+<li>Fix inconsistent extradata generated by hevc_vaapi on AMD driver [PR #16913], by @nyanmisaka</li>
+<li>Backport: Fix/user manager collation [PR #16919], by @Bond-009</li>
+<li>fix: suppress repeated PriorityClass warning in MediaEncoder [PR #16872], by @psavarmattas</li>
+<li>Update issue template version to 10.11.9 [PR #16897], by @theguymadmax</li>
+<li>Add support for filtering playlists by parentId [PR #16893], by @Shadowghost</li>
+<li>Fix Merge Conflict Labeler [PR #16892], by @Bond-009</li>
+<li>Add CI format check [PR #15250], by @jakobkukla</li>
+<li>Reorder Migrations and fix failing migration [PR #16861], by @JPVenson</li>
+<li>Add support for filtering boxsets by parentId [PR #16882], by @Shadowghost</li>
+<li>Modernize version display in UI [PR #16862], by @JPVenson</li>
+<li>Fix integrated provider images [PR #16855], by @Shadowghost</li>
+<li>Use —batch —yes for installing jellyfin keyring in devcontainer [PR #16878], by @IDisposable</li>
+<li>Embed external subtitles into MKV when transcoding [PR #16448], by @LTe</li>
+<li>fix: write livetv recording NFO dateadded as UTC [PR #16863], by @tayfun-akguc</li>
+<li>Misc fixes [PR #16837], by @Shadowghost</li>
+<li>fix: add null check for non-existent program in GetProgram [PR #16858], by @BrunoSync</li>
+<li>Fix CA1819 warnings in ChannelFeatures by using IReadOnlyList [PR #16853], by @jtvhd6</li>
+<li>Set max rating for splashscreen to 13 [PR #16852], by @theguymadmax</li>
+<li>New filters for audio and subtitle languages [PR #9787], by @TheMelmacian</li>
+<li>Implement similarity providers [PR #15970], by @Shadowghost</li>
+<li>Add Accept-Language header support and cleanup translations [PR #16488], by @Shadowghost</li>
+<li>Update log for user session related concurrency update fails [PR #16835], by @JPVenson</li>
+<li>return music artists from person endpoints [PR #16721], by @dkanada</li>
+<li>Reference correct .NET version in README [PR #16831], by @Bond-009</li>
+<li>consolidate OpenAPI categories and deprecate startup routes [PR #16757], by @dkanada</li>
+<li>Safeguard against invalid GUIDs [PR #16813], by @Shadowghost</li>
+<li>Use SortName when sorting by name [PR #16804], by @Shadowghost</li>
+<li>Suppress CA2213 false positive on ApplicationHost._pluginManager (#2149) [PR #16792], by @Crystora</li>
+<li>Print warning on invalid Subnets in Network/Proxy configuration [PR #16793], by @Shadowghost</li>
+<li>Add videoRotation profile condition [PR #16803], by @nyanmisaka</li>
+<li>Fix artist duplicates [PR #16807], by @Shadowghost</li>
+<li>IOException with STRM HTTP URLs [PR #16290], by @benbenmoss</li>
+<li>Fix Segment Provider Configuration [PR #16798], by @Shadowghost</li>
+<li>Fix CA1051 and CA1815 warnings, Change public fields to auto properties [PR #14847], by @tjwalkr3</li>
+<li>Add OriginalLanguage as option to PreferredAudioLanguage [PR #12579], by @Lampan-git</li>
+<li>Switch to new version scheme [PR #16758], by @Shadowghost</li>
+<li>fix person type exclusion in api response [PR #16784], by @dkanada</li>
+<li>Fix MusicBrainz test. [PR #16789], by @IDisposable</li>
+<li>Parse provider IDs from season and episode folder/file names [PR #16472], by @IDisposable</li>
+<li>Fix Canadian rating and fallback to unrated if we have a CountryCode but no matching rating [PR #16328], by @Shadowghost</li>
+<li>Fix live stream consumer leak on negative PositionTicks [PR #16321], by @WizardOfYendor1</li>
+<li>Add startup mode to migrate or seed the database on cmd [PR #16319], by @JPVenson</li>
+<li>Remove DigitalOcean from sponsors section [PR #16788], by @theguymadmax</li>
+<li>Ignore season directories with no video for TV Shows [PR #16611], by @LmanTW</li>
+<li>Fix #16308: Community ratings not updating after changing .nfo file. [PR #16466], by @PERSONALPANCHIWIRIS</li>
+<li>Fix unique people response for query if no item ID is supplied [PR #16783], by @Shadowghost</li>
+<li>Fix subtitle save path [PR #16779], by @Shadowghost</li>
+<li>Move MusicBrainz Query client to plugin instance [PR #16780], by @Shadowghost</li>
+<li>Fix UserManager after EFcore refactor (backport #15368) [PR #16782], by @JPVenson</li>
+<li>Add the filename to exceptions in DeserializeFromFile() [PR #16246], by @lcorbasson</li>
+<li>Add different Slovak and Czech translation of Season for parsing [PR #16646], by @Biosias</li>
+<li>Remove unnecessary ToList calls in TrickplayManager [PR #16322], by @poytiis</li>
+<li>Fix rewatch query [PR #16778], by @Shadowghost</li>
+<li>Speed-up LatestItems for Music [PR #16756], by @Shadowghost</li>
+<li>Guard against null-overwrite of saved audio/subtitle track selections [PR #16769], by @llaforest</li>
+<li>Fix use of thread-unsafe List<t>.Sort() [PR #16777], by @gabeluci</t></li>
+<li>Keep legacy authorization enabled [PR #16754], by @nielsvanvelzen</li>
+<li>Fix dummy chapter handling for videos with a single chapter or short duration. [PR #16695], by @ExpctING</li>
+<li>Honor episode NFO season during metadata merge [PR #16702], by @itz4blitz</li>
+<li>Fix keyframe duration overshoot breaking playback [PR #16704], by @dyld-w</li>
+<li>Implement ignore rule caching [PR #16166], by @Shadowghost</li>
+<li>Fix Playlist and Boxset query, save and count performance [PR #16761], by @Shadowghost</li>
+<li>fix person TotalRecordCount when limit is applied [PR #16616], by @dkanada</li>
+<li>Fix triple digit episode number handling [PR #16475], by @Shadowghost</li>
+<li>Fix FFProbeVideoInfo downloading subtitles without considering internal streams [PR #16747], by @MBR-0001</li>
+<li>Query Performance Improvements [PR #16062], by @Shadowghost</li>
+<li>feat/audiobook_chapters [PR #16518], by @sevenrats</li>
+<li>Avoid SSA to ASS conversion and loss of styles [PR #16744], by @nyanmisaka</li>
+<li>fix: use symmetric 15s default for skip forward/backward lengths [PR #16739], by @tcsenpai</li>
+<li>hide HLS controllers and deprecate unused endpoints [PR #16715], by @dkanada</li>
+<li>Fix IPv6 prefixes not recognized as proxy [PR #16672], by @dwandw</li>
+<li>improve openapi endpoint categorization [PR #16698], by @dkanada</li>
+<li>Fix watched status resetting on re-watch [PR #15762], by @MSalman5230</li>
+<li>Upgrade to xunit v3 [PR #16666], by @Shadowghost</li>
+<li>fix: add image/jpg to MIME type extension lookup [PR #16658], by @jskoetsier</li>
+<li>Remove all JF contributors from Emby list [PR #16694], by @Bond-009</li>
+<li>Skip libraries without enabled subtitle providers in SubtitleScheduledTask [PR #16649], by @MBR-0001</li>
+<li>Include item path in provider error log messages [PR #16667], by @johnpc</li>
+<li>Enable jellyfin.db customized path [PR #15355], by @twsouthwick</li>
+<li>Update to Jellyfin.XmlTv 10.12.0-pre1 [PR #16659], by @Bond-009</li>
+<li>Set XmlTvProgram.IsLive [PR #8890], by @SenorSmartyPants</li>
+<li>Move rename command permission check to script [PR #11231], by @felix920506</li>
+<li>Added Tanzania countries.json [PR #14406], by @ewkonzo</li>
+<li>Don’t allow library name with leading or trailing space [PR #13491], by @gnattu</li>
+<li>fix: retain subtitles spanning HLS segment boundaries [PR #16594], by @LiHRaM</li>
+<li>chore(ci): Add permissions grant [PR #13443], by @jsoref</li>
+<li>Fix artist metadata not being fetched on initial library scan [PR #16606], by @theguymadmax</li>
+<li>Fix in-process restart [PR #16482], by @Shadowghost</li>
+<li>add NameStartsWith and NameLessThan filters to Person search [PR #16619], by @dkanada</li>
+<li>Respect EnableSubtitleExtraction setting in subtitle delivery [PR #16380], by @LTe</li>
+<li>Fix language display for ISO 639-2-only codes (e.g. mul, und, mis, zxx) [PR #16567], by @shocklateboy92</li>
+<li>Fix HDR tonemapping for BDMV content [PR #16609], by @ddemarco5</li>
+<li>Fix FolderStorageInfo to show parent filesystem [PR #16456], by @joshuaboniface</li>
+<li>Don’t spam debug log with items without rating [PR #16342], by @Bond-009</li>
+<li>Backport security fixes [PR #16577], by @Bond-009</li>
+<li>Update issue template version to 10.11.8 [PR #16573], by @theguymadmax</li>
+<li>Fix BoxSet parentId being ignored in item queries [PR #16490], by @theguymadmax</li>
+<li>Reverse check for track changed [PR #16501], by @bilbofroggins</li>
+<li>Add AlbumNormalizationGain field to BaseItemDto [PR #14745], by @HeroBrine1st</li>
+<li>add StartIndex and ParentId to person search [PR #16397], by @dkanada</li>
+<li>edit openapi files in place with sed [PR #16569], by @dkanada</li>
+<li>fix invalid workflow on openapi report job [PR #16561], by @dkanada</li>
+<li>Fix parental ratings not working on music albums [PR #16553], by @theguymadmax</li>
+<li>Fix UDP Auto-Discovery returning IPv6 for cross-subnet IPv4 requests [PR #15902], by @ZeusCraft10</li>
+<li>fix openapi report and publish workflows [PR #16556], by @dkanada</li>
+<li>Update issue template version to 10.11.7 [PR #16530], by @theguymadmax</li>
+<li>Add callback for segment data pruning to IMediaSegmentProvider [PR #16419], by @Shadowghost</li>
+<li>remove nested directory for openapi workflows [PR #16524], by @dkanada</li>
+<li>Cleanup trickplay cache dir on failure [PR #16365], by @Shadowghost</li>
+<li>Only set IsAvc for video streams [PR #16507], by @Bond-009</li>
+<li>split openapi workflows between pull request and merge [PR #16463], by @dkanada</li>
+<li>recognize underscore and dot separators for multi-version grouping [PR #16465], by @upscaylman</li>
+<li>fix: cap GetVideoBitrateParamValue at 400 Mbps [PR #16467], by @scheilch</li>
+<li>Add ignore patterns for Hungarian sample files [PR #16238], by @furdiburd</li>
+<li>More robust date handling in Library DB migration [PR #16474], by @Shadowghost</li>
+<li>Fix attachment extraction of files without video or audio stream [PR #16312], by @Shadowghost</li>
+<li>Add spec-compliant dvh1 HLS variant for Dolby Vision Profile 5 [PR #16362], by @NoFear0411</li>
+<li>Fix filename truncation when bracketed tags appear mid-filename [PR #16222], by @tyage</li>
+<li>fix crashes on devices that don’t support ipv6 [PR #15841], by @JanzenJohn</li>
+<li>Fix int32 overflow in QSV rate-control parameter computation [PR #16376], by @scheilch</li>
+<li>Recognize “.m4b”, “.m4a”, “.aac”, “.flac”, “.mp3”, and “.opus” as an audio-book formats [PR #15377], by @lousando</li>
+<li>include external IDs and URLs for book providers [PR #15593], by @dkanada</li>
+<li>Fix remote image language priority to prefer English over no-language [PR #16368], by @redinsch</li>
+<li>Respect library country code for parental ratings [PR #16388], by @theguymadmax</li>
+<li>Use generic Enum overloads to resolve CA2263 warnings [PR #16395], by @jaxx2104</li>
+<li>Return BadRequest when an invalid set of filters is given [PR #16398], by @Bond-009</li>
+<li>Fix ItemValues Type checks [PR #16160], by @Shadowghost</li>
+<li>Add missing ProducesResponseType(401) to QuickConnectController.InitiateQuickConnect [PR #16331], by @JuanCalderon-17</li>
+<li>Fix near-1:1 SAR values falsely flagged as anamorphic [PR #16318], by @NoFear0411</li>
+<li>Use artist images for music library thumbnail [PR #16240], by @theguymadmax</li>
+<li>AIFF support: add .aifc as audio file type, remove .aiff as image file type [PR #16274], by @ghost</li>
+<li>Update JetBrains logo link in README.md [PR #16323], by @anthonylavado</li>
+<li>Revise note on hosting web client for development [PR #16281], by @JPVenson</li>
+<li>Fix malformed query string in StreamInfo.ToUrl() causing 500 error via proxies [PR #16255], by @cosu</li>
+<li>Upgrade Swashbuckle to v10 [PR #16256], by @Shadowghost</li>
+<li>Mitigate pull_request_target privilege escalation [PR #16263], by @andrewrabert</li>
+<li>Fix episodes appearing in Season Unknown incorrectly and prevent unnecessary virtual season creation [PR #16236], by @theguymadmax</li>
+<li>TmdbSeriesProvider: Set ProductionYear field [PR #16144], by @DerMaddis</li>
+<li>Add moveToTop option to IPlaylistManager.AddItemToPlaylistAsync [PR #15138], by @kevgrig</li>
+<li>Fix: Add ‘Kairon; IRSE!’ to artist whitelist [PR #14709], by @loop95</li>
+<li>Fix container and updated [PR #16202], by @JPVenson</li>
+<li>Trim names and roles for people [PR #16181], by @theguymadmax</li>
+<li>Skip validation for empty landing preferences [PR #16178], by @theguymadmax</li>
+<li>Add curly brace and parentheses support for parsing attribute values [PR #14927], by @nileshp87</li>
+<li>Fix TMDB language handling: support full ISO 639-1 + ISO 3166-1 codes (e.g. zh-CN, zh-TW) [PR #16151], by @Daydreamer-riri</li>
+<li>Fix: Resolve CA1849 synchronous IO in EpubImageProvider [PR #16124], by @Gladtbam</li>
+<li>Remove some deprecated API members [PR #16110], by @nielsvanvelzen</li>
+<li>SessionManager: Log when playback is started [PR #15908], by @jpds</li>
+<li>extract local metadata from OPF and EPUB files [PR #15604], by @dkanada</li>
+<li>fix: prevent premature disposal of HTTP subtitle streams [PR #14809], by @lostb1t</li>
+<li>Update issue template version to 10.11.6 [PR #16059], by @theguymadmax</li>
+<li>Fix typos in XML documentation comments [PR #15997], by @vignesh1507</li>
+<li>Fix zh-CN subtitle language display [PR #15947], by @ZeusCraft10</li>
+<li>Update to .NET 10.0 [PR #15475], by @Bond-009</li>
+<li>Refactor HLS transcode seeking [PR #15926], by @abitofevrything</li>
+<li>fix: Handle unknown item types gracefully in DeserializeBaseItem [PR #15956], by @ZeusCraft10</li>
+<li>Add TrueHD and DTS codes string for HLS [PR #15959], by @nyanmisaka</li>
+<li>Fix KeyNotFoundException in CryptographyProvider when iterations parameter is missing [PR #15958], by @ZeusCraft10</li>
+<li>Fix API diff workflow [PR #15888], by @Shadowghost</li>
+<li>Optimize <code>StringHelper.FirstToUpper()</code> [PR #15916], by @stevenaw</li>
+<li>Upgrade Swashbuckle and fix OpenAPI spec [PR #15886], by @Shadowghost</li>
+<li>Fixed issue with ABI Compatability - Difference not completing [PR #15924], by @PeachesMLG</li>
+<li>Fix GET MetadataEditor ContentTypeOptions for mixed content [PR #15797], by @Smeagolworms4</li>
+<li>Add myself to CONTRIBUTORS.md [PR #15831], by @allmazz</li>
+<li>Fixed Multi Sort in New ActivityManager [PR #15820], by @bjorntp</li>
+<li>Update issue template version to 10.11.5 [PR #15798], by @theguymadmax</li>
+<li>Library: Async the SaveImages function [PR #15718], by @luigi311</li>
+<li>parse more information from book filenames [PR #15655], by @dkanada</li>
+<li>Optimize GetUniqueFlags<t>() [PR #15774], by @stevenaw</t></li>
+<li>Remove legacy API route middleware [PR #15669], by @nielsvanvelzen</li>
+<li>Proper pinning of SkiaSharp to prevent accidental updates [PR #15736], by @MarkCiliaVincenti</li>
+<li>avoid Take(0) when Limit == 0 [PR #14608], by @ghost</li>
+<li>Fix typo in CheckOrCreateMarker exception [PR #15341], by @Xinerki</li>
+<li>Add ability to sort and filter activity log entries [PR #15583], by @crobibero</li>
+<li>Locking cleaning [PR #15713], by @MarkCiliaVincenti</li>
+<li>Fix episodes showing up on recently added shows [PR #15433], by @theguymadmax</li>
+<li>Add subtitle extraction timeout configuration option [PR #15538], by @KarkaLT</li>
+<li>Add CPU to issue template [PR #15704], by @theguymadmax</li>
+<li>Remove special client behavior for API response fields [PR #15638], by @nielsvanvelzen</li>
+<li>Add milliseconds to default console output format [PR #15227], by @kevgrig</li>
+<li>Fix TV Series parsing containing only numbers. [PR #14824], by @CodyEngel</li>
+<li>Add support for more embedded metadata tags [PR #15437], by @allmazz</li>
+<li>Deprecate HasPassword property on UserDto [PR #14950], by @nielsvanvelzen</li>
+<li>Add version to StartupUI [PR #15246], by @JPVenson</li>
+<li>Add all 10.11 versions to issue template [PR #15565], by @anthonylavado</li>
+<li>Update Jellyfin Server version in issue template [PR #15398], by @dpieski</li>
+<li>Update CODEOWNERS to capture bump_version [PR #15236], by @joshuaboniface</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/jellyfin/jellyfin/releases/tag/v12.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
