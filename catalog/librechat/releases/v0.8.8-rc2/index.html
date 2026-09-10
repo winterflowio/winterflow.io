@@ -1,0 +1,1041 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LibreChat v0.8.8-rc2 release notes | WinterFlow.io</title><meta name="description" content="Major update introducing an overhauled Agent Builder, durable agent events, experimental code environments, redesigned projects, and support for newest…"><link rel="canonical" href="https://winterflow.io/catalog/librechat/releases/v0.8.8-rc2/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="LibreChat v0.8.8-rc2 release notes | WinterFlow.io"><meta property="og:description" content="Major update introducing an overhauled Agent Builder, durable agent events, experimental code environments, redesigned projects, and support for newest…"><meta property="og:url" content="https://winterflow.io/catalog/librechat/releases/v0.8.8-rc2/"><meta property="og:image" content="https://winterflow.io/images/apps/librechat/librechat.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="LibreChat v0.8.8-rc2 release notes | WinterFlow.io"><meta name="twitter:description" content="Major update introducing an overhauled Agent Builder, durable agent events, experimental code environments, redesigned projects, and support for newest…"><meta name="twitter:image" content="https://winterflow.io/images/apps/librechat/librechat.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"LibreChat","item":"https://winterflow.io/catalog/librechat/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/librechat/releases/"},{"@type":"ListItem","position":5,"name":"v0.8.8-rc2","item":"https://winterflow.io/catalog/librechat/releases/v0.8.8-rc2/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/librechat/librechat.png" alt="LibreChat logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">LibreChat</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Enhanced ChatGPT clone</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#ai" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> AI </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> chatgpt, perplexity, anthropic, claude, grok, gemini </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://librechat.ai/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://www.librechat.ai/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/danny-avila/LibreChat/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 42,975 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="LibreChat" data-app-slug="librechat" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/danny-avila" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/librechat/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (12)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/librechat/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v0.8.8-rc2</h2> <span class="text-sm text-gray-500">2026-09-03</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p><a href="https://www.librechat.ai/changelog/v0.8.8-rc2">https://www.librechat.ai/changelog/v0.8.8-rc2</a></p>
+<h2 id="️-highlights">🏞️ Highlights</h2>
+<ul>
+<li>Interrupt Agent runs before visible output, steer or queue follow-ups, and recover tool-limited turns</li>
+<li>Optional generated activity groups, live phase cards, and reasoning labels</li>
+<li>Unified Agent Builder with standalone Skill authoring, background tools, intent labels, and Programmatic Tool Calling</li>
+<li>Durable Agent Events, actor mailboxes, receipts, human pauses, and background completion wakeups</li>
+<li>Saved Agent teams, deeper Subagent history, stable event panels, live controls, and automatic parent continuation</li>
+<li>Experimental Agent Plugins and highly experimental Code environments with guarded file and command permissions</li>
+<li>Agent memory isolation and categorized Context Usage with optional cost</li>
+<li>Redesigned Projects, full-message chat search, searchable settings, shortcuts, pinning, and mobile navigation</li>
+<li>Experimental Scheduled Chats with cron, time zones, weekly cadence, and project destinations</li>
+<li>Stable shared links, personal copies, editable long pastes, and attachment-only turns</li>
+<li>Fullscreen artifacts, Mermaid export, PowerPoint templates, and original file downloads</li>
+<li>Keenable keyless web search plus expanded SearXNG and Tavily controls</li>
+<li>Default security headers, opt-in nonce CSP, authenticated local images, Code Interpreter JWTs, and stronger SAML/OIDC flows</li>
+<li>In-app Langfuse connections, tenant fanout, export telemetry, and authorized session links</li>
+<li>Auditable source-aware content filtering, tenant Insights, and encrypted admin configuration</li>
+<li>GPT-5.6, Claude Fable 5.1, Opus 5 and Sonnet 5, Gemini 3.8/3.7/3.6 Flash, and Gemini 3.5 Flash-Lite</li>
+<li>Adaptive streaming, automatic generation protocol v2, Redis failover recovery, and live MCP catalog refresh</li>
+</ul>
+<details>
+<summary><h2>Click to expand Release Notes</h2></summary>
+<h3 id="-features">✨ Features</h3>
+<ul>
+<li>🕒 feat: Track terms acceptance timestamp by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/10810">#10810</a></li>
+<li>🔄 feat: Continue Shared Conversations as Personal Copies by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/13714">#13714</a></li>
+<li>🪝 feat: HITL Tool Approval Scaffolding (Slice A) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/12938">#12938</a></li>
+<li>🧠 feat: Add Memory as an Agent Capability with Inline Tools and Ephemeral Badge by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13869">#13869</a></li>
+<li>📇 feat: Agent Contact Visibility with Owner Fallback by <a href="/peeeteeer">@peeeteeer</a> in <a href="/danny-avila/LibreChat/pull/13663">#13663</a></li>
+<li>🪟 feat: Faithful Over-Window Context Estimate via Prune Mirror and Overhead Reserve by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13959">#13959</a></li>
+<li>🪭 feat: Add opt-in Langfuse fanout gateway + collector by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/13872">#13872</a></li>
+<li>🪝 feat: Human-in-the-Loop Runtime - Tool Approval + Ask-User-Question (Slice B) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13942">#13942</a></li>
+<li>🪗 feat: Dock-Style Fisheye Nav Rail With Instant Hover Preview by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14021">#14021</a></li>
+<li>🤖 feat: Add Claude Sonnet 5 Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14042">#14042</a></li>
+<li>🥷 feat: Add <code>showInMenu</code> Option to Model Specs by <a href="/alexkorep">@alexkorep</a> in <a href="/danny-avila/LibreChat/pull/14034">#14034</a></li>
+<li>🫷 feat: Exclude File Authoring Tools From Eager Execution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14051">#14051</a></li>
+<li>🪝 feat: Configurable Tool-Approval Policy via Programmatic Hooks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14025">#14025</a></li>
+<li>🧹 feat: Eager HITL Checkpoint Cleanup (Expiry + Deletion) &#x26; Full-Wiring E2E by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14123">#14123</a></li>
+<li>🧰 feat: Redesign Agent Builder with Unified Tools Marketplace, Skills &#x26; Orchestration by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/13952">#13952</a></li>
+<li>📡 feat: add rum browser page-load diagnostics by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14106">#14106</a></li>
+<li>🎚️ feat: Explicit “Use All Skills” Toggle in the Skills Section by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14125">#14125</a></li>
+<li>🙋 feat: ask_user_question - agent-initiated questions with durable pause/resume by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14139">#14139</a></li>
+<li>🗂️ feat: Per-Agent Memory Partitions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14084">#14084</a></li>
+<li>🤖 feat: Add GPT-5.6 (Sol/Terra/Luna) OpenAI Models by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14206">#14206</a></li>
+<li>🪭 feat: support per-run central export suppression by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14207">#14207</a></li>
+<li>✨ feat: stateful_code_sessions capability for warm Code API sandbox sessions (experimental) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14150">#14150</a></li>
+<li>🧠 feat: Add GPT-5.6 reasoning.mode + reasoning.context (Responses API) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14233">#14233</a></li>
+<li>🧵 feat: Background Tool Calls for Agents &#x26; Model Specs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14197">#14197</a></li>
+<li>🗝️ feat: Encrypted Langfuse Fanout Config by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14107">#14107</a></li>
+<li>🧭 feat: Mid-Run Steering and Queued Messages for Agent Runs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14220">#14220</a></li>
+<li>♨️ feat: Prewarm Stateful Code Sandboxes with Cold-Boot UX Feedback by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14239">#14239</a></li>
+<li>📛 feat: Add Client Name Header to Tavily Search Requests by <a href="/manisrinivasan2k1">@manisrinivasan2k1</a> in <a href="/danny-avila/LibreChat/pull/14082">#14082</a></li>
+<li>💬 feat: Explain Steering &#x26; Queuing at Every User-Facing Surface by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14260">#14260</a></li>
+<li>🖼️ feat: Return Sandbox Images From <code>read_file</code> as Viewable Artifacts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14277">#14277</a></li>
+<li>feat: add low-noise Redis observability by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14309">#14309</a></li>
+<li>✋ feat: Add Reclaim-Gated Controls to In-Flight Steers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14321">#14321</a></li>
+<li>🫧 feat: Float In-Flight Steers Over the Thread with Collapsible Content by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14365">#14365</a></li>
+<li>⚡ feat: Add Gemini 3.6 Flash and Gemini 3.5 Flash-Lite Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14369">#14369</a></li>
+<li>🧵 feat: Native Background Execution for Code Interpreter Tools by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14386">#14386</a></li>
+<li>✳️ feat: Claude Opus 5 Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14422">#14422</a></li>
+<li>⏱️ feat: Configurable HTTP Server Timeouts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14481">#14481</a></li>
+<li>🕶 feat: Generalize Admin Config Secret Redaction by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14509">#14509</a></li>
+<li>🏷️ feat: Activity Groups With Fast-Model Headers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14391">#14391</a></li>
+<li>🗝️ feat: Custom Endpoint API Key Encryption via Array Secret Registry by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14510">#14510</a></li>
+<li>🎯 feat: Tool Intent Label Capability (tool_intents) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14499">#14499</a></li>
+<li>🪢 feat: Langfuse Fanout Connection Setting by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14108">#14108</a></li>
+<li>🛑 feat: Preemptive Steer - Backend Interrupt &#x26; Steer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14518">#14518</a></li>
+<li>🎯 feat: Per-Tool Intent Labels for Model Specs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14526">#14526</a></li>
+<li>⚡ feat: Interrupt &#x26; Steer, Client by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14528">#14528</a></li>
+<li>🧵 feat: Background-Native Code Execution Tools by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14532">#14532</a></li>
+<li>🎯 feat: Render Tool Intent as the Live Tool-Call Label by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14536">#14536</a></li>
+<li>🎯 feat: Per-Tool Intent Label Toggles in the Agent Builder by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14550">#14550</a></li>
+<li>⚡ feat: Reliable Interrupt &#x26; Steer Escalation and Recovery by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14558">#14558</a></li>
+<li>💬 feat: Interim Progress Card for Streaming Q&#x26;A Calls by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14576">#14576</a></li>
+<li>🚦 feat: Configurable Circuit Breakers for Runaway Streamed Tool Args by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14613">#14613</a></li>
+<li>⚡ feat: Coalesce Redis Streaming Delta Publications into Windowed Batches by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14614">#14614</a></li>
+<li>🔒 feat: Add allowedAddresses Exemption to Speech (STT/TTS) and OCR Config Schemas by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14559">#14559</a></li>
+<li>🌊 feat: Wire Adaptive Stream Smoothing Across Google, Bedrock, and Zero-Disable Semantics by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14660">#14660</a></li>
+<li>🔗 feat: Admin Panel Link in Settings for Admins by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14662">#14662</a></li>
+<li>👋 feat: Day-Aware Landing Greeting Schedule by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14633">#14633</a></li>
+<li>🔑 feat: Refresh-Capable Google Admin OAuth Sessions by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/13832">#13832</a></li>
+<li>🛡️ feat: Add Batched MCP Authority Proofs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14688">#14688</a></li>
+<li>🪝 feat: Add Claude Hook Compatibility Layer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14412">#14412</a></li>
+<li>⛶ feat: add fullscreen artifact previews by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14585">#14585</a></li>
+<li>🔌 feat: Add Agent Plugins (Experimental) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14704">#14704</a></li>
+<li>🔗 feat: Shared Conversation Badge and Stable Share Links by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14712">#14712</a></li>
+<li>🧜 feat: Open Mermaid Diagrams as Artifacts with SVG/PNG Export by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14713">#14713</a></li>
+<li>🪶 feat: Resolve Explicit Subagents Lazily by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14714">#14714</a></li>
+<li>📡 feat: Route Web Search and Scrape Egress through the SSRF-safe Agent by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14606">#14606</a></li>
+<li>🎨 feat: Add Versioned Theme Foundation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14709">#14709</a></li>
+<li>🪆 feat: Add Parent Activity Phase Summaries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14721">#14721</a></li>
+<li>🎨 feat: Refine Client Colors and Sharing Dialogs by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14734">#14734</a></li>
+<li>🎛️ feat: Adopt Composer Density Tokens by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14730">#14730</a></li>
+<li>🍡 feat: Batched User Questions With A Single Bounded Answer Form by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14737">#14737</a></li>
+<li>🪝 feat: Execute Agent Plugin Command Hooks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14755">#14755</a></li>
+<li>🚣‍♀️ feat: Smooth Streaming Text Fade-In by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14757">#14757</a></li>
+<li>🪢 feat: add Langfuse session links by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14776">#14776</a></li>
+<li>🔖 feat: Bound Parent Activity Phases With an Exclusive End Index by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14768">#14768</a></li>
+<li>💬 style: Unify Message Row Layout and Edit Surfaces by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14770">#14770</a></li>
+<li>📄 feat: accept PowerPoint template MIME type by <a href="/snapydziuba">@snapydziuba</a> in <a href="/danny-avila/LibreChat/pull/14761">#14761</a></li>
+<li>⚡ feat: Add Gemini 3.7 Flash Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14818">#14818</a></li>
+<li>🪄 feat: Smooth Activity Phase Transitions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14832">#14832</a></li>
+<li>📱 style: Reclaim the Assistant Avatar Gutter on Mobile by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14836">#14836</a></li>
+<li>📱 style: Consolidate the Mobile Chat Header by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14843">#14843</a></li>
+<li>➡️ style: Flush the In-Flight Steer Stack to the Composer Edge by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14854">#14854</a></li>
+<li>🎨 feat: Color the Context Gauge by Category and Collapse its Breakdown by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14855">#14855</a></li>
+<li>📐 feat: Match the Message Column to the Composer by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14851">#14851</a></li>
+<li>🚏 feat: Central Trace Destination Opt-Out for Langfuse by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14838">#14838</a></li>
+<li>🤐 feat: Allow Promptless Sends When Files Are Attached by <a href="/i-anubhav-anand">@i-anubhav-anand</a> in <a href="/danny-avila/LibreChat/pull/13717">#13717</a></li>
+<li>📥 feat: Download Code Blocks as Files by <a href="/i-anubhav-anand">@i-anubhav-anand</a> in <a href="/danny-avila/LibreChat/pull/13715">#13715</a></li>
+<li>📱 feat: Give the Mobile Nav the Whole Screen by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14849">#14849</a></li>
+<li>💄 style: Align the Overflow Menu’s Icons and Ease the Assistant Header by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14888">#14888</a></li>
+<li>🗂️ feat: Display Chat Title in Tab Setting by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14881">#14881</a></li>
+<li>🛤️ feat: Per-Agent Code Execution Routing With Stateful Session Scopes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14848">#14848</a></li>
+<li>🗂️ feat: Rework the Projects Dashboard, Sidebar and Scoped Composer by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14866">#14866</a></li>
+<li>🎛️ feat: Consistent Dialogs, Clearer Settings, and a Keyboard Shortcuts Switch by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14882">#14882</a></li>
+<li>⏱️ feat: Show Run-Step Durations On Tool Cards by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14892">#14892</a></li>
+<li>🗄️ feat: Record When a Conversation Was Archived by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14863">#14863</a></li>
+<li>💄 style: Align the Thinking Dot with the Header Icon by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14895">#14895</a></li>
+<li>🗜️ feat: Let Users Toggle Client-Side Image Resizing by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14883">#14883</a></li>
+<li>🧠 feat: Add Live Reasoning Labels by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14893">#14893</a></li>
+<li>📱 feat: Swipe the Mobile Drawer Open and Closed by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14902">#14902</a></li>
+<li>📜 feat: Follow Streaming Args in Tool Detail Panes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14906">#14906</a></li>
+<li>📋 feat: Attach Long Pasted Text as a File by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14884">#14884</a></li>
+<li>🗄️ feat: Archive All Chats From Data Controls by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14885">#14885</a></li>
+<li>🛡️ feat: Let Admins Restrict Stateful Workspace Scopes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14910">#14910</a></li>
+<li>🎬 style: Reveal the Chat on Programmatic Drawer Closes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14930">#14930</a></li>
+<li>🛰️ feat: Execute Generic Agent Trigger Deliveries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14921">#14921</a></li>
+<li>📡 feat: Add Generic Agent Trigger Dispatch Seam by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14916">#14916</a></li>
+<li>📬 feat: Add Durable Agent Trigger Delivery by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14925">#14925</a></li>
+<li>🪜 style: Step Through Batched Questions One at a Time by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14935">#14935</a></li>
+<li>🕸️ feat: Run Saved Agent Teams as Subagents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14944">#14944</a></li>
+<li>🪢 feat: Custom Request Headers For Langfuse by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14945">#14945</a></li>
+<li>🧵 feat: Persist View-Only Subagent Threads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14957">#14957</a></li>
+<li>💡 feat: add DB-backed admin insights by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14898">#14898</a></li>
+<li>📁 feat: Surface Stateful Workspace Downloads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14984">#14984</a></li>
+<li>🛰️ feat: Route Live Subagent Controls Across Replicas by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14971">#14971</a></li>
+<li>🪃 feat: Wake Parent Agents on Child Completion by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14975">#14975</a></li>
+<li>🎛️ feat: Make Max Subagents Configurable via librechat.yaml by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15023">#15023</a></li>
+<li>🔗 feat: Open Footer Site Links in a New Tab by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15019">#15019</a></li>
+<li>⏱️ feat: Run Scheduled Chats Through Durable Agent Triggers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14939">#14939</a></li>
+<li>🕊️ feat: Yield to Subagent Completion Wakeups by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15066">#15066</a></li>
+<li>🧾 feat: Sibling Task Manifest for Resumed Parent Runs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15063">#15063</a></li>
+<li>📜 feat: Add Optional Collapse for Long User Messages by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15034">#15034</a></li>
+<li>🗂️ feat: Scope Scheduled Chats to Chat Projects by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15056">#15056</a></li>
+<li>🪟 feat: Read Child Threads Through Their Parent by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15073">#15073</a></li>
+<li>🛰️ feat: Show Child Agent Activity in a Side Panel by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15075">#15075</a></li>
+<li>🙈 feat: Config Option to Hide Response Feedback Buttons by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15085">#15085</a></li>
+<li>✨ feat: Context Gauge Hover Reveal and Breakdown Motion Polish by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15038">#15038</a></li>
+<li>🫥 feat: Add Temporary Chat Empty State and Active Indicator by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15086">#15086</a></li>
+<li>🎛️ feat: Configurable SearXNG Search Options by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14987">#14987</a></li>
+<li>🙋 feat: Collapse Settled Question Records by Default by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15107">#15107</a></li>
+<li>🪟 feat: Unify Subagent Activity Panel by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15106">#15106</a></li>
+<li>🛂 feat: Filter Model-Bound Content by Source by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14425">#14425</a></li>
+<li>📨 feat: Add Authenticated Agent Event Ingress by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15110">#15110</a></li>
+<li>📡 feat: Stream Detached Subagent Activity by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15111">#15111</a></li>
+<li>📨 feat: Continue Bound Child Agents from Events by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15112">#15112</a></li>
+<li>🖥️ feat: Stream PTC Inner Tool Calls as a CLI-Style Trace by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15115">#15115</a></li>
+<li>🎚️ feat: Configure Agent Event Runtime in YAML by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15128">#15128</a></li>
+<li>🪴 feat: Fork Completed Subagents Into Continuable Chats by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15133">#15133</a></li>
+<li>📱 feat: Offer a Dismissable Strip of Chat Beside the Mobile Drawer by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14990">#14990</a></li>
+<li>⏰ feat: Custom Cron Cadence for Scheduled Chats by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15084">#15084</a></li>
+<li>🧭 feat: Choose a Schedule’s Time Zone by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15119">#15119</a></li>
+<li>📆 feat: Weekly Schedules on Several Days by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15120">#15120</a></li>
+<li>🕰️ feat: Clock Format and Week Start Preferences by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15121">#15121</a></li>
+<li>⏱️ feat: Shared Time Picker for Schedule Times by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15122">#15122</a></li>
+<li>📇 feat: Surface Event Child Activity Through a Bounded Parent Index by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15142">#15142</a></li>
+<li>🪹 feat: Shared Empty State for Side Panels by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15123">#15123</a></li>
+<li>⏱️ feat: Show Elapsed Time Under the Streaming Response by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15167">#15167</a></li>
+<li>🧾 feat: Persist Authoritative Subagent Control Receipts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15168">#15168</a></li>
+<li>🪶 feat: Support Non-Persistent Controlled Themes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15170">#15170</a></li>
+<li>🎛️ feat: Expose Authoritative Subagent Controls by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15169">#15169</a></li>
+<li>🔌 feat: Background Execution Toggles for Actions &#x26; Plugin Tools by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14407">#14407</a></li>
+<li>🦺 feat: Configurable Baseline HTTP Security Headers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14445">#14445</a></li>
+<li>🐚 feat: Nonce-Based Content Security Policy for the SPA Shell by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14446">#14446</a></li>
+<li>🪢 feat: Coalesce Bound Agent Event Bursts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15208">#15208</a></li>
+<li>🧾 feat: Track Authoritative Agent Event Outcomes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15213">#15213</a></li>
+<li>✏️ feat: Edit Pasted Text and Clear It on New Chat by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15017">#15017</a></li>
+<li>🩻 feat(langfuse): add tenant export telemetry by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/15247">#15247</a></li>
+<li>🪢 feat: Resume Bound Event Actors from Checkpoint Forks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15227">#15227</a></li>
+<li>📬 feat: Serialize Bound Actor Event Mailboxes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15260">#15260</a></li>
+<li>🧾 feat: Store Durable Event Actor Receipts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15265">#15265</a></li>
+<li>🧵 feat: Unify Subagent Child Threads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15261">#15261</a></li>
+<li>🧅 feat: Reveal Subagent Thread History and Event Detail on Demand by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15283">#15283</a></li>
+<li>🕸️ feat: Complete Keenable Web Search Provider by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15288">#15288</a></li>
+<li>🪢 feat: show Langfuse session link in shared chats by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/15273">#15273</a></li>
+<li>🎼 feat: Unify Agent Turn Execution Behind One Immutable Plan by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15296">#15296</a></li>
+<li>🫆 feat: Fingerprint Agent Context for Zero-Read Warm Continuation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15299">#15299</a></li>
+<li>🤖 feat: make Event Actor HITL durable by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15305">#15305</a></li>
+<li>🪂 feat: Make Event Actor Detached Actions Durable by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15307">#15307</a></li>
+<li>🍱 feat: Guide Compaction With a Bounded Semantic Index by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15340">#15340</a></li>
+<li>📬 feat: Establish Background Continuation Admission by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15348">#15348</a></li>
+<li>🛑 feat: Cancel MCP Discovery Work at the Caller Deadline by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15353">#15353</a></li>
+<li>🛄 feat: Restore Compaction Guidance Across Continuations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15356">#15356</a></li>
+<li>🛎️ feat: Wake Agents on Background Tool Completion by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15350">#15350</a></li>
+<li>🍵 feat: Continue Late Steers in Warm Agent Runs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15357">#15357</a></li>
+<li>🧩 feat: Collapsible Wake-Up Task Cards and Subagent UI Consistency by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15364">#15364</a></li>
+<li>🗿 feat: Add Attached Stateful Code Environments by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15352">#15352</a></li>
+<li>🧲 feat: Enable Secure Attached Environment Pairing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15355">#15355</a></li>
+<li>✅ feat: Delivery Receipt Checkmarks for Steered Messages by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15376">#15376</a></li>
+<li>🧳 feat: Register Principal-Owned Code Environments by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15365">#15365</a></li>
+<li>🧠 feat: Retain Subagent Reasoning Like Main Chat and Drop the Running Status Chip by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15379">#15379</a></li>
+<li>📬 feat: Move Agent Queued Turns Server-Side by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15370">#15370</a></li>
+<li>🪗 feat: Fold a Live Run’s Tool-Call Groups Into the Phase Card by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15434">#15434</a></li>
+<li>🪶 feat: Enable Standalone Skill Authoring by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15480">#15480</a></li>
+<li>🛫 feat: Enable Self-Service Code Worker Pairing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15367">#15367</a></li>
+<li>🛞 feat: Manage Personal Code Environment Lifecycles by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15369">#15369</a></li>
+<li>🧺 feat: Preserve Partial Work at Tool Call Limits by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15486">#15486</a></li>
+<li>🧤 feat: Enforce Safe BYOM Tool Approvals by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15503">#15503</a></li>
+<li>🔭 feat: Audit PII Filter Findings by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15508">#15508</a></li>
+<li>🕹️ feat: Configure BYOM Tool Permissions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15504">#15504</a></li>
+<li>📖 feat: Add Claude Fable 5.1 Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15512">#15512</a></li>
+<li>🪪 feat: Propagate Tenant to Agent Model Headers by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/15521">#15521</a></li>
+<li>⏭️ feat: Honor an Interrupt Before the Model Has Answered by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15491">#15491</a></li>
+<li>⚡ feat: Add Gemini 3.8 Flash Support by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15519">#15519</a></li>
+<li>🧊 feat: Persist Context Fading Tier Across Agent Runs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15505">#15505</a></li>
+</ul>
+<h3 id="-fixes">🐛 Fixes</h3>
+<ul>
+<li>🔑 fix: Honor User-Provided MCP API Key Instead of Forcing OAuth by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13954">#13954</a></li>
+<li>🪙 fix: Count Quote Tokens on Message Edit by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13958">#13958</a></li>
+<li>📋 fix: Route Clipboard Paste Through Upload Options by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/13957">#13957</a></li>
+<li>📇 fix: Index sharedlinks updatedAt for Cosmos DB Sorts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13979">#13979</a></li>
+<li>📂 fix: Mount Skill Files Under skills/ in Code Interpreter by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13961">#13961</a> and <a href="/danny-avila/LibreChat/pull/13975">#13975</a></li>
+<li>🪟 fix: Re-measure Sidebar Chat List on Width Change to Fix Date-Group Spacing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13981">#13981</a></li>
+<li>📏 fix: Make create_file Missing-Content Error Truncation-Aware by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14043">#14043</a></li>
+<li>fix: use <code>logAxiosError</code> at the RAG file_search/context call sites by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14014">#14014</a></li>
+<li>fix: <code>stripHeavyErrorFields</code> Winston format (defense-in-depth) by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14018">#14018</a></li>
+<li>📥 fix: Download Original File From Artifact Preview Panel for Office Documents by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14026">#14026</a></li>
+<li>🔥 fix: Firebase CDN Initialization Under tsdown CJS Interop by <a href="/jakacenta">@jakacenta</a> in <a href="/danny-avila/LibreChat/pull/14046">#14046</a></li>
+<li>fix: preserve role SHARE permissions across boot in initializeRoles by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14022">#14022</a></li>
+<li>fix: bound peak memory of concurrent base64 attachment encoding by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14023">#14023</a></li>
+<li>📧 fix: Add .eml (message/rfc822) Support to File Upload by <a href="/Zirkonium88">@Zirkonium88</a> in <a href="/danny-avila/LibreChat/pull/13989">#13989</a></li>
+<li>🚪 fix: Support Admin Redirect Detection for Same-Origin Subpaths by <a href="/arjunvijay24">@arjunvijay24</a> in <a href="/danny-avila/LibreChat/pull/14040">#14040</a></li>
+<li>🩹 fix: Coerce Stringified <code>edit_file</code> Edits (JSON-in-JSON) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14056">#14056</a></li>
+<li>🧠 fix: Apply Bedrock thinking config to bare inference-profile model IDs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14054">#14054</a></li>
+<li>🧠 fix: Default Bedrock thinking <code>maxTokens</code> to model max output by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14058">#14058</a></li>
+<li>fix: stop the artifact-edit retry loop on unrecoverable 400s by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14060">#14060</a></li>
+<li>🎣 fix: Surface Resumable Stream Start Errors by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14072">#14072</a></li>
+<li>🧯 fix: Harden Principals Cache Invalidation and Lock-Wait Paths by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14120">#14120</a></li>
+<li>🏁 fix: Ignore Finalized SSE Transport Errors by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14114">#14114</a></li>
+<li>fix: fall back to <code>_id</code> for user id in <code>createSafeUser</code> by <a href="/mawburn">@mawburn</a> in <a href="/danny-avila/LibreChat/pull/14083">#14083</a></li>
+<li>🌏 fix: guard IME composition on Enter in prompt name/labels and dynamic tag inputs by <a href="/mahirhir">@mahirhir</a> in <a href="/danny-avila/LibreChat/pull/13996">#13996</a></li>
+<li>🗄️ fix: Return Cached Transaction-Support Value on Cache Hit by <a href="/Osamaali313">@Osamaali313</a> in <a href="/danny-avila/LibreChat/pull/13999">#13999</a></li>
+<li>🧠 fix: Format Reasoning Exports by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14116">#14116</a></li>
+<li>🧮 fix: Prevent String Corruption of Numeric Agent Model Parameters by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14119">#14119</a></li>
+<li>🧢 fix: Raise Claude Sonnet 4.6 Output Cap by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14115">#14115</a></li>
+<li>🧵 fix: Preserve Fenced Markdown Artifacts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14121">#14121</a></li>
+<li>🔒 fix: Prevent Role Grants on Shared Links by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14137">#14137</a></li>
+<li>🤐 fix: Exclude Provider Secrets from HITL Pending Actions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14136">#14136</a></li>
+<li>⏳ fix: Defer MCP Connection for Request-Scoped Placeholders on Reinitialize by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14148">#14148</a></li>
+<li>🧷 fix: Align Agent File Attachment Ownership by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14149">#14149</a></li>
+<li>🧊 fix: Include Conversation Starters in Agent View and List Responses by <a href="/serhiizghama">@serhiizghama</a> in <a href="/danny-avila/LibreChat/pull/14142">#14142</a></li>
+<li>♊ fix: Resolve Local JSON Pointer Refs &#x26; Sanitize Tool Search Schema for Gemini by <a href="/usnavy13">@usnavy13</a> in <a href="/danny-avila/LibreChat/pull/14161">#14161</a></li>
+<li>🛡️ fix: Guard HITL checkpoint size against MongoDB 16MB limit by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14157">#14157</a></li>
+<li>🔡 fix: Normalize Email Case When Issuing Verification Tokens by <a href="/VictorEPlus">@VictorEPlus</a> in <a href="/danny-avila/LibreChat/pull/14172">#14172</a></li>
+<li>🪜 fix: Apply Recursion Limit Config to Subagents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14185">#14185</a></li>
+<li>💂 fix: Enforce ALLOW_EMAIL_LOGIN on the Backend Login Route by <a href="/lurkerCha">@lurkerCha</a> in <a href="/danny-avila/LibreChat/pull/14180">#14180</a></li>
+<li>🧩 fix: Allow <code>compatibility</code> Field in Skill Frontmatter by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14189">#14189</a></li>
+<li>📎 fix: Translate Finite <code>supportedMimeTypes</code> Allowlists to Picker Accept by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14186">#14186</a></li>
+<li>🪆 fix: Serve Nested Skill Files Through a Wildcard Route by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14191">#14191</a></li>
+<li>🃏 fix: Attach Request-Scoped MCP Servers From the Builder via the <code>mcp_all</code> Wildcard by <a href="/adamscross04">@adamscross04</a> in <a href="/danny-avila/LibreChat/pull/14177">#14177</a></li>
+<li>🔍 fix: Sync Conversation Title Updates to MeiliSearch by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14223">#14223</a></li>
+<li>👻 fix: Guard Redis Stream Resume Against Disposed HITL Graph by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14258">#14258</a></li>
+<li>🤝 fix: Discover MCP OAuth Exchange Methods by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14256">#14256</a></li>
+<li>👋 fix: Terminate Streamable HTTP MCP Sessions on Teardown by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14252">#14252</a></li>
+<li>🗂️ fix: Route read_file Through the Stateful Code Session by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14259">#14259</a></li>
+<li>💭 fix: Default GPT-5.6 Reasoning Requests to Responses API by <a href="/jomspk">@jomspk</a> in <a href="/danny-avila/LibreChat/pull/14232">#14232</a></li>
+<li>🔖 fix: Preserve Ephemeral Agent Params and Identity for ask_user_question Resume by <a href="/jjhidalgar-celonis">@jjhidalgar-celonis</a> in <a href="/danny-avila/LibreChat/pull/14254">#14254</a></li>
+<li>🎫 fix: Strip Reserved Fields From Bedrock <code>additionalModelRequestFields</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14246">#14246</a></li>
+<li>📱 fix: Single-Tap Select for Pinned Agents, Model Specs &#x26; Models on Touch by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14272">#14272</a></li>
+<li>🧽 fix: Clear Deleted Chats From Message Cache by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14270">#14270</a></li>
+<li>🧟 fix: Prevent Drained Steer From Re-Queuing After Run-End Race by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14276">#14276</a></li>
+<li>🙋 fix: Await <code>ask_user_question</code> Tool Factory in <code>loadTools</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14291">#14291</a></li>
+<li>🧷 fix: Flush Pending File Deletion on Unmount by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14293">#14293</a></li>
+<li>🙋 fix: Stop Answered <code>ask_user_question</code> Card From Reopening Its Popover by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14297">#14297</a></li>
+<li>🔒 fix: Scope, Cap, and De-Execute the In-Flight Steer Stack by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14310">#14310</a></li>
+<li>📱 fix: Don’t Connect the Favorites Drag Source on Touch Pointers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14312">#14312</a></li>
+<li>🧵 fix: Harden Request-Scoped MCP Lifecycle by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14342">#14342</a></li>
+<li>🪆 fix: Build RAG-API Chart Before Parent to Bundle PostgreSQL Dependency by <a href="/Aho-Bakaa">@Aho-Bakaa</a> in <a href="/danny-avila/LibreChat/pull/14262">#14262</a></li>
+<li>🚪 fix: Keep Owners From Being Locked Out of Their Own Resource When Sharing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14347">#14347</a></li>
+<li>🚏 fix: Route Admin-Configured Document Types to RAG /text on Agent Upload by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14345">#14345</a></li>
+<li>🎟️ fix: Claim Idempotency Keys to Dedup Retried Generation Requests and Prevent Double Billing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14344">#14344</a></li>
+<li>🧠 fix: Restore Agent Memory Scope Control in Unified Builder by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14292">#14292</a></li>
+<li>🛟 fix: Keep File Uploads Alive With SSE Heartbeats by <a href="/MarcAmick">@MarcAmick</a> in <a href="/danny-avila/LibreChat/pull/14295">#14295</a></li>
+<li>🧩 fix: Preserve Deployment Skill IDs on Agents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14368">#14368</a></li>
+<li>🧭 fix: Keep Message Nav Chevrons Working on In-Thread Steers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14377">#14377</a></li>
+<li>🤐 fix: Withhold MCP OAuth Headers From Untrusted Preconfigured Discovery by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14379">#14379</a></li>
+<li>🔗 fix: Preserve resource owner access when sharing (key share diff by stable id) by <a href="/jomspk">@jomspk</a> in <a href="/danny-avila/LibreChat/pull/14317">#14317</a></li>
+<li>🪆 fix: Preserve Nested Subagent Delegation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14392">#14392</a></li>
+<li>✋ fix: Enable Submit on First Tool-Approval Decision by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14393">#14393</a></li>
+<li>🎞️ fix: Surface Clear Error for Unprocessable Gemini YouTube Videos by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14396">#14396</a></li>
+<li>📌 fix: Pin Scroll-to-Bottom Rib in Message Nav by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14397">#14397</a></li>
+<li>🫙 fix: Preserve Loaded Message Content When Resume Snapshot Is Empty by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14399">#14399</a></li>
+<li>🎯 fix: Correct Off-by-One Rail Scrub After Pinning the Terminus by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14409">#14409</a></li>
+<li>♾️ fix: Preserve Resumable Stream Ordering Across Turns by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14411">#14411</a></li>
+<li>🧩 fix: Harden Agent Skill Lifecycles End to End by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14429">#14429</a></li>
+<li>📧 fix: Restore <code>invite-user</code> CLI by <a href="/unsnow-iac">@unsnow-iac</a> in <a href="/danny-avila/LibreChat/pull/14436">#14436</a></li>
+<li>🔗 fix: Resolve MCP Tool-Key Boundary Against Configured Server Names by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14448">#14448</a></li>
+<li>🍃 fix: Strip $-Prefixed Schema Keywords Before Persisting MCP Tool Params by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14464">#14464</a></li>
+<li>🔗 fix: Render Shared Links Containing Steers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14480">#14480</a></li>
+<li>🔒 fix: Bound <code>/files/usage</code> TTL Hold Instead of Clearing It by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14470">#14470</a></li>
+<li>🤏 fix: Filter Admin Config Reads by Section-Scoped Read Capability by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14472">#14472</a></li>
+<li>🍃 fix: Amazon DocumentDB Compatibility for Pipeline-Form Updates by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14495">#14495</a></li>
+<li>🛡️ fix: validate message feedback payloads by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14500">#14500</a></li>
+<li>🧩 fix: Apply Every Entry of Multi-Part Stream Deltas by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14502">#14502</a></li>
+<li>🏷️ fix: Re-attribute Agent Content After In-Thread Steers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14497">#14497</a></li>
+<li>🎯 fix: Keep Run Steps and Labels in One Index Space After a Resume Sync by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14516">#14516</a></li>
+<li>🪶 fix: Yield Soft Default Model Spec to Agent Picks in Picker-Only Deployments by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14515">#14515</a></li>
+<li>🪟 fix: Surface MCP Initialization Errors by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14529">#14529</a></li>
+<li>🪃 fix: Resolve User Vars Before the First Post-OAuth Reconnect by <a href="/schumajs">@schumajs</a> in <a href="/danny-avila/LibreChat/pull/14538">#14538</a></li>
+<li>🔒 fix: Remove Owner Email from Agent <code>owner_contact</code> Fallback by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14541">#14541</a></li>
+<li>📄 fix: Filter Non-PDF Documents on the Anthropic Encode Path by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14535">#14535</a></li>
+<li>🎯 fix: Exact Ask-Question Attribution via Interrupt tool_call_id by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14539">#14539</a></li>
+<li>🧹 fix: Clean Up MCP OAuth State Mappings on Uninstall + Reject Superseded Callbacks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14549">#14549</a></li>
+<li>🧠 fix: Preserve Deferred Tool Schemas Across HITL Resume by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14552">#14552</a></li>
+<li>🦗 fix: Ignore Sequenced Redis Events Without SSE Subscribers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14557">#14557</a></li>
+<li>🔗 fix: Normalize MCP Tool Keys at Every Producer, Resolve Raw Names via Aliases by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14553">#14553</a></li>
+<li>🏢 fix: Preserve Tenant Context for Partial Response Saves on Disconnect by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14567">#14567</a></li>
+<li>🦗 fix: Deliver Abort Acknowledgements on Zero-Subscriber Replicas by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14569">#14569</a></li>
+<li>🏷️ fix: Skip Title Generation for Preempt-Incomplete Turns by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14571">#14571</a></li>
+<li>🪧 fix: Guard Admin OAuth Routes When Providers Are Not Configured by <a href="/cyphercodes">@cyphercodes</a> in <a href="/danny-avila/LibreChat/pull/14507">#14507</a></li>
+<li>🔗 fix: Resolve Relative Skill Markdown Links by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14586">#14586</a></li>
+<li>🧭 fix: Drop v6-Only MemoryRouter future Prop from Skill Markdown Spec by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14588">#14588</a></li>
+<li>🪪 fix: Strip Unresolved Header Placeholders at Final Resolution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14595">#14595</a></li>
+<li>🔒 fix: Single-Flight MCP OAuth Token Refresh per User/Server by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14596">#14596</a></li>
+<li>🪺 fix: Keep Preempt-Abandoned Siblings Nested, Make Message Tree Order-Robust by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14587">#14587</a></li>
+<li>⌨️ fix: Honor <code>defaultPrevented</code> in Global Shortcut Dispatch by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14570">#14570</a></li>
+<li>🪢 fix: Bind MCP OAuth Secrets to Trusted Endpoints by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14578">#14578</a></li>
+<li>⚓ fix: Bind Action Servers to Metadata Ports by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14575">#14575</a></li>
+<li>🧱 fix: Enforce Agent Runtime File Trust Boundaries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14577">#14577</a></li>
+<li>📏 fix: Scope Skill Command Query to Text Before the Caret by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14604">#14604</a></li>
+<li>🧬 fix: Resolve URL-Named Model Spec to Its Full Preset on Cold Load by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14610">#14610</a></li>
+<li>✂️ fix: Truncate Overflowing Activity and Intent Labels in Chat UI by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14607">#14607</a></li>
+<li>🚦 fix: Bound, Single-Flight, and Retry Skill File Priming Uploads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14611">#14611</a></li>
+<li>🧹 fix: Exclude Mongo ID From Conversation Updates by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14631">#14631</a></li>
+<li>♿️ a11y: improve keyboard operability, focus retention, and accessible naming by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14600">#14600</a></li>
+<li>🚏 fix: Localized Guidance for Model-Not-Found Errors by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/commit/557c22d10240a66a068584f1098c54a436c4dcc8"><code>557c22d102</code></a></li>
+<li>🛡️ fix: Run message-filter PII patterns on a linear-time regex engine (ReDoS) by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14554">#14554</a></li>
+<li>🪢 fix: disable central fanout media uploads for langfuse by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14642">#14642</a></li>
+<li>🧭 fix: Fail Closed When Expected MCP Tools Are Unavailable by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14646">#14646</a></li>
+<li>🛂 fix: Honor Claude Document Limits Through Inference Gateways by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14650">#14650</a></li>
+<li>🎟️ fix: Reconcile MCP OAuth Readiness Across Pods by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14629">#14629</a></li>
+<li>🌊 fix: Preserve Custom Endpoint <code>streamRate</code> When <code>endpoints.all</code> Is Defined by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14645">#14645</a></li>
+<li>🔐 fix: Preserve Structured JWT Auth Context by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14652">#14652</a></li>
+<li>⏱️ fix: Compile admin file-config MIME patterns on a linear-time engine (ReDoS) by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14555">#14555</a></li>
+<li>🛡️ fix: SSRF-Guard Speech (STT/TTS) and OCR Outbound Requests at Connect Time by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14560">#14560</a></li>
+<li>🔁 fix: Re-Arm Soft Default When a Stored Agent No Longer Resolves by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14664">#14664</a></li>
+<li>🔗 fix: Prevent duplicate share rows from clobbering pending role edits (dedupe adds by stable id) by <a href="/jomspk">@jomspk</a> in <a href="/danny-avila/LibreChat/pull/14655">#14655</a></li>
+<li>🛟 fix: Stop Agents When Code Resources Cannot Recover by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14651">#14651</a></li>
+<li>♿ fix: Restore WCAG AA Contrast for Text Tokens &#x26; Hide Edit Action While Streaming by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14677">#14677</a></li>
+<li>🩹 fix: Keep Edit Action Fully Hidden While Streaming by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14687">#14687</a></li>
+<li>📡 fix: Refresh MCP Tools After List-Changed Notifications by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14686">#14686</a></li>
+<li>🧬 fix: Rebind Request Context After Remote Agent Auth by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14685">#14685</a></li>
+<li>🧭 fix: Make MCP Catalog Redis Cluster-Safe by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14717">#14717</a></li>
+<li>🧬 fix: Normalize Legacy MCP Null Headers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14720">#14720</a></li>
+<li>📁 fix: Consistent Export Filenames Across Formats by <a href="/lidonius1122">@lidonius1122</a> in <a href="/danny-avila/LibreChat/pull/14708">#14708</a></li>
+<li>🧷 fix: Safely Recover Runtime MCP OAuth Rejections by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14684">#14684</a></li>
+<li>🪆 fix: Rebase Activity Phase Bounds over Sparse Content by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14729">#14729</a></li>
+<li>📎 fix: Re-enable Send After File Upload by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14727">#14727</a></li>
+<li>📸 fix: Guard Screenshot Export Against Main-Thread Freezes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14733">#14733</a></li>
+<li>🔐 fix: Preserve Plugin MCP Provenance Through Registry Storage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14744">#14744</a></li>
+<li>🧭 fix: Re-Anchor Parent Activity Phase Bounds by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14741">#14741</a></li>
+<li>🧷 fix: Preserve Elicitation Answers Across Aborts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14745">#14745</a></li>
+<li>📡 fix: Preserve Redis Abort Terminal Delivery by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14749">#14749</a></li>
+<li>⌨️ fix: allow file upload shortcut when editing by <a href="/likeabas">@likeabas</a> in <a href="/danny-avila/LibreChat/pull/14764">#14764</a></li>
+<li>🛟 fix: Isolate Invalid Skills During GitHub Sync by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14735">#14735</a></li>
+<li>🎙️ fix: Align Speech Engine Configuration With Runtime by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14736">#14736</a></li>
+<li>🧩 fix: Normalize Malformed MCP Required Schemas by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14771">#14771</a></li>
+<li>🧾 fix: Honor Disabled Transactions on the Token-Count Fallback Path by <a href="/jtodaroii">@jtodaroii</a> in <a href="/danny-avila/LibreChat/pull/14774">#14774</a></li>
+<li>🛰️ fix: Attach Request-Scoped MCP Servers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14780">#14780</a></li>
+<li>📱 fix: Show Quote Popup for Block Selections and on Touch Devices by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14777">#14777</a></li>
+<li>🪑 fix: Rebase Activity Phase Bounds Onto Compacted Content and Unskip the MCPManager Suite by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14782">#14782</a></li>
+<li>🔖 fix: Split Activity Phases at Substantial Text by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14785">#14785</a></li>
+<li>🖌️ style: Use correct text colour for answer textarea in dark mode by <a href="/lizzykerrigan">@lizzykerrigan</a> in <a href="/danny-avila/LibreChat/pull/14791">#14791</a></li>
+<li>🩹 fix: Restore the <code>@librechat/api</code> Build and Remove Legacy Code by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14808">#14808</a></li>
+<li>🩹 fix: apply agent updates that match the newest version entry by <a href="/mihidumh">@mihidumh</a> in <a href="/danny-avila/LibreChat/pull/14810">#14810</a></li>
+<li>💬 style: Right-Align In-Flight Steer Bubbles to the Message UI by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14814">#14814</a></li>
+<li>🔌 fix: Preserve MCP <code>serverInstructions</code> Declaration Through Inspection by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14815">#14815</a></li>
+<li>🔌 fix: Recover Quietly From Stale MCP SSE Stream Conflicts by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14816">#14816</a></li>
+<li>📎 fix: Alias Shell Script MIME Variants to <code>application/x-sh</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14817">#14817</a></li>
+<li>🪢 fix(langfuse): mark provider-backed agent traces by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14833">#14833</a></li>
+<li>🔔 fix: Report Agent Saves That Reuse the Newest Version Entry by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14824">#14824</a></li>
+<li>🏘️ fix: Scope OpenID User Cache Keys to Signed User Identity by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14837">#14837</a></li>
+<li>⚡ fix: avoid modal attachment menu overhead by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14847">#14847</a></li>
+<li>⬇️ fix: Keep Scroll-to-Bottom Clear of the In-Flight Steer Stack by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14844">#14844</a></li>
+<li>🐛 fix: Give the Header’s Sidebar Toggle Its Own Test Id by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14850">#14850</a></li>
+<li>fix: copy only assistant response text by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14853">#14853</a></li>
+<li>🌗 fix: Keep Code Block Header Visible in User Messages by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14856">#14856</a></li>
+<li>📐 fix: Size the Model Picker to Its Content by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14859">#14859</a></li>
+<li>🩺 fix: Render Stopped Run Steps From Explicit Status by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14871">#14871</a></li>
+<li>📡 fix: Publish App-Level MCP Tool Catalogs Without a Reserved Revision by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14858">#14858</a></li>
+<li>🧩 fix: Normalize MCP UI Resource Rendering by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14868">#14868</a></li>
+<li>🎙️ fix: Prefer Compatible Formats for External STT Recording by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14864">#14864</a></li>
+<li>📋 fix: Stop the Copy Button From Clobbering the Clipboard by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14876">#14876</a></li>
+<li>🩹 fix: Stop Archived and Shared Chats Dialogs Crashing on Open by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14886">#14886</a></li>
+<li>🏷️ fix: Model Spec Menu Label and Agent Avatar Fallbacks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14887">#14887</a></li>
+<li>🔙 fix: Stop Stacking History Entries on New-Chat Param Changes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14891">#14891</a></li>
+<li>📌 fix: Fetch Pinned Chats Independently of the Chats List by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14860">#14860</a></li>
+<li>🕰️ fix: Stop Pinning and Archiving From Counting as Chat Activity by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14861">#14861</a></li>
+<li>🪟 fix: Resolve Context Windows and Pricing for Newer Model Families by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14877">#14877</a></li>
+<li>🖱️ fix: Reveal Message Metadata on Hover, Not on Click by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14900">#14900</a></li>
+<li>🏷️ fix: Persist the Ephemeral Agent’s Display Label as Sender by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14899">#14899</a></li>
+<li>🧩 fix: Align Tenant and MCP Configuration Resolution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14904">#14904</a></li>
+<li>🌉 fix: Preserve Missing Locize Translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14917">#14917</a></li>
+<li>🔐 fix: Repair Locize PR Authentication by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14918">#14918</a></li>
+<li>📚 fix: Keep English Source Repository-Owned by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14920">#14920</a></li>
+<li>🚏 fix: Preserve Endpoint Routing on HITL Resume Replay by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14948">#14948</a></li>
+<li>🌐 fix: Scrollable Language Dropdown in Shared Chat Settings by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14954">#14954</a></li>
+<li>🔒 fix: Hide Sensitive Input in Reset-Password CLI by <a href="/jacksonriding">@jacksonriding</a> in <a href="/danny-avila/LibreChat/pull/14923">#14923</a></li>
+<li>💻 fix(agents): require Code Interpreter for programmatic MCP tools by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14977">#14977</a></li>
+<li>🪪 fix: Preserve Stored Access Token Expiry Over ID Token Exp by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14982">#14982</a></li>
+<li>🪢 fix: Harden Langfuse Media Upload Targets by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14974">#14974</a></li>
+<li>🙋 fix: Free the Composer When a Question Pause Collapses by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15011">#15011</a></li>
+<li>🛂 fix: Preserve OpenID Re-Auth Errors Through MCP Tool Error Classification by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/15010">#15010</a></li>
+<li>🪂 fix: Land Navigation Auto-Scroll on the Rendered Thread by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15014">#15014</a></li>
+<li>📎 fix: Never Let a Stalled Attachment Disable the Composer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15013">#15013</a></li>
+<li>🪪 fix: Preserve Detached Subagent Owner Context by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15015">#15015</a></li>
+<li>✂️ fix(agents): warn when skill descriptions are truncated in the model catalog by <a href="/putramkti">@putramkti</a> in <a href="/danny-avila/LibreChat/pull/14878">#14878</a></li>
+<li>🔓 fix: Unblock Detached Subagent Preparation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15016">#15016</a></li>
+<li>♿ fix: Keep Portaled Dropdown Menus Clickable Inside Modal Dialogs by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15026">#15026</a></li>
+<li>♿ fix: Resolve axe Violations in Sidebar, Tools Dropdown and Footer by <a href="/jtodaroii">@jtodaroii</a> in <a href="/danny-avila/LibreChat/pull/14979">#14979</a></li>
+<li>🎡 fix: Scheduled Chat Slot Accounting and Reconciliation Rotation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15040">#15040</a></li>
+<li>🗓️ fix: Hide Unsupported Schedule Variables by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15053">#15053</a></li>
+<li>🧵 fix: Hide Child Threads From Navigation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15041">#15041</a></li>
+<li>🛑 fix: Confirm Scheduled Stops and Separate Terminal Scheduler Failure from Startup by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15051">#15051</a></li>
+<li>🧵 fix: Close Child-Thread Read and Search-Cleanup Gaps by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15055">#15055</a></li>
+<li>📱 fix: Recover the Stream After a Mobile Tab is Backgrounded by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15050">#15050</a></li>
+<li>🛟 fix: Report Skill Sync Files Whose Paths Cannot Be Mirrored by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15067">#15067</a></li>
+<li>🔭 fix: Attach to Runs This Pane Did Not Start by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15074">#15074</a></li>
+<li>🪪 fix: Support MCP Server Titles With Hyphens by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15094">#15094</a></li>
+<li>📄 fix: Serve Stored Text for “Upload as Text” File Downloads by <a href="/lidonius1122">@lidonius1122</a> in <a href="/danny-avila/LibreChat/pull/14723">#14723</a></li>
+<li>🪢 fix: Preserve Response Identity and Branch During Resumable SSE Sync by <a href="/Falenos">@Falenos</a> in <a href="/danny-avila/LibreChat/pull/14788">#14788</a></li>
+<li>✂️ fix: Strip Redundant Server-Name Prefixes from MCP Tool Keys by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/14732">#14732</a></li>
+<li>🪡 fix: Thread Parent Message ID Through MCP Request-Scoped Bodies by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15095">#15095</a></li>
+<li>🖼️ fix: Restore Shared Subagent Activity as a Read-Only View by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15108">#15108</a></li>
+<li>🧯 fix: Prevent Quote Popup Update Loop by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15113">#15113</a></li>
+<li>🚦 fix: Restrict Programmatic Tool Execution Maps by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15105">#15105</a></li>
+<li>🛂 fix: Preserve Legacy Assistant Attribution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15118">#15118</a></li>
+<li>🧾 fix: Report Complete Agents API Usage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15127">#15127</a></li>
+<li>📏 fix: Size Agent Builder Tool and Skill Rows by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15134">#15134</a></li>
+<li>🫂 fix: Route Subagent Activity Through the Chat Renderer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15137">#15137</a></li>
+<li>🧪 fix: Mock the Parent Subagent Index Handler in Convos Route Tests by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15146">#15146</a></li>
+<li>🪶 fix: Polish Event Subagent Activity by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15152">#15152</a></li>
+<li>📭 fix: Detect Agent List Pages in <code>useHasData</code> by <a href="/jomspk">@jomspk</a> in <a href="/danny-avila/LibreChat/pull/15156">#15156</a></li>
+<li>🎽 fix: Commit Subagent Roster Selections to Form State by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15154">#15154</a></li>
+<li>🩹 fix: Restore Provider Typing Against the Agents SDK Declarations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15161">#15161</a></li>
+<li>🕯️ fix: Decay Violation Scores With a Configurable TTL by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15153">#15153</a></li>
+<li>🥁 fix: Compare TOTP Codes in Constant Time by <a href="/pacocartones">@pacocartones</a> in <a href="/danny-avila/LibreChat/pull/15157">#15157</a></li>
+<li>🧳 fix: Port Subagent Control Receipt Writes to DocumentDB-Safe Operators by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15171">#15171</a></li>
+<li>✂️ fix: Unclip the Share Dialog’s Public Role Menu by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15177">#15177</a></li>
+<li>🧮 fix: Currency-Safe Single-Dollar LaTeX via Micromark Tokenizer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15181">#15181</a></li>
+<li>🫗 fix: Drain Quoted Excerpts Into Mid-Run Steering by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15175">#15175</a></li>
+<li>📌 fix: Keep the Settled Turn Mounted Through Final Content Compaction by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15186">#15186</a></li>
+<li>🪢 fix: Persist Failed Agent Turns Before Error Publication by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14118">#14118</a></li>
+<li>📐 fix: Set the Elapsed Reading on the Column Its Neighbors Share by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15195">#15195</a></li>
+<li>🧾 fix: Honor Disabled Transactions on the Abort Paths by <a href="/jtodaroii">@jtodaroii</a> in <a href="/danny-avila/LibreChat/pull/15099">#15099</a></li>
+<li>🥛 fix: Drop Stale Saved Model Defaults in Builder Forms by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/15179">#15179</a></li>
+<li>🧾 fix: Honor Disabled Transactions on the Assistants Usage Path by <a href="/jtodaroii">@jtodaroii</a> in <a href="/danny-avila/LibreChat/pull/15100">#15100</a></li>
+<li>🎛️ fix: Withhold the Seeded Model Catalogue Until Models Resolve by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15035">#15035</a></li>
+<li>🕶️ fix: Unhide Event Subagent Names on the Dark Surface by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15206">#15206</a></li>
+<li>🛑 fix: Separate Agent Event Backpressure From User Bans by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15200">#15200</a></li>
+<li>⏳ fix: Anchor Resumed Elapsed Time at the Generation’s Real Start by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15204">#15204</a></li>
+<li>🧠 fix: Correct Memory Token Accounting by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15224">#15224</a></li>
+<li>🎢 fix: Restore Schedule Dialog Scrolling So Save Stays Reachable by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15225">#15225</a></li>
+<li>🗄️ fix: support DocumentDB aggregations for insights by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/15226">#15226</a></li>
+<li>🔁 fix: Rerun a Message the Editor Has Not Changed by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15212">#15212</a></li>
+<li>🧮 fix: Render Google Settings From the Shared Schema and Bound Them Per Model by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14989">#14989</a></li>
+<li>🧠 fix: Apply the Configured Reasoning Effort to Summarization by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15232">#15232</a></li>
+<li>🧢 fix: Bound Tokenizer Work Per Input by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15246">#15246</a></li>
+<li>🔣 fix: Escape SPA Language Attribute by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15248">#15248</a></li>
+<li>🪺 fix: Heal MCP HITL Aliases Through Nested Subagents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15258">#15258</a></li>
+<li>🧢 fix: Cap Batched HITL Answers Before PII and Moderation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15257">#15257</a></li>
+<li>🖇️ fix: Bind Model-Spec Authorization to the Loaded Agent by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15256">#15256</a></li>
+<li>📮 fix: Screen User-Supplied Structured Tool Endpoints by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15253">#15253</a></li>
+<li>🪪 fix: Preserve SAML NameID Bindings by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15254">#15254</a></li>
+<li>🧬 fix: Harden SAML Identity Binding by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15264">#15264</a></li>
+<li>🛗 fix: Anchor Message Nav Gestures to One Measured Rib Layout by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15272">#15272</a></li>
+<li>🌐 fix: Expose Gemini Models to Vertex AI Agents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15234">#15234</a></li>
+<li>🥫 fix: Refuse to Boot on Retired JWT Secret Defaults by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15282">#15282</a></li>
+<li>📌 fix: Keep Pinned Chats Pinned Through a New Turn by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15230">#15230</a></li>
+<li>🧷 fix: Verify Scheduled HITL State Before Pausing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15284">#15284</a></li>
+<li>♟️ fix: Settle First Bound Actor Events by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15300">#15300</a></li>
+<li>🎰 fix: Merge Message Provenance With Compare-and-Swap Retries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15304">#15304</a></li>
+<li>🧵 fix: Retry Shared Links After Message Persistence Gaps by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15306">#15306</a></li>
+<li>🎫 fix: Exclude System Tenant Sentinel from Code API JWT Claims by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15316">#15316</a></li>
+<li>🪪 fix: Reject ID Tokens as the OpenID Bearer Reuse Access Token by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15317">#15317</a></li>
+<li>🕰️ fix: Guard <code>expires_in</code> So a Token Response Cannot Outlive Its Credential by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15321">#15321</a></li>
+<li>🪧 fix: Advertise Detached Event Actor Support from the Generation Store by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15322">#15322</a></li>
+<li>🪪 fix: Admit Confirmed Generation Retries Before Message Limits by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15341">#15341</a></li>
+<li>🫀 fix: Reconcile Completed Runs Behind Apparently Open Streams on Foreground by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15342">#15342</a></li>
+<li>🐺 fix: Stop Routine MCP Teardowns From Failing Concurrent Tool Calls by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15333">#15333</a></li>
+<li>📭 fix: Drop Empty Summary Parts Before Persistence by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15338">#15338</a></li>
+<li>🔒 fix: Refresh MCP OBO Tokens From the Live OpenID Session by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15334">#15334</a></li>
+<li>👔 fix: Route Flux Finetuned Endpoints Regardless of Action by <a href="/AyushCipher">@AyushCipher</a> in <a href="/danny-avila/LibreChat/pull/15336">#15336</a></li>
+<li>🪭 fix: Settle Parent Phase Cards Without Replaying the Entrance Fold by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15345">#15345</a></li>
+<li>🔊 fix: Autoplay Latest Message for Browser TTS and short responses by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15347">#15347</a></li>
+<li>🔄 fix: Recover Missing MCP Marketplace Catalogs by <a href="/dustinhealy">@dustinhealy</a> in <a href="/danny-avila/LibreChat/pull/15323">#15323</a></li>
+<li>🛎️ fix: Enroll Remote Agent Runs in the Generation Lifecycle by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15349">#15349</a></li>
+<li>⏱️ fix: Bound MCP Tool Discovery With a Caller Deadline by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15346">#15346</a></li>
+<li>🧺 fix: Skip Oversized and Duplicate Files Instead of the Whole Batch by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15358">#15358</a></li>
+<li>fix: log config-blocked MCP recovery at debug instead of error by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15360">#15360</a></li>
+<li>🏕️ fix: Restore Code Environments From Runtime Config by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15373">#15373</a></li>
+<li>📜 fix: Resolve MCP Server Instructions for Startup-Deferred Servers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15361">#15361</a></li>
+<li>🧳 fix: Carry Stateful Environments Through Runtime Config by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15374">#15374</a></li>
+<li>🍃 fix: Restore Amazon DocumentDB Compatibility Across Trigger and Subagent Writes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15375">#15375</a></li>
+<li>🧪 fix: Align Detached Activity E2E With the Removed Running Chip by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15382">#15382</a></li>
+<li>🪟 fix: Keep the Subagent Panel Steady and Honest Across Event Deliveries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15387">#15387</a></li>
+<li>🍃 fix: Send a Pure Inclusion Projection From the Legacy Receipt Sweep by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15390">#15390</a></li>
+<li>🎛️ fix: Settle New Turns at the Bottom, Steady Status Dots, and Elapsed Time in the Panel by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15394">#15394</a></li>
+<li>🖍️ fix: Honor Agent Image Detail Settings by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15407">#15407</a></li>
+<li>🪁 fix: Keep Tool Flyouts in View by <a href="/alexsr1">@alexsr1</a> in <a href="/danny-avila/LibreChat/pull/15404">#15404</a></li>
+<li>🧰 fix: Keep File-Backed Agent Capabilities and Their Saved Tools in Agreement by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15418">#15418</a></li>
+<li>🧷 fix: Attach to a Continuation the Finished Run Left Behind by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15414">#15414</a></li>
+<li>🕰️ fix: Anchor Temporal Prompt Variables to Turn Start by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15419">#15419</a></li>
+<li>🧷 fix: Fence Server-Admitted Queue Boundaries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15393">#15393</a></li>
+<li>🧴 fix: Strip LangChain URLs From Provider Errors by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15421">#15421</a></li>
+<li>🧿 fix: Restore Shared IP Limits for Generation Retries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15427">#15427</a></li>
+<li>🫀 fix: Expire Aborted Background Tool Leases by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15428">#15428</a></li>
+<li>🧺 fix: Funnel MCP Catalog Work Through a Shared Gate by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15429">#15429</a></li>
+<li>🔐 fix: Redirect OAuth Browser Navigations Instead of Rendering JSON by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15440">#15440</a></li>
+<li>🎯 fix: Keep the Thinking Label on the Lightbulb’s Axis While Shimmering by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15437">#15437</a></li>
+<li>🖼️ fix: Give a Phase’s Files Their Own Media Row by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15435">#15435</a></li>
+<li>🧩 fix: Scope Each Image’s Digest Artifacts to Its Own Manifest Merge by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15444">#15444</a></li>
+<li>🛄 fix: Refresh Stale Skill File References by <a href="/putramkti">@putramkti</a> in <a href="/danny-avila/LibreChat/pull/15413">#15413</a></li>
+<li>🩹 fix: Stop the Subagent Composer Unmounting, and Give It Main Chat’s Shape by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15448">#15448</a></li>
+<li>🗂️ fix: Resolve Code Interpreter Destination Collisions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15449">#15449</a></li>
+<li>🧲 fix: Draw OpenID Refresh Lookups Into System Context by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15451">#15451</a></li>
+<li>🚦 fix: Downgrade Stale Generation Fence Telemetry by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15452">#15452</a></li>
+<li>🖼️ fix: Stop Reporting a Failed Sandbox Image Read as an Unreadable Format by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15453">#15453</a></li>
+<li>🪄 fix: Reuse Downloaded Artifacts for Image Reads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15454">#15454</a></li>
+<li>🪂 fix: Preserve Subscribers Through Terminal Handoffs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15462">#15462</a></li>
+<li>🫴 fix: Hand Composer Focus Back After Upload Dialogs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15469">#15469</a></li>
+<li>📎 fix: Keep SharePoint Picker Selections While Navigating by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15389">#15389</a></li>
+<li>🔐 fix: Keep OpenID Metadata Out of Logs and Traces by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15470">#15470</a></li>
+<li>🎖️ fix: Apply Fallback Role on Group Overage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15472">#15472</a></li>
+<li>🛄 fix: Reclaim Pending MCP OAuth Prompts on Resume by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15471">#15471</a></li>
+<li>🚮 fix: Replace Backtracking LangChain Error Regexes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15473">#15473</a></li>
+<li>🧫 fix: Contain Detached Tool Output by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15476">#15476</a></li>
+<li>🗿 fix: Bound Background Task Retention by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15477">#15477</a></li>
+<li>🧶 fix: Preserve Multi-Agent Tool Call History by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15468">#15468</a></li>
+<li>🧲 fix: Anchor Memory Partitions to Accessible Agents by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15475">#15475</a></li>
+<li>🫥 fix: Clear Hidden MCP Chat Selections by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14159">#14159</a></li>
+<li>🔑 fix: Decode Action OAuth Credentials After Decryption by <a href="/lidonius1122">@lidonius1122</a> in <a href="/danny-avila/LibreChat/pull/14698">#14698</a></li>
+<li>🛞 fix: Roll Overflow Tenant Labels Into Aggregate Metrics by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15474">#15474</a></li>
+<li>🚧 fix: Narrow Chat MCP Selections to What the Picker May Offer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15478">#15478</a></li>
+<li>🔎 fix: Respect Search Page Limits in MeiliSearch Queries by <a href="/csdivad">@csdivad</a> in <a href="/danny-avila/LibreChat/pull/15482">#15482</a></li>
+<li>🧳 fix: Carry Custom Endpoint Names Through Chat URLs by <a href="/abhishekbiswas772">@abhishekbiswas772</a> in <a href="/danny-avila/LibreChat/pull/15424">#15424</a></li>
+<li>🔍 fix: Include Message-Matched Conversations in Sidebar Search by <a href="/csdivad">@csdivad</a> in <a href="/danny-avila/LibreChat/pull/15483">#15483</a></li>
+<li>🔄 fix: Reindex MeiliSearch Documents After Indexed-Projection Changes by <a href="/csdivad">@csdivad</a> in <a href="/danny-avila/LibreChat/pull/15484">#15484</a></li>
+<li>🧶 fix: Untangle Parallel Subagent Descriptor Paths by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15492">#15492</a></li>
+<li>🚢 fix: Reconnect Keyv Redis After Replica Failover by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15502">#15502</a></li>
+<li>🫱 fix: Keep Polling Through Queued Run Handoffs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15509">#15509</a></li>
+<li>🛑 fix: Forward Run Abort Signal to Foreground Tool Calls by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15517">#15517</a></li>
+<li>🫙 fix: Drop Blank Content Blocks From Promptless Sends by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15530">#15530</a></li>
+</ul>
+<h3 id="-refactoring-and-performance">🔧 Refactoring and Performance</h3>
+<ul>
+<li>
+<p>🛫 refactor: Promote Generation Protocol V2 Automatically by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15324">#15324</a></p>
+</li>
+<li>
+<p>🎠 refactor: Route Every Event Actor Turn Through One Lifecycle by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15325">#15325</a></p>
+</li>
+<li>
+<p>🪩 style: Shimmer Live Reasoning Labels and Timers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15431">#15431</a></p>
+</li>
+<li>
+<p>✔️ style: Anchor the Applied Steer Receipt and Name Tool Calls in Its Interrupt Copy by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15450">#15450</a></p>
+</li>
+<li>
+<p>🧵 refactor: Give the Subagent Panel One Composer and Main Chat’s Metrics by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15436">#15436</a></p>
+</li>
+<li>
+<p>🐆 perf: Build Dev Branch Images on Native ARM and Cheapen Asset Brotli by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15441">#15441</a></p>
+</li>
+<li>
+<p>♻️ refactor: Compute Context Gauge Client-Side, Drop Projection Endpoint by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13953">#13953</a></p>
+</li>
+<li>
+<p>🪣 refactor: Rate-Limit Token Routes and Cap Remote File Downloads by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13978">#13978</a></p>
+</li>
+<li>
+<p>🦥 perf: Lazy-Load Agent Version History in Editor by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13977">#13977</a></p>
+</li>
+<li>
+<p>🛗 perf: Fetch Pinned Agents Directly Past the Global Agents Map by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13972">#13972</a></p>
+</li>
+<li>
+<p>⚡ perf: memoize FavoritesList and BookmarkNav to prevent re-renders during streaming by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14011">#14011</a></p>
+</li>
+<li>
+<p>🗺️ refactor: Light Up In-Viewport Ribs at Rest in Message Nav by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14041">#14041</a></p>
+</li>
+<li>
+<p>⚡ perf: Minimize group membership query in principal resolution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14055">#14055</a></p>
+</li>
+<li>
+<p>⚡ perf: Skip Role Route Capability Probe for Own and Default Roles by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14073">#14073</a></p>
+</li>
+<li>
+<p>🪭 refactor: safe structured failure logging for langfuse fanout gateway by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14050">#14050</a></p>
+</li>
+<li>
+<p>📉 perf: Skip Redundant Permission Queries on MCP Servers List by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14077">#14077</a></p>
+</li>
+<li>
+<p>⚡ perf: Persist HITL checkpoints only on pause (lazy checkpointer) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14024">#14024</a></p>
+</li>
+<li>
+<p>🗃️ perf: Cache Group Memberships for ACL Principal Resolution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14075">#14075</a></p>
+</li>
+<li>
+<p>⚙️ perf: reduce first-load MongoDB round trips by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14101">#14101</a></p>
+</li>
+<li>
+<p>🎯 style: Center Scroll-to-Bottom Rib in Message Nav Rail by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14151">#14151</a></p>
+</li>
+<li>
+<p>📉 perf: cache OpenID JWT user documents by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14187">#14187</a></p>
+</li>
+<li>
+<p>📉 perf: start message queries before file map loads by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14188">#14188</a></p>
+</li>
+<li>
+<p>🪜 style: Adjust rib dimensions and button sizes in <code>MessageNav</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14234">#14234</a></p>
+</li>
+<li>
+<p>🪜 style: Center scroll-to-bottom marker in MessageNav by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14238">#14238</a></p>
+</li>
+<li>
+<p>🛞 style: Reveal the Steered ”?” on Message Hover/Focus by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14271">#14271</a></p>
+</li>
+<li>
+<p>🙊 refactor: Clarify Ask Question Schema Errors and Retry Guidance by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14279">#14279</a></p>
+</li>
+<li>
+<p>💬 refactor: Anchor In-Flight Steers Above the Composer by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14308">#14308</a></p>
+</li>
+<li>
+<p>⚡ perf: Halve Per-Delta Redis Round Trips in Resumable Streams by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14313">#14313</a></p>
+</li>
+<li>
+<p>🧭 refactor: <code>web_search</code> Description on When To Search vs Answer Directly by <a href="/joshbla">@joshbla</a> in <a href="/danny-avila/LibreChat/pull/13930">#13930</a></p>
+</li>
+<li>
+<p>🧷 perf: Stabilize Mutation-Dependent Memos in Chat Hooks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14328">#14328</a></p>
+</li>
+<li>
+<p>🚰 perf: Suppress No-Op Conversation Writes and Widen-Proof Atom Subscriptions by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14329">#14329</a></p>
+</li>
+<li>
+<p>🔍 refactor: Surface primary OpenID JWT failure reason in auth failure log by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14346">#14346</a></p>
+</li>
+<li>
+<p>🧭 perf: Warm Conversation Switches with Single-Navigation Focus Intent by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14334">#14334</a></p>
+</li>
+<li>
+<p>🧹 perf: Share Voices Store, Gate Timestamp Ticker, Stabilize Greeting Springs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14335">#14335</a></p>
+</li>
+<li>
+<p>🎞️ perf: Coalesce Streaming Delta Cache Writes Per Animation Frame by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14332">#14332</a></p>
+</li>
+<li>
+<p>🎛️ perf: Narrow Composer Subscriptions to Streaming State by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14333">#14333</a></p>
+</li>
+<li>
+<p>🧬 perf: Memoize Message Spine and Isolate Scroll-Button State by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14330">#14330</a></p>
+</li>
+<li>
+<p>🪟 perf: Virtualize Search Results and Stop the Per-Query Remount by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14352">#14352</a></p>
+</li>
+<li>
+<p>⚡ perf: Reduce Agent Chat Startup Latency by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14423">#14423</a></p>
+</li>
+<li>
+<p>💬 refactor: Raise <code>ask_user_question</code> Option Label Cap to 280 Chars by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14491">#14491</a></p>
+</li>
+<li>
+<p>🪢 refactor: Move Agent Execution Seam Before Initialization by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14581">#14581</a></p>
+</li>
+<li>
+<p>📉 perf: Bound Early Event Buffering for Detached Generations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14612">#14612</a></p>
+</li>
+<li>
+<p>🎨 refactor: adopt the <code>@librechat/client</code> design system (semantic color tokens + component migration) by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/13879">#13879</a></p>
+</li>
+<li>
+<p>🧩 refactor: Shared UI Design System Tokens by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14670">#14670</a></p>
+</li>
+<li>
+<p>⚡ perf: Agent List and Model Selector at Scale by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14601">#14601</a></p>
+</li>
+<li>
+<p>🧭 refactor: make the side panels behave the same way by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14695">#14695</a></p>
+</li>
+<li>
+<p>🫧 refactor: Fading Pre-Response Dot, Legacy Cursor CSS Removed by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14772">#14772</a></p>
+</li>
+<li>
+<p>🧱 refactor: Require Broad Config Management for Base Field Mutations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14775">#14775</a></p>
+</li>
+<li>
+<p>🖍️ refactor: Typed Console Colors and Hardened Script Helpers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14778">#14778</a></p>
+</li>
+<li>
+<p>🧱 refactor: Make Activity Phase Anchor Construction Exhaustive by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14805">#14805</a></p>
+</li>
+<li>
+<p>🧭 refactor: Resolve Activity Phase Position Once Per Boundary by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14807">#14807</a></p>
+</li>
+<li>
+<p>🧩 refactor: Extend Step Status To Remaining Cards; Separate Cancelled From Failed by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14873">#14873</a></p>
+</li>
+<li>
+<p>🎯 refactor: Infer Agents Endpoint for Model Specs Naming an Agent by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14889">#14889</a></p>
+</li>
+<li>
+<p>⚡ perf: Flip the Pinned Flag Without a Full Conversation Save by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14862">#14862</a></p>
+</li>
+<li>
+<p>⚡ perf: Optimize First Load of Large Conversations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14901">#14901</a></p>
+</li>
+<li>
+<p>🏷️ refactor: Keep Agent Conversations From Revealing Model Labels by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14909">#14909</a></p>
+</li>
+<li>
+<p>🥚 refactor: Default Agents to Preferred Stateful Workspace Scope by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14908">#14908</a></p>
+</li>
+<li>
+<p>📱 perf: Instant Mobile View Switching + Uniform Sidebar Toggle by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14913">#14913</a></p>
+</li>
+<li>
+<p>🧩 refactor: Resolve Tool-Card State Once by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14934">#14934</a></p>
+</li>
+<li>
+<p>✨ refactor: Presets, Skills Motion and Model Selector Polish by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14953">#14953</a></p>
+</li>
+<li>
+<p>🧲 refactor: Consolidate Claude Prompt Cache and Context Checks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15008">#15008</a></p>
+</li>
+<li>
+<p>🔌 refactor: Extract Git Repository Adapter From Skill Sync by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15052">#15052</a></p>
+</li>
+<li>
+<p>🔀 perf: Swap the Transcript With the URL on Conversation Switch by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15054">#15054</a></p>
+</li>
+<li>
+<p>⚡ perf: Warm Feature Catalogs in the Background After First Paint by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15047">#15047</a></p>
+</li>
+<li>
+<p>🐇 refactor: Decouple Meilisearch From Document Saves by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15109">#15109</a></p>
+</li>
+<li>
+<p>🧮 perf: Enable Agent Context Count Reuse by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15130">#15130</a></p>
+</li>
+<li>
+<p>⚡ perf: Cut Serial Round Trips and a 100ms Admission Stall from Chat Turns by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15138">#15138</a></p>
+</li>
+<li>
+<p>⚡ perf: Append Saved Message Ids Instead of Rebuilding the Conversation Array by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15141">#15141</a></p>
+</li>
+<li>
+<p>⚡ perf: Plain-JSON Memory Cache and an Idle Backoff for the Trigger Poll by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15144">#15144</a></p>
+</li>
+<li>
+<p>⚡ perf: Build the Memory Message Copy Only When Something Reads It by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15164">#15164</a></p>
+</li>
+<li>
+<p>🖼️ refactor: Consolidate Provider Icons Into a Single Registry by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15148">#15148</a></p>
+</li>
+<li>
+<p>🐇 perf: Bound MCP Agent Access Scan by MCP Referencing Agents and Share the Read-Through Cache by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15028">#15028</a></p>
+</li>
+<li>
+<p>⚡ perf: Avoid Parallel Full and Paged Prompt Loading on Startup by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15031">#15031</a></p>
+</li>
+<li>
+<p>🎟️ refactor: Require Credentials for Local Image Access by Default by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15252">#15252</a></p>
+</li>
+<li>
+<p>🔇 refactor: Quiet Framework Logging in Unit Tests by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15363">#15363</a></p>
+</li>
+<li>
+<p>🎻 refactor: Orchestrate Agent Runs Through a Request-Free Host by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15366">#15366</a></p>
+</li>
+<li>
+<p>🧬 perf: Evolve Compaction Guidance on Warm Turns by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15371">#15371</a></p>
+</li>
+<li>
+<p>🕯️ style: Settle the Applied Steer Receipt Once the Response Is Done by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15377">#15377</a></p>
+</li>
+<li>
+<p>🔌 refactor: Give the Subagent Surface a Host Seam and Its Own Jotai State by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15455">#15455</a></p>
+</li>
+</ul>
+<h3 id="-tests">🧪 Tests</h3>
+<ul>
+<li>📐 test: Guard Web Search Description Length by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14044">#14044</a></li>
+<li>🛂 test: Cover Tool Approval Workflows End to End by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14427">#14427</a></li>
+<li>🧭 test: Cover Agent Handoffs End to End by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14428">#14428</a></li>
+<li>🧪 test: Reasoning-Stream Render Perf Benchmark via react-scan by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14494">#14494</a></li>
+<li>🎛️ test: Guard Multi-Steer Injection Across Tool Boundaries by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14498">#14498</a></li>
+<li>🧪 test: Run mock E2E against Redis in shards by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14551">#14551</a></li>
+<li>🎲 test: Replace Microtask Timing Assumptions in Client Specs by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14653">#14653</a></li>
+<li>🐘 test: refresh FerretDB harness, registry-derived models, bulkWrite coverage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14679">#14679</a></li>
+<li>test(mcp): mock static tool startup sync by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14711">#14711</a></li>
+<li>🧪 test(e2e): add Bombadil property exploration by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14462">#14462</a></li>
+<li>🧾 test: Pin the Transactions Config Wiring on the Fallback Path by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14779">#14779</a></li>
+<li>⏲️ test: Give ServerConfigsDB Mongo Hooks a 60s Timeout Budget by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14831">#14831</a></li>
+<li>🛰️ test: Prove Cross-Replica Subagent Delivery by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15064">#15064</a></li>
+<li>🎬 test: Cover Detached Subagent Activity Lifecycle by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15117">#15117</a></li>
+<li>🧫 test: Lock Subagent File Context Propagation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15126">#15126</a></li>
+<li>⏱️ test: Stabilize Meilisearch Retry Cleanup Assertion by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15129">#15129</a></li>
+<li>⏱️ test: Make Active Item Observer Assertions Deterministic by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15147">#15147</a></li>
+<li>🎬 test: Record-Once/Replay-Forever Model Fixtures for Mock E2E by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15210">#15210</a></li>
+<li>🍃 test: Sweep Every DB Schema Method Against a Live Engine by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15392">#15392</a></li>
+<li>🪢 test: Prove MCP OAuth Resume End to End by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15485">#15485</a></li>
+<li>🗜 test: Clamp Recursive Child Inputs to Builder Types by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15498">#15498</a></li>
+<li>📱 test: Add Mobile Chat Performance Benchmark by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15510">#15510</a></li>
+</ul>
+<h3 id="-dependencies-chores--ci">📦 Dependencies, Chores &#x26; CI</h3>
+<ul>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.2.52 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13939">#13939</a></li>
+<li>⬆️ chore: Migrate off deprecated @ariakit/react-core to @ariakit/react-components by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13940">#13940</a></li>
+<li>🧪 ci: Resolve DataTable test infinite re-render by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/13947">#13947</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.2.54 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14035">#14035</a></li>
+<li>🔄 chore: Bump <code>@librechat/agents</code> to v3.2.55 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/commit/954caef3a35dabec2e5d5b56ae78ea5349c4721f"><code>954caef3a3</code></a></li>
+<li>🧪 ci: De-flake ConversationsSection Memoization Spec on Slow Runners by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14071">#14071</a></li>
+<li>🧷 chore: Expose Retain Recent Summarization Config by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14134">#14134</a></li>
+<li>📦 chore: bump langfuse fanout Go dependencies by <a href="/upman">@upman</a> in <a href="/danny-avila/LibreChat/pull/14126">#14126</a></li>
+<li>⭐ docs: update Star History section by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14198">#14198</a></li>
+<li>📦 chore: Update <code>@librechat/agents</code> to v3.2.62 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14235">#14235</a></li>
+<li>📦 chore: Update <code>@librechat/agents</code> to v3.2.65 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14263">#14263</a></li>
+<li>🧹 chore: Prune Dangling Images After deployed-update Pull by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14269">#14269</a></li>
+<li>🍽️ chore: Drop Pending Composer Draft When Steering or Queuing by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14289">#14289</a></li>
+<li>🧩 chore: Prebundle Node Polyfills for Buffer, Process, and Global in Vite <code>optimizeDeps</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14354">#14354</a></li>
+<li>📦 chore: Update <code>@librechat/agents</code> to v3.2.66 &#x26; <code>npm audit fix</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14361">#14361</a></li>
+<li>🧾 ci: Skip Workflows for Markdown-Only Changes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14378">#14378</a></li>
+<li>📦 chore: Update <code>@librechat/agents</code> to v3.2.68 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14380">#14380</a></li>
+<li>🚦 ci: Gate Playwright Runs to Maintainers by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14385">#14385</a></li>
+<li>🎭 ci: Scope Playwright Runs to Relevant Changes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14388">#14388</a></li>
+<li>🍃 chore: Bump Mongoose to 8.24.1 to Patch Prototype Pollution by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14461">#14461</a></li>
+<li>🗺️ chore: Bump PostCSS to 8.5.18 to Patch Source Map Traversal by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14463">#14463</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.3.4 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14482">#14482</a></li>
+<li>🍂 chore: Prune Deprecated Packages From the Dependency Tree by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14483">#14483</a></li>
+<li>🌯 chore: Retire Rollup-Era devDependencies After tsdown Migration by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14496">#14496</a></li>
+<li>📦 chore: Bump @librechat/agents to v3.3.5 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14506">#14506</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.3.8 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14525">#14525</a></li>
+<li>🧪 chore: Add the Activity-Label Prose Eval Harness by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14527">#14527</a></li>
+<li>🟦 chore: Convert Activity-Label Eval Harness to TypeScript by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14530">#14530</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.3.9 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14548">#14548</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.3.11 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14562">#14562</a></li>
+<li>📦 chore: update <code>sanitize-html</code> to latest by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14573">#14573</a></li>
+<li>🌀 ci: Deterministic Circular Dependency Checks by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14579">#14579</a></li>
+<li>🔒 chore: Upgrade react-router-dom to v7.18.2 (security) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14582">#14582</a></li>
+<li>🧪 ci: Settle to render-idle before ConversationsSection memo baselines by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14590">#14590</a></li>
+<li>🧹 chore: Migrate Legacy Duplicate Code Files Blocking Dedupe Index by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14593">#14593</a></li>
+<li>📦 chore: npm audit by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14640">#14640</a></li>
+<li>🛰️ chore: bump <code>@librechat/agents</code> to v3.4.0, cover streamed subagent results e2e by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14647">#14647</a></li>
+<li>🫆 chore: Remove Published Credential Defaults by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14680">#14680</a></li>
+<li>🐋 chore: add opt-in alternative local stack experiments by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14678">#14678</a></li>
+<li>⚙️ ci: Bump GitHub Actions to Node.js 24 Runtimes by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14689">#14689</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.4.2 and <code>npm audit</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14702">#14702</a></li>
+<li>🚦 ci: Reduce GitHub Actions Runner Pressure by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/14716">#14716</a></li>
+<li>🧩 ci: Close Workflow Path-Filter Gaps by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14728">#14728</a></li>
+<li>🛻 ci: Move the ESLint Config Sweep Into Its Own Job by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14742">#14742</a></li>
+<li>🧷 ci: Enforce Durable Agent Finalization for E2E tests by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14740">#14740</a></li>
+<li>🪶 chore: Aggregate Empty MCP Tool Logs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14767">#14767</a></li>
+<li>📦 chore: Update <code>@librechat/agents</code> to v3.4.6 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14781">#14781</a></li>
+<li>🌍 ci: Harden Locize Translation Sync by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14784">#14784</a></li>
+<li>🔌 chore: Bump the MCP SDK to 1.30.0 and Parse Content-Type Instead of Searching It by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14820">#14820</a></li>
+<li>ci: gate the e2e activity-phase DOM assertions on the persisted phase by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14821">#14821</a></li>
+<li>🚀 chore: Prepare v0.8.8-rc1 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14394">#14394</a></li>
+<li>🧹 ci: Remove Obsolete Test Server Workflow by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14823">#14823</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.5.1 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14830">#14830</a></li>
+<li>🏎️ ci: Focus Redis E2E Coverage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14842">#14842</a></li>
+<li>👷 ci: Stop Optional Playwright Fonts From Failing E2E by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14852">#14852</a></li>
+<li>🛂 ci: Grant Multi-Convo Permission in E2E Mock Config by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14839">#14839</a></li>
+<li>⚓ ci: Settle the E2E Reply Before the Double-Click Quote by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14840">#14840</a></li>
+<li>⬆️ chore: Bump <code>@librechat/agents</code> to v3.6.0 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14890">#14890</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.6.2 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14905">#14905</a></li>
+<li>⏱️ ci: Give the E2E Redis Transport Lane Its Own Timing Budget by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14907">#14907</a></li>
+<li>🧭 fix: Repair Locize Translation Validation by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14911">#14911</a></li>
+<li>🛡️ fix: Validate Translation Contracts Against English by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14914">#14914</a></li>
+<li>🔭 ci: Codegraph Test-Selection Probe (Observe-Only) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14936">#14936</a></li>
+<li>🩹 ci: Codegraph Probe Summary Rendering by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14942">#14942</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.6.3 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14941">#14941</a></li>
+<li>🗳️ ci: Codegraph E2E Vote Runs on Dev Merges (Observe-Only) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14947">#14947</a></li>
+<li>🩹 ci: Quote Colon in Codegraph Votes Workflow (Invalid YAML) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14952">#14952</a></li>
+<li>🗳️ ci: Vote on Fail-Open Merges Too (Tiers Are Bridge-Derived) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14969">#14969</a></li>
+<li>🪙 chore: GPT-5.6 Terra and Luna Token Cost Rates by <a href="/afuetterer">@afuetterer</a> in <a href="/danny-avila/LibreChat/pull/14964">#14964</a></li>
+<li>🧯 ci: Disarm the Graceful-Shutdown Force-Exit Timer on Test Reset by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14972">#14972</a></li>
+<li>🪢 ci: Prevent Playwright Apt Lock Leakage by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14993">#14993</a></li>
+<li>🚚 chore: Bump <code>@librechat/agents</code> to v3.6.8 For Token, Trace, and Stream Fixes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15012">#15012</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.6.9 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15037">#15037</a></li>
+<li>📐 docs: Make CLAUDE.md Portable and Restore AGENTS.md Parity by <a href="/alebgl77">@alebgl77</a> in <a href="/danny-avila/LibreChat/pull/15046">#15046</a></li>
+<li>🎞️ ci: Fix Playwright ffmpeg Install Hang and Cache the Download by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15065">#15065</a></li>
+<li>🧬 chore: Upgrade Redis Dependencies to Dodge the ElastiCache BigInt Cursor by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15068">#15068</a></li>
+<li>🪙 chore: Update GPT-5.6 Sol Token Cost Rates by <a href="/usnavy13">@usnavy13</a> in <a href="/danny-avila/LibreChat/pull/15114">#15114</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.6.12 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15125">#15125</a></li>
+<li>🍃 ci: Cache MongoDB Memory-Server Binaries in Backend Test Jobs by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15131">#15131</a></li>
+<li>⛩️ ci: Gate Backend Jest on Codegraph Selection (Stage 1) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15132">#15132</a></li>
+<li>🔥 chore: Bump <code>@librechat/agents</code> to v3.6.14 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15135">#15135</a></li>
+<li>🎭 ci: Gate Playwright Lanes and Docker Smokes on Codegraph Selection (Stage 2) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15136">#15136</a></li>
+<li>🧹 chore: Sort Client Imports Left Behind by the Import Order Gate by <a href="/berry-13">@berry-13</a> in <a href="/danny-avila/LibreChat/pull/15139">#15139</a></li>
+<li>🏎️ chore: Bump <code>@librechat/agents</code> to v3.6.15 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15140">#15140</a></li>
+<li>🗳️ ci: Log the Exact Spec List in Codegraph E2E Votes by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15143">#15143</a></li>
+<li>🎨 ci: Gate Frontend Jest on Codegraph Selection (Stage 1.5) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15145">#15145</a></li>
+<li>🧩 chore: Bump Agents SDK to v3.6.16 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15151">#15151</a></li>
+<li>🥸 chore: Resolve Agents SDK Path Aliases That Masked Backend Types by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15160">#15160</a></li>
+<li>📈 chore: Bump Agents SDK to v3.7.0 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15163">#15163</a></li>
+<li>🎰 ci: Vote on the Full Mock Suite to End Phantom Spec Trials by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15162">#15162</a></li>
+<li>📍 ci: Pin the Votes Ledger Results JSON to an Absolute Path by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15166">#15166</a></li>
+<li>🎓 ci: Graduated E2E Spec Skipping, Wired Dark Until Armed by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15172">#15172</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.1 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15176">#15176</a></li>
+<li>🎨 style: Set Question Popover and Subagent Panel on the Sidebar Surface by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15201">#15201</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.2 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/commit/6284139f1816bfa54f108ba154c6e4a58f0e2a34"><code>6284139f18</code></a></li>
+<li>📦 chore: bump <code>axios</code> to v1.20.0, <code>@librechat/agents</code> to v3.7.4 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15285">#15285</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.5 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/commit/ab2c0d5362e87eb1643598d71efd818f396af8d8"><code>ab2c0d5362</code></a></li>
+<li>🪥 chore: Run CI’s Static Checks on Each Commit’s Diff by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15303">#15303</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.8 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15337">#15337</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.10 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15378">#15378</a></li>
+<li>🔒 chore: bump <code>google.golang.org/grpc</code> to v1.82.2 (GHSA-hrxh-6v49-42gf) by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15383">#15383</a></li>
+<li>📦 chore: bump <code>vite</code> to v8.2.2 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15384">#15384</a></li>
+<li>✍️ chore: Clarify That Interrupting a Steer Does Not Interrupt Reasoning by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15386">#15386</a></li>
+<li>🧜‍♀️ chore: Bump <code>mermaid</code> to v11.17.2 and <code>dompurify</code> to v3.4.14 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15405">#15405</a></li>
+<li>📦 chore: Bump Packages from LibreChat SCA Audit by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15410">#15410</a></li>
+<li>🛗 chore: Elevate <code>@librechat/agents</code> to 3.7.11 and <code>multer</code> to 2.3.0 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15409">#15409</a></li>
+<li>👐 ci: Cancel the Playwright E2E Gate With Its Run by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15415">#15415</a></li>
+<li>🎯 ci: Retarget Pull Requests Opened Against <code>main</code> to <code>dev</code> by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15416">#15416</a></li>
+<li>🫂 ci: Unify Docker Image Publishing Workflows by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15447">#15447</a></li>
+<li>🗿 chore: Upgrade gRPC to Prevent Receive Buffer Exhaustion by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15493">#15493</a></li>
+<li>🧴 chore: Refresh Sanitizer and Selector Parser Dependencies by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15494">#15494</a></li>
+<li>🪛 chore: Align Vite Build Config With Native ESM by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15495">#15495</a></li>
+<li>📦 chore: bump <code>@librechat/agents</code> to v3.7.17 by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/15531">#15531</a>, including <a href="/danny-avila/agents/pull/500">an upstream fix</a> by <a href="/dustinhealy">@dustinhealy</a> that propagates ambiguous context-window-or-output gateway errors without compacting conversation history</li>
+</ul>
+<h3 id="-internationalization">🌍 Internationalization</h3>
+<ul>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14053">#14053</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14070">#14070</a></li>
+<li>🌍 i18n: Localize Token Balance Error Message by <a href="/Philipp-Voss">@Philipp-Voss</a> in <a href="/danny-avila/LibreChat/pull/14169">#14169</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14266">#14266</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14307">#14307</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14376">#14376</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14406">#14406</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14460">#14460</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14598">#14598</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14739">#14739</a></li>
+<li>🌐 chore: Restore English Localization Source Values by <a href="/danny-avila">@danny-avila</a> in <a href="/danny-avila/LibreChat/pull/14743">#14743</a></li>
+<li>🌍 i18n: Update translation.json with latest translations by <a href="/apps/github-actions">@github-actions</a> in <a href="/danny-avila/LibreChat/pull/14919">#14919</a></li>
+</ul>
+<h2 id="new-contributors">New Contributors</h2>
+<ul>
+<li><a href="/alexkorep">@alexkorep</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14034">#14034</a></li>
+<li><a href="/jakacenta">@jakacenta</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14046">#14046</a></li>
+<li><a href="/Zirkonium88">@Zirkonium88</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/13989">#13989</a></li>
+<li><a href="/arjunvijay24">@arjunvijay24</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14040">#14040</a></li>
+<li><a href="/mahirhir">@mahirhir</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/13996">#13996</a></li>
+<li><a href="/Osamaali313">@Osamaali313</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/13999">#13999</a></li>
+<li><a href="/Philipp-Voss">@Philipp-Voss</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14169">#14169</a></li>
+<li><a href="/VictorEPlus">@VictorEPlus</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14172">#14172</a></li>
+<li><a href="/adamscross04">@adamscross04</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14177">#14177</a></li>
+<li><a href="/manisrinivasan2k1">@manisrinivasan2k1</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14082">#14082</a></li>
+<li><a href="/jomspk">@jomspk</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14232">#14232</a></li>
+<li><a href="/jjhidalgar-celonis">@jjhidalgar-celonis</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14254">#14254</a></li>
+<li><a href="/Aho-Bakaa">@Aho-Bakaa</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14262">#14262</a></li>
+<li><a href="/joshbla">@joshbla</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/13930">#13930</a></li>
+<li><a href="/unsnow-iac">@unsnow-iac</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14436">#14436</a></li>
+<li><a href="/schumajs">@schumajs</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14538">#14538</a></li>
+<li><a href="/cyphercodes">@cyphercodes</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14507">#14507</a></li>
+<li><a href="/likeabas">@likeabas</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14764">#14764</a></li>
+<li><a href="/jtodaroii">@jtodaroii</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14774">#14774</a></li>
+<li><a href="/lizzykerrigan">@lizzykerrigan</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14791">#14791</a></li>
+<li><a href="/mihidumh">@mihidumh</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14810">#14810</a></li>
+<li><a href="/snapydziuba">@snapydziuba</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14761">#14761</a></li>
+<li><a href="/jacksonriding">@jacksonriding</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14923">#14923</a></li>
+<li><a href="/afuetterer">@afuetterer</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14964">#14964</a></li>
+<li><a href="/putramkti">@putramkti</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/14878">#14878</a></li>
+<li><a href="/alebgl77">@alebgl77</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/15046">#15046</a></li>
+<li><a href="/pacocartones">@pacocartones</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/15157">#15157</a></li>
+<li><a href="/AyushCipher">@AyushCipher</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/15336">#15336</a></li>
+<li><a href="/alexsr1">@alexsr1</a> made their first contribution in <a href="/danny-avila/LibreChat/pull/15404">#15404</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="/danny-avila/LibreChat/compare/v0.8.7...v0.8.8-rc2">v0.8.7…v0.8.8-rc2</a></p>
+</details> </div> <div class="mt-6"> <a href="https://github.com/danny-avila/LibreChat/releases/tag/v0.8.8-rc2" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
