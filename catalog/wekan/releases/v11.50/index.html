@@ -1,0 +1,1233 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v11.50 release notes | WinterFlow.io</title><meta name="description" content="Introduces a universal change history with a new History view and improved Undo functionality, fixes several security vulnerabilities, and resolves…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v11.50/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v11.50 release notes | WinterFlow.io"><meta property="og:description" content="Introduces a universal change history with a new History view and improved Undo functionality, fixes several security vulnerabilities, and resolves…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v11.50/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v11.50 release notes | WinterFlow.io"><meta name="twitter:description" content="Introduces a universal change history with a new History view and improved Undo functionality, fixes several security vulnerabilities, and resolves…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v11.50","item":"https://winterflow.io/catalog/wekan/releases/v11.50/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,074 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (265)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v11.50</h2> <span class="text-sm text-gray-500">2026-09-05</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>be7a7c3a7b83dee0…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>2f2c0da162318f0d…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>8f0b1df0fdff9f26…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>5f4ddab610c1ab20…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>4e35884b7e826048…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.20.0/node-armhf">wekan/node-patches</a></td><td>v24.20.0</td><td>verified</td><td><code>b8ed7065d44f0afe…</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>fc657a2929becd70…</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.20.0/node-armv6">wekan/node-patches</a></td><td>v24.20.0</td><td>verified</td><td><code>d5cefa6f8cc4acb1…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>4e35884b7e826048…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.20.0/node-armv7">wekan/node-patches</a></td><td>v24.20.0</td><td>verified</td><td><code>c04c81e539347f39…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>6e51a7278f850f82…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.20.0/node-i386">wekan/node-patches</a></td><td>v24.20.0</td><td>verified</td><td><code>bb44927307460dcf…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>9478ab9f907a4106…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>b7bf7707070b950b…</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>9a052beb1c9d0324…</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>26fc30891004603d…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>8d96ed0624e0a637…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>341307dcee20d883…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>791b9294ffb1f48f…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.20.0/node-v24.20.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>a149c5bf85f98ff1…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>2914f0e00c0d0b5d…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>ca381121cb5a8d38…</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>d00ed8f3c5300983…</code></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-win-arm64.zip">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>31c6799744de8a54…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.67.0</td><td>verified</td><td><code>7e559755fa5b38ce…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.20.0/node-v24.20.0-win-x64.zip">nodejs.org</a></td><td>v24.20.0</td><td>verified</td><td><code>6cac9ffbca8f6a47…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1150-2026-09-05-wekan--release">v11.50 2026-09-05 WeKan ® release</h1>
+<p><strong>In short:</strong> <strong>Undo</strong> stops being position-only: it now reads a new universal
+<strong>change history</strong> covering every card group, and <strong>History</strong> is a new view on
+it, opened from the card, list and swimlane menus. Opening it for real found and
+fixed a blank table, a row that could not be selected, a panel sized for a menu,
+and a <strong>Restore</strong> that handed back the version before the one picked. <strong>Copying
+a list</strong> now copies its cards, which an unbound swimlane turned into an empty
+copy, and <strong>Admin Panel / Problems</strong> can put back swimlane bindings an older
+repair cleared. The <strong>contribution rules</strong> now say which role commits where.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Platform</th><th>Binary</th><th>From</th><th>Version</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647</code></td></tr><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>eae1f0a8f73bfc979738bfff7284d40fd1bc55de2cc56514721fc155c3624f7d</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>01443c1e1a29e531ccad5a46fefa6df490d2189c49f7955904aecdbb0fe86fdc</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>bdc50caee3ac28495b42d2130b94a042a9dd6d3a38f732cac02b648f36c891da</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>3f1cf157479c1480352083105e13faf9d008ede98e7e157746b6df940d197b94</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>cb14ffe93e285903e5a8a9c1821687ddb5b8a979a11c584bf4af534b272c6d3e</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.19.0</td><td><code>d35e95230f46f6f0751df497c56622c6735e05d5e1fb1630996a005b9d328fe4</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/download/v1.53.0/ferretdb-mac-x64">wekan/FerretDB</a></td><td>v1.53.0</td><td><code>d97dfa9afa60aa05f25384327de82efe7b71d958ed24c1f66618284294a65cd3</code></td></tr></tbody></table>
+<p>This release fixes the following SECURITY ISSUES:</p>
+<p><strong>Code scanning alerts #442-#446</strong> - CSS string escaping and regular-expression
+denial of service.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8aed6a984">Escape OOXML font names and parse the language registry in linear time</a>. Thanks to GitHub CodeQL and xet7.</summary>
+<p>The vendored OOXML viewer wrapped document-provided font-family names in CSS
+quotes and escaped quote characters, but did not escape existing backslashes
+first. A backslash immediately before a quote could therefore consume the added
+escape and alter where the CSS string ended. The serializer now escapes
+backslashes before quotes, matching the safe serializers already present in the
+same runtime. A regression test pins their order.</p>
+<p>Four test suites parsed <code>languages.js</code> with expressions whose repeated escaped-
+character alternatives could backtrack inefficiently. They now share a strict
+line-by-line parser using fixed delimiters and <code>JSON.parse</code>, with positive,
+malformed-input and one-million-character-name coverage. This closes GitHub
+CodeQL alerts #442, #443, #444, #445 and #446.</p>
+</details>
+<p><strong>Serving attachments</strong> - which files WeKan hands to a browser, and how.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b87082b3d">A file WeKan refuses to serve is no longer served by Meteor-Files instead</a>. Thanks to xet7.</summary>
+<p>A Playwright spec found this, and it found more than it was asking about. <em>stored
+HTML is forced to a safe download on the original Meteor-Files route</em> expected
+<code>application/octet-stream</code> and got <code>text/html</code>, status 200 - a stored HTML
+attachment served inline, which is the stored XSS that
+<code>models/lib/fileResponseSafety.js</code> exists to prevent.</p>
+<p>That policy module is correct. It was never reached. Meteor-Files calls the
+storage strategy’s <code>interceptDownload</code>, and a FALSE return means <em>not handled,
+serve it yourself</em> - so Meteor-Files served the file from its stored path, with
+its stored Content-Type, and none of WeKan’s headers.</p>
+<p>What makes that a bypass rather than a harmless fallback is why the strategy
+declines: <code>getReadStream()</code> returns nothing when the file cannot be resolved
+INSIDE the storage root, the containment check of
+<a href="https://github.com/wekan/wekan/security/advisories/GHSA-4mxf-m8pq-xc9p">GHSA-4mxf-m8pq-xc9p</a>.
+So <code>false</code> means <em>this is not a file WeKan may serve</em>, and handing that same
+file to a server with no containment check of its own answers the refusal with
+the file.</p>
+<p>All three strategies answer 404 and claim the request now, and so does the
+abstract base, whose body was EMPTY - returning undefined, which Meteor-Files
+reads exactly as it reads false, so a strategy that forgot to override it failed
+open too. A file that is genuinely absent gets the same 404 it would have got
+anyway.</p>
+<p>It is deliberately not logged to Admin Panel / Problems: the same path is taken
+by an attachment deleted while a link to it survived, which is ordinary use, and
+<code>interceptDownload</code> cannot tell the two apart.</p>
+</details>
+<p>and adds the following new features:</p>
+<p><strong>Undo</strong> - what pressing Ctrl+Z can actually put back.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/dc4110e6f">Dragging a card is recorded, so undoing it does something</a>. Thanks to xet7.</summary>
+<p><code>Ctrl+Z</code> after dragging a card did nothing, and never had.
+<a href="https://github.com/wekan/wekan/issues/6478">#6478</a> found that every
+<code>trackChange</code> call site guarded on <code>typeof UserPositionHistory !== 'undefined'</code>
+against a bare identifier no file imported — it is an ES-module default export,
+not a global, so the guard was always false and nothing was recorded. The fix
+was applied to the list path and not to the card path, which kept the dead
+guard. List moves became undoable, card moves did not, and
+<code>docs/Features/Login/Undo/Undo.md</code> said card moves were <em>“already present (now
+actually runs)”</em> the whole time.</p>
+<p>The import has to be lazy and inside the call: <code>models/userPositionHistory.js</code>
+imports <code>models/cards.js</code>, so a top-level import would be a cycle and could
+leave the binding undefined depending on evaluation order — most likely why
+that file was skipped rather than fixed. The guard is gone from the list path
+too; it was harmless there, but it is the shape that turns recording off when
+the block is copied somewhere without the import, which is how the card path
+stayed dead.</p>
+<p><code>tests/undoRecordsWhatItClaims.test.cjs</code> matters more than the fix, because
+undo fails <strong>silently</strong> — nothing throws when a change is not recorded, the
+user just presses Ctrl+Z and nothing happens. It finds the recording sites
+rather than listing them and fails when one cannot reach the collection, when
+one reintroduces the assumed-global guard, when recording is not wrapped so it
+can never fail the move it records, and when a type is recorded that <code>undo()</code>
+cannot handle. It also pins the reverse gap — <code>swimlane</code>, <code>checklist</code> and
+<code>checklistItem</code> have full <code>undo()</code> cases that nothing records — so that stays a
+known follow-up rather than a surprise.</p>
+<p>Undo.md now says plainly what is recorded (list moves, list soft-delete and
+restore, card moves) and what is not: a description, a checklist title, labels,
+members and dates are written straight to the document with no previous state
+kept, so there is nothing to restore them from.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/898643eea">The universal change history is built, and Ctrl+Z reads it instead of positions alone</a>. Thanks to xet7.</summary>
+<p>Phase 1 of the design in
+<code>docs/Features/Reports/History/History.md</code>, plus the write half of phase 2.</p>
+<p><strong>The store.</strong> <code>models/changeHistory.js</code> is the append-only collection: one row
+per change, carrying every container id it sits inside — <code>boardId</code>,
+<code>swimlaneId</code>, <code>listId</code>, <code>cardId</code> — so a container scope is a plain equality
+rather than a join the database cannot do. That is what lets a swimlane’s
+history include its lists’ and cards’ rows.</p>
+<p>It imports <strong>no other model</strong>, deliberately. Its predecessor imports Cards,
+Lists, Swimlanes and Checklists so its <code>undo()</code> can write to them, and that is
+exactly why <code>models/cards.js</code> could not import it, guarded on an assumed global
+instead, and recorded nothing for years. A collection that entities must import
+cannot import entities. Applying a change back to a document therefore lives in
+<code>server/models/changeHistory.js</code>, which nothing imports and which may import
+anything.</p>
+<p><strong>The rules are pure.</strong> <code>models/lib/changeHistoryQuery.js</code> holds the
+scope-to-selector translation, the search and the selection normalisation, with
+no Meteor and no database — because that is where this feature is either right
+or quietly wrong. A scope resolving to the wrong id column shows one board’s
+history under another board’s menu; a selection that does not normalise its
+input restores the wrong rows. Both are silent. Among the tests: an unknown or
+half-given scope is REFUSED rather than widened into a selector that matches
+everything.</p>
+<p><strong>Undo is now the whole history.</strong> <code>changeHistory.undoLast</code>/<code>redoLast</code> replace
+the position-only methods, with the keyboard bindings and the tested
+<code>pickUndo</code>/<code>pickRedo</code> rule unchanged. One rule covers every change type instead
+of a case per action: undo applies <code>previousContent</code>, redo applies
+<code>newContent</code>. A restore goes through the same setters an ordinary edit uses, so
+validation, hooks and Activities still run, and is itself recorded twice — once
+attributed to whoever made the change being restored, once to whoever pressed
+Restore.</p>
+<p>Recorded so far: <strong>card description edits</strong> (the previous text is read BEFORE
+the write, since afterwards the old value is gone), <strong>card moves</strong>, <strong>list
+moves</strong>, and <strong>list soft-delete/restore</strong>, which is what makes undoing a
+deleted list work. <code>changeHistory</code> is in the snap’s <code>MERGE_COLLECTIONS</code>, so a
+row written on the database copy that is not served is not stranded there.</p>
+<p>Not built: the History popup, table, contributor avatars, Restore button and
+menu items, and recording for the remaining card groups. The methods those
+screens need exist and are tested; nothing calls them yet. Both design
+documents now say which half is which — the last time one of them claimed more
+than the code did, the gap survived for months.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/1fe46c604">Every card group is recorded, and History is one table opened from every menu</a>. Thanks to xet7.</summary>
+<p>Phases 3, 5 and 6 of the design, and the viewer of phase 2.</p>
+<p><strong>Recording everything, from one place.</strong> §5 suggests <em>“a thin, central choke
+point … avoids sprinkling calls everywhere”</em>, and
+<code>server/models/changeHistoryHooks.js</code> is that: an <code>after.update</code> hook per
+collection that diffs the changed fields, plus insert/remove for the
+sub-entities. Cards, lists, swimlanes, checklists, checklist items and
+comments are covered across every group the design names.</p>
+<p>The advantage over editing twenty setters is not brevity, it is <strong>coverage</strong>:
+the REST API, the CSV and Trello importers and the rules engine all write
+through the collection and none call the client setters, so a per-setter
+rollout would have recorded a description edited in the interface and silently
+missed the same edit made over the API.</p>
+<p>What a hook must not do is record too much, so
+<code>models/lib/changeHistoryGroups.js</code> is a table rather than a rule.
+<code>modifiedAt</code> and <code>dateLastActivity</code> change on nearly every write and would
+bury the changes a person actually made; and the four fields of a move only
+mean anything together — reported separately, one drag becomes four rows and
+undo puts back a quarter of it. Moves and the list soft delete therefore record
+themselves, as one change each.</p>
+<p><strong>One table, every scope.</strong> §7a: <em>“there is ONE implementation, parametrised by
+scope”</em>. <code>client/components/history/historyTable</code> is that one — contributor
+pane, search, pagination, row selection, Restore and RTL — and the card, list
+and swimlane menus each open it with a different scope. Adding History to a
+menu is a menu item and a two-line handler, exactly as the design promises.
+<code>tests/historyOneTemplate.test.cjs</code> walks every <code>.jade</code> under <code>client/</code> and
+fails if a second History table is ever defined, because six copies of a table
+drift: one gets RTL and the others do not, one gets the search fixed and the
+others keep the bug.</p>
+<p>Two things the interface needed that were nearly wrong. The scope has to
+travel as <code>dataContextIfCurrentDataIsUndefined</code>, because <code>Popup.open</code>’s second
+argument is <em>options</em> — a bare object there is ignored, and the popup would
+open on the menu’s own data context and show the wrong history. And a popup
+without a title key renders with no header and so no close button; this one
+reuses the existing <code>history</code> key rather than adding another.</p>
+<p><strong>Four new words</strong> — Removed, Edited, Moved, Restored — because the Action
+column is the one a reader must understand. <em>Added</em> the app already had, and
+every other label reuses the word the card view already uses for that section,
+so a group reads as Description or Labels in the language the card beside it
+speaks. That kept this to four keys across 197 locales instead of twenty-six.</p>
+<p>Not verified live: there was no Meteor runtime available for this work, so
+none of it has been opened in a browser. The design asks for each phase to be
+verified live before the next; both documents now say plainly that this has not
+happened, and the interface in particular should be treated as unproven.</p>
+</details>
+<p><strong>The History panel</strong> - the table every menu opens, and what a running server
+said about it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/77dd5f253">The design document says what was actually opened, and what still has not been</a>. Thanks to xet7.</summary>
+<p><a href="docs/Features/Reports/History/History.md">History.md</a> still said none of this
+had been exercised in a running WeKan, which stopped being true the moment it
+was. It now records what was done in a browser rather than what was likely: the
+card, list and swimlane menus each opening the table with their own scope
+reaching the template, search narrowing it and reporting no results for a term
+nothing matched, a contributor’s avatar filtering to that person, and 32 rows
+paging 1 / 2 with the remainder in sequence.</p>
+<p>Nothing new was found in that pass, and that is recorded as plainly as the four
+faults the first one found - because <em>“it shares a template with something that
+works”</em> is the reasoning those four faults survived.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/92b5ce861">History works when it is opened, which is four faults later than it looked</a>. Thanks to xet7.</summary>
+<p>The entry above says this was written with no Meteor runtime available and
+should be treated as unproven. It has now been opened, and the pass found four
+things, three of them fatal to the feature. None was visible in the source, and
+every one of them looks completely ordinary in a diff.</p>
+<p><strong>The table was blank.</strong> <code>{{#each row in rows}}</code> binds <code>row</code> as a NAME and
+leaves the data context alone - unlike <code>{{#each rows}}</code>, which replaces it - so
+<code>{{_id}}</code>, <code>{{contentSummary}}</code> and the rest resolved against the OUTER context.
+Nothing errors: the table drew one row of four empty cells and a checkbox with
+no id. The contributor pane had the same bug. Every field now goes through its
+loop variable.</p>
+<p><strong>The row could not be selected.</strong> WeKan hides every bare checkbox app-wide -
+<code>forms.css</code>: <code>[type="checkbox"] { display: none }</code> - and draws <code>.materialCheckBox</code>
+divs instead, so the real one here rendered 0x0. The row was visible, could
+never be ticked, and Restore stayed disabled with nothing that could enable it.</p>
+<p><strong>The panel was 380px wide.</strong> That is a popup’s default, and it left 129px for
+the contributor pane and 201px for a four-column table: the search box was
+squeezed to 32px and one row had to be scrolled sideways to be read. History is
+the same shape as the export panels - two panes, opened from a menu at the edge
+of the screen - so it joins them in <code>popup.css</code> and in the full-width list in
+<code>client/lib/popupOffset.js</code>, which is the other half that decides where a panel
+is put. The rows also scroll in a wrapper now instead of in the table itself:
+<code>display: block</code> on a <code>&#x3C;table></code> stops the cells sharing column widths, so the
+header and the rows under it drift apart.</p>
+<p><strong>And a restore was recorded twice</strong> - the one fault that is a correct decision
+with a consequence. <a href="docs/Features/Reports/History/History.md">History.md</a> §8.2
+says a restore re-applies content through the SAME setters an ordinary edit
+uses, so validation, hooks and Activities all still run. The field-diffing
+<code>after.update</code> hook is one of those hooks, so it saw the restore’s own write and
+recorded it, leaving an <em>Edited</em> row nobody made above the <em>Restored</em> row
+describing the same write. Recording, and only recording, is switched off for
+the duration of the applier - as an <code>AsyncLocalStorage</code> scope rather than a
+module-level flag, because the server handles several requests at once and a
+shared boolean set during one user’s restore would have silently swallowed
+another user’s edit landing in the same window.</p>
+<p>Verified rather than reasoned about, in a browser against a running server:
+a card renamed through the UI recorded one row with the right group and both
+values; the card, list and swimlane menus each opened the table with their own
+scope reaching the template; Restore put the title back and left exactly two
+rows; search narrowed the table and said <em>no results</em> for a term nothing
+matched; a contributor’s avatar filtered to that person; and with 32 rows the
+footer read <em>1 / 2</em>, the second page held the remaining seven in sequence, and
+the <em>next</em> arrow disabled itself there.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/05d644f67">The History panel leaves the same gap below it as above it</a>. Thanks to xet7.</summary>
+<p>The panel was pinned 10px below the top of the window and then stopped wherever
+its contents ended, so a two-row table sat in the top eighth of the screen with
+the rest of it blank. It now ends 10px above the bottom of the window: measured
+at 1280x720, 10px on all four sides, a 700px panel, the same in RTL.</p>
+<p>Three separate rules were needed, and each was found by measuring rather than by
+reading the file:</p>
+<ul>
+<li><strong>A height.</strong> <code>popupOffset.js</code> already sent a max-height of the right size,
+and a maximum alone lets a short table stay short.</li>
+<li><strong>No margin.</strong> The base <code>.pop-over</code> adds <code>margin-top: 6px</code> as the little gap
+between a menu and the button that opened it. These panels are not hung off a
+button - they are pinned to the viewport’s own 10px gutter - so the margin was
+added to a position that was already final. Every full-width panel sat 16px
+from the top while its own comment said 10, and on History, which now states a
+height, it pushed 6px past the bottom as well: 16px above against 4px below.
+The export panels have the same contract and lose it too.</li>
+<li><strong>Fixed positioning.</strong> Every other popup is absolute in DOCUMENT coordinates,
+which is right for a menu that should travel with its button and wrong for a
+box sized from the viewport. Opened on a page scrolled 53px down and then
+scrolled back, the panel stayed 63px below the window with 43px of itself past
+the bottom. It is positioned from the viewport now, the way the Admin edit
+popups already are.</li>
+</ul>
+<p>The height then had to reach the table or the blank space would only have moved
+indoors, so the wrappers between the shell and the template pass it down, the
+rows take what the controls leave, and they scroll inside the panel instead of
+being capped at <code>55vh</code>. With 40 rows the panel stays 700px and the table scrolls
+within it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/982a9473d">And it fills the screen at phone widths, so the scrollbar is at the foot there too</a>. Thanks to xet7.</summary>
+<p>Above 801px the panel already ended the same 10px from the bottom that it
+starts from the top. Below that, where every popup becomes a full-screen sheet,
+it did not: the horizontal scrollbar sat halfway up the panel with blank space
+beneath it, because nothing carried the sheet’s height down to the rows.</p>
+<p>Measured at 375x812, three things were wrong, and each of them is invisible in
+a diff:</p>
+<ul>
+<li><strong>The chain was desktop-only.</strong> The rules passing the height from the shell to
+the template were written inside <code>@media (min-width: 801px)</code> - backwards,
+since above that width the panel is given a height directly and below it the
+sheet is the only thing that needs the help.</li>
+<li><strong>The percentages had nothing to resolve against.</strong> <code>.content-container</code>
+stopped at 588px, capped by <code>max-height: calc(70vh + 20px)</code>, whose usual
+override does not reach a sheet; <code>.content</code> collapsed to 10px, its
+<code>height: calc(100% - 20px)</code> resolving to the padding alone. The chain is flex
+now, which needs no parent height.</li>
+<li><strong>Two caps ate the edges.</strong> <code>max-height: 90vh</code> left a tenth of the screen
+empty under the sheet, and the <code>*</code> reset being content-box put the 1px border
+outside the stated height - 10px above against 8px below.</li>
+</ul>
+<p>Verified in a browser at 375x812, 768x1024, 886x711 and 1280x720: under 801px
+the sheet fills the screen, above it the gaps are 10px on all four sides, and
+in every one the scrollbar is at the foot of the panel.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0c14b5a92">A scrollbar with nothing to scroll, and a band of empty space above the search box</a>. Thanks to xet7.</summary>
+<p>Both faults were inside the panel, which is why measuring its frame found
+neither - the gaps around it were right the whole time.</p>
+<p><strong>The empty band.</strong> <code>.content-container</code> holds the popup STACK, one entry per
+open menu, with the ones you are not looking at collapsed by
+<code>.content.no-height { height: 0 }</code>. Making the container a flex column turned
+those into flex items and the growth rule reached all of them: <code>flex: 1 1 auto</code>
+says grow, and <code>height: 0</code> is only the basis it grows from. The card menu
+History was opened over stayed in the layout and took 336px of a 925px window.</p>
+<p><strong>The scrollbar.</strong> <code>width: 100%</code> on the table was wrong at both ends, in
+opposite directions. Wide: WeKan’s global <code>table, td, th</code> rule gives the table a
+<code>border-inline-start: 1px</code> - the vertical lines between columns - and the <code>*</code>
+reset being content-box added it outside the 100%. Columns summing to 993.047 in
+993.047 of space, border box 994.047: one pixel of nothing, drawing a bar across
+the foot of the panel at every width the table fitted. Narrow: the table stayed
+at 100% while its columns needed 436px, so they spilled out of it and the scroll
+box - which measures the table, not its spill - offered a 1px bar to reach
+171px of content. It is <code>width: max-content</code> with <code>min-width: 100%</code> now, so the
+table grows to what the columns want and fills the panel when they want less.</p>
+<p>The 10px gutter stays desktop-only: below 801px, and in mobile mode at any
+width, a popup is a full-screen sheet flush to all four edges. The height chain
+is deliberately not in a media query, for the opposite reason - the sheet still
+has to pass its height down, or the scrollbar ends up halfway up the panel
+again. Measured in desktop mode at 886x711: 10px on all four sides, no
+horizontal scrollbar, 65px above the search box - the header and nothing else.
+At 375x812: edge to edge, with 169px of real horizontal scrolling.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/4286186a9">Restore puts back the version you picked, not the one before it</a>. Thanks to xet7.</summary>
+<p>Reported as <em>“when I try to restore card description from card history, it
+restores wrong history, that I did not select”</em> - and the selection was never
+wrong. The server restored exactly the row whose checkbox was ticked. It applied
+the wrong half of it.</p>
+<p>A row carries two contents, before and after. The table shows the AFTER -
+<a href="docs/Features/Reports/History/History.md">History.md</a> §7: the content column
+holds <em>“the new text”</em> - and Restore applied the BEFORE, because it reused the
+undo path. So choosing the row that displayed the description you wanted handed
+you the description from the row above it, and choosing rows one after another
+walked backwards through the history instead of moving through it.</p>
+<p>Restore has a direction of its own now, and the rule is one sentence: the row a
+reader picks and the value they get are the same thing. Undo is deliberately the
+other way round - <code>Ctrl+Z</code> reverses your own last change - and is unchanged. The
+two agree only when the row you pick happens to be the last one, which is why
+this survived the first live pass: the title restored there WAS the most recent
+change, so both directions gave the same answer.</p>
+<p>The rows a restore appends were wrong in the same way - they repeated the
+restored row’s own before and after, which describes a different change. The
+live value is read before the write now and recorded as what was displaced.</p>
+<p>Verified against a running server with three description versions, FIRST,
+SECOND, THIRD, and THIRD current: picking the row showing FIRST set the
+description to FIRST and logged THIRD → FIRST, then picking SECOND set it to
+SECOND and logged FIRST → SECOND. Before this, picking FIRST emptied the
+description.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>API usage report</strong> - recording calls after their responses finish.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bd668f6b8">API usage counts now pass EventLog schema validation</a>. Thanks to xet7.</summary>
+<p>The API middleware accumulated calls correctly, but every timed flush failed
+with <code>api is not allowed by the schema in eventlog updateAsync</code>. Its summary
+identity writes <code>api</code> and <code>apiUserId</code>, and the shared fold writes the normalized
+<code>ipv4</code> or <code>ipv6</code> address, while the attached EventLog schema declared none of
+those fields. Collection2 rejected the upsert selector at <code>api</code>, so the report
+could never receive a row. All four fields are now declared. Regression coverage
+checks every API/fold field against the schema so another report column cannot
+be wired end to end yet rejected only when its first live event arrives.</p>
+</details>
+<p><strong>Minicards</strong> - what dragging the card title does.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/2c9896ef9">The minicard title drags the card or drag-scrolls the board</a>. Thanks to xet7.</summary>
+<p>Direct title editing on the minicard intercepted the largest natural drag
+surface. It is now commented out. With drag handles disabled, dragging the
+title moves the minicard along with the rest of the card. With drag handles
+enabled, only the handle moves the card, while dragging the title pans the
+board. Card sorting continues to work in both modes: a browser regression drags
+the title with handles disabled and the visible handle with them enabled, then
+checks the persisted card order. Focused negative coverage also ensures the
+title does not become an inline-editor trigger again.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5b03743ac">The minicard drag handle no longer has a grey background</a>. Thanks to xet7.</summary>
+<p>On touch devices the enlarged drag target looked like a separate grey button.
+Its background is now transparent, leaving only the drag icon visible, while
+the target remains directly below the minicard menu and keeps its full
+finger-sized area. The focused regression test pins the transparent background,
+the menu-and-handle ordering, the shared trailing edge and the absence of the
+old grey or tinted background.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/3c2702d9e">The minicard drag icon lines up below its menu</a>. Thanks to xet7.</summary>
+<p>The touch target was in the correct trailing-edge column, but Font Awesome’s
+four-way arrow has uneven side bearings and made the visible icon look too far
+toward the edge. The glyph now moves inward independently while its 44-pixel
+touch target stays in place. The handle also explicitly suppresses borders and
+shadows and gives its transparent background priority, preventing a mobile rule
+from drawing a grey block below the icon. The focused regression test covers
+the logical, RTL-safe alignment and every background layer.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e48c969fa">Mobile Mode uses one aligned minicard control column in every browser</a>. Thanks to xet7.</summary>
+<p>The enlarged, aligned menu-and-handle column was restricted to coarse pointers.
+A desktop browser switched with <strong>Toggle between Desktop and Mobile Mode</strong> has a
+mouse pointer, so it kept the compact desktop drag handle and placed its center
+farther toward the minicard edge than the menu center. Mobile Mode now owns the
+layout regardless of pointer type: both controls have the same trailing inset
+and width, which gives them exactly the same horizontal center on phone and
+desktop browsers and mirrors the column in RTL. Desktop Mode retains its compact
+handle. The regression test calculates and compares the two centers and rejects
+any pointer-type media query that could split the explicit mode again.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/418d53aa7">iPhone Safari no longer paints the minicard drag target grey</a>. Thanks to xet7.</summary>
+<p>iPhone Safari still drew a grey rectangle over the full drag target in Mobile
+Mode even though its CSS background was transparent; Desktop Mode’s compact
+handle did not expose the problem. The Mobile Mode target now inherits the
+minicard’s actual background, so it blends into white, coloured and hovered
+cards, and explicitly disables WebKit’s tap highlight. Its pseudo-elements,
+border and shadow are also pinned to paint nothing. The icon, aligned control
+column and 44-pixel touch target are unchanged. Regression coverage keeps these
+Safari-specific paint guards scoped to Mobile Mode.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e7dde0db3">Mobile card and swimlane drag handles now keep their desktop alignment</a>. Thanks to xet7.</summary>
+<p>The Mobile Mode minicard arrow was shifted six pixels away from the shared
+menu-and-handle control center. Mobile font scaling enlarged that error, leaving the
+arrow visibly to the side of the menu bars even though their touch targets had equal
+width. The shift is gone, so both glyph centers have the same x coordinate in every
+browser and direction. Swimlanes also no longer substitute a larger, separately
+positioned handle on touch devices; one compact logical-position handle is shared by
+Desktop and Mobile Modes on every device. A live Chromium regression compares the
+actual glyph centers and verifies the swimlane handle’s x coordinate is unchanged
+when switching modes. Focused positive and negative source tests reject either
+device-specific positioning variant.</p>
+</details>
+<p><strong>Swimlanes</strong> - which swimlane a list belongs to, and what travels with it.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c002bc2c1">Opening a Mobile Mode list no longer empties the other swimlanes</a>. Thanks to xet7.</summary>
+<p>Mobile Mode stored one globally selected list, and every swimlane guarded its
+compact list rows with <code>unless currentList</code>. Opening <strong>List 1 at Swimlane 2</strong>
+therefore expanded that list correctly but hid every list in Swimlanes 1 and 3.
+The guard now asks whether the selected list belongs to <em>this</em> swimlane: its own
+swimlane renders the expanded list while every other swimlane retains its
+compact rows. Board-wide lists still expand in every swimlane by design. A live
+Chromium regression against the port-3000 application seeds two swimlanes,
+opens the second one’s list and verifies the first one’s list remains visible;
+focused positive and negative source tests pin the template scope as well.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7968f522d">Opening a Mobile Mode list no longer resizes lists in other swimlanes</a>. Thanks to xet7.</summary>
+<p>The compact list rows in every swimlane consulted the board’s global selected-list
+state when choosing their header controls. Opening <strong>List 1 at Swimlane 2</strong> therefore
+made the still-visible rows in Swimlanes 1 and 3 switch to the expanded header shape,
+changing their height even though neither swimlane had been selected. A list header
+now switches shape only when its own ID is selected, so every other swimlane keeps
+the same controls and row heights. The live Chromium regression records every compact
+row height before opening the second swimlane’s list and verifies the dimensions are
+unchanged afterward; focused positive and negative source coverage pins the ID scope.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/cb2dec9dd">Opening a Mobile Mode list no longer enlarges the top header</a>. Thanks to xet7.</summary>
+<p>Selecting <strong>List 1 at Swimlane 2</strong> inserted the names of every board list into the
+quick-access header. On a narrow screen that list navigation consumed another row,
+made the blue top bar taller and moved the board content down. Mobile Mode already
+presents every list as a selectable row inside its swimlane, so the duplicate header
+list has been removed. The live Chromium regression verifies that the selected list’s
+name is absent from the top bar and that the bar has exactly the same height before
+and after the list opens; focused negative coverage prevents the conditional list
+from returning to the header template.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/97fcf364c">Copying a list copies its cards, into a new list</a>. Thanks to xet7.</summary>
+<p><code>List.copy(boardId, swimlaneId)</code> carried both of the faults the <code>List.move</code>
+fix in v11.49 removes, and the copy was the more visible of the two: it
+produced an empty list.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>const oldSwimlaneId = this.swimlaneId || null;</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>const cards = await ReactiveCache.getCards({</span></span>
+<span class="line"><span>  swimlaneId: oldSwimlaneId, listId: oldId, archived: false });</span></span></code></pre>
+<p>A list that is not bound to a swimlane - an empty or missing <code>swimlaneId</code>,
+which is what every list on a board predating per-swimlane lists still has,
+and what <a href="https://github.com/wekan/wekan/issues/6515">#6515</a> left behind on
+boards opened before it - turns that into <code>swimlaneId: null</code>, so the
+selector asks for cards that have NO swimlane. The cards of such a list
+carry the real <code>swimlaneId</code>s of the swimlanes they are in, so it matched
+nothing and the copy came out with no cards at all. Even for a bound list
+the filter could only ever remove cards that are in the list being copied.
+A list is the unit of a copy, so every card in it travels, exactly as in
+<code>List.move</code>.</p>
+<p>The second fault is the <a href="https://github.com/wekan/wekan/issues/6670">#6670</a>
+shape exactly. <code>copy()</code> searched the target board for a list with this title
+to reuse, without first asking whether the target board IS this list’s own
+board - and on a same-board copy that search finds THIS LIST. <code>_id</code> became
+the original, so the “copy” wrote the cards back into the source list,
+doubling them, and returned the source list’s id, which
+<code>POST /api/boards/:boardId/lists/:listId/copy</code> then repositioned: the user
+asked to copy a list and got the original moved with twice the cards.
+Reusing a same-titled list is only meaningful across boards, so a same-board
+copy is now always a new list, the way <code>Swimlane.copy</code> already creates one.</p>
+<p>Fixing the first fault raises a question that could not come up while the
+copy was empty: where the cards land. The REST endpoint’s own default is a
+copy on the same board with no <code>toSwimlaneId</code>, and pinning every card to
+“no swimlane” would dump the cards of three swimlanes into none - so when no
+swimlane is asked for and the copy stays on the same board, each card keeps
+the swimlane it is in and the duplicate looks like the original. Across
+boards it cannot: the source card’s <code>swimlaneId</code> belongs to the OTHER board
+and would arrive orphaned, so those cards take the copy’s own swimlane.</p>
+<p>The decision lives in <code>models/lib/listCopyPlan.js</code>, the twin of
+<code>models/lib/listMovePlan.js</code>, where it is unit-tested without a database;
+<code>models/lists.js</code> applies it. <code>tests/listCopySwimlane.test.cjs</code> pins the
+same-board copy and the copy of a board-wide list, and its negative tests
+require that the card selector never scopes by swimlane, that a same-board
+copy is never a merge even when a same-titled list exists, that a
+cross-board copy never keeps a <code>swimlaneId</code> from the source board, and that
+<code>models/lists.js</code> compares the boards before it looks a list up by title.</p>
+<p><code>tests/listMoveSwimlane.test.cjs</code> is corrected while its sibling is written:
+two of its source scans took their offsets from the un-stripped file and
+sliced the comment-stripped one, which worked by accident and slid off
+<code>List.move</code> as soon as anything above it changed. Both offsets and the slice
+now come from the same string, and every assertion is kept.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/290cdc6a4">Admin Panel / Problems can put back the swimlane a list lost</a>. Thanks to TawsTm and xet7.</summary>
+<p>Boards opened under the versions before
+<a href="https://github.com/wekan/wekan/issues/6515">#6515</a> had every per-swimlane
+list un-bound automatically: the board data-repair treated any list with a
+<code>swimlaneId</code> as <a href="https://github.com/wekan/wekan/issues/6484">#6484</a>
+corruption and cleared it, and a per-swimlane list is indistinguishable from
+a corrupted board-wide one at the data level. #6515 stopped it, but nothing
+put the bindings back, so those lists still render under every swimlane and
+deleting one from a swimlane deletes the only list document there is.</p>
+<p>The old value turns out to be recoverable rather than guessable. The
+clearing went through <code>Lists.direct.updateAsync</code>, which bypasses collection
+hooks, so it only ever touched the list document - while the binding each
+list was CREATED with is recorded in a different collection:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// models/lists.js - Lists.after.insert -> trackOriginalPosition()</span></span>
+<span class="line"><span>originalSwimlaneId: this.swimlaneId || null,</span></span>
+<span class="line"><span>if (!existingHistory) { PositionHistory.insertAsync(document); }</span></span></code></pre>
+<p>That insert is insert-ONLY, written once at creation and never overwritten,
+so it survived untouched for every list created since list position tracking
+landed in October 2025.</p>
+<p>Admin Panel / Problems / Summary now detects this the way it detects broken
+cards - <em>Lists missing their swimlane N</em>, with a Restore button beside it -
+and restoring puts each list back in the swimlane its own record names.
+Every rule in it is a reason to SKIP, because here doing nothing is better
+than doing something wrong: a list that already has a <code>swimlaneId</code> is never
+touched, so the repair is idempotent and cannot undo a binding an admin has
+set by hand since; a list with no record, or one recorded as board-wide,
+stays board-wide; and a swimlane that has since been deleted is not
+resurrected, nor is one on another board accepted, because either would hide
+the list in every swimlane rather than show it in one.</p>
+<p>Nothing is inferred from the cards, and a test pins that the planner cannot
+grow a use for them. Inference is the obvious idea and it is wrong: on a
+board whose second swimlane is new every card is still in the first one, so
+it would bind every list to swimlane 1 and hide them from the others - which
+is #6484 again, the bug the clearing existed to fix.</p>
+<p>Detection is read-only and swallows its own errors, since the Problems page
+polls it every thirty seconds and a detection that throws would take the
+other problems on that page with it. The repair writes <code>swimlaneId</code> and
+nothing else, through <code>.direct</code>, one update per swimlane rather than one per
+list.</p>
+</details>
+<p>and states the rules a contribution is judged by:</p>
+<p><strong>Contributing</strong> - who commits where, and who gets named for the work.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f72f361bb">The instruction files say where the WeKan checkout is on each operating system</a>. Thanks to xet7.</summary>
+<p>“The WeKan repo” meant “wherever you happen to be”, and an agent given a task
+in the wrong directory had nothing to check itself against. It is a fixed place
+per operating system now - <code>~/repos/wekan</code> on Linux, <code>~/Documents/repos/wekan</code>
+on macOS, <code>Downloads\repos\wekan</code> on Windows - along with the companion
+repositories under <code>.tools/</code>, each on its own default branch, which is not
+always called <code>main</code>.</p>
+<p>This commit also said that commits go directly on <code>main</code>, full stop, which is
+true of the maintainer and wrong for everybody else. The entry below is the
+correction, in this same release: a contributor works on a branch in their own
+fork and opens a pull request. The rule as it stands is the two-role table, not
+this half of it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c87397267">The contribution rules say which role commits on which branch, and where the checkout is</a>. Thanks to xet7.</summary>
+<p>Two things an agent had to infer, and could infer wrongly. WHICH BRANCH: the
+maintainer commits <strong>directly on <code>main</code></strong> - never a feature branch, never a
+pull request - and a contributor works on <strong>a branch in their own fork and
+opens a pull request</strong>, never committing to <code>main</code>. Both halves are given
+their reason, because a rule with a reason survives a tool that offers
+something else: <code>releases/release-all.sh</code> cuts a release from whatever is on
+<code>main</code>, so work parked on a branch misses it; and nobody but the maintainer
+commits to <code>main</code> in wekan/wekan, so a change from anyone else arrives as a
+pull request, which is also the only place it can be discussed first.</p>
+<p>WHERE: the checkout is at a fixed place per operating system -
+<code>~/repos/wekan</code> on Linux, <code>~/Documents/repos/wekan</code> on macOS,
+<code>Downloads\repos\wekan</code> on Windows - so “the WeKan repo” no longer means
+“wherever you happen to be”.</p>
+<p>The never-push boundary is unchanged and covers both roles: an AI makes the
+local commit and stops, whether that commit is on <code>main</code> or on a
+contributor’s branch. Pushing it, opening the pull request and every release
+step are the human’s.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ac1867036">An AI is credited when it is the contributor, and never when it only helped one</a>. Thanks to xet7.</summary>
+<p><em>Never attribute a commit to an AI</em> was one rule where there are two, and it
+gave the wrong answer to half the cases it met. The test is whether a person
+is behind the change:</p>
+<ul>
+<li><strong>A human’s AI is invisible.</strong> The maintainer or a contributor using an
+assistant is the author; the tool appears nowhere - no <code>Co-Authored-By:</code>
+trailer, no <em>Generated with</em>, no model name in the commit, the pull-request
+body or the CHANGELOG.</li>
+<li><strong>An AI that raised the pull request itself is the contributor, and is
+named.</strong> GitHub CodeQL filing a fix for something it found, Copilot
+Autofix, Dependabot: nobody wrote those, so crediting a human would be
+false and crediting nobody would leave the change unattributed.</li>
+</ul>
+<p>So the same word - <em>Copilot</em> - is forbidden in one commit and required in
+another, and the files now say which is which. The second half is not new
+practice: the dependency sections have always closed with
+<code>Thanks to dependabot.</code> and the Hall of Fame has always named GitHub CodeQL
+as a reporter. Those were the rule being followed without being written down.
+<a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> carries the same rule in its own
+plain register, since it is where a contributor looks first.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bbfc139b7">The maintainer's AI is credited on the sponsors page, and only there</a>. Thanks to xet7.</summary>
+<p>Saying a human’s AI is <em>invisible</em> read as “never acknowledged anywhere”, and
+a rule that omits its own exception invites somebody to add the credit back
+where it was removed from. It is acknowledged, once, at
+<a href="https://wekan.fi/sponsors">wekan.fi/sponsors</a>, under <em>“AI donated by. All
+code and PRs verified by xet7”</em>, where Claude, Codex and GitHub Copilot are
+listed alongside the people and companies that donate hosting, servers,
+grants and testing.</p>
+<p>That is the whole of the credit, and it is where it is because attributing it
+per commit put the same fact on thousands of lines and drowned out the humans
+the entries exist to name. Acknowledging it anywhere else is not extra
+politeness; it undoes that.</p>
+</details>
+<p>and has the following developer-tooling fixes:</p>
+<p><strong>The build tree</strong> - which directory a build writes to, and what is not source.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/80c0f6875">build.sh raises the open-file limit, so mongod does not abort mid test run</a>. Thanks to xet7.</summary>
+<p>A full Playwright run died thirteen minutes in, and every spec after it reported
+<code>MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:3001</code> - which reads
+like the test database was never started. It was. It started, said what was
+wrong with it in the same breath, and was ignored: <em>Soft rlimits for open file
+descriptors too low, currentValue 256, recommendedMinimum 64000</em>. Thirteen
+minutes later it ran out of them and WiredTiger panicked.</p>
+<p>macOS starts a shell with a soft limit of 256, so every run of the browser
+suites was a race between finishing and running out of descriptors, with the
+cause landing 10,000 lines away in a different log. <code>ensure_open_files</code> runs on
+every invocation beside the inotify check. It needs no root - the hard limit is
+normally unlimited - and it sets the SOFT limit only, because plain <code>ulimit -n</code>
+sets both and lowering a hard limit is irreversible.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f611ac222">Three permanently red test suites now pass, two of them macOS faults</a>. Thanks to xet7.</summary>
+<p>Each was a different fault rather than a stale assertion.</p>
+<p><code>database-autopick</code> restores MongoDB’s data-file mtimes with <code>stat -c %Y</code> and
+<code>touch -d @EPOCH</code>, which are GNU. On macOS the stat fails, every file is skipped
+by the <code>|| continue</code> beside it, and the restore returns having done nothing -
+silently, and only there. It tries the BSD spelling now.</p>
+<p><code>provenance-table.sh</code> opened with <code>shopt -s nullglob globstar</code>, and globstar
+arrived in bash 4 while macOS ships bash 3.2 as <code>/bin/bash</code>: the shopt failed
+and <code>set -e</code> took the script with it. The default file list is a single <code>find</code>
+now. Then the empty case failed too, because bash 3.2 calls an empty array an
+unbound variable under <code>set -u</code> where 4.4 does not.</p>
+<p><code>fill-translations.mjs --list</code> was TRUNCATED whenever stdout was a pipe: it
+prints 128 KB with <code>console.log</code> and then calls <code>process.exit</code>, which cuts off
+whatever has not drained. A pipe delivered 65,510 bytes - valid-looking JSON
+stopping mid-key, with status 0. Redirecting to a file worked, because that is
+synchronous, so this only bit anything reading the output programmatically -
+including the translation workflow itself.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/f532f3046">The last two red suites: a missing utility, and a count of another repository</a>. Thanks to xet7.</summary>
+<p><code>bundle-smoke-boot.sh</code> runs the bundle under <code>timeout</code>, which is GNU coreutils
+and is not on macOS. It died with <em>timeout: command not found</em> and exit 127 -
+which the script’s own checks then read as <em>the bundle exited without reaching
+its database</em>, reporting a startup failure for a missing utility. It uses
+timeout, or gtimeout, or a shell fallback now.</p>
+<p>The Hall of Fame comparison demanded at least 50 <code>*bleed</code> directories in the
+wekan.fi checkout as a sanity check. That number counts what was published when
+the line was written, so a checkout two months old has fewer and the suite went
+red over the state of another repository. A stale checkout cannot cause a false
+failure there - it only makes the check smaller - so what it asks now is whether
+the directory is the Hall of Fame at all.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bdb3b1588">Attachments are readable again when the storage root is a symlink</a>. Thanks to xet7.</summary>
+<p><code>FileStoreStrategyFilesystem</code> builds its candidate paths by joining names onto
+the storage root AS WRITTEN, then checked each one against that root with every
+symlink RESOLVED. Those are the same string only when nothing in the path is a
+symlink. On macOS <code>os.tmpdir()</code> is <code>/var/folders/...</code>, a symlink to
+<code>/private/var/folders/...</code>, so every candidate failed containment before it was
+looked at. A deployment whose data directory is a symlink has the same fault on
+Linux.</p>
+<p>The security property is untouched, because it was never the lexical check that
+carried it: what a caller must not do is reach a file outside the root, and that
+is decided by resolving the candidate and requiring the result to be inside the
+resolved root.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/80c0f6875">build.sh raises the open-file limit, so mongod does not abort mid test run</a>. Thanks to xet7.</summary>
+<p>A full Playwright run died thirteen minutes in, and every spec after it
+reported <code>MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:3001</code> -
+which reads like the test database was never started. It was. It started, said
+what was wrong with it in the same breath, and was ignored:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>"Soft rlimits for open file descriptors too low"</span></span>
+<span class="line"><span>currentValue: 256, recommendedMinimum: 64000</span></span></code></pre>
+<p>Thirteen minutes later it ran out of them - <em>Too many open files</em> accepting
+connections, then <code>opendir</code> on its own journal, then <code>WT_PANIC: WiredTiger library panic</code> and <code>Abort trap: 6</code>. macOS starts a shell with a soft limit of
+256, <code>build.sh</code> never raised it, and so every run of the browser suites was a
+race between finishing and running out of descriptors, with the cause landing
+10,000 lines away in a different log in a form that points at the wrong thing.</p>
+<p><code>ensure_open_files</code> runs on every invocation beside the inotify check, for the
+same reason: a limit that is too low breaks a later step with an error that
+does not name it. Unlike that one it needs no root - the hard limit is normally
+unlimited, so the process raises its own soft limit and mongod, the bundle
+server and the browsers inherit it. It sets the SOFT limit explicitly, because
+plain <code>ulimit -n</code> sets both and lowering a hard limit is irreversible; and it
+clamps to the hard limit and steps down from there, because asking for more
+fails outright rather than clamping.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9b28c793f">Commit links in this file are repointed when a rebase makes them stale</a>. Thanks to xet7.</summary>
+<p>A rebase rewrites hashes, and every <code>&#x3C;summary></code> here carries one in its <code>href</code>.
+The links that had gone stale were repointed, which is the same repair
+<code>build.sh</code>’s pull and push both run - a stale link is not a local annoyance,
+it is a 404 for everyone who opens the release notes.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9dc2c5cf9">The History table formats dates with the helper WeKan actually has</a>. Thanks to xet7.</summary>
+<p>The new table opened with <code>import moment from 'moment'</code>, and that one line
+broke the client build outright:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ERROR in ./client/components/history/historyTable.js</span></span>
+<span class="line"><span>  x Module not found: Can't resolve 'moment'</span></span></code></pre>
+<p>moment was removed from WeKan and replaced with native <code>Date</code> helpers -
+<code>imports/i18n/moment.js</code> says so in its first line - so it is not a dependency
+and nothing resolves it. The import is now <code>formatDateTime</code> from
+<code>/imports/lib/dateUtils</code>, which is what the rest of the app already uses.</p>
+<p>What is worth keeping from this is how it was found. The line is the most
+ordinary-looking one in the file, and no amount of rereading the diff would
+have shown it, because what was wrong was somewhere else entirely: the
+dependency list. <code>tests/importsResolve.test.cjs</code> now resolves every bare
+import in <code>client/</code>, <code>models/</code>, <code>imports/</code> and <code>server/</code> against the real
+<code>node_modules</code>, which is the same question the bundler asks and takes under a
+second instead of a two-minute build. It also pins that moment stays gone, and
+that the set of packages imported without being declared in <code>package.json</code> -
+<code>body-parser</code> and <code>mime-types</code>, both of which predate this - cannot grow.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7290ed036">Every ignore file agrees on what is not source, and the two build directories are explained</a>. Thanks to xet7.</summary>
+<p>There are two build directories one character apart, and nothing said which
+was which. <code>_build/</code> is rspack’s <strong>handoff</strong>: it compiles the app into
+<code>_build/main-prod/</code> and Meteor then reads <code>server-meteor.js</code> and
+<code>client-meteor.js</code> from there as the application’s main modules, so ignoring
+it does not tidy anything - it fails the build with <code>Could not find mainModule for 'os' architecture</code>. <code>.build/</code> is the opposite, the finished bundle
+<code>meteor build .build --directory</code> writes. Both are now described where
+somebody meets them: the headers of <code>build.sh</code> and <code>build.bat</code>,
+<code>Directory-Structure.md</code>, <code>Build-from-source.md</code>, <code>Meteor-bundle.md</code>,
+<code>Build-and-Create-Pull-Request.md</code>, and this file’s two AI instruction files.</p>
+<p>The ignore files had drifted apart from each other in the meantime, so each
+was brought to the same answer: <code>_build</code> reached <code>.dockerignore</code>,
+<code>.eslintignore</code> and <code>.prettierignore</code>, which had never heard of it and were
+linting and shipping a bundled copy of the app. <code>.meteorignore</code> gained the
+trees that are not application source at all - <code>docs/</code>, <code>meta/</code>,
+<code>old-CHANGELOG/</code>, <code>openapi/</code>, the packaging directories, <code>releases/</code>,
+<code>scripts/</code>, <code>tools/</code>, <code>.github/</code> and the editor and tooling directories -
+after checking, rather than assuming, that nothing under <code>client/</code>, <code>server/</code>,
+<code>models/</code>, <code>imports/</code>, <code>config/</code> or <code>packages/</code> imports from any of them.
+Meteor takes one file watcher per directory it does not ignore, from a
+per-user limit shared with every editor on the machine, and that limit is what
+<code>.tools/</code> was added for in the first place.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/66e8420be">Ignoring .build does not silence Meteor's warning about it, and no longer says it does</a>. Thanks to xet7.</summary>
+<p>The comment added beside <code>/.build/</code> claimed the entry was this warning
+answered:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>WARNING: The output directory is under your source tree.</span></span>
+<span class="line"><span>         Your generated files may get interpreted as source code!</span></span></code></pre>
+<p>The very next build printed it again. The warning is a path comparison on the
+output <strong>argument</strong>, made before any file is written - <code>tools/cli/commands.js</code>
+asks whether <code>pathRelative(appDir, outputPath)</code> starts with <code>..</code> and prints it
+when it does not. No ignore file is consulted and none can reach it; silencing
+it would mean building outside the tree, which <code>build.sh</code>, <code>build.bat</code> and the
+release workflows would all have to agree on.</p>
+<p>The entry is still worth having, for the second half of the same sentence:
+without it the next <code>meteor run</code> walks a whole bundled copy of the app. That
+is what the comment says now. <code>tests/meteorignoreScanScope.test.cjs</code> pins both
+directions - <code>_build</code> must not be ignored, <code>.build</code> must be - and fails if the
+false claim comes back.</p>
+</details>
+<p>and improves release automation:</p>
+<p><strong>Variant repositories</strong> - one authoritative source and two compatibility names.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/abdd9750c">Update Ondra and Gantt repositories as a required release job</a>. Thanks to xet7.</summary>
+<p>The compatibility snaps published successfully while their GitHub repositories
+stayed stale because repository synchronization was an optional step inside a
+<code>continue-on-error</code> architecture matrix. A missing or insufficient repository
+token could skip or fail that step without failing the release.</p>
+<p>A reusable workflow now updates both repositories from the release tag as its
+own required job. Its shared preparation script copies only committed WeKan
+source and preserves each variant’s Snap, npm, GHCR, Quay and Docker Hub package
+identities. Fixture tests cover both variants, reject dirty targets and prove
+that ignored local files do not enter the synchronized repositories. Snap
+publication remains independent of repository synchronization.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c44b5af36">Keep Dependabot updates in WeKan instead of its release mirrors</a>. Thanks to xet7.</summary>
+<p>Synchronizing the complete source tree also copied WeKan’s Dependabot
+configuration into <code>wekan-ondra</code> and <code>wekan-gantt-gpl</code>. Both mirrors then opened
+duplicate dependency PRs against snapshots that later synchronization replaces.
+The preparation step now removes both supported Dependabot configuration
+filenames. Dependency changes remain reviewed and tested once in <code>wekan/wekan</code>
+and reach each compatibility repository through the normal sync. Positive and
+negative fixture coverage pins the exclusion for both variants.</p>
+</details>
+<p><strong>Test suite</strong> - full runs inspect source rather than generated copies.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/87896365a">Keep source scans out of builds and exercise minicard links through the UI</a>. Thanks to xet7.</summary>
+<p>The complete test run found two scanners walking generated <code>.build-*</code> bundles:
+one mistook bundled history calls for source without imports, while the security
+map had not yet associated nine published vulnerability names with their
+existing regression suites. Build variants are now excluded and the suites name
+the disclosures they cover.</p>
+<p>The minicard markdown-link browser test also called the module-scoped
+<code>ReactiveCache</code> identifier as if it were a browser global, failing in Chromium
+and Firefox before testing the link. It now creates the markdown title through
+the real card editor, closes the card and verifies that the minicard link opens
+without restoring inline title editing.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e5831f16b">Keep consistency checks aligned with release helpers and security names</a>. Thanks to xet7.</summary>
+<p>The complete test rerun found four consistency failures rather than application
+failures. The new variant preparation helper now has its documented workflow-only
+menu exemption, and the variant design explicitly retains historical Docker tags
+without claiming that new variant images are published. Upcoming entries are
+grouped by their actual areas.</p>
+<p>The security inventory previously used substring matching, so naming
+<code>CookieTokenBleed</code> made it falsely conclude that the unrelated <code>TokenBleed</code> gap
+had acquired coverage. Vulnerability names now require non-alphanumeric
+boundaries. The four suites that failed in the complete run pass together.</p>
+</details>
+<p>and improves documentation:</p>
+<p><strong>Outgoing email documentation</strong> - current configuration and readable Markdown.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e28081911">Remove visible Liquid tags from email troubleshooting</a>. Thanks to xet7.</summary>
+<p>The email troubleshooting document wrapped its entire contents in Liquid
+<code>raw</code> tags to protect one literal template placeholder. GitHub’s normal
+Markdown view displayed those tags as document text. The example now uses a
+fixed escaped regular-expression literal, which still replaces every exact
+placeholder without presenting Liquid syntax to a Pages build. Tests pin the
+rendering boundary and positive and negative replacement behavior.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/1af5ceae2">Email troubleshooting starts with the Admin Panel provider choices</a>. Thanks to xet7.</summary>
+<p>The email troubleshooting page still said email could only be configured with
+<code>MAIL_URL</code>, and the Admin Panel page described its live provider fields as
+commented out. Both now lead with <strong>Admin Panel / People / E-mail</strong> and the
+<strong>Enable below email settings</strong> opt-in. They explain that administrators can
+choose custom SMTP or the built-in Gmail, Outlook 365, Proton, SendGrid,
+Mailgun, Postmark, Resend and AWS SES options, while leaving the switch disabled
+continues to use <code>MAIL_URL</code> and <code>MAIL_FROM</code>. The general webserver settings page
+points to the same two choices.</p>
+</details>
+<p>and improves the translations:</p>
+<p><strong>Bosnian</strong> - a language file that was almost entirely English.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bdb3b1588">2175 untranslated strings become one</a>. Thanks to xet7.</summary>
+<p>Croatian and Serbian are complete and Bosnian is the same Štokavian standard, so
+Croatian is the base with the documented Bosnian forms applied - <em>sedmica</em> for
+<em>tjedan</em>, <em>nivo</em> for <em>razina</em>, <em>server</em> for <em>poslužitelj</em>, <em>tok</em> for <em>tijek</em>,
+<em>hiljada</em> for <em>tisuća</em>, <em>historija</em> for <em>povijest</em>, and <em>tačka/tačno</em> for
+<em>točka/točno</em>. 29 strings needed one; the rest are identical in both standards.</p>
+<p>Two substitutions were REVERTED after reading the output, which is the part worth
+keeping: <em>poveznica</em> → <em>link</em> produced “iz ove linkove” and “iz bilo koje
+linkove na kartu”, because <em>poveznice</em> is both nominative plural and genitive
+singular and one rule cannot be both. <em>Poveznica</em> is good Bosnian, so it stays -
+a correct word left alone beats a more idiomatic one put in the wrong case. The
+same blindness left “Najviša nivo”, a feminine adjective on a masculine noun.</p>
+<p>The last ten were translated directly. The one that remains is <em>Server</em>, spelled
+that way in Bosnian too - the tool counts a translation identical to its source
+as missing, which is its limit rather than a gap.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v11.50" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
