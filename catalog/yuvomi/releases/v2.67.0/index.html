@@ -1,0 +1,518 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Yuvomi v2.67.0 release notes | WinterFlow.io</title><meta name="description" content="Introduces a comprehensive cycle tracker, a waste collection module, a fasting journal, and significant improvements to shopping lists, housekeeping…"><link rel="canonical" href="https://winterflow.io/catalog/yuvomi/releases/v2.67.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Yuvomi v2.67.0 release notes | WinterFlow.io"><meta property="og:description" content="Introduces a comprehensive cycle tracker, a waste collection module, a fasting journal, and significant improvements to shopping lists, housekeeping…"><meta property="og:url" content="https://winterflow.io/catalog/yuvomi/releases/v2.67.0/"><meta property="og:image" content="https://winterflow.io/images/apps/yuvomi/yuvomi.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Yuvomi v2.67.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Introduces a comprehensive cycle tracker, a waste collection module, a fasting journal, and significant improvements to shopping lists, housekeeping…"><meta name="twitter:image" content="https://winterflow.io/images/apps/yuvomi/yuvomi.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Yuvomi","item":"https://winterflow.io/catalog/yuvomi/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/yuvomi/releases/"},{"@type":"ListItem","position":5,"name":"v2.67.0","item":"https://winterflow.io/catalog/yuvomi/releases/v2.67.0/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/yuvomi/yuvomi.png" alt="Yuvomi logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Yuvomi</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Self-hosted family planner for tasks, calendar, shopping, meals, and budget</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> cozi, familywall, skylight </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://yuvomi.cloud/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/ulsklyc/yuvomi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/ulsklyc/yuvomi/blob/main/docs/installation.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/yuvomi/dashboard.png" alt="Yuvomi screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/yuvomi/tasks.png" alt="Yuvomi screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/ulsklyc/yuvomi/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 1,508 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Yuvomi" data-app-slug="yuvomi" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/ulsklyc/yuvomi" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/yuvomi/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (396)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/yuvomi/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v2.67.0</h2> <span class="text-sm text-gray-500">2026-09-16</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h3 id="added">Added</h3>
+<ul>
+<li>
+<p><strong>The cycle tab grows into a full tracker: visible flow strength, feelings, more fertility
+signals, hard-private intimacy logging, PMS patterns, and a “today” insight bubble.</strong> The day log
+gains cervical mucus, LH and pregnancy tests, multi-select feelings (replacing the single mood),
+and intimacy - cervical mucus, the two test results and intimacy are never shown to anyone but
+yourself, even on days shared with the family, enforced by the server. On
+<code>POST /api/v1/health/cycle/logs</code>, <code>mood</code> (kept for older clients) and <code>feelings</code> now both accept
+only the fixed feelings list - an out-of-list value is a 400 instead of being stored as free text.
+Saving a day log through the app always sends the current feelings selection, so an older
+free-text mood value is cleared the next time that day is edited in the app; only a save that
+omits both fields entirely (outside the app’s own form) leaves it as-is. Flow strength finally
+shows up everywhere it matters: a four-step dot scale on the calendar, a heaviest-flow chip per
+period in the history, a per-cycle flow intensity chart, and a calm hint when recent periods run
+repeatedly heavy or over a week. A bubble at the top answers the daily question at a glance -
+cycle day and phase, plus whichever of these applies: period expected today (start it right
+there), symptoms likely today, a PMS window approaching, or the fertile window. Predictions got
+more honest along the way: a temperature-confirmed ovulation now also moves the month calendar
+(ring and calendar can no longer disagree), implausible gaps from overlapping or future-dated
+periods no longer poison the averages (the period dialog warns about both), the BBT chart spaces
+its points by real dates and breaks across logging gaps, and the likelihood overlay projects into
+the next cycle instead of only backwards. New per-person settings: contraception (hormonal methods
+pause the fertile-window prediction, with the reason shown instead of an empty tile), a
+perimenopause mode that predicts a date range rather than a false-precision single day, a
+PMS-window toggle, and an opt-in partner reminder that shares only the predicted date - never any
+log content. Period history can be imported from CSV (German date and separator formats included),
+the Health overview shows the next period at a glance, and the trends section was restructured
+around one expander per symptom with an added feelings-by-phase view and a pain summary.</p>
+</li>
+<li>
+<p><strong>New optional module: Waste collection</strong> (#1063). Define your household’s waste types
+(recycling, organic, general, or your own, each with an icon and color) and a weekly or
+fixed-day-of-month pickup schedule for each. A single calculated pickup can be moved to a
+different date or skipped without touching the rest of the schedule, and moving one origin never
+hides another - a manual one-off pickup recorded on the same day a schedule occurrence moved away
+from still shows. One-off pickups cover irregular or special collections that are not part of any
+recurring schedule. A type with schedules or pickups cannot be deleted (archive it instead), so a
+season’s history is never lost by accident. Off by default; a household turns it on in
+Settings → Modules. A municipality’s ICS calendar file can also be imported: preview its pickups,
+map each label to a waste type (or create one on the spot, or ignore it), and commit - the file is
+re-parsed on commit so nothing is trusted from the preview alone, and re-importing next year’s file
+diffs cleanly into additions/changes/removals without duplicating or losing manual data. A source
+with no future mapped pickup is flagged for a refresh. An optional Dashboard widget shows the next
+pickup per active type, soonest first, and carries the same “needs a refresh” flag as the module
+page; hidden by default, like the module itself. A device-local Calendar layer, off by default,
+shows every type’s pickups in month, week, day, and agenda view; a pickup carries its type’s icon
+and color and opens the module directly, never the ordinary event editor. Beyond a one-time file
+import, a source can also subscribe to an ICS URL: it refreshes itself automatically on a
+configurable schedule (hourly to monthly), applying an update only once every label already has a
+confirmed mapping - unrecognized content is flagged for review instead of guessed at, and a manual
+“check now” is always available alongside the automatic schedule. Each household member can also opt
+into their own pickup reminders per waste type, choosing how many days ahead and what time of day
+(household-local) to be notified - personal, so a reminder never goes to someone who didn’t ask for
+it. A monthly schedule can now also follow an ordinal weekday - “the second Monday” or “the last
+Friday” of every month - alongside the existing weekly and fixed-day-of-month rhythms; the
+underlying shared recurrence engine gained this once and every existing recurring feature (Tasks,
+Calendar, CalDAV/ICS import) benefits from it, not just Waste. A revocable, personal read-only ICS
+feed of upcoming pickups is now available too (Settings → Feeds), with an optional per-type
+selection; a source’s label-to-type mapping decisions can be exported as a portable profile and
+re-applied to another source or household, without the app ever shipping a municipal/provider
+catalog. Waste types are now searchable from the global search bar, and the Calendar layer’s filter
+sheet gained a per-type visibility list nested under the one Waste toggle, so a rare collection is
+never silently hidden while a noisy one can be tucked away.</p>
+</li>
+<li>
+<p><strong>Waste page UX: labelled add-type entry point, unified row actions, curated type colors</strong> (#1146).
+The page now leads with a labelled “Add waste type” button rather than hiding all four actions
+behind one unlabelled menu, both empty states offer the step their own text describes, and the
+pickup button no longer dead-ends on a fresh install - without a type it now opens the type dialog
+instead of only saying that one is missing. Waste type, schedule, and source rows carry the same
+single overflow menu with named entries that the pickup rows already used, so a destructive action
+is no longer one stray tap away and an action whose meaning changes with the source finally says
+which one it is; every one of those menus now sits at the trailing edge of its row, and every row
+puts its icon beside the name instead of above it, so all four row types read the same way. A
+paused schedule is now visually distinct from an archived type instead of wearing the same badge.
+A type’s color comes from a curated palette instead of a free color picker, which had happily
+accepted a white or black icon that then disappeared against the light or dark background - an
+existing color outside the palette is kept, not silently overwritten.</p>
+</li>
+<li>
+<p><strong>A fasting journal records timers and past fasts in Health</strong> (Refs #1173).
+Start now or earlier, record completed intervals, and edit or undo changes with
+conflict protection. Elapsed/remaining clocks, personal goals and an optional
+educational dial preserve the recorded time zone. History loads ten records at
+a time; date filters and CSV cover the complete visible history. Family members
+can read shared records; personal settings stay private. Fasting is available to
+every member by default and an admin can switch it off per family role or person.
+Yuvomi records fasting and does not provide medical advice.</p>
+</li>
+<li>
+<p><strong>A calendar’s default assignee can now be applied to the events it already imported</strong> (#1154).
+Until now the mapping only reached events that arrived after it was set, so the first thing
+anyone saw after mapping a calendar was a list of unassigned events. Settings → Sync gains a
+one-off “Apply to existing appointments” action for admins: it runs over the calendars of all
+accounts that have a default assignee, names how many events it will touch, and fills only
+events that are not assigned to anyone yet. An assignment made by hand is left alone. ICS
+subscriptions are not included.</p>
+</li>
+<li>
+<p><strong>The Housekeeping Reports tab can step through past months</strong> (#1137). Until now it only ever
+showed the current month, and older reports were reachable only through a single worker in the
+Staff tab. A previous/next stepper with a jump back to the current month now sits next to the
+title, in the same order as Budget. The chosen month stays put while you work in it: marking a
+visit paid or editing one reloads that month instead of jumping back, and an empty month says
+which month it is.</p>
+</li>
+<li>
+<p><strong>A shopping list can be duplicated</strong> (#1103). “Duplicate” sits in the list menu next to
+rename/delete and copies every item into a new list, with category assignment and the manual
+per-category order always carried over - that is the point of duplicating, not a switch. Three
+flags control the rest: reset checked state, keep quantities, and keep notes &#x26; links, all on by
+default.</p>
+<p>A duplicated item is a new, local item: CalDAV sync fields, the originating meal, any recorded
+price or shop, and tags are never copied. The first three each name something true of the
+<em>original</em> item only (a synced remote object, a specific meal, a price actually paid in a specific
+shop), never of a fresh copy - and tags are mirrored VTODO categories, so they follow the same
+rule as the sync fields they belong to.</p>
+</li>
+<li>
+<p><strong>A shopping suggestion carries its category and quantity</strong> (#1113, from discussion #1103).
+Picking a suggestion while adding an item now also fills in that item’s most recently used
+category and quantity, instead of only its name - without the category, every picked suggestion
+landed back in the fallback category and the aisle order had to be re-sorted on the next trip.
+Suggestions are also now ordered by most recently used first, instead of alphabetically - a
+household buys the same handful of things again and again, and the ones bought last stood out
+less behind everything the alphabet puts first. For API users this is a contract change on
+<code>GET /api/v1/shopping/suggestions</code>: the response items are now objects <code>{ name, category, quantity }</code> ordered by recency, where they used to be plain name strings.</p>
+</li>
+<li>
+<p><strong>A shopping list follows what the rest of the household does, while it is open</strong> (#1108). Two people
+in the same shop used to see two different lists: what one ticked off stayed unticked on the
+other’s phone until that page was reloaded. The open list now hears about changes within about ten
+seconds and redraws the affected rows in place - the same gesture as your own tap, no jump, no
+animation - and rebuilds only when an item was added, removed, renamed or moved.</p>
+<p>The server keeps a change counter per list, maintained by database triggers rather than by the
+routes: shopping items are written from six modules (the list itself, meal-plan and recipe
+imports, the housekeeping module, MCP, the CalDAV to-do sync), and a counter that every writer
+has to remember is a counter one of them forgets. The counter also moves when a list is renamed,
+and its row goes with the list, so a list someone else deletes disappears from your screen too.
+The open page asks <code>GET /api/v1/shopping/versions</code> every ten seconds while the tab is visible,
+and at once when it becomes visible or gets focus - the moment somebody looks at the phone. It
+reloads only a list whose number moved, through the same request it used to open it, so there
+is still one read path. Deliberately a poll and not an open stream: it works through any
+reverse proxy, holds no connection, and can grow into a stream on the same counter later. Your
+own taps do not cost a reload: the write routes answer with the counter before and after, and
+the page skips the reload when nothing else moved in between.</p>
+</li>
+<li>
+<p><strong><code>BIND_ADDRESS</code> sets the address the server listens on.</strong> Unset, nothing changes: the app
+listens on all interfaces, which is exactly what a container needs for its published port to
+reach it, so Docker, Podman, Unraid, TrueNAS and Umbrel installations leave it alone. When Node
+runs directly on a machine behind a reverse proxy on that same machine, <code>127.0.0.1</code> keeps the
+app itself off the network. The built-in MCP bridge follows the setting when it calls the API
+back. It is not the same as <code>OIKOS_HTTP_BIND</code>, which decides where the container engine
+publishes the port.</p>
+</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Housekeeping staff and shared-expense guests no longer appear where you pick or list household
+members</strong> (#1207). The pickers for task assignees, calendar attendees, budget responsibles,
+schedule owners, medication owners, synced-calendar assignees and the Outlook account owner, the
+family list, the calendar’s person filter, mentions, the reward standings and enrolment and the
+Overview’s member cards now show household members only, and the household size counts them the
+same way - a household of one person and a cleaner is a household of one for what the app shows.
+Visibility, locking and document sharing stay available as long as anyone else can read the
+module, a cleaner with access included, so a new entry can still be kept private. Splitting an expense
+still offers the guests of that group, and guests can still be added to a group; housekeeping
+staff cannot. Nothing is taken away: a task, event, budget entry, schedule, synced calendar or
+document share that already names a staff member or guest keeps them, still shows them in its
+editor and can still be saved, and an event’s visibility stays as it was. Existing group
+memberships stay as well and still show in the group editor, so they can be ended. An old reward
+enrolment of a staff member or guest stays on record, but it no longer earns points, redeems or
+receives a bonus. Schedule
+rows on the dashboard keep their names; only choosing a staff member or guest anew is refused.
+User administration and permissions still list every account, API tokens every account except
+shared-expense guests as before, and the two-factor overview for admins now shows every account,
+housekeeping staff and guests included.</li>
+<li><strong>The README is shorter between the introduction and the install steps</strong> (#1212). Each module
+gets one line in the module table, with the detail left to the spec, and “Before you commit” -
+what happens if the project stops, how to take your data elsewhere, what it costs - now comes
+before the first command instead of after it. The install section opens with the three ways in,
+lists the encryption key and the blocking of addresses on your own network as facts that apply
+to every path, and names the logs command for both Docker and Podman.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>
+<p><strong>A request with an API token is judged by the token’s own role, even when an admin session comes
+along.</strong> If the same client also sent the session cookie of a signed-in administrator, a request
+made with a member’s API token could still pass as an administrator in several places: calendar
+subscriptions and events, locked tasks, household note categories, documents and DMS connections,
+recipe providers, the shift schedule and split expenses. Each of them had its own admin check that
+also looked at the session. They now use the same check as every other route, which looks only at
+the role of the person the token belongs to. Signing in as an administrator without a token keeps
+full access, and a request with only a session or only a token behaves as before.</p>
+</li>
+<li>
+<p><strong>Form fields have a clearly visible edge in both themes.</strong> Text inputs, selects and text areas
+drew their resting edge in the same faint shade as card and group outlines, which rendered at 1.2
+to 1.5:1 against the surface around them - well below the 3:1 a control boundary needs for people
+to find the field at all. Fields now have an edge color of their own, at 3.2 to 3.5:1 in the light
+theme and 3.9 to 5.5:1 in the dark theme on every surface they sit on: the sign-in page, dialogs,
+settings pages, the search overlay, and the search and quick-add fields above the lists. Card
+edges and separators keep their quieter shade, and a focused field still takes the accent color.</p>
+</li>
+<li>
+<p><strong>Set-aside cards and rows stay readable.</strong> Done and archived tasks (in the list and on the
+board), archived accounts, paused and completed subscriptions, inactive medications and rewards,
+archived waste types, paused pickups, and rows that an import has already added all faded out by
+turning partly transparent. That pulled every text on them below the 4.5:1 normal text needs,
+status badges and the initials in avatars included: 1.7 to 3.9:1 in the light theme, 2.4 to
+4.2:1 in the dark theme. They now recede in one consistent way instead: the card sinks to a
+slightly deeper surface with a quieter edge, secondary details use the quieter text color, and
+titles, status badges, priority chips and avatars stay at full strength. They keep that look
+when the pointer rests on them, instead of lighting up like an active card. The amount of an
+expected budget entry is no longer faded either (3.5:1 and 3.0:1 before); it keeps its income or
+expense color, and the “expected” badge marks the row. In the birthday import dialog, the
+“already added” badge had no background at all and its text was practically invisible; it now
+shows in the module color again.</p>
+</li>
+<li>
+<p><strong>Checked-off shopping items look the same with reduced motion, and stay readable.</strong> A checked
+item was meant to fade as a whole, but that only happened for people who had reduced motion turned
+on, and for them its name and quantity dropped to 2.0:1 (light) and 2.5:1 (dark). Everyone else
+saw the item unfaded, because the fade-in animation of the list left a setting behind that
+overrode it. The animation now cleans up after itself, and a checked item recedes through quieter
+text colors instead of transparency: the name struck through in the secondary text color, details
+and tags in the tertiary one, at 5.4:1 or more in both themes. Its tags no longer fade on their
+own either (2.6:1 and 3.7:1 before). A checked item can still be tapped to reopen it, so it is not
+exempt the way a disabled control would be. The same leftover setting had also kept a dragged row
+or board card fully opaque, and stopped note and document cards from lifting slightly when the
+pointer rests on them; a dragged card now fades while it is being moved, and notes and documents
+lift on hover again, as intended.</p>
+</li>
+<li>
+<p><strong>An early click on the simple setup no longer overwrites an existing installation.</strong> The web
+installer locks its simple path when it finds an <code>.env</code>, because that path sets host, port and
+cookie security itself. The lock only took effect once the installer had finished checking for
+the file, so a click in the moment before could still start the simple path and write over, for
+example, a setup running behind a reverse proxy. The simple path now waits for that check and
+continues in the advanced setup, where each of these values is visible, and its save step refuses
+to write over an existing file. The check itself no longer waits indefinitely for a container
+engine that does not answer: after a few seconds the installer carries on and treats the container
+as not running.</p>
+</li>
+<li>
+<p><strong>The web installer shows an existing configuration as a warning, not as a hint.</strong> When the
+installer finds an <code>.env</code>, the setup says that the current file will be backed up before saving -
+a setup that works is about to be replaced. That line was tinted like a plain hint; it now carries
+the same amber warning style and icon as the installer’s backup reminders.</p>
+</li>
+<li>
+<p><strong>On the project page, the module list on phones folds away again, and the jump menu marks the
+right section after a language switch.</strong> On a phone, “Show all modules” opened the full list and
+then disappeared, so the list could not be shortened again; the button now stays and switches
+between all and fewer modules. The jump menu remembered where each section starts and measured
+again only when the window changed size, so after switching to the longer German page it
+highlighted the next section too early. It now measures again whenever the language changes or
+the module list opens or closes. The calendar screenshot also tells screen readers what it shows,
+instead of just “Calendar”.</p>
+</li>
+<li>
+<p><strong>A Google Calendar change made while the connection is down now reaches Google once it is
+back.</strong> Before pushing an edit or moving an event to another calendar, Yuvomi asks Google for that
+calendar’s details. When that request failed for a passing reason, such as no network, a token
+refresh or a rate limit, the change was handled like one for a read-only calendar and dropped: it
+never reached Google, and nothing said so. It now waits for the next sync and is only given up
+after the usual five attempts, or when Google reports the calendar as gone. A different calendar
+picked while a move is still under way is also no longer discarded when Google rejects that move.</p>
+</li>
+<li>
+<p><strong>The website and both READMEs now say what reaches out once you use a feature</strong> (#1212). Out of
+the box the only outbound request is still the update check against the GitHub releases API. The
+pages said that weather, calendar sync and cloud backup stay off until you enter credentials, but
+weather needs only a location, and once a country is set, holidays are fetched from
+openholidaysapi.org - except the public holidays of Australia, Brazil, Canada, New Zealand, the
+United Kingdom and the United States, which Yuvomi works out itself without a request. Opening the
+calendar settings loads the list of holiday countries from openholidaysapi.org as well, whether or
+not a country is set. Looking up a logo for a subscription contacts the service’s website, and
+push goes through your browser’s push service. The outbound line now names all of them.</p>
+</li>
+<li>
+<p><strong>A WebDAV backup URL made of whitespace no longer locks the backup settings.</strong> A space or line
+break in <code>WEBDAV_BACKUP_URL</code>, for example from <code>${WEBDAV_BACKUP_URL:- }</code> in a compose file, was
+ignored as a URL but still marked the backup fields as set by the environment, so they could not be
+edited in Settings. Both now use the same check: only a value that is not blank comes from the
+environment.</p>
+</li>
+<li>
+<p><strong>A modules folder set through <code>MODULES_DIR</code> in <code>.env</code> is found again.</strong> <code>docker-compose.yml</code>,
+<code>podman-compose.yml</code> and the Podman Quadlet hand the <code>.env</code> to the container, and the app reads
+<code>MODULES_DIR</code> there as its own folder: an absolute host path in it pointed the app at a folder
+nobody had mounted, so dropped-in modules never appeared. The three descriptors now pin it to
+<code>/app/modules</code> inside the container; with Compose the <code>.env</code> value only moves the mount source, and
+the Quadlet keeps its host folder in the unit file. It reaches an existing install once its compose
+file or Quadlet unit is updated.</p>
+</li>
+<li>
+<p><strong>The Unraid template no longer takes email, backup and document-storage settings out of the
+app’s hands.</strong> Seven of its variables shipped a value, and a value there wins over the matching
+setting in Settings, locking the email and document-storage fields. New containers leave them
+empty. A container created from the older template keeps what it was created with; clearing the
+variable on its Edit page hands the setting back to the app (see the Unraid section of the
+installation guide).</p>
+</li>
+<li>
+<p><strong>Belgian school holidays can be narrowed to one language community.</strong> OpenHolidays lists Belgium
+without any regions but splits its school holidays between the Flemish, French and German-speaking
+Communities, so the calendar settings had nothing to choose from and the calendar showed all three
+side by side. A country without regions now offers its school-holiday groups directly under
+Settings > Modules > Calendar, and the hint there no longer speaks only of Swiss cantons.</p>
+</li>
+<li>
+<p><strong>Housekeeping only offers visit actions you are allowed to take</strong> (#1135). A paid visit is
+settled, and only an admin can change or delete it - but the Staff log and the recent visits on
+the Overview showed edit and delete on every visit, so a member found out at save. The server now
+sends per visit whether the current user may edit or delete it. Where that is not allowed, the row
+offers the visit report instead and says that only an admin can change it. A calendar link to
+such a visit opens the report rather than a form that cannot be saved.</p>
+</li>
+<li>
+<p><strong>An item added without a category lands in the misc category again</strong> (#548). The item route had
+drifted to defaulting to the <em>first</em> category (“Fruit &#x26; vegetables” in aisle order). It now
+prefers the misc category by name as long as the household still has it, and only falls back to
+the <em>last</em> category in aisle order once it has been renamed or removed - “last” alone would have
+meant whatever category was added most recently, since new categories append at the end. The
+pantry import follows the same rule, so the two stay in step. In the same corner, quick-add’s
+category selector resets to the default after every item added, instead of staying on whatever a
+previous suggestion or manual pick set it to - an unrelated item typed right after could quietly
+land in the wrong aisle.</p>
+</li>
+<li>
+<p><strong>Household members and guests created as contacts now show the translated “Other” category
+instead of the German “Sonstiges”</strong> (#1140). The contact that is mirrored when a household member
+or a split-expenses guest is created carried the raw German word instead of the category key, so
+every non-German household saw it untranslated on the contacts page. New contacts get the proper
+key, and existing ones are corrected when the app updates.</p>
+</li>
+<li>
+<p><strong>Opening Housekeeping with a broken visit deep link now says so</strong> (#1139). Tapping a
+housekeeping visit in the calendar opens Housekeeping through an <code>?editVisit=&#x3C;id></code> link; when
+that visit has been deleted or the link is malformed, it used to fail silently and land on the
+ordinary dashboard, with nothing to tell a stale link apart from a working one. It now shows a
+localized message - a missing or invalid visit says so without a retry, while a server error, a
+network problem or rate limiting offers to try again. The broken link is cleared from the
+address bar right away - only that parameter, the rest of the URL stays - so a reload or going
+back does not repeat the failed request.</p>
+</li>
+<li>
+<p><strong>A full audit of the Schedule module, fixed in one sweep.</strong> The override editor no longer
+destroys typed input when its “fill the whole range?” confirmation is cancelled - the confirm now
+parks and resumes the open form instead of force-closing it, and the same holds if the confirmed
+save itself then fails: the form stays parked until the write actually succeeds, instead of
+closing on confirmation and leaving a failure toast over an already-empty page. A member with
+read-only access to the
+module sees an honest page: the banner was always there, but every create/edit/delete control
+rendered anyway and failed only on save; they are now gone, matching what the API has always
+enforced. Statistics and Overview refetch when the page is revisited (previously they re-labelled
+another user’s cached numbers as your own after a tab switch), show real loading and error states
+instead of zeros that looked like data, and rapid week-flipping can no longer let a slow older
+response overwrite a newer one. The dashboard “who’s working today” widget refreshes with the
+15-minute cycle instead of showing the morning state all day, and a failed load renders the error
+tile with a retry button instead of the “create a shift type” onboarding. Shift-start reminders
+fire at the DST-correct minute around clock changes, enabling them defaults to a 15-minute lead
+instead of “at shift start”, and a reminder can no longer keep firing for a shift type deleted in
+the sync’s blind window. On the server, a pattern save is capped at 500 cycle-day rows (each
+stored row is re-emitted on every resolved read - an uncapped save was stored read amplification
+any member could create), deleting a pattern or a user no longer leaks its custom-field values,
+duplicate field ids in one payload are rejected instead of half-committing and answering 500, and
+omitting <code>field_values</code> from an override save now preserves stored values, as the extras route
+always did. The statistics hint text in all 24 languages finally describes the rolling
+7-day-window rule the overtime flag actually applies, the printed statistics sheet no longer leads
+with the personal reminder settings card, and a member with no schedule access no longer gets a
+dead “Schedule” calendar layer plus a guaranteed-403 request on every calendar load.</p>
+</li>
+<li>
+<p><strong>A second pass on the Schedule module, this time on comprehension and everyday polish.</strong> Deleting a
+shift type now asks first, naming what it removes, like every other destructive action in the
+module already did. Two raw server strings that used to reach the toast (“shift_type_id must be a
+positive number.”, “cycle_length cannot exclude existing pattern days.”) are now plain sentences
+that say what to do next, and an Extra with no shift types yet shows a hint instead of an empty,
+submittable dropdown. Editing a pattern’s cycle days and leaving the tab (or the card) without
+saving now prompts to discard, matching the confirm every other unsaved-changes flow in the app
+already has; merely switching the Add-entry modal’s Pattern/Override/Extra segment no longer
+counts as a change worth asking about. Each cycle-day position shows the actual next date it falls
+on, with a one-line explanation of the repeating cycle; creating or reactivating a pattern that
+overlaps another one now asks first and names the consequence, and the pattern currently in effect
+carries a small marker. A household with no shift types yet opens on that tab instead of the
+planning tab it would immediately dead-end on. Every schedule tab now has its own address
+(<code>/schedule/patterns</code>, <code>/schedule/statistics</code>, …), so reloading keeps the tab, the back button
+walks between tabs instead of leaving the page, and the dashboard widget and a shift reminder both
+link straight to the relevant tab instead of the bare module. Clicking a shift anywhere it appears
+(the Today card, the Compare view, a week/day calendar block) now opens a small read-only detail
+view instead of doing nothing; week/day calendar chips show the full time range instead of just
+the start; and the “Free today” hero and the per-member status row on the dashboard no longer
+contradict a schedule entry sitting right next to them. The Statistics owner picker is self-only
+for non-admin members now - statistics remain a read-only summary of data everyone can already see
+via the Today card and calendar, but the convenience of pulling up someone else’s totals was never
+meant to be open to everyone. Shift-type presets are grouped by template (Work/School/University)
+instead of one flat list of fifteen, the reminder lead time accepts any custom value up to the
+server’s own 24-hour cap instead of the seven fixed presets, and an expanded shift-type card spans
+the full row instead of leaving a gap beside it. Tracking overtime at all is now its own switch
+next to the weekly-hours target, instead of that number being the only way to affect whether the
+Statistics tab flags anything - turning it off removes the overtime card entirely rather than
+requiring a number nobody’s schedule will ever cross. All of the above is translated into all 24
+languages.</p>
+</li>
+<li>
+<p><strong>Schedule: a stable “Today” card and one clear way to add an entry.</strong> The Today card used to be
+the first block of the Planning/Shift-types tabs only, so switching to Statistics or Compare made
+it vanish and everything below it jump up to fill the gap; it now renders once, above the
+per-tab content, and simply stays in place across every tab (still hidden entirely for a household
+that hasn’t used the module yet). The Planning tab offered up to four “add” affordances at once -
+the page’s own FAB, an always-visible “Create override” button, an always-visible “Add extra
+shift” button, and each section’s empty-state CTA underneath its own always-visible twin; a
+household with nothing entered yet saw two identical buttons stacked in both the Overrides and
+Extras sections. The FAB (which already opens the same form, pre-selecting the right mode) is now
+the one durable way in; the section headers no longer carry their own button, and each empty-state
+CTA remains as the contextual nudge for first-time setup, matching how the Patterns section already
+worked. The three quick-start template buttons on the Shift-types tab looked like a segmented
+toggle even though picking one is a one-shot action with no “selected” state to show - they’re
+plain buttons now, and the household’s own hidden-template setting still filters which ones
+appear. The Compare tab’s day headers scrolled away with the hours beneath them; they now stay
+pinned to the top of the scroll area while the day’s shifts scroll past, so a block halfway down a
+long day is never orphaned from the day it belongs to.</p>
+</li>
+<li>
+<p><strong>The calendar keeps keyboard focus when a deletion is committed</strong> (#1083). A deleted event
+disappears at once and is removed for good once the Undo notice runs out, and the view then draws
+itself once more. Whatever you had moved on to in the meantime, for example the next row in the
+agenda, lost focus at that moment, so the next Tab started again at the top of the page. That
+element now keeps focus across the redraw. Pressing Undo from the keyboard lost focus the same
+way, because the notice removes its button before the event comes back; focus now lands on the
+restored event.</p>
+</li>
+<li>
+<p><strong>A dialog no longer moves keyboard focus into its first field after you have already moved on</strong>
+(#1156). Opening a form puts focus into its first field a moment later. On a slow or busy device
+that moment could arrive after you had already acted, for example after answering a save
+confirmation, which hands focus back to the Save button: focus then jumped to the first field
+instead, and nothing brought it back. The same could pull focus out of an open date picker. The
+first field now stays out of the way once focus has moved inside the dialog or into something on
+top of it, such as a date picker; focus that lands on the page behind the dialog still moves in.</p>
+</li>
+<li>
+<p><strong>The warning about a password login that is still open now names the administrator condition</strong>
+(#1194). <code>AUTH_ALLOW_PASSWORD_LOGIN=false</code> only takes effect once an administrator account is
+linked to the OIDC provider; a member signing in through SSO does not arm it, so that an
+administrator without a linked account cannot be locked out of the administration. The startup
+warning said that no account was linked, so an operator whose member had already signed in through
+SSO read the switch as armed while the login form was still open. It now says administrator. In
+the same pass the Portainer compose file stopped defaulting <code>OPENWEATHER_LANG</code> to <code>de</code>, where the
+code, <code>.env.example</code>, the Unraid template and the installation guide all use <code>en</code>.</p>
+</li>
+<li>
+<p><strong>Shared expenses embedded in Budget no longer skip a heading level</strong> (#1190). The embedded tab
+title is a level-2 heading, which left the group name beside it at the same level and its
+Balances, Recent expenses and Activity cards directly under the title instead of under the group.
+The group name is now a level-3 heading and those cards level 4, so the outline a screen reader
+announces reads Budget, then Shared expenses, then the group, then the section. Nothing moves
+visually: size, weight, line height, margin and color are unchanged.</p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/ulsklyc/yuvomi/releases/tag/v2.67.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
