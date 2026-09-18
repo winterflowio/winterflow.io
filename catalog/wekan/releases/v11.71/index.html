@@ -1,0 +1,690 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v11.71 release notes | WinterFlow.io</title><meta name="description" content="Version 11.71 introduces soft deletes for attachments, customizable board and card field ordering, expanded REST API endpoints, and a fix for MongoDB 8.2…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v11.71/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v11.71 release notes | WinterFlow.io"><meta property="og:description" content="Version 11.71 introduces soft deletes for attachments, customizable board and card field ordering, expanded REST API endpoints, and a fix for MongoDB 8.2…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v11.71/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v11.71 release notes | WinterFlow.io"><meta name="twitter:description" content="Version 11.71 introduces soft deletes for attachments, customizable board and card field ordering, expanded REST API endpoints, and a fix for MongoDB 8.2…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v11.71","item":"https://winterflow.io/catalog/wekan/releases/v11.71/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,088 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (278)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v11.71</h2> <span class="text-sm text-gray-500">2026-09-11</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="binaries-in-these-bundles">Binaries in these bundles</h2>
+<p>Each bundle carries a Node.js, a FerretDB and the MongoDB Database Tools.
+Which source has a given CPU varies from release to release - nodejs.org
+builds some architectures, unofficial-builds others, and the
+<a href="https://github.com/wekan/node-patches">wekan/node-patches</a> build the ones
+neither of them does - and not every source publishes a checksum. This is
+what went into this release, and which downloads were checked against a
+published SHA256.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bundle</th><th>Binary</th><th>From</th><th>Version</th><th>Checked</th><th>SHA256</th></tr></thead><tbody><tr><td>amd64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-amd64">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>523a96e832e5947a…</code></td></tr><tr><td>amd64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-x64.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>fd8e59d5a511510f…</code></td></tr><tr><td>arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-arm64">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>d8bb85c7ff49fe02…</code></td></tr><tr><td>arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-arm64.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>6ad1325edbdb5649…</code></td></tr><tr><td>armhf</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>c4df2f4e6fe8fa9a…</code></td></tr><tr><td>armhf</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.21.0/node-armhf">wekan/node-patches</a></td><td>v24.21.0</td><td>verified</td><td><code>fcd7558bda05a44b…</code></td></tr><tr><td>armv6</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armv6">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>eeb962ba8d7b76d7…</code></td></tr><tr><td>armv6</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.21.0/node-armv6">wekan/node-patches</a></td><td>v24.21.0</td><td>verified</td><td><code>ea68d25e1eef47cb…</code></td></tr><tr><td>armv7</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-armhf">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>c4df2f4e6fe8fa9a…</code></td></tr><tr><td>armv7</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.21.0/node-armv7">wekan/node-patches</a></td><td>v24.21.0</td><td>verified</td><td><code>561b357700e2019c…</code></td></tr><tr><td>i386</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-i386">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>c855b2f74a7c8b13…</code></td></tr><tr><td>i386</td><td>Node.js</td><td><a href="https://github.com/wekan/node-patches/releases/download/v24.21.0/node-i386">wekan/node-patches</a></td><td>v24.21.0</td><td>verified</td><td><code>d3a55c1b0e22c164…</code></td></tr><tr><td>mac-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-arm64">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>34d45b3eee2f322f…</code></td></tr><tr><td>mac-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-arm64.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>6239d4cf92d86448…</code></td></tr><tr><td>mac-x64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-mac-amd64">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>1fd4a358aae472d9…</code></td></tr><tr><td>mac-x64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-x64.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>0ae5a24c24bb7d01…</code></td></tr><tr><td>ppc64le</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-ppc64le">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>ae5e77d7e26ff668…</code></td></tr><tr><td>ppc64le</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-ppc64le.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>1936fd64623a2f98…</code></td></tr><tr><td>riscv64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-riscv64">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>c52b5d9b477d8a73…</code></td></tr><tr><td>riscv64</td><td>Node.js</td><td><a href="https://unofficial-builds.nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-riscv64.tar.xz">unofficial-builds.nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>5c4e83d46cc1f8ee…</code></td></tr><tr><td>s390x</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-s390x">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>5f6e44510345e653…</code></td></tr><tr><td>s390x</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-s390x.tar.xz">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>2ef7e2ecbf7a6c2f…</code></td></tr><tr><td>win-arm64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win-arm64.exe">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>ebd8eb6dac62319d…</code></td></tr><tr><td>win-arm64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-arm64.zip">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>8779b1bde1d39f8d…</code></td></tr><tr><td>win64</td><td>FerretDB</td><td><a href="https://github.com/wekan/FerretDB/releases/latest/download/ferretdb-win64.exe">wekan/FerretDB</a></td><td>v1.78.0</td><td>verified</td><td><code>39b8bd8b95754497…</code></td></tr><tr><td>win64</td><td>Node.js</td><td><a href="https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip">nodejs.org</a></td><td>v24.21.0</td><td>verified</td><td><code>158f7685b44de51f…</code></td></tr></tbody></table>
+<p>A row saying <em>no checksum published</em> is not a failed check - it is a
+source that publishes nothing to check against. Those are the ones worth
+fixing at the source.</p>
+<h1 id="v1171-2026-09-11-wekan--release">v11.71 2026-09-11 WeKan ® release</h1>
+<p><strong>In short:</strong> deleting an <strong>attachment</strong> from a card is now a <strong>soft delete</strong>
+that the <strong>card history</strong> shows and restores; the only hard delete left is
+deleting an archived board with permanent delete enabled. <strong>Board Settings /
+Card</strong> gains a toggle for every card section and minicard badge and orders
+<strong>card</strong> and <strong>minicard</strong> fields independently; a new <strong>Board Settings /
+Board View</strong> chooses which views a <strong>public</strong> or <strong>private</strong> board offers,
+and in what order. The <strong>REST API</strong> covers those and the other recent
+features, and its OpenAPI spec carries the Boards API again. The <strong>Windows
+release builds</strong> work on <strong>Visual Studio 2026</strong> again, and a <strong>MongoDB 8.2</strong>
+crash loop after a full disk is explained and remediated.</p>
+<p>This release adds the following new features:</p>
+<p><strong>Attachments</strong> - soft delete, card-history restore, and the one real delete.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/9a322618113a88e922772acb6cbca3ad45b513f2">Design: how an attachment is deleted, shown in the card history, restored and purged</a>. Thanks to xet7.</summary>
+<p><code>docs/Features/Reports/History/History.md</code> gains section 12 and closes the
+section 11 question about restoring a removed attachment. The decisions:
+Delete on a card is a soft delete that keeps the file and unsets the cover;
+the card, its count and the minicard badge hide a deleted attachment; the
+card history shows who deleted it and when, and restores it with the same
+preview and download controls the card has, but never cover or background,
+because only a live attachment on a card can be either; no per-attachment
+hard delete exists anywhere; and the one hard delete is Admin Panel /
+Problems / Delete enabled, board archived, board deleted from the archive,
+which removes the board’s attachments, live and soft-deleted, with their
+files.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/dce28983820f99927b2cb3626e586488c962e084">Delete soft-deletes, the card history restores, and only the archived-board purge removes files</a>. Thanks to xet7.</summary>
+<p>Delete on an attachment used to remove the document and its file at once.
+It is now the <code>attachments.softDelete</code> method: the document gets
+<code>deletedAt</code>, <code>deletedBy</code> and <code>deleteBatchId</code> with the same helpers lists
+use, the file is kept, and the card’s cover is unset if this was it. Every
+card-facing read - the opened card’s gallery and “Attachments (N)” count,
+the minicard paperclip badge, the slideshow, the cover, the board-background
+picker, My Attachments, the API list endpoints and the exporters - filters
+to live attachments; the publications keep sending the deleted ones so the
+card history can reach them.</p>
+<p>The card history records who deleted it and when, with the filename in the
+row. Restore - the table’s selection and Restore button, or the row’s own
+Restore, both through <code>changeHistory.restore</code> - clears the mark, so the
+card, its count and the minicard badge include the attachment again; the
+cover is never re-set. An attachment row previews with the existing
+attachment viewer slideshow and downloads with the same link the gallery
+draws, and never offers cover or background. Uploads and renames are
+recorded through the existing history hooks.</p>
+<p>There is no per-attachment hard delete any more: <code>api.attachment.delete</code>,
+<code>DELETE /api/attachment/delete/:id</code> and <code>removeBoardBackground</code>
+soft-delete, the Files report’s delete button and its method are gone, and
+the attachment collection refuses every client remove and logs the attempt
+under Admin Panel / Problems. The one hard delete is Admin Panel / Problems
+/ Delete enabled, board archived, board deleted from the archive, which now
+removes every attachment of the board, live and soft-deleted, with its
+file. The delete confirmation says the attachment can be restored from the
+card history (one new translation key, <code>attachment-soft-delete-pop</code>).</p>
+<p><code>tests/attachmentSoftDelete.test.cjs</code> pins the decisions as arithmetic -
+what a delete sets, that it unsets the cover, that a restore never re-sets
+it, that Restore on the “Removed” row restores rather than deletes again.
+<code>tests/attachmentSoftDeleteNoHardDelete.test.cjs</code> sweeps the whole tree for
+any remaining hard delete outside the board purge and the upload
+rejections, <code>tests/attachmentSoftDeleteReads.test.cjs</code> pins every
+card-facing read to the live filter and the publications to not filtering,
+and <code>tests/attachmentHistoryRowControls.test.cjs</code> pins the history row’s
+controls and that it never offers cover or background.</p>
+</details>
+<p><strong>Board Settings</strong> - card section toggles, field order, the Board View table, WIP Limit Groups under Swimlane, and the menu’s order.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/970213010013529150101d3fd6c59f33eab542d4">A toggle for every card section and minicard badge, listed in card order</a>. Thanks to rmb82 and xet7.</summary>
+<p>Flowtime, Pomodoro, Stickers and Location were added to the opened card
+without an <code>allows*</code> board toggle, so they rendered on every card and Board
+Settings / Card had no row to hide them. Dependencies, Vote, Planning Poker,
+Text Notes and the activity history had the same gap on the card, and the
+dependencies, stickers, comment-count, vote and poker badges had it on the
+minicard. Each now has a board field that defaults to true (an existing
+board keeps showing exactly what it showed), a setter, a REST card-setting
+key, a healed default in the schema upgrade, a row in Board Settings / Card
+with its click handler, and a gate in the card or minicard template.
+<code>allowsActivities</code> already existed but gated nothing and its row was
+commented out; it is wired now.</p>
+<p>The rows are in the order the fields appear on the opened card: Mark
+complete, card number and cover first; then the reorderable sections through
+the same <code>orderedCardFieldSections</code> source the card renders from, so moving
+Description up with the arrows at the bottom of the popup moves its rows up
+too; then checklists, subtasks, attachments, text notes, comments and
+activities. Minicard-only rows (Labels text, List title, Swimlane, Comment
+count) sit beside the card row they belong with. No new translation keys:
+every row reuses the field’s existing name.</p>
+<p><code>tests/cardSettingsCoverage.test.cjs</code> derives the card’s order from
+<code>cardDetails.jade</code> and pins the popup to it, checks that every board gate of
+the card and the minicard has a row and every new row is read by a template,
+and that none of the four sections the issue names is unconditional.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/349c7490e72f93b4e692ff1ff22c7f0eda2431da">Board View: which views a public or private board offers, and which one it opens in</a>. Thanks to xet7.</summary>
+<p>A new <strong>Board View</strong> entry at the top of Board Settings, above Swimlane,
+opens a table like Card Settings: one row per entry of the Board View menu,
+in the menu’s order and with the menu’s own labels, under the columns
+<em>Default on Public Board</em>, <em>Show on Public Board</em>, <em>Default on Private
+Board</em>, <em>Show on Private Board</em> and <em>Description</em>. The two Default columns
+are radio groups drawn as checkboxes - one default per side, and making a
+view the default also ticks its Show box; the default’s Show box cannot be
+un-ticked, so a board always opens in a view it offers. When Admin Panel /
+Settings / Visibility hides public boards, the two public columns are not
+rendered and the table has three columns.</p>
+<p>The Board View menu lists only the views ticked for the board’s current
+visibility, and the view WeKan renders is now resolved through the board:
+the viewer’s stored choice when the board offers it, otherwise that side’s
+default, otherwise Swimlanes - nobody is left on a view the menu no longer
+lists, and switching a board Private ⇄ Public swaps the menu on the spot.
+A board that never opened the popup behaves as before: every view on both
+sides, Swimlanes as the default.</p>
+<p>Stored per board as <code>boardViewSettings</code>, <code>defaultPublicBoardView</code> and
+<code>defaultPrivateBoardView</code>; every decision is the pure module
+<code>models/lib/boardViewSettings.js</code>, applied by the Board setters
+<code>setBoardViewShown</code> and <code>setDefaultBoardView</code> under the existing board-admin
+allow rule. The four column headers are new translation keys, filled in
+every locale. <code>docs/Features/Board/Board-View-Settings.md</code> describes the
+design and <code>tests/boardViewSettings.test.cjs</code> pins it: the entry above
+Swimlane, the five columns and their public-hidden variant, one row per
+menu view in menu order, the schema fields and setters, the radio and
+“default stays shown” semantics, the menu filter, the fallback in
+<code>Utils.boardView()</code>, and the translations.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/82646e4bc0f891ed044bdc5c6cf910cd8dd4a4ea">Board View: reorder the menu with up/down arrows on each row</a>. Thanks to xet7.</summary>
+<p>Each row of the Board View table carries an up and a down arrow in front of
+its name - real links, so the keyboard reaches them, titled with the
+existing <em>Move up</em> / <em>Move down</em> keys of Card Settings’ card field order -
+and the Board View menu lists its entries in that order for everybody on
+the board. The first row’s up and the last row’s down are no-ops, drawn
+disabled. Stored per board as <code>boardViewOrder</code>; <code>normalizeBoardViewOrder()</code>
+drops unknown keys and duplicates and appends missing views in default
+order, so the menu always lists every view exactly once whatever an old or
+hand-edited document holds.</p>
+<p>The menu is now rendered from the same table as the popup - one <code>each boardViewMenuEntries</code> loop over <code>models/lib/boardViewSettings.js</code> instead
+of 25 static entries - keeping the per-view <code>js-open-&#x3C;view>-view</code> class each
+click handler listens for. The group separators are drawn only while the
+order is the default one, since a custom order has no groups.
+<code>tests/boardViewMenu.test.cjs</code>’s order, icon, label and separator pins now
+read that table, the same thing the template reads, and
+<code>tests/boardViewSettings.test.cjs</code> pins the arrows, the field, the setter
+and the normalize/move logic, with the no-op and unknown-key cases.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bbe8b40d903c516491c45c69d3b220415dfd2b32">Board View: the default menu order is the order it had before views became orderable</a>. Thanks to xet7.</summary>
+<p>The default order - what a board with no stored <code>boardViewOrder</code> renders,
+the popup’s default row order, and the order in which views a stored order
+does not name follow it - is now pinned to the Board View menu as it was
+right before views became orderable: the 25 static entries of
+<code>boardChangeViewPopup</code> in <code>boardHeader.jade</code> at <code>525bcab1b</code>, the parent of
+the Board Settings / Board View feature commit, read top to bottom with its
+six separators after Table, Timeline, Statistics, Group by Assignee, DHTMLX
+Gantt and Bigboard. Reading that template gives exactly the sequence
+<code>BOARD_VIEWS</code> already held, so no board changes what it shows and a board
+with a stored order is untouched. What changes is where the order comes
+from: <code>DEFAULT_BOARD_VIEW_ORDER</code> in <code>models/lib/boardViewSettings.js</code> is a
+literal list transcribed from that template rather than a slice of the
+table, so re-sorting <code>BOARD_VIEWS</code> can no longer silently reorder every
+board’s menu, and <code>normalizeBoardViewOrder</code> appends any view the table knows
+but the list does not, so a view can never vanish from the menu.
+<code>tests/boardViewSettings.test.cjs</code> pins the literal sequence, the six
+separator positions on a board with no stored order (public and private,
+for a missing, null, empty and garbage <code>boardViewOrder</code>), the fallback for
+a partial stored order, and that the list is not derived from the table.
+<code>docs/Features/Board/Board-View-Settings.md</code> says where the default comes
+from.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/15b2b6c5339979341d8237aa592ae37a5fd0607d">One "Card field order" heading over two lists, with arrows on every row</a>. Thanks to xet7.</summary>
+<p>Board Settings / Card was a three-column table (Show on Card, Show on
+Minicard, the name) with a separate “Card field order” list of arrows at the
+bottom that reordered five sections of the opened card. It is one heading,
+<strong>Card field order</strong>, over two lists now: <strong>Show on Minicard</strong> in the
+board’s minicard order and <strong>Show on Card</strong> in its card order, and every row
+of either list is <code>[checkbox] [up] [down] icon label</code> - the checkbox is
+whether that side shows the field, the arrows move it on that side only, and
+the icon and name are the field’s own. The lists are independent because the
+orders are: a field can be third on the minicard and last on the card.</p>
+<p>The arithmetic is <code>models/lib/cardFieldOrder.js</code>, pure and tested without
+Meteor: each surface is a fixed head (the card’s title bar), reorderable
+sections of fields, and a fixed tail (the card’s galleries and right
+column). A field moves within its section; at the section’s edge it moves
+the whole section; a section’s header - Labels, Members, Sort number,
+Description title - stays first. What is stored is one flat array of field
+keys per surface: <code>cardFieldOrder</code>, which the first #4448 filled with five
+section keys that stay valid and expand to exactly what they rendered, and
+the new <code>minicardFieldOrder</code>. Two board setters normalise before storing and
+the update allow rule keeps them to a board admin; the REST <code>cardFieldOrder</code>
+endpoints still speak in section keys, eight now. <code>cardDetails.jade</code> renders
+its sections in the board’s order and, inside Labels, Dates, Members, Sort
+and Vote/Poker, the fields in theirs; <code>minicard.jade</code> renders every block
+under the title through the minicard order. Every gate is unchanged, and a
+board that never touched the order shows what it always has.</p>
+<p>The popup’s rows are a table, <code>models/lib/cardSettingsRows.js</code>, drawn twice,
+so no row is hand-written and each checkbox reads the helper it always read.
+<code>tests/cardFieldOrderLayout.test.cjs</code> pins the arithmetic and its negatives
+(unknown keys dropped, missing keys appended, a first row’s up and a fixed
+row’s arrows no-ops, one side’s move leaving the other alone);
+<code>tests/cardSettingsCoverage.test.cjs</code> derives each layout’s default order
+from the templates and pins the heading, the five parts of every row, the
+admin-only setters and that no locale lacks the heading and arrow keys.
+<a href="docs/Features/Board/Card-Field-Display-Order.md">Card field display order</a>
+describes the layout and both orders.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/859771a10ece44f1c48c371d182b4c079c84faad">The default card and minicard field order is the order they had before fields became orderable</a>. Thanks to xet7.</summary>
+<p>The default of the two layouts - what a board that never touched Board
+Settings / Card renders, and where any field a stored order does not name
+goes - is pinned to the render order of <code>cardDetails.jade</code> and
+<code>minicard.jade</code> as they were right before the first field-order commit
+(#4448’s parent, <code>59f7d61df</code>), read top to bottom: on the card, Mark
+complete, number and cover, then Labels, Dates, Members, Dependencies, Sort,
+Custom Fields, Vote and Poker, Description, then the galleries, comments and
+activities; on the minicard, the dates line, cover, labels, custom fields,
+assignees, members, creator, checklists, the badge strip, description text,
+the comment preview and the list name. Reading those templates gives exactly
+the sequence the layout module already held, so no existing card changes
+shape and a board with a stored order is untouched; the module, the docs and
+the tests now say where the order comes from. The two fields newer than that
+commit stay beside their closest older neighbour: Text notes in the card’s
+fixed tail, Swimlane name last on the minicard.
+<code>tests/cardFieldOrderDefaultIsPreFeatureOrder.test.cjs</code> pins both literal
+sequences, the section sequence, the fallback for a partial stored order and
+the popup’s two lists, so a reshuffle of a layout cannot pass by reshuffling
+the template with it.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/921c7f301ccf85c94c5b463a361be2fea195eeed">WIP Limit Groups moved into Board Settings / Swimlane</a>. Thanks to xet7.</summary>
+<p>“WIP Limit Groups” was a fourth top-level entry of the Board Settings group,
+between List and Card. A group most often caps one swimlane’s lists
+together, so it is a row of the Swimlane settings popup now - Board Settings
+/ Swimlane / WIP Limit Groups. The row opens the unchanged WIP Limit Groups
+popup stacked on the Swimlane popup, so its back arrow returns there, and it
+reuses the existing <code>wip-limit-groups</code> key rather than adding one.
+<code>tests/boardSettingsSwimlaneListCard.test.cjs</code> pins the row and its single
+click handler in the Swimlane popup, and that the top-level list no longer
+carries the entry. The docs describe the new path.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/74f3db87d4f3fb6d15fd4a8adb7015ca8b22291d">The menu is four groups: Rules and colours, the views, in and out, and the archive</a>. Thanks to xet7.</summary>
+<p>The Board Settings menu is ordered, top to bottom: Rules, Change color,
+Change Background Image; then Board View, Swimlane, List, Card; then Export,
+Import, Notifications, Outgoing Webhooks; then Archived items and Move Board
+to Archive - a rule between each group. Before, Archived items sat second in
+the first group, Notifications sat among the colours, and Move Board to
+Archive was alone at the end. Every entry keeps the guard it had: the
+board-admin entries stay board-admin, Export and Import stay behind the API
+setting, Card stays open to any member for its personal “Labels text” row,
+and Move Board to Archive stays off the templates board. No translation keys
+are added. <code>tests/boardMenuOrder.test.cjs</code> derives the sequence of entries
+and rules from the template and pins it exactly, pins each entry’s guards so
+a reorder cannot loosen who sees what, and pins the diagram in
+<a href="docs/Features/Board/Board-View-Settings.md">Board View settings</a> to the
+same order.</p>
+</details>
+<p><strong>REST API</strong> - endpoints for recent features that had a UI but no API.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/bbcd98d9d83b874200ba45b2cbc2a495585031d9">Endpoints for attachment restore, Problems, OAuth providers, card field order and rule pausing</a>. Thanks to xet7.</summary>
+<p>Each endpoint runs the same server-side code its UI uses, as the request’s
+user, so the permission checks and side effects are the ones the UI gets:</p>
+<ul>
+<li><code>DELETE /api/boards/:boardId/attachments/:attachmentId</code> soft-deletes,
+<code>POST .../attachments/:attachmentId/restore</code> restores, and
+<code>GET /api/boards/:boardId/attachments/deleted</code> lists what is restorable,
+through the <code>attachments.softDelete</code> / <code>attachments.restore</code> methods the
+card and the card history use. There is no hard delete over the API.</li>
+<li><code>GET /api/admin/problems</code> is the Problems status overview with the
+new-problem count per stream, <code>GET /api/admin/problems/:stream</code> one page
+of a stream (<code>limit</code>, <code>skip</code>, <code>search</code>), and
+<code>POST /api/admin/problems/:stream/acknowledge</code> the acknowledge button -
+all through the admin-only <code>eventLog*</code> methods the Admin Panel calls.</li>
+<li><code>GET /api/admin/oauth-providers</code>, <code>PUT /api/admin/oauth-providers/:providerKey</code>
+and <code>PUT /api/admin/passwordless</code> read and save the Admin Panel / People /
+Login provider settings; a secret is reported only as <code>{ source, hasValue }</code>.</li>
+<li><code>GET</code>/<code>PUT /api/boards/:boardId/cardFieldOrder</code> read and set the opened
+card’s section order, normalised with the same <code>applyCardFieldOrder()</code>.</li>
+<li><code>PUT /api/boards/:boardId/rules/:ruleId</code> accepts <code>enabled</code> to pause and
+resume a rule, and <code>GET</code> reports it.</li>
+</ul>
+<p>The OpenAPI generator is fixed on the way: <code>server/models/boards.js</code> has had
+a bare <code>catch {</code> since v11.67, the esprima parser cannot read that, and a
+parse failure was skipped silently - so <code>public/api/wekan.yml</code> has shipped
+without the whole Boards API since then. It now downlevels <code>catch {</code> and
+<code>for await (</code>, warns when a file cannot be parsed, and no longer emits an
+empty sub-schema for a primitive array-element marker such as
+<code>wipLimitGroups.$.listIds.$</code>, which made the spec unparseable YAML.
+<code>public/api/wekan.yml</code> and <code>wekan.html</code> are regenerated with the release
+workflow’s own commands: 156 operations, up from 122. <code>docs/API/REST-API.md</code>
+and <code>docs/API/Rules.md</code> document every new endpoint with a curl example.</p>
+<p><code>tests/restApiNewFeatureRoutes.test.cjs</code> pins every new route to its method,
+path, <code>@operation</code> block and authentication check, that the OAuth endpoints
+never mention a secret outside the input whitelist, the generator’s fixes,
+that the generated and the committed spec carry the Boards API and the new
+operations, and - as the negative sweep - that no route in <code>models/</code> or
+<code>server/models/</code> lacks an authentication check.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c64d3454ac625f8c16d267decad88a9113417659">Endpoints for Board Settings / Board View, and OpenAPI blocks for the card settings routes</a>. Thanks to xet7.</summary>
+<p><code>GET /api/boards/:boardId/boardViewSettings</code> (board access) answers which
+entries of the Board View menu a board offers, which one it opens in -
+separately for a public and a private board - and the menu order, in the
+normalised shape the menu renders with: every view once with both
+<code>showOnPublic</code> and <code>showOnPrivate</code> explicit, the two defaults resolved
+(missing or unknown reads as Swimlanes), <code>boardViewOrder</code> made whole, and
+<code>keys</code> listing the known views.</p>
+<p><code>PUT /api/boards/:boardId/boardViewSettings</code> (board admin) takes any subset
+of <code>boardViewSettings</code>, <code>defaultPublicBoardView</code>, <code>defaultPrivateBoardView</code>
+and <code>boardViewOrder</code>, through the same pure modifiers the popup’s clicks
+apply, composed by <code>boardViewSettingsRequest()</code> in
+<code>models/lib/boardViewSettings.js</code>: a default is always shown on its side,
+hiding a side’s current default is a <code>400</code> (set another default first - or
+in the same request, since defaults are applied before the show flags), an
+unknown view key anywhere in the body is a <code>400</code> and nothing of that request
+is written, and the order is normalised so the menu lists every view exactly
+once.</p>
+<p>The existing <code>GET</code>/<code>PUT /api/boards/:boardId/cardSettings</code> routes get the
+JSDoc <code>@operation</code> blocks the OpenAPI generator reads, so the hand-written
+copy in <code>openapi/extra_paths.yml</code> - which now duplicated the operationId - is
+removed; <code>public/api/wekan.yml</code> and <code>wekan.html</code> are regenerated: 158
+operations. <code>docs/API/REST-API.md</code> documents both endpoints with curl
+examples and <code>docs/Features/Board/Board-View-Settings.md</code> links to them.
+<code>tests/restApiNewFeatureRoutes.test.cjs</code> pins the four routes to method,
+path, <code>@operation</code> and auth check, that the PUT writes only the helper’s
+<code>$set</code>, the snapshot’s shape, the helper’s positive and negative cases
+(unknown keys, hiding a default, malformed bodies, a partly-invalid body
+applies nothing), and that both specs carry the four operations exactly once.</p>
+</details>
+<p>and fixes the following bugs:</p>
+<p><strong>The release workflow</strong> - what stopped the v11.70 release run.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0001d09a8deb021b1b0696e52aced36a596561e9">The Windows legs compile argon2 again on the Visual Studio 2026 runner image</a>. Thanks to xet7.</summary>
+<p><code>build-win64</code> and <code>build-win-arm64</code> both failed in “Rebuild native modules
+for Windows” while argon2 compiled during <code>npm install</code>:
+<code>gyp ERR! find VS unknown version "undefined" found at "C:\Program Files\Microsoft Visual Studio\18\Enterprise"</code>. On 2026-09-07 GitHub’s
+<code>windows-latest</code> became the <code>windows-2025-vs2026</code> image, with Visual Studio 18
+and no longer 17, and the node-gyp doing the compiling was not one this
+repository installs: Meteor’s bundler pins <code>programs/server/package.json</code> to
+the node-gyp inside the Meteor tool - 10.2.0 in Meteor 3.5.2 - which knows
+nothing newer than Visual Studio 2022. argon2 always compiles on Windows,
+because <code>node-gyp-build</code>’s prebuild probe runs through the Linux-made <code>.bin/</code>
+shims and fails there, so a compiler that cannot find Visual Studio ends the
+job.</p>
+<p><code>releases/bump-bundle-node-gyp.mjs</code> now raises that pin to node-gyp 13.0.2
+(12.1.0 added Visual Studio 2026; 13.0.1/13.0.2 fixed its version detection)
+once, in <code>build-amd64</code> before its first <code>npm install</code>, from where every other
+architecture’s bundle inherits it. A pin already at or above the minimum, a
+range, or a bundle without one is left alone. <code>releases/build-release-bundle.sh</code>
+does the same, so a local release bundle matches what a release ships.
+<code>tests/bumpBundleNodeGyp.test.cjs</code> pins each decision, the minimum, the
+step order in the workflow, and that no leg hard-codes node-gyp 10.2.0 or a
+<code>GYP_MSVS_VERSION</code> workaround.</p>
+<p>The same run’s other failures are not the repository’s: the three amd64 snap
+jobs timed out creating snapcraft’s LXD base instance (<code>apt-get install -y snapd</code>, 600 s; the arm64 twins passed) and <code>snap-launchpad riscv64</code> was still
+building on Launchpad when the job cap cancelled it. Both pass on a re-run.</p>
+</details>
+<p><strong>The database</strong> - a MongoDB 8.2 crash loop, explained, reported and remediated.</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/faaa83ed0922603bb143317213911d7e38691641">MongoDB 8.2 that will not start after a full disk: the scratch directory to delete, and the snap deletes it</a>. Thanks to xet7.</summary>
+<p>A reported test environment (<code>mongo:8.2.2</code> in Kubernetes) filled its data
+volume: the checkpoint’s <code>fdatasync</code> returned <code>ENOSPC</code>, WiredTiger panicked and
+mongod aborted - and then it kept failing on every start, with the disk long
+since freed. MongoDB 8.2 keeps a throwaway WiredTiger instance under
+<code>&#x3C;dbPath>/_tmp/spilldb</code> for queries that spill to disk and empties it itself on
+each start; after the abort that emptying failed (“Failed to clear dbpath of
+the internal WiredTiger instance: Directory not empty”), mongod opened the
+half-emptied directory, found no version file, reported “Failed to open the
+spill WiredTiger instance … database corruption detected” and fasserted.
+Nothing retries, so the pod restarts forever. The data is intact; deleting that
+one directory is the whole fix.</p>
+<p>The snap’s <code>mongodb-control</code> now deletes <code>_tmp/spilldb</code> before every mongod
+start (no mongod is running then, and mongod recreates it), and its
+start-failure handler recognises the log line and names the directory. Admin
+Panel / Problems’ <code>db.restart</code> row now says what a “No space left on device”
+abort means for a full disk as well as for a network filesystem, and both it
+and <code>db.disk-space</code> name the exact directory to delete when MongoDB 8.2 will
+not start afterwards. <code>docs/Databases/MongoDB/Storage-Requirements.md</code> carries
+the log signature of both stages, the one command, what must not be touched,
+and that Docker and Kubernetes users run it themselves, since the database
+container is MongoDB’s own image. <code>tests/databaseHealth.test.cjs</code> pins the
+path, both rows, the probe wiring, the snap’s pre-start deletion and the page.</p>
+</details>
+<p>and improves the translation workflow:</p>
+<ul>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/aa2ff7a8a27e314f58ec61a6173d6b225e4c8953">Translate the attachment soft-delete confirmation for Russian, Aromanian, Kinyarwanda, Sakha, Sardinian, Sicilian, Sindhi, Northern Sami, Sinhala, Slovak, Slovenian, Samoan, Shona, Somali, Albanian, Serbian, Swati, Sotho, Swedish, Swahili, Silesian, Tamil, Telugu, Tajik, Thai, Tigrinya, Tigre, Turkmen, Tagalog, Klingon, Tswana, Tongan, Tok Pisin, Turkish, Tsonga, Tatar and Uyghur</a>. Thanks to xet7.</p>
+</li>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/1815d97f3">Translate the attachment soft-delete confirmation for Danish, German, Greek, Spanish, French, Finnish and 15 more languages</a>. Thanks to xet7.</p>
+</li>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/7f2d644e2">Translate the attachment soft-delete confirmation for Ukrainian, Urdu, Uzbek, Vietnamese, Chinese, Cantonese, Wu, Yiddish, Yoruba, Xhosa, Zulu and 10 more languages</a>. Thanks to xet7.</p>
+</li>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/73e476e93a6ed6fff379f8417aea74954fb706d9">Translate the attachment soft-delete confirmation for Lithuanian, Latvian, Macedonian, Malay, Dutch, Norwegian Bokmål, Polish, Portuguese, Romanian and 23 more languages</a>. Thanks to xet7.</p>
+</li>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/f6eeb18b75884f547265f776e015059c16c07854">Translate the attachment soft-delete confirmation for Gujarati, Hebrew, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean and 24 more languages</a>. Thanks to xet7.</p>
+</li>
+<li>
+<p><a href="https://github.com/wekan/wekan/commit/55bf153b2">Translate the attachment soft-delete confirmation for Afrikaans, Amharic, Arabic, Azerbaijani, Belarusian, Bulgarian, Bengali, Catalan, Czech, Welsh and 22 more languages</a>. Thanks to xet7.</p>
+</li>
+</ul>
+<p>Thanks to above GitHub users for their contributions and translators for their translations.</p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v11.71" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
