@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TREK v4.3.0 release notes | WinterFlow.io</title><meta name="description" content="Introduces the TREK Places API, a road trip planning addon, Dawarich integration, and multi-platform document synchronization, alongside expanded map…"><link rel="canonical" href="https://winterflow.io/catalog/trek/releases/v4.3.0/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="TREK v4.3.0 release notes | WinterFlow.io"><meta property="og:description" content="Introduces the TREK Places API, a road trip planning addon, Dawarich integration, and multi-platform document synchronization, alongside expanded map…"><meta property="og:url" content="https://winterflow.io/catalog/trek/releases/v4.3.0/"><meta property="og:image" content="https://winterflow.io/images/apps/trek/trek.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="TREK v4.3.0 release notes | WinterFlow.io"><meta name="twitter:description" content="Introduces the TREK Places API, a road trip planning addon, Dawarich integration, and multi-platform document synchronization, alongside expanded map…"><meta name="twitter:image" content="https://winterflow.io/images/apps/trek/trek.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"TREK","item":"https://winterflow.io/catalog/trek/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/trek/releases/"},{"@type":"ListItem","position":5,"name":"v4.3.0","item":"https://winterflow.io/catalog/trek/releases/v4.3.0/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.Bvt85l70.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/trek/trek.png" alt="TREK logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">TREK</h1> <p class="mt-4 text-lg leading-8 text-gray-600">A self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> tripit, wanderlog </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://demo.liketrek.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/mauriceboe/TREK/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div> <div class="mt-8 grid gap-4 sm:grid-cols-2"> <img src="/images/apps/trek/dashboard.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/trek/trip-planner.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"><img src="/images/apps/trek/budget.png" alt="TREK screenshot" class="w-full rounded-lg border border-gray-200 object-cover" loading="lazy"> </div> </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/mauriceboe/TREK/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 14,216 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="TREK" data-app-slug="trek" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://www.buymeacoffee.com/mauriceboe" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Buy Me a Coffee →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/trek/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (93)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/trek/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v4.3.0</h2> <span class="text-sm text-gray-500">2026-09-20</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <p><img src="https://raw.githubusercontent.com/liketrek/TREK/e225548c796f8fcd87877d6b4c536421839df2c9/docs/tiles/v430-release-banner.png" alt="TREK Release 4.3.0"></p>
+<h2 id="430">4.3.0</h2>
+<p><a href="https://github.com/liketrek/TREK/compare/v4.2.1...v4.3.0">Full diff since 4.2.1</a></p>
+<h3 id="added">Added</h3>
+<p><strong>TREK Places API</strong></p>
+<ul>
+<li>Place search runs on TREK’s own API, rebuilt monthly from Overture and served from places.liketrek.com: 73.6 million places, no key, no quota. It answers search, autocomplete, place details, the map’s category pills and booking geocoding.</li>
+<li>The TREK API is on by default, with no admin toggle. <code>TREK_PLACES_ENABLED=false</code> keeps search on OpenStreetMap plus Google, and <code>TREK_PLACES_URL</code> points an instance at a self-run copy.</li>
+<li>Opening hours come from a separate layer of 5.7 million objects, read in 5 ms: OpenStreetMap first, then the hours a place publishes itself.</li>
+<li>Restaurants, shops and hotels take their description from their own site, credited by host and linked. 43 percent of places in the TREK API carry a website.</li>
+<li>A trip’s surroundings download for offline use, up to 3000 places per request and kept per trip. Rostock costs about a megabyte, and search and autocomplete then work with no network, labelled as cache rather than live.</li>
+<li>Every hit carries a source badge naming TREK, OpenStreetMap or Google.</li>
+<li>Results are yours to keep: CDLA-Permissive-2.0, Apache-2.0 and CC0, where Google’s contract forbade storing them.</li>
+<li>An optional Place Search Log records query, pick and rank, tied to no user, and deletes rows after 180 days.</li>
+</ul>
+<p><strong>Road trip addon</strong></p>
+<ul>
+<li>Plans a whole trip as one continuous drive, off until an admin enables it under Admin, Addons. A Days and Road trip switch shows trip distance, driving time and stop count.</li>
+<li>Search runs along the driven road, 2, 5 or 10 km either side, for fuel, charging, rest areas, campsites, hotels, food and sights, listed in the order you pass them.</li>
+<li>Clicking the route drops a via point: drag it to move it, right-click it to remove it.</li>
+<li><strong>Other ways</strong> offers the roads the router would take instead, and how much slower each is.</li>
+<li>Driving settings avoid toll roads, motorways and ferries where possible and flag what could not be avoided. The public FOSSGIS Valhalla answers these by default. An admin can point it at their own Valhalla instance under Admin, Default user settings, in effect after a restart. An instance that only sets its own OSRM never asks the public Valhalla.</li>
+<li>Three limits are yours to set: longest drive in one go, driving per day, tank or charge range. Legs and days over them are marked, as is the stop you would reach past your range.</li>
+<li>Daily travel times cap a day, and the overflow continues on extra calculated days.</li>
+<li>Pinned times hold, and a stop’s End is when the drive leaves it. The schedule recomputes both ways from them.</li>
+<li>Stay length replaces check-out, reaches a full day, and carries past midnight. Booking a night puts its place on the check-in day as a service stop, which moves with the booking when its dates change.</li>
+<li><strong>Add manually</strong> puts a charger OpenStreetMap lacks onto a leg you pick. Charger availability and published tariffs load without an API key.</li>
+<li>A day can follow an imported GPX or KML track.</li>
+<li>DWD weather warnings and GDACS disaster alerts can be shown on the map, off until switched on in the driving settings. They never change the route.</li>
+<li>The phone gets a Road trip tab of its own: the open day as a chain, sheets instead of stacked badges, and fuel and charging offers with the detour they cost.</li>
+<li>MCP plans road trips headless, including via points and Google Maps route imports.</li>
+</ul>
+<p><strong>Dawarich addon</strong></p>
+<ul>
+<li>Reads the stays and routes a Dawarich instance recorded. It is read-only and off until an admin enables it under Admin, Addons, and nothing is ever written back. Dawarich publishes its side on the same day as 4.3.0, so the integration is listed on both ends from day one: <a href="https://github.com/Freika/dawarich">Freika/dawarich</a>.</li>
+<li>Each user connects their own instance. The key is encrypted at rest, never handed back, and cleared when the address changes.</li>
+<li>Recorded stays arrive as suggestions. Nothing is entered on its own: you accept or dismiss each one.</li>
+<li>Syncing again never duplicates or overwrites. Delete an accepted stay and the suggestion comes back.</li>
+<li>The recorded route lies over trip and journal maps, one colour per day, cut along your own timezone. Tracks are fetched for the visible stretch and discarded: no position is stored in TREK.</li>
+<li>Journal days fold their stays into one line with the Dawarich mark that opens on tap. The fold stays hidden until the addon is on.</li>
+<li>Atlas proposes the countries and cities the recordings prove, confirmed one at a time.</li>
+<li>The wish list ticks off at 250 m and 20 minutes, dated to the visit, undoable.</li>
+</ul>
+<p><strong>Document sync</strong></p>
+<ul>
+<li>A trip can be bound to a Paperless-ngx tag, a Papra organisation and tag, a Nextcloud folder, an OpenCloud space or a Synology folder, and documents then move both ways: what someone uploads in TREK appears there, and what someone files there appears in TREK. A file one side will not take, by type or size, stays where it is and is listed under Needs a look.</li>
+<li>The trip owner binds it once and TREK works under that one account, so every member sees the same documents while the store never learns who is on the trip.</li>
+<li>TREK keeps its own copy of every document, so download, trash, offline use, PDF export and backups work as before, and a store that is down does not empty a trip.</li>
+<li>Nothing is deleted on the other side on its own. A document removed at the store is flagged in TREK and waits for a person, and one deleted in TREK is removed at the store only when the binding is set to move it to the recycle bin. On Synology that bin is a <code>.trek-trash</code> folder inside the bound folder, and a Nextcloud without its Deleted files app deletes for good.</li>
+<li>Once a binding knows five or more documents, a run that sees more than 40 percent of them vanish at once is discarded, because an unmounted share looks exactly like that. The binding then waits until they are back or it is bound again.</li>
+<li>A rename at the store comes through. On Paperless-ngx and Papra a document that came from the store arrives again as a fresh copy after a rename (on Paperless after any edit), and the old copy goes to TREK’s trash without its links to bookings, places or expenses. A document taken back out of TREK’s trash syncs again.</li>
+<li>Paperless-ngx is supported from version 3 on. Synology works through File Station, two-factor accounts included.</li>
+<li>Stores are off until an admin switches them on under Admin, Addons, Documents, on the desktop or the phone. Switching one off pauses its bindings without touching them. Switching the Documents addon off switches every store off, and each has to be switched on again.</li>
+<li>A store at a private address needs <code>ALLOW_INTERNAL_NETWORK=true</code>, including one in another container on the same Docker network, a Tailscale address or a <code>.local</code> name. Loopback addresses are never reached.</li>
+<li>A binding whose owner leaves the trip stops on every path, the scheduler, webhooks, Sync now and MCP alike, and only picks up again once that person is back on the trip.</li>
+<li>MCP can read a trip’s binding, list what needs attention and start a sync.</li>
+</ul>
+<p><strong>Journey</strong></p>
+<ul>
+<li>A journey can be searched across entry titles, stories, places and tags, ignoring case and accents.</li>
+<li>Mood, weather and the pros and cons list can be switched off per journey. Written values stay, and a shared journey hides what the owner switched off.</li>
+<li>Desktop entries fill in their own weather from forecast or climate archive by entry date.</li>
+<li>Trip suggestions dismiss one at a time and come back from journey settings.</li>
+</ul>
+<p><strong>Trip planner and maps</strong></p>
+<ul>
+<li><strong>Show whole trip</strong> draws every travel day in its own colour on one map, with the total summed leg by leg from routed roads rather than straight lines.</li>
+<li>A car booking can carry stops between pick-up and return, on the desktop and the phone.</li>
+<li>Amap answers place search and draws the map, with China’s coordinate offset corrected at the projection.</li>
+<li>Satellite view works on the vector basemap, not only on Leaflet.</li>
+<li><strong>Import list</strong> takes a shared Google Maps route, up to 30 stops, no key.</li>
+</ul>
+<p><strong>Collections</strong></p>
+<ul>
+<li>
+<p>A list exports and imports as GPX, the format map apps keep places in, with an OsmAnd flavour that carries the categories. A file can go into a list that already exists; places already on it are recognised and skipped. (#2401)</p>
+</li>
+<li>
+<p>A list exports as a <code>.trekcollection.json</code> file and imports into another TREK instance as a new list, with its places, addresses, notes, contact details, labels and categories. Ids, star ratings, members and images stored on the sender’s disk stay behind. Desktop only.</p>
+</li>
+<li>
+<p>A list also exports as GPX, which the map apps people keep places in can read. Name, description with the address, notes, website and category go into the standard fields, everything else into a TREK extension, so a GPX made by TREK imports back as the same list. Places without coordinates are left out and counted.</p>
+</li>
+<li>
+<p>Import takes a <code>.gpx</code> next to the list file and tells them apart by content. Waypoints and named route points become places, tracks are counted and left out, a nameless point is named after its position, and Garmin’s <code>sym</code> and OsmAnd’s address are read.</p>
+</li>
+<li>
+<p>An imported file can go into a list you already keep instead of a new one. Places the list already holds are left exactly as they are and counted as already there, the list keeps its own name, colour and icon, and new places are appended. An import never overwrites what a list already holds.</p>
+</li>
+</ul>
+<p><strong>PDF export</strong></p>
+<ul>
+<li>After the cover comes one map of the whole trip, every planned day in its own colour, stops marked.</li>
+<li>Each day is named underneath with its distance, a scale bar sits in the corner, and the total stands beside the map and on the cover, in your own unit.</li>
+<li>The basemap is drawn once during export and baked in as a picture. Without WebGL or a connection, the map falls back to bundled country outlines that need no key.</li>
+<li>Legs the router answers in time draw as roads, slower ones stay straight, and a trip that cannot be routed still prints with distances left off.</li>
+</ul>
+<p><strong>Costs and sharing</strong></p>
+<ul>
+<li>A <strong>Final budget</strong> card names what the trip cost each traveller. Tap a name for the expenses and transfers behind the figure. The breakdown reads in all 23 languages.</li>
+<li>Receipts and invoices attach to an expense, images or PDFs, by drag and drop.</li>
+<li>Settle-up payments can be edited and undone on the phone, in the currency they were recorded in.</li>
+<li>A <strong>Links</strong> tab collects the addresses a trip runs on, synced live between members. It is on by default, switchable under Admin like Notes and Polls.</li>
+<li>Chat messages take up to four images, JPEG, PNG, GIF or WebP.</li>
+</ul>
+<p><strong>Vacay</strong></p>
+<ul>
+<li>School holidays can be maintained by hand, with no external calendar API: admins add countries, regions and named periods under Personalization. Automatic holiday calendars stay, and school holidays never reduce leave balances.</li>
+</ul>
+<p><strong>Admin, API and backends</strong></p>
+<ul>
+<li>Public API keys can be limited to single areas: trips, days, places, day notes, bookings, accommodation, travellers, wish list and statistics. A key without the days scope does not receive day titles and free-text notes. Existing keys keep full read access, so narrow each one by hand in settings.</li>
+<li>Admins can point routing at their own OSRM instance under Admin, Default user settings, in effect after a restart. The public OSRM stays capped at one request per second.</li>
+<li><code>NOMINATIM_URL</code> points every geocoding call at your own instance, with no fallback.</li>
+<li>Transit search can run on Google instead of Transitous, chosen by an admin, and an empty result names the backend that answered.</li>
+<li>Daily route usage counters are on by default: an admin reads them at <code>/api/route-usage/summary</code>, and the <code>route_usage_enabled</code> setting turns them off. They hold no query, coordinate, user or trip, and never leave the instance.</li>
+<li><code>ALLOW_LINK_LOCAL_IPS</code> lets TREK reach single link-local addresses, such as <code>169.254.1.2</code>, the host gateway of a rootless Podman container, so an identity provider behind it can sign people in. OIDC, AI parsing and your own routing engines reach a listed address directly; integrations a user sets up also need <code>ALLOW_INTERNAL_NETWORK=true</code>. Cloud metadata addresses cannot be listed.</li>
+<li>Helm liveness and readiness probes are configurable under <code>probes</code> in <code>values.yaml</code>.</li>
+<li>Plugin frames can go fullscreen.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<p><strong>Place search</strong></p>
+<ul>
+<li>The TREK API and OpenStreetMap are asked together and their results interleaved, TREK API first. Google answers only where both come back empty, and still holds ratings and photos.</li>
+<li>Top five hits over 128 places of a real trip: 50.0 percent on Nominatim alone, 51.6 percent on the TREK API alone, 72.7 percent on both. That is 77.5 percent of what a Google key reaches, where a keyless install used to reach 53.3 percent. Rank one is 5.5 points worse, because the TREK API always opens the list.</li>
+<li>Median search 26 ms, p95 94 ms. The word “bar” took 75.9 s on the shared Nominatim and takes 85 ms now.</li>
+<li>Category pills leave Overpass: 58 ms instead of about 7 s.</li>
+</ul>
+<p><strong>Journey</strong></p>
+<ul>
+<li>The phone timeline is photo cards, one segment per day, tap or slide to jump.</li>
+<li>A running journey opens on today, a finished one at its first entry.</li>
+<li>Quick capture asks for the name first, then fills in place, coordinates and weather.</li>
+<li>Both maps show the same marker card: name, place, date, up to three photos.</li>
+<li>The photo picker’s calendar jumps by year, not only one month per click.</li>
+<li>A Studio book opens onto a single page 1 instead of a spread.</li>
+</ul>
+<p><strong>Costs and sharing</strong></p>
+<ul>
+<li>Settle-up payments carry the day they happened, not the day they were typed.</li>
+<li>A shared stop shows address, description, notes, planned stay time and its links.</li>
+</ul>
+<p><strong>App</strong></p>
+<ul>
+<li>On a phone the default bottom bar holds Journey beside Vacay, and Atlas moves into More. A bar you arranged yourself stays as it is.</li>
+<li>The release notes window comes back once after every update, on the desktop, however often it was closed before. It replaces the 4.0.0 notice.</li>
+</ul>
+<p><strong>Admin</strong></p>
+<ul>
+<li>With password login switched off, an SSO session lasts <code>SESSION_DURATION_REMEMBER</code>, 30 days by default, because there is no remember me switch to ask. Set that variable shorter for shorter sessions.</li>
+<li>AI parsing recommends Qwen3.5 4B instead of Qwen3 8B, a third smaller. A local model only sees extracted text, so scanned PDFs still need Anthropic.</li>
+<li>Admin settings split into two columns on wide screens, and the API Keys card leads with the TREK API.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>
+<p>A container edited in a management UI such as Portainer or Unraid boots again: start-up moved into a script, so the command survives being re-tokenised. <code>COOKIE_SECURE=false</code> was never the cause. (#2374)</p>
+</li>
+<li>
+<p>An SSO login no longer takes a role away over a claim the provider did not send. With <code>OIDC_ADMIN_CLAIM</code> set, only a claim that is present and false demotes. (#2364)</p>
+</li>
+<li>
+<p>A booking that points at a day or place that does not exist answers 404 instead of a foreign key crash, over REST, MCP and the plugin RPC alike. (#2355)</p>
+</li>
+<li>
+<p>A booking the AI import recognised but could not read now says so; a model answering with almost-JSON used to leave an empty preview. (#2375)</p>
+</li>
+<li>
+<p>Stops that share a spot on the map can be clicked again: clustering no longer switches off at a zoom where the spiderfy never got a chance. (#2344)</p>
+</li>
+<li>
+<p>The journal photo picker searches the provider by the local day, so morning photos no longer go missing from “This day”. (#2336)</p>
+</li>
+<li>
+<p>The mobile per-leg route menu offers public transit, as the desktop does. (#2398)</p>
+</li>
+<li>
+<p>OIDC login and every other guarded integration reach dual-stack hosts again. The outbound guard resolved a name to one address and pinned the socket to it; with the AAAA first and IPv6 unreachable on 443, discovery sat until the timeout. Every address is checked and the socket gets the whole list, IPv4 first. (#2406)</p>
+</li>
+<li>
+<p>A drop in the day plan lands where it was dropped when a booked hotel sits above the target; a hotel stop placed mid-day re-pins the day’s via points; the Public API and the iCal feed list a booked hotel once. (#2406)</p>
+</li>
+<li>
+<p>Turning a booked night into a pause in the road trip popup asks first and says that the booking and its expense go with it; deleting a place with a booked night says the same. (#2406)</p>
+</li>
+<li>
+<p>The route overview paces its requests to the public routers, retries a rate limit and says which legs it could not route instead of quietly reporting a shorter trip. A click on a via handle on the vector map no longer drops a second via. (#2406)</p>
+</li>
+<li>
+<p>Google transit keeps conventional trains when the train filter is on. <code>TREK_PLACES_ENABLED=false</code> stops the details and enrichment calls too and accepts <code>0</code>, <code>no</code> and <code>off</code>. Import into an existing list is no longer capped at 100 kB. Chat images past the limit say so. (#2406)</p>
+</li>
+<li>
+<p>Document sync: a webhook address pasted into a store by hand works on its own, deleting a connection unregisters its subscriptions, Nextcloud under a sub-path connects, Synology answers a name collision before uploading, Paperless titles are capped at the 128 characters it holds, a refused credential gets a Reconnect button, conflict buttons show only to the owner, and the folder picker no longer spins forever on an error. (#2406)</p>
+</li>
+<li>
+<p>The release notice after an update reaches every user once and only from a bundle built for the version the server runs; the previous shell served from the service worker cache no longer shows it as bare keys or uses it up. (#2406)</p>
+</li>
+<li>
+<p>A trip longer than a year no longer stops at day 365. A trip can span up to 999 days, a longer range is refused with a message instead of being saved with missing days, and a trip that was cut short gets its missing days back on the next start.</p>
+</li>
+<li>
+<p>A place standing on three days makes three journal entries, one per day. Older journals keep every entry, and missing days appear when that trip’s plan is next touched.</p>
+</li>
+<li>
+<p>Journey entries take videos, and the editor previews the clip instead of a broken image.</p>
+</li>
+<li>
+<p>Saving a start time on a stop no longer moves it to the top of the day. Untimed stops keep their place, and everyone on the trip gets the new order at once.</p>
+</li>
+<li>
+<p>On the phone, the menu on the leg between two stops offers Public transit, as on the desktop, and opens the search with the leg’s two ends and the departure of the stop it leaves.</p>
+</li>
+<li>
+<p>Place search is hinted by the open day instead of the whole trip, and text search gets the hint too: top five hits rise to 70.6 percent, from 54.8 without a hint and 57.1 with the whole trip.</p>
+</li>
+<li>
+<p>The places list and its count follow the open day, like the map. A day drawing five pins no longer counts 55.</p>
+</li>
+<li>
+<p>A stop on a dead end, such as a cave car park, no longer turns a whole day’s route into straight lines without driving times. The router may now turn round at a stop, and a routing server that does not know that option is asked again without it.</p>
+</li>
+<li>
+<p>The Costs ledger shows a foreign-currency expense or payment at the rate it was booked at instead of today’s, on the desktop and the phone, so it matches the balances.</p>
+</li>
+<li>
+<p>Work offline switches off on logout, and a sync started while working offline no longer downloads over the live connection.</p>
+</li>
+<li>
+<p>Map markers stop lagging behind and snapping back while you drag the map, on every map.</p>
+</li>
+<li>
+<p>An uploaded place image fills its round map marker instead of leaving only the category colour, and a changed or removed image shows without a reload.</p>
+</li>
+<li>
+<p>The upload button on a saved place’s cover in Collections no longer covers its category label.</p>
+</li>
+<li>
+<p>A browser with WebGL off draws raster OpenStreetMap tiles instead of an error screen.</p>
+</li>
+<li>
+<p>A short routed car booking leg no longer vanishes until you zoom in.</p>
+</li>
+<li>
+<p>Shared trip maps cluster their pins the way the planner does, and the share page no longer scrolls sideways on a phone.</p>
+</li>
+<li>
+<p>A place’s description shows its formatting on the phone instead of raw markdown, in the places list, the day timeline, the Up next card and the place sheet.</p>
+</li>
+<li>
+<p>The Wikimedia photo fallback reaches 60 metres, not 300, and skips shops and restaurants.</p>
+</li>
+<li>
+<p>The photo picker no longer uploads twice and lists Immich and Synology photos newest first.</p>
+</li>
+<li>
+<p>Atlas labels Guangdong, not Guangzhou, and a country’s last visit uses the trip’s end date.</p>
+</li>
+<li>
+<p>Notification settings name collection invites, a cleared Synology session, plugin notifications and a failed replica instead of showing their internal ids, in all 23 languages.</p>
+</li>
+<li>
+<p>Place searches no longer give up on an Overpass mirror under load: <code>OVERPASS_TIMEOUT_MS</code> now defaults to 25000 ms instead of 12000. Drop any lower value you set by hand.</p>
+</li>
+<li>
+<p>Switching AirTrail or Collections off ends every open MCP session.</p>
+</li>
+<li>
+<p>The MCP <code>create_todo</code> and <code>update_todo</code> tools say 1 is high priority, matching the app.</p>
+</li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>
+<p>A document sync connection edited to a new address no longer carries the stored token along: a blank form under another origin is refused, the same rule the connection test already applied. Dawarich and AirTrail send a stored key only to the host it was stored for. (#2406)</p>
+</li>
+<li>
+<p>The key rotation script now covers <code>document_connections.secrets</code> and <code>trip_document_links.webhook_secret</code>; a rotation used to leave every document binding unauthorized and drop the webhook signature check. (#2406)</p>
+</li>
+<li>
+<p>A plugin can no longer write a stay against another trip’s day through the reservations RPC. (#2406)</p>
+</li>
+<li>
+<p>An OpenStreetMap place id is checked for shape before it reaches Overpass. (#2406)</p>
+</li>
+<li>
+<p>SSO one-time login codes are bound to the browser that requested them. A code lifted from history, a referrer or a proxy log used to sign the reader in, and it cut both ways: an attacker’s code signed a victim into the attacker’s account. Redeeming now takes the code plus a one-minute httpOnly cookie, and a code is spent by the first attempt whether it succeeds or not. Login is unchanged. (#2360)</p>
+</li>
+<li>
+<p>A shared link hands out chosen columns, not whole rows. Confirmation numbers, record locators, import metadata, owner notes and Google place ids no longer reach link holders. (#2320)</p>
+</li>
+<li>
+<p>The container image takes Debian’s patched SQLite, and the MCP SDK’s Hono moves to 4.13.7 for upstream security fixes. (#2314)</p>
+</li>
+<li>
+<p>The MapLibre attribution sanitizer fix is backported, and WebGL1 installs stay supported. (#2300)</p>
+</li>
+</ul> </div> <div class="mt-6"> <a href="https://github.com/liketrek/TREK/releases/tag/v4.3.0" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
