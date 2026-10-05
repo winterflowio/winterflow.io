@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wekan v12.08 release notes | WinterFlow.io</title><meta name="description" content="This release addresses several security vulnerabilities in LDAP and SAML authentication, introduces comprehensive Scrum planning and reporting features…"><link rel="canonical" href="https://winterflow.io/catalog/wekan/releases/v12.08/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="Wekan v12.08 release notes | WinterFlow.io"><meta property="og:description" content="This release addresses several security vulnerabilities in LDAP and SAML authentication, introduces comprehensive Scrum planning and reporting features…"><meta property="og:url" content="https://winterflow.io/catalog/wekan/releases/v12.08/"><meta property="og:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Wekan v12.08 release notes | WinterFlow.io"><meta name="twitter:description" content="This release addresses several security vulnerabilities in LDAP and SAML authentication, introduces comprehensive Scrum planning and reporting features…"><meta name="twitter:image" content="https://winterflow.io/images/apps/wekan/wekan.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"Wekan","item":"https://winterflow.io/catalog/wekan/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/wekan/releases/"},{"@type":"ListItem","position":5,"name":"v12.08","item":"https://winterflow.io/catalog/wekan/releases/v12.08/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.sTUOllrL.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/wekan/wekan.png" alt="Wekan logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wekan</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Open source kanban board application built with Meteor</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> trello </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://wekan.fi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/wekan/wekan/wiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/wekan/wekan/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> MIT </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 21,106 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="Wekan" data-app-slug="wekan" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/wekan/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://github.com/sponsors/wekan" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Sponsor this project →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/wekan/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (307)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/wekan/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">v12.08</h2> <span class="text-sm text-gray-500">2026-09-27</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <h2 id="in-short">In short</h2>
+<p>Close the reported LDAP empty-password bypass and the directory
+group and SAML replay issues found during the authentication audit. Selected
+boards can also be duplicated with a choice of structure and data.</p>
+<h2 id="security">Security</h2>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0c862047b">Enforce assigned-only permissions in exporter authorization</a>. Thanks to xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/exportscopebleed/">ExportScopeBleed</a>: board
+visibility alone allowed assigned-only members to export unassigned private
+board data. All nine exporter authorization methods now share an assignment
+check. Unfiltered exports refuse assigned-only members; the two Scrum report
+loaders retain access because they already filter cards and snapshots.
+Board Excel and card PDF/Excel refusals now return HTTP 403.</p>
+<p>Three Node checks cover the policy, all exporter call sites and Hall of Fame
+coverage. Eleven HTTP scenarios pass across native JSON, ZIP, CSV, calendar,
+PDF, Excel and charts, including permitted scoped Scrum reports. Existing
+Upcoming regression evidence remains recorded. Firefox, WebKit, FerretDB and
+Sandstorm were not exercised. CWE-863, high severity; no CVE assigned.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/285c1db24">Enforce current access on universal History reads and restores</a>. Thanks to xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/historyscopebleed/">HistoryScopeBleed</a>:
+assigned-only members could read hidden-card history, and historical authorship
+could preserve private-board history access after membership was removed.
+Filter current access before search, paging, totals and contributor counts.
+Restore, undo and redo also enforce current scope and card edit permission;
+an old writable board cannot authorize editing a card moved elsewhere.</p>
+<p>Ten focused Node runner entries and eight Chromium scenarios pass, including
+allowed restoration, denied hidden/moved-card writes, revoked board access,
+search/count isolation and existing rule undo/redo. Other browsers, FerretDB
+and Sandstorm were not tested. Existing Upcoming coverage remains recorded.</p>
+<p>Normal filtering and stale restore attempts can follow legitimate permission
+changes, so they are not automatically labelled as account-blocking attacks.
+See the <a href="docs/Security/History-Access-Boundary-2026-09-27.md">audit</a>
+for detection limits and the verified scope. No CVE is assigned.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/679a8b349">Reject empty LDAP user credentials in every login path</a>. Thanks to kta1kri and xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/ldapbindbleed/">LdapBindBleed</a>, reported in
+<a href="https://github.com/wekan/wekan/security/advisories/GHSA-m87f-f43w-hwmc">GHSA-m87f-f43w-hwmc</a>:
+both LDAP user-authentication helpers and the DDP/REST login boundary reject
+empty or malformed credentials before binding or local fallback. Passwords
+are not trimmed; intentional anonymous service searches remain supported.
+Exploitation required a directory permitting unauthenticated binds and user
+searches. OpenLDAP documents unauthenticated binds as disabled by default.
+Blocked attempts appear as LdapBindBleed summaries in Admin Panel / Problems.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/679a8b349">Enforce LDAP and CAS login-group restrictions</a>. Thanks to xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/directorygroupbleed/">DirectoryGroupBleed</a>:
+both LDAP modes enforce group membership and require a unique user entry.
+Missing membership values cannot broaden a query, and group denial cannot
+fall back to a cached local password. Service-search mode retains service
+credentials for its group lookup. LDAP filter and DN values are escaped in
+their respective contexts. CAS compares complete literal group CN values,
+rejecting prefix and regular-expression matches and malformed allowlists.
+Group denials appear as DirectoryGroupBleed summaries in Problems.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/679a8b349">Require single-use SAML request correlation</a>. Thanks to xet7.</summary>
+<p><a href="https://wekan.fi/hall-of-fame/samlreplaybleed/">SamlReplayBleed</a>: require a
+live InResponseTo request ID through node-saml and consume verified response
+IDs before storing login credentials, including concurrent validation.
+Unsolicited IdP-initiated assertions are rejected. Process-local request state
+requires sticky routing in clustered deployments. Attributable concurrent
+replay denials appear as SamlReplayBleed summaries in Problems.</p>
+<p>Verification for all three entries: 46 focused Node suites and five Chromium
+scenarios pass; the local Meteor application rebuilds. Tests cover allowed
+and refused logins, malformed credentials, group restrictions, safe query
+values, logging failure and signed SAML responses. The protocol fixture
+reproduces the old replay behavior and rejects replay, unsolicited, unsigned
+and tampered responses after the fix. Live directories, external providers,
+Sandstorm and the FerretDB authentication matrix were not tested. See the
+<a href="docs/Security/Authentication-Boundary-Audit-2026-09-27.md">authentication audit</a>
+for the reviewed providers and limits. Existing Upcoming entries retain their
+recorded positive, negative and UI regression coverage.</p>
+</details>
+<p>Also adds the following feature:</p>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/a76c97461">Map explicit Jira estimates into existing Scrum custom fields</a>. Thanks to xet7.</summary>
+<p>The Jira import page accepts an optional numeric estimate field ID and unit.
+Import validates the mapping and values before writes, creates a hidden numeric
+custom field and selects it for Scrum estimates without enabling Scrum. Jira
+export retains the source field ID and unit; native transfer and whole-board
+duplication preserve the mapping and remap the local field. Existing import and
+export selections require both Scrum and Custom Fields for this mapping.</p>
+<p>Sixteen focused Node checks and six Chromium scenarios pass, covering zero,
+fractional and missing estimates, invalid inputs, section selection, UI import,
+Jira/native round trips, board duplication and existing Jira regressions.
+Document the mapping. Live Jira and other browsers were not exercised; existing
+Upcoming regression evidence remains recorded.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/59a13f40d">Retain Jira issue types and workflow categories in Scrum transfers</a>. Thanks to xet7.</summary>
+<p>Jira import maps issue types and explicit status category keys into existing
+hidden Scrum card and list fields. Jira export retains these fields, and the
+Scrum selection controls both directions. Unknown categories remain unmapped;
+translated status titles never decide completion. Import leaves Scrum settings
+and visibility unchanged. Conflicting categories for the same named list and
+invalid issue types fail before board creation.</p>
+<p>Fourteen focused Node checks and four Chromium scenarios pass, including Jira
+and native round trips, excluded fields, invalid inputs, existing completion
+policies and time-tracking regression coverage. Document mappings and remaining
+external sprint, release, epic and story-point work. Live Jira and other
+browsers
+were not exercised. Existing Upcoming regression evidence remains recorded;
+Blockly translation work remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8e4cf5f76">Retain Scrum report context and original commitments in exports</a>. Thanks to xet7.</summary>
+<p>Sprint Report and Velocity exports include snapshot estimate source, custom
+field and completion policy identifiers. Completed original commitments retain
+their start estimates and unknown counts separately from all completed work.
+Excel remains tabular; Scrum PDF prints wrapped labelled values for each sprint
+so the wide metric set does not disappear into clipped columns. Other chart
+PDFs keep their existing table layout.</p>
+<p>Sixteen Node checks and one Chromium export scenario pass, covering changed
+estimates, added work, unknown context, complete row widths, wrapped PDF labels,
+unchanged non-Scrum tables, actual Excel cell values and PDF generation. Update
+the report guide. Existing Upcoming regression evidence remains recorded;
+other browsers were not exercised. Blockly translations remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5e67a3bdd">Assign releases from Scrum planning card editors</a>. Thanks to xet7.</summary>
+<p>Product Backlog and sprint card tables display release assignments and offer
+a selector to assign or clear a release from the current board. The controls
+reuse existing card write permissions, reference validation, revision checks
+and Scrum History. Card selections remain independent of the release-planning
+editor’s selected record. No new metadata fields or translation keys are needed.</p>
+<p>Six Node checks and five Chromium scenarios pass. The new browser scenario
+covers saved selection, clearing, undo/redo and rejected foreign references;
+it caught and verified the fix for a selector helper-name collision. Existing
+Scrum planning, visibility, permission and export scenarios also pass. Update
+the Product Backlog guide. Existing Upcoming regression evidence remains
+recorded; other browsers were not exercised. Blockly translations remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/196faa9cd">Retain sprint calendars and report planned working days</a>. Thanks to xet7.</summary>
+<p>Sprint snapshots retain the configured workweek. Sprint Report, Velocity and
+their Excel/PDF exports show inclusive planned working-day counts using the
+start snapshot’s calendar. Later board settings do not rewrite the result.
+Legacy snapshots without calendars and missing planned dates remain unknown;
+zero working days is a real value. Native transfer validates and preserves
+recorded calendars without inventing one for old data.</p>
+<p>Twenty-three Node checks and five Chromium scenarios pass, including calendar
+isolation, leap dates, invalid/legacy transfers, unchanged counts after board
+calendar edits, Excel values, PDF output and existing full-board duplication.
+Update the report guide. This is planned duration, not measured daily progress;
+daily burndown history remains pending. Existing Upcoming regression evidence
+remains recorded; other browsers were not exercised. Blockly translations
+remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/65217313f">Configure Scrum team accountabilities and working days from settings</a>. Thanks to xet7.</summary>
+<p>The shared Scrum settings form now exposes Product Owner, Scrum Master,
+Developers and working days using existing settings fields. Accountabilities
+select active board members without changing permissions. Administrators can
+clear assignments and select multiple developers and working days. Existing
+validation, revision checks and History undo/redo apply.</p>
+<p>Seven local Node checks and five Chromium scenarios pass, covering saved and
+cleared selections, invalid members/days, undo/redo, non-admin denial and the
+existing Scrum views, exports and visibility settings. One separately gated
+DDP Node suite skipped; the browser scenarios exercised the running server.
+Four new labels use English fallbacks in catalogs awaiting translations.
+Existing Upcoming regression evidence remains recorded; other browsers were
+not run. Blockly translations remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/21504d556">Select card creation and archival in the list Sync popup</a>. Thanks to xet7.</summary>
+<p>Add Card and Move Card to Archive switches independently control new-source
+card creation and source-absence archival. Both default to enabled for existing
+configurations. Disabling either operation leaves matched-card updates and
+field selection available. Disabled archival skips child archive preflight;
+result counts include only enabled operations. Board write access is required.</p>
+<p>Twenty-six focused Node checks and five Chromium scenarios pass. Coverage
+includes every operation combination, retained cards, defaults, saved settings,
+invalid inputs, nonmember denial and existing conflict messages. Update the
+Sync guide and Scrum design checkpoint. Existing Upcoming regression evidence
+remains recorded; other browsers and live providers were not exercised.
+Project-scoped source identities, atomic jobs and Scrum planning Sync remain
+pending. Blockly translation work remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/4aa61c6d5">Opt into Jira spent-time synchronization from the Sync popup</a>. Thanks to xet7.</summary>
+<p>Jira Sync can include Spent time (hours), using the existing numeric seconds
+conversion. Existing configurations keep time synchronization disabled.
+Selected time values share the source baseline and conditional-write guards
+with text: local timer or manual edits are preserved or reported as conflicts.
+Zero hours remains a value; absent time is not replaced with zero.</p>
+<p>Thirty-nine focused Node checks and four Chromium scenarios pass, including
+conversion, invalid values, opt-out, zero, conflict detection, popup persistence
+and unsupported-field rejection. Updated the Sync guide. Existing Upcoming
+regression evidence remains recorded. Other browsers and live Jira accounts
+were not exercised. Estimate and Scrum planning Sync remain pending; Blockly
+translation work remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/31c9b1d6d">Select title and description synchronization in the existing Sync popup</a>. Thanks to xet7.</summary>
+<p>Title and Description switches default to enabled for existing configurations.
+Excluded fields are not compared, overwritten or advanced in the source-text
+baseline. Selecting no text fields is supported; new cards use the existing
+fallback title and an empty description. Creation and archive selection are
+unchanged. The existing write-access check applies to saving these options.</p>
+<p>Twenty-nine focused Node checks and four Chromium scenarios pass, covering
+selection persistence, unsupported-field rejection, excluded text, new-card
+baselines and existing conflict messages. Updated the Sync guide. Existing
+Upcoming regression evidence remains recorded; other browsers and live
+provider accounts were not exercised. Scrum field mappings remain pending,
+and Blockly translations remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c72b9a4a0">Round-trip Jira time tracking through external JSON export</a>. Thanks to xet7.</summary>
+<p>Imported estimate fields carry stable markers, so renaming them does not break
+Jira export. Convert hours back to integer seconds; Dates controls spent time
+and Custom Fields controls estimates. Never infer semantics from field names
+or export ambiguous mappings and invalid values. Native export keeps markers.</p>
+<p>Six focused Node checks and one Chromium scenario pass, including renamed
+fields, selection exclusions, zero values, native export and real Jira-format
+re-import. Existing Upcoming regression evidence remains recorded; other
+browsers were not run. Individual worklogs, sprint/release mappings and Sync
+remain pending. Blockly translation work remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ef5c7d00c">Preserve Jira time tracking using existing WeKan fields</a>. Thanks to xet7.</summary>
+<p>Jira JSON import converts numeric time-tracking seconds to hours. Spent time
+uses the existing card field; original and remaining estimates use numeric
+custom fields hidden from minicards by default. Explicit zeroes are preserved,
+and invalid durations fail before board creation. Existing Scrum settings can
+select the original estimate field. Native export retains the imported values.
+Localized duration text and incomplete worklog pages are not guessed.</p>
+<p>Four focused Node checks and three Chromium scenarios pass, covering nested
+and flat source fields, fractional hours, zero/missing/invalid values, the
+import page, native export, Scrum estimate selection and existing Jira import
+compatibility. Existing Upcoming regression evidence remains recorded. Jira
+sprint/release mapping and external export/Sync integration remain pending;
+other browsers were not run. Blockly translation remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/676536bcd">Visualize sprint reports and velocity with count and estimate bars</a>. Thanks to xet7.</summary>
+<p>Sprint Report and Velocity now show responsive horizontal bars above their
+existing tables. Switch between card counts and known estimates. Exact values,
+unknown-estimate counts and partial-snapshot warnings remain visible. Separate
+scales prevent comparisons across incompatible units, estimate sources,
+custom fields and completion policies. Native HTML/CSS adds no dependency.</p>
+<p>Twelve focused Node checks and four Chromium scenarios pass, covering metric
+switching, both chart views, mobile width, zero and unknown estimates, separate
+scales, partial warnings, existing permissions and Excel/PDF export. The
+expanded report-view scenario was rerun successfully. Existing Upcoming
+regression evidence remains recorded; other browsers were not run. Daily
+burndown history and the remaining transfer integrations are still pending.
+Blockly translation work remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/4af54df66">Preserve Scrum data when duplicating boards</a>. Thanks to xet7.</summary>
+<p>The existing duplication selector includes Scrum, selected by default with its
+custom-field dependency. Planning records receive new IDs; copied card, list,
+swimlane and snapshot references point to the destination. Clearing Scrum
+omits its settings and metadata. Copies without cards retain planning records
+with reduced snapshots visibly marked partial in reports and Excel/PDF rows.
+Source History is not copied, and source board data remains unchanged.</p>
+<p>Seventeen Node checks and seven Chromium scenarios pass, covering all copy
+selection modes, attachment inclusion/exclusion, reference remapping, omitted
+Scrum data, structure-only copies and partial-report labels. Existing Upcoming
+regression evidence remains recorded; other browsers were not exercised.
+Standalone card/list/swimlane copy and move, scoped import, History transport
+and Sync remain separate pending work. Blockly translation remains paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e0863b35c">Restore Scrum data when importing a native board export</a>. Thanks to xet7.</summary>
+<p>Native new-board import validates the versioned Scrum section before creating
+users or boards, then remaps planning, card, list, swimlane, user and estimate
+field references. Snapshots retain their outcomes, source provenance is kept,
+and imported accountabilities grant no permissions. Deselecting Scrum omits
+its payload and metadata. Board administrators can inspect import losses.</p>
+<p>Nineteen focused Node checks and three native import/export Chromium scenarios
+pass. The import-page round trip covers release links, exact event timestamps,
+numeric estimate remapping, zero values, provenance and loss reporting.
+Invalid sprint and estimate-field references create no board. Existing
+Upcoming regression evidence remains recorded; other browsers were not run.</p>
+<p>Universal History transfer, existing-board scoped import, duplication and Sync
+remain pending. Imports are not multi-document transactions, so database
+failure after validation can still leave a partially created board.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d70358219">Include versioned Scrum data in native board exports</a>. Thanks to xet7.</summary>
+<p>The export selector includes Scrum settings, planning records, optional item
+metadata and lifecycle snapshots. Scoped exports retain referenced planning
+records, reduce snapshots and follow-up links, mark partial snapshots and
+report omitted dependencies. Operational checkpoints and revision counters
+are excluded. Existing anonymization covers the added prose fields.</p>
+<p>Eleven focused Node checks and three Chromium-driven HTTP scenarios pass,
+covering complete/scoped exports, omitted sections and estimate fields,
+assigned-only denial and enabled/disabled anonymization. Existing Upcoming
+regression evidence remains recorded. History transfer, board
+duplication and Sync integration remain pending; this does not yet establish
+a complete Scrum backup/restore round trip including History. Other browsers
+were not exercised. Native new-board import is covered by its separate entry.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/89a06f1d5">Edit Scrum releases and events from Sprints</a>. Thanks to xet7.</summary>
+<p>Board administrators select existing releases and events to edit them using
+the existing revision-checked methods. Release forms expose goals, planned
+dates, status, release timestamps and notes. Event forms include local time,
+timebox, notes and visible follow-up cards; summaries link those cards.
+Unchanged event and release timestamps keep their original precision.</p>
+<p>Four Chromium scenarios and twelve focused Node checks pass. Coverage includes
+updating rather than duplicating records, exact event timestamps, follow-up
+retention, History undo, administrator checks and hidden-by-default metadata.
+Three new source keys are registered in every catalog; this does not resume
+the paused Blockly translation work. Other browsers were not exercised.
+Existing Upcoming regression evidence remains recorded.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/ceb19bc77">Integrate Scrum changes with reversible board History</a>. Thanks to xet7.</summary>
+<p>Each Scrum view opens the existing board History filtered to Scrum changes.
+Settings, planning records and optional metadata record before/after values;
+a sprint close and its card moves undo and redo as one operation. Restoration
+checks current board and card permissions, preserves unrelated card content,
+and rejects newer conflicting edits or deletion of referenced planning data.</p>
+<p>Interrupted restores retain a private checkpoint until data, timeline and undo
+status are saved. Retrying resumes completed writes without duplicating the
+timeline or accidentally undoing an older change. This is not a transaction;
+original-edit/History atomicity and large-board limits remain documented work.</p>
+<p>Eighteen focused Node checks, one real Meteor/Mongo lifecycle test and fifteen
+Chromium scenarios pass. Coverage includes the History menu and restore,
+compound undo/redo, access denial, conflicts, planning record recreation,
+reference protection and interrupted recovery. Existing Upcoming regression
+evidence remains recorded. Firefox, WebKit and FerretDB were not exercised.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/83eac1021">Add Scrum planning, optional metadata and sprint snapshot reports</a>. Thanks to xet7.</summary>
+<p>Board View adds Product Backlog, Sprints, Sprint Report and Velocity. Reuse
+existing estimates and card permissions with board-local sprint plans,
+revision checks, start/close snapshots and recoverable unfinished-work rollover.
+Board Settings controls independent hidden-by-default metadata on cards,
+minicards, lists and swimlanes. Release and event creation is included.</p>
+<p>Report tables keep unknown estimates distinct from zero and export through
+the existing Excel/PDF workflow. Assigned-only members receive explicitly
+labelled partial reports. Native checkbox controls remain visible in settings,
+and the public-board view selector recognizes the new views.</p>
+<p>Twelve focused Node checks, one real Meteor/Mongo lifecycle regression and
+three Chromium scenarios pass. Coverage includes stale/foreign writes,
+permission denial, lifecycle snapshots, rollover retries, actual Excel/PDF
+files and independent Card/Minicard visibility. Other browsers and FerretDB
+were not exercised. Existing Upcoming regression evidence remains recorded.</p>
+<p>The menu-aligned Scrum guides distinguish the implemented planning feature
+from pending complete import/export/sync mappings,
+interactive charts. These remain active
+implementation work; this entry does not claim complete Scrum support.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/539aef4aa">Save rule configuration changes in reversible board history</a>. Thanks to xet7.</summary>
+<p>Rule creation, edits, enabled state and deletion record snapshots containing
+the rule, trigger and action. Compound edits produce one history entry.
+Existing History can undo, redo and restore these changes; restoration checks
+current board-admin access and action destination permissions. Stale undo
+requests cannot overwrite another administrator’s newer configuration.</p>
+<p>Three Chromium scenarios cover lifecycle undo/redo, ordinary-member rejection
+and conflicting edits. Existing history, rule and undo suites also pass.
+This reuses board history rather than adding an independent audit store.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/d273b86ed">Edit IFTTT rules with locally loaded Blockly blocks</a>. Thanks to xet7.</summary>
+<p>Board administrators can drag, edit and save rule blocks using the existing
+rule engine. List, Workflow, Blocks and History have direct sidebar choices.
+Workflow writes use server methods. Blockly 13.3.0 and its local media load
+only when the editor is opened; no generated code or remote scripts execute.
+Unknown rule fields survive edits, and changed drafts retain conflict checks.</p>
+<p>All 696 Blockly messages map to WeKan translation keys. Existing upstream and
+local translations are preserved, with additional direct translations in
+completed language batches. Other locales still contain English fallbacks;
+translation of every language is not finished. Cornish, Manx, Gaelic, Breton,
+Kashubian, Upper Sorbian, Silesian and several regional Romance languages
+need native review of specialist terminology. No translation service is used.</p>
+<p>Five Blockly/catalog Node checks and four Chromium scenarios pass, including
+round trips, invalid workspaces, preserved parameters, permission rejection,
+Finnish and Arabic editing, drag operations and rule execution. Catalog checks
+verify key order and placeholders across all 246 locale files. The Blocks
+guide documents usage, supported editing and remaining translation work.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8bf47d1a9">Choose which structure and data to duplicate from selected boards</a>. Thanks to xet7.</summary>
+<p>All Boards / Multi-selection now has one Duplicate Board action. It opens a
+checkbox popup with all choices selected, Select All, Select None and Cancel.
+Choose swimlanes, lists, labels, custom fields, rules, outgoing webhooks, cards,
+checklists with their items, comments and attachments. Selecting child data
+selects its required containers; clearing a container clears its children.
+The separate Duplicate Board — Without cards action is removed; clear Cards
+in the popup instead. Select None copies only the board itself and its settings
+and access roles, without source structure or content.</p>
+<p>Server validation and board-admin permission checks remain enforced. Scoped
+copies remap parent/subtask and dependency links, preserve custom-field values
+without sharing source definitions, and omit deselected labels and covers.
+Attachment copying now imports its dependencies explicitly, waits for flushed
+bytes and the installed Meteor-Files promise API, and propagates stream errors.</p>
+<p>Verification: ten focused Node suites (14 runner entries) and nine Chromium
+scenarios pass. Coverage includes full, cards-only, swimlane-only and empty
+copies, real attachment bytes and covers, unchanged source data, multi-board
+selection, cancellation, invalid options and non-admin rejection. Other browser
+engines, cloud attachment stores and live FerretDB backends were not tested.
+Existing Upcoming entries retain their recorded positive, negative and UI
+coverage. Updated the All Boards documentation.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/67c5df253">Show a single comment in the minicard badge tooltip</a>. Thanks to lonix1 and xet7.</summary>
+<p>Hovering the minicard comment-count badge shows the comment text when exactly
+one visible, nonempty comment exists. Multiple or empty comments retain the
+localized count message. Reuses existing published data and renders the title
+as plain text; no new dependencies, subscriptions or permissions are needed.
+Fixes <a href="https://github.com/wekan/wekan/issues/1933">#1933</a>.</p>
+<p>Three focused Node suites and two Chromium scenarios pass, covering single,
+multiple, empty and malformed comment data, HTML-looking text, admin/read-only
+access and private-board comment isolation. Other browser engines and live
+FerretDB backends were not tested. Existing Upcoming changes retain their
+recorded positive, negative and UI regression coverage. Updated the comment
+feature documentation and open-issue audit.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/8ad064346">Filter subtasks by their parent card</a>. Thanks to robinvd and xet7.</summary>
+<p>Card actions now offer Filter: Subtasks. The Filter sidebar also offers parent
+cards from the current board. Both use the existing <code>parentId</code> relationship and
+filter engine, showing direct children without changing any cards. Multiple
+parents can be selected, and changing boards clears this selection. Read-only
+members can filter; private parent titles are not fetched or disclosed.
+Fixes <a href="https://github.com/wekan/wekan/issues/1871">#1871</a>.</p>
+<p>Verification: nine focused Node checks and three Chromium scenarios pass,
+covering parent selection, combined filters, reset, admin/read-only access,
+private-parent publication boundaries and unchanged card data. The Chromium
+run also rechecks the private-source linked-card regression from
+<a href="https://github.com/wekan/wekan/issues/1942">#1942</a>, already closed by
+<a href="https://github.com/wekan/wekan/commit/9cdbe1a53">the private-source fix</a>.
+Other browser engines and a live FerretDB backend were not tested.</p>
+<p>Removed the completed parent-filter and private-linked-card entries from TODO
+Later. Corrected the reminder entry: scheduled due/overdue rule triggers exist;
+assignee email recipients and start-date reminders remain pending under
+<a href="https://github.com/wekan/wekan/issues/4278">#4278</a>. Updated the filter, subtask
+and open-issue audit documentation.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/abf0a1934">Preserve valid MongoDB updates when editing rule documents</a>. Thanks to xet7.</summary>
+<p>Trigger and action timestamp hooks now distinguish replacement documents
+from update modifiers. Replacement edits preserve creation timestamps without
+mixing top-level fields with $set, which MongoDB rejects. Modifier updates
+continue to set their modification timestamp.</p>
+<p>Two focused tests exercise both forms and ensure replacement documents never
+receive update operators. Browser rule-editing scenarios also pass.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/0a8334ef1">Keep rules-page text and controls visible across layouts</a>. Thanks to xet7.</summary>
+<p>Long titles, trigger descriptions and buttons wrap within their rows.
+Controls participate in layout instead of overlapping through absolute
+positioning. Small screens stack the trigger menu and form, while workflow
+cards and primary-button icons remain readable with the current theme.</p>
+<p>Four Chromium scenarios pass at desktop and mobile widths with English and
+Arabic, including blue, dark and light themes. They check every trigger and
+action category, long content and control boundaries.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/156dbf0ec">Apply import and export anonymization to Scrum prose</a>. Thanks to xet7.</summary>
+<p>Known username mentions in Scrum goals, definitions, acceptance criteria,
+swimlane purpose and planning text use the existing anonymization map. Native
+streaming export now applies the same pass to board and swimlane fields.
+Identity references, estimate units, source provenance and snapshots retain
+their meaning. This rewrites mentions, not arbitrary personal information.</p>
+<p>Six focused Node checks and one Chromium-driven native export scenario pass.
+The export test covers enabled/disabled anonymization and unchanged stored
+data. Canonical transfer text is covered by unit tests; native Scrum planning
+record transfer remains pending. Existing Upcoming evidence remains recorded.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/c35e84c1f">Keep read-only Scrum viewing out of write-denial logging</a>. Thanks to xet7.</summary>
+<p>Rendering card capabilities no longer records an attempted write for ordinary
+read-only members. This prevents false account blocking while keeping the
+same permission decisions and denial logging for actual mutations.</p>
+<p>Ten focused Node checks and one Chromium scenario pass. Coverage verifies
+role permissions, default mutation logging and repeated read-only Scrum views
+without losing the session. Existing Upcoming regression evidence remains
+recorded; other browser engines were not run for this fix.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/72f846345">Resume interrupted sprint closes from the Sprints view</a>. Thanks to xet7.</summary>
+<p>Board administrators can resume a closed sprint whose card rollover was
+interrupted, using its saved revision and destination. A pending History
+recovery blocks this action until it finishes. The recovery button disappears
+when all pending cards have been handled.</p>
+<p>Seven focused Node checks and the Chromium recovery scenario pass, including
+read-only denial, pending History exclusion and successful card rollover.
+The related Scrum and History browser suites also passed. Register the new
+source message in every catalog; Blockly translation work remains paused.
+Existing Upcoming coverage remains recorded. Other browsers were not run.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/89f7aa985">Separate partial Scrum reports from complete chart scales</a>. Thanks to xet7.</summary>
+<p>Partial snapshots from scoped imports or restricted views no longer share a
+chart scale with complete sprint snapshots. Keep the existing visible warnings
+and exact totals. Assigned-only reports continue to exclude hidden cards and
+their estimates from both chart data and exported workbooks.</p>
+<p>Nine focused Node checks and one Chromium scenario pass. The browser scenario
+checks rendered counts, metric selection, partial warnings, server snapshot
+filtering and Excel values for an assigned-only member. Existing Upcoming
+regression evidence remains recorded; other browsers were not run.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/5ac57edde">Avoid repeated full-snapshot scans in Scrum reports</a>. Thanks to xet7.</summary>
+<p>Completed-commitment totals now use an index of completed card IDs instead of
+scanning the closing snapshot for each original card. This keeps matching work
+linear at the supported 10,000-card snapshot limit while retaining original
+commitment estimates and separate added/removed scope totals.</p>
+<p>The deterministic work-bound regression fails before the fix and passes after
+it. Fourteen focused Node checks and two Chromium scenarios pass, including
+report metric selection, assigned-only filtering and Excel/PDF output. Existing
+Upcoming regression evidence remains recorded; other browsers were not run.
+This does not resolve the remaining large-board History storage limits.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/e685866c1">Preserve Jira estimate mappings through the custom-field editor</a>. Thanks to xet7.</summary>
+<p>Saving the existing custom-field popup no longer erases valid Jira time markers
+from numeric fields when rebuilding their settings. Renaming an imported
+estimate through the UI retains its meaning for Jira export. Invalid markers
+and markers on non-numeric fields are not retained by the editor.</p>
+<p>Seven focused Node checks and one Chromium scenario pass. Tests execute the
+production save handler, cover valid/invalid markers, and rename through the
+actual popup before exporting and re-importing Jira time values. Existing
+Upcoming regression evidence remains recorded; other browsers were not run.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/1ebc4e3b8">Honor import selections for Jira estimates and spent time</a>. Thanks to xet7.</summary>
+<p>The existing import selector now removes Jira’s nested time fields and their
+flat fallbacks before creation. Custom Fields controls original/remaining
+estimates; Dates controls spent time. Excluded estimates do not create numeric
+custom fields, and fallback values cannot silently restore excluded data.</p>
+<p>Seven focused Node checks and two Chromium scenarios pass. The browser tests
+exercise Dates-only and Custom-Fields-only imports and retain full native,
+Jira and board-copy round-trip coverage. Updated the Jira guide. Existing
+Upcoming regression evidence remains recorded; other browsers were not run.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/fe3d55ba7">Reject malformed Sync responses before changing cards</a>. Thanks to xet7.</summary>
+<p>List Sync reuses the existing import source-shape validator before parsing and
+reconciliation. Malformed responses and parser failures set the existing error
+without creating, changing or archiving cards. A valid empty source retains
+existing archive behavior; an invalid response no longer masquerades as one.</p>
+<p>Five focused Node checks and one Chromium scenario pass. Server tests execute
+the sync function with malformed, valid-empty and parser-failing responses;
+the browser verifies error display separately without contacting a provider.
+Existing Upcoming regression evidence remains recorded. Complete pagination
+and local-edit conflict handling remain pending. Other browsers were not run.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/11b80633c">Fetch all advertised issue pages before synchronizing lists</a>. Thanks to xet7.</summary>
+<p>Sync now follows Jira REST v2 search offsets and GitHub, Gitea/Forgejo and
+GitLab next-page headers before reconciling cards. Validate advertised totals;
+abort failed, incomplete, changing or looping pagination instead of returning
+partial results that could archive later-page cards. Limit runs to 1,000 pages
+or 100,000 items. Pagination stays on the configured origin; redirects fail.</p>
+<p>Eleven focused Node checks and the Chromium Sync error-display scenario pass.
+Mocked provider responses exercise multi-page success, short pages, failures,
+missing links, bounds and invalid origins. No live provider account was used.
+Existing Upcoming regression evidence remains recorded. Jira Cloud’s newer
+search endpoint and local-edit conflict handling remain pending; other
+browsers were not run. Updated the Sync guide with provider references.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/7977c68a3">Use enhanced Jira Cloud search for list synchronization</a>. Thanks to xet7.</summary>
+<p>Standard <code>.atlassian.net</code> tenant URLs now use REST v3 enhanced JQL search with
+explicit parser fields and token pagination. Missing termination metadata or
+repeated tokens abort before reconciliation. Self-hosted Jira retains the
+existing offset-based search path. Shared page/item limits still apply.</p>
+<p>Thirteen focused Node checks pass using mocked provider responses, including
+opaque-token encoding, required fields, empty results, malformed responses
+and retained self-hosted pagination. Existing Sync popup browser coverage and
+Upcoming regression evidence remain recorded. No live Jira account was used.
+Custom Cloud domains and government-cloud endpoint selection remain pending;
+no new UI was added. Updated the Sync guide with the API reference.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/6efec562e">Reject ambiguous source identities before list synchronization</a>. Thanks to xet7.</summary>
+<p>Normalized Sync tasks must have unique valid external IDs and string text
+fields. Missing IDs no longer disappear silently from reconciliation, and a
+duplicate ID cannot silently replace an earlier source record. Invalid task
+collections use the existing error path before any card mutation. Valid empty
+sources and unchanged records retain their existing behavior.</p>
+<p>Fifteen focused Node checks and the Chromium Sync error-display scenario pass.
+Tests execute the sync function with malformed normalized tasks and confirm
+zero card writes. Existing pagination, parser and reconciliation checks pass.
+Updated the Sync guide. Existing Upcoming regression evidence remains recorded;
+other browsers and live provider accounts were not exercised.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/b254b7d3a">Preserve local title and description edits during Sync</a>. Thanks to xet7.</summary>
+<p>Store the last accepted source text on synced cards. Upstream-only changes
+merge, local-only changes remain, and differing edits on both sides stop the
+run before card writes. Legacy cards adopt a baseline only when local and
+source text agree. The existing Sync popup identifies conflicting source IDs
+and fields; aligning both texts permits a retry.</p>
+<p>Conditional updates reject intervening text, archive-state or location changes.
+Sync now displays structured failures as errors rather than success. Twenty-two
+focused Node checks and two Chromium scenarios pass, including merge decisions,
+legacy baselines, concurrent-write rejection and popup error handling. Provider
+responses are mocked; no live tracker account was used. Earlier successful
+writes can remain after a later race: this is not a transaction. Dedicated
+resolution controls, Scrum mappings and fully atomic Sync remain pending.
+Existing Upcoming regression evidence remains recorded; other browsers were
+not run. Blockly translations remain paused.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/85b5f28bc">Keep copied cards independent from external Sync identities</a>. Thanks to xet7.</summary>
+<p>Card and subtask copies no longer inherit external Sync IDs, source types or
+last-source text. The original mapping remains intact. Sync refuses existing
+duplicate local mappings before updates or archives, instead of selecting an
+arbitrary matching card. The existing popup reports the duplicate identity.</p>
+<p>Seventeen focused Node checks and one Chromium board-copy scenario pass.
+Coverage exercises real copy bodies, source preservation, subtask fields and
+zero card writes when local identities are duplicated. The browser confirms
+Scrum references still remap while copied Sync identities are absent. Updated
+the Sync guide. Existing Upcoming regression evidence remains recorded;
+other browsers and live provider accounts were not exercised.</p>
+</details>
+<details>
+<summary><a href="https://github.com/wekan/wekan/commit/18c660916">Guard Sync archives against moved cards and independent subtasks</a>. Thanks to xet7.</summary>
+<p>Source-absence archives now verify the original card text, baseline, archive
+state and board/list location before writing. Concurrent changes stop the
+remaining run. Sync no longer recursively archives subtasks; an active subtask
+outside the source archive plan stops the run before card writes.</p>
+<p>Nineteen focused Node checks and three Chromium error-display scenarios pass.
+Server tests cover valid removal, concurrent change rejection and independent
+subtask protection. Browser tests check structured archive errors alongside
+text conflicts and malformed-source errors. Updated the Sync guide. This is
+not a transaction, and concurrent child creation remains outside the guard.
+Existing Upcoming regression evidence remains recorded; other browsers and
+live provider accounts were not exercised.</p>
+</details>
+<p>Thanks to above GitHub users for their contributions.</p>
+<p><a href="https://github.com/wekan/wekan/blob/main/CHANGELOG.md#v1208-2026-09-27-wekan--release">More details at ChangeLog</a></p> </div> <div class="mt-6"> <a href="https://github.com/wekan/wekan/releases/tag/v12.08" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.BUhCMeYe.js"></script>  </body></html>
