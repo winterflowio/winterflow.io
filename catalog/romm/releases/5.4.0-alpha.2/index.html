@@ -1,0 +1,1031 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>RomM 5.4.0-alpha.2 release notes | WinterFlow.io</title><meta name="description" content="Introduces notifications, RetroArch Cloud Sync, parental controls, an audit log, and library conversion, alongside browser save syncing and device…"><link rel="canonical" href="https://winterflow.io/catalog/romm/releases/5.4.0-alpha.2/"><meta property="og:type" content="article"><meta property="og:site_name" content="WinterFlow.io"><meta property="og:locale" content="en_US"><meta property="og:title" content="RomM 5.4.0-alpha.2 release notes | WinterFlow.io"><meta property="og:description" content="Introduces notifications, RetroArch Cloud Sync, parental controls, an audit log, and library conversion, alongside browser save syncing and device…"><meta property="og:url" content="https://winterflow.io/catalog/romm/releases/5.4.0-alpha.2/"><meta property="og:image" content="https://winterflow.io/images/apps/romm/romm.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="RomM 5.4.0-alpha.2 release notes | WinterFlow.io"><meta name="twitter:description" content="Introduces notifications, RetroArch Cloud Sync, parental controls, an audit log, and library conversion, alongside browser save syncing and device…"><meta name="twitter:image" content="https://winterflow.io/images/apps/romm/romm.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://winterflow.io/"},{"@type":"ListItem","position":2,"name":"Catalog","item":"https://winterflow.io/catalog/"},{"@type":"ListItem","position":3,"name":"RomM","item":"https://winterflow.io/catalog/romm/"},{"@type":"ListItem","position":4,"name":"Releases","item":"https://winterflow.io/catalog/romm/releases/"},{"@type":"ListItem","position":5,"name":"5.4.0-alpha.2","item":"https://winterflow.io/catalog/romm/releases/5.4.0-alpha.2/"}]}</script><script defer src="https://t.kuznetsov.dev/js/twillingate.js" data-key="ak_f01eb888b1cc6266d8de352bbcf6482b" data-identity="anonymous"></script><!-- Reimplements Plausible's class-based event tagging on the tracker; must load after it. See docs/analytics.md. --><script defer src="https://t.kuznetsov.dev/js/plausible-shim.js"></script><link rel="stylesheet" href="/_astro/index.sTUOllrL.css"></head> <body class="overflow-x-hidden "> <svg style="display: none;"> <symbol id="winterflow-asterisk" viewBox="0 0 24 24"> <g stroke="currentColor" stroke-width="3.8" stroke-linecap="round"> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(30, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(90, 12, 12)"></line> <line x1="12" y1="4" x2="12" y2="20" transform="rotate(150, 12, 12)"></line> </g> </symbol> </svg> <div class="bg-white min-h-screen"> <header class="absolute inset-x-0 top-0 z-50"> <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"> <div class="flex lg:flex-1"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> </div> <div class="flex lg:hidden"> <button type="button" class="js-mobile-menu-open -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" aria-label="Open main menu" aria-expanded="false" aria-controls="mobile-menu"> <span class="sr-only">Open main menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> <div class="hidden lg:flex lg:flex-none lg:justify-center lg:gap-x-12"> <a href="/#why" class="text-sm/6 font-semibold text-gray-900">Why WinterFlow?</a> <a href="/#how-it-works" class="text-sm/6 font-semibold text-gray-900">How it works</a> <a href="/#pricing" class="text-sm/6 font-semibold text-gray-900">Pricing</a> <a href="/catalog" class="text-sm/6 font-semibold text-blue-600">Apps Catalog</a> </div> <div class="hidden lg:flex lg:flex-1" aria-hidden="true"></div> </nav> <div class="js-mobile-menu lg:hidden hidden" role="dialog" aria-modal="true" id="mobile-menu"> <div class="js-mobile-menu-backdrop fixed inset-0 z-50 bg-black bg-opacity-25"></div> <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> <div class="flex items-center justify-between"> <a href="/" class="-m-1.5 p-1.5 logo-container"> <span class="sr-only">WinterFlow.io</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <button type="button" class="js-mobile-menu-close -m-2.5 rounded-md p-2.5 text-gray-700" aria-label="Close menu"> <span class="sr-only">Close menu</span> <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="mt-6 flow-root"> <div class="-my-6 divide-y divide-gray-500/10"> <div class="space-y-2 py-6"> <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Product</a> <a href="/#why" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Why WinterFlow?</a> <a href="/#how-it-works" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">How it works</a> <a href="/#pricing" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Pricing</a> <a href="/catalog" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-blue-600 hover:bg-gray-50">Apps Catalog</a> </div> </div> </div> </div> </div> </header> <main>   <section class="pt-24 pb-16"> <div class="mx-auto max-w-7xl px-6 lg:px-8"> <div class="mb-8"> <a href="/catalog" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Catalog
+</a> </div> <div class="flex flex-col items-start gap-8 lg:flex-row"> <div class="flex-grow"> <div class="flex flex-col items-start gap-6 sm:flex-row"> <div class="flex-shrink-0"> <div class="h-48 w-48 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" style="min-width: 192px; min-height: 192px; max-width: 192px; max-height: 192px;"> <img src="/images/apps/romm/romm.png" alt="RomM logo" class="h-full w-full object-cover" loading="lazy"> </div> </div> <div class="flex-grow"> <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">RomM</h1> <p class="mt-4 text-lg leading-8 text-gray-600">Beautiful, powerful, self-hosted rom manager and player</p> <div class="mt-4 flex flex-wrap gap-2"> <a href="/catalog#app" class="inline-flex items-center rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 transition-colors duration-200 hover:bg-blue-100 hover:text-blue-800"> app </a> </div> <div class="mt-4"> <p class="text-sm text-gray-600"> <span class="font-medium">Alternative to:</span> antstream arcade </p> </div> <div class="mt-6 flex flex-wrap gap-4"> <a href="https://romm.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path> </svg>
+Website
+</a> <a href="https://github.com/rommapp/romm" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 6.844a9.564 9.564 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.523 0 10 0z" clip-rule="evenodd"></path> </svg>
+Repository
+</a> <a href="https://github.com/rommapp/romm#readme" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-colors duration-200 hover:bg-gray-50"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path> </svg>
+Docs
+</a> </div> </div> </div>  </div> <aside class="flex-shrink-0 lg:w-80"> <div class="rounded-xl border border-gray-200 bg-gray-50 p-6"> <div class="mb-6"> <h3 class="mb-4 text-lg font-semibold text-gray-900">Details</h3> <div class="divide-y divide-gray-200"> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">License</span> <a href="https://github.com/rommapp/romm/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-blue-600 transition-colors duration-200 hover:text-blue-700"> AGPL-3.0 </a> </div> <div class="flex items-center justify-between py-2"> <span class="text-sm text-gray-600">GitHub stars</span> <span class="inline-flex items-center gap-1 text-sm font-medium text-gray-900"> <svg class="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"> <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"></path> </svg> 13,288 </span> </div> </div> </div> <div class="pt-4"> <button type="button" class="js-catalog-waitlist-button inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" data-app-name="RomM" data-app-slug="romm" style="cursor: pointer;"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 11.25 12 15.75l4.5-4.5"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v11.25"></path> </svg>
+Install with Winterflow
+</button> </div> <div class="border-t border-gray-200 pt-4"> <h4 class="mb-3 text-sm font-medium text-gray-900">Support this project</h4> <div class="space-y-2"> <a href="https://github.com/rommapp/romm" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Add a star on GitHub →
+</a><a href="https://opencollective.com/romm" target="_blank" rel="noopener noreferrer" class="block text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700"> Support on Open Collective →
+</a> </div> </div> </div> </aside> </div> <hr class="mt-16 mb-8 border-gray-200"> <div> <div class="max-w-4xl"> <div class="inline-flex rounded-lg bg-gray-50 p-1 mb-6"> <a href="/catalog/romm/" class="relative px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 rounded-md hover:text-gray-900">
+About
+</a> <span class="relative px-4 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white rounded-md shadow-sm">
+Versions (122)
+</span> </div> <div class="mt-6"> <div class="mb-4"> <a href="/catalog/romm/releases/" class="inline-flex items-center text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"> <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to Versions
+</a> </div> <div class="rounded-xl border border-gray-200 bg-white p-6"> <div class="flex flex-col gap-1"> <div class="flex items-center gap-3"> <h2 class="text-2xl font-semibold text-gray-900">5.4.0-alpha.2</h2> <span class="text-sm text-gray-500">2026-10-08</span> </div> </div> <div class="release-article prose prose-lg prose-slate mt-5 max-w-none prose-a:text-blue-600 prose-headings:text-gray-900 prose-pre:rounded-lg prose-pre:bg-slate-900 prose-pre:text-slate-100 hover:prose-a:text-blue-700"> <blockquote>
+<p>[!CAUTION]
+<strong>Give the first start time to finish its migrations.</strong>
+Several of this release’s migrations rewrite the <code>roms</code> table and backfill it in batches, which can take a while on a large library. Don’t restart the container while they run.</p>
+</blockquote>
+<blockquote>
+<p>[!WARNING]
+<strong>Cross-origin requests are denied by default.</strong>
+An unset or empty <code>ROMM_CORS_ALLOWED_ORIGINS</code> used to allow every origin, and now allows none. If a browser-based client on another origin talks to your RomM, list its origin in <code>ROMM_CORS_ALLOWED_ORIGINS</code>. A <code>*</code> still answers any origin, but without credentials, so a client that signs in with the session cookie needs its origin listed explicitly. #4699</p>
+</blockquote>
+<blockquote>
+<p>[!WARNING]
+<strong>Add a reverse proxy on a public address to <code>FORWARDED_ALLOW_IPS</code>.</strong>
+RomM now trusts <code>X-Forwarded-For</code> only from loopback and private ranges. A proxy outside those ranges has to be added, or every request is logged and rate limited as coming from the proxy’s address. #4748</p>
+</blockquote>
+<h2 id="technical-changes">Technical changes</h2>
+<details>
+  <summary>🌎 ENVIRONMENT VARIABLES</summary>
+<h4 id="notifications-and-email">Notifications and email</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>SMTP_HOST</td><td><code>-</code></td><td>SMTP server; email stays off until this and <code>SMTP_FROM</code> are set</td></tr><tr><td>SMTP_PORT</td><td><code>587</code></td><td>SMTP server port</td></tr><tr><td>SMTP_USERNAME</td><td><code>-</code></td><td>Login for the SMTP server, if it needs one</td></tr><tr><td>SMTP_PASSWORD</td><td><code>-</code></td><td>Password for the SMTP server</td></tr><tr><td>SMTP_FROM</td><td><code>-</code></td><td>Sender address, such as <code>romm@example.com</code></td></tr><tr><td>SMTP_SECURITY</td><td><code>starttls</code></td><td><code>starttls</code>, <code>tls</code> (implicit TLS, usually port 465) or <code>none</code></td></tr></tbody></table>
+<h4 id="audit-log">Audit log</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>AUDIT_LOG_RETENTION_DAYS</td><td><code>90</code></td><td>Days to keep audit events; <code>0</code> keeps them forever</td></tr></tbody></table>
+<h4 id="library-conversion">Library conversion</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>ROM_CONVERTO_ENABLED</td><td><code>false</code></td><td>Enable the “Convert library” task and <code>?format=</code> download conversions</td></tr><tr><td>ROM_CONVERTO_TIMEOUT</td><td><code>600</code></td><td>Seconds per rom-converto operation</td></tr><tr><td>ROM_CONVERTO_MAX_CONCURRENCY</td><td><code>2</code></td><td>Concurrent conversions per web or task worker</td></tr></tbody></table>
+<h4 id="devices-and-sync">Devices and sync</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>DEVICE_INSTALL_ENABLED</td><td><code>true</code></td><td>Let users push a ROM to one of their devices for install</td></tr><tr><td>DEVICE_INSTALL_REQUEST_TTL_DAYS</td><td><code>2</code></td><td>Days an unfinished install request waits for its device; <code>0</code> waits forever</td></tr><tr><td>DEVICE_INSTALL_EXCLUDED_PLATFORM_SLUGS</td><td><code>win,win3x,win9x,windows-apps</code></td><td>Platforms that can never be pushed to a device</td></tr><tr><td>SYNC_RETROARCH_PSP_SERIAL_MAP</td><td><code>{}</code></td><td>JSON map of PSP serial to extensionless ROM file name, for RetroArch PSP saves whose title matches no ROM</td></tr></tbody></table>
+<h4 id="scheduled-cleanups">Scheduled cleanups</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>ENABLE_SCHEDULED_CLEANUP_NETPLAY</td><td><code>true</code></td><td>Clean up empty netplay rooms</td></tr><tr><td>SCHEDULED_CLEANUP_NETPLAY_CRON</td><td><code>*/30 * * * *</code></td><td>When that cleanup runs</td></tr><tr><td>ENABLE_SCHEDULED_CLEANUP_UPLOAD_TMP</td><td><code>true</code></td><td>Clean up abandoned chunked uploads</td></tr><tr><td>SCHEDULED_CLEANUP_UPLOAD_TMP_CRON</td><td><code>0 * * * *</code></td><td>When that cleanup runs</td></tr><tr><td>ENABLE_SCHEDULED_CLEANUP_ZIP_CACHE</td><td><code>true</code></td><td>Clean up stale cached ZIP files</td></tr><tr><td>SCHEDULED_CLEANUP_ZIP_CACHE_CRON</td><td><code>0 4 * * *</code></td><td>When that cleanup runs</td></tr><tr><td>ENABLE_SCHEDULED_CLEANUP_SYNC_SESSIONS</td><td><code>true</code></td><td>Fail sync sessions no client completed</td></tr><tr><td>SCHEDULED_CLEANUP_SYNC_SESSIONS_CRON</td><td><code>23 * * * *</code></td><td>When that cleanup runs</td></tr></tbody></table>
+<h4 id="general">General</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>variable</th><th>default</th><th>description</th></tr></thead><tbody><tr><td>⚠️ ROMM_CORS_ALLOWED_ORIGINS</td><td><code>-</code></td><td>Empty now allows no cross-origin requests; a <code>*</code> allows any origin but never credentials</td></tr><tr><td>⚠️ FORWARDED_ALLOW_IPS</td><td>local/loopback addresses</td><td>Proxies trusted to report the client’s address; was <code>*</code></td></tr><tr><td>DISABLE_EASYRPG</td><td><code>false</code></td><td>Disable the EasyRPG player for everyone</td></tr><tr><td>SEVEN_ZIP_TIMEOUT</td><td><code>180</code></td><td>Timeout for 7-Zip operations in seconds, was <code>60</code></td></tr></tbody></table>
+</details>
+<details>
+  <summary>📡 API CHANGES</summary>
+| Change | Description |
+| --- | --- |
+| ⚠️ CORS denied by default | `ROMM_CORS_ALLOWED_ORIGINS` now defaults to empty instead of `*`; browser clients on another origin must be allowlisted (#4699) |
+| CORS wildcard drops credentials | With `*` in `ROMM_CORS_ALLOWED_ORIGINS`, responses no longer send `Access-Control-Allow-Credentials` (#4699) |
+| Invalid credentials are unauthenticated | A malformed Basic header or an invalid/expired JWT bearer no longer 500s; the request proceeds unauthenticated and gets the route's 401/403 (#4799) |
+| ⚠️ `PermissionGroupSchema.is_system` removed | Replaced by `system_key` (`SystemGroupKey` or null) (#4767) |
+| Age limits on permissions | `PermissionGroupSchema/Create/Update` and `UserPermissionsSchema/Update` gain `age_limit`, `hide_unrated_roms`; updates apply them only with `set_age_settings: true` (#5081) |
+| Collection `rom_count` is computed | `rom_count` on collection, smart and virtual collection schemas is now read-only, derived from the visible `rom_ids` (#4930) |
+| ⚠️ Collection name errors | Duplicate name on create or rename returns 409 (was 500); names over 400 chars return 422 (#4997) |
+| ⚠️ `GET /api/netplay/list` | Scope `assets.read` - `roms.read`; `game_id` is now an integer ROM id, 404 for a missing or hidden ROM (#4700) |
+| ⚠️ Netplay socket rooms | `open-room` and password-less `join-room` require a signed-in user with `roms.read` who can see the ROM; the room password moved from `extra.room_password` to top-level `password` (#4700) |
+| ⚠️ `GET /api/play-sessions` | Without `devices.read`, only allowed when `device_id` equals the calling token's device; no longer defaults `device_id` from the token (#4956) |
+| ⚠️ `PlaySessionSchema.sync_session_id` removed | Field dropped from play session responses (#4670) |
+| Page params on play and sync sessions | `GET /api/play-sessions` and `GET /api/sync/sessions` use shared page params (`limit` 1 to 10000, `offset`); sync sessions gains `offset` (#4715) |
+| ⚠️ Sync `delete` operation | `SyncOperationSchema.action` adds `delete` (slot emptied on the server); `SyncNegotiateResponse` adds `total_delete` (#4674) |
+| `POST /api/sync/negotiate` payload | New `restore_unlisted` and `emulators` fields to re-offer unlisted saves and filter by emulator (#5091) |
+| Save sync baselines | `POST /api/saves` and `PUT /api/saves/{id}` take a `content_hash` query param; `POST /api/saves/{id}/downloaded` takes `content_hash` in the body (#4768) |
+| Save/state uploads validated | `emulator` must be a single folder name (max length enforced); file names over 255 bytes return 400; uploads to a hidden ROM return 404 (#4851, #4997) |
+| `SaveSchema` / `StateSchema` annotations | New `is_favorite` and `labels`; masked to defaults on another user's shared save or state (#4714) |
+| `StateSchema.core` | New field naming the RetroArch core that wrote the state (#4862) |
+| ⚠️ `PUT /api/roms/{id}` rename errors | Renaming onto an existing file returns 409 (was 500); an invalid or overlong `fs_name` returns 400 before any metadata fetch (#4997) |
+| `PUT /api/roms/{id}` manual metadata | `raw_manual_metadata` is validated, 422 when malformed; `ManualMetadata` gains `alternative_names` (#5111) |
+| `POST /api/roms/{id}/convert-to-folder` | Also returns 409 when an `.m3u` beside the file lists it; upload and walkthrough routes reject the same case (#5076) |
+| `GET /api/roms` relevance ordering | Empty `order_by` with a search term ranks by relevance on every database; `char_index` is empty under relevance order (#4996) |
+| `GET/HEAD /api/roms/{id}/content/{file_name}` | New `?format=` for converted single-file downloads (202 + `Retry-After` while converting, 406 when unavailable) (#4999) |
+| `GET /api/roms/{id}/content/{file_name}` | New `purpose=download\|play` query param, recorded in the audit log (#4748) |
+| `DetailedRomSchema.download_formats` | Formats the caller can request with `?format=` (#5000) |
+| `is_easyrpg_game` on ROM schemas | New boolean on `SimpleRomSchema` and `DetailedRomSchema` (#5077) |
+| Pinned media | `RomUserSchema.pinned_media` and `RomUserData.pinned_media` (ordered media keys, null for default) (#4764) |
+| ROM metadata fields | LaunchBox box art `box2d_*`/`box3d_*` (url and path), `video_path` now nullable (#5129); SS `physical_disc`/`physical_extra_discs` (#4885); SS and Hasheous `dump_regions/languages/tags` (#4740); RA `hash_match` (#4816) |
+| `PlatformSchema` | New computed `abbreviation` and `alternative_names` (#5107) |
+| `MusicTrackSchema.file_name` | New field (#5079) |
+| `DeviceSchema.capabilities` | New `capabilities` map on device schema and on `POST`/`PUT /api/devices` payloads (#4835) |
+| `GET /api/heartbeat` | Adds `EMULATION.DISABLE_EASYRPG` (#5077), `NOTIFICATIONS` (#4735), `DEVICE_INSTALL` (#4835), `CONVERTO` (#4999) |
+| `GET /api/config` | Adds `CONVERTO` and `CONVERTO_LIBRARY_TARGETS` (#4999) |
+| `POST /api/tasks/run/{task_name}` | Returns 409 when a single-instance task is already queued or running; `TaskInfo` adds `destructive` (#5000) |
+| `POST /api/reset-password` | Enforces the password policy with 400, leaving the reset link usable (#5106) |
+| OIDC callback | A provider error redirects to `/login?bypass_autologin=true` instead of 500 (#4746); an account linked to a different provider identity gets 403 (#4892) |
+| `POST /api/activity/heartbeat` | Returns 404 for a ROM hidden from the caller (#5117) |
+| ⚠️ `activity:update` socket event | Sent only to users who can see the ROM, instead of broadcast to every client (#5121) |
+| ⚠️ `scan` socket event payload | Validated strictly (`ScanPayload`, unknown keys rejected); invalid options, no scan worker, or a scan in flight emit `scan:done_ko` (#5014) |
+| `scan:scanning_rom` | Payload adds `is_new` (#4867) |
+| `sync:conflict` | Payload adds `rom_name` (#4552) |
+| Socket session revocation | Logging out or revoking a session disconnects the sockets it opened (#4732) |
+| Streaming session routes | Control routes take `container` and `claimed_at` query params; launch socket payloads add `claimed_at`, `core`, `core_tier`, import `refusals`; `StreamingContainerSchema` adds `supports_live_states`, `import_kinds`, `state_core`; 409 bodies use `ContainerBusyDetail` (#4631, #4691, #4796, #4859, #4862) |
+<h4 id="notifications">Notifications</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/notifications</code></td><td>List the caller’s notifications, newest first (#4732)</td></tr><tr><td>POST</td><td><code>/api/notifications</code></td><td>Send a notification to yourself, or to other users with <code>users.write</code> (#4732)</td></tr><tr><td>POST</td><td><code>/api/notifications/read</code></td><td>Mark the given notifications (or all) read (#4732)</td></tr><tr><td>DELETE</td><td><code>/api/notifications/{notification_id}</code></td><td>Dismiss one notification (#4732)</td></tr><tr><td>DELETE</td><td><code>/api/notifications</code></td><td>Dismiss all notifications (#4732)</td></tr></tbody></table>
+<h4 id="notification-channels">Notification channels</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/notification-channels</code></td><td>List the caller’s channels (Apprise, webhook, email) (#4735)</td></tr><tr><td>POST</td><td><code>/api/notification-channels</code></td><td>Create a channel; email addresses get a confirmation code (#4735)</td></tr><tr><td>PATCH</td><td><code>/api/notification-channels/{channel_id}</code></td><td>Update a channel (#4735)</td></tr><tr><td>DELETE</td><td><code>/api/notification-channels/{channel_id}</code></td><td>Delete a channel (#4735)</td></tr><tr><td>POST</td><td><code>/api/notification-channels/{channel_id}/test</code></td><td>Send a test notification now (#4735)</td></tr><tr><td>POST</td><td><code>/api/notification-channels/{channel_id}/confirm</code></td><td>Confirm an email channel with its code (#4735)</td></tr><tr><td>POST</td><td><code>/api/notification-channels/{channel_id}/resend-code</code></td><td>Resend the email confirmation code (#4735)</td></tr><tr><td>GET</td><td><code>/api/notification-channels/apprise-services</code></td><td>List Apprise services and their fields (admin) (#4769)</td></tr><tr><td>POST</td><td><code>/api/notification-channels/apprise-services/parse</code></td><td>Parse a service or Apprise URL into fields (admin) (#4769)</td></tr></tbody></table>
+<h4 id="audit-events">Audit events</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/audit-events</code></td><td>Paginated audit log, filterable by actor, action, category, target, time range and search; admins with <code>users.read</code> see everyone (#4748)</td></tr></tbody></table>
+<h4 id="device-installs">Device installs</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/devices/online</code></td><td>IDs of the caller’s devices with an open <code>/devices</code> socket (#4835)</td></tr><tr><td>POST</td><td><code>/api/devices/{device_id}/installs</code></td><td>Queue a ROM install on a device (#4835)</td></tr><tr><td>GET</td><td><code>/api/devices/{device_id}/installs</code></td><td>List the device’s pending and taken install requests (#4835)</td></tr><tr><td>POST</td><td><code>/api/devices/{device_id}/installs/claim</code></td><td>Device claims its pending requests (device-bound token only) (#4835)</td></tr><tr><td>PUT</td><td><code>/api/devices/{device_id}/installs/{request_id}</code></td><td>Device reports <code>done</code>, <code>already_installed</code> or <code>failed</code> (#4835)</td></tr><tr><td>DELETE</td><td><code>/api/devices/{device_id}/installs/{request_id}</code></td><td>Cancel a pending or taken request (#4835)</td></tr><tr><td>GET</td><td><code>/api/roms/{id}/installs</code></td><td>The caller’s open install requests for a ROM (#4835)</td></tr></tbody></table>
+<h4 id="retroarch-cloud-sync-webdav">RetroArch Cloud Sync (WebDAV)</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>OPTIONS</td><td><code>/api/sync/retroarch/{path}</code></td><td>Advertise DAV support (#3904)</td></tr><tr><td>PROPFIND</td><td><code>/api/sync/retroarch/{path}</code></td><td>Read-only browsing of <code>roms/</code>, <code>saves/</code> and <code>states/</code> (#3904)</td></tr><tr><td>GET, HEAD</td><td><code>/api/sync/retroarch/{path}</code></td><td>Serve the manifest or a save/state file (#3904)</td></tr><tr><td>PUT</td><td><code>/api/sync/retroarch/{path}</code></td><td>Upload a save/state, matched to a ROM by file name (#3904)</td></tr><tr><td>DELETE, MOVE</td><td><code>/api/sync/retroarch/{path}</code></td><td>Remove a save/state the client dropped (#3904)</td></tr><tr><td>MKCOL, LOCK, UNLOCK</td><td><code>/api/sync/retroarch/{path}</code></td><td>Accepted no-ops for WebDAV clients; uses HTTP Basic with a 401 challenge (#3904)</td></tr></tbody></table>
+<h4 id="saves-and-states">Saves and states</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>PUT</td><td><code>/api/saves/{id}/favorite</code></td><td>Set <code>is_favorite</code> on a save (#4714)</td></tr><tr><td>PUT</td><td><code>/api/saves/{id}/labels</code></td><td>Replace a save’s labels (#4714)</td></tr><tr><td>PUT</td><td><code>/api/saves/{id}/file-name</code></td><td>Rename a save file and its screenshot (#4749)</td></tr><tr><td>PUT</td><td><code>/api/states/{id}/favorite</code></td><td>Set <code>is_favorite</code> on a state (#4714)</td></tr><tr><td>PUT</td><td><code>/api/states/{id}/labels</code></td><td>Replace a state’s labels (#4714)</td></tr><tr><td>PUT</td><td><code>/api/states/{id}/file-name</code></td><td>Rename a state file and its screenshot (#4749)</td></tr></tbody></table>
+<h4 id="collections">Collections</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>PUT</td><td><code>/api/collections/{id}/visibility</code></td><td>Share or unshare a collection (owner only) (#4749)</td></tr><tr><td>PUT</td><td><code>/api/collections/smart/{id}/visibility</code></td><td>Share or unshare a smart collection (owner only) (#4749)</td></tr></tbody></table>
+<h4 id="roms-tasks-and-config">ROMs, tasks and config</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/tasks/scan</code></td><td>Queue a library scan with a <code>ScanPayload</code> body; 202, 409 if one is in flight, 503 with no worker (#5014)</td></tr><tr><td>GET</td><td><code>/api/roms/{id}/easyrpg/{path}</code></td><td>Serve the EasyRPG <code>index.json</code> and game/RTP files for RPG Maker 2000/2003 games (#5077)</td></tr><tr><td>PUT</td><td><code>/api/config/converto_settings</code></td><td>Update download conversion settings (#4999)</td></tr></tbody></table>
+<h4 id="socketio-events">Socket.IO events</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>Server to client</td><td><code>notifications:new</code> / <code>notifications:read</code> / <code>notifications:dismissed</code></td><td>Notification created, marked read, or dismissed for the user (#4732)</td></tr><tr><td>Server to client</td><td><code>install:updated</code></td><td>An install request changed, sent to the owner’s tabs (#4835)</td></tr><tr><td>Server to client</td><td><code>install:queued</code> / <code>install:cancelled</code></td><td>Sent to a device on the new <code>/devices</code> namespace (device-bound client token required) (#4835)</td></tr><tr><td>Server to client</td><td><code>activity:refresh</code></td><td>Signals clients to refetch the activity list (#5125)</td></tr></tbody></table>
+</details>
+<h2 id="highlights">Highlights</h2>
+<h3 id="notifications-1">Notifications</h3>
+<p>RomM now keeps a <a href="https://docs.romm.app/5.4.0-alpha/using/notifications/">notification inbox</a> for each user. Scans and tasks that finish or fail, a role change, or someone ending your stream all leave a notification that is pushed to every open tab and still waits for you the next time you open RomM. Admins can send their own from the Send tab on the Notifications page, and any API client can post one through <code>POST /api/notifications</code>. #4732</p>
+<p>Each user can also forward their notifications to <a href="https://docs.romm.app/5.4.0-alpha/using/notifications/#channels">channels</a>, filtered by level and topic. A RomM webhook sends a JSON payload (<a href="https://docs.romm.app/5.4.0-alpha/using/notifications/#verifying-the-signature">signed with HMAC-SHA256</a> when you give it a secret), and email works once the <a href="https://docs.romm.app/5.4.0-alpha/administration/email/"><code>SMTP_*</code> variables</a> are set, which also sends password reset links by email. Admins can additionally pick any of the services <a href="https://github.com/caronc/apprise">Apprise</a> supports, such as Discord, Telegram, Slack, ntfy, Gotify or Matrix, and fill in that service’s fields or paste its URL. #4735 #4769</p>
+<img width="1250" height="687" alt="Screenshot 2026-10-06 at 6 52 34 AM" src="https://github.com/user-attachments/assets/733f2235-fc07-471b-b811-7c6eafa22333">
+<h3 id="retroarch-cloud-sync">RetroArch Cloud Sync</h3>
+<p>RomM is now a Cloud Sync target for RetroArch. Point RetroArch’s Cloud Sync at <code>https://&#x3C;your-romm>/api/sync/retroarch/</code> (the trailing slash matters) and sign in with your RomM username and password (<a href="https://docs.romm.app/5.4.0-alpha/ecosystem/retroarch-cloud-sync/">setup guide</a>). Saves and states sync straight into your library, web player states show up in RetroArch’s numbered load slots, and RetroArch registers itself as one of your devices on its first sync. #3904</p>
+<p>The config, thumbnails and system file categories sync too, stored per user. PSP save folders are bundled into one save per folder; if a folder’s title matches no ROM, map its serial with <a href="https://docs.romm.app/5.4.0-alpha/ecosystem/retroarch-cloud-sync/#psp-saves"><code>SYNC_RETROARCH_PSP_SERIAL_MAP</code></a>. Generic WebDAV clients can <a href="https://docs.romm.app/5.4.0-alpha/ecosystem/retroarch-cloud-sync/#browsing-with-other-webdav-clients">browse the same path</a> read-only. #3931</p>
+<h3 id="browser-saves-sync-and-installs-on-your-devices">Browser saves sync, and installs on your devices</h3>
+<p>All five in-browser players (EmulatorJS, EasyRPG, js-dos, PICO-8 and Ruffle) now <a href="https://docs.romm.app/5.4.0-alpha/using/saves-and-states/#syncing-saves-between-browsers-and-devices">sync saves through device sync</a>. Each browser profile registers as a device, named like “Firefox on macOS”, and negotiates its saves with the server when a game launches, so a save made in one browser is waiting in another and a conflicting copy is archived instead of overwritten. A new <a href="https://docs.romm.app/5.4.0-alpha/using/devices/">Devices page</a> at <code>/devices</code> lets you rename your devices, turn sync off for one, or remove it. #5091</p>
+<p>You can also send a game to a device from the web UI. <a href="https://docs.romm.app/5.4.0-alpha/using/devices/#install-on-device">“Install on device”</a> in a game’s menu adds it to the download queue of the devices you pick, and the device downloads it the next time it’s online. Only devices whose app reports it accepts installs are listed. Turn the feature off with <code>DEVICE_INSTALL_ENABLED=false</code>, and keep platforms out of it with <code>DEVICE_INSTALL_EXCLUDED_PLATFORM_SLUGS</code>. #4835</p>
+<img width="801" height="420" alt="Screenshot 2026-10-06 at 6 53 03 AM" src="https://github.com/user-attachments/assets/b314fb20-9a07-471a-a014-3c62abf665b6">
+<h3 id="parental-controls">Parental controls</h3>
+<p>Give a permission group an age limit, and its members only see games rated for that age or younger. Each user can replace their group’s limit, and a “Hide unrated games” switch hides games no rating covers. Admins are never limited. Set them in the group and user dialogs under Administration. #5081 #5083</p>
+<p>A game’s age comes from the <a href="https://docs.romm.app/5.4.0-alpha/administration/parental-controls/#how-a-games-age-is-worked-out">strictest</a> of its IGDB, ScreenScraper, LaunchBox (ESRB) and Steam ratings, and a manual rating list replaces the providers’ ratings. The limit applies everywhere a game can show up: the gallery, search, collections, stats, the Jukebox and feeds. See <a href="https://docs.romm.app/5.4.0-alpha/administration/parental-controls/">Parental controls</a> for the details.</p>
+<img width="694" height="160" alt="Screenshot 2026-10-06 at 6 53 46 AM" src="https://github.com/user-attachments/assets/5b72b956-4d70-42c2-9f36-ccbff590c723">
+<h3 id="audit-log-1">Audit log</h3>
+<p>RomM now records who did what: downloads and player launches, play sessions, uploads and edits, collection changes, scans and tasks, and security events like sign-ins, failed sign-ins and permission changes. Admins read it in the new Events tab under Settings › Logs, filtered by user, category and date, with a search over names and IP addresses. Events are kept for 90 days, set by <a href="https://docs.romm.app/5.4.0-alpha/administration/audit-log/#retention"><code>AUDIT_LOG_RETENTION_DAYS</code></a> (<code>0</code> keeps them forever). See <a href="https://docs.romm.app/5.4.0-alpha/administration/audit-log/">Audit log</a> for everything that’s recorded. #4748</p>
+<img width="754" height="550" alt="Screenshot 2026-10-06 at 6 54 34 AM" src="https://github.com/user-attachments/assets/fbc8fa95-10c5-4f16-990b-2caad5f64a9e">
+<h3 id="library-conversion-with-rom-converto">Library conversion with rom-converto</h3>
+<p>Pick a storage format per platform, and the new <a href="https://docs.romm.app/5.4.0-alpha/administration/library-conversion/#the-convert-library-task">“Convert library” task</a> converts every matched game on it in place, so a game keeps its saves and collections. Only lossless conversions are offered, and because the task deletes the originals it asks you to type a confirmation first. Set <code>ROM_CONVERTO_ENABLED=true</code> and choose formats under the new Conversion settings page, or in <code>config.yml</code> (<a href="https://docs.romm.app/5.4.0-alpha/administration/library-conversion/">setup guide</a>). #4999</p>
+<p>With <code>download_conversion_enabled</code> on, the game page’s More menu offers <a href="https://docs.romm.app/5.4.0-alpha/using/downloads/#downloading-in-another-format">“Download as”</a> in any format the file can be converted to, and clients can ask for one with <code>?format=</code> on the download URL. #5000</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">converto</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  download_conversion_enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">  platform_formats</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    psx</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">chd</span></span>
+<span class="line"><span style="color:#85E89D">    ngc</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rvz</span></span></code></pre>
+<h3 id="rpg-maker-20002003-in-the-browser">RPG Maker 2000/2003 in the browser</h3>
+<p>RPG Maker 2000 and 2003 games on the <code>rpg-maker</code> platform now play in the browser on the <a href="https://docs.romm.app/5.4.0-alpha/using/in-browser-play/easyrpg/">EasyRPG</a> web player. The free EasyRPG <a href="https://docs.romm.app/5.4.0-alpha/using/in-browser-play/easyrpg/#the-rtp">RTP</a> ships with it, so games that rely on the RTP start, though some assets (mostly in battles) are missing from it. Games need to be extracted folders, since the web player can’t read archives. Disable it with <code>DISABLE_EASYRPG</code>. #5077</p>
+<img width="1083" height="807" alt="Screenshot 2026-10-06 at 6 56 37 AM" src="https://github.com/user-attachments/assets/5a1e33f3-4830-4f61-8de4-532ee140ce2c">
+<h3 id="alternative-titles-and-relevance-in-search">Alternative titles and relevance in search</h3>
+<p><a href="https://docs.romm.app/5.4.0-alpha/using/#search">Search</a> now matches the alternative titles your metadata providers know about, including localized names, so a Japanese title finds the game listed under its English name and the other way around. You can add your own in the new “Alternative titles” field of the Edit dialog, such as “ACNH” or a fan translation’s name. Already matched IGDB and Hasheous games pick up their regional titles on their next metadata refresh. #5111</p>
+<p>The Search page also orders results by relevance until you pick a sort, with exact title matches first. #4995 #4996</p>
+<h2 id="minor-changes">Minor changes</h2>
+<ul>
+<li>feat: Offer the desktop shell’s emulator from the save/state play page by @sdornan in <a href="https://github.com/rommapp/romm/pull/4541">https://github.com/rommapp/romm/pull/4541</a></li>
+<li>feat(metadata): take region and language from the dump a hash matched by @sdornan in <a href="https://github.com/rommapp/romm/pull/4664">https://github.com/rommapp/romm/pull/4664</a></li>
+<li>feat(metadata): read a fan translation’s tag and target language by @sdornan in <a href="https://github.com/rommapp/romm/pull/4665">https://github.com/rommapp/romm/pull/4665</a></li>
+<li>feat(saves): favorite and label saves and states by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4714">https://github.com/rommapp/romm/pull/4714</a></li>
+<li>feat(v2): multi-select saves and states by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4725">https://github.com/rommapp/romm/pull/4725</a></li>
+<li>feat(metadata): tag a dump from the flags ScreenScraper raises on it by @sdornan in <a href="https://github.com/rommapp/romm/pull/4666">https://github.com/rommapp/romm/pull/4666</a></li>
+<li>feat(v2): wider state cards and one timestamp across save and state views by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4736">https://github.com/rommapp/romm/pull/4736</a></li>
+<li>feat(sync): surface save conflicts detected by negotiate by @sdornan in <a href="https://github.com/rommapp/romm/pull/4552">https://github.com/rommapp/romm/pull/4552</a></li>
+<li>feat: promote platforms that have games in PlatformSelect by @andest01 in <a href="https://github.com/rommapp/romm/pull/4599">https://github.com/rommapp/romm/pull/4599</a></li>
+<li>feat: rename saves and states, and one public/private look across v2 by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4749">https://github.com/rommapp/romm/pull/4749</a></li>
+<li>feat(v2): surface WebSocket transport fallback in BackendStatusBanner by @andest01 in <a href="https://github.com/rommapp/romm/pull/4645">https://github.com/rommapp/romm/pull/4645</a></li>
+<li>feat(streaming): reap abandoned streaming sessions every minute by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4632">https://github.com/rommapp/romm/pull/4632</a></li>
+<li>feat(sync): tell a device when the save it holds was deleted here by @sdornan in <a href="https://github.com/rommapp/romm/pull/4674">https://github.com/rommapp/romm/pull/4674</a></li>
+<li>feat(streaming): resume from a foreign emulator’s save or state via declared import by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4691">https://github.com/rommapp/romm/pull/4691</a></li>
+<li>feat(v2): pin any media to the game overview by @gantoine in <a href="https://github.com/rommapp/romm/pull/4764">https://github.com/rommapp/romm/pull/4764</a></li>
+<li>feat(streaming): name containers by their label, and harden import archives by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4796">https://github.com/rommapp/romm/pull/4796</a></li>
+<li>feat(sync): record a per-device save baseline to prove what did not change by @sdornan in <a href="https://github.com/rommapp/romm/pull/4768">https://github.com/rommapp/romm/pull/4768</a></li>
+<li>feat(streaming): per-platform RetroArch core override by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4859">https://github.com/rommapp/romm/pull/4859</a></li>
+<li>feat(streaming): RetroArch states carry the core that wrote them by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4862">https://github.com/rommapp/romm/pull/4862</a></li>
+<li>feat(v2): add an opt-in setting to show the game logo in place of the title on the v2 game page by @sdornan in <a href="https://github.com/rommapp/romm/pull/4888">https://github.com/rommapp/romm/pull/4888</a></li>
+<li>feat(soundtrack): control playback through the Media Session API by @sdornan in <a href="https://github.com/rommapp/romm/pull/4904">https://github.com/rommapp/romm/pull/4904</a></li>
+<li>feat(v2): promote platforms with games in the scan picker by @andest01 in <a href="https://github.com/rommapp/romm/pull/4897">https://github.com/rommapp/romm/pull/4897</a></li>
+<li>feat(search): search the gallery by providers’ alternative titles by @sdornan in <a href="https://github.com/rommapp/romm/pull/4941">https://github.com/rommapp/romm/pull/4941</a></li>
+<li>feat: read play sessions across devices and page sync sessions by @beemines in <a href="https://github.com/rommapp/romm/pull/4956">https://github.com/rommapp/romm/pull/4956</a></li>
+<li>feat: make netplay and upload cleanup schedules configurable by @beemines in <a href="https://github.com/rommapp/romm/pull/4957">https://github.com/rommapp/romm/pull/4957</a></li>
+<li>feat(search): rank multi-word searches by phrase on PostgreSQL by @sdornan in <a href="https://github.com/rommapp/romm/pull/4977">https://github.com/rommapp/romm/pull/4977</a></li>
+<li>feat(input): let the D-pad move through and out of text fields by @gantoine in <a href="https://github.com/rommapp/romm/pull/4993">https://github.com/rommapp/romm/pull/4993</a></li>
+<li>feat(search): Search provider aliases through search_titles and drop generated_search_aliases by @sdornan in <a href="https://github.com/rommapp/romm/pull/5003">https://github.com/rommapp/romm/pull/5003</a></li>
+<li>feat(converto): read per-file title ids with rom-converto during scans by @gantoine in <a href="https://github.com/rommapp/romm/pull/5031">https://github.com/rommapp/romm/pull/5031</a></li>
+<li>feat(i18n): follow the browser’s language by default, with an “Auto” language option by @sdornan in <a href="https://github.com/rommapp/romm/pull/5051">https://github.com/rommapp/romm/pull/5051</a></li>
+<li>feat(api): Add a REST endpoint to start a library scan by @ilyas-hallak in <a href="https://github.com/rommapp/romm/pull/5014">https://github.com/rommapp/romm/pull/5014</a></li>
+<li>feat(soundtrack): play SPC, VGM, VGZ and GYM soundtracks in the browser by @sdornan in <a href="https://github.com/rommapp/romm/pull/5079">https://github.com/rommapp/romm/pull/5079</a></li>
+<li>feat(v2): add an <code>active</code> toggle state to RBtn by @sdornan in <a href="https://github.com/rommapp/romm/pull/5090">https://github.com/rommapp/romm/pull/5090</a></li>
+<li>feat(v2): resume jukebox music after a reload by @gantoine in <a href="https://github.com/rommapp/romm/pull/5095">https://github.com/rommapp/romm/pull/5095</a></li>
+<li>feat(v2): scope stored preferences to the signed-in user by @gantoine in <a href="https://github.com/rommapp/romm/pull/5098">https://github.com/rommapp/romm/pull/5098</a></li>
+<li>feat(launchbox): scrape box front, back, spine and 3D box art by @sdornan in <a href="https://github.com/rommapp/romm/pull/5129">https://github.com/rommapp/romm/pull/5129</a></li>
+<li>feat: search platforms by slug, abbreviation and alternative names by @sdornan in <a href="https://github.com/rommapp/romm/pull/5107">https://github.com/rommapp/romm/pull/5107</a></li>
+<li>feat(v2): show a top-bar indicator while a “Download as” conversion runs by @gantoine in <a href="https://github.com/rommapp/romm/pull/5157">https://github.com/rommapp/romm/pull/5157</a></li>
+<li>feat(sync): sync RetroArch Cloud Sync saves through save slots by @gantoine in <a href="https://github.com/rommapp/romm/pull/5170">https://github.com/rommapp/romm/pull/5170</a></li>
+</ul>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li>fix(cloud-sync): remap web-player states into RetroArch’s numbered load slots by @fmustafayaman in <a href="https://github.com/rommapp/romm/pull/3933">https://github.com/rommapp/romm/pull/3933</a></li>
+<li>fix(roms): order a playlist by disc number, not by file name by @sdornan in <a href="https://github.com/rommapp/romm/pull/4737">https://github.com/rommapp/romm/pull/4737</a></li>
+<li>fix(v2): run desktop list rows to the screen edges by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4739">https://github.com/rommapp/romm/pull/4739</a></li>
+<li>fix(roms): order lettered discs like numbered ones by @sdornan in <a href="https://github.com/rommapp/romm/pull/4738">https://github.com/rommapp/romm/pull/4738</a></li>
+<li>fix(scan): keep a hash source’s tags when a scan skips it by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4740">https://github.com/rommapp/romm/pull/4740</a></li>
+<li>fix(docker): stop the watchdog from spawning duplicate RQ workers by @zurdi15 in <a href="https://github.com/rommapp/romm/pull/4743">https://github.com/rommapp/romm/pull/4743</a></li>
+<li>fix(hltb): retry a separated title with the separator dropped by @sdornan in <a href="https://github.com/rommapp/romm/pull/4759">https://github.com/rommapp/romm/pull/4759</a></li>
+<li>fix(v2): handle copy to clipboard over plain HTTP in logs and files tab by @sdornan in <a href="https://github.com/rommapp/romm/pull/4757">https://github.com/rommapp/romm/pull/4757</a></li>
+<li>fix(hltb): match search results by their aliases too by @sdornan in <a href="https://github.com/rommapp/romm/pull/4760">https://github.com/rommapp/romm/pull/4760</a></li>
+<li>fix(hltb): accept token-only sessions and discover the endpoint when GitHub fails by @sdornan in <a href="https://github.com/rommapp/romm/pull/4758">https://github.com/rommapp/romm/pull/4758</a></li>
+<li>fix(v2): version ROM file URLs with the file’s own timestamp by @gantoine in <a href="https://github.com/rommapp/romm/pull/4762">https://github.com/rommapp/romm/pull/4762</a></li>
+<li>fix(auth): redirect instead of 500 when the OIDC callback is rejected by @andest01 in <a href="https://github.com/rommapp/romm/pull/4746">https://github.com/rommapp/romm/pull/4746</a></li>
+<li>fix(streaming): bind every session action to the claim that owns it by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4631">https://github.com/rommapp/romm/pull/4631</a></li>
+<li>fix(sync): give a sync session the life of one launch, and drop the dead play-session link by @sdornan in <a href="https://github.com/rommapp/romm/pull/4670">https://github.com/rommapp/romm/pull/4670</a></li>
+<li>fix(steam): read appdetails envelope keyed by another app ID by @sdornan in <a href="https://github.com/rommapp/romm/pull/4774">https://github.com/rommapp/romm/pull/4774</a></li>
+<li>fix(scan): keep title-id settled file categories and report id-only changes on refresh by @tmgast in <a href="https://github.com/rommapp/romm/pull/4720">https://github.com/rommapp/romm/pull/4720</a></li>
+<li>fix(security): deny cross-origin requests by default by @sdornan in <a href="https://github.com/rommapp/romm/pull/4699">https://github.com/rommapp/romm/pull/4699</a></li>
+<li>fix(backend): detect top-level rom files at any folder depth by @sdornan in <a href="https://github.com/rommapp/romm/pull/4776">https://github.com/rommapp/romm/pull/4776</a></li>
+<li>fix(soundtrack): fall back to the default cover when a game has no artwork by @sdornan in <a href="https://github.com/rommapp/romm/pull/4779">https://github.com/rommapp/romm/pull/4779</a></li>
+<li>fix(security): authorize netplay rooms on ROM access by @sdornan in <a href="https://github.com/rommapp/romm/pull/4700">https://github.com/rommapp/romm/pull/4700</a></li>
+<li>fix(backend): replace the legacy Query API with Select and type the session decorators by @sdornan in <a href="https://github.com/rommapp/romm/pull/4730">https://github.com/rommapp/romm/pull/4730</a></li>
+<li>fix(frontend): only request platform icons that ship by @gantoine in <a href="https://github.com/rommapp/romm/pull/4792">https://github.com/rommapp/romm/pull/4792</a></li>
+<li>fix(player): make all Amiga Kickstarts available to PUAE by @yiannias in <a href="https://github.com/rommapp/romm/pull/4741">https://github.com/rommapp/romm/pull/4741</a></li>
+<li>fix(auth): treat invalid bearer and basic credentials as unauthenticated by @gantoine in <a href="https://github.com/rommapp/romm/pull/4799">https://github.com/rommapp/romm/pull/4799</a></li>
+<li>fix(auth): rename seeded permission groups to Viewer and Editor by @sdornan in <a href="https://github.com/rommapp/romm/pull/4767">https://github.com/rommapp/romm/pull/4767</a></li>
+<li>fix(sync): make deleted-save tracking exact, complete, and effective on filled slots by @sdornan in <a href="https://github.com/rommapp/romm/pull/4789">https://github.com/rommapp/romm/pull/4789</a></li>
+<li>fix(sync): follow-ups to deleted-save tracking by @gantoine in <a href="https://github.com/rommapp/romm/pull/4807">https://github.com/rommapp/romm/pull/4807</a></li>
+<li>fix(scan): compute RA hash for archives whose member read fails by @sdornan in <a href="https://github.com/rommapp/romm/pull/4806">https://github.com/rommapp/romm/pull/4806</a></li>
+<li>fix(player): assign a gamepad already connected when EmulatorJS boots by @gantoine in <a href="https://github.com/rommapp/romm/pull/4808">https://github.com/rommapp/romm/pull/4808</a></li>
+<li>fix(v2): drop the CRT overlay’s backdrop grade on phones by @gantoine in <a href="https://github.com/rommapp/romm/pull/4809">https://github.com/rommapp/romm/pull/4809</a></li>
+<li>fix(playmatch): skip unhashed lookups of folder ROM members by @gantoine in <a href="https://github.com/rommapp/romm/pull/4812">https://github.com/rommapp/romm/pull/4812</a></li>
+<li>fix(v2): skip the post-upload scan while a scan is already running by @gantoine in <a href="https://github.com/rommapp/romm/pull/4810">https://github.com/rommapp/romm/pull/4810</a></li>
+<li>fix(v2): keep the focused platform tile in view when moving up the grid by @gantoine in <a href="https://github.com/rommapp/romm/pull/4811">https://github.com/rommapp/romm/pull/4811</a></li>
+<li>fix(ra): count RomM’s own RA hash match as RetroAchievements verification by @sdornan in <a href="https://github.com/rommapp/romm/pull/4816">https://github.com/rommapp/romm/pull/4816</a></li>
+<li>fix(saves): stamp save and state file names with local time by @gantoine in <a href="https://github.com/rommapp/romm/pull/4815">https://github.com/rommapp/romm/pull/4815</a></li>
+<li>fix(ra): keep a hash match when RA’s details request fails by @sdornan in <a href="https://github.com/rommapp/romm/pull/4822">https://github.com/rommapp/romm/pull/4822</a></li>
+<li>fix(ra): accept null Developer, Publisher and Genre from RetroAchievements by @sdornan in <a href="https://github.com/rommapp/romm/pull/4840">https://github.com/rommapp/romm/pull/4840</a></li>
+<li>fix(hasheous): match multi-file roms when one file is unknown by @sdornan in <a href="https://github.com/rommapp/romm/pull/4846">https://github.com/rommapp/romm/pull/4846</a></li>
+<li>fix(backend): restart the log forwarder and harden three Redis call sites by @sdornan in <a href="https://github.com/rommapp/romm/pull/4847">https://github.com/rommapp/romm/pull/4847</a></li>
+<li>fix(v2): stop URL query writes from dropping history entries; bump vue-router to 5.3.1 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4861">https://github.com/rommapp/romm/pull/4861</a></li>
+<li>fix(player): boot cue/gdi/ccd/mds disc sets whole by default by @gantoine in <a href="https://github.com/rommapp/romm/pull/4848">https://github.com/rommapp/romm/pull/4848</a></li>
+<li>fix(ss): map Win9x to ScreenScraper’s generic Windows system by @gantoine in <a href="https://github.com/rommapp/romm/pull/4849">https://github.com/rommapp/romm/pull/4849</a></li>
+<li>fix(assets): reject emulator names that are not a single folder on upload by @gantoine in <a href="https://github.com/rommapp/romm/pull/4851">https://github.com/rommapp/romm/pull/4851</a></li>
+<li>fix(v2): keep the checkbox’s native input inside its label by @gantoine in <a href="https://github.com/rommapp/romm/pull/4856">https://github.com/rommapp/romm/pull/4856</a></li>
+<li>fix(scan): raise the 7-Zip timeout default and keep partial bytes out of the fallback hash by @gantoine in <a href="https://github.com/rommapp/romm/pull/4852">https://github.com/rommapp/romm/pull/4852</a></li>
+<li>fix(v2): mount one PDF viewer at a time in the Media tab by @gantoine in <a href="https://github.com/rommapp/romm/pull/4853">https://github.com/rommapp/romm/pull/4853</a></li>
+<li>fix(scan): anchor rom file category to the folder below the rom root by @gantoine in <a href="https://github.com/rommapp/romm/pull/4854">https://github.com/rommapp/romm/pull/4854</a></li>
+<li>fix(v2): move focus by arrow key and D-pad between page regions by @gantoine in <a href="https://github.com/rommapp/romm/pull/4855">https://github.com/rommapp/romm/pull/4855</a></li>
+<li>fix(v2): show TheGamesDB logo on server stats coverage chips by @sdornan in <a href="https://github.com/rommapp/romm/pull/4866">https://github.com/rommapp/romm/pull/4866</a></li>
+<li>fix(scan): kill a stalled 7-Zip extractor at the timeout by @gantoine in <a href="https://github.com/rommapp/romm/pull/4868">https://github.com/rommapp/romm/pull/4868</a></li>
+<li>fix(scan): stop rescans inflating live platform game counts by @sdornan in <a href="https://github.com/rommapp/romm/pull/4867">https://github.com/rommapp/romm/pull/4867</a></li>
+<li>fix(platforms): stop labeling C128 as Commodore 64 in the platform picker by @gantoine in <a href="https://github.com/rommapp/romm/pull/4874">https://github.com/rommapp/romm/pull/4874</a></li>
+<li>fix(player): keep disabled EmulatorJS cheats out of the core by @gantoine in <a href="https://github.com/rommapp/romm/pull/4876">https://github.com/rommapp/romm/pull/4876</a></li>
+<li>fix(player): restart the core after loading a save it did not boot with by @gantoine in <a href="https://github.com/rommapp/romm/pull/4877">https://github.com/rommapp/romm/pull/4877</a></li>
+<li>fix(roms): pick grouped representatives among siblings the user can see by @gantoine in <a href="https://github.com/rommapp/romm/pull/4878">https://github.com/rommapp/romm/pull/4878</a></li>
+<li>fix(player): keep arcade BIOS archives whole on EmulatorJS 4.2.3 by @gantoine in <a href="https://github.com/rommapp/romm/pull/4879">https://github.com/rommapp/romm/pull/4879</a></li>
+<li>fix(tests): redact provider credentials when recording VCR cassettes by @sdornan in <a href="https://github.com/rommapp/romm/pull/4886">https://github.com/rommapp/romm/pull/4886</a></li>
+<li>fix(netplay): connect over websocket only by @gantoine in <a href="https://github.com/rommapp/romm/pull/4889">https://github.com/rommapp/romm/pull/4889</a></li>
+<li>fix(ss): keep ScreenScraper disc art for every disc of a multi-disc game by @sdornan in <a href="https://github.com/rommapp/romm/pull/4885">https://github.com/rommapp/romm/pull/4885</a></li>
+<li>fix(auth): trust OIDC_TLS_CACERTFILE alongside the default CAs by @gantoine in <a href="https://github.com/rommapp/romm/pull/4891">https://github.com/rommapp/romm/pull/4891</a></li>
+<li>fix(oidc): fetch claims missing from the ID token from the UserInfo endpoint by @gantoine in <a href="https://github.com/rommapp/romm/pull/4893">https://github.com/rommapp/romm/pull/4893</a></li>
+<li>fix(auth): match OIDC users by their sub claim so an email change still logs in by @gantoine in <a href="https://github.com/rommapp/romm/pull/4892">https://github.com/rommapp/romm/pull/4892</a></li>
+<li>fix(v2): pin trailing: false on native reprobe throttle by @sdornan in <a href="https://github.com/rommapp/romm/pull/4928">https://github.com/rommapp/romm/pull/4928</a></li>
+<li>fix(frontend-v2): show the gallery scrollbar and add a back-to-top button by @gantoine in <a href="https://github.com/rommapp/romm/pull/4894">https://github.com/rommapp/romm/pull/4894</a></li>
+<li>fix(v2): match RSelect stacked label spacing to text fields by @sdornan in <a href="https://github.com/rommapp/romm/pull/4942">https://github.com/rommapp/romm/pull/4942</a></li>
+<li>fix(scan): reuse unchanged empty files on quick scan by @sdornan in <a href="https://github.com/rommapp/romm/pull/4949">https://github.com/rommapp/romm/pull/4949</a></li>
+<li>fix: serialize single-file ROM promotion across gunicorn workers by @sdornan in <a href="https://github.com/rommapp/romm/pull/4898">https://github.com/rommapp/romm/pull/4898</a></li>
+<li>fix(streaming): let the Webstation frame use camera, microphone and clipboard by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4923">https://github.com/rommapp/romm/pull/4923</a></li>
+<li>fix(auth): hash passwords with bcrypt directly and upgrade to bcrypt 5 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4916">https://github.com/rommapp/romm/pull/4916</a></li>
+<li>fix(roms): list the plain filename first in Content-Disposition by @gantoine in <a href="https://github.com/rommapp/romm/pull/4939">https://github.com/rommapp/romm/pull/4939</a></li>
+<li>fix(backend): keep derived rom state in step with its source by @sdornan in <a href="https://github.com/rommapp/romm/pull/4931">https://github.com/rommapp/romm/pull/4931</a></li>
+<li>fix(ra): match RetroAchievements by RA hash only, never by Hasheous’ game ID by @sdornan in <a href="https://github.com/rommapp/romm/pull/4962">https://github.com/rommapp/romm/pull/4962</a></li>
+<li>fix(v2): hide the game Achievements tab when the ROM has no achievements by @sdornan in <a href="https://github.com/rommapp/romm/pull/4968">https://github.com/rommapp/romm/pull/4968</a></li>
+<li>fix(player): EmulatorJS multi-disk boot, Safari fullscreen quit, sparse gamepads, netplay audio, mame2003_plus default by @gantoine in <a href="https://github.com/rommapp/romm/pull/4953">https://github.com/rommapp/romm/pull/4953</a></li>
+<li>fix(a11y): dark mode typography is WCAG AA safe by @andest01 in <a href="https://github.com/rommapp/romm/pull/4955">https://github.com/rommapp/romm/pull/4955</a></li>
+<li>fix(tools): make generate_test_data work on PostgreSQL by @sdornan in <a href="https://github.com/rommapp/romm/pull/4978">https://github.com/rommapp/romm/pull/4978</a></li>
+<li>fix(tests): give each event loop its own fake async Redis client by @sdornan in <a href="https://github.com/rommapp/romm/pull/4979">https://github.com/rommapp/romm/pull/4979</a></li>
+<li>fix(streaming): let the desktop session own the controller by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4974">https://github.com/rommapp/romm/pull/4974</a></li>
+<li>fix(v2): render the v2 pair page and share the auth footer by @gantoine in <a href="https://github.com/rommapp/romm/pull/4980">https://github.com/rommapp/romm/pull/4980</a></li>
+<li>fix(firmware): store uploads under the name written to disk by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4986">https://github.com/rommapp/romm/pull/4986</a></li>
+<li>fix(v2): check the active sort in the gallery sort menu by @sdornan in <a href="https://github.com/rommapp/romm/pull/4998">https://github.com/rommapp/romm/pull/4998</a></li>
+<li>fix: eight bugs from hand-maintained lists drifting apart by @gantoine in <a href="https://github.com/rommapp/romm/pull/4991">https://github.com/rommapp/romm/pull/4991</a></li>
+<li>fix(v2): size gallery bulk actions for whole-result selections by @gantoine in <a href="https://github.com/rommapp/romm/pull/4896">https://github.com/rommapp/romm/pull/4896</a></li>
+<li>fix(api): return 4xx for overlong names and duplicate collections by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/4997">https://github.com/rommapp/romm/pull/4997</a></li>
+<li>fix(converto): refuse cue sheets that reach outside their folder by @gantoine in <a href="https://github.com/rommapp/romm/pull/5008">https://github.com/rommapp/romm/pull/5008</a></li>
+<li>fix(player): fix EmulatorJS keyboard-lock listener leak; use VueUse for v2 listener pairs by @sdornan in <a href="https://github.com/rommapp/romm/pull/5012">https://github.com/rommapp/romm/pull/5012</a></li>
+<li>fix(v2): hide match rename toggle when the file name would not change by @sdornan in <a href="https://github.com/rommapp/romm/pull/5016">https://github.com/rommapp/romm/pull/5016</a></li>
+<li>fix(backend): disable redis-py maintenance notifications probe by @sdornan in <a href="https://github.com/rommapp/romm/pull/5015">https://github.com/rommapp/romm/pull/5015</a></li>
+<li>fix(player): let the browser Back button leave a running player by @sdornan in <a href="https://github.com/rommapp/romm/pull/5020">https://github.com/rommapp/romm/pull/5020</a></li>
+<li>fix(v2): fix useResponsiveColumns observer leak; use VueUse for v2 resize observers by @sdornan in <a href="https://github.com/rommapp/romm/pull/5019">https://github.com/rommapp/romm/pull/5019</a></li>
+<li>fix(v2): say what a native launch reports when its session expired or a save was deleted by @sdornan in <a href="https://github.com/rommapp/romm/pull/5021">https://github.com/rommapp/romm/pull/5021</a></li>
+<li>fix(v2): enlarge region and language flags on v2 game cards by @gantoine in <a href="https://github.com/rommapp/romm/pull/5022">https://github.com/rommapp/romm/pull/5022</a></li>
+<li>fix(docker): print the configured ROMM_PORT in the startup log by @gantoine in <a href="https://github.com/rommapp/romm/pull/5023">https://github.com/rommapp/romm/pull/5023</a></li>
+<li>fix(streaming): release a failed claim from one place by @gantoine in <a href="https://github.com/rommapp/romm/pull/5024">https://github.com/rommapp/romm/pull/5024</a></li>
+<li>fix(v2): copy over plain HTTP and skip task polling in hidden tabs by @sdornan in <a href="https://github.com/rommapp/romm/pull/5040">https://github.com/rommapp/romm/pull/5040</a></li>
+<li>fix(v2): size the re-sort skeleton to the known result count by @sdornan in <a href="https://github.com/rommapp/romm/pull/5042">https://github.com/rommapp/romm/pull/5042</a></li>
+<li>fix(scan): refresh screenshots when only their order changes by @gantoine in <a href="https://github.com/rommapp/romm/pull/5029">https://github.com/rommapp/romm/pull/5029</a></li>
+<li>fix(scan): keep an uploaded manual when the rom had no scraped one by @gantoine in <a href="https://github.com/rommapp/romm/pull/5030">https://github.com/rommapp/romm/pull/5030</a></li>
+<li>fix(input): show the focus ring when arrow keys move focus in Firefox by @andest01 in <a href="https://github.com/rommapp/romm/pull/5066">https://github.com/rommapp/romm/pull/5066</a></li>
+<li>fix(db): keep iterated query results away from the cyclic GC by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5068">https://github.com/rommapp/romm/pull/5068</a></li>
+<li>fix(v2): draw under the iOS status bar and respect safe-area insets by @sdornan in <a href="https://github.com/rommapp/romm/pull/5075">https://github.com/rommapp/romm/pull/5075</a></li>
+<li>fix(rom): keep a disc an .m3u lists in place when promoting to a folder by @sdornan in <a href="https://github.com/rommapp/romm/pull/5076">https://github.com/rommapp/romm/pull/5076</a></li>
+<li>fix(v2): unsubscribe from the emitter on unmount via useEmitterEvent by @sdornan in <a href="https://github.com/rommapp/romm/pull/5085">https://github.com/rommapp/romm/pull/5085</a></li>
+<li>fix(v2): input follow-ups: phantom-pad right stick, LB/RB on gallery routes by @sdornan in <a href="https://github.com/rommapp/romm/pull/5086">https://github.com/rommapp/romm/pull/5086</a></li>
+<li>fix(v2): validation, spinner, nested button and label bugs by @sdornan in <a href="https://github.com/rommapp/romm/pull/5088">https://github.com/rommapp/romm/pull/5088</a></li>
+<li>fix(i18n): correct es_ES “Platform updated” string by @sdornan in <a href="https://github.com/rommapp/romm/pull/5089">https://github.com/rommapp/romm/pull/5089</a></li>
+<li>fix(v2): draw region flags on Chromium/Windows and center them in card chips by @sdornan in <a href="https://github.com/rommapp/romm/pull/5101">https://github.com/rommapp/romm/pull/5101</a></li>
+<li>fix(auth): validate reset passwords and make the last-admin guard atomic, with tests by @sdornan in <a href="https://github.com/rommapp/romm/pull/5106">https://github.com/rommapp/romm/pull/5106</a></li>
+<li>fix(v2): vertically align icons in Playable and LIVE chips by @sdornan in <a href="https://github.com/rommapp/romm/pull/5109">https://github.com/rommapp/romm/pull/5109</a></li>
+<li>fix(v2): don’t re-roll header stats when switching platform tabs by @sdornan in <a href="https://github.com/rommapp/romm/pull/5110">https://github.com/rommapp/romm/pull/5110</a></li>
+<li>fix(sync): use only the device’s own SSH key; test push-pull sync and the folder watcher by @sdornan in <a href="https://github.com/rommapp/romm/pull/5108">https://github.com/rommapp/romm/pull/5108</a></li>
+<li>fix(metadata): one UTC helper for release dates, a lint rule against local-time parsing, and Flashpoint tests by @sdornan in <a href="https://github.com/rommapp/romm/pull/5114">https://github.com/rommapp/romm/pull/5114</a></li>
+<li>fix(sync, activity): folder scan crash and hidden-ROM heartbeat; test both by @sdornan in <a href="https://github.com/rommapp/romm/pull/5117">https://github.com/rommapp/romm/pull/5117</a></li>
+<li>fix(patcher): read the patcher’s report from its last JSON line; test the patch endpoint by @sdornan in <a href="https://github.com/rommapp/romm/pull/5120">https://github.com/rommapp/romm/pull/5120</a></li>
+<li>fix(activity): send play activity only to users who can see the ROM by @sdornan in <a href="https://github.com/rommapp/romm/pull/5121">https://github.com/rommapp/romm/pull/5121</a></li>
+<li>fix(metadata): five provider fixes; test RetroAchievements, SteamGridDB, MobyGames, Playmatch and Pouët by @sdornan in <a href="https://github.com/rommapp/romm/pull/5123">https://github.com/rommapp/romm/pull/5123</a></li>
+<li>fix(feeds): keep Switch files with uppercase extensions in the Tinfoil feed by @NotAFlightRisk in <a href="https://github.com/rommapp/romm/pull/5115">https://github.com/rommapp/romm/pull/5115</a></li>
+<li>fix(activity): coalesce activity refreshes and keep one list request in flight by @sdornan in <a href="https://github.com/rommapp/romm/pull/5125">https://github.com/rommapp/romm/pull/5125</a></li>
+<li>fix(metadata): five provider fixes; test UPC, LaunchBox media, Demozoo, ScreenScraper and HLTB by @sdornan in <a href="https://github.com/rommapp/romm/pull/5126">https://github.com/rommapp/romm/pull/5126</a></li>
+<li>fix(metadata): four provider fixes; test Hasheous, TGDB, CSDb, gamelist and libretro by @sdornan in <a href="https://github.com/rommapp/romm/pull/5128">https://github.com/rommapp/romm/pull/5128</a></li>
+<li>fix(igdb): harden Twitch auth; test the IGDB client and handler by @sdornan in <a href="https://github.com/rommapp/romm/pull/5133">https://github.com/rommapp/romm/pull/5133</a></li>
+<li>fix(sync): store RetroArch Cloud Sync blobs under the assets volume by @gantoine in #5155</li>
+<li>fix(v2): name dialogs and select listboxes; axe-check story overlays by @sdornan in #5151</li>
+<li>fix(frontend): guard network-quiesced dispatch after DOM teardown by @sdornan in <a href="https://github.com/rommapp/romm/pull/5167">https://github.com/rommapp/romm/pull/5167</a></li>
+<li>fix(streaming): keep a slow broker from hiding save imports by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5172">https://github.com/rommapp/romm/pull/5172</a></li>
+<li>fix(sync): keep RetroArch Cloud Sync from stalling the event loop by @gantoine in <a href="https://github.com/rommapp/romm/pull/5171">https://github.com/rommapp/romm/pull/5171</a></li>
+<li>fix(streaming): file RetroArch streaming exits as raw saves by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5174">https://github.com/rommapp/romm/pull/5174</a></li>
+</ul>
+<h2 id="other-changes">Other changes</h2>
+<ul>
+<li>chore(deps): update mariadb docker tag to v13 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4537">https://github.com/rommapp/romm/pull/4537</a></li>
+<li>test(backend): catch column nullability drift between models and migrations by @sdornan in <a href="https://github.com/rommapp/romm/pull/4756">https://github.com/rommapp/romm/pull/4756</a></li>
+<li>perf(backend): read the gallery sorts out of an index by @sdornan in <a href="https://github.com/rommapp/romm/pull/4647">https://github.com/rommapp/romm/pull/4647</a></li>
+<li>perf(sync): batch RetroArch manifest hashing and list PROPFIND paths unhashed by @gantoine in <a href="https://github.com/rommapp/romm/pull/4761">https://github.com/rommapp/romm/pull/4761</a></li>
+<li>build(deps): bump uvicorn to 0.53 and uvicorn-worker to 0.4 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4729">https://github.com/rommapp/romm/pull/4729</a></li>
+<li>chore(deps): upgrade vitest and @vitest/ui to v5 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4747">https://github.com/rommapp/romm/pull/4747</a></li>
+<li>chore(deps): bump fastapi to 0.141.1 and replace fastapi-pagination with a local page model by @sdornan in <a href="https://github.com/rommapp/romm/pull/4715">https://github.com/rommapp/romm/pull/4715</a></li>
+<li>docs(claude): trim root CLAUDE.md and split stack guidance into nested files by @gantoine in <a href="https://github.com/rommapp/romm/pull/4790">https://github.com/rommapp/romm/pull/4790</a></li>
+<li>ci: run mypy in its own workflow instead of through Trunk by @sdornan in <a href="https://github.com/rommapp/romm/pull/4724">https://github.com/rommapp/romm/pull/4724</a></li>
+<li>chore(mypy): require coded ignores and flag stale ones, type protected_route by @sdornan in <a href="https://github.com/rommapp/romm/pull/4794">https://github.com/rommapp/romm/pull/4794</a></li>
+<li>ci: nightly image, index annotations and SBOMs by @sdornan in <a href="https://github.com/rommapp/romm/pull/4731">https://github.com/rommapp/romm/pull/4731</a></li>
+<li>chore: delegate llm tasks to static analysis tools. by @andest01 in <a href="https://github.com/rommapp/romm/pull/4742">https://github.com/rommapp/romm/pull/4742</a></li>
+<li>chore(docker): verify downloads with ADD —checksum and pin RAHasher by commit by @sdornan in <a href="https://github.com/rommapp/romm/pull/4781">https://github.com/rommapp/romm/pull/4781</a></li>
+<li>refactor(backend): move engine-specific query SQL out of handlers into utils/sql_dialect.py by @sdornan in <a href="https://github.com/rommapp/romm/pull/4793">https://github.com/rommapp/romm/pull/4793</a></li>
+<li>chore(mypy): require full annotations outside tests, type the setup responses by @sdornan in <a href="https://github.com/rommapp/romm/pull/4795">https://github.com/rommapp/romm/pull/4795</a></li>
+<li>fix(deps): bump mariadb connector to 1.1.14 for Python 3.14 by @gantoine in <a href="https://github.com/rommapp/romm/pull/4814">https://github.com/rommapp/romm/pull/4814</a></li>
+<li>chore(mypy): switch to strict mode with listed exceptions by @sdornan in <a href="https://github.com/rommapp/romm/pull/4817">https://github.com/rommapp/romm/pull/4817</a></li>
+<li>chore(mypy): give every generic its type arguments by @sdornan in <a href="https://github.com/rommapp/romm/pull/4818">https://github.com/rommapp/romm/pull/4818</a></li>
+<li>test(sync): isolate RetroArch blob and PSP pending dirs per test by @sdornan in <a href="https://github.com/rommapp/romm/pull/4824">https://github.com/rommapp/romm/pull/4824</a></li>
+<li>refactor(backend): move FORCE INDEX hint and FULLTEXT match into sql_dialect by @sdornan in <a href="https://github.com/rommapp/romm/pull/4825">https://github.com/rommapp/romm/pull/4825</a></li>
+<li>chore(mypy): drop warn_return_any and validate provider responses with strict JSON by @sdornan in <a href="https://github.com/rommapp/romm/pull/4826">https://github.com/rommapp/romm/pull/4826</a></li>
+<li>chore(backend): enforce mypy’s disallow_untyped_calls and disallow_untyped_decorators by @sdornan in <a href="https://github.com/rommapp/romm/pull/4827">https://github.com/rommapp/romm/pull/4827</a></li>
+<li>chore(mypy): report untyped imports instead of disabling the check by @sdornan in <a href="https://github.com/rommapp/romm/pull/4828">https://github.com/rommapp/romm/pull/4828</a></li>
+<li>chore(deps): upgrade Authlib to 1.8 and joserfc to 1.7 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4829">https://github.com/rommapp/romm/pull/4829</a></li>
+<li>chore(deps): move from httpx to httpx2 by @sdornan in <a href="https://github.com/rommapp/romm/pull/4830">https://github.com/rommapp/romm/pull/4830</a></li>
+<li>chore(backend): replace zstandard with stdlib compression.zstd by @sdornan in <a href="https://github.com/rommapp/romm/pull/4831">https://github.com/rommapp/romm/pull/4831</a></li>
+<li>chore(deps): bump uv to 0.12.19 and relax required-version for Dependabot by @sdornan in <a href="https://github.com/rommapp/romm/pull/4832">https://github.com/rommapp/romm/pull/4832</a></li>
+<li>fix(deps): bump asyncssh, click, pygments and requests for open advisories by @sdornan in <a href="https://github.com/rommapp/romm/pull/4833">https://github.com/rommapp/romm/pull/4833</a></li>
+<li>perf(gamelist): list each ES-DE media folder once per platform by @sdornan in <a href="https://github.com/rommapp/romm/pull/4841">https://github.com/rommapp/romm/pull/4841</a></li>
+<li>chore(deps): bump redis to 8.1 and fakeredis to 2.38, drop types-redis by @sdornan in <a href="https://github.com/rommapp/romm/pull/4844">https://github.com/rommapp/romm/pull/4844</a></li>
+<li>perf(scan): download a rom’s media files concurrently by @sdornan in <a href="https://github.com/rommapp/romm/pull/4842">https://github.com/rommapp/romm/pull/4842</a></li>
+<li>chore(skills): vendor humanizer and run it after pr-ready and the release drafts by @gantoine in <a href="https://github.com/rommapp/romm/pull/4845">https://github.com/rommapp/romm/pull/4845</a></li>
+<li>chore(mypy): replace type-ignore defaults with typed injection sentinels by @sdornan in <a href="https://github.com/rommapp/romm/pull/4843">https://github.com/rommapp/romm/pull/4843</a></li>
+<li>perf(backend): pipeline multi-command Redis writes by @sdornan in <a href="https://github.com/rommapp/romm/pull/4858">https://github.com/rommapp/romm/pull/4858</a></li>
+<li>chore(lint): ban double-cast ROM fixtures in tests by @gantoine in <a href="https://github.com/rommapp/romm/pull/4863">https://github.com/rommapp/romm/pull/4863</a></li>
+<li>docs: consolidate agent instructions into AGENTS.md and add a shared dev environment setup by @sdornan in <a href="https://github.com/rommapp/romm/pull/4869">https://github.com/rommapp/romm/pull/4869</a></li>
+<li>ci: cache mypy between runs and install only Playwright’s headless shell by @sdornan in <a href="https://github.com/rommapp/romm/pull/4873">https://github.com/rommapp/romm/pull/4873</a></li>
+<li>chore(trunk): upgrade plugins and linters, automate upgrades, scan all files weekly by @sdornan in <a href="https://github.com/rommapp/romm/pull/4870">https://github.com/rommapp/romm/pull/4870</a></li>
+<li>chore(trunk): Upgrade trunk by @github-actions[bot] in <a href="https://github.com/rommapp/romm/pull/4880">https://github.com/rommapp/romm/pull/4880</a></li>
+<li>ci: coverage upload, Docker PR check, API type drift check and other CI maintenance by @sdornan in <a href="https://github.com/rommapp/romm/pull/4875">https://github.com/rommapp/romm/pull/4875</a></li>
+<li>docs: fix the cloud environment setup script command in AGENTS.md by @sdornan in <a href="https://github.com/rommapp/romm/pull/4882">https://github.com/rommapp/romm/pull/4882</a></li>
+<li>chore(trunk): remove the no-emdash Trunk linter after a one-time sweep by @gantoine in <a href="https://github.com/rommapp/romm/pull/4884">https://github.com/rommapp/romm/pull/4884</a></li>
+<li>chore(storybook): Save State support by @andest01 in <a href="https://github.com/rommapp/romm/pull/4727">https://github.com/rommapp/romm/pull/4727</a></li>
+<li>perf: run the chroma-key placeholder check off the event loop by @sdornan in <a href="https://github.com/rommapp/romm/pull/4899">https://github.com/rommapp/romm/pull/4899</a></li>
+<li>ci: sign release images, gate on critical CVEs and scan for malware by @gantoine in <a href="https://github.com/rommapp/romm/pull/4890">https://github.com/rommapp/romm/pull/4890</a></li>
+<li>chore(deps): update dependency @types/node to v24 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4908">https://github.com/rommapp/romm/pull/4908</a></li>
+<li>chore(deps): update dependency @floating-ui/vue to v2 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4907">https://github.com/rommapp/romm/pull/4907</a></li>
+<li>chore(deps): update dependency pytest-cov to v7 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4911">https://github.com/rommapp/romm/pull/4911</a></li>
+<li>chore(deps): update dependency certifi to v2026 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4915">https://github.com/rommapp/romm/pull/4915</a></li>
+<li>test(tasks): cover scheduled cron description in TasksSection by @sdornan in <a href="https://github.com/rommapp/romm/pull/4918">https://github.com/rommapp/romm/pull/4918</a></li>
+<li>chore(deps): update dependency cronstrue to v3 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4917">https://github.com/rommapp/romm/pull/4917</a></li>
+<li>chore(deps): update dependency ipykernel to v7 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4919">https://github.com/rommapp/romm/pull/4919</a></li>
+<li>chore(deps): update dependency globals to v17 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4913">https://github.com/rommapp/romm/pull/4913</a></li>
+<li>chore(deps): update dependency streaming-form-data to v2 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4924">https://github.com/rommapp/romm/pull/4924</a></li>
+<li>chore(deps): update dependency vite-plugin-mkcert to v2 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4925">https://github.com/rommapp/romm/pull/4925</a></li>
+<li>chore(deps): update dependency md-editor-v3 to v7 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4920">https://github.com/rommapp/romm/pull/4920</a></li>
+<li>chore(deps): update dependency @vueuse/core to v15 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4909">https://github.com/rommapp/romm/pull/4909</a></li>
+<li>refactor(frontend): derive state that was stored and synced by hand by @sdornan in <a href="https://github.com/rommapp/romm/pull/4929">https://github.com/rommapp/romm/pull/4929</a></li>
+<li>chore(deps): update github actions by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4910">https://github.com/rommapp/romm/pull/4910</a></li>
+<li>perf(scan): read only the selected ROMs’ gamelist entries by @sdornan in <a href="https://github.com/rommapp/romm/pull/4940">https://github.com/rommapp/romm/pull/4940</a></li>
+<li>perf(gamelist): validate media tag paths once per directory by @sdornan in <a href="https://github.com/rommapp/romm/pull/4943">https://github.com/rommapp/romm/pull/4943</a></li>
+<li>test(frontend): pin the timezone for pending-asset capture names by @sdornan in <a href="https://github.com/rommapp/romm/pull/4948">https://github.com/rommapp/romm/pull/4948</a></li>
+<li>chore(lint): remove the no-emdash-in-comment ESLint rule after a one-time sweep by @gantoine in <a href="https://github.com/rommapp/romm/pull/4887">https://github.com/rommapp/romm/pull/4887</a></li>
+<li>chore(deps): update dependency pinia to v4 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4921">https://github.com/rommapp/romm/pull/4921</a></li>
+<li>chore(deps): update md-editor-v3 to v7 and fix its breaking changes by @sdornan in <a href="https://github.com/rommapp/romm/pull/4922">https://github.com/rommapp/romm/pull/4922</a></li>
+<li>chore(deps): update dependency vuetify to v4 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4927">https://github.com/rommapp/romm/pull/4927</a></li>
+<li>refactor(db): drop stored columns that duplicate derivable data by @sdornan in <a href="https://github.com/rommapp/romm/pull/4930">https://github.com/rommapp/romm/pull/4930</a></li>
+<li>ci: grant issues: write to the build scan job by @sdornan in <a href="https://github.com/rommapp/romm/pull/4934">https://github.com/rommapp/romm/pull/4934</a></li>
+<li>chore(deps): bump markdown-it from 14.2.0 to 14.3.2 in /frontend by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/4960">https://github.com/rommapp/romm/pull/4960</a></li>
+<li>chore(deps): bump urllib3 from 2.7.0 to 2.8.0 by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/4964">https://github.com/rommapp/romm/pull/4964</a></li>
+<li>chore(deps): update dependency axios to v1.20.0 [security] by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4966">https://github.com/rommapp/romm/pull/4966</a></li>
+<li>chore(deps-dev): bump brace-expansion from 2.1.4 to 2.1.7 in /frontend by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/4961">https://github.com/rommapp/romm/pull/4961</a></li>
+<li>test(backend): build test rows through shared factories and enforce them with ruff by @sdornan in <a href="https://github.com/rommapp/romm/pull/4972">https://github.com/rommapp/romm/pull/4972</a></li>
+<li>chore(deps): update typescript to 6.0.3 and hold below 7 by @gantoine in <a href="https://github.com/rommapp/romm/pull/4963">https://github.com/rommapp/romm/pull/4963</a></li>
+<li>refactor: remove unused code and deduplicate copied helpers by @sdornan in <a href="https://github.com/rommapp/romm/pull/4975">https://github.com/rommapp/romm/pull/4975</a></li>
+<li>refactor(db): follow-ups to the derived-state fixes by @sdornan in <a href="https://github.com/rommapp/romm/pull/4969">https://github.com/rommapp/romm/pull/4969</a></li>
+<li>refactor(db): escape LIKE searches with SQLAlchemy’s autoescape by @sdornan in <a href="https://github.com/rommapp/romm/pull/4976">https://github.com/rommapp/romm/pull/4976</a></li>
+<li>docs: recommend pytest-xdist for local backend test runs by @sdornan in <a href="https://github.com/rommapp/romm/pull/4983">https://github.com/rommapp/romm/pull/4983</a></li>
+<li>perf(search): keep the FULLTEXT index on searches with short words or stopwords by @sdornan in <a href="https://github.com/rommapp/romm/pull/4970">https://github.com/rommapp/romm/pull/4970</a></li>
+<li>chore(deps): bump tornado from 6.5.8 to 6.5.9 by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/4985">https://github.com/rommapp/romm/pull/4985</a></li>
+<li>chore(wcag): AA misc fixes by @andest01 in <a href="https://github.com/rommapp/romm/pull/4971">https://github.com/rommapp/romm/pull/4971</a></li>
+<li>perf: trim idle memory of the backend processes by @gantoine in <a href="https://github.com/rommapp/romm/pull/4981">https://github.com/rommapp/romm/pull/4981</a></li>
+<li>perf: keep task code out of the cron scheduler and idle RQ workers by @gantoine in <a href="https://github.com/rommapp/romm/pull/4982">https://github.com/rommapp/romm/pull/4982</a></li>
+<li>chore(deps): update frontend dependencies by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4989">https://github.com/rommapp/romm/pull/4989</a></li>
+<li>chore(deps): update backend dependencies by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/4990">https://github.com/rommapp/romm/pull/4990</a></li>
+<li>chore(deps): upgrade SQLAlchemy to 2.1 by @sdornan in <a href="https://github.com/rommapp/romm/pull/5007">https://github.com/rommapp/romm/pull/5007</a></li>
+<li>refactor(db): replace deprecated noload() with raiseload() by @sdornan in <a href="https://github.com/rommapp/romm/pull/5009">https://github.com/rommapp/romm/pull/5009</a></li>
+<li>refactor(v2): share popover dismissal across RSelect, RComboboxField, RDateField and RMenu by @sdornan in <a href="https://github.com/rommapp/romm/pull/5010">https://github.com/rommapp/romm/pull/5010</a></li>
+<li>refactor(v2): route v2 server-backed search boxes through useDebouncedSearch by @sdornan in <a href="https://github.com/rommapp/romm/pull/5011">https://github.com/rommapp/romm/pull/5011</a></li>
+<li>refactor(v2): route remaining v2 clipboard writes through useClipboard by @sdornan in <a href="https://github.com/rommapp/romm/pull/5017">https://github.com/rommapp/romm/pull/5017</a></li>
+<li>test(backend): fix order-dependent test_saves / test_states db handler tests by @sdornan in <a href="https://github.com/rommapp/romm/pull/5018">https://github.com/rommapp/romm/pull/5018</a></li>
+<li>refactor(v2): track AppNav’s window scroll with useWindowScroll by @sdornan in <a href="https://github.com/rommapp/romm/pull/5025">https://github.com/rommapp/romm/pull/5025</a></li>
+<li>test(frontend): auto-unmount every test’s wrappers from the global setup by @sdornan in <a href="https://github.com/rommapp/romm/pull/5026">https://github.com/rommapp/romm/pull/5026</a></li>
+<li>test(frontend): give every test a fresh Pinia from the global setup by @sdornan in <a href="https://github.com/rommapp/romm/pull/5028">https://github.com/rommapp/romm/pull/5028</a></li>
+<li>test(frontend): share the vue-i18n test mock and let Vitest reset mocks, stubs and env by @sdornan in <a href="https://github.com/rommapp/romm/pull/5027">https://github.com/rommapp/romm/pull/5027</a></li>
+<li>refactor(v2): use VueUse for v2 debounces, intervals, the page title and avatar preview by @sdornan in <a href="https://github.com/rommapp/romm/pull/5035">https://github.com/rommapp/romm/pull/5035</a></li>
+<li>refactor(v2): use useTimeoutFn for v2’s one-shot timers and useEventListener for hotkeys by @sdornan in <a href="https://github.com/rommapp/romm/pull/5037">https://github.com/rommapp/romm/pull/5037</a></li>
+<li>refactor(v2): add useRouteQueryParam for URL-backed v2 view state by @sdornan in <a href="https://github.com/rommapp/romm/pull/5039">https://github.com/rommapp/romm/pull/5039</a></li>
+<li>refactor(v2): load self-fetching v2 components through useFetchState by @sdornan in <a href="https://github.com/rommapp/romm/pull/5038">https://github.com/rommapp/romm/pull/5038</a></li>
+<li>test(frontend): restore real timers globally and echo params from the shared i18n mock by @sdornan in <a href="https://github.com/rommapp/romm/pull/5043">https://github.com/rommapp/romm/pull/5043</a></li>
+<li>refactor(v2): use VueUse for v2’s rAF loops, listener pairs and grid observers by @sdornan in <a href="https://github.com/rommapp/romm/pull/5045">https://github.com/rommapp/romm/pull/5045</a></li>
+<li>chore(storybook): fix the RTooltip ParentAttach story so the tooltip renders by @sdornan in <a href="https://github.com/rommapp/romm/pull/5047">https://github.com/rommapp/romm/pull/5047</a></li>
+<li>refactor(v2): share v2’s visible-tab poll and move the last timers and RTooltip to VueUse by @sdornan in <a href="https://github.com/rommapp/romm/pull/5048">https://github.com/rommapp/romm/pull/5048</a></li>
+<li>refactor(v2): use VueUse for v2’s image previews, remaining observers, rAF loops and timers by @sdornan in <a href="https://github.com/rommapp/romm/pull/5052">https://github.com/rommapp/romm/pull/5052</a></li>
+<li>chore(frontend): tighten frontend typechecking by @sdornan in <a href="https://github.com/rommapp/romm/pull/5053">https://github.com/rommapp/romm/pull/5053</a></li>
+<li>chore(frontend): enable strictVModel and make RSelect, PlatformSelect and RTabNav generic by @sdornan in <a href="https://github.com/rommapp/romm/pull/5055">https://github.com/rommapp/romm/pull/5055</a></li>
+<li>chore(converto): bump rom-converto to v0.23.2 in both images by @DevYukine in <a href="https://github.com/rommapp/romm/pull/5041">https://github.com/rommapp/romm/pull/5041</a></li>
+<li>ci: cache frontend node_modules and skip npm ci on a lockfile match by @sdornan in <a href="https://github.com/rommapp/romm/pull/5044">https://github.com/rommapp/romm/pull/5044</a></li>
+<li>ci(e2e): copy frontend/assets into the preview build by @gantoine in <a href="https://github.com/rommapp/romm/pull/5056">https://github.com/rommapp/romm/pull/5056</a></li>
+<li>chore(frontend): split the frontend tsconfig into project references by @sdornan in <a href="https://github.com/rommapp/romm/pull/5057">https://github.com/rommapp/romm/pull/5057</a></li>
+<li>chore(frontend): prepare the gallery and grid-nav composables for noUncheckedIndexedAccess by @sdornan in <a href="https://github.com/rommapp/romm/pull/5058">https://github.com/rommapp/romm/pull/5058</a></li>
+<li>refactor(v2): render v2 QR codes with useQRCode from @vueuse/integrations by @sdornan in <a href="https://github.com/rommapp/romm/pull/5060">https://github.com/rommapp/romm/pull/5060</a></li>
+<li>chore(frontend): prepare the rest of the v2 app code for noUncheckedIndexedAccess by @sdornan in <a href="https://github.com/rommapp/romm/pull/5061">https://github.com/rommapp/romm/pull/5061</a></li>
+<li>chore(frontend): prepare the shared frontend code for noUncheckedIndexedAccess by @sdornan in <a href="https://github.com/rommapp/romm/pull/5062">https://github.com/rommapp/romm/pull/5062</a></li>
+<li>chore(frontend): enable noUncheckedIndexedAccess by @sdornan in <a href="https://github.com/rommapp/romm/pull/5063">https://github.com/rommapp/romm/pull/5063</a></li>
+<li>chore(frontend): prepare v2 and shared code for exactOptionalPropertyTypes by @sdornan in <a href="https://github.com/rommapp/romm/pull/5065">https://github.com/rommapp/romm/pull/5065</a></li>
+<li>chore(frontend): enable exactOptionalPropertyTypes by @sdornan in <a href="https://github.com/rommapp/romm/pull/5067">https://github.com/rommapp/romm/pull/5067</a></li>
+<li>perf(scan): skip the second write and reload for newly inserted roms by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5070">https://github.com/rommapp/romm/pull/5070</a></li>
+<li>perf(roms): faster smart collection and filter value queries by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5069">https://github.com/rommapp/romm/pull/5069</a></li>
+<li>refactor(backend): route ROM visibility through a single RomVisibilityFilter by @sdornan in <a href="https://github.com/rommapp/romm/pull/5064">https://github.com/rommapp/romm/pull/5064</a></li>
+<li>perf(config): read config.yml values with a plain dict walk by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5071">https://github.com/rommapp/romm/pull/5071</a></li>
+<li>test(db): give worktree runs their own temporary test database by @gantoine in <a href="https://github.com/rommapp/romm/pull/5074">https://github.com/rommapp/romm/pull/5074</a></li>
+<li>perf(tests): faster database setup and cleanup in the backend suite by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5073">https://github.com/rommapp/romm/pull/5073</a></li>
+<li>perf(frontend): smaller first load and faster vitest setup by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5072">https://github.com/rommapp/romm/pull/5072</a></li>
+<li>refactor(v2): simplify keyboard/gamepad handling by @sdornan in <a href="https://github.com/rommapp/romm/pull/5084">https://github.com/rommapp/romm/pull/5084</a></li>
+<li>perf(frontend): load md-editor on demand instead of with the app by @LoneAngelFayt in <a href="https://github.com/rommapp/romm/pull/5080">https://github.com/rommapp/romm/pull/5080</a></li>
+<li>refactor(v2): share the scan form’s hash-matcher switches and scan-type select by @sdornan in <a href="https://github.com/rommapp/romm/pull/5099">https://github.com/rommapp/romm/pull/5099</a></li>
+<li>chore(deps): update frontend dependencies by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/5103">https://github.com/rommapp/romm/pull/5103</a></li>
+<li>chore(deps): update backend dependencies by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/5104">https://github.com/rommapp/romm/pull/5104</a></li>
+<li>chore(deps): update actions/upload-code-coverage action to v1.4.4 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/5105">https://github.com/rommapp/romm/pull/5105</a></li>
+<li>chore(deps): upgrade apprise to 2.0 by @sdornan in <a href="https://github.com/rommapp/romm/pull/5102">https://github.com/rommapp/romm/pull/5102</a></li>
+<li>test(tasks): cover the WebP conversion task by @sdornan in <a href="https://github.com/rommapp/romm/pull/5112">https://github.com/rommapp/romm/pull/5112</a></li>
+<li>test(utils): read tags and covers from real audio files in each format by @sdornan in <a href="https://github.com/rommapp/romm/pull/5113">https://github.com/rommapp/romm/pull/5113</a></li>
+<li>test: platform fixture factories for the backend and frontend by @sdornan in <a href="https://github.com/rommapp/romm/pull/5119">https://github.com/rommapp/romm/pull/5119</a></li>
+<li>test: typed ROM fixtures, and no model casts in tests or stories by @sdornan in <a href="https://github.com/rommapp/romm/pull/5122">https://github.com/rommapp/romm/pull/5122</a></li>
+<li>refactor(metadata): share the indexed filename lookup across IGDB, Moby and SS by @sdornan in <a href="https://github.com/rommapp/romm/pull/5130">https://github.com/rommapp/romm/pull/5130</a></li>
+<li>refactor(metadata): share provider request retries and error mapping by @sdornan in <a href="https://github.com/rommapp/romm/pull/5132">https://github.com/rommapp/romm/pull/5132</a></li>
+<li>refactor(metadata): share heartbeats, filename id tags and the Moby rom builder by @sdornan in <a href="https://github.com/rommapp/romm/pull/5134">https://github.com/rommapp/romm/pull/5134</a></li>
+<li>chore(e2e): Update playwright with smaller focus by @andest01 in <a href="https://github.com/rommapp/romm/pull/4932">https://github.com/rommapp/romm/pull/4932</a></li>
+<li>chore(deps): update backend dependencies by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/5136">https://github.com/rommapp/romm/pull/5136</a></li>
+<li>chore(e2e): check every page for accessibility violations with axe by @andest01 in <a href="https://github.com/rommapp/romm/pull/4951">https://github.com/rommapp/romm/pull/4951</a></li>
+<li>chore(trunk): pin the CLI download to its sha256 by @gantoine in <a href="https://github.com/rommapp/romm/pull/5140">https://github.com/rommapp/romm/pull/5140</a></li>
+<li>chore(trunk): Upgrade trunk by @github-actions[bot] in <a href="https://github.com/rommapp/romm/pull/5137">https://github.com/rommapp/romm/pull/5137</a></li>
+<li>chore(trunk): fix the scheduled trunk check-all failures by @gantoine in <a href="https://github.com/rommapp/romm/pull/5141">https://github.com/rommapp/romm/pull/5141</a></li>
+<li>chore(deps): update dependency md-editor-v3 to v7.1.0 by @renovate[bot] in <a href="https://github.com/rommapp/romm/pull/5142">https://github.com/rommapp/romm/pull/5142</a></li>
+<li>chore(v2): let the theme toolbar drive every lib story by @sdornan in #5150</li>
+<li>refactor(v2): extract RSortHeader and make the index lists real tables by @sdornan in #5149</li>
+<li>chore(eslint): adopt @vue/eslint-config-typescript and lint with type information by @sdornan in #5148</li>
+<li>chore(dev): DEV_PROXY_TARGET to run the frontend against a remote RomM by @gantoine in <a href="https://github.com/rommapp/romm/pull/4763">https://github.com/rommapp/romm/pull/4763</a></li>
+<li>chore(storybook): add an input modality toolbar by @gantoine in <a href="https://github.com/rommapp/romm/pull/4791">https://github.com/rommapp/romm/pull/4791</a></li>
+<li>chore(locales): it_IT translation by @dms1e4 in <a href="https://github.com/rommapp/romm/pull/5006">https://github.com/rommapp/romm/pull/5006</a></li>
+<li>chore(v2): switch Storybook docgen to vue-component-meta and enable autodocs by @sdornan in <a href="https://github.com/rommapp/romm/pull/5152">https://github.com/rommapp/romm/pull/5152</a></li>
+<li>test(frontend): run Storybook stories and a11y checks in Chromium via addon-vitest by @sdornan in <a href="https://github.com/rommapp/romm/pull/5153">https://github.com/rommapp/romm/pull/5153</a></li>
+<li>chore(deps): bump source-map-js from 1.2.1 to 1.2.2 in /frontend by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/5164">https://github.com/rommapp/romm/pull/5164</a></li>
+<li>chore(deps): bump multidict from 6.7.1 to 6.9.1 by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/5165">https://github.com/rommapp/romm/pull/5165</a></li>
+<li>chore(deps): bump mako from 1.3.12 to 1.4.2 by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/5166">https://github.com/rommapp/romm/pull/5166</a></li>
+<li>chore(deps): bump postcss-selector-parser from 7.1.5 to 7.1.6 in /frontend by @dependabot[bot] in <a href="https://github.com/rommapp/romm/pull/5163">https://github.com/rommapp/romm/pull/5163</a></li>
+<li>ci: check that PR titles follow Conventional Commits by @gantoine in <a href="https://github.com/rommapp/romm/pull/5143">https://github.com/rommapp/romm/pull/5143</a></li>
+<li>perf(scan): batch restored-ROM hydration reads by @Shreeniwas1 in <a href="https://github.com/rommapp/romm/pull/5145">https://github.com/rommapp/romm/pull/5145</a></li>
+<li>perf(scan): replace superseded-folder prefix scans with ancestor set by @Shreeniwas1 in <a href="https://github.com/rommapp/romm/pull/5146">https://github.com/rommapp/romm/pull/5146</a></li>
+<li>perf(tasks): batch RetroAchievements progress sync reads by @Shreeniwas1 in <a href="https://github.com/rommapp/romm/pull/5144">https://github.com/rommapp/romm/pull/5144</a></li>
+<li>docs(readme): refresh community projects list by @gantoine in <a href="https://github.com/rommapp/romm/pull/5176">https://github.com/rommapp/romm/pull/5176</a></li>
+<li>ci: add network timeouts and retries to setup-backend apt calls by @gantoine in <a href="https://github.com/rommapp/romm/pull/5181">https://github.com/rommapp/romm/pull/5181</a></li>
+<li>ci: keep CI jobs off Ubuntu apt mirrors by @gantoine in <a href="https://github.com/rommapp/romm/pull/5182">https://github.com/rommapp/romm/pull/5182</a></li>
+<li>perf(tasks): batch RetroAchievements status writes, make add_rom_user race-safe by @gantoine in <a href="https://github.com/rommapp/romm/pull/5179">https://github.com/rommapp/romm/pull/5179</a></li>
+<li>perf(frontend): serve only the mdi icons the app uses by @andest01 in <a href="https://github.com/rommapp/romm/pull/5118">https://github.com/rommapp/romm/pull/5118</a></li>
+</ul>
+<h2 id="new-contributors">New Contributors</h2>
+<ul>
+<li>@fmustafayaman made their first contribution in <a href="https://github.com/rommapp/romm/pull/3931">https://github.com/rommapp/romm/pull/3931</a></li>
+<li>@yiannias made their first contribution in <a href="https://github.com/rommapp/romm/pull/4741">https://github.com/rommapp/romm/pull/4741</a></li>
+<li>@beemines made their first contribution in <a href="https://github.com/rommapp/romm/pull/4956">https://github.com/rommapp/romm/pull/4956</a></li>
+<li>@dms1e4 made their first contribution in <a href="https://github.com/rommapp/romm/pull/5006">https://github.com/rommapp/romm/pull/5006</a></li>
+<li>@ilyas-hallak made their first contribution in <a href="https://github.com/rommapp/romm/pull/5014">https://github.com/rommapp/romm/pull/5014</a></li>
+<li>@NotAFlightRisk made their first contribution in <a href="https://github.com/rommapp/romm/pull/5115">https://github.com/rommapp/romm/pull/5115</a></li>
+<li>@Shreeniwas1 made their first contribution in <a href="https://github.com/rommapp/romm/pull/5145">https://github.com/rommapp/romm/pull/5145</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/rommapp/romm/compare/5.3.1...5.4.0-alpha.2">https://github.com/rommapp/romm/compare/5.3.1…5.4.0-alpha.2</a></p> </div> <div class="mt-6"> <a href="https://github.com/rommapp/romm/releases/tag/5.4.0-alpha.2" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 transition-colors duration-200 hover:text-blue-700">
+Changelog on GitHub →
+</a> </div> </div> </div> </div> </div> </div> </section> <script>(function() {
+  const selectors = [".release-article"];
+  const relValue = "nofollow noopener noreferrer";
+
+  const ensureAttributes = (anchor) => {
+    if (!anchor) return;
+    anchor.setAttribute("target", "_blank");
+    const existingRel = anchor.getAttribute("rel") || "";
+    const relSet = new Set((existingRel + " " + relValue).split(/\s+/).filter(Boolean));
+    anchor.setAttribute("rel", Array.from(relSet).join(" "));
+  };
+
+  const applyAttributes = () => {
+    selectors.forEach((selector) => {
+      const anchors = document.querySelectorAll(selector + " a");
+      anchors.forEach((anchor) => ensureAttributes(anchor));
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAttributes, { once: true });
+  } else {
+    applyAttributes();
+  }
+})();</script>  </main> <footer class="bg-white border-t border-gray-200"> <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8"> <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between"> <div class="mb-12 lg:mb-0 lg:max-w-xs"> <a href="/" class="logo-container"> <span class="sr-only">Winterflow</span> <svg class="h-8 w-8 text-blue-400" aria-hidden="true"> <use href="#winterflow-asterisk"></use> </svg> <span class="text-2xl logo-text whitespace-nowrap"> <span class="logo-winter">Winter</span><span class="logo-flow">Flow</span><span class="logo-io">.io</span> </span> </a> <p class="mt-6 text-sm text-gray-600">WinterFlow.io — Fresh look at Self-Hosting.</p> <div class="mt-6 flex gap-6"> <a href="https://github.com/winterflowio" target="_blank" class="text-gray-500 hover:text-gray-600" aria-label="Visit our GitHub"> <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path> </svg> </a> </div> </div> <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-16"> <div> <h3 class="text-sm font-semibold text-gray-900">Sections</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Product</a></li> <li><a href="/#why" class="text-sm text-gray-600 hover:text-gray-900">Why WinterFlow?</a></li> <li><a href="/#how-it-works" class="text-sm text-gray-600 hover:text-gray-900">How it works</a></li> <li><a href="/#pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a></li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Apps Catalog</h3> <ul role="list" class="mt-6 space-y-4"> <li> <a href="/catalog#ai" class="text-sm text-gray-600 hover:text-gray-900"> AI </a> </li><li> <a href="/catalog#app" class="text-sm text-gray-600 hover:text-gray-900"> app </a> </li><li> <a href="/catalog#infra" class="text-sm text-gray-600 hover:text-gray-900"> infra </a> </li><li> <a href="/catalog#no-code" class="text-sm text-gray-600 hover:text-gray-900"> no-code </a> </li> </ul> </div> <div> <h3 class="text-sm font-semibold text-gray-900">Legal</h3> <ul role="list" class="mt-6 space-y-4"> <li><a href="/legal/privacy-policy/" class="text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a></li> <li><a href="/legal/terms-of-service/" class="text-sm text-gray-600 hover:text-gray-900">Terms of Service</a></li> </ul> </div> </div> </div> </div> </footer> </div> <!-- Waitlist Modal --><div class="js-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true"> <div class="js-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Join the Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Be the first to deploy <span class="js-selected-app font-medium text-gray-900">your apps</span> — join the WinterFlow waiting list.</p> </div> </div> </div> <form class="js-waitlist-form mt-8"> <div class="mb-6"> <label for="email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="email-description">We'll send early access invites when it's ready, along with occasional product updates — no spam, ever.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join the Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Team Waitlist Modal --> <div class="js-team-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="team-modal-title" role="dialog" aria-modal="true"> <div class="js-team-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-team-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766v-.109a6.375 6.375 0 0 1 11.964-3.07m-2.214-9.019a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="team-modal-title">Join Business Plan Waitlist</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get early access to our Business Plan with collaboration features, team apps, and advanced management capabilities.</p> </div> </div> </div> <form class="js-team-waitlist-form mt-8"> <div class="mb-6"> <label for="team-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="team-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@company.com" aria-describedby="team-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="team-email-description">We'll notify you when Business Plan becomes available, plus occasional updates about team features.</p> </div> <div class="mb-6"> <div class="relative flex items-start"> <div class="flex h-6 items-center"> <input id="user-interview" name="user-interview" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600 focus:ring-offset-0" aria-describedby="user-interview-description"> </div> <div class="ml-3 text-sm leading-6"> <label for="user-interview" class="font-medium text-gray-900">I'm interested in participating in a user interview</label> <p class="text-gray-500" id="user-interview-description">Help us build better team features by sharing your workflow and needs (optional, 15-30 min call)</p> </div> </div> </div> <input type="hidden" name="plan" class="js-team-plan-input" value="team"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Join Team Waitlist
+</button> </div> </form> </div> </div> </div> <!-- Managed Servers Modal --> <div class="js-managed-servers-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="managed-modal-title" role="dialog" aria-modal="true"> <div class="js-managed-servers-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-managed-servers-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v5.25a3 3 0 0 1-3 3m-13.5 0H9m4.5 0h2.25"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="managed-modal-title">Get Early Access to Managed Cloud</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Skip the server setup entirely. We'll provide fully managed infrastructure so you can <span class="font-medium text-gray-900">deploy apps instantly</span>.</p> </div> </div> </div> <form class="js-managed-servers-form mt-8"> <div class="mb-6"> <label for="managed-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="managed-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="managed-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="managed-email-description">No spam, just early access invites and product updates.</p> </div> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Catalog Waitlist Modal --> <div class="js-catalog-waitlist-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="catalog-waitlist-modal-title" role="dialog" aria-modal="true"> <div class="js-catalog-waitlist-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-catalog-waitlist-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 2.25 17.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="catalog-waitlist-modal-title">Join the WinterFlow.io Waiting List</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Get notified when <span class="js-catalog-selected-app font-medium text-gray-900">this app</span> is ready to install on WinterFlow.io</p> </div> </div> </div> <form class="js-catalog-waitlist-form mt-8"> <div class="mb-6"> <label for="catalog-waitlist-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="catalog-waitlist-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="catalog-waitlist-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="catalog-waitlist-email-description">We'll only email you about this app's availability.</p> </div> <input type="hidden" class="js-catalog-app-input" name="app" value=""> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Install with Winterflow
+</button> </div> </form> </div> </div> </div> <!-- Request App Modal --> <div class="js-request-app-modal fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="request-modal-title" role="dialog" aria-modal="true"> <div class="js-request-app-modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div> <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"> <div class="absolute right-0 top-0 pr-4 pt-4"> <button type="button" class="js-request-app-modal-close rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Close modal" style="cursor: pointer;"> <span class="sr-only">Close</span> <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> <div class="sm:flex sm:items-start"> <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10"> <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path> </svg> </div> <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"> <h3 class="text-base font-semibold leading-6 text-gray-900" id="request-modal-title">Request an App</h3> <div class="mt-2"> <p class="text-sm text-gray-500">Let us know what app you're looking for and we'll consider adding it to our catalog.</p> </div> </div> </div> <form class="js-request-app-form mt-8"> <div class="mb-6"> <label for="request-email" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Email address</label> <div class="relative"> <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"> <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3z"></path> <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839z"></path> </svg> </div> <input type="email" name="email" id="request-email" required class="block w-full rounded-md border-0 py-3 pl-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="you@example.com" aria-describedby="request-email-description"> </div> <p class="mt-2 text-sm text-gray-500" id="request-email-description">We'll only contact you with updates about this request.</p> </div> <div class="mb-6"> <label for="expected-app-name" class="mb-2 block text-sm font-medium leading-6 text-gray-900">Expected app name</label> <input type="text" name="app" id="expected-app-name" required class="block w-full rounded-md border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 transition-colors duration-200" placeholder="e.g. Plausible Analytics"> </div> <input type="hidden" name="new" value="true"> <div class="flex justify-center"> <button type="submit" class="inline-flex justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200" style="cursor: pointer;">
+Submit Request
+</button> </div> </form> </div> </div> </div> <script type="module" src="/_astro/SiteScripts.astro_astro_type_script_index_0_lang.3DOc-miX.js"></script>  </body></html>
